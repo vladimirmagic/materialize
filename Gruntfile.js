@@ -157,7 +157,6 @@ module.exports = function(grunt) {
           'js/dropdown.js',
           'js/modal.js',
           'js/materialbox.js',
-          'js/parallax.js',
           'js/tabs.js',
           'js/tooltip.js',
           'js/waves.js',
@@ -195,7 +194,6 @@ module.exports = function(grunt) {
           'js/dropdown.js',
           'js/modal.js',
           'js/materialbox.js',
-          'js/parallax.js',
           'js/tabs.js',
           'js/tooltip.js',
           'js/waves.js',
@@ -278,7 +276,6 @@ module.exports = function(grunt) {
               'dropdown.js',
               'modal.js',
               'materialbox.js',
-              'parallax.js',
               'tabs.js',
               'tooltip.js',
               'waves.js',
@@ -332,34 +329,6 @@ module.exports = function(grunt) {
           }
         ]
       },
-
-      parallax_template: {
-        options: {
-          archive: 'templates/parallax-template.zip',
-          level: 6
-        },
-        files: [
-          { expand: true, cwd: 'dist/', src: ['**/*'], dest: 'parallax-template/' },
-          {
-            expand: true,
-            cwd: 'templates/parallax-template/',
-            src: ['index.html', 'LICENSE', 'background1.jpg', 'background2.jpg', 'background3.jpg'],
-            dest: 'parallax-template/'
-          },
-          {
-            expand: true,
-            cwd: 'templates/parallax-template/css',
-            src: ['style.css'],
-            dest: 'parallax-template/css'
-          },
-          {
-            expand: true,
-            cwd: 'templates/parallax-template/js',
-            src: ['init.js'],
-            dest: 'parallax-template/js'
-          }
-        ]
-      }
     },
 
     //  Clean
@@ -386,8 +355,6 @@ module.exports = function(grunt) {
           'getting-started.html': 'jade/getting-started.jade',
           'mobile.html': 'jade/mobile.jade',
           'showcase.html': 'jade/showcase.jade',
-          'parallax.html': 'jade/parallax.jade',
-          'parallax-demo.html': 'jade/parallax-demo.jade',
           'typography.html': 'jade/typography.jade',
           'color.html': 'jade/color.jade',
           'shadow.html': 'jade/shadow.jade',
@@ -637,7 +604,6 @@ module.exports = function(grunt) {
     'compress:main',
     'compress:src',
     'compress:starter_template',
-    'compress:parallax_template',
     'replace:version',
     'replace:readme',
     'rename:rename_src',

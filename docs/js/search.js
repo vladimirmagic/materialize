@@ -152,12 +152,6 @@
     });
 
     window.index.add({
-      href: 'http://materializecss.com/parallax.html',
-      title: 'parallax',
-      body: 'Parallax is an effect where the background content or image in this case, is moved at a different speed than the foreground content while scrolling.'
-    });
-
-    window.index.add({
       href: 'http://materializecss.com/pickers.html',
       title: 'date time picker',
       body: 'Pickers provide a simple way to select a date or time.'

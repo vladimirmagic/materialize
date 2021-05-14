@@ -115,7 +115,6 @@ M.AutoInit = function(context) {
     Dropdown: root.querySelectorAll('.dropdown-trigger:not(.no-autoinit)'),
     Materialbox: root.querySelectorAll('.materialboxed:not(.no-autoinit)'),
     Modal: root.querySelectorAll('.modal:not(.no-autoinit)'),
-    Parallax: root.querySelectorAll('.parallax:not(.no-autoinit)'),
     Pushpin: root.querySelectorAll('.pushpin:not(.no-autoinit)'),
     ScrollSpy: root.querySelectorAll('.scrollspy:not(.no-autoinit)'),
     FormSelect: root.querySelectorAll('select:not(.no-autoinit)'),
