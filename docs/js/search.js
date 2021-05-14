@@ -38,12 +38,6 @@
     });
 
     window.index.add({
-      href: 'http://materializecss.com/cards.html',
-      title: 'Cards',
-      body: 'Breadcrumbs are a good way to display your current location. This is usually used when you have multiple layers of content.'
-    });
-
-    window.index.add({
       href: 'http://materializecss.com/carousel.html',
       title: 'Carousel',
       body: 'Our Carousel is a robust and versatile component that can be an image slider, to an item carousel, to an onboarding experience.'
