@@ -29,7 +29,6 @@ Package.onUse(function (api) {
     'sass/components/_badges.scss',
     'sass/components/_buttons.scss',
     'sass/components/_carousel.scss',
-    'sass/components/_chips.scss',
     'sass/components/_collapsible.scss',
     'sass/components/_color-classes.scss',
     'sass/components/_color-variables.scss',

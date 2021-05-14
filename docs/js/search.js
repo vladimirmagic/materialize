@@ -50,12 +50,6 @@
     });
 
     window.index.add({
-      href: 'http://materializecss.com/chips.html',
-      title: 'Chips',
-      body: 'Chips can be used to represent small blocks of information. They are most commonly used either for contacts or for tags.'
-    });
-
-    window.index.add({
       href: 'http://materializecss.com/collapsible.html',
       title: 'Collapsible',
       body: 'Collapsibles are accordion elements that expand when clicked on. They allow you to hide content that is not immediately relevant to the user.'

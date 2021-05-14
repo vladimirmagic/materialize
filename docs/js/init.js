@@ -212,36 +212,6 @@
       $('#tabs-swipe-demo').tabs({ swipeable: true });
     }
 
-    // Chips
-    $('.chips').chips();
-    $('.chips-initial').chips({
-      readOnly: true,
-      data: [
-        {
-          tag: 'Apple'
-        },
-        {
-          tag: 'Microsoft'
-        },
-        {
-          tag: 'Google'
-        }
-      ]
-    });
-    $('.chips-placeholder').chips({
-      placeholder: 'Enter a tag',
-      secondaryPlaceholder: '+Tag'
-    });
-    $('.chips-autocomplete').chips({
-      autocompleteOptions: {
-        data: {
-          Apple: null,
-          Microsoft: null,
-          Google: null
-        }
-      }
-    });
-
     // Fab
     $('.fixed-action-btn').floatingActionButton();
     $('.fixed-action-btn.horizontal').floatingActionButton({

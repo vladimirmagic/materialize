@@ -110,7 +110,6 @@ M.AutoInit = function(context) {
   let registry = {
     Autocomplete: root.querySelectorAll('.autocomplete:not(.no-autoinit)'),
     Carousel: root.querySelectorAll('.carousel:not(.no-autoinit)'),
-    Chips: root.querySelectorAll('.chips:not(.no-autoinit)'),
     Collapsible: root.querySelectorAll('.collapsible:not(.no-autoinit)'),
     Datepicker: root.querySelectorAll('.datepicker:not(.no-autoinit)'),
     Dropdown: root.querySelectorAll('.dropdown-trigger:not(.no-autoinit)'),
