@@ -6,7 +6,7 @@
     autoFocus: true,
     constrainWidth: true,
     container: null,
-    coverTrigger: true,
+    coverTrigger: false,
     closeOnClick: true,
     hover: false,
     inDuration: 150,
@@ -579,6 +579,7 @@
       this._placeDropdown();
       this._animateIn();
       this._setupTemporaryEventHandlers();
+      this.el.classList.add('opened');
     }
 
     /**
@@ -602,6 +603,7 @@
       if (this.options.autoFocus) {
         this.el.focus();
       }
+      this.el.classList.remove('opened');
     }
 
     /**

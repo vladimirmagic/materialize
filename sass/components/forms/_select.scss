@@ -165,8 +165,8 @@ body.keyboard-focused {
 // Icons
 .select-dropdown li {
   img {
-    height: $dropdown-item-height - 10;
-    width: $dropdown-item-height - 10;
+    height: $dropdown-item-height;
+    width: $dropdown-item-height;
     margin: 5px 15px;
     float: right;
   }
