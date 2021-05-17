@@ -116,7 +116,6 @@ M.AutoInit = function(context) {
     Materialbox: root.querySelectorAll('.materialboxed:not(.no-autoinit)'),
     Modal: root.querySelectorAll('.modal:not(.no-autoinit)'),
     Pushpin: root.querySelectorAll('.pushpin:not(.no-autoinit)'),
-    ScrollSpy: root.querySelectorAll('.scrollspy:not(.no-autoinit)'),
     FormSelect: root.querySelectorAll('select:not(.no-autoinit)'),
     Sidenav: root.querySelectorAll('.sidenav:not(.no-autoinit)'),
     Tabs: root.querySelectorAll('.tabs:not(.no-autoinit)'),

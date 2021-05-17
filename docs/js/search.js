@@ -194,12 +194,6 @@
     });
 
     window.index.add({
-      href: 'http://materializecss.com/scrollspy.html',
-      title: 'scrollspy',
-      body: 'Scrollspy is a jQuery plugin that tracks certain elements and which element the users screen is currently centered on.'
-    });
-
-    window.index.add({
       href: 'http://materializecss.com/select.html',
       title: 'Select',
       body: 'Select allows user input through specified options.'
