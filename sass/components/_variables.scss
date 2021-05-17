@@ -34,6 +34,8 @@
 // 1. Colors
 // ==========================================================================
 
+$color-base: color("blue-grey", "darken-4");
+
 $primary-color: color("deep-purple", "base") !default;
 $primary-color-light: lighten($primary-color, 15%) !default;
 $primary-color-dark: darken($primary-color, 15%) !default;
