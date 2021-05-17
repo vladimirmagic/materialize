@@ -35,6 +35,7 @@
 // ==========================================================================
 
 $color-base: color("blue-grey", "darken-4");
+$color-grey: color("grey", "base");
 
 $primary-color: color("deep-purple", "base") !default;
 $primary-color-light: lighten($primary-color, 15%) !default;
@@ -167,12 +168,12 @@ $dropdown-item-height: 40px !default;
 
 // Text Inputs + Textarea
 $input-height: 3rem !default;
-$input-border-color: color("grey", "base") !default;
+$input-border-color: $color-grey !default;
 $input-border: 1px solid $input-border-color !default;
 $input-background: #fff !default;
 $input-error-color: $error-color !default;
 $input-success-color: $success-color !default;
-$input-focus-color: $secondary-color !default;
+$input-focus-color: $color-turquoise !default;
 $input-font-size: 16px !default;
 $input-margin-bottom: 8px;
 $input-margin: 0 0 $input-margin-bottom 0 !default;
@@ -183,11 +184,11 @@ $input-disabled-solid-color: #949494 !default;
 $input-disabled-border: 1px dotted $input-disabled-color !default;
 $input-invalid-border: 1px solid $input-error-color !default;
 $input-icon-size: 2rem;
-$placeholder-text-color: lighten($input-border-color, 20%) !default;
+$placeholder-text-color: color("grey", "darken-1") !default;
 
 // Radio Buttons
-$radio-fill-color: $secondary-color !default;
-$radio-empty-color: #5a5a5a !default;
+$radio-fill-color: $color-base !default;
+$radio-empty-color: $color-grey !default;
 $radio-border: 2px solid $radio-fill-color !default;
 
 // Range

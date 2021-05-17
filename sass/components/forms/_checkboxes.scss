@@ -1,6 +1,14 @@
 /* Checkboxes
    ========================================================================== */
 
+$img-ok-white: url("data:image/svg+xml,%3Csvg viewBox='0 0 12 12' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M10.2492.703125L4.75078 7.95234 1.5 4.70391l-1.5 1.5 4.99922 4.99919L12 2.20312 10.2492.703125z' fill='%23fff'/%3E%3C/svg%3E%0A");
+
+.checkbox__label {
+  font-size: 16px;
+  font-weight: 400;
+  color: $color-base;
+}
+
 /* Remove default checkbox */
 [type="checkbox"]:not(:checked),
 [type="checkbox"]:checked {
@@ -107,7 +115,7 @@
 [type="checkbox"].filled-in {
   // General
   + span:not(.lever):after {
-    border-radius: 2px;
+    border-radius: 0;
   }
 
   + span:not(.lever):before,
@@ -122,20 +130,20 @@
 
   // Unchecked style
   &:not(:checked) + span:not(.lever):before {
-    width: 0;
-    height: 0;
-    border: 3px solid transparent;
-    left: 6px;
-    top: 10px;
-    transform: rotateZ(37deg);
-    transform-origin: 100% 100%;
+    top: 1px;
+    left: 4px;
+    width: 12px;
+    height: 12px;
+    background-image: $img-ok-white;
+    transform: scale(0);
+    border: 0;
   }
 
   &:not(:checked) + span:not(.lever):after {
     height: 20px;
     width: 20px;
     background-color: transparent;
-    border: 2px solid $radio-empty-color;
+    border: 1px solid $radio-empty-color;
     top: 0px;
     z-index: 0;
   }
@@ -143,39 +151,36 @@
   // Checked style
   &:checked {
     + span:not(.lever):before {
-      top: 0;
-      left: 1px;
-      width: 8px;
-      height: 13px;
-      border-top: 2px solid transparent;
-      border-left: 2px solid transparent;
-      border-right: 2px solid $input-background;
-      border-bottom: 2px solid $input-background;
-      transform: rotateZ(37deg);
-      transform-origin: 100% 100%;
+      top: 1px;
+      left: 4px;
+      width: 12px;
+      height: 12px;
+      background-image: $img-ok-white;
+      transform: scale(1);
+      border: 0;
     }
 
     + span:not(.lever):after {
       top: 0;
       width: 20px;
       height: 20px;
-      border: 2px solid $secondary-color;
-      background-color: $secondary-color;
+      border: 2px solid $color-base;
+      background-color: $color-base;
       z-index: 0;
     }
   }
 
   // Focused styles
   &.tabbed:focus + span:not(.lever):after {
-    border-radius: 2px;
+    border-radius: 0;
     border-color: $radio-empty-color;
-    background-color: rgba(0,0,0,.1);
+    background-color: rgba(0,0,0,.05);
   }
 
   &.tabbed:checked:focus + span:not(.lever):after {
-    border-radius: 2px;
-    background-color: $secondary-color;
-    border-color: $secondary-color;
+    border-radius: 0;
+    background-color: $color-base;
+    border-color: $color-base;
   }
 
   // Disabled style
