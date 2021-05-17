@@ -170,12 +170,6 @@
     });
 
     window.index.add({
-      href: 'http://materializecss.com/pushpin.html',
-      title: 'Pushpin',
-      body: 'Pushpin is our fixed positioning plugin. You can check out our live examples: the fixed Table of Contents on the right.'
-    });
-
-    window.index.add({
       href: 'http://materializecss.com/radio-buttons.html',
       title: 'radio buttons',
       body: 'Radio Buttons are used when the user must make only one selection out of a group of items.'

@@ -48,22 +48,6 @@
         : 0;
       var bottomOffset = footerOffset - socialHeight - tocHeight - tocWrapperHeight;
 
-      if ($('nav').length) {
-        $('.toc-wrapper').pushpin({
-          top: $('nav').height(),
-          bottom: bottomOffset
-        });
-      } else if ($('#index-banner').length) {
-        $('.toc-wrapper').pushpin({
-          top: $('#index-banner').height(),
-          bottom: bottomOffset
-        });
-      } else {
-        $('.toc-wrapper').pushpin({
-          top: 0,
-          bottom: bottomOffset
-        });
-      }
     }, 100);
 
     // BuySellAds Detection
@@ -155,18 +139,6 @@
     // Set checkbox on forms.html to indeterminate
     var indeterminateCheckbox = document.getElementById('indeterminate-checkbox');
     if (indeterminateCheckbox !== null) indeterminateCheckbox.indeterminate = true;
-
-    // Pushpin Demo Init
-    if ($('.pushpin-demo-nav').length) {
-      $('.pushpin-demo-nav').each(function() {
-        var $this = $(this);
-        var $target = $('#' + $(this).attr('data-target'));
-        $this.pushpin({
-          top: $target.offset().top,
-          bottom: $target.offset().top + $target.outerHeight() - $this.height()
-        });
-      });
-    }
 
     // CSS Transitions Demo Init
     if ($('#scale-demo').length && $('#scale-demo-trigger').length) {
