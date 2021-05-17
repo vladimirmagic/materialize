@@ -7,9 +7,23 @@ span.badge {
   font-size: 1rem;
   line-height: $badge-height;
   height: $badge-height;
-  color: color('grey', 'darken-1');
-  float: right;
+  padding: 8px 12px;
+  color: #fff;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  background: color("blue-grey", "base");
+  border-radius: 4px;
   box-sizing: border-box;
+
+  .icon {
+    margin-right: 4px;
+  }
+
+  &.orange {
+    color: $color-base;
+  }
 
   &.new {
     font-weight: 300;
