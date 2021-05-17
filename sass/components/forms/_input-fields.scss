@@ -25,19 +25,17 @@ textarea.materialize-textarea {
 
   // General Styles
   background-color: transparent;
-  border: none;
-  border-bottom: $input-border;
+  border: $input-border;
   border-radius: 0;
   outline: none;
+  width: calc(100% - 2px);
   height: $input-height;
-  width: 100%;
   font-size: $input-font-size;
-  margin: $input-margin;
+  margin: 0 1px;
   padding: $input-padding;
   box-shadow: none;
-  box-sizing: content-box;
-  transition: box-shadow .3s, border .3s;
-
+  box-sizing: border-box;
+  
   // Disabled input style
   &:disabled,
   &[readonly="readonly"] {
@@ -53,8 +51,9 @@ textarea.materialize-textarea {
 
   // Focused input style
   &:focus:not([readonly]) {
-    border-bottom: 1px solid $input-focus-color;
-    box-shadow: 0 1px 0 0 $input-focus-color;
+    width: 100%;
+    margin: 0;
+    border: 2px solid $input-focus-color;
   }
 
   // Focused label style
@@ -161,10 +160,6 @@ textarea.materialize-textarea {
 
   // Gutter spacing
   &.col {
-    label {
-      left: $gutter-width / 2;
-    }
-
     .prefix ~ label,
     .prefix ~ .validate ~ label {
       width: calc(100% - 3rem - #{$gutter-width});
@@ -176,20 +171,26 @@ textarea.materialize-textarea {
   margin-bottom: 1rem;
 
   & > label {
-    color: $input-border-color;
     position: absolute;
     top: 0;
-    left: 0;
-    font-size: 1rem;
+    left: 24px;
+    padding: 0 4px;
+    font-size: 16px;
     cursor: text;
+    color: $input-border-color;
+    text-align: initial;
     transition: transform .2s ease-out, color .2s ease-out;
     transform-origin: 0% 100%;
-    text-align: initial;
-    transform: translateY(12px);
+    transform: translateY(14px);
 
     &:not(.label-icon).active {
-      transform: translateY(-14px) scale(.8);
+      transform: translateY(-8px);
       transform-origin: 0 0;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      background: #fff;
     }
   }
 
@@ -360,7 +361,7 @@ textarea {
     width: calc(100% - 2px);
     height: 52px;
     margin: 0 1px;
-    padding: 0 64px 0 24px;
+    padding: 0 52px 0 24px;
     box-sizing: border-box;
     border: 1px solid $color-grey;
     border-radius: 52px;
