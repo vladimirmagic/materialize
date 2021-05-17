@@ -6,7 +6,6 @@
 	display: inline-block;
 	height: $button-height;
 	line-height: $button-height;
-	padding: $button-padding;
 	text-transform: uppercase;
 	vertical-align: middle;
 	-webkit-tap-highlight-color: transparent; // Gets rid of tap active state
@@ -67,6 +66,7 @@
 
 // Raised Button
 .btn {
+  padding: $button-padding;
   text-decoration: none;
   color: $button-raised-color;
   background-color: $button-raised-background;
@@ -276,6 +276,7 @@ button.btn-floating {
 
 // Flat button
 .btn-flat {
+  padding: 0 8px;
   box-shadow: none;
   background-color: transparent;
   color: $button-flat-color;
