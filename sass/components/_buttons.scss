@@ -329,6 +329,60 @@ button.btn-floating {
   }
 }
 
+.btn--link {
+  position: relative;
+  height: auto;
+  line-height: inherit;
+  padding: 0;
+  color: $primary-color;
+  background: rgba(0,0,0,0) !important;
+  transition: all .2s ease-in-out;
+
+  &:before {
+    content: '';
+    position: absolute;
+    top: -8px;
+    bottom: -8px;
+    left: 0;
+    right: 0;
+  }
+
+  &:after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: $primary-color;
+    transition: all .2s ease-in-out;
+  }
+
+  &:hover,
+  &:focus {
+    color: $primary-color-light;
+  }
+
+  &:hover:after {
+    left: -8px;
+    right: -8px;
+  }
+
+  &:hover:after,
+  &:focus:after {
+    background: $primary-color-light;
+  }
+
+  &:active {
+    color: $primary-color;
+  }
+
+  &:active:after {
+    transform: scaleX(0);
+    background: $primary-color;
+  }
+}
+
 // Large button
 .btn-large {
   @extend .btn;
