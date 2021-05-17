@@ -74,12 +74,6 @@
     });
 
     window.index.add({
-      href: 'http://materializecss.com/feature-discovery.html',
-      title: 'feature discovery',
-      body: 'Provide value and encourage return visits by introducing users to new features and functionality at contextually relevant moments.'
-    });
-
-    window.index.add({
       href: 'http://materializecss.com/footer.html',
       title: 'footer',
       body: 'Footers are a great way to organize a lot of site navigation and information at the end of a page. This is where the user will look once hes finished scrolling through the current page or is looking for additional information about your website.'

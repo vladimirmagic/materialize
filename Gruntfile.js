@@ -170,7 +170,6 @@ module.exports = function(grunt) {
           'js/timepicker.js',
           'js/characterCounter.js',
           'js/carousel.js',
-          'js/tapTarget.js',
           'js/select.js',
           'js/range.js'
         ],
@@ -205,7 +204,6 @@ module.exports = function(grunt) {
           'js/timepicker.js',
           'js/characterCounter.js',
           'js/carousel.js',
-          'js/tapTarget.js',
           'js/select.js',
           'js/range.js'
         ],
@@ -285,7 +283,6 @@ module.exports = function(grunt) {
               'timepicker.js',
               'characterCounter.js',
               'carousel.js',
-              'tapTarget.js',
               'select.js',
               'range.js'
             ],
@@ -347,7 +344,6 @@ module.exports = function(grunt) {
           'pagination.html': 'jade/pagination.jade',
           'breadcrumbs.html': 'jade/breadcrumbs.jade',
           'carousel.html': 'jade/carousel.jade',
-          'feature-discovery.html': 'jade/feature-discovery.jade',
           'pulse.html': 'jade/pulse.jade',
           'css-transitions.html': 'jade/css-transitions.jade',
           'themes.html': 'jade/themes.jade',

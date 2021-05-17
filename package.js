@@ -47,7 +47,6 @@ Package.onUse(function (api) {
     'sass/components/_slider.scss',
     'sass/components/_table_of_contents.scss',
     'sass/components/_tabs.scss',
-    'sass/components/_tapTarget.scss',
     'sass/components/_timepicker.scss',
     'sass/components/_toast.scss',
     'sass/components/_tooltip.scss',
