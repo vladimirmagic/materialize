@@ -352,3 +352,36 @@ textarea {
 .character-counter {
   min-height: 18px;
 }
+
+.input-field--search {
+  max-width: 356px;
+
+  input[type=search]:not(.browser-default) {
+    width: calc(100% - 2px);
+    height: 52px;
+    margin: 0 1px;
+    padding: 0 64px 0 24px;
+    box-sizing: border-box;
+    border: 1px solid #c7c7c7;
+    border-radius: 52px;
+    transition: all .3s;
+  }
+
+  &:focus-within {
+    input[type=search]:not(.browser-default) {
+      width: 100%;
+      margin: 0;
+      border: 2px solid $color-turquoise;
+    }
+  }
+}
+
+.input-field__button {
+  position: absolute;
+  top: 50%;
+  right: 8px;
+  width: 40px;
+  height: 40px;
+  line-height: 40px;
+  transform: translateY(-50%);
+}
