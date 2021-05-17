@@ -9,6 +9,13 @@
 
   $.fn.reverse = [].reverse;
 
+  const btns = document.querySelectorAll('.btn, .btn-flat');
+  if (btns && btns.length) {
+    btns.forEach((btn) => {
+      btn.tabIndex = 0;
+    });
+  }
+
   /**
    * @class
    *
@@ -41,6 +48,8 @@
       this.$floatingBtnsReverse = this.$el.find('ul .btn-floating').reverse();
       this.offsetY = 0;
       this.offsetX = 0;
+
+      this.$el.attr('tabIndex', 0);
 
       this.$el.addClass(`direction-${this.options.direction}`);
       if (this.options.direction === 'top') {
