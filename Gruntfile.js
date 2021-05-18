@@ -358,7 +358,8 @@ module.exports = function(grunt) {
           'text-inputs.html': 'jade/text-inputs.jade',
           'support-us.html': 'jade/support-us.jade',
           'floating-action-button.html': 'jade/floating-action-button.jade',
-          'auto-init.html': 'jade/auto-init.jade'
+          'auto-init.html': 'jade/auto-init.jade',
+          'home.html': 'jade/propstore/home.jade',
         }
       }
     },
