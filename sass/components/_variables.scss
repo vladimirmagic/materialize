@@ -68,8 +68,8 @@ $button-padding: 0 32px !default;
 $button-radius: 2px !default;
 
 // Disabled styles
-$button-disabled-background: #DFDFDF !default;
-$button-disabled-color: #9F9F9F !default;
+$button-disabled-background: $color-grey !default;
+$button-disabled-color: #797979 !default;
 
 // Raised buttons
 $button-raised-background: $secondary-color !default;
