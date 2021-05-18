@@ -2,7 +2,7 @@
   'use strict';
 
   let _defaults = {
-    opacity: 0.5,
+    opacity: 0.25,
     inDuration: 250,
     outDuration: 250,
     onOpenStart: null,
@@ -303,7 +303,7 @@
       }
 
       if (this.options.preventScrolling) {
-        document.body.style.overflow = 'hidden';
+        document.body.classList.add('modal-blocked');
       }
 
       this.el.classList.add('open');
@@ -347,7 +347,7 @@
 
       // Enable body scrolling only if there are no more modals open.
       if (Modal._modalsOpen === 0) {
-        document.body.style.overflow = '';
+        document.body.classList.remove('modal-blocked');
       }
 
       if (this.options.dismissible) {

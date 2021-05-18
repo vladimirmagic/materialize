@@ -1313,3 +1313,39 @@ body.themes {
     }
   }
 }
+
+
+.modal-register {
+  max-width: 584px;
+  text-align: center;
+
+  .btn {
+    width: 100%;
+    margin-bottom: 32px;
+  }
+
+  .btn--facebook {
+    font-size: 16px;
+    letter-spacing: 0;
+    text-transform: none;
+    background: #415893;
+
+    .icon {
+      margin: -4px 8px 0 0;
+    }
+  }
+
+  .input-field {
+    margin-bottom: 20px;
+  }
+
+  .modal-register__terms {
+    font-size: 14px;
+    margin-top: -10px;
+    margin-bottom: 20px;
+  }
+
+  .modal-register__switch {
+    font-size: 16px;
+  }
+}

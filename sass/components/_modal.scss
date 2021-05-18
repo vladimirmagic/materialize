@@ -3,20 +3,19 @@
     outline: none;
   }
 
-  @extend .z-depth-5;
-
   display: none;
   position: fixed;
   left: 0;
   right: 0;
-  background-color: #fafafa;
+  background-color: #fff;
   padding: 0;
-  max-height: 70%;
+  max-height: 80%;
   width: 55%;
   margin: auto;
   overflow-y: auto;
 
-  border-radius: 2px;
+  border-radius: 6px;
+  box-shadow: 0px 8px 32px -10px rgba(0, 0, 0, 0.15);
   will-change: top, opacity;
 
   @media #{$medium-and-down} {
@@ -28,7 +27,7 @@
   }
 
   .modal-content {
-    padding: 24px;
+    padding: 0 76px 64px;
   }
   .modal-close {
     cursor: pointer;
@@ -38,13 +37,9 @@
     border-radius: 0 0 2px 2px;
     background-color: #fafafa;
     padding: 4px 6px;
-    height: 56px;
+    height: 72px;
     width: 100%;
     text-align: right;
-
-    .btn, .btn-flat {
-      margin: 6px 0;
-    }
   }
 }
 .modal-overlay {
@@ -91,4 +86,24 @@
   max-height: 45%;
   border-radius: 0;
   will-change: bottom, opacity;
+}
+
+.modal-blocked {
+  overflow: hidden;
+  pointer-events: none;
+
+  .modal,
+  .modal-overlay {
+    pointer-events: all;
+  }
+}
+
+.modal-header {
+  padding: 24px 24px 0;
+  text-align: right;
+}
+
+.modal__title {
+  margin-bottom: 40px;
+  font-size: 28px;
 }

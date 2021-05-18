@@ -56,11 +56,6 @@ textarea.materialize-textarea {
     border: 2px solid $input-focus-color;
   }
 
-  // Focused label style
-  &:focus:not([readonly])+label {
-    color: $input-focus-color;
-  }
-
   // Hide helper text on data message
   &.valid ~ .helper-text[data-success],
   &:focus.valid ~ .helper-text[data-success],
@@ -99,11 +94,6 @@ textarea.materialize-textarea {
     color: $input-error-color;
   }
 
-  // Full width label when using validate for error messages
-  &.validate + label {
-    width: 100%;
-  }
-
   // Form Message Shared Styles
   & + label:after {
     @extend %input-after-style;
@@ -113,12 +103,10 @@ textarea.materialize-textarea {
 
 /* Validation Sass Placeholders */
 %valid-input-style {
-  border-bottom: 1px solid $input-success-color;
-  box-shadow: 0 1px 0 0 $input-success-color;
+  border: 2px solid $input-success-color;
 }
 %invalid-input-style {
-  border-bottom: $input-invalid-border;
-  box-shadow: 0 1px 0 0 $input-error-color;
+  border: 2px solid $input-invalid-border;
 }
 %hidden-text {
   color: transparent;
@@ -174,7 +162,7 @@ textarea.materialize-textarea {
     position: absolute;
     top: 0;
     left: 24px;
-    padding: 0 4px;
+    padding: 0 8px;
     font-size: 16px;
     cursor: text;
     color: $input-border-color;
@@ -184,8 +172,9 @@ textarea.materialize-textarea {
     transform: translateY(14px);
 
     &:not(.label-icon).active {
-      transform: translateY(-8px);
+      transform: translate(-8px, -8px);
       transform-origin: 0 0;
+      color: $color-base;
       font-size: 12px;
       font-weight: 600;
       letter-spacing: .12em;
