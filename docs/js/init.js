@@ -172,7 +172,7 @@
       .formSelect();
     $('.sidenav').sidenav();
     $('input.autocomplete').autocomplete({
-      data: { Apple: null, Microsoft: null, Google: 'http://placehold.it/250x250' }
+      data: { 'Movie 01': null, 'Movie 02': null, 'Movie 3': 'https://dummyimage.com/100x100/00838f/fff&text=img' }
     });
     $('input[data-length], textarea[data-length]').characterCounter();
 

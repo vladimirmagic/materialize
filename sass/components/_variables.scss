@@ -36,6 +36,7 @@
 
 $color-base: color("blue-grey", "darken-4");
 $color-grey: color("grey", "base");
+$color-bg: color("grey", "lighten-4");
 
 $primary-color: color("deep-purple", "base") !default;
 $primary-color-light: lighten($primary-color, 15%) !default;
