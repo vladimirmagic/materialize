@@ -35,6 +35,10 @@ textarea.materialize-textarea {
   padding: $input-padding;
   box-shadow: none;
   box-sizing: border-box;
+
+  .input-field--label & {
+    height: $input-height + 8;
+  }
   
   // Disabled input style
   &:disabled,
@@ -146,14 +150,6 @@ textarea.materialize-textarea {
     }
   }
 
-  // Gutter spacing
-  &.col {
-    .prefix ~ label,
-    .prefix ~ .validate ~ label {
-      width: calc(100% - 3rem - #{$gutter-width});
-    }
-  }
-
   position: relative;
   margin-top: 1rem;
   margin-bottom: 1rem;
@@ -161,7 +157,7 @@ textarea.materialize-textarea {
   & > label {
     position: absolute;
     top: 0;
-    left: 24px;
+    left: 16px;
     padding: 0 8px;
     font-size: 16px;
     cursor: text;
@@ -172,7 +168,7 @@ textarea.materialize-textarea {
     transform: translateY(14px);
 
     &:not(.label-icon).active {
-      transform: translate(-8px, -8px);
+      transform: translateY(-8px);
       transform-origin: 0 0;
       color: $color-base;
       font-size: 12px;
@@ -331,9 +327,9 @@ textarea {
     .highlight { color: #444; }
 
     img {
-      height: $dropdown-item-height;
-      width: $dropdown-item-height;
-      margin: 5px 15px;
+      height: $dropdown-item-height - 8;
+      width: $dropdown-item-height - 8;
+      margin: 4px 0 4px 8px;
     }
   }
 }
