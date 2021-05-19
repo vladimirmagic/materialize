@@ -163,6 +163,23 @@
     $('.slider').slider();
     $('.materialboxed').materialbox();
     $('.modal').modal();
+    $('.modal-gallery').modal({
+        opacity: .75,
+        onCloseStart: (el) => {
+          const carouselElement = el.querySelector('.modal-gallery__carousel');
+          if (carouselElement) {
+            const carousel = M.Carousel.getInstance(carouselElement);
+            if (carousel) carousel.destroy();
+          }
+        },
+        onOpenEnd: (el) => {
+            $(el).find('.modal-gallery__carousel').carousel({
+              fullWidth: true,
+              indicators: true,
+              onCycleTo: function(item, dragged) {}
+            });
+        }
+    });
     $('.datepicker').datepicker();
     $('.tabs').tabs();
     $('.timepicker').timepicker();

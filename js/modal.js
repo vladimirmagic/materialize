@@ -59,6 +59,11 @@
       this.el.tabIndex = 0;
       this._nthModalOpened = 0;
 
+      if (this.el.classList.contains('modal-gallery')) {
+        this.$close = $('<div class="modal__close modal-close"></div>');
+        this.$el.append(this.$close);
+      }
+
       Modal._count++;
       this._setupEventHandlers();
     }

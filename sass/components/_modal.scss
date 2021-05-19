@@ -107,3 +107,36 @@
   margin-bottom: 40px;
   font-size: 28px;
 }
+
+.modal-gallery {
+  @extend .modal;
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0 !important;
+  bottom: 0;
+  max-height: none;
+  width: auto;
+  overflow: hidden;
+  background: rgba(0,0,0,0);
+  backdrop-filter: blur(2px);
+
+  .modal__close {
+    position: absolute;
+    top: 40px;
+    right: 40px;
+    width: 32px;
+    height: 32px;
+    background-position: 50% 50%;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 14 14'%3E%3Cpath fill-rule='evenodd' clip-rule='evenodd' d='M.47.47c.3-.3.77-.3 1.06 0L7 5.94 12.47.47a.75.75 0 111.06 1.06L8.06 7l5.47 5.47a.75.75 0 11-1.06 1.06L7 8.06l-5.47 5.47a.75.75 0 01-1.06-1.06L5.94 7 .47 1.53a.75.75 0 010-1.06z' fill='%23ffffff'/%3E%3C/svg%3E%0A");
+    opacity: .5;
+    cursor: pointer;
+    transition: all .3s ease-in-out;
+
+    &:hover {
+      opacity: 1;
+    }
+  }
+}

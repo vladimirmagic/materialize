@@ -2,6 +2,7 @@
   'use strict';
 
   let _defaults = {
+    arrows: true,
     duration: 200, // ms
     dist: -100, // zoom scale TODO: make this more intuitive as an option
     shift: 0, // spacing for center image
@@ -32,6 +33,7 @@
       /**
        * Options for the carousel
        * @member Carousel#options
+       * @prop {Booleam} arrows
        * @prop {Number} duration
        * @prop {Number} dist
        * @prop {Number} shift
@@ -75,6 +77,13 @@
         }
       }
 
+      if (this.options.arrows && this.hasMultipleSlides && !this.$el.find('.arrows').length) {
+        this.$arrows = $(
+          '<div class="arrows"><div class="arrow arrow--prev"></div><div class="arrow arrow--next"></div></div>'
+        );
+        this.$el.append(this.$arrows);
+      }
+
       // Iterate through slides
       this.$indicators = $('<ul class="indicators"></ul>');
       this.$el.find('.carousel-item').each((el, i) => {
@@ -90,7 +99,7 @@
           this.$indicators.append($indicator);
         }
       });
-      if (this.showIndicators) {
+      if (this.showIndicators && !this.$el.find('.indicators').length) {
         this.$el.append(this.$indicators);
       }
       this.count = this.images.length;
@@ -158,6 +167,15 @@
       this.el.addEventListener('mouseleave', this._handleCarouselReleaseBound);
       this.el.addEventListener('click', this._handleCarouselClickBound);
 
+      if (this.options.arrows) {
+        this._handlePrevClickBound = this._handlePrevClick.bind(this);
+        this._handleNextClickBound = this._handleNextClick.bind(this);
+        const prev = this.el.querySelector('.arrow--prev');
+        if (prev) prev.addEventListener('click', this._handlePrevClickBound);
+        const next = this.el.querySelector('.arrow--next');
+        if (next) next.addEventListener('click', this._handleNextClickBound);
+      }
+
       if (this.showIndicators && this.$indicators) {
         this._handleIndicatorClickBound = this._handleIndicatorClick.bind(this);
         this.$indicators.find('.indicator-item').each((el, i) => {
@@ -187,10 +205,18 @@
       this.el.removeEventListener('mouseleave', this._handleCarouselReleaseBound);
       this.el.removeEventListener('click', this._handleCarouselClickBound);
 
+      if (this.options.arrows) {
+        const prev = this.el.querySelector('.arrow--prev');
+        if (prev) prev.removeEventListener('click', this._handlePrevClickBound);
+        const next = this.el.querySelector('.arrow--next');
+        if (next) next.removeEventListener('click', this._handleNextClickBound);
+      }
+
       if (this.showIndicators && this.$indicators) {
         this.$indicators.find('.indicator-item').each((el, i) => {
           el.removeEventListener('click', this._handleIndicatorClickBound);
         });
+        this.$indicators.remove();
       }
 
       window.removeEventListener('resize', this._handleThrottledResizeBound);
@@ -318,6 +344,16 @@
       }
     }
 
+    _handlePrevClick(e) {
+      e.stopPropagation();
+      this.prev();
+    }
+
+    _handleNextClick(e) {
+      e.stopPropagation();
+      this.next();
+    }
+
     /**
      * Handle Indicator CLick
      * @param {Event} e
@@ -370,7 +406,7 @@
             // If image still has no height, use the natural dimensions to calculate
             let naturalWidth = firstImage[0].naturalWidth;
             let naturalHeight = firstImage[0].naturalHeight;
-            let adjustedHeight = this.$el.width() / naturalWidth * naturalHeight;
+            let adjustedHeight = (this.$el.width() / naturalWidth) * naturalHeight;
             this.$el.css('height', adjustedHeight + 'px');
           }
         } else {
@@ -418,7 +454,11 @@
      * @param {Number} x
      */
     _wrap(x) {
-      return x >= this.count ? x % this.count : x < 0 ? this._wrap(this.count + x % this.count) : x;
+      return x >= this.count
+        ? x % this.count
+        : x < 0
+        ? this._wrap(this.count + (x % this.count))
+        : x;
     }
 
     /**
@@ -433,7 +473,7 @@
       delta = this.offset - this.frame;
       this.frame = this.offset;
 
-      v = 1000 * delta / (1 + elapsed);
+      v = (1000 * delta) / (1 + elapsed);
       this.velocity = 0.8 * v + 0.2 * this.velocity;
     }
 
@@ -489,7 +529,7 @@
       this.center = Math.floor((this.offset + this.dim / 2) / this.dim);
       delta = this.offset - this.center * this.dim;
       dir = delta < 0 ? 1 : -1;
-      tween = -dir * delta * 2 / this.dim;
+      tween = (-dir * delta * 2) / this.dim;
       half = this.count >> 1;
 
       if (this.options.fullWidth) {
@@ -608,7 +648,7 @@
      * @param {Function} callback
      */
     _cycleTo(n, callback) {
-      let diff = this.center % this.count - n;
+      let diff = (this.center % this.count) - n;
 
       // Account for wraparound.
       if (!this.noWrap) {
