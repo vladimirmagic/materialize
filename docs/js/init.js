@@ -158,7 +158,7 @@
       arrows: false,
       fullWidth: true,
       indicators: true,
-      interval: 3000,
+      interval: 5000,
       onCycleTo: function(item, dragged) {}
     });
 

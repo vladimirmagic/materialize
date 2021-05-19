@@ -123,22 +123,22 @@
     right: 0;
     bottom: 0;
     margin: 0;
+  }
 
-    .indicator-item {
-      &.active {
-        opacity: 1;
-      }
-
-      display: inline-block;
-      position: relative;
-      cursor: pointer;
-      height: 8px;
-      width: 8px;
-      margin: 24px 4px;
-      background-color: #fff;
-      opacity: .15;
-      border-radius: 50%;
+  .indicator-item {
+    &.active {
+      opacity: 1;
     }
+
+    display: inline-block;
+    position: relative;
+    cursor: pointer;
+    height: 8px;
+    width: 8px;
+    margin: 24px 4px;
+    background-color: #fff;
+    opacity: .15;
+    border-radius: 50%;
   }
 }
 
@@ -181,6 +181,17 @@
     }
   }
 
+  .indicators {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    height: 25%;
+    padding: 0 76px 40px;
+    text-align: left;
+    background: linear-gradient(180deg, rgba(0,0,0,0) 0%, #000 100%);
+    z-index: 10;
+  }
+
   .indicator-item {
     height: auto;
     width: 100%;
@@ -188,6 +199,7 @@
     margin: 0;
     background-color: rgba(0,0,0,0);
     border-radius: 0;
+    opacity: 1;
 
     &:before {
       content: '';
@@ -196,18 +208,22 @@
       background-color: rgba(255,255,255,.3);
       border-radius: 2px;
     }
-
-    &.active {
-      background-color: rgba(0,0,0,0);
-    }
   }
 
   .indicator-item + .indicator-item {
     margin-left: 24px;
   }
+
+  &.stopped {
+    .indicator-item.active {
+      &:before {
+        background-color: #fff;
+      }
+    }
+  }
 }
 
-.indicator-caption {
+.indicator__caption {
   display: block;
   padding-top: 24px;
   white-space: nowrap;
@@ -217,7 +233,7 @@
   font-size: 14px;
 }
 
-.indicator-progress {
+.indicator__progress {
   position: absolute;
   left: 0;
   top: 0;
@@ -225,4 +241,9 @@
   background-color: #fff;
   border-radius: 2px;
   animation: animation-indicator-progress .1s linear forwards;
+}
+
+@keyframes animation-indicator-progress {
+	0% { width: 0%; }
+	100% { width: 100%; }
 }

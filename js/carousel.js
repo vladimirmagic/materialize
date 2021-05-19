@@ -99,10 +99,13 @@
           // Add active to first by default.
           if (i === 0) {
             $indicator[0].classList.add('active');
-            $indicator.append(
-              `<span class="indicator__progress" style="animation-duration:${this.options.interval /
-                1000}s" />`
-            );
+            if (this.options.interval) {
+              this.progress = `<span class="indicator__progress" style="animation-duration:${(this
+                .options.interval +
+                this.options.duration) /
+                1000}s" />`;
+              $indicator.append(this.progress);
+            }
           }
 
           this.$indicators.append($indicator);
@@ -198,6 +201,10 @@
       this._handleThrottledResizeBound = throttledResize.bind(this);
 
       window.addEventListener('resize', this._handleThrottledResizeBound);
+
+      if (this.options.interval) {
+        this.interval = setInterval(this._handleNextClickBound, this.options.interval);
+      }
     }
 
     /**
@@ -490,15 +497,19 @@
     /**
      * Auto scrolls to nearest carousel item.
      */
-    _autoScroll() {
+    _autoScroll(callback) {
       let elapsed, delta;
+      if (this.interval && (!callback || !callback.isInterval)) {
+        clearInterval(this.interval);
+        this.el.classList.add('stopped');
+      }
 
       if (this.amplitude) {
         elapsed = Date.now() - this.timestamp;
         delta = this.amplitude * Math.exp(-elapsed / this.options.duration);
         if (delta > 2 || delta < -2) {
           this._scroll(this.target - delta);
-          requestAnimationFrame(this._autoScrollBound);
+          requestAnimationFrame(() => this._autoScrollBound(callback));
         } else {
           this._scroll(this.target);
         }
@@ -557,10 +568,12 @@
         let activeIndicator = this.$indicators.find('.indicator-item.active');
         if (activeIndicator.index() !== diff) {
           activeIndicator.removeClass('active');
-          this.$indicators
-            .find('.indicator-item')
-            .eq(diff)[0]
-            .classList.add('active');
+          const $indicator = this.$indicators.find('.indicator-item').eq(diff);
+          $indicator[0].classList.add('active');
+          if (this.options.interval) {
+            this.$indicators.find('.indicator__progress').remove();
+            $indicator.append(this.progress);
+          }
         }
       }
 
@@ -636,11 +649,6 @@
         this.oneTimeCallback.call(this, $currItem[0], this.dragged);
         this.oneTimeCallback = null;
       }
-
-      if (this.options.interval) {
-        if (this.interval) clearInterval(this.interval);
-        this.interval = setInterval(this._handleNextClickBound, this.options.interval);
-      }
     }
 
     /**
@@ -697,7 +705,7 @@
       if (this.offset !== this.target) {
         this.amplitude = this.target - this.offset;
         this.timestamp = Date.now();
-        requestAnimationFrame(this._autoScrollBound);
+        requestAnimationFrame(() => this._autoScrollBound(callback));
       }
     }
 
@@ -718,7 +726,7 @@
 
         index = this._wrap(index);
       }
-      this._cycleTo(index);
+      this._cycleTo(index, { isInterval: true });
     }
 
     /**
