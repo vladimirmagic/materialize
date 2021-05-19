@@ -301,10 +301,9 @@ button.btn-floating {
   &:focus,
   &:hover {
     box-shadow: none;
-  }
-  &:focus {
     background-color: rgba(0, 0, 0, .05);
   }
+
   &.disabled,
   &.btn-flat[disabled]  {
     background-color: transparent !important;
