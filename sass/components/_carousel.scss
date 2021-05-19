@@ -79,7 +79,8 @@
 }
 
 .carousel,
-.modal-gallery__carousel {
+.modal-gallery__carousel,
+.carousel--hero {
   .arrows {
     position: absolute;
     left: 0;
@@ -162,4 +163,66 @@
       right: 40px;
     }
   }
+}
+
+.carousel--hero {
+  @extend .carousel-slider;
+  width: 100%;
+  height: 100% !important;
+
+  .carousel-item {
+    @extend .carousel-item--slider;
+    background-position: 50% 50%;
+    background-size: cover;
+    background-repeat: no-repeat;
+
+    .indicator__caption {
+      display: none;
+    }
+  }
+
+  .indicator-item {
+    height: auto;
+    width: 100%;
+    max-width: 33%;
+    margin: 0;
+    background-color: rgba(0,0,0,0);
+    border-radius: 0;
+
+    &:before {
+      content: '';
+      display: block;
+      height: 3px;
+      background-color: rgba(255,255,255,.3);
+      border-radius: 2px;
+    }
+
+    &.active {
+      background-color: rgba(0,0,0,0);
+    }
+  }
+
+  .indicator-item + .indicator-item {
+    margin-left: 24px;
+  }
+}
+
+.indicator-caption {
+  display: block;
+  padding-top: 24px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: #fff;
+  font-size: 14px;
+}
+
+.indicator-progress {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 3px;
+  background-color: #fff;
+  border-radius: 2px;
+  animation: animation-indicator-progress .1s linear forwards;
 }

@@ -11,7 +11,8 @@
     fullWidth: false, // Change to full width styles
     indicators: false, // Toggle indicators
     noWrap: false, // Don't wrap around and cycle through items.
-    onCycleTo: null // Callback for when a new slide is cycled to.
+    onCycleTo: null, // Callback for when a new slide is cycled to.
+    interval: null
   };
 
   /**
@@ -43,6 +44,7 @@
        * @prop {Boolean} indicators
        * @prop {Boolean} noWrap
        * @prop {Function} onCycleTo
+       * @prop {Number} interval - Length in ms of slide interval
        */
       this.options = $.extend({}, Carousel.defaults, options);
 
@@ -91,9 +93,16 @@
         if (this.showIndicators) {
           let $indicator = $('<li class="indicator-item"></li>');
 
+          const indicatorCaption = el.querySelector('.indicator__caption');
+          if (indicatorCaption) $indicator.append(indicatorCaption.cloneNode(true));
+
           // Add active to first by default.
           if (i === 0) {
             $indicator[0].classList.add('active');
+            $indicator.append(
+              `<span class="indicator__progress" style="animation-duration:${this.options.interval /
+                1000}s" />`
+            );
           }
 
           this.$indicators.append($indicator);
@@ -142,6 +151,7 @@
      * Teardown component
      */
     destroy() {
+      if (this.interval) clearInterval(this.interval);
       this._removeEventHandlers();
       this.el.M_Carousel = undefined;
     }
@@ -154,6 +164,8 @@
       this._handleCarouselDragBound = this._handleCarouselDrag.bind(this);
       this._handleCarouselReleaseBound = this._handleCarouselRelease.bind(this);
       this._handleCarouselClickBound = this._handleCarouselClick.bind(this);
+      this._handlePrevClickBound = this._handlePrevClick.bind(this);
+      this._handleNextClickBound = this._handleNextClick.bind(this);
 
       if (typeof window.ontouchstart !== 'undefined') {
         this.el.addEventListener('touchstart', this._handleCarouselTapBound);
@@ -168,8 +180,6 @@
       this.el.addEventListener('click', this._handleCarouselClickBound);
 
       if (this.options.arrows) {
-        this._handlePrevClickBound = this._handlePrevClick.bind(this);
-        this._handleNextClickBound = this._handleNextClick.bind(this);
         const prev = this.el.querySelector('.arrow--prev');
         if (prev) prev.addEventListener('click', this._handlePrevClickBound);
         const next = this.el.querySelector('.arrow--next');
@@ -350,7 +360,7 @@
     }
 
     _handleNextClick(e) {
-      e.stopPropagation();
+      if (e) e.stopPropagation();
       this.next();
     }
 
@@ -625,6 +635,11 @@
       if (typeof this.oneTimeCallback === 'function') {
         this.oneTimeCallback.call(this, $currItem[0], this.dragged);
         this.oneTimeCallback = null;
+      }
+
+      if (this.options.interval) {
+        if (this.interval) clearInterval(this.interval);
+        this.interval = setInterval(this._handleNextClickBound, this.options.interval);
       }
     }
 

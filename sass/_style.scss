@@ -1536,6 +1536,54 @@ header {
 }
 
 
+/*** HERO */
+
+.hero {
+	@extend .content;
+}
+
+.hero__inner {
+	position: relative;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	height: 800px;
+	color: #fff;
+	background: $color-base;
+	border-bottom-right-radius: 140px;
+}
+
+.hero__carousel {
+	flex: 1 1 60%;
+	position: relative;
+	height: 100%;
+	overflow: hidden;
+}
+
+.hero__info {
+	flex: 1 1 40%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.hero__info-inner {
+	max-width: 432px;
+}
+
+.hero__title {
+	margin-bottom: 32px;
+	font-size: 52px;
+	line-height: 60px;
+}
+
+.hero__description {
+	margin-bottom: 32px;
+	font-size: 20px;
+	line-height: 28px;
+}
+
+
 /*** CARD */
 
 .card {

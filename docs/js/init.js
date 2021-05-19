@@ -154,6 +154,14 @@
       indicators: true,
       onCycleTo: function(item, dragged) {}
     });
+    $('.carousel--hero').carousel({
+      arrows: false,
+      fullWidth: true,
+      indicators: true,
+      interval: 3000,
+      onCycleTo: function(item, dragged) {}
+    });
+
     $('.collapsible').collapsible();
     $('.collapsible.expandable').collapsible({
       accordion: false
