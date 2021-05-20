@@ -234,6 +234,13 @@ $medium-and-down: "only screen and (max-width : #{$medium-screen})" !default;
 $medium-only: "only screen and (min-width : #{$small-screen-up}) and (max-width : #{$medium-screen})" !default;
 
 
+$desktop-screen: 1025px !default;
+$mobile-screen: 1024px !default;
+
+$media-mobile: "only screen and (max-width : #{$mobile-screen})" !default;
+$media-desktop: "only screen and (min-width : #{$desktop-screen})" !default;
+
+
 // 12. Grid
 // ==========================================================================
 

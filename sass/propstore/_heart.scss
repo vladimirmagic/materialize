@@ -1,0 +1,33 @@
+.heart {
+	display: inline-flex;
+	justify-content: center;
+	align-items: center;
+	width: 40px;
+	height: 40px;
+	background: #{$color-turquoise}40;
+	border-radius: 40px;
+	cursor: pointer;
+	transition: all .3s ease-in-out;
+
+	.icon {
+		width: 17px;
+		color: $color-turquoise;
+		transition: all .3s ease-in-out;
+	}
+
+	&:focus,
+	&:hover {
+		background: #{$color-turquoise}80;
+	}
+
+	&.active {
+		background: #fff;
+
+		&:focus,
+		&:hover {
+			.icon {
+				opacity: .5;
+			}
+		}
+	}
+}
