@@ -1557,6 +1557,7 @@ header {
 	flex: 1 1 60%;
 	position: relative;
 	height: 100%;
+	z-index: 100;
 	overflow: hidden;
 }
 
@@ -1565,10 +1566,30 @@ header {
 	display: flex;
 	justify-content: center;
 	align-items: center;
+	padding: 32px;
 }
 
-.hero__info-inner {
+.hero__info-item {
 	max-width: 432px;
+	opacity: 1;
+	pointer-events: all;
+	transition: opacity .3s .3s ease-in-out;
+
+	&.hide {
+		position: absolute;
+		display: block !important;
+		width: 100%;
+		opacity: 0;
+		pointer-events: none;
+		transition: opacity .3s ease-in-out;
+	}
+}
+
+.hero__suptitle {
+	margin-bottom: 24px;
+	font-size: 14px;
+	font-weight: 600;
+  	letter-spacing: .12em;
 }
 
 .hero__title {
@@ -1581,6 +1602,20 @@ header {
 	margin-bottom: 32px;
 	font-size: 20px;
 	line-height: 28px;
+}
+
+.hero__details {
+	display: flex;
+	align-items: center;
+	margin-bottom: 16px;
+
+	.icon {
+		margin-right: 12px;
+	}
+}
+
+.hero__btn {
+	margin-top: 32px;
 }
 
 

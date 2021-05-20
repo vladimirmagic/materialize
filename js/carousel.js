@@ -562,9 +562,10 @@
         centerTweenedOpacity = 1 - numVisibleOffset * tween;
       }
 
+      let diff = this.center % this.count;
+
       // Set indicator active
       if (this.showIndicators) {
-        let diff = this.center % this.count;
         let activeIndicator = this.$indicators.find('.indicator-item.active');
         if (activeIndicator.index() !== diff) {
           activeIndicator.removeClass('active');
@@ -573,6 +574,23 @@
           if (this.options.interval) {
             this.$indicators.find('.indicator__progress').remove();
             $indicator.append(this.progress);
+          }
+        }
+      }
+
+      if (this.el.classList.contains('carousel--hero')) {
+        const hero = this.el.closest('.hero');
+        if (hero) {
+          if (diff < 0) diff = this.count + diff;
+          const items = hero.querySelectorAll('.hero__info-item');
+          if (items && items.length) {
+            items.forEach((item, i) => {
+              if (i === diff) {
+                item.classList.remove('hide');
+              } else {
+                item.classList.add('hide');
+              }
+            });
           }
         }
       }
