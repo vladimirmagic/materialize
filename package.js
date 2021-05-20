@@ -39,7 +39,6 @@ Package.onUse(function (api) {
     'sass/components/_icons-material-design.scss',
     'sass/components/_materialbox.scss',
     'sass/components/_modal.scss',
-    'sass/components/_navbar.scss',
     'sass/components/_normalize.scss',
     'sass/components/_preloader.scss',
     'sass/components/_pulse.scss',

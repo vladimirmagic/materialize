@@ -134,12 +134,6 @@
     });
 
     window.index.add({
-      href: 'http://materializecss.com/navbar.html',
-      title: 'navbar',
-      body: 'The navbar is fully contained by an HTML5 Nav tag. Inside a recommended container div, there are 2 main parts of the navbar. A logo or brand link, and the navigations links. You can align these links to the left or right.'
-    });
-
-    window.index.add({
       href: 'http://materializecss.com/pagination.html',
       title: 'pagination',
       body: 'Add pagination links to help split up your long content into shorter, easier to understand blocks.'
