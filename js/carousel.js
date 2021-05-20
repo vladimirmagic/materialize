@@ -132,6 +132,7 @@
 
       this._setupEventHandlers();
       this._scroll(this.offset);
+      this.el.classList.add('init');
     }
 
     static get defaults() {
@@ -157,6 +158,7 @@
       if (this.interval) clearInterval(this.interval);
       this._removeEventHandlers();
       this.el.M_Carousel = undefined;
+      this.el.classList.remove('init');
     }
 
     /**
