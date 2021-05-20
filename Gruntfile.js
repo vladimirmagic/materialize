@@ -359,6 +359,7 @@ module.exports = function(grunt) {
           'support-us.html': 'jade/support-us.jade',
           'floating-action-button.html': 'jade/floating-action-button.jade',
           'auto-init.html': 'jade/auto-init.jade',
+          'propstore-ui.html': 'jade/propstore-ui.jade',
           'home.html': 'jade/propstore/home.jade',
         }
       }

@@ -37,6 +37,7 @@ textarea.materialize-textarea {
   box-sizing: border-box;
 
   .input-field--label & {
+    padding-top: 8px;
     height: $input-height + 8;
   }
   

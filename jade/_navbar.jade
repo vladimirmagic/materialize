@@ -10,22 +10,7 @@ header
     a.top-nav.sidenav-trigger(href='#', data-target='nav-mobile', class=(no_nav == false ? "full hide-on-large-only" : "" + "waves-effect waves-light circle hide-on-large-only"))
       i.material-icons menu
   ul#nav-mobile.sidenav.sidenav-fixed
-    li(class="logo")
-      a#logo-container.brand-logo(href='/')
-        object#front-page-logo(type='image/svg+xml', data='res/materialize.svg') Your browser does not support SVG
-    li.version
-      a.dropdown-trigger(href='#' data-target='version-dropdown') 1.0.0
-        <svg class="caret" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg>
-      ul#version-dropdown.dropdown-content
-        li
-          a 1.0.0
-        li
-          a(href='http://archives.materializecss.com/0.100.2/') 0.100.2
-    li(class="search")
-      div.search-wrapper
-        input(id="search", placeholder="Search")
-        i.material-icons search
-        div.search-results
+    
     li.bold(class=(page == "About" ? "active" : ""))
       a.waves-effect.waves-grey(href='about.html') About
     li.bold(class=(page == "Getting Started" ? "active" : ""))
@@ -136,9 +121,18 @@ header
       a.waves-effect.waves-grey(href='mobile.html') Mobile
     li.bold(class=(page == "Showcase" ? "active" : ""))
       a.waves-effect.waves-grey(href='showcase.html') Showcase
-    li.bold(class=(page == "Themes" ? "active" : ""))
-      a.waves-effect.waves-grey(href='themes.html') Themes
-        span.new.badge(data-badge-caption='updated')
+
+    li.no-padding
+      ul.collapsible.collapsible-accordion
+        li.bold(class=(page == "Propstore UI" || page == "Home" ? "active" : ""))
+              a.collapsible-header(class="waves-effect waves-grey")
+                | Propstore
+              .collapsible-body
+                ul
+                  li(class=(page == "Propstore UI" ? "active" : ""))
+                    a(href='propstore-ui.html') Propstore UI
+                  li(class=(page == "Home" ? "active" : ""))
+                    a(href='home.html' target='_blank') Home page
 
   // Sidebar BSA
   script(src="//m.servedby-buysellads.com/monetization.js" type="text/javascript").
