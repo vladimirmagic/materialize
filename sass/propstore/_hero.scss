@@ -35,7 +35,7 @@
 	max-width: 432px;
 	opacity: 1;
 	pointer-events: all;
-	transition: opacity .3s .3s ease-in-out;
+	transition: all .3s .3s ease-in-out;
 
 	&.hide {
 		position: absolute;
@@ -43,7 +43,7 @@
 		width: 100%;
 		opacity: 0;
 		pointer-events: none;
-		transition: opacity .3s ease-in-out;
+		transition: all .3s ease-in-out;
 	}
 }
 
@@ -57,13 +57,13 @@
 .hero__title {
 	margin-bottom: 32px;
 	font-size: 52px;
-	line-height: 60px;
+	line-height: 1.1;
 }
 
 .hero__description {
 	margin-bottom: 32px;
 	font-size: 20px;
-	line-height: 28px;
+	line-height: 1.4;
 }
 
 .hero__details {
@@ -90,6 +90,7 @@
 
 	.hero__inner {
 		display: block;
+		border-bottom-right-radius: 80px;
 	}
 
 	.hero__carousel {
@@ -97,13 +98,45 @@
 	}
 
 	.hero__info {
-		display: block;
 		padding: 48px 24px 64px;
+	}
+
+	.hero__suptitle {
+		margin-bottom: 16px;
+		font-size: 12px;
+	}
+
+	.hero__title {
+		margin-bottom: 20px;
+		font-size: 36px;
+	}
+	
+	.hero__description {
+		margin-bottom: 20px;
+		font-size: 18px;
+	}
+
+	.hero__details {
+		margin-bottom: 8px;
+	}
+	
+	.hero__btn {
+		margin-top: 16px;
+	}
+}
+
+@media only screen and (max-width: 480px) {
+	.hero__info {
+		position: relative;
+		display: block;
 	}
 
 	.hero__info-item {
 		&.hide {
-			width: calc(100% - 48px);
+			top: 48px;
+			left: 24px;
+			right: 24px;
+			width: auto;
 		}
 	}
 }
