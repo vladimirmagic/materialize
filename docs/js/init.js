@@ -167,7 +167,7 @@
       accordion: false
     });
 
-    $('.dropdown-trigger').dropdown();
+    $('.dropdown-trigger:not(.header__account)').dropdown();
     $('.slider').slider();
     $('.materialboxed').materialbox();
     $('.modal').modal();
