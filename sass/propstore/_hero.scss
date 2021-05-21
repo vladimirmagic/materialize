@@ -1,5 +1,7 @@
 .hero {
 	@extend .content;
+	height: 800px;
+	max-height: 100vh;
 }
 
 .hero__inner {
@@ -7,7 +9,7 @@
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
-	height: 800px;
+	height: 100%;
 	color: #fff;
 	background: $color-base;
 	border-bottom-right-radius: 140px;
@@ -26,7 +28,7 @@
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	padding: 32px;
+	padding: 48px 32px 64px;
 }
 
 .hero__info-item {
@@ -76,4 +78,32 @@
 
 .hero__btn {
 	margin-top: 32px;
+}
+
+@media #{$media-mobile} {
+	.hero {
+		height: auto;
+		max-height: none;
+		padding-left: 0;
+		padding-right: 0;
+	}
+
+	.hero__inner {
+		display: block;
+	}
+
+	.hero__carousel {
+		height: 240px;
+	}
+
+	.hero__info {
+		display: block;
+		padding: 48px 24px 64px;
+	}
+
+	.hero__info-item {
+		&.hide {
+			width: calc(100% - 48px);
+		}
+	}
 }

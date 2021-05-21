@@ -178,6 +178,7 @@
 
   .carousel-item {
     @extend .carousel-item--slider;
+    min-height: auto;
     background-position: 50% 50%;
     background-size: cover;
     background-repeat: no-repeat;
@@ -252,4 +253,25 @@
 @keyframes animation-indicator-progress {
 	0% { width: 0%; }
 	100% { width: 100%; }
+}
+
+@media #{$media-mobile} {
+	.carousel--hero {
+    .indicators {
+      justify-content: flex-start;
+      padding: 0 24px 32px;
+    }
+  
+    .indicator-item {
+      max-width: 44px;
+    }
+  
+    .indicator-item + .indicator-item {
+      margin-left: 8px;
+    }
+  
+    .indicator__caption {
+      display: none;
+    }
+  }
 }

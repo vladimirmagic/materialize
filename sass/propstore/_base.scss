@@ -19,6 +19,13 @@ main {
 	padding-right: 60px;
 }
 
+@media #{$media-fullhd-up} {
+    .content {
+		padding-left: 5vw;
+		padding-right: 5vw;
+	}
+}
+
 @media #{$large-and-down} {
     .content {
 		padding-left: 16px;

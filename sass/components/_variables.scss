@@ -238,8 +238,9 @@ $large-and-down: "only screen and (max-width : #{$large-screen})" !default;
 $desktop-screen: 1025px !default;
 $mobile-screen: 1024px !default;
 
-$media-mobile: "only screen and (max-width : #{$mobile-screen})" !default;
-$media-desktop: "only screen and (min-width : #{$desktop-screen})" !default;
+$media-mobile: "only screen and (max-width: #{$mobile-screen})" !default;
+$media-desktop: "only screen and (min-width: #{$desktop-screen})" !default;
+$media-fullhd-up: "only screen and (min-width: 1921px)" !default;
 
 
 // 12. Grid
