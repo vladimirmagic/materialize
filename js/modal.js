@@ -10,9 +10,7 @@
     onCloseStart: null,
     onCloseEnd: null,
     preventScrolling: true,
-    dismissible: true,
-    startingTop: '4%',
-    endingTop: '10%'
+    dismissible: true
   };
 
   /**
@@ -42,8 +40,6 @@
        * @prop {Function} onCloseStart - Callback function called before modal is closed
        * @prop {Function} onCloseEnd - Callback function called after modal is closed
        * @prop {Boolean} [dismissible=true] - Allow modal to be dismissed by keyboard or overlay click
-       * @prop {String} [startingTop='4%'] - startingTop
-       * @prop {String} [endingTop='10%'] - endingTop
        */
       this.options = $.extend({}, Modal.defaults, options);
 
@@ -223,11 +219,18 @@
 
         // Normal modal animation
       } else {
-        $.extend(enterAnimOptions, {
-          top: [this.options.startingTop, this.options.endingTop],
-          opacity: 1,
-          scaleX: [0.8, 1],
-          scaleY: [0.8, 1]
+        const animOptions =
+          window.innerWidth <= 600
+            ? {
+                translateY: ['5%', '0']
+              }
+            : {
+                scaleX: [0.8, 1],
+                scaleY: [0.8, 1],
+                translateY: ['-45%', '-50%']
+              };
+        $.extend(enterAnimOptions, animOptions, {
+          opacity: 1
         });
         anim(enterAnimOptions);
       }
@@ -272,11 +275,18 @@
 
         // Normal modal animation
       } else {
-        $.extend(exitAnimOptions, {
-          top: [this.options.endingTop, this.options.startingTop],
-          opacity: 0,
-          scaleX: 0.8,
-          scaleY: 0.8
+        const animOptions =
+          window.innerWidth <= 600
+            ? {
+                translateY: '5%'
+              }
+            : {
+                scaleX: 0.8,
+                scaleY: 0.8,
+                translateY: '5%'
+              };
+        $.extend(exitAnimOptions, animOptions, {
+          opacity: 0
         });
         anim(exitAnimOptions);
       }
