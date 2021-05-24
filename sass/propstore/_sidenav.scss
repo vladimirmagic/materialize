@@ -1,0 +1,241 @@
+$main-link-height: 72px;
+
+.sidenav {
+	height: 100%;
+	width: 95vw;
+	max-width: 360px;
+	padding: 0;
+}
+
+.sidenav__inner {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	min-height: 100%;
+	padding: 32px 32px 32px 24px;
+}
+
+.sidenav__search {
+	margin: 32px 0;
+}
+
+.sidenav__links {
+	flex: 1 1 100%;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	margin: 0 -32px 0 -24px;
+
+	.btn-flat {
+		display: block;
+		padding-left: 24px;
+		padding-right: 32px;
+	}
+
+	.sidenav__settings-sign,
+	.sidenav__settings-register {
+		display: inline-block !important;
+		padding-left: 8px;
+		padding-right: 8px;
+	}
+
+	.sidenav__settings-sign {
+		margin-left: 16px;
+	}
+}
+
+.sidenav__menu {
+	position: relative;
+}
+
+.sidenav__transition {
+	width: 100%;
+	transition: all .1s ease-in-out;
+}
+
+.sidenav__animation-out {
+	opacity: 0;
+	pointer-events: none;
+	max-height: 0;
+	overflow-y: hidden;
+	transform: translateX(-50%) scaleY(0);
+	transform-origin: 0 100%;
+}
+
+.sidenav__menu {
+	&:focus-within {
+		.sidenav__menu-link,
+		& + .sidenav__settings {
+			@extend .sidenav__animation-out;
+		}
+	}
+}
+
+.sidenav__menu-underline {
+	&:before {
+		content: '';
+		position: absolute;
+		left: 24px;
+		right: 32px;
+		bottom: 0;
+		height: 1px;
+		background: $color-grey;
+	}
+
+	.icon {
+		width: 7px;
+	}
+}
+
+.sidenav__menu-link {
+	@extend .sidenav__transition;
+	@extend .sidenav__menu-underline;
+	position: relative;
+	display: flex !important;
+	justify-content: space-between;
+	align-items: center;
+	height: $main-link-height;
+	max-height: $main-link-height;
+	line-height: $main-link-height;
+	font-size: 24px;
+	letter-spacing: 0;
+	font-weight: 400;
+	text-transform: none;
+}
+
+.sidenav__menu-level1 {
+	@extend .sidenav__transition;
+	@extend .sidenav__animation-out;
+	position: absolute;
+	top: 0;
+	transform: translateX(50%);
+
+	&:focus-within,
+	.sidenav__menu-link:focus-within + & {
+		max-height: none;
+		opacity: 1;
+		pointer-events: all;
+		transform: translateX(0);
+	}
+}
+
+.sidenav__menu-back {
+	@extend .sidenav__menu-underline;
+	margin-bottom: 24px;
+	font-size: 14px;
+
+	.icon {
+		margin-right: 12px;
+	}
+}
+
+.sidenav__menu-level-title {
+	font-size: 20px;
+	letter-spacing: 0;
+	font-weight: 400;
+	text-transform: none;
+}
+
+.sidenav__menu-level-link {
+	height: 40px;
+	line-height: 40px;
+	font-size: 16px;
+	letter-spacing: 0;
+	font-weight: 400;
+	text-transform: none;
+}
+
+.sidenav__menu-level-block {
+	margin-top: 32px;
+	padding: 24px 0 32px 0;
+	background: $color-bg;
+}
+
+.sidenav__menu-block-title {
+	font-size: 20px;
+	letter-spacing: 0;
+	font-weight: 400;
+	text-transform: none;
+}
+
+.sidenav__menu-block-link {
+	@extend .sidenav__menu-underline;
+	height: $main-link-height;
+	line-height: $main-link-height;
+	font-size: 16px;
+	letter-spacing: 0;
+	text-transform: none;
+
+	.icon {
+		width: 48px;
+		height: 48px;
+		margin-right: 12px;
+		background-position: 50% 50%;
+		background-size: cover;
+		background-repeat: no-repeat;
+		background-color: color("grey", "darken-4");
+		border-radius: 48px
+	}
+
+	&:last-of-type::before {
+		display: none;
+	}
+}
+
+.sidenav__settings {
+	@extend .sidenav__transition;
+	padding-top: 32px;
+
+	.btn-flat {
+		height: 40px;
+		line-height: 40px;
+		margin: 0 !important;
+		color: $color-font-grey;
+	}
+
+	.collapsible-header .icon {
+		display: inline-flex;
+		width: 16px;
+		font-size: inherit;
+		margin-right: 8px;
+
+		&.icon--dropdown {
+			width: 8px;
+			height: 7px;
+			margin: 0 0 0 4px;
+			color: rgba(0,0,0,0);
+		}
+	}
+
+	.collapsible-body {
+		.btn-flat {
+			font-size: 16px;
+			letter-spacing: 0;
+			font-weight: 400;
+			text-transform: none;
+			color: $color-base;
+		}
+
+		&.sidenav__currency-dropdown-content {
+			.btn-flat {
+				font-size: 12px;
+			}
+		}
+		
+	}
+}
+
+.collapsible > li.active .icon--dropdown {
+	transform: rotate(180deg);
+}
+
+.sidenav__settings-divider {
+	margin: 0 -4px;
+	color: $color-grey;
+	font-size: 12px;
+}
+
+.sidenav__settings-sign-register {
+	padding-left: 16px;
+	line-height: 1;
+}

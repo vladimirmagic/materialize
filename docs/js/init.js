@@ -162,7 +162,12 @@
       onCycleTo: function(item, dragged) {}
     });
 
-    $('.collapsible').collapsible();
+    $('.collapsible').collapsible({
+      onOpenEnd: (el) => {
+        const body = el.querySelector('.collapsible-body');
+        if (body) body.scrollIntoView({behavior: 'smooth', block: 'nearest'});
+      }
+    });
     $('.collapsible.expandable').collapsible({
       accordion: false
     });
