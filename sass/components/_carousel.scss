@@ -255,7 +255,7 @@
 	100% { width: 100%; }
 }
 
-@media #{$media-mobile} {
+@media #{$medium-and-down} {
 	.carousel--hero {
     .indicators {
       justify-content: flex-start;
