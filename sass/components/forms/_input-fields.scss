@@ -341,8 +341,6 @@ textarea {
 }
 
 .input-field--search {
-  max-width: 356px;
-
   input[type=search]:not(.browser-default) {
     width: calc(100% - 2px);
     height: 52px;

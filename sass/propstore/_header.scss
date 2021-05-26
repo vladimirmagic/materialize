@@ -113,11 +113,15 @@ header {
 .header__col {
     &.header__col--left,
     &.header__col--right {
-        flex: 0 0 400px; // same width to left & right to center logo
+        flex: 0 0 440px; // same width to left & right to center logo
     }
 
 	&.header__col--left {
 		align-self: flex-end;
+	}
+
+	&.header__col--center {
+		padding-top: 8px;
 	}
 
     &.header__col--right {
@@ -344,6 +348,10 @@ header {
     }
 }
 
+.header__search {
+	width: 356px;
+}
+
 .header__cart {
 	position: relative;
 	margin-left: 24px;
@@ -412,6 +420,7 @@ header {
 	}
 
 	.header__search {
+		width: auto;
         max-width: 240px;
     }
 
