@@ -44,7 +44,7 @@
     margin: 0;
     text-transform: uppercase;
 
-    a {
+    a:not(.btn-flat) {
       &:focus,
       &:focus.active {
         background-color: transparentize($tabs-underline-color, .8);
@@ -68,8 +68,8 @@
       transition: color .28s ease, background-color .28s ease;
     }
 
-    &.disabled a,
-    &.disabled a:hover {
+    &.disabled a:not(.btn-flat),
+    &.disabled a:not(.btn-flat):hover {
       color: rgba($tabs-text-color, .4);
       cursor: default;
     }
@@ -91,7 +91,7 @@
     .tab {
       flex-grow: 1;
 
-      a {
+      a:not(.btn-flat) {
         padding: 0 12px;
       }
     }

@@ -82,7 +82,7 @@
         const whatsnewArrowRight = document.querySelector('.whatsnew__cards-arrow--right');
         if (whatsnewArrowLeft && whatsnewArrowRight) {
             function move (forward = true) {
-                const cards = document.querySelector('.whatsnew__cards-scroll');
+                const cards = document.querySelector('.whatsnew__cards.active .whatsnew__cards-scroll');
                 if (cards) {
                     const card1 = cards.querySelector('.card');
                     const card2 = cards.querySelector('.card + .card');

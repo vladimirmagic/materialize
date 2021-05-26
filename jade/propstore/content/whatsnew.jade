@@ -2,7 +2,12 @@ div(class="whatsnew")
     div(class="whatsnew__inner")
         div(class="whatsnew__title") What’s new
         div(class="whatsnew__text") Maecenas sed diam eget risus varius blandit sit amet non magna. Nulla vitae elit libero, a pharetra augue. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Etiam porta sem malesuada magna mollis euismod. Vestibulum id ligula porta felis euismod semper.
-        div(class="whatsnew__cards")
+        div(class="whatsnew__tabs tabs")
+            li(class="whatsnew__tab tab")
+                a(class="waves-effect btn-flat btn--rounded active" href="#whatsnew-auctions") Auctions
+            li(class="whatsnew__tab tab")
+                a(class="waves-effect btn-flat btn--rounded" href="#whatsnew-buy") Buy now
+        div(class="whatsnew__cards" id="whatsnew-auctions")
             div(class="whatsnew__cards-scroll")
                 include card-01.html
                 include card-02.html
@@ -14,6 +19,10 @@ div(class="whatsnew")
                 include card-04.html
                 include card-01.html
                 include card-02.html
+        div(class="whatsnew__cards" id="whatsnew-buy")
+            div(class="whatsnew__cards-scroll")
+                include card-03.html
+                include card-03.html
         div(class="whatsnew__cards-arrows")
             div(class="whatsnew__cards-arrow whatsnew__cards-arrow--left")
             div(class="whatsnew__cards-arrow whatsnew__cards-arrow--right")

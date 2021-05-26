@@ -34,6 +34,24 @@
 	line-height: 1.4em;
 }
 
+.whatsnew__tabs {
+	display: block;
+	height: auto;
+	width: auto;
+	margin-bottom: 64px;
+	background-color: rgba(0,0,0,0);
+
+	.indicator {
+		display: none;
+	}
+}
+
+.whatsnew__tab {
+	& + & {
+		margin-left: 12px;
+	}
+}
+
 .whatsnew__cards {
 	height: $card-height + 32; // hide scrollbar (card height + cards-scroll paddings)
 	overflow: hidden;
@@ -138,6 +156,10 @@
 	.whatsnew__text {
 		max-width: 784px;
 		font-size: 24px;
+	}
+
+	.whatsnew__tabs {
+		margin-bottom: 40px;
 	}
 
 	.whatsnew__cards-arrows {
