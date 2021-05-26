@@ -88,12 +88,15 @@ header {
 
 .header__main {
 	@extend .content;
+	position: sticky;
+	top: 40px;
 	z-index: 900;
 	height: 112px;
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
 	background: #fff;
+	transition: height .1s ease-in-out;
 
 	&.sticky-in,
 	&.sticky-out {
@@ -270,7 +273,7 @@ header {
 	line-height: 40px;
 	font-size: 16px;
 	letter-spacing: 0;
-	font-weight: 400;
+	font-weight: 200;
 	text-transform: none;
 }
 
