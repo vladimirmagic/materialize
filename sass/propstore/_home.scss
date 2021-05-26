@@ -120,6 +120,93 @@
 	}
 }
 
+.buy-auctions {
+	margin-top: 96px;
+}
+
+.buy-auctions__row {
+	display: flex;
+}
+
+.buy-auctions__img {
+	min-width: calc(50% + 140px);
+	background-position: 50% 50%;
+	background-size: cover;
+	background-repeat: no-repeat;
+	transition: all .3s ease-in-out;
+}
+
+.buy-auctions__info {
+	position: relative;
+	width: 100%;
+	max-width: 50%;
+	margin-left: -140px;
+	padding: 140px 0;
+	color: #fff;
+	background: $color-base;
+	border-top-left-radius: 140px;
+	z-index: 1;
+}
+
+.buy-auctions__info-inner {
+	max-width: 508px;
+	margin: 0 auto;
+}
+
+.buy-auctions__title {
+	margin-bottom: .5em;
+	font-size: 52px;
+
+	.icon {
+		width: 60px;
+		height: 60px;
+		margin-right: 16px;
+		border-radius: 60px;
+		background: $color-green;
+
+		svg {
+			width: 24px;
+			height: 24px;
+		}
+	}
+}
+
+.buy-auctions__text {
+	margin-bottom: 2em;
+	font-size: 20px;
+	font-weight: 200;
+}
+
+.buy-auctions__row--auctions {
+	.buy-auctions__info {
+		order: 0;
+		margin-left: 0;
+		margin-right: -140px;
+		border-top-left-radius: 0;
+		border-bottom-right-radius: 140px;
+	}
+
+	.buy-auctions__img {
+		order: 1;
+	}
+
+	.buy-auctions__title {
+		.icon {
+			background: $color-blue;
+		}
+	}
+}
+
+@media #{$media-fullhd-up} {
+	.buy-auctions__info-inner {
+		margin: 0 auto 0 240px;
+
+		.buy-auctions__row--auctions & {
+			margin: 0 240px 0 auto;
+		}
+	}
+}
+
 @media only screen and (max-width: 1654px) { // 4 cards
 	$card-height: 550px;
 
@@ -166,5 +253,52 @@
 		.touch & {
 			display: none;
 		}
+	}
+
+	.buy-auctions {
+		margin-top: 40px;
+	}
+
+	.buy-auctions__row {
+		display: block;
+	}
+
+	.buy-auctions__img {
+		display: block;
+		height: 30vh;
+	}
+
+	.buy-auctions__info {
+		max-width: 100%;
+		margin: 0;
+		padding: 80px 0;
+		text-align: center;
+		border-radius: 0 !important;
+	}
+}
+
+@media #{$medium-and-down} {
+	.buy-auctions__info {
+		padding: 64px 24px;
+		text-align: left;
+	}
+	
+	.buy-auctions__title {
+		font-size: 32px;
+	
+		.icon {
+			width: 40px;
+			height: 40px;
+			border-radius: 40px;
+	
+			svg {
+				width: 16px;
+				height: 16px;
+			}
+		}
+	}
+
+	.buy-auctions__text {
+		font-size: 18px;
 	}
 }

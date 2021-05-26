@@ -38,13 +38,15 @@ $color-base: color("blue-grey", "darken-4");
 $color-grey: color("grey", "base");
 $color-bg: color("grey", "lighten-4");
 $color-font-grey: color("grey", "darken-2");
+$color-green: color("green", "base") !default;
+$color-blue: color("blue", "base") !default;
 
 $primary-color: color("deep-purple", "base") !default;
 $primary-color-light: lighten($primary-color, 15%) !default;
 $primary-color-dark: darken($primary-color, 15%) !default;
 
 $secondary-color: color("deep-purple", "base") !default;
-$success-color: color("green", "base") !default;
+$success-color: $color-green;
 $error-color: color("red", "base") !default;
 $link-color: color("light-blue", "darken-1") !default;
 $color-turquoise: color("cyan", "base") !default;
