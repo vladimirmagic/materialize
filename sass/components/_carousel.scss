@@ -92,6 +92,10 @@
     left: 0;
     top: 50%;
     right: 0;
+
+    .touch & {
+      display: none;
+    }
   }
 
   .arrow {

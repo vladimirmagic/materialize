@@ -134,6 +134,11 @@
     }
     if (is_touch_device()) {
       $('#nav-mobile').css({ overflow: 'auto' });
+      document.body.classList.remove('no-touch');
+      document.body.classList.add('touch');
+    } else {
+      document.body.classList.remove('touch');
+      document.body.classList.add('no-touch');
     }
 
     // Set checkbox on forms.html to indeterminate
