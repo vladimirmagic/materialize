@@ -445,10 +445,13 @@ header {
     }
 
 	.header__main {
+		top: 0;
+		
+		&,
 		&.sticky-in,
 		&.sticky-out {
 			height: 152px;
-			padding-bottom: 56px;
+			padding-bottom: 56px;	
 		}
 	}
 

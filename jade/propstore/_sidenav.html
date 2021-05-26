@@ -225,16 +225,3 @@
         </div>
     </div>
 </div>
-
-<script>
-    document.addEventListener('DOMContentLoaded', () => {
-        function onBack () {
-            const links = document.querySelector('.sidenav__links');
-            if (links) links.focus();
-        }
-        const back = document.querySelectorAll('.sidenav__menu-back');
-        if (back) back.forEach(btn => {
-            btn.addEventListener('click', onBack);
-        });
-    });
-</script>

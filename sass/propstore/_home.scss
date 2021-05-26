@@ -1,5 +1,148 @@
+@import 'card';
+
 .home-temp {
 	display: flex;
 	justify-content: center;
 	align-items: center;
+}
+
+.whatsnew {
+	margin-top: 140px;
+	text-align: center;
+}
+
+.whatsnew__inner {
+	position: relative;
+	max-width: 1520px;
+	margin: 0 auto;
+}
+
+.whatsnew__title {
+	margin-bottom: 2em;
+	font-size: 14px;
+	font-weight: 600;
+	letter-spacing: .12em;
+	text-transform: uppercase;
+}
+
+.whatsnew__text {
+	@extend .content;
+	max-width: 888px;
+	margin: 0 auto 1.6em;
+	font-size: 28px;
+	font-weight: 200;
+	line-height: 1.4em;
+}
+
+.whatsnew__cards {
+	height: $card-height + 32; // hide scrollbar (card height + cards-scroll paddings)
+	overflow: hidden;
+}
+
+.whatsnew__cards-scroll {
+	display: flex;
+	overflow-y: hidden;
+	overflow-x: auto;
+	padding: 8px 0 24px 24px;
+	scroll-behavior: smooth;
+
+	&:after {
+		content: '';
+		display: block;
+		min-width: 24px;
+	}
+}
+
+.whatsnew__cards-arrows {
+	position: absolute;
+	left: 0;
+	bottom: $card-height / 2;
+	right: 0;
+}
+
+.whatsnew__cards-arrow {
+	position: absolute;
+	top: 0;
+	width: 56px;
+	height: 56px;
+	transform: translateY(-50%);
+	background-color: #fff;
+	border-radius: 56px;
+	cursor: pointer;
+
+	&:before {
+		content: '';
+		position: absolute;
+		left: 0;
+		right: 0;
+		top: 0;
+		bottom: 0;
+		background-position: 60% 50%;
+		background-size: 24px 24px;
+		background-repeat: no-repeat;
+		background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 14'%3E%3Cpath fill-rule='evenodd' clip-rule='evenodd' d='M.47.47c-.3.3-.3.77 0 1.06L5.94 7 .47 12.47a.75.75 0 101.06 1.06l6-6c.3-.3.3-.77 0-1.06l-6-6a.75.75 0 00-1.06 0z' fill='%232D2E41'/%3E%3C/svg%3E%0A");
+		opacity: .3;
+		transition: all .3s ease-in-out;
+	}
+
+	&:hover:before {
+		opacity: 1;
+	}
+
+	&.whatsnew__cards-arrow--left {
+		left: -4vw;
+
+		&:before {
+			transform: rotate(180deg);
+		}
+	}
+
+	&.whatsnew__cards-arrow--right {
+		right: -4vw;
+	}
+}
+
+@media only screen and (max-width: 1654px) { // 4 cards
+	$card-height: 550px;
+
+	.whatsnew__cards {
+		height: $card-height + 32;
+	}
+
+	.whatsnew__cards-arrow {
+		opacity: 1;
+		box-shadow: 0px 2px 8px -4px rgba(0, 0, 0, 0.5);
+
+		&.whatsnew__cards-arrow--left {
+			left: 8px;
+		}
+	
+		&.whatsnew__cards-arrow--right {
+			right: 8px;
+		}
+	}
+	
+}
+
+@media #{$large-and-up} {
+	.whatsnew__text {
+		padding: 0;
+	}
+}
+
+@media #{$large-and-down} {
+	.whatsnew {
+		margin-top: 80px;
+	}
+
+	.whatsnew__text {
+		max-width: 784px;
+		font-size: 24px;
+	}
+
+	.whatsnew__cards-arrows {
+		.touch & {
+			display: none;
+		}
+	}
 }
