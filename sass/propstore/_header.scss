@@ -144,9 +144,15 @@ header {
 	margin-left: 32px;
 	padding: 0;
 	line-height: 16px;
+	transition: all .3s ease-in-out;
 
 	.header__menu.active & {
 		color: $color-grey;
+
+		&:hover,
+		&.active {
+			color: $color-base !important;
+		}
 	}
 
 	&:before {
@@ -163,14 +169,16 @@ header {
 
 	}
 
-	&:focus,
-	&:hover,
-	&.active {
-		color: $color-base !important;
+	&:focus {
 		background-color: rgba(0, 0, 0, 0);
 	}
 
 	&:hover,
+	&.active {
+		color: $color-grey !important;
+		background-color: rgba(0, 0, 0, 0);
+	}
+
 	&.active {
 		&:before {
 			transform: scaleY(1);

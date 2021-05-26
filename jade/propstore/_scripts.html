@@ -47,24 +47,28 @@
         const menu = document.querySelector('.header__menu');
         const menuItems = document.querySelectorAll('.header__menu-link');
         if (menu && menuItems) {
-            let debounce;
-
-            function menuEnter (e) {
-                if (debounce) clearTimeout(debounce);
-                debounce = setTimeout(() => {
+            function clickOutside (e) {
+                const inside = e.target.closest('.header__menu');
+                if (!inside) {
+                    close();
+                }
+            }
+            function close () {
+                menu.classList.remove('active');
+                menuItems.forEach(item => item.classList.remove('active'));
+                document.removeEventListener('click', clickOutside);
+            }
+            function click (e) {
+                if (e.target.classList.contains('active')) {
+                    close();
+                } else {
                     menu.classList.add('active');
                     menuItems.forEach(item => item.classList.remove('active'));
                     e.target.classList.add('active');
-                }, 100);
+                    document.addEventListener('click', clickOutside);
+                }
             }
-
-            function menuLeave () {
-                menu.classList.remove('active');
-                menuItems.forEach(item => item.classList.remove('active'));
-            }
-            
-            menuItems.forEach(item => item.addEventListener('mouseenter', menuEnter));
-            menu.addEventListener('mouseleave', menuLeave)
+            menuItems.forEach(item => item.addEventListener('click', click));
         }
 
         // SIDENAV
