@@ -1,0 +1,69 @@
+.footer-signup {
+	padding: 160px 24px 0;
+	text-align: center;
+}
+
+.footer-signup__title {
+	margin-bottom: 1.1em;
+	font-size: 36px;
+	line-height: 1.2em;
+}
+
+.footer-signup__form {
+	display: flex;
+	justify-content: center;
+	flex-wrap: wrap;
+}
+
+.footer-signup__checkboxes {
+	flex: 0 0 100%;
+	padding: 0 0 40px;
+
+	.checkbox__label + .checkbox__label {
+		margin-left: 40px;
+	}
+}
+
+.footer-signup__input {
+	margin: 0 24px 0 0;
+	width: 100%;
+	max-width: 356px;
+}
+
+@media #{$large-and-down} {
+	.footer-signup {
+		padding: 80px 24px 0;
+	}
+
+	.footer-signup__title {
+		font-size: 28px;
+	}
+}
+
+@media #{$medium-and-down} {
+	.footer-signup__form {
+		max-width: 356px;
+		margin: 0 auto;
+	}
+
+	.footer-signup__input {
+		flex: 0 0 100%;
+		order: 1;
+		margin: 0 0 24px 0;
+	}
+	.footer-signup__checkboxes {
+		order: 2;
+		text-align: left;
+
+		.checkbox__label {
+			display: block;
+		}
+
+		.checkbox__label + .checkbox__label {
+			margin: 24px 0 0;
+		}
+	}
+	.footer-signup__submit {
+		order: 3;
+	}
+}

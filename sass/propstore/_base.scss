@@ -21,6 +21,10 @@ main {
 	padding-right: 60px;
 }
 
+fieldset {
+	border: 0;
+}
+
 @media #{$media-fullhd-up} {
 	$content-padding: calc(50% - 900px);
     .content {
