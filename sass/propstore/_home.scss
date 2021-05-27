@@ -198,10 +198,15 @@
 }
 
 .section-sell {
-	display: flex;
-	margin: 160px auto 0;
-	max-width: 1496px;
+	padding: 160px 0;
 	color: #fff;
+	background-color: $color-bg;
+}
+
+.section-sell__inner {
+	display: flex;
+	margin: 0 auto;
+	max-width: 1496px;
 }
 
 .section-sell__img {
@@ -288,7 +293,7 @@
 	}
 }
 
-@media only screen and (max-width: 1654px) { // 4 cards
+@media #{$breakpoint-4cards} {
 	$card-height: 550px;
 
 	.whatsnew__cards {
@@ -308,7 +313,7 @@
 		}
 	}
 
-	.section-sell {
+	.section-sell__inner {
 		margin-left: 40px;
 		margin-right: 40px;
 	}
@@ -371,7 +376,7 @@
 	}
 
 	.section-sell {
-		margin-top: 80px;
+		padding: 80px 0;
 	}
 
 	.section-sell__title {
@@ -406,7 +411,7 @@
 		font-size: 18px;
 	}
 
-	.section-sell {
+	.section-sell__inner {
 		display: block;
 		margin-left: 24px;
 		margin-right: 24px;

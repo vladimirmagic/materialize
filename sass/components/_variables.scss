@@ -238,6 +238,8 @@ $large-and-down: "only screen and (max-width : #{$large-screen})" !default;
 
 $media-fullhd-up: "only screen and (min-width: 1921px)" !default;
 
+$breakpoint-4cards: "only screen and (max-width: 1654px)" !default;
+
 
 // 12. Grid
 // ==========================================================================
@@ -361,3 +363,5 @@ $progress-bar-color: $secondary-color !default;
 // ==========================================================================
 
 $shadow-header: 0 8px 16px rgba(0, 0, 0, 0.05);
+$shadow-base: 0px 8px 32px -10px rgba(0, 0, 0, 0.15);
+$shadow-base-hover: 0px 2px 8px -4px rgba(0, 0, 0, 0.5);

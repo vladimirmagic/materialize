@@ -16,7 +16,7 @@
   overflow-y: auto;
 
   border-radius: 6px;
-  box-shadow: 0px 8px 32px -10px rgba(0, 0, 0, 0.15);
+  box-shadow: $shadow-base;
   will-change: top, opacity;
 
   @media #{$medium-and-down} {

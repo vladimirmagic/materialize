@@ -17,7 +17,7 @@
 	padding: 8px 0;
 	z-index: 1000; // TODO: Check if this doesn't break other things
 	transform-origin: 0 0;
-	box-shadow: 0px 8px 32px -10px rgba(0, 0, 0, 0.15);
+	box-shadow: $shadow-base;
 	border-radius: 6px;
 
   li {
