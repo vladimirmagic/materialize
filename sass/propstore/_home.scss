@@ -197,6 +197,87 @@
 	}
 }
 
+.section-sell {
+	display: flex;
+	margin: 160px auto 0;
+	max-width: 1496px;
+	color: #fff;
+}
+
+.section-sell__img {
+	width: 100%;
+	max-width: 432px;
+	background: $primary-color;
+	border-bottom-left-radius: 140px;
+}
+
+.section-sell__img-image {
+	max-width: 100%;
+	margin: 80px 0 0 -40px;
+}
+
+.section-sell__img-info {
+	padding: 40px 40px 32px 0;
+	text-align: right;
+	line-height: 1;
+}
+
+.section-sell__img-title {
+	margin-bottom: 1em;
+	text-transform: uppercase;
+	font-size: 10px;
+	font-weight: 600;
+	letter-spacing: .12em;
+}
+
+.section-sell__img-price {
+	margin-bottom: .5em;
+	font-size: 24px;
+}
+
+.section-sell__img-price1 {
+	font-size: 14px;
+	opacity: .5;
+}
+
+.section-sell__info {
+	width: 100%;
+	padding: 88px 40px 96px 176px;
+	background: $color-base;
+}
+
+.section-sell__info-inner {
+	max-width: 584px;
+}
+
+.section-sell__title {
+	margin-bottom: .5em;
+	font-size: 52px;
+
+	span {
+		white-space: nowrap;
+	}
+
+	.icon {
+		width: 60px;
+		height: 60px;
+		margin-right: 16px;
+		border-radius: 60px;
+		background: $color-turquoise;
+
+		svg {
+			width: 24px;
+			height: 24px;
+		}
+	}
+}
+
+.section-sell__text {
+	margin-bottom: 2em;
+	font-size: 20px;
+	font-weight: 200;
+}
+
 @media #{$media-fullhd-up} {
 	.buy-auctions__info-inner {
 		margin: 0 auto 0 240px;
@@ -226,7 +307,20 @@
 			right: 8px;
 		}
 	}
-	
+
+	.section-sell {
+		margin-left: 40px;
+		margin-right: 40px;
+	}
+
+	.section-sell__img-image {
+		max-width: 90%;
+		margin-left: -16px;
+	}
+
+	.section-sell__info {
+		padding: 72px 40px 80px 48px;
+	}
 }
 
 @media #{$large-and-up} {
@@ -275,6 +369,14 @@
 		text-align: center;
 		border-radius: 0 !important;
 	}
+
+	.section-sell {
+		margin-top: 80px;
+	}
+
+	.section-sell__title {
+		font-size: 40px;
+	}
 }
 
 @media #{$medium-and-down} {
@@ -283,7 +385,8 @@
 		text-align: left;
 	}
 	
-	.buy-auctions__title {
+	.buy-auctions__title,
+	.section-sell__title {
 		font-size: 32px;
 	
 		.icon {
@@ -298,7 +401,33 @@
 		}
 	}
 
-	.buy-auctions__text {
+	.buy-auctions__text,
+	.section-sell__text {
 		font-size: 18px;
+	}
+
+	.section-sell {
+		display: block;
+		margin-left: 24px;
+		margin-right: 24px;
+	}
+
+	.section-sell__img {
+		max-width: 100%;
+		border-bottom-left-radius: 0;
+		border-top-left-radius: 100px;
+	}
+
+	.section-sell__img-image {
+		margin-top: 64px;
+	}
+
+	.section-sell__info {
+		padding: 48px 32px 64px;
+	}
+
+	.section-sell__info-inner {
+		max-width: 508px;
+		margin: 0 auto;
 	}
 }
