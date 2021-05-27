@@ -1,22 +1,297 @@
 footer {
 	margin-top: 120px;
-	padding: 140px;
+	padding: 140px 0;
 	color: #fff;
 	background: $color-base;
 	border-top-left-radius: 140px;
 }
 
+.footer__inner {
+	@extend .content;
+	display: flex;
+	justify-content: space-between;
+	margin-left: 80px;
+	margin-right: 80px;
+
+	&.collapsible {
+		border: 0;
+		box-shadow: none;
+		list-style: none;
+
+		& > li.active .icon--dropdown {
+			transform: rotate(180deg);
+		}
+	}
+}
+
+.footer__column--logo {
+	flex: 1 1 224px;
+
+	.icon {
+		width: 42px;
+		height: 42px;
+	}
+}
+
+.footer__column--menu {
+	flex: 1 1 280px;
+	margin-right: 16px;
+
+	.collapsible-header {
+		.icon--dropdown {
+			display: none;
+		}
+	}
+
+	.collapsible-body {
+		display: block;
+		border: 0;
+		padding: 0;
+	}
+}
+
+.footer__column--links {
+	flex: 1 1 224px;
+	text-align: right;
+}
+
+.footer__menu-title {
+	display: flex;
+	margin-bottom: 1.6em;
+	padding: 0;
+	text-transform: uppercase;
+	font-size: 12px;
+	font-weight: 600;
+	letter-spacing: .12em;
+
+    cursor: default;  
+    background-color: rgba(0,0,0,0) !important;
+    border: 0;
+}
+
+a:not(.btn).footer__menu-link {
+	display: block;
+	margin-bottom: .8em;
+	color: #fff;
+	font-size: 1rem;
+	line-height: 1.2;
+	font-weight: 300;
+	text-decoration: none;
+	transition: all .2s ease-in-out;
+
+	&:hover {
+		text-decoration: underline;
+	}
+
+	&:active {
+		color: #ffffff88;
+	}
+
+	.btn__title + .icon {
+		margin-top: -4px;
+		margin-left: 8px;
+	}
+}
+
+.footer__links-follow {
+	white-space: nowrap;
+
+	a {
+		width: 40px;
+		height: 40px;
+		line-height: 40px;
+
+		.icon {
+			width: 24px;
+			height: 24px;
+		}
+	}
+}
+
+.footer__links-banners {
+	margin-top: 40px;
+	margin-bottom: 40px;
+
+	a {
+		display: block;
+		margin-top: 16px;
+
+		.icon {
+			width: 137px;
+			height: 64px;
+		}
+	}
+}
+
+.footer__links-copyright {
+	font-size: 14px;
+	line-height: 1.8em;
+	white-space: nowrap;
+}
+
+.footer__links-copyright-c {
+	display: block;
+}
+
+a:not(.btn).footer__terms-link {
+	color: #fff;
+	font-size: 1em;
+	font-weight: 600;
+	text-decoration: none;
+	transition: all .2s ease-in-out;
+
+	&:hover {
+		text-decoration: underline;
+	}
+
+	&:active {
+		color: #ffffff88;
+	}
+}
+
+.footer__terms-link-divider {
+	display: inline-block;
+	margin: 0 .5em;
+	font-size: .8em;
+}
+
+@media #{$breakpoint-4cards} {
+	.footer__inner {
+		margin: 0;
+	}
+}
+
 @media #{$large-and-down} {
 	footer {
 		margin-top: 80px;
-		padding: 100px 40px;
+		padding: 100px 0;
 		border-top-left-radius: 100px;
+	}
+
+	.footer__inner {
+		flex-wrap: wrap;
+	}
+
+	.footer__column--logo {
+		flex-basis: 50px;
+	}
+	
+	.footer__column--menu {
+		flex-basis: 100px;
+	}
+
+	.footer__column--links {
+		flex-basis: 100%;
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		padding-top: 96px;
+		text-align: center;
+	}
+
+	.footer__links-banners {
+		order: 1;
+		margin: 0;
+	
+		a {
+			display: inline-block;
+			margin: 0 16px 0 0;
+
+			.icon {
+				width: 110px;
+				height: 52px;
+			}
+		}
+	}
+
+	.footer__links-copyright {
+		order: 2;
+	}
+
+	.footer__links-copyright-c {
+		display: inline-block;
+		margin-right: .5em;
+	}
+
+	.footer__links-follow {
+		order: 3;
 	}
 }
 
 @media #{$medium-and-down} {
 	footer {
-		padding: 80px 40px;
+		padding: 80px 0;
 		border-top-left-radius: 80px;
+	}
+
+	.footer__column--links {
+		padding-top: 64px;
+	}
+
+	.footer__links-banners {
+		margin: 0;
+	
+		a {
+			display: block;
+			margin: 0 0 16px;
+		}
+	}
+
+	.footer__links-copyright-c {
+		display: block;
+		margin-right: 0;
+	}
+}
+
+@media #{$small-and-down} {
+	.footer {
+		padding-left: 32px;
+		padding-right: 32px;
+	}
+
+	.footer__column--logo {
+		flex-basis: 100%;
+		margin-bottom: 40px;
+	}
+	
+	.footer__column--menu {
+		flex-basis: 100%;
+		margin-right: 0;
+		border-bottom: 1px solid #ffffff33;
+
+		.collapsible-header {
+			justify-content: space-between;
+			align-items: center;
+
+			.icon--dropdown {
+				display: flex;
+				width: 8px;
+				margin: 0;
+			}
+		}
+
+		.collapsible-body {
+			display: none;
+			padding: .5em 0;
+		}
+	}
+
+	.footer__menu-title {
+		margin-top: 2em;
+		margin-bottom: .6em;
+	}
+
+	.footer__column--links {
+		display: block;
+		padding-top: 56px;
+	}
+
+	.footer__links-banners {
+		margin: 40px -32px;
+	
+		a {
+			display: inline-block;
+			margin: 0 16px 0 0;
+		}
 	}
 }

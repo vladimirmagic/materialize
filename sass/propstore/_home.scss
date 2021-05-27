@@ -1,5 +1,3 @@
-@import 'card';
-
 .home-temp {
 	display: flex;
 	justify-content: center;
@@ -206,7 +204,7 @@
 .section-sell__inner {
 	display: flex;
 	margin: 0 auto;
-	max-width: 1496px;
+	max-width: $width-4cards;
 }
 
 .section-sell__img {

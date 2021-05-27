@@ -30,6 +30,11 @@
 //  24. Progress Bar
 
 
+$card-width: 356px;
+$card-height: 644px;
+$card-margin: 24px;
+$width-4cards: $card-width * 4 + $card-margin * 3;
+
 
 // 1. Colors
 // ==========================================================================
@@ -106,11 +111,6 @@ $button-floating-radius: 50% !default;
 
 // 4. Cards
 // ==========================================================================
-
-$card-padding: 24px !default;
-$card-bg-color: #fff !default;
-$card-link-color: color("orange", "accent-2") !default;
-$card-link-color-light: lighten($card-link-color, 20%) !default;
 
 
 // 5. Carousel
@@ -238,7 +238,7 @@ $large-and-down: "only screen and (max-width : #{$large-screen})" !default;
 
 $media-fullhd-up: "only screen and (min-width: 1921px)" !default;
 
-$breakpoint-4cards: "only screen and (max-width: 1654px)" !default;
+$breakpoint-4cards: "only screen and (max-width: #{$width-4cards + 160})" !default;
 
 
 // 12. Grid
