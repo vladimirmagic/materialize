@@ -339,6 +339,9 @@
       // Focus modal
       this.el.focus();
 
+      window.history.pushState(null, 'Close modal');
+      window.onpopstate = () => this.close();
+
       return this;
     }
 
