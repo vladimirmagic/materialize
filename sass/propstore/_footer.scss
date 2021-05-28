@@ -38,6 +38,8 @@ footer {
 	margin-right: 16px;
 
 	.collapsible-header {
+		pointer-events: none;
+
 		.icon--dropdown {
 			display: none;
 		}
@@ -262,6 +264,7 @@ a:not(.btn).footer__terms-link {
 		.collapsible-header {
 			justify-content: space-between;
 			align-items: center;
+			pointer-events: all;
 
 			.icon--dropdown {
 				display: flex;
