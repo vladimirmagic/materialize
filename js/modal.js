@@ -206,6 +206,7 @@
           if (typeof this.options.onOpenEnd === 'function') {
             this.options.onOpenEnd.call(this, this.el, this._openingTrigger);
           }
+          this.el.scrollTop = 0;
         }
       };
 
