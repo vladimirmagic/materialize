@@ -56,21 +56,23 @@ select {
   position: relative;
 
   input.select-dropdown {
-    &:focus {
-      border-bottom: 1px solid $input-focus-color;
+    &:focus,
+    &.opened {
+      margin: 0;
+      border: 2px solid $input-focus-color;
     }
     position: relative;
     cursor: pointer;
     background-color: transparent;
-    border: none;
-    border-bottom: $input-border;
+    border: $input-border;
     outline: none;
     height: $input-height;
     line-height: $input-height;
     width: 100%;
     font-size: $input-font-size;
-    margin: 0;
-    padding: 0;
+    margin: 0 1px;
+    padding: $input-padding;
+    padding-right: 32px;
     display: block;
     user-select:none;
     z-index: 1;
@@ -78,17 +80,16 @@ select {
 
   .caret {
     position: absolute;
-    right: 0;
+    right: 16px;
     top: 0;
     bottom: 0;
     margin: auto 0;
     z-index: 0;
-    fill: rgba(0,0,0,.87);
   }
 
   & + label {
     position: absolute;
-    top: -26px;
+    top: -24px;
     font-size: $label-font-size;
   }
 
@@ -102,6 +103,10 @@ select {
     top: 0;
     z-index: -1;
   }
+}
+
+input.select-dropdown.opened ~ .caret {
+  transform: rotate(180deg);
 }
 
 // Disabled styles

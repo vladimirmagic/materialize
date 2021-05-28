@@ -600,9 +600,9 @@
       this._animateOut();
       this._removeTemporaryEventHandlers();
 
-      if (this.options.autoFocus) {
-        this.el.focus();
-      }
+      // if (this.options.autoFocus) {
+      //   this.el.focus();
+      // }
       this.el.classList.remove('opened');
     }
 

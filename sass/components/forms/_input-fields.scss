@@ -136,6 +136,22 @@ textarea.materialize-textarea {
   transition: .2s opacity ease-out, .2s color ease-out;
 }
 
+.input-field__label-fixed {
+  z-index: 100;
+  transform: translateY(-8px);
+  transform-origin: 0 0;
+  color: $color-base !important;
+  font-size: 12px !important;
+  font-weight: 600;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  background: #fff;
+}
+
+.input-field--label label {
+  @extend .input-field__label-fixed;
+}
+
 
 // Styling for input field wrapper
 .input-field {
@@ -168,15 +184,9 @@ textarea.materialize-textarea {
     transform-origin: 0% 100%;
     transform: translateY(14px);
 
+    .input-field--label &,
     &:not(.label-icon).active {
-      transform: translateY(-8px);
-      transform-origin: 0 0;
-      color: $color-base;
-      font-size: 12px;
-      font-weight: 600;
-      letter-spacing: .12em;
-      text-transform: uppercase;
-      background: #fff;
+      @extend .input-field__label-fixed;
     }
   }
 

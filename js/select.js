@@ -234,9 +234,9 @@
 
       // Add caret
       let dropdownIcon = $(
-        '<svg class="caret" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/><path d="M0 0h24v24H0z" fill="none"/></svg>'
+        '<svg class="caret" width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path fill-rule="evenodd" clip-rule="evenodd" d="M14.53 5.47a.75.75 0 00-1.06 0L8 10.94 2.53 5.47a.75.75 0 00-1.06 1.06l6 6c.3.3.77.3 1.06 0l6-6c.3-.3.3-.77 0-1.06z" /></svg>'
       );
-      $(this.wrapper).prepend(dropdownIcon[0]);
+      $(this.wrapper).append(dropdownIcon[0]);
 
       // Initialize dropdown
       if (!this.el.disabled) {
