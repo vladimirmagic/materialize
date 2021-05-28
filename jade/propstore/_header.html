@@ -256,27 +256,23 @@
                 </svg>            
             </i></a>
         </div>
-        <div class="header__cart">
+        <div class="header__bag modal-trigger" href="#modal-bag">
             <a class="waves-effect btn-flat btn--icon"><i class='icon' style="color: rgba(0,0,0,0); width:22px; height:27px">
                 <svg width="22" height="27" viewBox="0 0 22 27" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M19.9222 8.20142H2.07784C1.48257 8.20142 1 8.67325 1 9.25528V24.9461C1 25.5282 1.48257 26 2.07784 26H19.9222C20.5174 26 21 25.5282 21 24.9461V9.25528C21 8.67325 20.5174 8.20142 19.9222 8.20142Z" stroke="#2D2E41" stroke-width="1.5"/>
                 <path d="M16.3898 10.6604V6.3669C16.3898 3.40284 13.9769 1 11.0005 1C8.02416 1 5.61133 3.40284 5.61133 6.3669V10.6604" stroke="#2D2E41" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                 </svg>            
             </i></a>
-            <span class="header__cart-number">3</span>
+            <span class="header__bag-number">3</span>
         </div>
     </div>
 </div>
 
 <div id="modal-signin" class="modal modal-register">
-    <div class="modal-header">
-      <a href="#!" class="modal-close btn-flat btn--icon"><i class='icon'>
-        <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M1 1L16.9999 17" stroke="#2D2E41" stroke-width="1.5"/>
-          <path d="M17 1L1.00013 17" stroke="#2D2E41" stroke-width="1.5"/>
-          </svg>
-          </i>
-      </a>
+    <div class="modal-header modal-header--sticky">
+        <a class="modal-close btn-flat btn--icon"><i class='icon'>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path fill-rule="evenodd" clip-rule="evenodd" d="M1.47 1.47c.3-.3.77-.3 1.06 0L8 6.94l5.47-5.47a.75.75 0 111.06 1.06L9.06 8l5.47 5.47a.75.75 0 11-1.06 1.06L8 9.06l-5.47 5.47a.75.75 0 01-1.06-1.06L6.94 8 1.47 2.53a.75.75 0 010-1.06z"/></svg>
+        </i></a>
     </div>
     <div class="modal-content">
         <div class="modal__title">Sign In</div>
@@ -321,14 +317,10 @@
 </div>
 
 <div id="modal-register" class="modal modal-register">
-    <div class="modal-header">
-      <a href="#!" class="modal-close btn-flat btn--icon"><i class='icon'>
-        <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M1 1L16.9999 17" stroke="#2D2E41" stroke-width="1.5"/>
-          <path d="M17 1L1.00013 17" stroke="#2D2E41" stroke-width="1.5"/>
-          </svg>
-          </i>
-      </a>
+    <div class="modal-header modal-header--sticky">
+        <a class="modal-close btn-flat btn--icon"><i class='icon'>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path fill-rule="evenodd" clip-rule="evenodd" d="M1.47 1.47c.3-.3.77-.3 1.06 0L8 6.94l5.47-5.47a.75.75 0 111.06 1.06L9.06 8l5.47 5.47a.75.75 0 11-1.06 1.06L8 9.06l-5.47 5.47a.75.75 0 01-1.06-1.06L6.94 8 1.47 2.53a.75.75 0 010-1.06z"/></svg>
+        </i></a>
     </div>
     <div class="modal-content">
         <div class="modal__title">Register</div>
@@ -374,6 +366,121 @@
 
         <div class="modal-register__switch">
             Already have an account? <a class="modal-trigger modal-close" href="#modal-signin">Sign In</a>
+        </div>
+    </div>
+</div>
+
+<div id="modal-bag" class="modal modal-bag">
+    <div class="modal-header modal-header--sticky modal-header--title">
+        <a class="modal-close btn-flat btn--icon"><i class='icon'>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path fill-rule="evenodd" clip-rule="evenodd" d="M1.47 1.47c.3-.3.77-.3 1.06 0L8 6.94l5.47-5.47a.75.75 0 111.06 1.06L9.06 8l5.47 5.47a.75.75 0 11-1.06 1.06L8 9.06l-5.47 5.47a.75.75 0 01-1.06-1.06L6.94 8 1.47 2.53a.75.75 0 010-1.06z"/></svg>
+        </i></a>
+    </div>
+    <div class="modal-content">
+        <div class="modal__title">Your Bag</div>
+        <div class="modal-bag__intro">
+            Items in your bag are not reserved until checkout is complete.
+        </div>
+        <div class="modal-bag__items">
+            <a class="modal-bag__item" href="#item-01">
+                <div class="modal-bag__item-img" style="background-image: url(https://www.fillmurray.com/400/800);"></div>
+                <div class="modal-bag__item-details">
+                    <div class="modal-bag__item-movie">
+                        Star Wars - Ep VI - Return Of The Jedi Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                    </div>
+                    <div class="modal-bag__item-title">
+                        Lot #209 - Cinema Poster Live Auction - Howard Kazanjian Collection: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                    </div>
+                    <div class="modal-bag__item-price">
+                        £1,895
+                    </div>
+                </div>
+                <div class="modal-bag__item-actions">
+                    <button class="btn-flat btn--icon"><i class='icon'>
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path fill-rule="evenodd" clip-rule="evenodd" d="M1.47 1.47c.3-.3.77-.3 1.06 0L8 6.94l5.47-5.47a.75.75 0 111.06 1.06L9.06 8l5.47 5.47a.75.75 0 11-1.06 1.06L8 9.06l-5.47 5.47a.75.75 0 01-1.06-1.06L6.94 8 1.47 2.53a.75.75 0 010-1.06z"/></svg>
+                    </i></button>
+                </div>
+            </a>
+            <a class="modal-bag__item" href="#item-02">
+                <div class="modal-bag__item-img" style="background-image: url(https://www.fillmurray.com/800/400);"></div>
+                <div class="modal-bag__item-details">
+                    <div class="modal-bag__item-movie">
+                        Star Wars - Ep IV - A New Hope
+                    </div>
+                    <div class="modal-bag__item-title">
+                        Lot #302 - Cinema Poster Live Auction - Autographed UK Quad (Oscar), 1977
+                    </div>
+                    <div class="modal-bag__item-price">
+                        £1,895
+                    </div>
+                </div>
+                <div class="modal-bag__item-actions">
+                    <button class="btn-flat btn--icon"><i class='icon'>
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path fill-rule="evenodd" clip-rule="evenodd" d="M1.47 1.47c.3-.3.77-.3 1.06 0L8 6.94l5.47-5.47a.75.75 0 111.06 1.06L9.06 8l5.47 5.47a.75.75 0 11-1.06 1.06L8 9.06l-5.47 5.47a.75.75 0 01-1.06-1.06L6.94 8 1.47 2.53a.75.75 0 010-1.06z"/></svg>
+                    </i></button>
+                </div>
+            </a>
+            <a class="modal-bag__item" href="#item-03">
+                <div class="modal-bag__item-img" style="background-image: url(https://www.fillmurray.com/400/400);"></div>
+                <div class="modal-bag__item-details">
+                    <div class="modal-bag__item-movie">
+                        Star Wars - Ep VI - Return Of The Jedi Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                    </div>
+                    <div class="modal-bag__item-title">
+                        Lot #209 - Cinema Poster Live Auction - Howard Kazanjian Collection: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                    </div>
+                    <div class="modal-bag__item-price">
+                        £1,895
+                    </div>
+                </div>
+                <div class="modal-bag__item-actions">
+                    <button class="btn-flat btn--icon"><i class='icon'>
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path fill-rule="evenodd" clip-rule="evenodd" d="M1.47 1.47c.3-.3.77-.3 1.06 0L8 6.94l5.47-5.47a.75.75 0 111.06 1.06L9.06 8l5.47 5.47a.75.75 0 11-1.06 1.06L8 9.06l-5.47 5.47a.75.75 0 01-1.06-1.06L6.94 8 1.47 2.53a.75.75 0 010-1.06z"/></svg>
+                    </i></button>
+                </div>
+            </a>
+            <a class="modal-bag__item" href="#item-04">
+                <div class="modal-bag__item-img" style="background-image: url(https://www.fillmurray.com/500/500);"></div>
+                <div class="modal-bag__item-details">
+                    <div class="modal-bag__item-movie">
+                        Star Wars - Ep IV - A New Hope
+                    </div>
+                    <div class="modal-bag__item-title">
+                        Lot #302 - Cinema Poster Live Auction - Autographed UK Quad (Oscar), 1977
+                    </div>
+                    <div class="modal-bag__item-price">
+                        £1,895
+                    </div>
+                </div>
+                <div class="modal-bag__item-actions">
+                    <button class="btn-flat btn--icon"><i class='icon'>
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path fill-rule="evenodd" clip-rule="evenodd" d="M1.47 1.47c.3-.3.77-.3 1.06 0L8 6.94l5.47-5.47a.75.75 0 111.06 1.06L9.06 8l5.47 5.47a.75.75 0 11-1.06 1.06L8 9.06l-5.47 5.47a.75.75 0 01-1.06-1.06L6.94 8 1.47 2.53a.75.75 0 010-1.06z"/></svg>
+                    </i></button>
+                </div>
+            </a>
+        </div>
+
+        <div class="modal__footer">
+            <div class="modal-bag__total">
+                <div class="modal-bag__total-label">
+                    Subtotal:
+                </div>
+                <div class="modal-bag__total-value">
+                    £500,895
+                </div>
+            </div>
+            <a class="waves-effect waves-light btn modal-bag__submit">
+                <span class='btn__title'>Proceed to checkout</span>
+                <i class='icon' style="color: rgba(0,0,0,0)">
+                    <svg width="17" height="14" viewBox="0 0 17 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M0.333984 6.16669V7.83336H13.334L8.75065 12.4167L9.93398 13.6L16.534 7.00002L9.93398 0.400024L8.75065 1.58336L13.334 6.16669H0.333984Z" fill="white"/>
+                    </svg>
+                </i>  
+            </a>
+
+            <div class="modal-bag__continue">
+                <a class="modal-close btn-flat btn--link">Continue shopping</a>
+            </div>
         </div>
     </div>
 </div>

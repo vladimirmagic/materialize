@@ -28,7 +28,7 @@
   }
 
   .modal-content {
-    padding: 0 76px 64px;
+    padding: 0 76px 32px;
   }
   .modal-close {
     cursor: pointer;
@@ -102,6 +102,25 @@
 .modal-header {
   padding: 24px 24px 0;
   text-align: right;
+
+  &.modal-header--sticky {
+    position: sticky;
+    z-index: 100;
+    top: 0;
+
+    .modal-close {
+      background: #ffffff88;
+
+      &:hover {
+        background: $color-bg;
+      }
+    }
+  }
+
+  .modal-close .icon {
+    width: 20px;
+    height: 20px;
+  }
 }
 
 .modal__title {
@@ -143,6 +162,15 @@
   }
 }
 
+.modal__footer {
+  position: sticky;
+  bottom: 0;
+  padding: 16px 0;
+  background: white;
+}
+
+
+
 .modal-trigger {
   cursor: pointer;
 }
@@ -158,8 +186,8 @@
 		border-bottom-right-radius: 0;
 
 		.modal-header {
-			padding: 16px 16px 0;
-		  }
+			padding: 16px 16px 8px 24px;
+    }
 
 		.modal-content {
 			padding: 0 24px 40px;
