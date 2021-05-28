@@ -360,6 +360,7 @@ module.exports = function(grunt) {
           'auto-init.html': 'jade/auto-init.jade',
           'propstore-ui.html': 'jade/propstore-ui.jade',
           'home.html': 'jade/propstore/home.jade',
+          'buy.html': 'jade/propstore/buy.jade',
         }
       }
     },

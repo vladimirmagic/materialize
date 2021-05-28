@@ -122,7 +122,7 @@ header
 
     li.no-padding
       ul.collapsible.collapsible-accordion
-        li.bold(class=(page == "Propstore UI" || page == "Home" ? "active" : ""))
+        li.bold(class=(page == "Propstore UI" || page == "Home" || page == "Buy now" ? "active" : ""))
               a.collapsible-header(class="waves-effect waves-grey")
                 | Propstore
               .collapsible-body
@@ -131,6 +131,8 @@ header
                     a(href='propstore-ui.html') Propstore UI
                   li(class=(page == "Home" ? "active" : ""))
                     a(href='home.html' target='_blank') Home page
+                  li(class=(page == "Buy now" ? "active" : ""))
+                    a(href='buy.html' target='_blank') Buy now
 
   // Sidebar BSA
   script(src="//m.servedby-buysellads.com/monetization.js" type="text/javascript").

@@ -2,6 +2,10 @@
 	@extend .content;
 	height: 800px;
 	max-height: 100vh;
+
+	&.hero--static {
+		height: 500px;
+	}
 }
 
 .hero__inner {
@@ -21,6 +25,14 @@
 	height: 100%;
 	z-index: 100;
 	overflow: hidden;
+}
+
+.hero__image {
+	flex: 1 1 60%;
+	height: 100%;
+	background-position: 50% 50%;
+	background-size: cover;
+	background-repeat: no-repeat;
 }
 
 .hero__info {
@@ -82,6 +94,13 @@
 	margin-top: 32px;
 }
 
+.hero__search {
+	display: inline-block;
+	width: 100%;
+	max-width: 356px;
+	margin: 0;
+}
+
 @media #{$large-and-down} {
 	$hero-info-item-padding: calc(50% - 320px);
 
@@ -90,6 +109,10 @@
 		max-height: none;
 		padding-left: 0;
 		padding-right: 0;
+
+		&.hero--static {
+			height: auto;
+		}
 	}
 
 	.hero__inner {
@@ -99,6 +122,10 @@
 
 	.hero__carousel {
 		height: 700px;
+	}
+
+	.hero__image {
+		height: 440px;
 	}
 
 	.hero__info {
@@ -173,6 +200,9 @@
 		& + & {
 			margin-left: 0;
 		}
+	}
+	.hero__image {
+		height: 198px;
 	}
 }
 
