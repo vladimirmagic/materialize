@@ -6,33 +6,46 @@
 
 <script>
     document.addEventListener('DOMContentLoaded', () => {
+        // const out = document.createElement('div');
+        // out.style.position = 'fixed';
+        // out.style.bottom = '40px';
+        // out.style.left = '40px';
+        // out.style.background = 'white';
+        // out.style.zIndex = '2000';
+        // document.body.append(out);
 
         // HEADER
+        const HEADER_THRESHOLD = 100;
+        let previousScroll = 0;
         function resize () {
             const header = document.querySelector('.header__main');
             if (header) {
                 header.style.maxWidth = document.querySelector('header').clientWidth + 'px';
-                let previousScroll = 0;
                 const top = header.offsetTop;
                 const bottom = header.parentNode.offsetHeight;
-
                 document.body.addEventListener('scroll', M.throttle(() => {
                     const currentScroll = document.body.scrollTop;
-                    if (currentScroll < previousScroll) {
-                        header.classList.remove('sticky-out');
-                        if (currentScroll < top * 2) {
-                            header.classList.remove('sticky-in');
-                        } else if (currentScroll > bottom) {
-                            header.classList.add('sticky-in');   
+                    if (currentScroll <= previousScroll) {
+                        if (previousScroll - currentScroll > HEADER_THRESHOLD) {
+                            previousScroll = currentScroll;
+                            header.classList.remove('sticky-out');
+                            if (currentScroll < top * 2) {
+                                header.classList.remove('sticky-in');
+                            } else if (currentScroll > bottom) {
+                                header.classList.add('sticky-in');   
+                            }
                         }
-                    } else if (
-                        currentScroll > bottom &&
-                        header.classList.contains('sticky-in')
-                    ) {
-                        header.classList.remove('sticky-in');
-                        header.classList.add('sticky-out');
+                    } else {
+                        previousScroll = currentScroll;
+                        if (
+                            currentScroll > bottom &&
+                            header.classList.contains('sticky-in')
+                        ) {
+                            previousScroll = currentScroll;
+                            header.classList.remove('sticky-in');
+                            header.classList.add('sticky-out');
+                        }
                     }
-                    previousScroll = currentScroll;
                 }, 200));
             }
         }
