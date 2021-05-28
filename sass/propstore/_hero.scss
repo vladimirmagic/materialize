@@ -33,19 +33,19 @@
 }
 
 .hero__info-item {
-	max-width: 432px;
-	opacity: 1;
-	pointer-events: all;
-	transition: all .3s .3s ease-in-out;
+	transition: opacity .3s ease-in-out;
 
 	&.hide {
-		position: absolute;
 		display: block !important;
-		width: 100%;
+		width: 0;
 		opacity: 0;
 		pointer-events: none;
-		transition: all .3s ease-in-out;
+		overflow: hidden;
 	}
+}
+
+.hero__info-item-inner {
+	max-width: 432px;
 }
 
 .hero__suptitle {
@@ -78,21 +78,8 @@
 	}
 }
 
-
 .hero__btn {
 	margin-top: 32px;
-}
-
-@media only screen and (max-width: 1380px) {
-	.hero__info-item {
-		max-width: none;
-
-		&.hide {
-			left: 32px;
-			right: 32px;
-			width: auto;
-		}
-	}
 }
 
 @media #{$large-and-down} {
@@ -115,16 +102,14 @@
 	}
 
 	.hero__info {
+		align-items: flex-start;
 		padding: 80px $hero-info-item-padding;
 		text-align: center;
 	}
 
-	.hero__info-item {
-		&.hide {
-			top: 80px;
-			left: $hero-info-item-padding;
-			right: $hero-info-item-padding;
-		}
+	.hero__info-item-inner {
+		width: 640px;
+		max-width: none;
 	}
 
 	.hero__details {
@@ -142,9 +127,7 @@
 }
 
 @media #{$medium-and-down} {
-	
 	.hero__inner {
-		display: block;
 		border-bottom-right-radius: 80px;
 	}
 
@@ -172,22 +155,14 @@
 	}
 }
 
-@media only screen and (max-width: 480px) {
-	.hero__carousel {
-		height: 300px;
-	}
-
+@media only screen and (max-width: 640px) {
 	.hero__info {
 		padding: 48px 24px;
 		text-align: left;
 	}
 
-	.hero__info-item {
-		&.hide {
-			top: 48px;
-			left: 24px;
-			right: 24px;
-		}
+	.hero__info-item-inner {
+		width: calc(100vw - 48px);
 	}
 
 	.hero__details {
@@ -198,5 +173,11 @@
 		& + & {
 			margin-left: 0;
 		}
+	}
+}
+
+@media only screen and (max-width: 480px) {
+	.hero__carousel {
+		height: 300px;
 	}
 }

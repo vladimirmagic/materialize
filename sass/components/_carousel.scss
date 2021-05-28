@@ -48,6 +48,13 @@
   }
 }
 
+.carousel-item__image { // hidden image to catch loading
+  opacity: 0;
+  pointer-events: none;
+  width: 1px;
+  height: 1px;
+}
+
 .carousel-item--slider {
   width: 100%;
   height: 100%;

@@ -48,6 +48,18 @@
        */
       this.options = $.extend({}, Carousel.defaults, options);
 
+      const image = this.el.querySelector('.carousel-item__image');
+      if (!this.loaded && image && image.src) {
+        const loadingImage = new Image();
+        loadingImage.onload = () => {
+          this.el.classList.add('loaded');
+          this.loaded = true;
+          this.constructor(el, options); // init carousel after image loaded
+        };
+        loadingImage.src = image.src;
+        return;
+      }
+
       // Setup
       this.hasMultipleSlides = this.$el.find('.carousel-item').length > 1;
       this.showIndicators = this.options.indicators && this.hasMultipleSlides;
