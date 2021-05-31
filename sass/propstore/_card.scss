@@ -166,7 +166,7 @@ a.card:not(.btn) { // fix a
 
 .card__price-i {
 	position: absolute;
-	margin: -15px 0 0 -10px;
+	margin: -13px 0 0 -10px;
 	color: $color-turquoise;
 
 	.icon {
@@ -253,6 +253,10 @@ a.card:not(.btn) { // fix a
 	.card__price {
 		margin-bottom: 1em;
 		font-size: 18px;
+	}
+
+	.card__price-i {
+		margin-top: -15px;
 	}
 	
 	.card__date {
