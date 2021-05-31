@@ -13,45 +13,54 @@
     </div>
     <div class="filters__body collapsible">
         <li>
-            <button class="waves-effect waves-grey btn btn--secondary collapsible-header">
-                Filters
+            <button class="waves-effect waves-grey btn btn--secondary collapsible-header filters__collapsible-button">
+                <span class="btn__title">Filters</span>
+                <i class="icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 21 20"><path d="M2.69 4.69a.94.94 0 01.94-.94h13.75a.94.94 0 010 1.88H3.63a.94.94 0 01-.94-.94zm2.5 5a.94.94 0 01.93-.94h8.75a.94.94 0 010 1.88H6.13a.94.94 0 01-.94-.94zm2.5 5a.94.94 0 01.93-.94h3.76a.94.94 0 010 1.88H8.62a.94.94 0 01-.93-.94z" /></svg>
+                </i>
+                <span class="filters__enabled">1</span>
             </button>
             <div class='collapsible-body'>
-                <div class="input-field input-field--label">
-                    <select>
-                        <option value="1">All</option>
-                        <option value="2">Option 2</option>
-                        <option value="3">Option 3</option>
-                    </select>
-                    <label>Category</label>
-                </div>
-                <div class="input-field input-field--label">
-                    <input type="text" class="autocomplete" placeholder="Start Typing...">
-                    <label>Movies & series</label>
-                </div>
-                <div class="input-field input-field--label">
-                    <select>
-                        <option value="1">All</option>
-                        <option value="2">Option 2</option>
-                        <option value="3">Option 3</option>
-                    </select>
-                    <label>Type of prop</label>
-                </div>
-                <div class="input-field input-field--label">
-                    <select>
-                        <option value="1">US + UK</option>
-                        <option value="2">Option 2</option>
-                        <option value="3">Option 3</option>
-                    </select>
-                    <label>Location</label>
-                </div>
-                <div class="input-field input-field--label">
-                    <select>
-                        <option value="1">Newest First</option>
-                        <option value="2">Option 2</option>
-                        <option value="3">Option 3</option>
-                    </select>
-                    <label>Sort By</label>
+                <div class="filters__inputs">
+                    <div class="input-field input-field--label input-field--filled">
+                        <select>
+                            <option value="1">All</option>
+                            <option value="2" selected>Movie Props</option>
+                            <option value="3">Option 3</option>
+                        </select>
+                        <label>Category</label>
+                        <span class="waves-effect btn-flat btn--icon input-field__clean"><i class='icon'>
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path fill-rule="evenodd" clip-rule="evenodd" d="M10 20a10 10 0 100-20 10 10 0 000 20zm0-8.94l-3.32 3.32-1.06-1.06L8.94 10 5.62 6.68l1.06-1.06L10 8.94l3.32-3.32 1.06 1.06L11.06 10l3.32 3.32-1.06 1.06L10 11.06z"/></svg>
+                        </i></span>
+                    </div>
+                    <div class="input-field input-field--label input-field--autocomplete">
+                        <input type="text" class="autocomplete" placeholder="Start Typing...">
+                        <label>Movies & series</label>
+                    </div>
+                    <div class="input-field input-field--label">
+                        <select>
+                            <option value="1">All</option>
+                            <option value="2">Option 2</option>
+                            <option value="3">Option 3</option>
+                        </select>
+                        <label>Type of prop</label>
+                    </div>
+                    <div class="input-field input-field--label">
+                        <select>
+                            <option value="1">US + UK</option>
+                            <option value="2">Option 2</option>
+                            <option value="3">Option 3</option>
+                        </select>
+                        <label>Location</label>
+                    </div>
+                    <div class="input-field input-field--label">
+                        <select>
+                            <option value="1">Newest First</option>
+                            <option value="2">Option 2</option>
+                            <option value="3">Option 3</option>
+                        </select>
+                        <label>Sort By</label>
+                    </div>
                 </div>
             </div>
         </li>
