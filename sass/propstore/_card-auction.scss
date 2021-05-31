@@ -1,0 +1,111 @@
+.card-auction {
+	position: relative;
+	display: block;
+	width: $card-width * 2 + $card-margin;
+	min-width: $card-width * 2 + $card-margin;
+	height: $card-height;
+	text-align: left;
+	background-position: 50% 50%;
+	background-size: cover;
+	background-repeat: no-repeat;
+	border-radius: 140px 6px 6px 6px;
+	overflow: hidden;
+	cursor: pointer;
+	transition: all .3s ease-in-out;
+
+	&.card-auction--right {
+		border-radius: 6px 140px 6px 6px;
+	}
+
+	.btn {
+		height: 40px;
+		line-height: 40px;
+		padding: 0 16px;
+	}
+}
+
+a.card-auction:not(.btn) { // fix a
+	font-weight: 400;
+	text-decoration: none;
+	background-color: $color-base;
+
+	&:before {
+		display: none;
+	}
+}
+
+.card-auction__info {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	position: absolute;
+	left: 32px;
+	right: 32px;
+	bottom: 32px;
+	height: 72px;
+	padding: 0 16px;
+	background: #fff;
+	border-radius: 6px;
+}
+
+.card-auction__description {
+	display: flex;
+	align-items: center;
+}
+
+.card-auction__badge {
+	margin-right: 1rem;
+}
+
+.card-auction__title {
+	display: -webkit-box;
+	overflow: hidden;
+   	text-overflow: ellipsis;
+   	-webkit-line-clamp: 2;
+   	-webkit-box-orient: vertical;
+	max-height: 2.8em;
+	font-size: 20px;
+	line-height: 1.4;
+}
+
+.card-auction__actions {
+	display: flex;
+	justify-content: flex-end;
+	min-width: 120px;
+}
+
+@media #{$breakpoint-4cards} {
+	.card-auction {
+		width: $card-width-m * 2 + $card-margin-m;
+		min-width: $card-width-m * 2 + $card-margin-m;
+		height: $card-height-m;
+	}
+}
+
+@media #{$large-and-down} {
+	.card-auction {
+		border-radius: 100px 6px 6px 6px;
+		
+		&.card-auction--right {
+			border-radius: 6px 100px 6px 6px;
+		}
+	}
+}
+
+@media #{$small-and-down} {
+	.card-auction__info {
+		left: 16px;
+		right: 16px;
+		bottom: 16px;
+	}
+
+	.card-auction__badge {
+		position: absolute;
+		left: 0;
+		bottom: calc(100% + 8px);
+	}
+
+	.card-auction__title {
+		font-size: 16px;
+	}
+}
