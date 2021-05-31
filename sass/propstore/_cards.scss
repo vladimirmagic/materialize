@@ -1,0 +1,147 @@
+.cards {
+	padding-top: 100px;
+	padding-bottom: 100px;
+	padding-left: 60px;
+	padding-right: 36px;
+	background: $color-bg;
+}
+
+.cards__inner {
+	max-width: $width-4cards;
+	margin: 0 auto;
+}
+
+.cards__list {
+	display: flex;
+	flex-wrap: wrap;
+
+	.card {
+		margin: $card-margin $card-margin 0 0;
+
+		& + & {
+			margin: inherit;
+		}
+	}
+}
+
+@media #{$breakpoint-4cards} {
+	.cards {
+		padding-top: 60px;
+		padding-bottom: 60px;
+
+		.card__actions {
+			.btn {
+				width: 100%;
+			}
+		}
+	}
+
+	.cards__inner {
+		max-width: $width-4cards-m;
+	}
+	
+	.cards__list {
+		margin-left: -$card-margin-m;
+		transform: translate($card-margin-m, -$card-margin-m);
+	
+		.card {
+			margin: $card-margin-m $card-margin-m 0 0;
+		}
+	}
+}
+
+@media #{$large-and-down} {
+	.cards {
+		padding-left: 40px;
+		padding-right: 16px;
+	}
+}
+
+@media #{$medium-and-down} {
+	.cards {
+		padding-left: 24px;
+		padding-right: 8px;
+
+		.card {
+			width: calc(50% - 24px);
+			max-width: $card-width-s;
+			min-width: 0;
+			height: $card-height-s;
+		}
+		
+		.card__img {
+			height: $card-width-s;
+		}
+
+		.card__discount {
+			left: .5rem;
+			top: .5rem;
+		}
+
+		.card__heart {
+			right: .5rem;
+			top: .5rem;
+		}
+
+		.card__badge {
+			left: .5rem;
+			bottom: .5rem;
+			font-size: 10px;
+		}
+	
+		.card__info {
+			height: $card-height-s - $card-width-s;
+			padding: 20px 16px 16px;
+		}
+	
+		.card__movie {
+			font-size: 16px;
+		}
+		
+		.card__title {
+			font-size: 14px;
+			-webkit-line-clamp: 3;
+			max-height: 4.5em;
+		}
+		
+		.card__price {
+			font-size: 16px;
+		}
+		
+		.card__date {
+			position: relative;
+			display: block;
+			margin-bottom: 1.15em;
+			padding: 3px 0 0 24px;
+			font-size: 14px;
+		}
+
+		.card__date-icon {
+			position: absolute;
+			left: 0;
+			top: 0;
+		}
+
+		.card__date-divider {
+			display: block;
+			line-height: 6px;
+			opacity: 0;
+		}
+
+		.card__actions {
+			display: block;
+
+			.btn + .btn {
+				margin-left: 0;
+				margin-top: 16px;
+			}
+		}
+	}
+}
+
+@media only screen and (max-width: 400px) {
+	.cards {
+		padding-left: 16px;
+		padding-right: 0;
+	}
+}

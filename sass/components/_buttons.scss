@@ -13,6 +13,8 @@
   border: 0;
 
 	.icon {
+    width: 20px;
+    height: 20px;
 		margin-right: 4px;
 	}
 }
@@ -21,6 +23,7 @@
   .btn__title + & {
     margin-right: 0;
     margin-left: 16px;
+    margin-top: -4px;
   }
 }
 

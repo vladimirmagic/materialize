@@ -5,7 +5,6 @@
 	min-width: $card-width;
 	height: $card-height;
 	text-align: left;
-	background: #fff;
 	box-shadow: $shadow-base;
 	border-radius: 6px;
 	overflow: hidden;
@@ -18,16 +17,27 @@
 	}
 
 	& + & {
-		margin-left: 24px;
+		margin-left: $card-margin;
 	}
 }
 
 a.card:not(.btn) { // fix a
 	font-weight: 400;
 	text-decoration: none;
+	background: #fff;
 
 	&:before {
 		display: none;
+	}
+
+	&.card--archived {
+		color: #fff;
+		background: $color-base;
+
+		.btn--secondary {
+			color: #fff;
+  			border: 1px solid #fff;
+		}
 	}
 }
 
@@ -40,6 +50,19 @@ a.card:not(.btn) { // fix a
 	background-color: color("grey", "darken-4");
 }
 
+.card__featured {
+	position: absolute;
+	left: -30px;
+	top: 40px;
+	width: 160px;
+	text-align: center;
+	color: #fff;
+	font-weight: 600;
+	background: $color-turquoise;
+	transform-origin: 30px 50%;
+	transform: rotate(-30deg);
+}
+
 .card__heart {
 	position: absolute;
 	right: 16px;
@@ -50,6 +73,28 @@ a.card:not(.btn) { // fix a
 	position: absolute;
 	left: 16px;
 	bottom: 16px;
+}
+
+.card__discount {
+	position: absolute;
+	left: 16px;
+	top: 16px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 60px;
+	height: 60px;
+	text-align: center;
+	color: #fff;
+	font-weight: 600;
+	font-size: 12px;
+	line-height: 1;
+	border-radius: 60px;
+	background: $color-red;
+}
+
+.card__discount-value {
+	font-size: 20px;
 }
 
 .card__info {
@@ -96,6 +141,40 @@ a.card:not(.btn) { // fix a
 	line-height: 1;
 }
 
+.card__price-flag {
+	display: inline-block;
+	width: 16px;
+	height: 16px;
+	margin: 0 4px -1px 0;
+	font-size: 16px;
+}
+
+.card__price-old {
+	color: $color-font-grey;
+	text-decoration: line-through;
+}
+
+.card__price-new {
+	color: $color-red;
+}
+
+.card__price-approx {
+	display: inline-block;
+	font-size: 14px;
+	color: $color-font-grey;
+}
+
+.card__price-i {
+	position: absolute;
+	margin: -15px 0 0 -10px;
+	color: $color-turquoise;
+
+	.icon {
+		width: 16px;
+		height: 16px;
+	}
+}
+
 .card__date {
 	flex: 0 0 1.2em;
 	display: flex;
@@ -122,7 +201,7 @@ a.card:not(.btn) { // fix a
 
 	.btn {
 		flex: 1 1 60%;
-		padding: 0 16px;
+		padding: 0 8px;
 	}
 
 	.btn--secondary {
@@ -132,28 +211,34 @@ a.card:not(.btn) { // fix a
 	.btn + .btn {
 		margin-left: 16px;
 	}
+
+	.btn__title + .icon {
+		margin-left: 8px;
+		margin-top: -5px;
+	}
+}
+
+.card__added {
+	background: $color-green !important;
 }
 
 @media #{$breakpoint-4cards} {
-	$card-width: 304px;
-	$card-height: 550px;
-
 	.card {
-		width: $card-width;
-		min-width: $card-width;
-		height: $card-height;
+		width: $card-width-m;
+		min-width: $card-width-m;
+		height: $card-height-m;
 		
 		& + & {
-			margin-left: 16px;
+			margin-left: $card-margin-m;
 		}
 	}
 	
 	.card__img {
-		height: $card-width;
+		height: $card-width-m;
 	}
 
 	.card__info {
-		height: $card-height - $card-width;
+		height: $card-height-m - $card-width-m;
 		padding: 20px;
 	}
 

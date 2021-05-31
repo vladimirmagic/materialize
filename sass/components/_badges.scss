@@ -10,6 +10,7 @@ span.badge {
   font-weight: 600;
   letter-spacing: .12em;
   text-transform: uppercase;
+  white-space: nowrap;
   background: color("blue-grey", "base");
   border-radius: 4px;
   box-sizing: border-box;
@@ -22,6 +23,10 @@ span.badge {
 
   &.orange {
     color: $color-base;
+  }
+
+  &.navy {
+    background: $color-base;
   }
 
   &.new {

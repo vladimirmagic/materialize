@@ -33,7 +33,15 @@
 $card-width: 356px;
 $card-height: 644px;
 $card-margin: 24px;
-$width-4cards: $card-width * 4 + $card-margin * 3;
+$width-4cards: $card-width * 4 + $card-margin * 4;
+
+$card-width-m: 304px;
+$card-height-m: 550px;
+$card-margin-m: 16px;
+$width-4cards-m: $card-width-m * 4 + $card-margin-m * 4;
+
+$card-width-s: 176px;
+$card-height-s: 516px;
 
 
 // 1. Colors
@@ -45,6 +53,7 @@ $color-bg: color("grey", "lighten-4");
 $color-font-grey: color("grey", "darken-2");
 $color-green: color("green", "base") !default;
 $color-blue: color("blue", "base") !default;
+$color-red: color("red", "base") !default;
 
 $primary-color: color("deep-purple", "base") !default;
 $primary-color-light: lighten($primary-color, 15%) !default;
@@ -238,7 +247,7 @@ $large-and-down: "only screen and (max-width : #{$large-screen})" !default;
 
 $media-fullhd-up: "only screen and (min-width: 1921px)" !default;
 
-$breakpoint-4cards: "only screen and (max-width: #{$width-4cards + 160})" !default;
+$breakpoint-4cards: "only screen and (max-width: #{$width-4cards + 112})" !default;
 
 
 // 12. Grid

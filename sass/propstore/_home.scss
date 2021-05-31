@@ -286,10 +286,8 @@
 }
 
 @media #{$breakpoint-4cards} {
-	$card-height: 550px;
-
 	.whatsnew__cards {
-		height: $card-height + 32;
+		height: $card-height-m + 32;
 	}
 
 	.whatsnew__cards-arrow {
