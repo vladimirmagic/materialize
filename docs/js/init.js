@@ -230,3 +230,118 @@
     });
   }); // end of document ready
 })(jQuery); // end of jQuery name space
+
+document.addEventListener('DOMContentLoaded', () => {
+	// const out = document.createElement('div');
+	// out.style.position = 'fixed';
+	// out.style.bottom = '40px';
+	// out.style.left = '40px';
+	// out.style.background = 'white';
+	// out.style.zIndex = '2000';
+	// document.body.append(out);
+
+	// HEADER
+	const HEADER_THRESHOLD = 100;
+	let previousScroll = 0;
+	function resize () {
+		const header = document.querySelector('.header__main');
+		if (header) {
+			header.style.maxWidth = document.querySelector('header').clientWidth + 'px';
+			const top = header.offsetTop;
+			const bottom = header.parentNode.offsetHeight;
+			document.body.addEventListener('scroll', M.throttle(() => {
+				const currentScroll = document.body.scrollTop;
+				if (currentScroll <= previousScroll) {
+					if (previousScroll - currentScroll > HEADER_THRESHOLD) {
+						previousScroll = currentScroll;
+						header.classList.remove('sticky-out');
+						if (currentScroll < top * 2) {
+							header.classList.remove('sticky-in');
+						} else if (currentScroll > bottom) {
+							header.classList.add('sticky-in');   
+						}
+					}
+				} else {
+					previousScroll = currentScroll;
+					if (
+						currentScroll > bottom &&
+						header.classList.contains('sticky-in')
+					) {
+						previousScroll = currentScroll;
+						header.classList.remove('sticky-in');
+						header.classList.add('sticky-out');
+					}
+				}
+			}, 200));
+		}
+	}
+	resize();
+	window.addEventListener('resize', resize);
+
+	// HEADER ACCOUNT DROPDOWN
+	const account = document.querySelectorAll('.header__account');
+	M.Dropdown.init(account, { alignment: 'right' });
+
+	// MENU
+	const menu = document.querySelector('.header__menu');
+	const menuItems = document.querySelectorAll('.header__menu-link');
+	if (menu && menuItems) {
+		function clickOutside (e) {
+			const inside = e.target.closest('.header__menu');
+			if (!inside) {
+				close();
+			}
+		}
+		function close () {
+			menu.classList.remove('active');
+			menuItems.forEach(item => item.classList.remove('active'));
+			document.removeEventListener('click', clickOutside);
+		}
+		function click (e) {
+			if (e.target.classList.contains('active')) {
+				close();
+			} else {
+				menu.classList.add('active');
+				menuItems.forEach(item => item.classList.remove('active'));
+				e.target.classList.add('active');
+				document.addEventListener('click', clickOutside);
+			}
+		}
+		menuItems.forEach(item => item.addEventListener('click', click));
+	}
+
+	// SIDENAV
+	function onBack () {
+		const links = document.querySelector('.sidenav__links');
+		if (links) links.focus();
+	}
+	const back = document.querySelectorAll('.sidenav__menu-back');
+	if (back) back.forEach(btn => {
+		btn.addEventListener('click', onBack);
+	});
+
+	// WHATS NEW
+	const whatsnewArrowLeft = document.querySelector('.whatsnew__cards-arrow--left');
+	const whatsnewArrowRight = document.querySelector('.whatsnew__cards-arrow--right');
+	if (whatsnewArrowLeft && whatsnewArrowRight) {
+		function move (forward = true) {
+			const cards = document.querySelector('.whatsnew__cards.active .whatsnew__cards-scroll');
+			if (cards) {
+				const card1 = cards.querySelector('.card');
+				const card2 = cards.querySelector('.card + .card');
+				if (card1 && card2) {
+					const card = card2.getBoundingClientRect().left - card1.getBoundingClientRect().left; // width from the first card left side to the second card left side
+					const cardsWidth = cards.clientWidth;
+					const cardsCount = Math.floor((cardsWidth + 16) / card);
+					const sign = forward ? 1 : -1;
+					cards.scrollLeft += sign * cardsCount * card;
+				}
+			}
+		}
+		function left () {
+			move(false);
+		}
+		whatsnewArrowLeft.addEventListener('click', left);
+		whatsnewArrowRight.addEventListener('click', move);
+	}
+});
