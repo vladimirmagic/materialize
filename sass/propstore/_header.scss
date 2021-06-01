@@ -7,11 +7,13 @@ header {
     position: relative;
 	z-index: 900;
 	flex: 0 0 #{$header-settings-height + $header-main-height};
+	background: #fff;
 
 	&.sticky-in,
 	&.sticky-out {
 		position: sticky;
 		top: -$header-settings-height;
+		flex-basis: #{$header-settings-height + $header-main-sticky-height};
 		box-shadow: $shadow-header;
 		animation: animation-header-sticky-in .2s ease-in-out forwards;
 
@@ -37,7 +39,6 @@ header {
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
-	background: #fff;
 	transition: height .1s ease-in-out;
 }
 
