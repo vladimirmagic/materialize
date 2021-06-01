@@ -30,6 +30,8 @@ input[type=search]:not(.browser-default),
 textarea.materialize-textarea {
 
   // General Styles
+  position: relative;
+  z-index: 1;
   background-color: transparent;
   border: $input-border;
   border-radius: 0;
@@ -43,6 +45,10 @@ textarea.materialize-textarea {
   box-shadow: none;
   box-sizing: border-box;
 
+  &.autocomplete {
+    padding-right: 32px;
+  }
+
   .input-field--label & {
     height: $input-height + 8;
   }
@@ -53,6 +59,10 @@ textarea.materialize-textarea {
   &[readonly="readonly"] {
     color: $input-disabled-color;
     border-bottom: $input-disabled-border;
+
+    & ~ .caret {
+      fill: $input-disabled-color;
+    }
   }
 
   // Disabled label style
@@ -162,6 +172,20 @@ textarea.materialize-textarea {
 
 // Styling for input field wrapper
 .input-field {
+  .caret {
+    position: absolute;
+    right: 16px;
+    top: 0;
+    bottom: 0;
+    margin: auto 0;
+    z-index: 0;
+    cursor: pointer;
+  }
+
+  input.opened ~ .caret {
+    transform: rotate(180deg);
+  }
+
   // Inline styles
   &.inline {
     display: inline-block;

@@ -36,6 +36,7 @@
       this.isMultiple = this.$el.prop('multiple');
 
       // Setup
+      this.field = this.el.closest('.input-field') || this.el;
       this.el.tabIndex = -1;
       this._keysSelected = {};
       this._valueDict = {}; // Maps key to original and generated option element.
@@ -76,6 +77,7 @@
       this._handleSelectChangeBound = this._handleSelectChange.bind(this);
       this._handleOptionClickBound = this._handleOptionClick.bind(this);
       this._handleInputClickBound = this._handleInputClick.bind(this);
+      this._handleCleanClickBound = this._handleCleanClick.bind(this);
 
       $(this.dropdownOptions)
         .find('li:not(.optgroup)')
@@ -84,6 +86,9 @@
         });
       this.el.addEventListener('change', this._handleSelectChangeBound);
       this.input.addEventListener('click', this._handleInputClickBound);
+
+      const clean = this.field.querySelector('.input-field__clean');
+      if (clean) clean.addEventListener('click', this._handleCleanClickBound);
     }
 
     /**
@@ -97,6 +102,15 @@
         });
       this.el.removeEventListener('change', this._handleSelectChangeBound);
       this.input.removeEventListener('click', this._handleInputClickBound);
+
+      const clean = this.field.querySelector('.input-field__clean');
+      if (clean) clean.removeEventListener('click', this._handleCleanClickBound);
+    }
+
+    _handleCleanClick(e) {
+      e.stopPropagation();
+      const optionEl = this.dropdownOptions.querySelector('li');
+      this._selectOption(optionEl);
     }
 
     /**
@@ -233,10 +247,14 @@
       this._setValueToInput();
 
       // Add caret
-      let dropdownIcon = $(
+      const dropdownIcon = $(
         '<svg class="caret" width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path fill-rule="evenodd" clip-rule="evenodd" d="M14.53 5.47a.75.75 0 00-1.06 0L8 10.94 2.53 5.47a.75.75 0 00-1.06 1.06l6 6c.3.3.77.3 1.06 0l6-6c.3-.3.3-.77 0-1.06z" /></svg>'
       );
       $(this.wrapper).append(dropdownIcon[0]);
+      const clean = $(`<span class="waves-effect btn-flat btn--icon input-field__clean"><i class='icon'>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path fill-rule="evenodd" clip-rule="evenodd" d="M10 20a10 10 0 100-20 10 10 0 000 20zm0-8.94l-3.32 3.32-1.06-1.06L8.94 10 5.62 6.68l1.06-1.06L10 8.94l3.32-3.32 1.06 1.06L11.06 10l3.32 3.32-1.06 1.06L10 11.06z"/></svg>
+      </i></span>`);
+      $(this.wrapper).append(clean[0]);
 
       // Initialize dropdown
       if (!this.el.disabled) {
@@ -375,9 +393,11 @@
     _setValueToInput() {
       let values = [];
       let options = this.$el.find('option');
+      let isFirstSelected = false;
 
-      options.each((el) => {
+      options.each((el, index) => {
         if ($(el).prop('selected')) {
+          if (!index) isFirstSelected = true;
           let text = $(el).text();
           values.push(text);
         }
@@ -391,6 +411,12 @@
       }
 
       this.input.value = values.join(', ');
+
+      if (values.length && !isFirstSelected) {
+        this.field.classList.add('input-field--filled');
+      } else {
+        this.field.classList.remove('input-field--filled');
+      }
     }
 
     /**

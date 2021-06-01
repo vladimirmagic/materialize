@@ -78,15 +78,6 @@ select {
     z-index: 1;
   }
 
-  .caret {
-    position: absolute;
-    right: 16px;
-    top: 0;
-    bottom: 0;
-    margin: auto 0;
-    z-index: 0;
-  }
-
   & + label {
     position: absolute;
     top: -24px;
@@ -105,10 +96,6 @@ select {
   }
 }
 
-input.select-dropdown.opened ~ .caret {
-  transform: rotate(180deg);
-}
-
 // Disabled styles
 select:disabled {
   color: $input-disabled-color;
@@ -118,19 +105,12 @@ select:disabled {
   + label {
     color: $input-disabled-color;
   }
-  .caret {
-    fill: $input-disabled-color;
-  }
 }
 
 .select-wrapper input.select-dropdown:disabled {
   color: $input-disabled-color;
   cursor: default;
   user-select: none;
-}
-
-.select-wrapper i {
-  color: $select-disabled-color;
 }
 
 .select-dropdown li.disabled,

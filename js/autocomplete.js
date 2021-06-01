@@ -5,7 +5,7 @@
     data: {}, // Autocomplete data set
     limit: Infinity, // Limit of results the autocomplete shows
     onAutocomplete: null, // Callback for when autocompleted
-    minLength: 1, // Min characters before autocomplete starts
+    minLength: 0, // Min characters before autocomplete starts
     sortFunction: function(a, b, inputString) {
       // Sort function for sorting autocomplete results
       return a.indexOf(inputString) - b.indexOf(inputString);
@@ -94,6 +94,7 @@
       this._handleContainerMouseupAndTouchendBound = this._handleContainerMouseupAndTouchend.bind(
         this
       );
+      this._handleCleanClickBound = this._handleCleanClick.bind(this);
 
       this.el.addEventListener('blur', this._handleInputBlurBound);
       this.el.addEventListener('keyup', this._handleInputKeyupAndFocusBound);
@@ -113,6 +114,9 @@
         );
         this.container.addEventListener('touchend', this._handleContainerMouseupAndTouchendBound);
       }
+
+      const clean = this.$inputField[0].querySelector('.input-field__clean');
+      if (clean) clean.addEventListener('click', this._handleCleanClickBound);
     }
 
     /**
@@ -140,6 +144,16 @@
           this._handleContainerMouseupAndTouchendBound
         );
       }
+
+      const clean = this.$inputField[0].querySelector('.input-field__clean');
+      if (clean) clean.removeEventListener('click', this._handleCleanClickBound);
+    }
+
+    _handleCleanClick(e) {
+      e.stopPropagation();
+      this._resetAutocomplete();
+      this.el.value = '';
+      this._toggleFilled(false);
     }
 
     /**
@@ -151,6 +165,15 @@
       $(this.container).addClass('autocomplete-content dropdown-content');
       this.$inputField.append(this.container);
       this.el.setAttribute('data-target', this.container.id);
+      // Add caret
+      const dropdownIcon = $(
+        '<svg class="caret" width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path fill-rule="evenodd" clip-rule="evenodd" d="M14.53 5.47a.75.75 0 00-1.06 0L8 10.94 2.53 5.47a.75.75 0 00-1.06 1.06l6 6c.3.3.77.3 1.06 0l6-6c.3-.3.3-.77 0-1.06z" /></svg>'
+      );
+      this.$inputField.append(dropdownIcon[0]);
+      const clean = $(`<span class="waves-effect btn-flat btn--icon input-field__clean"><i class='icon'>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path fill-rule="evenodd" clip-rule="evenodd" d="M10 20a10 10 0 100-20 10 10 0 000 20zm0-8.94l-3.32 3.32-1.06-1.06L8.94 10 5.62 6.68l1.06-1.06L10 8.94l3.32-3.32 1.06 1.06L11.06 10l3.32 3.32-1.06 1.06L10 11.06z"/></svg>
+      </i></span>`);
+      this.$inputField.append(clean[0]);
 
       this.dropdown = M.Dropdown.init(this.el, {
         autoFocus: false,
@@ -179,6 +202,7 @@
       if (!this._mousedown) {
         this.close();
         this._resetAutocomplete();
+        this._toggleFilled(this.el.value !== '');
       }
     }
 
@@ -333,6 +357,16 @@
       // Handle onAutocomplete callback.
       if (typeof this.options.onAutocomplete === 'function') {
         this.options.onAutocomplete.call(this, text);
+      }
+
+      this._toggleFilled();
+    }
+
+    _toggleFilled(isFilled = true) {
+      if (isFilled) {
+        this.$inputField[0].classList.add('input-field--filled');
+      } else {
+        this.$inputField[0].classList.remove('input-field--filled');
       }
     }
 
