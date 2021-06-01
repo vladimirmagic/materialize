@@ -1,6 +1,44 @@
+$header-settings-height: 40px;
+$header-main-height: 112px;
+$header-main-sticky-height: 96px;
+$header-main-padding-m: 56px;
+
 header {
     position: relative;
-	flex: 0 0 152px; // 40 .header__settings + 112 .header__main
+	z-index: 900;
+	flex: 0 0 #{$header-settings-height + $header-main-height};
+
+	&.sticky-in,
+	&.sticky-out {
+		position: sticky;
+		top: -$header-settings-height;
+		box-shadow: $shadow-header;
+		animation: animation-header-sticky-in .2s ease-in-out forwards;
+
+		.header__main {
+			height: $header-main-sticky-height;
+		}
+
+		.header__menu-link {
+			height: $header-main-sticky-height;
+			line-height: $header-main-sticky-height;
+		}		
+	}
+
+	&.sticky-out {
+		animation-name: animation-header-sticky-out;
+	}
+}
+
+.header__main {
+	@extend .content;
+	position: relative;
+	height: $header-main-height;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	background: #fff;
+	transition: height .1s ease-in-out;
 }
 
 .header__settings {
@@ -97,38 +135,6 @@ header {
 	font-size: 16px;
 }
 
-.header__main {
-	@extend .content;
-	position: sticky;
-	top: 40px;
-	z-index: 900;
-	height: 112px;
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-	background: #fff;
-	transition: height .1s ease-in-out;
-
-	&.sticky-in,
-	&.sticky-out {
-		position: fixed;
-		top: 0;
-		width: 100%;
-		height: 96px;
-		box-shadow: $shadow-header;
-		animation: animation-header-sticky-in .2s ease-in-out forwards;
-
-		.header__menu-link {
-			height: 96px;
-			line-height: 96px;
-		}		
-	}
-
-	&.sticky-out {
-		animation-name: animation-header-sticky-out;
-	}
-}
-
 .header__col {
     &.header__col--left,
     &.header__col--right {
@@ -156,11 +162,11 @@ header {
 
 .header__menu-link {
 	position: relative;
-	height: 112px;
-	line-height: 112px;
+	height: $header-main-height;
+	line-height: $header-main-height;
 	margin-left: 32px;
 	padding: 0;
-	transition: all .3s ease-in-out;
+	transition: all .1s ease-in-out;
 
 	.header__menu.active & {
 		color: $color-grey;
@@ -592,14 +598,16 @@ a.modal-bag__item:not(.btn) { // fix a
         display: none;
     }
 
+	header {
+		top: 0 !important;
+	}
+
 	.header__main {
-		top: 0;
-		
 		&,
-		&.sticky-in,
-		&.sticky-out {
-			height: 152px;
-			padding-bottom: 56px;	
+		header.sticky-in &,
+		header.sticky-out & {
+			height: $header-main-sticky-height + $header-main-padding-m;
+			padding-bottom: $header-main-padding-m;	
 		}
 	}
 

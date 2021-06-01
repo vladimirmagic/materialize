@@ -244,11 +244,11 @@ document.addEventListener('DOMContentLoaded', () => {
 	const HEADER_THRESHOLD = 100;
 	let previousScroll = 0;
 	function resize () {
-		const header = document.querySelector('.header__main');
-		if (header) {
-			header.style.maxWidth = document.querySelector('header').clientWidth + 'px';
-			const top = header.offsetTop;
-			const bottom = header.parentNode.offsetHeight;
+		const header = document.querySelector('header');
+    const headerMain = document.querySelector('.header__main');
+		if (header && headerMain) {
+			const top = headerMain.offsetTop;
+			const bottom = header.offsetHeight;
 			document.body.addEventListener('scroll', M.throttle(() => {
 				const currentScroll = document.body.scrollTop;
 				if (currentScroll <= previousScroll) {
@@ -272,7 +272,7 @@ document.addEventListener('DOMContentLoaded', () => {
 						header.classList.add('sticky-out');
 					}
 				}
-			}, 200));
+			}, 100));
 		}
 	}
 	resize();
