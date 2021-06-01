@@ -222,6 +222,19 @@ a.card:not(.btn) { // fix a
 	background: $color-green !important;
 }
 
+.dropdown-currency {
+	min-width: 450px;
+	max-width: 100%;
+	padding: 16px 32px;
+	font-size: 14px;
+}
+
+.dropdown-currency__flag {
+	width: 16px;
+	height: 16px;
+	margin: 0 8px -2px 0;
+}
+
 @media #{$breakpoint-4cards} {
 	.card {
 		width: $card-width-m;

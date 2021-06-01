@@ -44,7 +44,7 @@
 			accordion: false
 		});
 
-		$('.dropdown-trigger:not(.header__account)').dropdown();
+		// $('.dropdown-trigger:not(.header__account):not(.card__price-i)').dropdown();
 		$('.slider').slider();
 		$('.materialboxed').materialbox();
 		$('.modal').modal();
@@ -147,7 +147,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 	// HEADER ACCOUNT DROPDOWN
 	const account = document.querySelectorAll('.header__account');
-	M.Dropdown.init(account, { alignment: 'right' });
+	if (account) M.Dropdown.init(account, { alignment: 'right' });
 
 	// MENU
 	const menu = document.querySelector('.header__menu');
@@ -211,4 +211,9 @@ document.addEventListener('DOMContentLoaded', () => {
 		whatsnewArrowLeft.addEventListener('click', left);
 		whatsnewArrowRight.addEventListener('click', move);
 	}
+
+	// CURRENCY DROPDOWN
+	const currency = document.querySelectorAll('.card__price-i');
+	if (currency) M.Dropdown.init(currency, { container: document.body });
+
 });
