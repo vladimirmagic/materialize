@@ -60,16 +60,6 @@ header {
 	color: $color-font-grey;
 }
 
-.header__currency {
-	@extend .header__btn;
-	margin-left: -8px;
-
-	.icon:not(.icon--dropdown) {
-		width: 16px;
-		height: 16px;
-	}
-}
-
 .header__settings-divider1,
 .header__settings-divider2 {
 	color: $color-grey;
@@ -78,22 +68,6 @@ header {
 
 .header__settings-divider2 {
 	margin: 0 -4px;
-}
-
-
-#dropdown-currency {
-	li {
-		padding: 0 8px;
-	}
-	.btn-flat {
-		display: flex;
-		align-items: center;
-		background-color: rgba(0,0,0,0) !important;
-	}
-	.icon {
-		width: 16px;
-		height: 16px;
-	}
 }
 
 .modal-register {
