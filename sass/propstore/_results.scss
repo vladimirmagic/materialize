@@ -26,6 +26,17 @@
 	}
 }
 
+.cards__no-results {
+	padding: 40px 0;
+	text-align: center;
+}
+
+.cards__no-results-text {
+	margin-bottom: 2em;
+	font-size: 28px;
+	font-weight: 300;
+}
+
 @media #{$small-and-down} {
 	.showing-results {
 		padding-top: 40px;
@@ -37,5 +48,13 @@
 			height: 60px !important;
 			font-size: 28px;
 		}
+	}
+
+	.cards__no-results {
+		padding: 0;
+	}
+
+	.cards__no-results-text {
+		font-size: 24px;
 	}
 }
