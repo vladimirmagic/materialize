@@ -107,10 +107,17 @@ document.addEventListener('DOMContentLoaded', () => {
 	// out.style.zIndex = '2000';
 	// document.body.append(out);
 
+	function resize () {
+		headerFloat();
+		mobileFilterToggle();
+	}
+	resize();
+	window.addEventListener('resize', resize);
+
 	// HEADER
 	const HEADER_THRESHOLD = 100;
 	let previousScroll = 0;
-	function resize () {
+	function headerFloat () {
 		const header = document.querySelector('header');
     	const headerMain = document.querySelector('.header__main');
 		if (header && headerMain) {
@@ -142,8 +149,6 @@ document.addEventListener('DOMContentLoaded', () => {
 			}, 100));
 		}
 	}
-	resize();
-	window.addEventListener('resize', resize);
 
 	// HEADER ACCOUNT DROPDOWN
 	const account = document.querySelectorAll('.header__account');
@@ -217,6 +222,28 @@ document.addEventListener('DOMContentLoaded', () => {
 	if (currency) M.Dropdown.init(currency, { container: document.body });
 
 	// FILTER
+	function mobileFilterToggle () {
+		const button = document.querySelector('.filters__open-button');
+		if (button && getComputedStyle(button).display !== 'none') { // mobile button shown
+			const inputs = document.querySelector('.filters__body .filters__inputs');
+			const sidenav = document.querySelector('.sidenav__filter-inputs');
+			if (inputs && sidenav) {
+				sidenav.append(inputs);
+			} 
+		} else {
+			const inputs = document.querySelector('.sidenav__filter-inputs .filters__inputs');
+			const desktop = document.querySelector('.filters__body');
+			if (inputs && desktop) {
+				desktop.append(inputs);
+			}
+			const sidenavElement = document.querySelector('.sidenav-filter');
+			if (sidenavElement) { // close sidenav
+				const sidenav = M.Sidenav.getInstance(sidenavElement);
+				if (sidenav) sidenav.close();
+			}
+		}
+	}
+
 	const filters = document.querySelectorAll('.sidenav__filter-inputs input.autocomplete');
 	if (filters) filters.forEach(filter => {
 		filter.addEventListener('focus', () => {
