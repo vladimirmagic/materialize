@@ -1,0 +1,135 @@
+$movie-width: 200px;
+$movie-height: 360px;
+$movie-img-height: 248px;
+$movie-width-s: 152px;
+$movie-height-s: 272px;
+$movie-img-height-s: 184px;
+$movie-list-padding: 24px;
+
+.related-movies {
+	@extend .content;
+	padding-top: 44px;
+	text-align: center;
+}
+
+.related-movies__inner {
+	padding: 80px 0;
+	color: #fff;
+	background: $color-base;
+	border-top-right-radius: 140px;
+}
+
+.related-movies__title {
+	margin-bottom: 40px;
+	font-size: 40px;
+}
+
+.related-movies__list {
+	height: $movie-height + $movie-list-padding;
+	overflow: hidden;
+}
+
+.related-movies__scroll {
+	display: flex;
+	justify-content: center;
+	overflow-y: hidden;
+	overflow-x: auto;
+	padding: 0 0 $movie-list-padding 24px;
+	scroll-behavior: smooth;
+
+	&:after {
+		content: '';
+		display: block;
+		min-width: 24px;
+	}
+}
+
+.related-movies__item {
+	width: $movie-width;
+	min-width: $movie-width;
+	height: $movie-height;
+	text-align: left;
+	cursor: pointer;
+
+	& + & {
+		margin-left: 24px;
+	}
+}
+
+.related-movies__img {
+	height: $movie-img-height;
+	background-position: 50% 50%;
+	background-size: contain;
+	background-repeat: no-repeat;
+	background-color: color("grey", "darken-4");
+}
+
+.related-movies__movie {
+	display: -webkit-box;
+	overflow: hidden;
+   	text-overflow: ellipsis;
+   	-webkit-line-clamp: 2;
+   	-webkit-box-orient: vertical;
+	max-height: 2.4em;
+	margin: 1em 0 .5em;
+	font-size: 20px;
+	font-weight: 600;
+	line-height: 1.2;
+}
+
+.related-movies__counter {
+	font-size: 16px;
+	opacity: .5;
+}
+
+@media #{$large-and-down} {
+	.related-movies__inner {
+		padding: 60px 0;
+		border-top-right-radius: 100px;
+	}
+
+	.related-movies__title {
+		font-size: 24px;
+	}
+
+	.related-movies__list {
+		height: $movie-height-s + $movie-list-padding;
+	}
+
+	.related-movies__item {
+		width: $movie-width-s;
+		min-width: $movie-width-s;
+		height: $movie-height-s;
+	
+		& + & {
+			margin-left: 16px;
+		}
+	}
+
+	.related-movies__img {
+		height: $movie-img-height-s;
+	}
+
+	.related-movies__movie {
+		font-size: 16px;
+	}
+	
+	.related-movies__counter {
+		font-size: 14px;
+	}
+}
+
+@media #{$medium-and-down} {
+	.related-movies {
+		padding-left: 0;
+		padding-right: 0;
+	}
+
+	.related-movies__inner {
+		border-top-right-radius: 0;
+	}
+
+	.related-movies__scroll {
+		justify-content: flex-start;
+	}
+}
