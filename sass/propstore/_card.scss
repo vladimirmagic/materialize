@@ -19,6 +19,15 @@
 	& + & {
 		margin-left: $card-margin;
 	}
+
+	&.card--added {
+		.card__add {
+			display: none;
+		}
+		.card__added {
+			display: inline-block;
+		}
+	}
 }
 
 a.card:not(.btn) { // fix a
@@ -208,7 +217,7 @@ a.card:not(.btn) { // fix a
 		flex-basis: 40%;
 	}
 
-	.btn + .btn {
+	.btn + .btn--secondary {
 		margin-left: 16px;
 	}
 
@@ -219,6 +228,7 @@ a.card:not(.btn) { // fix a
 }
 
 .card__added {
+	display: none;
 	background: $color-green !important;
 }
 
