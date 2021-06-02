@@ -365,6 +365,8 @@ textarea {
 
 /* Autocomplete */
 .autocomplete-content {
+  min-width: 440px;
+
   li {
     .highlight { color: #444; }
 
@@ -445,5 +447,11 @@ textarea {
 
   .caret {
     display: none;
+  }
+}
+
+@media #{$medium-and-down} {
+  .autocomplete-content {
+    min-width: 0;
   }
 }
