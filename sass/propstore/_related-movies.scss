@@ -54,6 +54,12 @@ $movie-list-padding: 24px;
 	& + & {
 		margin-left: 24px;
 	}
+
+	&:hover {
+		.related-movies__img {
+			opacity: .5;
+		}		
+	}
 }
 
 .related-movies__img {
@@ -62,6 +68,7 @@ $movie-list-padding: 24px;
 	background-size: contain;
 	background-repeat: no-repeat;
 	background-color: color("grey", "darken-4");
+	transition: all .3s ease-in-out;
 }
 
 .related-movies__movie {
