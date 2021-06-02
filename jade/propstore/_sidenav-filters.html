@@ -1,25 +1,15 @@
-<div class="filters">
-    <div class="filters__header">
-        <div class="filters__found">
-            214 Items
-        </div>
-        <div class="filters__hide">
-            <label class="checkbox__label">
-                <input type="checkbox" class="filled-in" checked="checked" />
-                <input type="hidden" />
-                <span>Hide archived items</span>
-            </label>
-        </div>
-    </div>
-    <div class="filters__body">
-            <button data-target="sidenav-filter" class="sidenav-trigger waves-effect waves-grey btn btn--secondary filters__open-button">
-                <span class="btn__title">Filter</span>
-                <i class="icon">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 21 20"><path d="M2.69 4.69a.94.94 0 01.94-.94h13.75a.94.94 0 010 1.88H3.63a.94.94 0 01-.94-.94zm2.5 5a.94.94 0 01.93-.94h8.75a.94.94 0 010 1.88H6.13a.94.94 0 01-.94-.94zm2.5 5a.94.94 0 01.93-.94h3.76a.94.94 0 010 1.88H8.62a.94.94 0 01-.93-.94z" /></svg>
-                </i>
-                <span class="filters__enabled">1</span>
-            </button>
-            <div class="filters__inputs">
+<div class="sidenav sidenav-filter" id="sidenav-filter">
+    <div class="sidenav__inner">
+        <span class="sidenav-close sidenav__close waves-effect btn-flat btn--icon"><i class='icon'>
+            <img src="images/close.svg" />
+        </i></span>
+        
+        <div class="sidenav__filter">
+            <div class="sidenav__filter-title">
+                Filter
+            </div>
+
+            <div class="sidenav__filter-inputs">
                 <div class="input-field input-field--label">
                     <select>
                         <option value="1">All</option>
@@ -58,5 +48,14 @@
                 </div>
             </div>
         </div>
+    </div>
+
+    <div class="sidenav__filter-action">
+        <button class="waves-effect waves-grey btn btn--secondary">
+            Clear all
+        </button>
+        <button class="waves-effect waves-light btn">
+            <span class='btn__title'>Apply</span>
+        </button>
     </div>
 </div>

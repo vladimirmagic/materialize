@@ -15,8 +15,12 @@ $main-link-height: 72px;
 	padding: 32px 32px 32px 24px;
 }
 
+.sidenav__close {
+	margin: 0 0 2em -1em;
+}
+
 .sidenav__search {
-	margin: 32px 0;
+	margin-bottom: 2em;
 }
 
 .sidenav__links {

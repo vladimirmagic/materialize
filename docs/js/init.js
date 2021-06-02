@@ -216,4 +216,15 @@ document.addEventListener('DOMContentLoaded', () => {
 	const currency = document.querySelectorAll('.card__price-i');
 	if (currency) M.Dropdown.init(currency, { container: document.body });
 
+	// FILTER
+	const filters = document.querySelectorAll('.sidenav__filter-inputs input.autocomplete');
+	if (filters) filters.forEach(filter => {
+		filter.addEventListener('focus', () => {
+			setTimeout(() => { // wait virtual keyboard
+				if (document.activeElement === filter) {
+					filter.scrollIntoView();
+				}
+			}, 300);
+		});
+	});
 });
