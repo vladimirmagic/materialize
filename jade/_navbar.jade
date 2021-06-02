@@ -122,7 +122,7 @@ header
 
     li.no-padding
       ul.collapsible.collapsible-accordion
-        li.bold(class=(page == "Propstore UI" || page == "Home" || page == "Buy now" ? "active" : ""))
+        li.bold(class=(page == "Propstore UI" || page == "Home" || page == "Buy now" || page == "Results" ? "active" : ""))
               a.collapsible-header(class="waves-effect waves-grey")
                 | Propstore
               .collapsible-body
@@ -133,19 +133,7 @@ header
                     a(href='home.html' target='_blank') Home page
                   li(class=(page == "Buy now" ? "active" : ""))
                     a(href='buy.html' target='_blank') Buy now
+                  li(class=(page == "Results" ? "active" : ""))
+                    a(href='results.html' target='_blank') Search results
 
-  // Sidebar BSA
-  script(src="//m.servedby-buysellads.com/monetization.js" type="text/javascript").
-  .bsa-cpc
-  script.
-    (function(){
-      if(typeof _bsa !== 'undefined' && _bsa) {
-      _bsa.init('default', 'CKYD55QM', 'placement:materializecsscom', {
-        target: '.bsa-cpc',
-        align: 'horizontal',
-        disable_css: 'true'
-      });
-        }
-    })();
-  .patreon-ad
-    a.waves-effect(href='https://www.patreon.com/materialize', target='_blank') Become a Patron
+  

@@ -361,6 +361,7 @@ module.exports = function(grunt) {
           'propstore-ui.html': 'jade/propstore-ui.jade',
           'home.html': 'jade/propstore/home.jade',
           'buy.html': 'jade/propstore/buy.jade',
+          'results.html': 'jade/propstore/results.jade',
         }
       }
     },
