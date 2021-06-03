@@ -123,7 +123,9 @@ document.addEventListener('DOMContentLoaded', () => {
 		if (header && headerMain) {
 			const top = headerMain.offsetTop;
 			const bottom = header.offsetHeight;
+			console.log(top, bottom);
 			document.body.addEventListener('scroll', M.throttle(() => {
+				console.log('SCROLL body');
 				const currentScroll = document.body.scrollTop;
 				if (currentScroll <= previousScroll) {
 					if (previousScroll - currentScroll > HEADER_THRESHOLD) {
@@ -148,6 +150,9 @@ document.addEventListener('DOMContentLoaded', () => {
 					menuClose();
 				}
 			}, 100));
+			$('body').on('scroll', function () {
+				console.log('SCROLL window');
+			});
 		}
 	}
 
