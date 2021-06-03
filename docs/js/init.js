@@ -125,14 +125,10 @@ document.addEventListener('DOMContentLoaded', () => {
 			header.style.maxWidth = main.clientWidth + 'px';
 			const top = headerMain.offsetTop;
 			const bottom = header.offsetHeight;
-			console.log(top, bottom);
 			document.addEventListener('scroll', M.throttle((e) => {
 				const currentScroll = document.body.scrollTop || window.scrollY || document.documentElement.scrollTop;
-				console.log(currentScroll, previousScroll, document.body.scrollTop, window.scrollY, document.documentElement.scrollTop);
 				if (currentScroll <= previousScroll) {
-					console.log('<');
 					if (previousScroll - currentScroll > HEADER_THRESHOLD) {
-						console.log('sticky-in');
 						previousScroll = currentScroll;
 						header.classList.remove('sticky-out');
 						if (currentScroll < top * 2) {
@@ -142,13 +138,11 @@ document.addEventListener('DOMContentLoaded', () => {
 						}
 					}
 				} else {
-					console.log('>');
 					previousScroll = currentScroll;
 					if (
 						currentScroll > bottom &&
 						header.classList.contains('sticky-in')
 					) {
-						console.log('sticky-out');
 						previousScroll = currentScroll;
 						header.classList.remove('sticky-in');
 						header.classList.add('sticky-out');
