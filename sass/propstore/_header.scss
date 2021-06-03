@@ -188,6 +188,7 @@ header {
 }
 
 .header__menu-level1 {
+	display: block !important;
 	position: absolute;
 	overflow: hidden;
 	left: 0;
@@ -201,13 +202,15 @@ header {
 	pointer-events: none;
 	transform-origin: 0 0;
 	transform: scaleY(0);
-	transition: all .1s ease-in-out;
+	transition: all .01s ease-in-out;
+	transition-delay: .1s;
 
-	.header__menu-link.active + & {
+	header:not(.sticky-out) .header__menu-link.active + & {
 		transform: scaleY(1);
 		opacity: 1;
 		pointer-events: all;
 		transition-property: transform;
+		transition-delay: 0;
 
 		.header__menu-level-block > * {
 			opacity: 1;

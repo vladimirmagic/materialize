@@ -115,7 +115,7 @@ document.addEventListener('DOMContentLoaded', () => {
 	window.addEventListener('resize', resize);
 
 	// HEADER
-	const HEADER_THRESHOLD = 100;
+	const HEADER_THRESHOLD = 100; // px
 	let previousScroll = 0;
 	function headerFloat () {
 		const header = document.querySelector('header');
@@ -145,6 +145,7 @@ document.addEventListener('DOMContentLoaded', () => {
 						header.classList.remove('sticky-in');
 						header.classList.add('sticky-out');
 					}
+					menuClose();
 				}
 			}, 100));
 		}
@@ -155,31 +156,44 @@ document.addEventListener('DOMContentLoaded', () => {
 	if (account) M.Dropdown.init(account, { alignment: 'right' });
 
 	// MENU
+	const MENU_THRESHOLD = 100; // ms
 	const menu = document.querySelector('.header__menu');
 	const menuItems = document.querySelectorAll('.header__menu-link');
+	let menuOpenTimer;
+	function menuClickOutside (e) {
+		const inside = e.target.closest('.header__menu');
+		if (!inside) menuClose();
+	}
+	function menuOpen (e) {
+		if (menu) menu.classList.add('active');
+		if (menuItems) menuItems.forEach(item => item.classList.remove('active'));
+		e.target.classList.add('active');
+		document.addEventListener('click', menuClickOutside);
+	}
+	function menuClose () {
+		if (menuOpenTimer) clearTimeout(menuOpenTimer);
+		if (menu) menu.classList.remove('active');
+		if (menuItems) menuItems.forEach(item => item.classList.remove('active'));
+		document.removeEventListener('click', menuClickOutside);
+	}
 	if (menu && menuItems) {
-		function clickOutside (e) {
-			const inside = e.target.closest('.header__menu');
-			if (!inside) {
-				close();
-			}
-		}
-		function close () {
-			menu.classList.remove('active');
-			menuItems.forEach(item => item.classList.remove('active'));
-			document.removeEventListener('click', clickOutside);
-		}
 		function click (e) {
+			if (menuOpenTimer) clearTimeout(menuOpenTimer);
 			if (e.target.classList.contains('active')) {
-				close();
+				menuClose();
 			} else {
-				menu.classList.add('active');
-				menuItems.forEach(item => item.classList.remove('active'));
-				e.target.classList.add('active');
-				document.addEventListener('click', clickOutside);
+				menuOpen(e);
 			}
 		}
-		menuItems.forEach(item => item.addEventListener('click', click));
+		function move (e) {
+			if (menuOpenTimer) clearTimeout(menuOpenTimer);
+			menuOpenTimer = setTimeout(() => menuOpen(e), MENU_THRESHOLD);
+		}
+		menuItems.forEach(item => {
+			item.addEventListener('click', click);
+			item.addEventListener('mousemove', move);
+		});
+		menu.addEventListener('mouseleave', menuClose);
 	}
 
 	// SIDENAV
