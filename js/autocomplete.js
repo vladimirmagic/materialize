@@ -356,7 +356,7 @@
 
       // Handle onAutocomplete callback.
       if (typeof this.options.onAutocomplete === 'function') {
-        this.options.onAutocomplete.call(this, text);
+        this.options.onAutocomplete.call(this, el[0].getAttribute('data-value'));
       }
 
       this._toggleFilled();
@@ -413,12 +413,9 @@
         let entry = matchingData[i];
         let $autocompleteOption = $('<li></li>');
         if (!!entry.data) {
-          $autocompleteOption.append(
-            `<img src="${entry.data}" class="right circle"><span>${entry.key}</span>`
-          );
-        } else {
-          $autocompleteOption.append('<span>' + entry.key + '</span>');
+          $autocompleteOption[0].setAttribute('data-value', entry.data);
         }
+        $autocompleteOption.append('<span>' + entry.key + '</span>');
 
         $(this.container).append($autocompleteOption);
         this._highlight(val, $autocompleteOption);

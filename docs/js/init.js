@@ -74,7 +74,7 @@
 			.formSelect();
 		$('.sidenav').sidenav();
 		$('input.autocomplete').autocomplete({
-			data: { 'Movie 01': null, 'Movie 02': null, 'Movie 3': 'https://dummyimage.com/100x100/00838f/fff&text=img' }
+			data: { 'Movie 01': 'Movie01', 'Movie 02': 'Movie02', 'Movie 3': 'Movie3' }
 		});
 		$('input[data-length], textarea[data-length]').characterCounter();
 
