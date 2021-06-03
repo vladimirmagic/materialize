@@ -3,15 +3,22 @@ $header-main-height: 112px;
 $header-main-sticky-height: 96px;
 $header-main-padding-m: 56px;
 
+body {
+	padding-top: $header-settings-height + $header-main-height;
+}
+
 header {
-    position: relative;
+    position: absolute;
+	left: 0;
+	top: 0;
+	width: 100%;
 	z-index: 900;
 	flex: 0 0 #{$header-settings-height + $header-main-height};
 	background: #fff;
 
 	&.sticky-in,
 	&.sticky-out {
-		position: sticky;
+		position: fixed;
 		top: -$header-settings-height;
 		flex-basis: #{$header-settings-height + $header-main-sticky-height};
 		box-shadow: $shadow-header;

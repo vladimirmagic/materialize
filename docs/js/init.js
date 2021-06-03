@@ -120,13 +120,15 @@ document.addEventListener('DOMContentLoaded', () => {
 	function headerFloat () {
 		const header = document.querySelector('header');
     	const headerMain = document.querySelector('.header__main');
+		const main = document.querySelector('main');
 		if (header && headerMain) {
+			header.style.maxWidth = main.clientWidth + 'px';
 			const top = headerMain.offsetTop;
 			const bottom = header.offsetHeight;
 			console.log(top, bottom);
-			document.body.addEventListener('scroll', M.throttle((e) => {
-				const currentScroll = document.body.scrollTop || window.scrollY || document.documentElement.scrollTop || window.pageYOffset;
-				console.log(currentScroll, previousScroll, document.body.scrollTop, window.scrollY, document.documentElement.scrollTop, window.pageYOffset, e);
+			document.addEventListener('scroll', M.throttle((e) => {
+				const currentScroll = document.body.scrollTop || window.scrollY || document.documentElement.scrollTop;
+				console.log(currentScroll, previousScroll, document.body.scrollTop, window.scrollY, document.documentElement.scrollTop);
 				if (currentScroll <= previousScroll) {
 					console.log('<');
 					if (previousScroll - currentScroll > HEADER_THRESHOLD) {
