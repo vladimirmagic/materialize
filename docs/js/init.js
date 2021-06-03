@@ -125,10 +125,12 @@ document.addEventListener('DOMContentLoaded', () => {
 			const bottom = header.offsetHeight;
 			console.log(top, bottom);
 			document.body.addEventListener('scroll', M.throttle(() => {
-				console.log('SCROLL body');
 				const currentScroll = document.body.scrollTop;
+				console.log(currentScroll, previousScroll);
 				if (currentScroll <= previousScroll) {
+					console.log('<');
 					if (previousScroll - currentScroll > HEADER_THRESHOLD) {
+						console.log('sticky-in');
 						previousScroll = currentScroll;
 						header.classList.remove('sticky-out');
 						if (currentScroll < top * 2) {
@@ -138,11 +140,13 @@ document.addEventListener('DOMContentLoaded', () => {
 						}
 					}
 				} else {
+					console.log('>');
 					previousScroll = currentScroll;
 					if (
 						currentScroll > bottom &&
 						header.classList.contains('sticky-in')
 					) {
+						console.log('sticky-out');
 						previousScroll = currentScroll;
 						header.classList.remove('sticky-in');
 						header.classList.add('sticky-out');
@@ -150,9 +154,6 @@ document.addEventListener('DOMContentLoaded', () => {
 					menuClose();
 				}
 			}, 100));
-			$('body').on('scroll', function () {
-				console.log('SCROLL window');
-			});
 		}
 	}
 
