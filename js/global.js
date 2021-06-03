@@ -282,6 +282,10 @@ M.checkPossibleAlignments = function(el, container, bounding, offset) {
 
   let scrollLeft = container.scrollLeft;
   let scrollTop = container.scrollTop;
+  if (container === document.body) {
+    scrollLeft = document.body.scrollLeft || window.scrollX || document.documentElement.scrollLeft;
+    scrollTop = document.body.scrollTop || window.scrollY || document.documentElement.scrollTop;
+  }
 
   let scrolledX = bounding.left - scrollLeft;
   let scrolledYTopEdge = bounding.top - scrollTop;
