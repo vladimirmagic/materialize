@@ -124,9 +124,9 @@ document.addEventListener('DOMContentLoaded', () => {
 			const top = headerMain.offsetTop;
 			const bottom = header.offsetHeight;
 			console.log(top, bottom);
-			document.body.addEventListener('scroll', M.throttle(() => {
-				const currentScroll = document.body.scrollTop || window.scrollY || document.documentElement.scrollTop;
-				console.log(currentScroll, previousScroll, document.body.scrollTop, window.scrollY, document.documentElement.scrollTop);
+			document.body.addEventListener('scroll', M.throttle((e) => {
+				const currentScroll = document.body.scrollTop || window.scrollY || document.documentElement.scrollTop || window.pageYOffset;
+				console.log(currentScroll, previousScroll, document.body.scrollTop, window.scrollY, document.documentElement.scrollTop, window.pageYOffset, e);
 				if (currentScroll <= previousScroll) {
 					console.log('<');
 					if (previousScroll - currentScroll > HEADER_THRESHOLD) {
