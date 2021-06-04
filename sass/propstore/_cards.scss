@@ -116,6 +116,10 @@
 		.card__price {
 			font-size: 16px;
 		}
+
+		.card__price-approx {
+			font-size: 12px;
+		}
 		
 		.card__date {
 			position: relative;
@@ -140,7 +144,12 @@
 		.card__actions {
 			display: block;
 
-			.btn + .btn {
+			.btn {
+				height: 48px;
+				line-height: 48px;
+			}
+
+			.btn + .btn--secondary {
 				margin-left: 0;
 				margin-top: 16px;
 			}
