@@ -454,7 +454,9 @@
 
       if (verticalAlignment === 'bottom') {
         idealYPos =
-          idealYPos - dropdownBRect.height + (this.options.coverTrigger ? triggerBRect.height : 0);
+          idealYPos -
+          dropdownBRect.height -
+          (this.options.coverTrigger ? 0 : triggerBRect.height + 8);
       }
       if (horizontalAlignment === 'right') {
         idealXPos = idealXPos - dropdownBRect.width + triggerBRect.width;
