@@ -122,7 +122,7 @@ header
 
     li.no-padding
       ul.collapsible.collapsible-accordion
-        li.bold(class=(page == "Propstore UI" || page == "Home" || page == "Buy now" || page == "Results" ? "active" : ""))
+        li.bold(class=(page == "Propstore UI" || page == "Home" || page == "Buy now" || page == "Results" || page == "Product" ? "active" : ""))
               a.collapsible-header(class="waves-effect waves-grey")
                 | Propstore
               .collapsible-body
@@ -135,5 +135,7 @@ header
                     a(href='buy.html' target='_blank') Buy now
                   li(class=(page == "Results" ? "active" : ""))
                     a(href='results.html' target='_blank') Search results
+                  li(class=(page == "Product" ? "active" : ""))
+                    a(href='product.html' target='_blank') Product
 
   

@@ -270,4 +270,9 @@ document.addEventListener('DOMContentLoaded', () => {
 			}, 300);
 		});
 	});
+
+	// PRODUCT
+	$('.product__slider').carousel({
+		onCycleTo: function(item, dragged) {}
+	});
 });
