@@ -265,6 +265,7 @@ document.addEventListener('DOMContentLoaded', () => {
 				if (thumbnail) {
 					productThumbnails.forEach(thumbnail => thumbnail.classList.remove('active'));
 					thumbnail.classList.add('active');
+					thumbnail.scrollIntoView({behavior: 'smooth', inline: 'center', block: 'nearest'});
 				}
 			},
 			onDestroy: function() {
@@ -298,9 +299,12 @@ document.addEventListener('DOMContentLoaded', () => {
 			});
 			const productGallery = trigger.closest('.product__gallery');
 			if (productGallery) {
-				const active = productGallery.querySelector('.carousel-item.active');
-				const index = productItems.indexOf(active);
-				modalSlider[0].M_Carousel.set(index);
+				const timer = document.body.classList.contains('touch') ? 300 : 0; // on touch wait for active
+				setTimeout(() => {
+					const active = productGallery.querySelector('.carousel-item.active');
+					const index = productItems.indexOf(active);
+					modalSlider[0].M_Carousel.set(index);
+				}, timer);
 			}
 		}
 	});
