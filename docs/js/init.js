@@ -48,23 +48,6 @@
 		$('.slider').slider();
 		$('.materialboxed').materialbox();
 		$('.modal').modal();
-		$('.modal-gallery').modal({
-			opacity: .75,
-			onCloseStart: (el) => {
-				const carouselElement = el.querySelector('.modal-gallery__carousel');
-				if (carouselElement) {
-					const carousel = M.Carousel.getInstance(carouselElement);
-					if (carousel) carousel.destroy();
-				}
-			},
-			onOpenEnd: (el) => {
-				$(el).find('.modal-gallery__carousel').carousel({
-					fullWidth: true,
-					indicators: true,
-					onCycleTo: function(item, dragged) {}
-				});
-			}
-		});
 		$('.datepicker').datepicker();
 		$('.tabs').tabs();
 		$('.timepicker').timepicker();
@@ -272,7 +255,53 @@ document.addEventListener('DOMContentLoaded', () => {
 	});
 
 	// PRODUCT
-	$('.product__slider').carousel({
-		onCycleTo: function(item, dragged) {}
+	const productItems = [...document.querySelectorAll('.carousel-item')];
+	const productThumbnails = [...document.querySelectorAll('.product__thumbnail')];
+	if (productItems.length && productThumbnails.length) {
+		const productSlider = $('.product__slider').carousel({
+			onCycleTo: function(item, dragged) {
+				const index = productItems.indexOf(item);
+				const thumbnail = productThumbnails[index];
+				if (thumbnail) {
+					productThumbnails.forEach(thumbnail => thumbnail.classList.remove('active'));
+					thumbnail.classList.add('active');
+				}
+			},
+			onDestroy: function() {
+				productThumbnails.forEach(thumbnail => {
+					thumbnail.removeEventListener('mousemove', onClickProductThumbnail);
+				});
+			},
+		});
+		function onClickProductThumbnail (e) {
+			const index = productThumbnails.indexOf(e.target);
+			productSlider[0].M_Carousel.set(index);
+		}
+		productThumbnails.forEach(thumbnail => {
+			thumbnail.addEventListener('mousemove', onClickProductThumbnail);
+		});
+	}
+	$('.modal-gallery').modal({
+		opacity: .75,
+		onCloseStart: (el) => {
+			const carouselElement = el.querySelector('.modal-gallery__carousel');
+			if (carouselElement) {
+				const carousel = M.Carousel.getInstance(carouselElement);
+				if (carousel) carousel.destroy();
+			}
+		},
+		onOpenEnd: (el, trigger) => {
+			const modalSlider = $(el).find('.modal-gallery__carousel').carousel({
+				fullWidth: true,
+				indicators: true,
+				onCycleTo: function(item, dragged) {}
+			});
+			const productGallery = trigger.closest('.product__gallery');
+			if (productGallery) {
+				const active = productGallery.querySelector('.carousel-item.active');
+				const index = productItems.indexOf(active);
+				modalSlider[0].M_Carousel.set(index);
+			}
+		}
 	});
 });

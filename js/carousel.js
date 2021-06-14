@@ -12,7 +12,8 @@
     indicators: false, // Toggle indicators
     noWrap: false, // Don't wrap around and cycle through items.
     onCycleTo: null, // Callback for when a new slide is cycled to.
-    interval: null
+    interval: null,
+    onDestroy: null
   };
 
   /**
@@ -45,6 +46,7 @@
        * @prop {Boolean} noWrap
        * @prop {Function} onCycleTo
        * @prop {Number} interval - Length in ms of slide interval
+       * @prop {Function} onDestroy
        */
       this.options = $.extend({}, Carousel.defaults, options);
 
@@ -171,6 +173,9 @@
       this._removeEventHandlers();
       this.el.M_Carousel = undefined;
       this.el.classList.remove('init');
+      if (typeof this.options.onDestroy === 'function') {
+        this.options.onDestroy();
+      }
     }
 
     /**

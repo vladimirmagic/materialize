@@ -37,6 +37,14 @@
     background-repeat: no-repeat;
 	background-color: color("grey", "darken-4");
 	border-radius: 6px;
+	transition: all .3s ease-in-out;
+
+	&.active {
+		box-shadow: -4px 4px 0 $color-grey,
+			-4px -4px 0 $color-grey,
+			4px -4px 0 $color-grey,
+			4px 4px 0 $color-grey;
+	}
 }
 
 @media #{$breakpoint-4cards} {
