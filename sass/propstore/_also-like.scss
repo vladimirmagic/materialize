@@ -1,0 +1,19 @@
+.also-like {
+	padding-top: 120px;
+	text-align: center;
+	background: $color-bg;
+}
+
+.also-like__title {
+	font-size: 36px;
+}
+
+@media #{$large-and-down} {
+	.also-like {
+		padding-top: 80px;
+	}
+
+	.also-like__title {
+		font-size: 28px;
+	}
+}
