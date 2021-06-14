@@ -85,7 +85,7 @@
 }
 
 .product__info {
-	width: 508px;
+	width: 560px;
 	max-width: 45%;
 }
 
@@ -298,18 +298,6 @@ a.product__certificate:not(.btn) { // fix a
 
 .product__share {
 	margin-top: 64px;
-}
-
-.product__share-title {
-	display: inline-block;
-	margin-right: .5em;
-}
-
-.product__share-item {
-	.icon {
-		width: 24px;
-		height: 24px;
-	}
 }
 
 .product__video {
