@@ -248,6 +248,7 @@ $large-and-down: "only screen and (max-width : #{$large-screen})" !default;
 $media-fullhd-up: "only screen and (min-width: 1921px)" !default;
 
 $breakpoint-4cards: "only screen and (max-width: #{$width-4cards + 112})" !default;
+$breakpoint-tablet: "only screen and (max-width: 1024px)" !default;
 
 
 // 12. Grid

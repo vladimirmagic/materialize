@@ -24,7 +24,8 @@
 		background: #{$color-turquoise}80;
 	}
 
-	.card--liked & {
+	.card--liked &,
+	&.active {
 		background: #fff;
 
 		&:before {
