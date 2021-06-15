@@ -6,6 +6,17 @@
 	&.hero--static {
 		height: 500px;
 	}
+
+	&.hero--auctions {
+		.hero__inner {
+			border-bottom-left-radius: 140px;
+			border-bottom-right-radius: 0;
+		}
+
+		.indicators {
+			background: none;
+		}
+	}
 }
 
 .hero__inner {
@@ -17,6 +28,7 @@
 	color: #fff;
 	background: $color-base;
 	border-bottom-right-radius: 140px;
+	overflow: hidden;
 }
 
 .hero__carousel {
@@ -58,6 +70,23 @@
 
 .hero__info-item-inner {
 	max-width: 432px;
+}
+
+.hero__icon {
+	display: inline-flex;
+	justify-content: center;
+	align-items: center;
+	width: 60px;
+	height: 60px;
+	margin-bottom: 24px;
+	color: #fff;
+	border-radius: 30px;
+	background: $color-blue;
+
+	.icon {
+		width: 32px;
+		height: 32px;
+	}
 }
 
 .hero__suptitle {
@@ -147,6 +176,37 @@
 	font-weight: 200;
 }
 
+.hero__carousel-info {
+	position: absolute;
+	width: 100%;
+	left: 0;
+	bottom: 0;
+	padding: 100px 0 100px 76px;
+	background: linear-gradient(180deg, rgba(0,0,0,0) 0%, #000 100%);
+}
+
+.hero__carousel-info-title {
+	margin: .3em 0 .2em;
+	font-size: 40px;
+	line-height: 1.2;
+}
+
+.hero__carousel-info-description {
+	font-size: 20px;
+}
+
+@media #{$extra-large-and-up} {
+	.hero.hero--auctions {
+		.hero__info {
+			order: 1;
+		}
+		.hero__carousel {
+			order: 2;
+		}
+	}
+	
+}
+
 @media #{$large-and-down} {
 	$hero-info-item-padding: calc(50% - 320px);
 
@@ -164,6 +224,11 @@
 	.hero__inner {
 		display: block;
 		border-bottom-right-radius: 100px;
+
+		.hero.hero--auctions & {
+			border-bottom-left-radius: 100px;
+			border-bottom-right-radius: 0;
+		}
 	}
 
 	.hero__carousel {
@@ -199,9 +264,32 @@
 	}
 }
 
+@media #{$large-and-up} {
+	.hero.hero--auctions {
+		.indicators {
+			justify-content: flex-start;
+			padding: 0 24px 60px 76px;
+			height: 3px;
+		}
+	
+		.indicator-item {
+			max-width: 60px;
+		}
+	
+		.indicator-item + .indicator-item {
+			margin-left: 16px;
+		}
+	}
+}
+
 @media #{$medium-and-down} {
 	.hero__inner {
 		border-bottom-right-radius: 80px;
+
+		.hero.hero--auctions & {
+			border-bottom-left-radius: 80px;
+			border-bottom-right-radius: 0;
+		}
 	}
 
 	.hero__carousel {
@@ -257,12 +345,28 @@
 	.hero__static-text {
 		font-size: 18px;
 	}
+
+	.hero__carousel-info {
+		padding: 60px 0 60px 24px;
+	}
+
+	.hero__carousel-info-title {
+		font-size: 28px;
+	}
+	
+	.hero__carousel-info-description {
+		font-size: 18px;
+	}
 }
 
 @media only screen and (max-width: 640px) {
 	.hero__info {
-		padding: 48px 24px;
+		padding: 48px 24px 72px;
 		text-align: left;
+
+		.hero.hero--auctions & {
+			text-align: center;
+		}
 	}
 
 	.hero__info-item-inner {
