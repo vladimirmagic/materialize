@@ -7,7 +7,9 @@
     const svgSprite = document.createElement('div');
 	svgSprite.id = 'svg-sprite';
 	document.body.append(svgSprite);
-	fetch('https://propstore-ui.netlify.app/dist/defs/svg/sprite.defs.svg')
+	fetch('dist/defs/svg/sprite.defs.svg', {
+		cache: 'force-cache',
+	})
 		.then(response => response.text())
 		.then(html => svgSprite.innerHTML = html);
 </script>

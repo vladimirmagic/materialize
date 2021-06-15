@@ -90,6 +90,8 @@ document.addEventListener('DOMContentLoaded', () => {
 	// out.style.zIndex = '2000';
 	// document.body.append(out);
 
+	document.body.classList.add('loaded');
+
 	function resize () {
 		headerFloat();
 		mobileFilterToggle();
