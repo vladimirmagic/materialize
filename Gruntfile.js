@@ -532,6 +532,22 @@
             ignore: true
           }
         }
+      },
+      svg_sprite: {
+        dist: {
+            expand: true,
+            cwd: 'images',
+            src: ['**/*.svg'],
+            dest: 'dist',
+            options: {
+              "dest": "dist",
+              "mode": {
+                  "defs": {
+                      "example": true
+                  }
+              }
+          }
+        }
       }
     };
   
@@ -555,6 +571,7 @@
     grunt.loadNpmTasks('grunt-contrib-jasmine');
     grunt.loadNpmTasks('grunt-postcss');
     grunt.loadNpmTasks('grunt-babel');
+    grunt.loadNpmTasks('grunt-svg-sprite');
   
     // define the tasks
     grunt.registerTask('release', [
@@ -592,6 +609,7 @@
     grunt.registerTask('server', ['browserSync', 'notify:server']);
     grunt.registerTask('monitor', ['concurrent:monitor']);
     grunt.registerTask('travis', ['js_compile', 'sass_compile', 'jasmine']);
+    grunt.registerTask('svg', ['svg_sprite']);
   };
   
 })();
