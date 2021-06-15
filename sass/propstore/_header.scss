@@ -377,6 +377,11 @@ header {
 .header__bag {
 	position: relative;
 	margin-left: 24px;
+
+	.icon {
+		width: 22px;
+		height: 27px;
+	}
 }
 
 .header__bag-number {

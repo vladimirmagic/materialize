@@ -352,6 +352,7 @@
 
     // Move dropdown after container or trigger
     _moveDropdown(containerEl) {
+      if (!this.dropdownEl) console.error(this);
       if (!!this.options.container) {
         $(this.options.container).append(this.dropdownEl);
       } else if (containerEl) {
