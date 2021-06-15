@@ -3,3 +3,11 @@
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 <script src="bin/materialize.js"></script>
 <script src="docs/js/init.js"></script>
+<script>
+    const svgSprite = document.createElement('div');
+	svgSprite.id = 'svg-sprite';
+	document.body.append(svgSprite);
+	fetch('dist/defs/svg/sprite.defs.svg')
+		.then(response => response.text())
+		.then(html => svgSprite.innerHTML = html);
+</script>

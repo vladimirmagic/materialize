@@ -24,6 +24,10 @@ fieldset {
 	border: 0;
 }
 
+#svg-sprite {
+	display: none;
+}
+
 @media #{$media-fullhd-up} {
 	$content-padding: calc(50% - 900px);
     .content {
