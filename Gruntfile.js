@@ -367,6 +367,7 @@
             'results.html': 'jade/propstore/results.jade',
             'product.html': 'jade/propstore/product.jade',
             'auctions.html': 'jade/propstore/auctions.jade',
+            'bag.html': 'jade/propstore/bag.jade',
           }
         }
       },
