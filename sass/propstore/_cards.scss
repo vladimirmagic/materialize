@@ -52,17 +52,23 @@
 	}
 }
 
+@media only screen and (max-width: #{$width-4cards-m + 80}) {
+	.cards__inner {
+		max-width: $card-width-m * 3 + $card-margin-m * 3;
+	}
+}
+
 @media #{$large-and-down} {
 	.cards {
-		padding-left: 28px;
+		padding-left: 40px;
 		padding-right: 28px;
 	}
 }
 
 @media #{$medium-and-down} {
 	.cards {
-		padding-left: 16px;
-		padding-right: 16px;
+		padding-left: 24px;
+		padding-right: 8px;
 
 		.card {
 			width: 50%;
@@ -161,12 +167,5 @@
 		.card-auction {
 			height: $card-width-s * 2 + $card-margin-m;
 		}
-	}
-}
-
-@media only screen and (max-width: 400px) {
-	.cards {
-		padding-left: 8px;
-		padding-right: 8px;
 	}
 }
