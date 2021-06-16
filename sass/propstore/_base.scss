@@ -2,7 +2,9 @@ html, body {
     position: relative;
 	overflow-x: hidden; // fix x-scroll after sidenav
 	font-size: 16px;
+	font-weight: 300;
 	color: $color-base;
+	letter-spacing: -0.02em;
 }
 
 body {
