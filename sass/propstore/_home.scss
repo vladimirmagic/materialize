@@ -193,6 +193,30 @@
 	padding: 160px 0;
 	color: #fff;
 	background-color: $color-bg;
+
+	&.section-sell--auctions {
+		margin-top: 100px;
+
+		.section-sell__img {
+			max-width: 600px;
+			text-align: center;
+		}
+
+		.section-sell__img-image {
+			max-width: 70%;
+			margin: -60px 40px 0 0;
+		}
+
+		.section-sell__img-info {
+			padding-top: 0;
+			margin-top: -10px;
+		}
+
+		.section-sell__title {
+			margin-bottom: .75em;
+			font-size: 40px;
+		}
+	}
 }
 
 .section-sell__inner {
@@ -238,6 +262,8 @@
 }
 
 .section-sell__info {
+	display: flex;
+	align-items: center;
 	width: 100%;
 	padding: 88px 40px 96px 176px;
 	background: $color-base;
@@ -250,6 +276,7 @@
 .section-sell__title {
 	margin-bottom: .5em;
 	font-size: 52px;
+	line-height: 1.2;
 
 	span {
 		white-space: nowrap;
@@ -401,6 +428,25 @@
 		font-size: 18px;
 	}
 
+	.section-sell {
+		&.section-sell--auctions {
+			margin-top: 60px;
+
+			.section-sell__img-image {
+				height: 344px;
+				margin-top: -32px;
+			}
+
+			.section-sell__img-info {
+				margin-top: 0;
+			}
+
+			.section-sell__title {
+				font-size: 28px;
+			}
+		}
+	}
+
 	.section-sell__inner {
 		display: block;
 		margin-left: 24px;
@@ -408,13 +454,17 @@
 	}
 
 	.section-sell__img {
-		max-width: 100%;
+		max-width: 100% !important;
 		border-bottom-left-radius: 0;
 		border-top-left-radius: 100px;
 	}
 
 	.section-sell__img-image {
 		margin-top: 64px;
+	}
+
+	.section-sell__img-info {
+		padding-right: 32px;
 	}
 
 	.section-sell__info {
