@@ -28,14 +28,14 @@ header {
 			height: $header-main-sticky-height;
 			line-height: $header-main-sticky-height;
 		}
-
-		& ~ main {
-			padding-top: $header-settings-height + $header-main-height;
-		}
 	}
 
 	&.sticky-out {
 		animation-name: animation-header-sticky-out;
+	}
+
+	& ~ main {
+		padding-top: $header-settings-height + $header-main-height;
 	}
 }
 
