@@ -7,8 +7,9 @@
 }
 
 .cards__inner {
-	max-width: $width-4cards;
+	max-width: $width-4cards + $card-margin;
 	margin: 0 auto;
+	transform: translateX($card-margin / 2);
 }
 
 .cards__list {
@@ -38,7 +39,8 @@
 	}
 
 	.cards__inner {
-		max-width: $width-4cards-m;
+		max-width: $width-4cards-m + $card-margin-m;
+		transform: translateX($card-margin-m / 2);
 	}
 	
 	.cards__list {
@@ -52,7 +54,7 @@
 	}
 }
 
-@media only screen and (max-width: #{$width-4cards-m + 80}) {
+@media only screen and (max-width: #{$width-4cards-m + 40}) {
 	.cards__inner {
 		max-width: $card-width-m * 3 + $card-margin-m * 3;
 	}
@@ -61,7 +63,11 @@
 @media #{$large-and-down} {
 	.cards {
 		padding-left: 40px;
-		padding-right: 28px;
+		padding-right: 32px;
+	}
+
+	.cards__inner {
+		transform: none;
 	}
 }
 

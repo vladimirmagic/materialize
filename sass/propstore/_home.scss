@@ -5,7 +5,7 @@
 
 .whatsnew__inner {
 	position: relative;
-	max-width: 1520px;
+	max-width: $width-4cards + $card-margin;
 	margin: 0 auto;
 }
 
@@ -53,7 +53,7 @@
 	display: flex;
 	overflow-y: hidden;
 	overflow-x: auto;
-	padding: 8px 0 24px 24px;
+	padding: 8px 0 24px 12px;
 	scroll-behavior: smooth;
 
 	&:after {
@@ -315,6 +315,10 @@
 @media #{$breakpoint-4cards} {
 	.whatsnew__cards {
 		height: $card-height-m + 32;
+	}
+
+	.whatsnew__cards-scroll {
+		padding-left: 24px;
 	}
 
 	.whatsnew__cards-arrow {
