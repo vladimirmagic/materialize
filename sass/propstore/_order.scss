@@ -17,10 +17,14 @@
 	width: 100%;
 	max-width: 432px;
 	margin-left: 100px;
+}
+
+.order__summary-main {
 	padding: 48px 40px;
 	color: #fff;
 	background: $color-base;
 	border-radius: 6px;
+	box-shadow: $shadow-base;
 }
 
 .order__summary-title {
@@ -43,6 +47,7 @@
 	display: flex;
 	justify-content: space-between;
 	margin-bottom: .5em;
+	white-space: nowrap;
 
 	&.order__summary-row--total {
 		margin-bottom: 0;
@@ -82,7 +87,30 @@ a.order__summary-calculate-shipping:not(.btn) {
 
 	.btn {
 		width: 100%;
+		padding: 0 8px;
 	}
+}
+
+.order__summary-note {
+	margin-top: 2em;
+	font-style: italic;
+}
+
+.order__summary-note-label {
+	font-weight: 500;
+}
+
+.order__summary-aware {
+	margin-top: 2em;
+	padding: 1.25em;
+	font-style: italic;
+	color: $color-red;
+	background: $color-bg-red;
+	border-radius: 6px;
+}
+
+.order__summary-aware-label {
+	font-weight: 500;
 }
 
 .pay-logo {
@@ -98,9 +126,31 @@ a.order__summary-calculate-shipping:not(.btn) {
 	}
 }
 
-@media #{$large-and-down} {
+@media #{$breakpoint-4cards} {
+	.order__summary {
+		max-width: 360px;
+		margin-left: 60px;
+	}
+
+	.order__summary-main {
+		padding: 40px 24px;
+	}
 }
 
+@media #{$medium-and-down} {
+    .order__inner {
+		display: block;
+	}
+
+	.order__summary {
+		max-width: 100%;
+		margin-left: 0;
+	}
+}
 
 @media #{$small-and-down} {
+	.order {
+		padding-left: 24px;
+		padding-right: 24px;
+	}
 }
