@@ -35,9 +35,11 @@
 	border-radius: 6px;
 	box-shadow: $shadow-base;
 	transition: all .3s ease-in-out;
+	backface-visibility: hidden;
+	will-change: transform;
 
 	&:hover {
-		transform: translateY(-2px);
+		transform: translate3d(0, -2px, 0);
 		box-shadow: $shadow-base-hover;
 	}
 
