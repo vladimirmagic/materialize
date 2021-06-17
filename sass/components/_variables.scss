@@ -54,6 +54,7 @@ $color-font-grey: color("grey", "darken-2");
 $color-green: color("green", "base") !default;
 $color-blue: color("blue", "base") !default;
 $color-red: color("red", "base") !default;
+$color-bg-red: color("red", "lighten-5") !default;
 
 $primary-color: color("deep-purple", "base") !default;
 $primary-color-light: lighten($primary-color, 15%) !default;
