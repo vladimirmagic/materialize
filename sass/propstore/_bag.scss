@@ -1,0 +1,28 @@
+.bag__title {
+	margin: 80px 0;
+	text-align: center;
+}
+
+.bag__items {
+	width: 100%;
+	background: green;
+}
+
+.bag__pay-logo {
+	justify-content: center;
+	margin-top: 32px;
+}
+
+@media #{$large-and-down} {
+    .bag__title {
+		margin: 40px 0;
+	}
+}
+
+
+@media #{$small-and-down} {
+	.bag {
+		padding-left: 24px;
+		padding-right: 24px;
+	}
+}
