@@ -101,6 +101,15 @@
   }
 }
 
+.btn--tertiary {
+  background-color: $color-turquoise;
+
+  &:focus,
+  &:hover {
+    background-color: $color-turquoise-dark;
+  }
+}
+
 // Floating button
 .btn-floating {
   &:hover {
