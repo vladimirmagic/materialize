@@ -1,3 +1,29 @@
+.order-header {
+	border-bottom: 1px solid $color-grey;
+}
+
+.order-header__inner {
+	@extend .content;
+	position: relative;
+	height: $header-main-height;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	max-width: $width-4cards;
+	margin: 0 auto;
+}
+
+.order-header__col {
+    &.order-header__col--left,
+    &.order-header__col--right {
+        flex: 0 0 440px; // same width to left & right to center logo
+    }
+
+	&.order-header__col--center {
+		padding-top: 8px;
+	}
+}
+
 .order {
 	padding-bottom: 100px;
 	padding-left: 40px;

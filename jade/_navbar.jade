@@ -122,7 +122,7 @@ header
 
     li.no-padding
       ul.collapsible.collapsible-accordion
-        li.bold(class=(page == "Propstore UI" || page == "Home" || page == "Buy now" || page == "Results" || page == "Product" || page == "Auctions" || page == "Bag" ? "active" : ""))
+        li.bold(class=(page == "Propstore UI" || page == "Home" || page == "Buy now" || page == "Results" || page == "Product" || page == "Auctions" || page == "Bag" || page == "Checkout" ? "active" : ""))
               a.collapsible-header(class="waves-effect waves-grey")
                 | Propstore
               .collapsible-body
@@ -141,5 +141,7 @@ header
                     a(href='auctions.html' target='_blank') Auctions
                   li(class=(page == "Bag" ? "active" : ""))
                     a(href='bag.html' target='_blank') Bag
+                  li(class=(page == "Checkout" ? "active" : ""))
+                    a(href='checkout.html' target='_blank') Checkout
 
   
