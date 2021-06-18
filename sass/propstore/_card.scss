@@ -165,11 +165,11 @@ a.card:not(.btn) { // fix a
     color: #979797;
     font-size: 14px;
     .card__blog-info--link, a:not(.btn):not(.btn-large):not(.btn-small):not(.btn-flat).card__blog-info--link {
-        color: #764AAF;
+        color: $primary-color;
         text-decoration: none;
         transition: all .2s ease-in-out;
         &:hover {
-            color: #9e7dc8;
+            color: $primary-color-light;
         }
     }
 }
