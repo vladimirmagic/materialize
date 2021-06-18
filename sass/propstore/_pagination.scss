@@ -60,9 +60,9 @@
             transition: all .2s ease-in-out;
         }
         &:hover, &:focus {
-            color: #9e7dc8;
+            color: $primary-color-light;
             &:after {
-                background: #9e7dc8;
+                background: $primary-color-light;
             }
         }
         &:hover {
@@ -82,12 +82,12 @@
         &.active {
             font-weight: bold;
             &:after {
-                background: #764AAF;
+                background: $primary-color;
             }
             &:active:after {
                 -webkit-transform: scaleX(0);
                 transform: scaleX(0);
-                background: #764AAF;
+                background: $primary-color;
             }
         }
     }
