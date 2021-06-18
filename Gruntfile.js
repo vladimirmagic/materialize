@@ -370,6 +370,7 @@
             'bag.html': 'jade/propstore/bag.jade',
             'checkout.html': 'jade/propstore/checkout.jade',
             'checkout-2.html': 'jade/propstore/checkout-2.jade',
+            'blog.html': 'jade/propstore/blog.jade',
           }
         }
       },

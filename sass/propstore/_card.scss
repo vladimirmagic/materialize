@@ -5,6 +5,7 @@
 	min-width: $card-width;
 	height: $card-height;
 	text-align: left;
+    background: #ffffff;
 	box-shadow: $shadow-base;
 	border-radius: 6px;
 	overflow: hidden;
@@ -12,6 +13,14 @@
 	transition: all .3s ease-in-out;
 	backface-visibility: hidden;
 	will-change: transform;
+    
+    &.card--low {
+        max-height: 560px;
+    }
+    
+    &.card--no-pointer {
+        cursor: default;
+    }
 
 	&:hover {
 		transform: translate3d(0, -2px, 0);
@@ -59,6 +68,9 @@ a.card:not(.btn) { // fix a
 	background-size: contain;
 	background-repeat: no-repeat;
 	background-color: color("grey", "darken-4");
+    &.card__img--low {
+        max-height: 260px;
+    }
 }
 
 .card__featured {
@@ -115,6 +127,9 @@ a.card:not(.btn) { // fix a
 	align-items: flex-start;
 	height: $card-height - $card-width;
 	padding: 24px;
+    &.card__info--low {
+        max-height: 300px;
+    }
 }
 
 .card__description {
@@ -133,6 +148,32 @@ a.card:not(.btn) { // fix a
 	line-height: 1.4;
 }
 
+.card__blog-title {
+	display: -webkit-box;
+	overflow: hidden;
+   	text-overflow: ellipsis;
+   	-webkit-line-clamp: 3;
+   	-webkit-box-orient: vertical;
+	max-height: 4em;
+	margin-bottom: .5em;
+	font-size: 20px;
+	line-height: 1.4;
+}
+
+.card__blog-info {
+    margin-bottom: .5em;
+    color: #979797;
+    font-size: 14px;
+    .card__blog-info--link, a:not(.btn):not(.btn-large):not(.btn-small):not(.btn-flat).card__blog-info--link {
+        color: $primary-color;
+        text-decoration: none;
+        transition: all .2s ease-in-out;
+        &:hover {
+            color: $primary-color-light;
+        }
+    }
+}
+
 .card__title {
 	display: -webkit-box;
 	overflow: hidden;
@@ -140,6 +181,18 @@ a.card:not(.btn) { // fix a
    	-webkit-line-clamp: 2;
    	-webkit-box-orient: vertical;
 	max-height: 3em;
+	margin-bottom: .5em;
+	line-height: 1.5;
+	font-weight: 300;
+}
+
+.card__blog-excerpt {
+	display: -webkit-box;
+	overflow: hidden;
+   	text-overflow: ellipsis;
+   	-webkit-line-clamp: 3;
+   	-webkit-box-orient: vertical;
+	max-height: 4.2em;
 	margin-bottom: .5em;
 	line-height: 1.5;
 	font-weight: 300;
@@ -213,6 +266,10 @@ a.card:not(.btn) { // fix a
 	align-items: center;
 	width: 100%;
 
+    &.card__actions--extra-bottom-gap {
+        padding-bottom: 8px;
+    }
+
 	.btn {
 		flex: 1 1 60%;
 		padding: 0 8px;
@@ -251,42 +308,54 @@ a.card:not(.btn) { // fix a
 }
 
 @media #{$breakpoint-4cards} {
-	.card {
-		width: $card-width-m;
-		min-width: $card-width-m;
-		height: $card-height-m;
-		
-		& + & {
-			margin-left: $card-margin-m;
-		}
-	}
-	
-	.card__img {
-		height: $card-width-m;
-	}
+    .cards {
+        .card {
+            width: $card-width-m;
+            min-width: $card-width-m;
+            height: $card-height-m;
+            
+            & + & {
+                margin-left: $card-margin-m;
+            }
+        }
+        
+        .card__img {
+            height: $card-width-m;
+            &.card__img--low {
+                min-height: 260px;
+            }
+        }
 
-	.card__info {
-		height: $card-height-m - $card-width-m;
-		padding: 20px;
-	}
+        .card__info {
+            height: $card-height-m - $card-width-m;
+            padding: 20px;
+            &.card__info--low {
+                height: 256px;
+            }
+        }
 
-	.card__movie {
-		font-size: 18px;
-	}
-	
-	.card__title {
-		font-size: 14px;
-	}
-	
-	.card__price {
-		margin-bottom: 1em;
-		font-size: 18px;
-	}
+        .card__movie, .card__blog-title {
+            font-size: 18px;
+        }
+        
+        .card__title, .card__blog-excerpt {
+            font-size: 14px;
+        }
+        
+        .card__blog-info {
+            font-size: 14px;
+        }
+        
+        .card__price {
+            margin-bottom: 1em;
+            font-size: 18px;
+        }
 
-	.card__date {
-		margin-bottom: 1.15em;
-		font-size: 14px;
-	}
+        .card__date {
+            margin-bottom: 1.15em;
+            font-size: 14px;
+        }
+    }
 }
 
 @media only screen and (max-width: 450px) {

@@ -81,6 +81,10 @@
 			max-width: calc(50% - #{$card-margin-m * 1.5});
 			min-width: 0;
 			height: $card-height-s;
+            &.card--wide-mobile {
+                width: 100%;
+                max-width: 100%;
+            }
 		}
 
 		.card-auction {
