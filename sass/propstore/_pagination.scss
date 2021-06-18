@@ -31,6 +31,18 @@
     }
 }
 
+.pagination__list-arrow--left {
+    .icon {
+        transform: rotate(90deg);
+    }
+}
+
+.pagination__list-arrow--right {
+    .icon {
+        transform: rotate(-90deg);
+    }
+}
+
 .pagination__pages {
     .pagination__pages-page, a.pagination__pages-page, a:not(.btn).pagination__pages-page {
         margin: 0 8px;
