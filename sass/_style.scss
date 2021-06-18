@@ -1316,6 +1316,7 @@ a {
 
 
 @import './propstore/base';
+@import './propstore/typography';
 @import './propstore/header';
 @import './propstore/sidenav';
 @import './propstore/pagination';
@@ -1336,3 +1337,6 @@ a {
 @import './propstore/also-like';
 
 @import './propstore/home';
+@import './propstore/auctions';
+@import './propstore/bag';
+@import './propstore/order';

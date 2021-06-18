@@ -87,7 +87,8 @@ $main-link-height: 72px;
 	}
 
 	.icon {
-		width: 7px;
+		width: 12px;
+		height: 12px;
 	}
 }
 
@@ -105,6 +106,16 @@ $main-link-height: 72px;
 	letter-spacing: 0;
 	font-weight: 400;
 	text-transform: none;
+
+	.icon {
+		transform: rotate(-90deg);
+	}
+}
+
+.sidenav__menu-back {
+	.icon {
+		transform: rotate(90deg);
+	}
 }
 
 .sidenav__menu-level1 {
@@ -207,7 +218,6 @@ $main-link-height: 72px;
 			width: 8px;
 			height: 7px;
 			margin: 0 0 0 4px;
-			color: rgba(0,0,0,0);
 		}
 	}
 

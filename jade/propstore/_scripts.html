@@ -7,7 +7,24 @@
     const svgSprite = document.createElement('div');
 	svgSprite.id = 'svg-sprite';
 	document.body.append(svgSprite);
-	fetch('dist/defs/svg/sprite.defs.svg')
+	fetch('dist/defs/svg/sprite.defs.svg', {
+		// cache: 'force-cache',
+	})
 		.then(response => response.text())
 		.then(html => svgSprite.innerHTML = html);
+
+	document.addEventListener('DOMContentLoaded', () => {
+		const addressForm = document.querySelector('.order__shipping-address-add');
+		const addressFormButtonOpen = document.querySelector('.order__address-form-button-open');
+		const addressFormButtonClose = document.querySelector('.order__address-form-button-close');
+		if (addressForm && addressFormButtonOpen && addressFormButtonClose) {
+			addressFormButtonOpen.addEventListener('click', () => {
+				addressForm.classList.add('order__shipping-address-add--opened');
+			});
+			addressFormButtonClose.addEventListener('click', () => {
+				addressForm.classList.remove('order__shipping-address-add--opened');
+				addressForm.scrollIntoView({behavior: 'smooth', block: 'nearest'});
+			});
+		}
+	});
 </script>

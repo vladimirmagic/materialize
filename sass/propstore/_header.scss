@@ -3,10 +3,6 @@ $header-main-height: 112px;
 $header-main-sticky-height: 96px;
 $header-main-padding-m: 56px;
 
-body {
-	padding-top: $header-settings-height + $header-main-height;
-}
-
 header {
     position: absolute;
 	left: 0;
@@ -31,11 +27,15 @@ header {
 		.header__menu-link {
 			height: $header-main-sticky-height;
 			line-height: $header-main-sticky-height;
-		}		
+		}
 	}
 
 	&.sticky-out {
 		animation-name: animation-header-sticky-out;
+	}
+
+	& ~ main {
+		padding-top: $header-settings-height + $header-main-height;
 	}
 }
 
@@ -377,6 +377,11 @@ header {
 .header__bag {
 	position: relative;
 	margin-left: 24px;
+
+	.icon {
+		width: 22px;
+		height: 27px;
+	}
 }
 
 .header__bag-number {

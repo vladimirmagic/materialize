@@ -12,11 +12,11 @@
 [type="radio"]:not(:checked) + span,
 [type="radio"]:checked + span {
   position: relative;
-  padding-left: 35px;
+  padding-left: 44px;
   cursor: pointer;
   display: inline-block;
-  height: 25px;
-  line-height: 25px;
+  min-height: 24px;
+  line-height: 24px;
   font-size: 1rem;
   transition: .28s ease;
   user-select: none;
@@ -28,9 +28,8 @@
   position: absolute;
   left: 0;
   top: 0;
-  margin: 4px;
-  width: 16px;
-  height: 16px;
+  width: 24px;
+  height: 24px;
   z-index: 0;
   transition: .28s ease;
 }
@@ -47,7 +46,7 @@
 
 [type="radio"]:not(:checked) + span:before,
 [type="radio"]:not(:checked) + span:after {
-  border: 2px solid $radio-empty-color;
+  border: 1px solid $radio-empty-color;
 }
 
 [type="radio"]:not(:checked) + span:after {
@@ -56,7 +55,7 @@
 
 /* Checked styles */
 [type="radio"]:checked + span:before {
-  border: 2px solid transparent;
+  border: 1px solid transparent;
 }
 
 [type="radio"]:checked + span:after,
@@ -67,11 +66,11 @@
 
 [type="radio"]:checked + span:after,
 [type="radio"].with-gap:checked + span:after {
-  background-color: $radio-fill-color;
+  // background-color: $radio-fill-color;
 }
 
 [type="radio"]:checked + span:after {
-  transform: scale(1.02);
+  transform: scale(1);
 }
 
 /* Radio With gap */
@@ -86,7 +85,7 @@
 
 /* Disabled Radio With gap */
 [type="radio"].with-gap:disabled:checked + span:before {
-  border: 2px solid $input-disabled-color;
+  border: 1px solid $input-disabled-color;
 }
 
 [type="radio"].with-gap:disabled:checked + span:after {

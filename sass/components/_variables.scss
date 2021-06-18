@@ -33,12 +33,12 @@
 $card-width: 356px;
 $card-height: 644px;
 $card-margin: 24px;
-$width-4cards: $card-width * 4 + $card-margin * 4;
+$width-4cards: $card-width * 4 + $card-margin * 3;
 
 $card-width-m: 304px;
 $card-height-m: 550px;
 $card-margin-m: 16px;
-$width-4cards-m: $card-width-m * 4 + $card-margin-m * 4;
+$width-4cards-m: $card-width-m * 4 + $card-margin-m * 3;
 
 $card-width-s: 176px;
 $card-height-s: 516px;
@@ -54,6 +54,7 @@ $color-font-grey: color("grey", "darken-2");
 $color-green: color("green", "base") !default;
 $color-blue: color("blue", "base") !default;
 $color-red: color("red", "base") !default;
+$color-bg-red: color("red", "lighten-5") !default;
 
 $primary-color: color("deep-purple", "base") !default;
 $primary-color-light: lighten($primary-color, 15%) !default;
@@ -64,6 +65,7 @@ $success-color: $color-green;
 $error-color: color("red", "base") !default;
 $link-color: color("light-blue", "darken-1") !default;
 $color-turquoise: color("cyan", "base") !default;
+$color-turquoise-dark: color("cyan", "darken-1") !default;
 
 
 // 2. Badges
@@ -200,7 +202,7 @@ $placeholder-text-color: color("grey", "darken-1") !default;
 // Radio Buttons
 $radio-fill-color: $color-base !default;
 $radio-empty-color: $color-grey !default;
-$radio-border: 2px solid $radio-fill-color !default;
+$radio-border: 7px solid $radio-fill-color !default;
 
 // Range
 $range-height: 14px !default;
@@ -374,4 +376,4 @@ $progress-bar-color: $secondary-color !default;
 
 $shadow-header: 0 8px 16px rgba(0, 0, 0, 0.05);
 $shadow-base: 0px 8px 32px -10px rgba(0, 0, 0, 0.15);
-$shadow-base-hover: 0px 2px 8px -4px rgba(0, 0, 0, 0.5);
+$shadow-base-hover: 0px 10px 30px rgba(0, 0, 0, 0.15);
