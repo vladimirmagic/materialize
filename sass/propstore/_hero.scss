@@ -6,6 +6,10 @@
 	&.hero--static {
 		height: 500px;
 	}
+
+	&.hero--tall {
+		height: 800px;
+	}
 }
 
 .hero__inner {
@@ -157,6 +161,10 @@
 		padding-right: 0;
 
 		&.hero--static {
+			height: auto;
+		}
+
+		&.hero--tall {
 			height: auto;
 		}
 	}
