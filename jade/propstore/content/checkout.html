@@ -263,13 +263,6 @@
                         <i class='icon'><svg><use xlink:href="#arrow-right"></use></svg></i>
                     </button>
                 </div>
-                <div class="pay-logo bag__pay-logo">
-                    <svg><use xlink:href="#pay-mastercard"></use></svg>
-                    <svg><use xlink:href="#pay-maestro"></use></svg>
-                    <svg><use xlink:href="#pay-visa"></use></svg>
-                    <svg><use xlink:href="#pay-amex"></use></svg>
-                    <svg><use xlink:href="#pay-paypal"></use></svg>
-                </div>
             </div>
 
             <div class="order__summary-note">
@@ -279,10 +272,128 @@
     </div>
 
     <br/><br/>
-    <!-- split order -->
+    Split order
+    <br/><br/>
 
     <div class="order__inner">
-        <div class="bag__items"></div>
+        <div class="order__steps">
+            <div class="order__step">
+                <div class="order__step-header">
+                    1. Shipping
+                </div>
+                <div class="order__step-body">
+                    <div class="order__row">
+                        <p class="order__step-p">
+                            Is shipping required?
+                        </p>
+                        <div class="order__step-radio order__step-radio--shipping-required">
+                            <div class="order__step-radio-item">
+                                <label>
+                                    <input name="order-split-shipping-required" type="radio" checked />
+                                    <span>Yes, I would like my order shipped</span>
+                                </label>
+                            </div>
+                            <div class="order__step-radio-item">
+                                <label>
+                                    <input name="order-split-shipping-required" type="radio" />
+                                    <span>No, I will pick up my order in person</span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="order__row">
+                        <p class="order__step-p">
+                            Choose a shipping address
+                        </p>
+                        <div class="order__step-radio order__step-radio--block order__step-radio--shipping-address">
+                            <div class="order__step-radio-item">
+                                <label>
+                                    <input name="order-split-shipping-address" type="radio" checked />
+                                    <span>John Doe, 123 Easy Street, Leeds, West Yorkshire, LS9 8DT, United Kingdom</span>
+                                </label>
+                                <button class="btn-flat btn--icon order__step-radio-delete">
+                                    <i class='icon'><svg><use xlink:href="#trash"></use></svg></i>
+                                </button>
+                            </div>
+                            <div class="order__step-radio-item">
+                                <label>
+                                    <input name="order-split-shipping-address" type="radio" />
+                                    <span>John Doe, 123 Easy Street, Leeds, West Yorkshire, LS9 8DT, United Kingdom John Doe, 123 Easy Street, Leeds, West Yorkshire, LS9 8DT, United Kingdom</span>
+                                </label>
+                                <button class="btn-flat btn--icon order__step-radio-delete">
+                                    <i class='icon'><svg><use xlink:href="#trash"></use></svg></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="order__row">
+                        <p class="order__step-p">
+                            Choose a shipping method
+                        </p>
+                        <div class="order__split">
+                            <div class="order__split-subtitle h5">
+                                <i class='icon'><svg><use xlink:href="#flag-uk"></use></svg></i>
+                                UK order (2 items)
+                            </div>
+                            <div class="order__split-item c-s">
+                                Lot #209 - Cinema Poster Live Auction - Howard Kazanjian Collection: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                            </div>
+                            <div class="order__split-item c-s">
+                                Lot #209 - Cinema Poster Live Auction - Howard Kazanjian Collection
+                            </div>
+                        </div>
+                        <div class="order__step-radio order__step-radio--block">
+                            <div class="order__step-radio-item order__step-radio-item--method">
+                                <label>
+                                    <input name="order-split-shipping-method" type="radio" checked />
+                                    <span>FedEx International Economy</span>
+                                    <i>A typical delivery time of 3-5 business days from FedEx carrier pickup, pending customs clearance and depending on your location.</i>
+                                    <strong>£135</strong>
+                                </label>
+                            </div>
+                            <div class="order__step-radio-item order__step-radio-item--method">
+                                <label>
+                                    <input name="order-split-shipping-method" type="radio" />
+                                    <span>USPS International Priority</span>
+                                    <i>A typical delivery time of 4 to 6 business days from carrier pick up, pending customs clearance and depending on your location.</i>
+                                    <strong>£85</strong>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="order__split">
+                            <div class="order__split-subtitle h5">
+                                <i class='icon'><svg><use xlink:href="#flag-usa"></use></svg></i>
+                                USA order (1 item)
+                            </div>
+                            <div class="order__split-item c-s">
+                                Lot #209 - Cinema Poster Live Auction
+                            </div>
+                            <div class="order__split-usa-note">
+                                Unfortunately, an automate shipping quote is not available for this order. Please complete the order by proceeding through the rest of the checkout. Once your order is received, a Propstore representative will contact you within 24 hours of receipt of the order to confirm your shipping charges.
+                            </div>
+                        </div>
+                    </div>
+
+                    <button class="waves-effect waves-light btn order__body-next">
+                        <span class='btn__title'>Next: Payment</span>
+                        <i class='icon'><svg><use xlink:href="#arrow-right"></use></svg></i>
+                    </button>
+                </div>
+            </div>
+            <div class="order__step">
+                <div class="order__step-header">
+                    2. Payment Details
+                </div>
+            </div>
+            <div class="order__step active">
+                <div class="order__step-header">
+                    3. Review & Pay
+                </div>
+            </div>
+        </div>
         <div class="order__summary">
             <div class="order__summary-main">
                 <div class="order__summary-title h4">
@@ -358,16 +469,9 @@
     
                 <div class="order__submit">
                     <a class="waves-effect waves-light btn">
-                        <span class='btn__title'>Continue to checkout</span>
+                        <span class='btn__title'>Next: Payment</span>
                         <i class='icon'><svg><use xlink:href="#arrow-right"></use></svg></i>
                     </a>
-                </div>
-                <div class="pay-logo bag__pay-logo">
-                    <svg><use xlink:href="#pay-mastercard"></use></svg>
-                    <svg><use xlink:href="#pay-maestro"></use></svg>
-                    <svg><use xlink:href="#pay-visa"></use></svg>
-                    <svg><use xlink:href="#pay-amex"></use></svg>
-                    <svg><use xlink:href="#pay-paypal"></use></svg>
                 </div>
             </div>
 

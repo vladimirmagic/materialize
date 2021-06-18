@@ -283,6 +283,31 @@
 	}
 }
 
+.order__split {
+	margin-bottom: 2em;
+
+	.order__step-radio + & {
+		margin-top: 3em;
+	}
+}
+
+.order__split-subtitle {
+	display: flex;
+	align-items: center;
+
+	.icon {
+		margin-right: 8px;
+	}
+}
+
+.order__split-item {
+	margin-bottom: .5em;
+}
+
+.order__split-usa-note {
+	font-style: italic;
+}
+
 .order__body-next {
 	margin-top: 16px;
 }
