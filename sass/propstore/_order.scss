@@ -176,7 +176,7 @@
 	}
 
 	& + & {
-		margin-left: 24px;
+		margin-left: 12px;
 	}
 
 	&.order__step-radio-item--method {
@@ -216,6 +216,75 @@
 		width: 24px;
 		height: 24px;
 	}
+}
+
+.order__shipping-address-add {
+	padding-top: 40px;
+
+	&.order__shipping-address-add--opened {
+		.order__address-form-button-open {
+			display: none;
+		}
+
+		.order__address-form {
+			display: block;
+		}
+	}
+}
+
+.order__address-form {
+	display: none;
+	width: 100%;
+	padding: 16px 40px 40px;
+	background: #fff;
+	border-radius: 6px;
+}
+
+.order__new-address-type {
+	label {
+		display: flex;
+		margin-bottom: 24px;
+		font-size: 1em;
+		color: $color-base;
+		cursor: pointer;
+	}
+}
+
+.order__address-form-row {
+	display: flex;
+	justify-content: space-between;
+	align-items: flex-start;
+
+	.input-field {
+		flex: 0 1 calc(50% - 12px);
+	}
+
+	.input-field + .input-field {
+		margin-left: 24px;
+	}
+
+	& + & {
+		margin-top: 8px;
+	}
+
+	&.order__address-form-row--full {
+		.input-field {
+			flex-basis: 100%;
+		}	
+	}
+}
+
+.order__address-form-buttons {
+	margin-top: 24px;
+	white-space: nowrap;
+
+	.btn + .btn {
+		margin-left: 24px;
+	}
+}
+
+.order__body-next {
+	margin-top: 16px;
 }
 
 .order__summary {
@@ -362,6 +431,40 @@ a.order__summary-calculate-shipping:not(.btn) {
 	.order__indicators {
 		margin-bottom: 40px;
 	}
+
+	.order__step-radio--shipping-required {
+		display: block;
+
+		.order__step-radio-item + .order__step-radio-item {
+			margin: 12px 0 0;
+		}
+	}
+
+	.order__address-form {
+		padding: 8px 24px 24px;
+	}
+
+	.order__address-form-row {
+		flex-wrap: wrap;
+
+		.input-field {
+			flex-basis: 100%;
+		}
+	
+		.input-field + .input-field {
+			margin: 24px 0 0;
+		}
+
+		& + & {
+			margin-top: 24px;
+		}
+
+		&.order__address-form-row--full {
+			.input-field {
+				margin-bottom: 0;
+			}	
+		}
+	}
 }
 
 @media #{$medium-and-down} {
@@ -440,5 +543,60 @@ a.order__summary-calculate-shipping:not(.btn) {
 	.order {
 		padding-left: 24px;
 		padding-right: 24px;
+	}
+
+	.order__step-radio {
+		padding-right: 0;
+
+		input[type="radio"] + span {
+			padding-left: 36px;
+		}
+	}
+
+	.order__step-radio--shipping-address {
+		label {
+			padding-right: 48px;
+		}		
+	}
+
+	.order__step-radio-item {
+		&.order__step-radio-item--method {
+			label {
+				padding-right: 20px;
+			}
+
+			i, strong {
+				padding-left: 36px;
+			}
+		
+			strong {
+				position: static;
+				display: inline-block;
+				margin-top: .5em;
+			}
+		}
+	}
+
+	.order__step-radio-delete {
+		position: absolute;
+		top: 8px;
+		right: 0;
+	
+		.icon {
+			width: 20px;
+			height: 20px;
+		}
+	}
+
+	.order__address-form-buttons {
+		white-space: normal;
+
+		.btn {
+			width: 100%;
+		}
+
+		.btn + .btn {
+			margin: 16px 0 0;
+		}
 	}
 }
