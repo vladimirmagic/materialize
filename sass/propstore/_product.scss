@@ -97,10 +97,15 @@
 	color: $color-font-grey;
 }
 
-.product__title {
+a.product__title:not(.btn) {
+	display: block;
 	margin-bottom: .5em;
-	font-size: 40px;
-	line-height: 1.2;
+	font-weight: 500;
+	text-decoration: none;
+
+	&:hover {
+		text-decoration: underline;
+	}
 }
 
 .product__description {

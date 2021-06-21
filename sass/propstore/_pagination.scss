@@ -92,6 +92,18 @@
     }
 }
 
+.pagination__list-arrow--left {
+    .icon {
+        transform: rotate(90deg);
+    }
+}
+
+.pagination__list-arrow--right {
+    .icon {
+        transform: rotate(-90deg);
+    }
+}
+
 @media #{$breakpoint-4cards} {
 	.pagination {
 		padding-top: 60px;
