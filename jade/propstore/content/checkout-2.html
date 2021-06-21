@@ -79,31 +79,31 @@
                             <div class="order__step-radio order__step-radio--payments-plan">
                                 <div class="order__step-radio-item">
                                     <label>
-                                        <input name="order-payments-plan" type="radio" data-tab="#payments-plan-tab-0" />
+                                        <input name="checkout-payments-plan" type="radio" data-tab="#payments-plan-tab-0" />
                                         <span>None</span>
                                     </label>
                                 </div>
                                 <div class="order__step-radio-item">
                                     <label>
-                                        <input name="order-payments-plan" type="radio" data-tab="#payments-plan-tab-1" />
+                                        <input name="checkout-payments-plan" type="radio" data-tab="#payments-plan-tab-1" />
                                         <span>1 Month</span>
                                     </label>
                                 </div>
                                 <div class="order__step-radio-item">
                                     <label>
-                                        <input name="order-payments-plan" type="radio" data-tab="#payments-plan-tab-2" />
+                                        <input name="checkout-payments-plan" type="radio" data-tab="#payments-plan-tab-2" />
                                         <span>2 Months</span>
                                     </label>
                                 </div>
                                 <div class="order__step-radio-item">
                                     <label>
-                                        <input name="order-payments-plan" type="radio" data-tab="#payments-plan-tab-3" />
+                                        <input name="checkout-payments-plan" type="radio" data-tab="#payments-plan-tab-3" />
                                         <span>3 Months</span>
                                     </label>
                                 </div>
                                 <div class="order__step-radio-item">
                                     <label>
-                                        <input name="order-payments-plan" type="radio" data-tab="#payments-plan-tab-4" checked />
+                                        <input name="checkout-payments-plan" type="radio" data-tab="#payments-plan-tab-4" checked />
                                         <span>4 Months</span>
                                     </label>
                                 </div>
@@ -475,61 +475,63 @@
                             </div>
                         </div>
 
-                        <div class="order__step-radio order__step-radio--payments-plan">
-                            <div class="order__step-radio-item">
-                                <label>
-                                    <input name="order-split-payments-plan" type="radio" />
-                                    <span>None</span>
-                                </label>
+                        <div class="checkout-payments-plan">
+                            <div class="order__step-radio order__step-radio--payments-plan">
+                                <div class="order__step-radio-item">
+                                    <label>
+                                        <input name="order-split-payments-plan" type="radio" />
+                                        <span>None</span>
+                                    </label>
+                                </div>
+                                <div class="order__step-radio-item">
+                                    <label>
+                                        <input name="order-split-payments-plan" type="radio" />
+                                        <span>1 Month</span>
+                                    </label>
+                                </div>
+                                <div class="order__step-radio-item">
+                                    <label>
+                                        <input name="order-split-payments-plan" type="radio" />
+                                        <span>2 Months</span>
+                                    </label>
+                                </div>
+                                <div class="order__step-radio-item">
+                                    <label>
+                                        <input name="order-split-payments-plan" type="radio" />
+                                        <span>3 Months</span>
+                                    </label>
+                                </div>
+                                <div class="order__step-radio-item">
+                                    <label>
+                                        <input name="order-split-payments-plan" type="radio" data-tab="#payments-plan-tab-split-tmp-a" checked />
+                                        <span>4 Months</span>
+                                    </label>
+                                </div>
                             </div>
-                            <div class="order__step-radio-item">
-                                <label>
-                                    <input name="order-split-payments-plan" type="radio" />
-                                    <span>1 Month</span>
-                                </label>
+                            
+                            <div id="payments-plan-tab-split-tmp-a" class="payments-plan-tab" style="display: none;">
+                                <p>
+                                    Today: 20% Deposit (Non-Refundable): <strong>£1,421.25</strong>
+                                </p>
+                                <p>
+                                    1st month payment: <strong>£1,421.25</strong>
+                                </p>
+                                <p>
+                                    2nd month payment: <strong>£1,421.25</strong>
+                                </p>
+                                <p>
+                                    3rd month payment: <strong>£1,421.25</strong>
+                                </p>
+                                <p>
+                                    4th month payment: <strong>£1,421.25</strong>
+                                </p>
+                                <p>
+                                    <i>These figures don't include shipping. Shipping charges are to be calculated and added to your deposit and monthly payments upon the completion of the checkout process.</i>
+                                </p>
+                                <p>
+                                    <i>If you spend another <strong>£305.00</strong> you can extend your payment plan up to 6 months</i>
+                                </p>
                             </div>
-                            <div class="order__step-radio-item">
-                                <label>
-                                    <input name="order-split-payments-plan" type="radio" />
-                                    <span>2 Months</span>
-                                </label>
-                            </div>
-                            <div class="order__step-radio-item">
-                                <label>
-                                    <input name="order-split-payments-plan" type="radio" />
-                                    <span>3 Months</span>
-                                </label>
-                            </div>
-                            <div class="order__step-radio-item">
-                                <label>
-                                    <input name="order-split-payments-plan" type="radio" data-tab="#payments-plan-tab-split-tmp-a" checked />
-                                    <span>4 Months</span>
-                                </label>
-                            </div>
-                        </div>
-                        
-                        <div id="payments-plan-tab-split-tmp-a" class="payments-plan-tab" style="display: none;">
-                            <p>
-                                Today: 20% Deposit (Non-Refundable): <strong>£1,421.25</strong>
-                            </p>
-                            <p>
-                                1st month payment: <strong>£1,421.25</strong>
-                            </p>
-                            <p>
-                                2nd month payment: <strong>£1,421.25</strong>
-                            </p>
-                            <p>
-                                3rd month payment: <strong>£1,421.25</strong>
-                            </p>
-                            <p>
-                                4th month payment: <strong>£1,421.25</strong>
-                            </p>
-                            <p>
-                                <i>These figures don't include shipping. Shipping charges are to be calculated and added to your deposit and monthly payments upon the completion of the checkout process.</i>
-                            </p>
-                            <p>
-                                <i>If you spend another <strong>£305.00</strong> you can extend your payment plan up to 6 months</i>
-                            </p>
                         </div>
 
                         <div class="order__split">
@@ -542,61 +544,63 @@
                             </div>
                         </div>
 
-                        <div class="order__step-radio order__step-radio--payments-plan">
-                            <div class="order__step-radio-item">
-                                <label>
-                                    <input name="order-split1-payments-plan" type="radio" />
-                                    <span>None</span>
-                                </label>
+                        <div class="checkout-payments-plan">
+                            <div class="order__step-radio order__step-radio--payments-plan">
+                                <div class="order__step-radio-item">
+                                    <label>
+                                        <input name="order-split1-payments-plan" type="radio" />
+                                        <span>None</span>
+                                    </label>
+                                </div>
+                                <div class="order__step-radio-item">
+                                    <label>
+                                        <input name="order-split1-payments-plan" type="radio" />
+                                        <span>1 Month</span>
+                                    </label>
+                                </div>
+                                <div class="order__step-radio-item">
+                                    <label>
+                                        <input name="order-split1-payments-plan" type="radio" />
+                                        <span>2 Months</span>
+                                    </label>
+                                </div>
+                                <div class="order__step-radio-item">
+                                    <label>
+                                        <input name="order-split1-payments-plan" type="radio" />
+                                        <span>3 Months</span>
+                                    </label>
+                                </div>
+                                <div class="order__step-radio-item">
+                                    <label>
+                                        <input name="order-split1-payments-plan" type="radio" data-tab="#payments-plan-tab-split-tmp-b" checked />
+                                        <span>4 Months</span>
+                                    </label>
+                                </div>
                             </div>
-                            <div class="order__step-radio-item">
-                                <label>
-                                    <input name="order-split1-payments-plan" type="radio" />
-                                    <span>1 Month</span>
-                                </label>
+                            
+                            <div id="payments-plan-tab-split-tmp-b" class="payments-plan-tab" style="display: none;">
+                                <p>
+                                    Today: 20% Deposit (Non-Refundable): <strong>£1,421.25</strong>
+                                </p>
+                                <p>
+                                    1st month payment: <strong>£1,421.25</strong>
+                                </p>
+                                <p>
+                                    2nd month payment: <strong>£1,421.25</strong>
+                                </p>
+                                <p>
+                                    3rd month payment: <strong>£1,421.25</strong>
+                                </p>
+                                <p>
+                                    4th month payment: <strong>£1,421.25</strong>
+                                </p>
+                                <p>
+                                    <i>These figures don't include shipping. Shipping charges are to be calculated and added to your deposit and monthly payments upon the completion of the checkout process.</i>
+                                </p>
+                                <p>
+                                    <i>If you spend another <strong>£305.00</strong> you can extend your payment plan up to 6 months</i>
+                                </p>
                             </div>
-                            <div class="order__step-radio-item">
-                                <label>
-                                    <input name="order-split1-payments-plan" type="radio" />
-                                    <span>2 Months</span>
-                                </label>
-                            </div>
-                            <div class="order__step-radio-item">
-                                <label>
-                                    <input name="order-split1-payments-plan" type="radio" />
-                                    <span>3 Months</span>
-                                </label>
-                            </div>
-                            <div class="order__step-radio-item">
-                                <label>
-                                    <input name="order-split1-payments-plan" type="radio" data-tab="#payments-plan-tab-split-tmp-b" checked />
-                                    <span>4 Months</span>
-                                </label>
-                            </div>
-                        </div>
-                        
-                        <div id="payments-plan-tab-split-tmp-b" class="payments-plan-tab" style="display: none;">
-                            <p>
-                                Today: 20% Deposit (Non-Refundable): <strong>£1,421.25</strong>
-                            </p>
-                            <p>
-                                1st month payment: <strong>£1,421.25</strong>
-                            </p>
-                            <p>
-                                2nd month payment: <strong>£1,421.25</strong>
-                            </p>
-                            <p>
-                                3rd month payment: <strong>£1,421.25</strong>
-                            </p>
-                            <p>
-                                4th month payment: <strong>£1,421.25</strong>
-                            </p>
-                            <p>
-                                <i>These figures don't include shipping. Shipping charges are to be calculated and added to your deposit and monthly payments upon the completion of the checkout process.</i>
-                            </p>
-                            <p>
-                                <i>If you spend another <strong>£305.00</strong> you can extend your payment plan up to 6 months</i>
-                            </p>
                         </div>
                     </div>
 

@@ -18,14 +18,11 @@
 		// CHECKOUT
 		const addressForm = document.querySelector('.order__shipping-address-add');
 		const addressFormButtonOpen = document.querySelector('.order__address-form-button-open');
-		const addressFormButtonClose = document.querySelector('.order__address-form-button-close');
-		if (addressForm && addressFormButtonOpen && addressFormButtonClose) {
+		if (addressForm && addressFormButtonOpen) {
 			addressFormButtonOpen.addEventListener('click', () => {
 				addressForm.classList.add('order__shipping-address-add--opened');
-			});
-			addressFormButtonClose.addEventListener('click', () => {
-				addressForm.classList.remove('order__shipping-address-add--opened');
-				addressForm.scrollIntoView({behavior: 'smooth', block: 'nearest'});
+				const checkoutShippingAddress = document.querySelector('input[name="checkout-shipping-address"]:checked');
+				if (checkoutShippingAddress) checkoutShippingAddress.checked = false;
 			});
 		}
 
@@ -38,7 +35,7 @@
 			}
 		});
 
-		const paymentsPlans = document.querySelectorAll('input[name="order-payments-plan"]');
+		const paymentsPlans = document.querySelectorAll('.checkout-payments-plan input');
 		if (paymentsPlans && paymentsPlans.length) {
 			paymentsPlans.forEach(paymentsPlan => {
 				if (paymentsPlan.dataset && paymentsPlan.dataset.tab) {
@@ -57,7 +54,8 @@
 			});
 		}
 
-		const paymentsPlansChecked = document.querySelectorAll('.order__step-radio--payments-plan input:checked');
+		const paymentsPlansChecked = document.querySelectorAll('.checkout-payments-plan input:checked');
+		console.log(paymentsPlansChecked);
 		if (paymentsPlansChecked && paymentsPlansChecked.length) {
 			paymentsPlansChecked.forEach(paymentsPlan => {
 				if (paymentsPlan.dataset && paymentsPlan.dataset.tab) {

@@ -452,20 +452,11 @@ a.order__summary-calculate-shipping:not(.btn) {
 	}
 }
 
-.order__form-buttons {
-	margin-top: 24px;
-	white-space: nowrap;
-
-	.btn + .btn {
-		margin-left: 24px;
-	}
-}
-
 .order__split {
 	margin-bottom: 2em;
 
 	.order__step-radio + &,
-	.payments-plan-tab + & {
+	.checkout-payments-plan + & {
 		margin-top: 3em;
 	}
 }
@@ -737,18 +728,6 @@ a.order__summary-calculate-shipping:not(.btn) {
 		.icon {
 			width: 20px;
 			height: 20px;
-		}
-	}
-
-	.order__form-buttons {
-		white-space: normal;
-
-		.btn {
-			width: 100%;
-		}
-
-		.btn + .btn {
-			margin: 16px 0 0;
 		}
 	}
 
