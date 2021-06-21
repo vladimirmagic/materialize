@@ -28,3 +28,14 @@
 		}
 	});
 </script>
+
+<!-- Click for Blog listing categories -->
+<script>
+    jQuery(document).ready(() => {
+        $('.card-blog').on('click', function(event) {
+            const fakeUrl = $(event.target).data('href');
+            if(fakeUrl) event.preventDefault();
+            window.location.href = fakeUrl;
+        });
+    });
+</script>

@@ -6,6 +6,10 @@
 	background: $color-bg;
 }
 
+.cards-blog {
+    @extend .cards;
+}
+
 .cards__inner {
 	max-width: $width-4cards + $card-margin;
 	margin: 0 auto;
@@ -76,15 +80,14 @@
 		padding-left: 24px;
 		padding-right: 8px;
 
+        .card__info.card-blog__info {
+            max-height: 256px;
+        }
 		.card {
 			width: 50%;
 			max-width: calc(50% - #{$card-margin-m * 1.5});
 			min-width: 0;
 			height: $card-height-s;
-            &.card--wide-mobile {
-                width: 100%;
-                max-width: 100%;
-            }
 		}
 
 		.card-auction {
@@ -177,5 +180,15 @@
 		.card-auction {
 			height: $card-width-s * 2 + $card-margin-m;
 		}
+        &.cards--blog {
+            padding-bottom: 0;
+        }
+        .card-blog {
+            width: 100%;
+            max-width: 100%;
+            margin-right: 32px;
+            margin-bottom: 24px;
+        }
 	}
+
 }

@@ -42,8 +42,14 @@
 	}
 }
 
+.filters__menu-categories {
+    display: inline-flex;
+    margin-right: 16px;
+}
+
 .filters__menu-category {
-    display: inline-flex; 
+    margin-right: 16px;
+    font-weight: 600;
 }
 
 .filters__search-container {
@@ -145,7 +151,7 @@
 			display: none;
 		}
 
-		.filters__menu-category {
+		.filters__menu-categories {
 			display: none;
 		}
         
