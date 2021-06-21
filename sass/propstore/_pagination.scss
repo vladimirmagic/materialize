@@ -15,21 +15,39 @@
 	display: flex;
 	flex-wrap: wrap;
 	justify-content: space-between;
-    .pagination__list-arrow, a.pagination__list-arrow, a:not(.btn).pagination__list-arrow {
-        display: inline-flex;
-        justify-content: center;
-        align-items: center;
-        min-height: 40px;
-        min-width: 40px;
-        background: #FFFFFF;
-        border-radius: 50%;
-        box-shadow: 0px 2px 12px -2px rgba(0, 0, 0, 0.25);
-        transition: .3s ease-out;
-        &:hover, &:focus {
-            background-color: rgba(255,255,255,0.85);
-            box-shadow: 0px 2px 12px -2px rgba(0, 0, 0, 0.35);
+}
+
+.pagination__list-arrow, a.pagination__list-arrow, a:not(.btn).pagination__list-arrow {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 40px;
+    min-width: 40px;
+    background: #FFFFFF;
+    border-radius: 50%;
+    box-shadow: 0px 2px 12px -2px rgba(0, 0, 0, 0.25);
+    transition: .3s ease-out;
+    &:hover, &:focus {
+        background-color: rgba(255,255,255,0.85);
+        box-shadow: 0px 2px 12px -2px rgba(0, 0, 0, 0.35);
+    }
+
+
+    &.pagination__list-arrow--left {
+        .icon {
+            transform: rotate(90deg);
         }
     }
+
+    &.pagination__list-arrow--right {
+        .icon {
+            transform: rotate(-90deg);
+        }
+    }
+}
+
+.pagination__pages {
+    padding-top: 8px;
 }
 
 .pagination__pages-page, a.pagination__pages-page, a:not(.btn).pagination__pages-page {
@@ -92,18 +110,6 @@
     }
 }
 
-.pagination__list-arrow--left {
-    .icon {
-        transform: rotate(90deg);
-    }
-}
-
-.pagination__list-arrow--right {
-    .icon {
-        transform: rotate(-90deg);
-    }
-}
-
 @media #{$breakpoint-4cards} {
 	.pagination {
 		padding-top: 60px;
@@ -136,11 +142,4 @@
     .pagination {
         padding-top: 20px;
     }
-}
-
-@media only screen and (max-width: 400px) {
-	.pagination {
-		padding-left: 16px;
-		padding-right: 16px;
-	}
 }
