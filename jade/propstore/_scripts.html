@@ -15,7 +15,51 @@
 
 	document.addEventListener('DOMContentLoaded', () => {
 
-		// CHECKOUT
+		/** CHECKOUT */
+
+		// STEPS
+		const checkoutSteps = document.querySelectorAll('.order-step');
+		const checkoutStepTabs = document.querySelectorAll('.checkout-step-tab');
+		const checkoutStepActive = document.querySelector('input[name="checkout-step"]');
+		if (checkoutStepActive && checkoutSteps && checkoutSteps.length && checkoutStepTabs && checkoutStepTabs.length) {
+			checkoutSteps.forEach(checkoutStep => {
+				if (checkoutStep.dataset && checkoutStep.dataset.step) {
+					checkoutStep.addEventListener('click', () => {
+						checkoutStepActive.value = checkoutStep.dataset.step;
+						checkoutStepTabs.forEach(checkoutStepTab => checkoutStepTab.style.display = 'none');
+						const checkoutStepTab = document.getElementById('checkout-step-tab-' + checkoutStep.dataset.step);
+						if (checkoutStepTab) checkoutStepTab.style.display = 'block';
+					});
+				}
+			});
+
+			const checkoutStepTab = document.getElementById('checkout-step-tab-' + checkoutStepActive.value);
+			if (checkoutStepTab) checkoutStepTab.style.display = 'block';
+		}
+
+		// SHIPPING
+		const shippingRequired = document.querySelectorAll('input[name="checkout-shipping-required"]');
+		const shippingRequiredTabs = document.querySelectorAll('.checkout-shipping-tab');
+		if (shippingRequired && shippingRequired.length && shippingRequiredTabs && shippingRequiredTabs.length) {
+			shippingRequired.forEach(input => {
+				if (input.dataset && input.dataset.tab) {
+					input.addEventListener('change', () => {
+						shippingRequiredTabs.forEach(shippingRequiredTab => shippingRequiredTab.style.display = 'none');
+						const shippingRequiredTab = document.querySelector(input.dataset.tab);
+						if (shippingRequiredTab) shippingRequiredTab.style.display = 'block';
+					});
+				}
+			});
+		}
+
+		const shippingRequiredChecked = document.querySelector('input[name="checkout-shipping-required"]:checked');
+		if (shippingRequiredChecked && shippingRequiredChecked.dataset && shippingRequiredChecked.dataset.tab) {
+			const shippingRequiredTab = document.querySelector(shippingRequiredChecked.dataset.tab);
+			if (shippingRequiredTab) shippingRequiredTab.style.display = 'block';
+		}
+
+
+		// ADDRESS
 		const addressForm = document.querySelector('.order__shipping-address-add');
 		const addressFormButtonOpen = document.querySelector('.order__address-form-button-open');
 		if (addressForm && addressFormButtonOpen) {
@@ -26,15 +70,7 @@
 			});
 		}
 
-		const orderSteps = document.querySelectorAll('.order-step');
-		if (orderSteps && orderSteps.length) orderSteps.forEach(orderStep => {
-			if (orderStep.dataset && orderStep.dataset.step) {
-				orderStep.addEventListener('click', () => {
-					alert('Go to step ' + orderStep.dataset.step);
-				});
-			}
-		});
-
+		// PAYMENTS PLAN
 		const paymentsPlans = document.querySelectorAll('.checkout-payments-plan input');
 		if (paymentsPlans && paymentsPlans.length) {
 			paymentsPlans.forEach(paymentsPlan => {
@@ -55,7 +91,6 @@
 		}
 
 		const paymentsPlansChecked = document.querySelectorAll('.checkout-payments-plan input:checked');
-		console.log(paymentsPlansChecked);
 		if (paymentsPlansChecked && paymentsPlansChecked.length) {
 			paymentsPlansChecked.forEach(paymentsPlan => {
 				if (paymentsPlan.dataset && paymentsPlan.dataset.tab) {
