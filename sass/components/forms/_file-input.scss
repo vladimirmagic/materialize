@@ -3,10 +3,13 @@
 
 .file-field {
   position: relative;
+  display: flex;
 
   .file-path-wrapper {
-    overflow: hidden;
-    padding-left: 10px;
+    position: relative;
+    width: 100%;
+    margin-left: 16px;
+    white-space: nowrap;
   }
 
   input.file-path { width: 100%; }
