@@ -68,6 +68,7 @@ a.card:not(.btn) { // fix a
 }
 
 .card-blog__img {
+    @extend .card__img;
     max-height: 260px;
 }
 
@@ -128,10 +129,14 @@ a.card:not(.btn) { // fix a
 }
 
 .card-blog__info {
+    @extend .card__info;
     max-height: 290px;
 }
 
 .card__description {
+	flex:
+
+.card-blog__description {
 	flex: 1 1 100%;
 }
 
@@ -272,10 +277,6 @@ a.card:not(.btn) { // fix a
 	align-items: center;
 	width: 100%;
 
-    &.card-blog__actions {
-        padding-bottom: 8px;
-    }
-
 	.btn {
 		flex: 1 1 60%;
 		padding: 0 8px;
@@ -293,6 +294,12 @@ a.card:not(.btn) { // fix a
 		margin-left: 8px;
 		margin-top: -5px;
 	}
+}
+
+
+.card-blog__actions {
+    @extend .card__actions;
+    padding-bottom: 8px;
 }
 
 .card__added {
