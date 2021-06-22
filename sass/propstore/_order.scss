@@ -1116,6 +1116,10 @@ a.order__item:not(.btn) { // fix a
 	.order-confirmed__share-title-br {
 		display: none;
 	}
+
+	.order-confirmed__payment-row {
+		padding: 1em 1em;
+	}
 }
 
 @media only screen and (max-width: 400px) {
