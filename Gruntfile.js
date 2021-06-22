@@ -372,7 +372,8 @@
             'checkout-2.html': 'jade/propstore/checkout-2.jade',
             'order-confirmed.html': 'jade/propstore/order-confirmed.jade',
             'blog.html': 'jade/propstore/blog.jade',
-            'blog.html': 'jade/propstore/blog-single.jade',
+            // 'blog.html': 'jade/propstore/blog-single.jade',
+            'account.html': 'jade/propstore/account.jade',
           }
         }
       },

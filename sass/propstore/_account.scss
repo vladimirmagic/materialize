@@ -1,0 +1,24 @@
+.account {
+	padding-top: 80px;
+	padding-bottom: 140px;
+	padding-left: 40px;
+	padding-right: 40px;
+	text-align: center;
+}
+
+.account__title {
+	margin-bottom: .5em;
+}
+
+@media #{$medium-and-down} {
+	.account {
+		padding-top: 52px;
+		padding-bottom: 80px;
+		padding-left: 24px;
+		padding-right: 24px;
+	}
+}
+
+@media #{$small-and-down} {
+	
+}
