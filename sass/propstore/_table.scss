@@ -1,0 +1,47 @@
+.table {
+	display: table;
+	width: 100%;
+	border-radius: 6px;
+	overflow: hidden;
+	box-shadow: $shadow-base;
+}
+
+.tr {
+	display: table-row;
+	border: 0;
+}
+
+.td, .th {
+	display: table-cell;
+	height: 60px;
+	padding-top: 1rem;
+	padding-bottom: 1rem;
+	padding-left: 0;
+	padding-right: 2rem;
+	vertical-align: top;
+	border-radius: 0;
+}
+
+.th {
+	@extend .h6;
+	height: 60px;
+	padding-top: 0;
+	padding-bottom: 0;
+	vertical-align: middle;
+	color: #fff;
+	background: $color-base;
+	border-radius: 0;
+}
+
+.td-r {
+	text-align: right;
+}
+
+.td {
+	tbody .tr:first-child & {
+		padding-top: 3rem;
+	}
+	tbody .tr:last-child & {
+		padding-bottom: 3rem;
+	}
+}

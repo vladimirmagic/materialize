@@ -57,7 +57,7 @@ a.account-page__suptitle:not(.btn) {
 	margin-top: 3em;
 }
 
-.account__watchlist {
+.cards--account {
 	padding-top: 0;
 	padding-bottom: 0;
 	background: #fff;
@@ -81,6 +81,63 @@ a.account-page__suptitle:not(.btn) {
 	}
 }
 
+.account__orders {
+	@extend .content;
+	text-align: left;
+}
+
+.account__orders-inner {
+	max-width: $width-4cards;
+	margin: 0 auto;
+	overflow-x: auto;
+}
+
+.account__orders-auction {
+	position: relative;
+}
+
+.account__orders-auction-tbody {
+	& + & {
+		border-top: 1px solid $color-grey;
+	}
+
+	.tr:nth-child(even) {
+		.td {
+			border-top: 1px solid #eee;
+			border-bottom: 1px solid #eee;
+		}
+	}
+}
+
+.account__orders-auction-td-first {
+	padding-left: 2.5rem;
+}
+
+.account__orders-auction-td-last {
+	padding-right: 2.5rem;
+}
+
+.account__orders-auction-td-title {
+	width: 13rem;
+}
+
+.account__orders-auction-tr-total {
+	font-weight: 500;
+}
+
+.account__orders-auction-tbody-subtotal {
+	@extend .h6;
+	color: #fff;
+	background: $color-turquoise;
+
+	.td {
+		height: 60px;
+		padding: 0 !important;
+		text-align: center;
+		vertical-align: middle;
+	}
+}
+
 @media #{$medium-and-down} {
 	.account-page {
 		padding-top: 52px;
@@ -98,4 +155,23 @@ a.account-page__suptitle:not(.btn) {
 			margin-left: 16px;
 		}
 	}
+
+	// .account__orders-auction {
+	// 	thead {
+	// 		display: none;
+	// 	}
+	// }
+
+	// .account__orders-auction-tbody {
+	// 	.tr {
+	// 		display: flex;
+	// 		justify-content: space-between;
+	// 		flex-wrap: wrap;
+	// 		width: 100%;
+	// 	}
+	// }
+
+	// .account__orders-auction-td-title {
+	// 	width: 100%;
+	// }
 }
