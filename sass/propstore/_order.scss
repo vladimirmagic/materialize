@@ -382,35 +382,6 @@ a.order__summary-calculate-shipping:not(.btn) {
 	}
 }
 
-.order__step-radio-delete {
-	position: absolute;
-	top: 6px;
-	right: -56px;
-
-	.icon {
-		width: 24px;
-		height: 24px;
-	}
-}
-
-.order__shipping-address-add {
-	padding-top: 40px;
-
-	.order__form {
-		display: none;
-		padding-top: 16px;
-	}
-
-	&.order__shipping-address-add--opened {
-		.order__address-form-button-open {
-			display: none;
-		}
-
-		.order__form {
-			display: block;
-		}
-	}
-}
 
 .order__form {
 	width: 100%;
@@ -419,7 +390,7 @@ a.order__summary-calculate-shipping:not(.btn) {
 	border-radius: 6px;
 }
 
-.order__new-address-type {
+.order__address-type {
 	label {
 		display: flex;
 		margin-bottom: 24px;
@@ -839,10 +810,6 @@ a.order__item:not(.btn) { // fix a
 
 	.order__form {
 		padding: 24px;
-
-		.order__shipping-address-add & {
-			padding-top: 8px;
-		}
 	}
 
 	.order__form-row {
@@ -1010,12 +977,6 @@ a.order__item:not(.btn) { // fix a
 		}
 	}
 
-	.order__step-radio--shipping-address {
-		label {
-			padding-right: 48px;
-		}		
-	}
-
 	.order__step-radio-item {
 		&.order__step-radio-item--method {
 			label {
@@ -1031,17 +992,6 @@ a.order__item:not(.btn) { // fix a
 				display: inline-block;
 				margin-top: .5em;
 			}
-		}
-	}
-
-	.order__step-radio-delete {
-		position: absolute;
-		top: 8px;
-		right: 0;
-	
-		.icon {
-			width: 20px;
-			height: 20px;
 		}
 	}
 

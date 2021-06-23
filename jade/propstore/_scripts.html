@@ -58,18 +58,6 @@
 			if (shippingRequiredTab) shippingRequiredTab.style.display = 'block';
 		}
 
-
-		// ADDRESS
-		const addressForm = document.querySelector('.order__shipping-address-add');
-		const addressFormButtonOpen = document.querySelector('.order__address-form-button-open');
-		if (addressForm && addressFormButtonOpen) {
-			addressFormButtonOpen.addEventListener('click', () => {
-				addressForm.classList.add('order__shipping-address-add--opened');
-				const checkoutShippingAddress = document.querySelector('input[name="checkout-shipping-address"]:checked');
-				if (checkoutShippingAddress) checkoutShippingAddress.checked = false;
-			});
-		}
-
 		// PAYMENTS PLAN
 		const paymentsPlans = document.querySelectorAll('.checkout-payments-plan input');
 		if (paymentsPlans && paymentsPlans.length) {
