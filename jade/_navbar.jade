@@ -122,7 +122,7 @@ header(style='z-index: 999;')
 
     li.no-padding
       ul.collapsible.collapsible-accordion
-        li.bold(class=(page == "Propstore UI" || page == "Home" || page == "Buy now" || page == "Results" || page == "Product" || page == "Auctions" || page == "Bag" || page == "Checkout" || page == "Checkout (split order)" || page == "Order confirmed" || page == "Blog" || page == "Account" ? "active" : ""))
+        li.bold(class=(page == "Propstore UI" || page == "Home" || page == "Buy now" || page == "Results" || page == "Product" || page == "Auctions" || page == "Bag" || page == "Checkout" || page == "Checkout (split order)" || page == "Order confirmed" || page == "Blog" || page == "Account" || page == "Account Details" ? "active" : ""))
               a.collapsible-header(class="waves-effect waves-grey")
                 | Propstore
               .collapsible-body
@@ -151,5 +151,7 @@ header(style='z-index: 999;')
                     a(href='blog.html' target='_blank') Blog
                   li(class=(page == "Account" ? "active" : ""))
                     a(href='account.html' target='_blank') Account
+                  li(class=(page == "Account Details" ? "active" : ""))
+                    a(href='account-details.html' target='_blank') Account Details
 
   

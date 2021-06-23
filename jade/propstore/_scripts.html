@@ -103,10 +103,10 @@
 		// BILLING ADDRESS
 		const billingAddressCheckbox = document.querySelector('input[name="checkout-billing-address"]');
 		const billingAddressForm = document.querySelector('.checkout-billing-address-form');
-		function checkoutBillingAddress () {
-			billingAddressForm.style.display = billingAddressCheckbox.checked ? 'none' : 'block';
-		}
 		if (billingAddressCheckbox && billingAddressForm) {
+			function checkoutBillingAddress () {
+				billingAddressForm.style.display = billingAddressCheckbox.checked ? 'none' : 'block';
+			}
 			billingAddressCheckbox.addEventListener('change', checkoutBillingAddress);
 			checkoutBillingAddress();
 		}
@@ -114,12 +114,25 @@
 		// RESALE CERTIFICATE
 		const resaleСertificateCheckbox = document.querySelector('input[name="checkout-resale-certificate"]');
 		const resaleСertificateForm = document.querySelector('.checkout-resale-certificate-form');
-		function checkoutResaleСertificate () {
-			resaleСertificateForm.style.display = resaleСertificateCheckbox.checked ? 'block' : 'none';
-		}
 		if (resaleСertificateCheckbox && resaleСertificateForm) {
+			function checkoutResaleСertificate () {
+				resaleСertificateForm.style.display = resaleСertificateCheckbox.checked ? 'block' : 'none';
+			}
 			resaleСertificateCheckbox.addEventListener('change', checkoutResaleСertificate);
 			checkoutResaleСertificate();
+		}
+
+		/** ACCOUNT */
+
+		// SHIPPING ADDRESS
+		const shippingAddressCheckbox = document.querySelector('input[name="account-billing-address-use-as-shipping"]');
+		const shippingAddressForm = document.querySelector('.account-shipping-address-form');
+		if (shippingAddressCheckbox && shippingAddressForm) {
+			function accountShippingAddress () {
+				shippingAddressForm.style.display = shippingAddressCheckbox.checked ? 'none' : 'block';
+			}	
+			shippingAddressCheckbox.addEventListener('change', accountShippingAddress);
+			accountShippingAddress();
 		}
 		
 	});

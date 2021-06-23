@@ -1,0 +1,193 @@
+<form class="account-page">
+    <a href="/account.html" class="account-page__suptitle h6">
+        My Account
+    </a>
+    <div class="account-page__title h1">
+        My Details
+    </div>
+    
+    <div class="account-page__section">
+        <div class="account-page__form">
+            <div class="input-field input-field--label">
+                <input type="text" value="John" placeholder="Please Enter">
+                <label>First name</label>
+            </div>
+            <div class="input-field input-field--label">
+                <input type="text" value="Doe" placeholder="Please Enter">
+                <label>Last name</label>
+            </div>
+            <div class="input-field input-field--label">
+                <input type="email" value="johndoe@mail.com" placeholder="Please Enter">
+                <label>Email address</label>
+            </div>
+        </div>
+    </div>
+
+    <div class="account-page__section">
+        <div class="account-page__form">
+            <p class="account-page__section-title c-r">
+                Change Password
+            </p>
+            <div class="input-field input-field--label">
+                <input type="password" value="" placeholder="Please Enter">
+                <label>Current Password</label>
+            </div>
+            <div class="input-field input-field--label">
+                <input type="password" value="" placeholder="Please Enter">
+                <label>New Password</label>
+            </div>
+            <div class="input-field input-field--label">
+                <input type="password" value="" placeholder="Please Enter">
+                <label>Confirm New password</label>
+            </div>
+        </div>
+    </div>
+
+    <div class="account-page__section">
+        <div class="account-page__form">
+            <p class="account-page__section-title c-r">
+                Billing Address
+            </p>
+            <div class="account__address-type">
+                <label>
+                    <input name="account-billing-address-type" type="radio" checked />
+                    <span>Residential Address</span>
+                </label>
+                <label>
+                    <input name="account-billing-address-type" type="radio" />
+                    <span>Business Address</span>
+                </label>
+            </div>
+            <div class="input-field input-field--label">
+                <input type="text" placeholder="Please Enter">
+                <label>First Name</label>
+            </div>
+            <div class="input-field input-field--label">
+                <input type="text" placeholder="Please Enter">
+                <label>Surname</label>
+            </div>
+            <div class="input-field input-field--label">
+                <input type="text" placeholder="Please Enter">
+                <label>Contact Number</label>
+            </div>
+            <div class="input-field input-field--label">
+                <select>
+                    <option value="0" selected>...</option>
+                    <option value="1">United Kingdom</option>
+                    <option value="2">Option 2</option>
+                    <option value="3">Option 3</option>
+                </select>
+                <label>Country</label>
+            </div>
+            <div class="input-field input-field--label">
+                <textarea class="materialize-textarea" placeholder="Please Enter"></textarea>
+                <label>Address</label>
+            </div>
+            <div class="input-field input-field--label">
+                <input type="text" placeholder="Please Enter">
+                <label>State</label>
+            </div>
+            <div class="input-field input-field--label">
+                <input type="text" placeholder="Please Enter">
+                <label>City</label>
+            </div>
+            <div class="input-field input-field--label">
+                <input type="text" placeholder="Please Enter">
+                <label>ZIP / Post code</label>
+            </div>
+            <div class="account__address-use-as-shipping">
+                <label class="checkbox__label">
+                    <input type="checkbox" name="account-billing-address-use-as-shipping" class="filled-in" checked />
+                    <input type="hidden" />
+                    <span>Use as Default Shipping Address</span>
+                </label>
+            </div>
+        </div>
+    </div>
+
+    <div class="account-page__section account-shipping-address-form" style="display: none;">
+        <div class="account-page__form">
+            <p class="account-page__section-title c-r">
+                Shipping Address
+            </p>
+            <div class="account__address-type">
+                <label>
+                    <input name="account-shipping-address-type" type="radio" checked />
+                    <span>Residential Address</span>
+                </label>
+                <label>
+                    <input name="account-shipping-address-type" type="radio" />
+                    <span>Business Address</span>
+                </label>
+            </div>
+            <div class="input-field input-field--label">
+                <input type="text" placeholder="Please Enter">
+                <label>First Name</label>
+            </div>
+            <div class="input-field input-field--label">
+                <input type="text" placeholder="Please Enter">
+                <label>Surname</label>
+            </div>
+            <div class="input-field input-field--label">
+                <input type="text" placeholder="Please Enter">
+                <label>Contact Number</label>
+            </div>
+            <div class="input-field input-field--label">
+                <select>
+                    <option value="0" selected>...</option>
+                    <option value="1">United Kingdom</option>
+                    <option value="2">Option 2</option>
+                    <option value="3">Option 3</option>
+                </select>
+                <label>Country</label>
+            </div>
+            <div class="input-field input-field--label">
+                <textarea class="materialize-textarea" placeholder="Please Enter"></textarea>
+                <label>Address</label>
+            </div>
+            <div class="input-field input-field--label">
+                <input type="text" placeholder="Please Enter">
+                <label>State</label>
+            </div>
+            <div class="input-field input-field--label">
+                <input type="text" placeholder="Please Enter">
+                <label>City</label>
+            </div>
+            <div class="input-field input-field--label">
+                <input type="text" placeholder="Please Enter">
+                <label>ZIP / Post code</label>
+            </div>
+        </div>
+    </div>
+
+    <div class="account-page__section">
+        <div class="account-page__form">
+            <p class="account-page__section-title c-r">
+                Email Preferences
+            </p>
+            <div class="account__address-type">
+                <label class="checkbox__label">
+                    <input type="checkbox" class="filled-in" checked />
+                    <input type="hidden" />
+                    <span>Sign me up for upcoming new, offers and competition updates</span>
+                </label>
+                <label class="checkbox__label">
+                    <input type="checkbox" class="filled-in" />
+                    <input type="hidden" />
+                    <span>Sign me up for upcoming auction updates</span>
+                </label>
+                <label class="checkbox__label">
+                    <input type="checkbox" class="filled-in" checked />
+                    <input type="hidden" />
+                    <span>Sign me up to be automatically informed about new products in my favourite movies/genres</span>
+                </label>
+            </div>
+        </div>
+    </div>
+
+    <div class="account-page__form">
+        <button type="submit" class="waves-effect waves-light btn">
+            Save
+        </button>
+    </div>
+</form>

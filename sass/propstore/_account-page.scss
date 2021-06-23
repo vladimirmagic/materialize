@@ -1,0 +1,68 @@
+.account-page {
+	padding-top: 80px;
+	padding-bottom: 24px;
+	text-align: center;
+}
+
+.account-page__suptitle {
+	display: inline-block;
+	margin-bottom: 1.5em;
+}
+
+a.account-page__suptitle:not(.btn) {
+	text-decoration: none;
+	
+	&:hover {
+		text-decoration: underline;
+	}
+}
+
+.account-page__title {
+	margin-bottom: 1em;
+}
+
+.account-page__section {
+	padding: 0 2.5em 2em;
+	margin-bottom: 2em;
+	border-bottom: 1px solid $color-grey;
+}
+
+.account-page__section-title {
+	margin-bottom: 2em;
+}
+
+.account-page__form {
+	max-width: 432px;
+	margin: 0 auto;
+	text-align: left;
+
+	.input-field + .input-field {
+		margin-top: 2.5em;
+	}
+}
+
+.account__address-type {
+	margin-bottom: 3em;
+
+	label {
+		display: flex;
+		margin-bottom: 24px;
+		font-size: 1em;
+		color: $color-base;
+		cursor: pointer;
+	}
+}
+
+.account__address-use-as-shipping {
+	margin-top: 3em;
+}
+
+@media #{$medium-and-down} {
+	.account-page {
+		padding-top: 52px;
+	}
+
+	.account-page__section {
+		padding: 0 1.5em 2em;
+	}
+}

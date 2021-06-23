@@ -374,6 +374,7 @@
             'blog.html': 'jade/propstore/blog.jade',
             // 'blog.html': 'jade/propstore/blog-single.jade',
             'account.html': 'jade/propstore/account.jade',
+            'account-details.html': 'jade/propstore/account-details.jade',
           }
         }
       },
