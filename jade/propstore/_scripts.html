@@ -88,6 +88,26 @@
 			});
 		}
 
+		// PAYMENT TYPE
+		const paymentTypes = document.querySelectorAll('input[name="checkout-payment-type"]');
+		const paymentTypeTabs = document.querySelectorAll('.checkout-payment-type');
+		if (paymentTypes && paymentTypes.length && paymentTypeTabs && paymentTypeTabs.length) {
+			paymentTypes.forEach(paymentType => {
+				if (paymentType.dataset && paymentType.dataset.tab) {
+					paymentType.addEventListener('change', () => {
+						paymentTypeTabs.forEach(paymentTypeTab => paymentTypeTab.style.display = 'none');
+						const paymentTypeTab = document.querySelector(paymentType.dataset.tab);
+						if (paymentTypeTab) paymentTypeTab.style.display = 'block';
+					});
+				}
+			});
+			const paymentTypeChecked = document.querySelector('input[name="checkout-payment-type"]:checked');
+			if (paymentTypeChecked && paymentTypeChecked.dataset && paymentTypeChecked.dataset.tab) {
+				const paymentTypeTab = document.querySelector(paymentTypeChecked.dataset.tab);
+				if (paymentTypeTab) paymentTypeTab.style.display = 'block';
+			}
+		}
+
 		// BILLING ADDRESS
 		const billingAddressCheckbox = document.querySelector('input[name="checkout-billing-address"]');
 		const billingAddressForm = document.querySelector('.checkout-billing-address-form');

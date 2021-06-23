@@ -116,7 +116,7 @@
                                             </div>
                                             <div class="input-field input-field--label">
                                                 <select>
-                                                    <option value="0" selected>...</option>
+                                                    <option value="0" disabled selected>Please Choose</option>
                                                     <option value="1">United Kingdom</option>
                                                     <option value="2">Option 2</option>
                                                     <option value="3">Option 3</option>
@@ -405,7 +405,7 @@
     
                         <div class="order__row">
                             <div class="order__step-p order__row-card">
-                                <div>Card Payment</div>
+                                <div>Payment Type</div>
                                 <div class="pay-logo order__row-card-logo">
                                     <svg><use xlink:href="#pay-mastercard"></use></svg>
                                     <svg><use xlink:href="#pay-maestro"></use></svg>
@@ -414,7 +414,21 @@
                                     <svg><use xlink:href="#pay-paypal"></use></svg>
                                 </div>
                             </div>
-                            <div class="order__form">
+                            <div class="order__step-radio order__step-radio--payment-type">
+                                <div class="order__step-radio-item">
+                                    <label>
+                                        <input name="checkout-payment-type" type="radio" data-tab="#checkout-payment-type-1" checked />
+                                        <span>Credit / Debit Card</span>
+                                    </label>
+                                </div>
+                                <div class="order__step-radio-item">
+                                    <label>
+                                        <input name="checkout-payment-type" type="radio" data-tab="#checkout-payment-type-2" />
+                                        <span>Paypal</span>
+                                    </label>
+                                </div>
+                            </div>
+                            <div id="checkout-payment-type-1" class="order__form checkout-payment-type" style="display: none;">
                                 <div class="order__form-row order__form-row--full">
                                     <div class="input-field input-field--label">
                                         <input type="text" placeholder="xxxx xxxx xxxx xxxx">
@@ -429,6 +443,20 @@
                                     <div class="input-field input-field--label">
                                         <input type="text" placeholder="xxx">
                                         <label>CCV</label>
+                                    </div>
+                                </div>
+                                <div class="order__form-row order__form-row--full">
+                                    <div class="input-field input-field--label">
+                                        <textarea class="materialize-textarea" placeholder="Please Enter"></textarea>
+                                        <label>Comment</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="checkout-payment-type-2" class="order__form checkout-payment-type" style="display: none;">
+                                <div class="order__form-row order__form-row--full">
+                                    <div class="input-field input-field--label">
+                                        <textarea class="materialize-textarea" placeholder="Please Enter"></textarea>
+                                        <label>Comment</label>
                                     </div>
                                 </div>
                             </div>

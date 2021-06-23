@@ -472,6 +472,10 @@ a.order__summary-calculate-shipping:not(.btn) {
 	margin-top: 1.5em;
 }
 
+.checkout-payment-type {
+	margin-top: 1.5em;
+}
+
 .order__row-card {
 	display: flex;
 	justify-content: space-between;
@@ -800,7 +804,8 @@ a.order__item:not(.btn) { // fix a
 		margin-bottom: 40px;
 	}
 
-	.order__step-radio--shipping-required {
+	.order__step-radio--shipping-required,
+	.order__step-radio--payment-type {
 		display: block;
 
 		.order__step-radio-item + .order__step-radio-item {
