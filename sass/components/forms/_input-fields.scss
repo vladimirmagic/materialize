@@ -437,7 +437,7 @@ textarea {
   }
 }
 
-.input-field--filled {
+.input-field--filled:not(.input-field--select) {
   input {
     @extend .input-focused;
   }
@@ -448,6 +448,12 @@ textarea {
 
   .caret {
     display: none;
+  }
+}
+
+.input-field--select:not(.input-field--filled) {
+  input {
+    color: $color-font-grey;
   }
 }
 
