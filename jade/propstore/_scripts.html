@@ -134,6 +134,19 @@
 			shippingAddressCheckbox.addEventListener('change', accountShippingAddress);
 			accountShippingAddress();
 		}
+
+		// WATCHLIST
+		const watchlistHearts = document.querySelectorAll('.account__watchlist .heart');
+		const watchlistForm = document.querySelector('.modal-watchlist__buttons');
+		if (watchlistHearts && watchlistHearts.length && watchlistForm) {
+			watchlistHearts.forEach(watchlistHeart => {
+				if (watchlistHeart.dataset && watchlistHeart.dataset.href) {
+					watchlistHeart.addEventListener('click', () => {
+						watchlistForm.setAttribute('action', watchlistHeart.dataset.href);
+					});
+				}
+			});
+		}
 		
 	});
 </script>

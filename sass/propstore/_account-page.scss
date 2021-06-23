@@ -57,6 +57,30 @@ a.account-page__suptitle:not(.btn) {
 	margin-top: 3em;
 }
 
+.account__watchlist {
+	padding-top: 0;
+	padding-bottom: 0;
+	background: #fff;
+}
+
+.modal-watchlist {
+	max-width: 720px;
+	text-align: center;
+
+	.modal-content {
+		padding-bottom: 4em;
+	}
+}
+
+.modal-watchlist__buttons {
+	.btn {
+		min-width: 192px;
+	}
+	.btn + .btn {
+		margin-left: 24px;
+	}
+}
+
 @media #{$medium-and-down} {
 	.account-page {
 		padding-top: 52px;
@@ -64,5 +88,14 @@ a.account-page__suptitle:not(.btn) {
 
 	.account-page__section {
 		padding: 0 1.5em 2em;
+	}
+
+	.modal-watchlist__buttons {
+		.btn {
+			min-width: 0;
+		}
+		.btn + .btn {
+			margin-left: 16px;
+		}
 	}
 }
