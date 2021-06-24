@@ -155,7 +155,25 @@
 				}
 			});
 		}
-		
+
+		/** REGISTER */
+		const modalRegisterForm = document.querySelector('.modal-register-form');
+		if (modalRegisterForm) {
+			modalRegisterForm.addEventListener('submit', (e) => {
+				e.preventDefault();
+				modalRegisterForm.classList.add('sync');
+				fetch(modalRegisterForm.action)
+					.then(response => response.text())
+					.then(html => {
+						// window.location.reload();
+						console.log('ok: ', html);
+					})
+					.catch(html => console.log('error: ', html))
+					.finally(() => {
+						modalRegisterForm.classList.remove('sync');
+					});
+			});
+		}
 	});
 </script>
 

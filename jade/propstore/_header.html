@@ -212,48 +212,109 @@
     </div>
 </header>
 
+<div id="modal-password" class="modal modal-register">
+    <div class="modal-header modal-header--sticky">
+        <a class="modal-close btn-flat btn--icon">
+            <i class='icon'><svg><use xlink:href="#close"></use></svg></i>
+        </a>
+    </div>
+    <form class="modal-content modal-password-form">
+        <div class="modal__title">Password Assistance</div>
+        <p>
+            Please enter the email address you use to sign into your account.
+        </p>
+
+        <div class="input-field input-field--label error">
+            <input type="email" placeholder="Please Enter">
+            <label>Email</label>
+            <div class="input-field__helper">Sorry, we couldnt find your email in our database</div>
+        </div>
+
+        <div class="input-field g-recaptcha-field error">
+            <div id="g-recaptcha" class="g-recaptcha" name="code"></div>
+            <div class="input-field__helper">Please confirm</div>
+        </div>
+
+        <button type="submit" class="waves-effect waves-light btn modal-register__submit">
+            <span class='btn__title'>Submit</span>
+            <i class='icon'><svg><use xlink:href="#arrow-right"></use></svg></i>
+            <div class="preloader-wrapper active">
+                <div class="spinner-layer spinner-white-only">
+                    <div class="circle-clipper left">
+                        <div class="circle"></div>
+                    </div><div class="gap-patch">
+                        <div class="circle"></div>
+                    </div><div class="circle-clipper right">
+                        <div class="circle"></div>
+                    </div>
+                </div>
+            </div>
+        </button>
+    </form>
+</div>
+
 <div id="modal-signin" class="modal modal-register">
     <div class="modal-header modal-header--sticky">
         <a class="modal-close btn-flat btn--icon">
             <i class='icon'><svg><use xlink:href="#close"></use></svg></i>
         </a>
     </div>
-    <div class="modal-content">
+    <form class="modal-content modal-signin-form">
+        <!-- <div class="modal-register__loader">
+            <div class="preloader-wrapper active">
+                <div class="spinner-layer">
+                    <div class="circle-clipper left">
+                        <div class="circle"></div>
+                    </div><div class="gap-patch">
+                        <div class="circle"></div>
+                    </div><div class="circle-clipper right">
+                        <div class="circle"></div>
+                    </div>
+                </div>
+            </div>
+        </div> -->
         <div class="modal__title">Sign In</div>
-        <a class="waves-effect waves-light btn btn--facebook">
-            <i class='icon'>
-                <svg width="10" height="18" viewBox="0 0 10 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M6.39703 17.9969V9.80092H9.16203L9.57303 6.59193H6.39703V4.54792C6.39703 3.62192 6.65503 2.98793 7.98403 2.98793H9.66803V0.126925C8.84867 0.0391161 8.02508 -0.00328216 7.20103 -7.49744e-05C4.75703 -7.49744e-05 3.07903 1.49193 3.07903 4.23093V6.58593H0.332031V9.79492H3.08503V17.9969H6.39703Z" fill="white"/>
-                </svg>                  
-            </i>
+        <a class="waves-effect waves-light btn btn--facebook modal-register__facebook modal-close">
+            <i class='icon'><svg><use xlink:href="#facebook"></use></svg></i>
             <span class='btn__title'>Sign in with Facebook</span>
         </a>
 
-        <div class="input-field">
-            <input id="register_email" type="email" class="validate">
-            <label for="register_email">Email</label>
-            <span class="helper-text" data-error="Invalid email" data-success="Valid email"></span>
+        <div class="input-field input-field--label error">
+            <input type="email" placeholder="Please Enter">
+            <label>Email</label>
+            <div class="input-field__helper">The email you entered is not valid</div>
         </div>
 
-        <div class="input-field">
-            <input id="register_password" type="password">
-            <label for="register_password">Password</label>
-            <span class="helper-text" data-error="Invalid password" data-success="Valid password"></span>
+        <div class="input-field input-field--label">
+            <input type="password" placeholder="Please Enter">
+            <label>Password</label>
+            <div class="input-field__helper">Password is required</div>
         </div>
 
         <div class="modal-register__forgot">
-            <a class="btn-flat btn--link" href="#">Forgot password?</a>
+            <a class="btn-flat btn--link modal-trigger modal-close" href="#modal-password">Forgot password?</a>
         </div>
 
-        <a class="waves-effect waves-light btn">
+        <button type="submit" class="waves-effect waves-light btn modal-register__submit">
             <span class='btn__title'>Sign in</span>
             <i class='icon'><svg><use xlink:href="#arrow-right"></use></svg></i>
-        </a>
+            <div class="preloader-wrapper active">
+                <div class="spinner-layer spinner-white-only">
+                    <div class="circle-clipper left">
+                        <div class="circle"></div>
+                    </div><div class="gap-patch">
+                        <div class="circle"></div>
+                    </div><div class="circle-clipper right">
+                        <div class="circle"></div>
+                    </div>
+                </div>
+            </div>
+        </button>
 
         <div class="modal-register__switch">
             Don’t have an account? <a class="modal-trigger modal-close" href="#modal-register">Register</a>
         </div>
-    </div>
+    </form>
 </div>
 
 <div id="modal-register" class="modal modal-register">
@@ -262,48 +323,66 @@
             <i class='icon'><svg><use xlink:href="#close"></use></svg></i>
         </a>
     </div>
-    <div class="modal-content">
+    <form class="modal-content modal-register-form" action="#register">
         <div class="modal__title">Register</div>
-        <a class="waves-effect waves-light btn btn--facebook">
-            <i class='icon'>
-                <svg width="10" height="18" viewBox="0 0 10 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M6.39703 17.9969V9.80092H9.16203L9.57303 6.59193H6.39703V4.54792C6.39703 3.62192 6.65503 2.98793 7.98403 2.98793H9.66803V0.126925C8.84867 0.0391161 8.02508 -0.00328216 7.20103 -7.49744e-05C4.75703 -7.49744e-05 3.07903 1.49193 3.07903 4.23093V6.58593H0.332031V9.79492H3.08503V17.9969H6.39703Z" fill="white"/>
-                </svg>                  
-            </i>
+        <a class="waves-effect waves-light btn btn--facebook modal-register__facebook modal-close">
+            <i class='icon'><svg><use xlink:href="#facebook"></use></svg></i>
             <span class='btn__title'>Register with Facebook</span>
         </a>
 
-        <div class="input-field">
-            <input id="register_email" type="email" class="validate">
-            <label for="register_email">Email</label>
-            <span class="helper-text" data-error="Invalid email" data-success="Valid email"></span>
+        <div class="input-field input-field--label error">
+            <input type="email" placeholder="Please Enter">
+            <label>Email</label>
+            <div class="input-field__helper">The email you entered is not valid</div>
         </div>
 
-        <div class="input-field">
-            <input id="register_password" type="password">
-            <label for="register_password">Password</label>
-            <span class="helper-text" data-error="Invalid password" data-success="Valid password"></span>
+        <div class="input-field input-field--label error">
+            <input type="password" placeholder="Please Enter">
+            <label>Password</label>
+            <div class="input-field__helper">Password is required</div>
         </div>
 
-        <div class="input-field">
-            <input id="register_name" type="text">
-            <label for="register_name">Full name</label>
-            <span class="helper-text" data-error="Invalid name" data-success="Valid name"></span>
+        <div class="input-field input-field--label error">
+            <input type="password" placeholder="Please Enter">
+            <label>Confirm Password</label>
+            <div class="input-field__helper">Confirm Password is required</div>
+        </div>
+
+        <div class="input-field input-field--label error">
+            <input type="text" placeholder="Please Enter">
+            <label>Full name</label>
+            <div class="input-field__helper">The full name you entered is not valid</div>
         </div>
 
         <div class="modal-register__terms">
             By signing up, you agree to our <a href="#terms">Terms of use</a> and <a href="#policy">Privacy Policy</a>
         </div>
 
-        <a class="waves-effect waves-light btn">
+        <div class="input-field g-recaptcha-field error">
+            <div id="g-recaptcha" class="g-recaptcha" name="code"></div>
+            <div class="input-field__helper">Please confirm</div>
+        </div>
+
+        <button type="submit" class="waves-effect waves-light btn modal-register__submit">
             <span class='btn__title'>Register</span>
             <i class='icon'><svg><use xlink:href="#arrow-right"></use></svg></i>
-        </a>
+            <div class="preloader-wrapper active">
+                <div class="spinner-layer spinner-white-only">
+                    <div class="circle-clipper left">
+                        <div class="circle"></div>
+                    </div><div class="gap-patch">
+                        <div class="circle"></div>
+                    </div><div class="circle-clipper right">
+                        <div class="circle"></div>
+                    </div>
+                </div>
+            </div>
+        </button>
 
         <div class="modal-register__switch">
             Already have an account? <a class="modal-trigger modal-close" href="#modal-signin">Sign In</a>
         </div>
-    </div>
+    </form>
 </div>
 
 <div id="modal-bag" class="modal modal-bag">
