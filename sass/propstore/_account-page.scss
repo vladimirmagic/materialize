@@ -89,31 +89,37 @@ a.account-page__suptitle:not(.btn) {
 .account__orders-inner {
 	max-width: $width-4cards;
 	margin: 0 auto;
-	overflow-x: auto;
 }
 
-.account__orders-auction {
-	position: relative;
+.account__orders-auction,
+.account__orders-buy {
+	margin-bottom: 2.5em;
 }
 
-.account__orders-auction-tbody {
+.account__orders-tbody {
 	& + & {
 		border-top: 1px solid $color-grey;
 	}
 
-	.tr:nth-child(even) {
+	.tr + .tr:not(.tr-nobrd) {
 		.td {
 			border-top: 1px solid #eee;
-			border-bottom: 1px solid #eee;
+		}
+	}
+
+	.tr-nobrd {
+		.td {
+			height: 1.5rem;
+			padding-top: 0;
 		}
 	}
 }
 
-.account__orders-auction-td-first {
+.account__orders-td-first {
 	padding-left: 2.5rem;
 }
 
-.account__orders-auction-td-last {
+.account__orders-td-last {
 	padding-right: 2.5rem;
 }
 
@@ -125,7 +131,7 @@ a.account-page__suptitle:not(.btn) {
 	font-weight: 500;
 }
 
-.account__orders-auction-tbody-subtotal {
+.account__orders-tbody-subtotal {
 	@extend .h6;
 	color: #fff;
 	background: $color-turquoise;
@@ -135,6 +141,48 @@ a.account-page__suptitle:not(.btn) {
 		padding: 0 !important;
 		text-align: center;
 		vertical-align: middle;
+	}
+}
+
+.account__orders-auction-note {
+	margin-bottom: 5em;
+}
+
+.account__orders-note {
+	max-width: 60%;
+	margin-bottom: 1.75em;
+}
+
+.account__orders-info {
+	margin-bottom: 1.25em;
+}
+
+.account__orders-info-row {
+	display: flex;
+	margin-bottom: .5em;
+}
+
+.account__orders-info-label {
+	flex: 0 1 6em;
+	font-weight: 500;
+}
+
+.account__orders-buy-td-title {
+	width: 70%;
+}
+
+a.account__orders-buy-link:not(.btn) {
+	font-weight: 400;
+	color: $primary-color;
+
+	&:before {
+		display: none;
+	}
+}
+
+@media #{$large-and-down} {
+	.account__orders-note {
+		max-width: 100%;
 	}
 }
 
@@ -156,13 +204,17 @@ a.account-page__suptitle:not(.btn) {
 		}
 	}
 
+	.account__orders {
+		overflow-x: auto;
+	}
+
 	// .account__orders-auction {
 	// 	thead {
 	// 		display: none;
 	// 	}
 	// }
 
-	// .account__orders-auction-tbody {
+	// .account__orders-tbody {
 	// 	.tr {
 	// 		display: flex;
 	// 		justify-content: space-between;

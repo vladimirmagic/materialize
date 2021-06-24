@@ -37,11 +37,22 @@
 	text-align: right;
 }
 
+.tr-b, .td-b {
+	font-weight: 500;
+}
+
 .td {
 	tbody .tr:first-child & {
 		padding-top: 3rem;
 	}
 	tbody .tr:last-child & {
 		padding-bottom: 3rem;
+	}
+
+	.tr-top & {
+		padding-top: 2rem;
+	}
+	.tr-bottom & {
+		padding-bottom: 2rem;
 	}
 }
