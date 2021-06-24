@@ -13,7 +13,7 @@
 	cursor: pointer;
 	transition: all .3s ease-in-out;
 
-	&.card-auction--right {
+	&:nth-child(even) {
 		border-radius: 6px 140px 6px 6px;
 	}
 
@@ -86,7 +86,7 @@ a.card-auction:not(.btn) { // fix a
 	.card-auction {
 		border-radius: 100px 6px 6px 6px;
 		
-		&.card-auction--right {
+		&:nth-child(even) {
 			border-radius: 6px 100px 6px 6px;
 		}
 	}
