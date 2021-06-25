@@ -107,7 +107,9 @@ header {
 	}
 }
 
-.modal-register-form {
+.modal-password-form,
+.modal-register-form,
+.modal-signin-form {
 	&.sync {
 		pointer-events: none;
 

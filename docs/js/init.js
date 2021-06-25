@@ -47,7 +47,7 @@
 		// $('.dropdown-trigger:not(.header__account):not(.card__price-i)').dropdown();
 		$('.slider').slider();
 		$('.materialboxed').materialbox();
-		$('.modal').modal();
+		$('.modal:not(.modal-register)').modal();
 		$('.datepicker').datepicker();
 		$('.tabs').tabs();
 		$('.timepicker').timepicker();
