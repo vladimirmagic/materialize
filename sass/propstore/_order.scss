@@ -34,10 +34,7 @@
 }
 
 .order-header__logo {
-    svg {
-        width: 200px;
-        height: 48px;
-    }
+    @extend .header__logo;
 }
 
 .order {
