@@ -154,7 +154,8 @@ document.addEventListener('DOMContentLoaded', () => {
 	function menuOpen (e) {
 		if (menu) menu.classList.add('active');
 		if (menuItems) menuItems.forEach(item => item.classList.remove('active'));
-		e.target.classList.add('active');
+		const target = e.target.closest('.header__menu-link');
+		target.classList.add('active');
 		document.addEventListener('click', menuClickOutside);
 	}
 	function menuClose () {
@@ -178,7 +179,8 @@ document.addEventListener('DOMContentLoaded', () => {
 		}
 		menuItems.forEach(item => {
 			item.addEventListener('click', click);
-			item.addEventListener('mousemove', move);
+			const handle = item.querySelector('.header__menu-link-handle');
+			if (handle) handle.addEventListener('mousemove', move);
 		});
 		menu.addEventListener('mouseleave', menuClose);
 	}

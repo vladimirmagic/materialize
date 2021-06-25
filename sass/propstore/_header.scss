@@ -239,6 +239,11 @@ header {
 	}
 }
 
+.header__menu-link-handle {
+	display: inline-block;
+	height: 70%;
+}
+
 .header__menu-level1 {
 	display: block !important;
 	position: absolute;
