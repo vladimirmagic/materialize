@@ -28,9 +28,12 @@
 }
 
 .article__paragraph {
-    margin-bottom: 2.5em;
+    margin-bottom: 1.25em;
     &:first-child {
         margin-top: 0;
+    }
+    &.article__paragraph--big {
+        margin-bottom: 1.45em;
     }
 }
 
