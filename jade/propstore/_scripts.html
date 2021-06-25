@@ -14,16 +14,182 @@
 		.then(html => svgSprite.innerHTML = html);
 
 	document.addEventListener('DOMContentLoaded', () => {
-		const addressForm = document.querySelector('.order__shipping-address-add');
-		const addressFormButtonOpen = document.querySelector('.order__address-form-button-open');
-		const addressFormButtonClose = document.querySelector('.order__address-form-button-close');
-		if (addressForm && addressFormButtonOpen && addressFormButtonClose) {
-			addressFormButtonOpen.addEventListener('click', () => {
-				addressForm.classList.add('order__shipping-address-add--opened');
+
+		/** CHECKOUT */
+
+		// STEPS
+		const checkoutSteps = document.querySelectorAll('.order-step');
+		const checkoutStepTabs = document.querySelectorAll('.checkout-step-tab');
+		const checkoutStepActive = document.querySelector('input[name="checkout-step"]');
+		if (checkoutStepActive && checkoutSteps && checkoutSteps.length && checkoutStepTabs && checkoutStepTabs.length) {
+			checkoutSteps.forEach(checkoutStep => {
+				if (checkoutStep.dataset && checkoutStep.dataset.step) {
+					checkoutStep.addEventListener('click', () => {
+						checkoutStepActive.value = checkoutStep.dataset.step;
+						checkoutStepTabs.forEach(checkoutStepTab => checkoutStepTab.style.display = 'none');
+						const checkoutStepTab = document.getElementById('checkout-step-tab-' + checkoutStep.dataset.step);
+						if (checkoutStepTab) checkoutStepTab.style.display = 'block';
+					});
+				}
 			});
-			addressFormButtonClose.addEventListener('click', () => {
-				addressForm.classList.remove('order__shipping-address-add--opened');
-				addressForm.scrollIntoView({behavior: 'smooth', block: 'nearest'});
+
+			const checkoutStepTab = document.getElementById('checkout-step-tab-' + checkoutStepActive.value);
+			if (checkoutStepTab) checkoutStepTab.style.display = 'block';
+		}
+
+		// SHIPPING
+		const shippingRequired = document.querySelectorAll('input[name="checkout-shipping-required"]');
+		const shippingRequiredTabs = document.querySelectorAll('.checkout-shipping-tab');
+		if (shippingRequired && shippingRequired.length && shippingRequiredTabs && shippingRequiredTabs.length) {
+			shippingRequired.forEach(input => {
+				if (input.dataset && input.dataset.tab) {
+					input.addEventListener('change', () => {
+						shippingRequiredTabs.forEach(shippingRequiredTab => shippingRequiredTab.style.display = 'none');
+						const shippingRequiredTab = document.querySelector(input.dataset.tab);
+						if (shippingRequiredTab) shippingRequiredTab.style.display = 'block';
+					});
+				}
+			});
+		}
+
+		const shippingRequiredChecked = document.querySelector('input[name="checkout-shipping-required"]:checked');
+		if (shippingRequiredChecked && shippingRequiredChecked.dataset && shippingRequiredChecked.dataset.tab) {
+			const shippingRequiredTab = document.querySelector(shippingRequiredChecked.dataset.tab);
+			if (shippingRequiredTab) shippingRequiredTab.style.display = 'block';
+		}
+
+		// PAYMENTS PLAN
+		const paymentsPlans = document.querySelectorAll('.checkout-payments-plan input');
+		if (paymentsPlans && paymentsPlans.length) {
+			paymentsPlans.forEach(paymentsPlan => {
+				if (paymentsPlan.dataset && paymentsPlan.dataset.tab) {
+					paymentsPlan.addEventListener('change', () => {
+						const container = paymentsPlan.closest('.checkout-payments-plan');
+						if (container) {
+							const paymentsPlanTabs = container.querySelectorAll('.payments-plan-tab');
+							if (paymentsPlanTabs && paymentsPlanTabs.length) {
+								paymentsPlanTabs.forEach(paymentsPlanTab => paymentsPlanTab.style.display = 'none');
+								const paymentsPlanTab = document.querySelector(paymentsPlan.dataset.tab);
+								if (paymentsPlanTab) paymentsPlanTab.style.display = 'block';
+							}
+						}
+					});
+				}
+			});
+		}
+
+		const paymentsPlansChecked = document.querySelectorAll('.checkout-payments-plan input:checked');
+		if (paymentsPlansChecked && paymentsPlansChecked.length) {
+			paymentsPlansChecked.forEach(paymentsPlan => {
+				if (paymentsPlan.dataset && paymentsPlan.dataset.tab) {
+					const paymentsPlanTab = document.querySelector(paymentsPlan.dataset.tab);
+					if (paymentsPlanTab) paymentsPlanTab.style.display = 'block';
+				}
+			});
+		}
+
+		// PAYMENT TYPE
+		const paymentTypes = document.querySelectorAll('input[name="checkout-payment-type"]');
+		const paymentTypeTabs = document.querySelectorAll('.checkout-payment-type');
+		if (paymentTypes && paymentTypes.length && paymentTypeTabs && paymentTypeTabs.length) {
+			paymentTypes.forEach(paymentType => {
+				if (paymentType.dataset && paymentType.dataset.tab) {
+					paymentType.addEventListener('change', () => {
+						paymentTypeTabs.forEach(paymentTypeTab => paymentTypeTab.style.display = 'none');
+						const paymentTypeTab = document.querySelector(paymentType.dataset.tab);
+						if (paymentTypeTab) paymentTypeTab.style.display = 'block';
+					});
+				}
+			});
+			const paymentTypeChecked = document.querySelector('input[name="checkout-payment-type"]:checked');
+			if (paymentTypeChecked && paymentTypeChecked.dataset && paymentTypeChecked.dataset.tab) {
+				const paymentTypeTab = document.querySelector(paymentTypeChecked.dataset.tab);
+				if (paymentTypeTab) paymentTypeTab.style.display = 'block';
+			}
+		}
+
+		// BILLING ADDRESS
+		const billingAddressCheckbox = document.querySelector('input[name="checkout-billing-address"]');
+		const billingAddressForm = document.querySelector('.checkout-billing-address-form');
+		if (billingAddressCheckbox && billingAddressForm) {
+			function checkoutBillingAddress () {
+				billingAddressForm.style.display = billingAddressCheckbox.checked ? 'none' : 'block';
+			}
+			billingAddressCheckbox.addEventListener('change', checkoutBillingAddress);
+			checkoutBillingAddress();
+		}
+
+		// RESALE CERTIFICATE
+		const resaleСertificateCheckbox = document.querySelector('input[name="checkout-resale-certificate"]');
+		const resaleСertificateForm = document.querySelector('.checkout-resale-certificate-form');
+		if (resaleСertificateCheckbox && resaleСertificateForm) {
+			function checkoutResaleСertificate () {
+				resaleСertificateForm.style.display = resaleСertificateCheckbox.checked ? 'block' : 'none';
+			}
+			resaleСertificateCheckbox.addEventListener('change', checkoutResaleСertificate);
+			checkoutResaleСertificate();
+		}
+
+		/** ACCOUNT */
+
+		// SHIPPING ADDRESS
+		const shippingAddressCheckbox = document.querySelector('input[name="account-billing-address-use-as-shipping"]');
+		const shippingAddressForm = document.querySelector('.account-shipping-address-form');
+		if (shippingAddressCheckbox && shippingAddressForm) {
+			function accountShippingAddress () {
+				shippingAddressForm.style.display = shippingAddressCheckbox.checked ? 'none' : 'block';
+			}	
+			shippingAddressCheckbox.addEventListener('change', accountShippingAddress);
+			accountShippingAddress();
+		}
+
+		// WATCHLIST
+		const watchlistHearts = document.querySelectorAll('.account__watchlist .heart');
+		const watchlistForm = document.querySelector('.modal-watchlist__buttons');
+		if (watchlistHearts && watchlistHearts.length && watchlistForm) {
+			watchlistHearts.forEach(watchlistHeart => {
+				if (watchlistHeart.dataset && watchlistHeart.dataset.href) {
+					watchlistHeart.addEventListener('click', () => {
+						watchlistForm.setAttribute('action', watchlistHeart.dataset.href);
+					});
+				}
+			});
+		}
+
+		/** REGISTER */
+		$('#modal-signin').modal({ // load form on modal open
+            onOpenStart: function (el) {
+				el.classList.add('sync');
+                $.post('#/ajax/modalSignin.action')
+				.done(data => {
+					$('.modal-signin-form').html(data);
+					M.updateTextFields();
+				})
+				.fail(data => {
+					$('.modal-signin-form').html(data);
+				})
+				.always(data => {
+					$('.modal-signin-form').html(data.responseText);
+					M.updateTextFields();
+					el.classList.remove('sync');
+				});
+            }
+        });
+		const modalRegisterForm = document.querySelector('.modal-register-form');
+		if (modalRegisterForm) {
+			modalRegisterForm.addEventListener('submit', (e) => {
+				e.preventDefault();
+				modalRegisterForm.classList.add('sync');
+				fetch(modalRegisterForm.action)
+					.then(response => response.text())
+					.then(html => {
+						// window.location.reload();
+						console.log('ok: ', html);
+					})
+					.catch(html => console.log('error: ', html))
+					.finally(() => {
+						modalRegisterForm.classList.remove('sync');
+					});
 			});
 		}
 	});

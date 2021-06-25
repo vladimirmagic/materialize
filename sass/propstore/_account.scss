@@ -1,0 +1,137 @@
+.account {
+	padding-top: 80px;
+	padding-bottom: 24px;
+	padding-left: 40px;
+	padding-right: 40px;
+	text-align: center;
+}
+
+.account__title {
+	margin-bottom: .5em;
+}
+
+.account__hello {
+	margin-bottom: 2.5em;
+}
+
+.account__cards-inner {
+	max-width: $width-4cards + $card-margin;
+	margin: 0 auto;
+	transform: translateX($card-margin / 2);
+}
+
+.account__cards-list {
+	display: flex;
+	flex-wrap: wrap;
+}
+
+.account__card {
+	position: relative;
+	display: block;
+	width: $card-width;
+	min-width: $card-width;
+	margin: $card-margin $card-margin 0 0;
+	padding: 56px 40px 48px;
+	text-align: center;
+    background: #ffffff;
+	box-shadow: $shadow-base;
+	border-radius: 6px;
+	overflow: hidden;
+	cursor: pointer;
+	transition: all .3s ease-in-out;
+	backface-visibility: hidden;
+	will-change: transform;
+
+	&:hover {
+		transform: translate3d(0, -2px, 0);
+		box-shadow: $shadow-base-hover;
+	}
+}
+
+a.account__card:not(.btn) { // fix a
+	font-weight: 300;
+	text-decoration: none;
+	background: #fff;
+
+	&:before {
+		display: none;
+	}
+}
+
+.account__card-img {
+	width: 122px;
+	height: 122px;
+	margin-bottom: 2em;
+}
+
+.account__card-title {
+	margin-bottom: .6em;
+}
+
+.account__buttons {
+	margin-top: 100px;
+	text-align: center;
+}
+
+.account__button-sign-out {
+	margin-right: 8px !important;
+
+	svg {
+		transform: rotate(180deg);
+	}
+}
+
+@media #{$breakpoint-4cards} {
+	.account__cards-inner {
+		max-width: $width-4cards-m + $card-margin-m;
+		transform: translateX($card-margin-m / 2);
+	}
+	
+	.account__cards-list {
+		margin-left: -$card-margin-m;
+		transform: translate($card-margin-m, -$card-margin-m);
+	}
+
+	.account__card {
+        width: $card-width-m;
+        min-width: $card-width-m;
+        margin: $card-margin-m $card-margin-m 0 0;
+    }
+}
+
+@media only screen and (max-width: #{$width-4cards-m + 80}) {
+	.account__cards-inner {
+		max-width: $card-width-m * 3 + $card-margin-m * 3;
+	}
+}
+
+@media #{$large-and-down} {
+	.account__cards-inner {
+		transform: none;
+	}
+}
+
+@media #{$medium-and-down} {
+	.account {
+		padding-top: 52px;
+		padding-left: 24px;
+		padding-right: 24px;
+	}
+
+	.account__card {
+		width: 50%;
+		max-width: calc(50% - #{$card-margin-m});
+		min-width: 0;
+	}
+
+	.account__buttons {
+		margin-top: 60px;
+	}
+}
+
+@media #{$small-and-down} {
+	.account__card {
+		width: 100%;
+		max-width: none;
+	}
+}

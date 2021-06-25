@@ -70,6 +70,7 @@ a.card:not(.btn) { // fix a
 .card-blog__img {
     @extend .card__img;
     max-height: 260px;
+	background-size: cover;
 }
 
 .card__featured {

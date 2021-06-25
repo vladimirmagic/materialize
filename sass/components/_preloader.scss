@@ -86,6 +86,10 @@
   border-color: #0f9d58;
 }
 
+.spinner-white-only {
+  border-color: #fff;
+}
+
 /**
  * IMPORTANT NOTE ABOUT CSS ANIMATION PROPERTIES (keanulee):
  *
@@ -127,7 +131,8 @@
 .active .spinner-layer.spinner-blue-only,
 .active .spinner-layer.spinner-red-only,
 .active .spinner-layer.spinner-yellow-only,
-.active .spinner-layer.spinner-green-only {
+.active .spinner-layer.spinner-green-only,
+.active .spinner-layer.spinner-white-only {
   /* durations: 4 * ARCTIME */
   opacity: 1;
   -webkit-animation: fill-unfill-rotate 5332ms cubic-bezier(0.4, 0.0, 0.2, 1) infinite both;

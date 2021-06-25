@@ -202,7 +202,8 @@ textarea.materialize-textarea {
   margin-top: 1rem;
   margin-bottom: 1rem;
 
-  & > label {
+  & > label,
+  .file-path-wrapper label {
     position: absolute;
     top: 0;
     left: 16px;
@@ -436,7 +437,7 @@ textarea {
   }
 }
 
-.input-field--filled {
+.input-field--filled:not(.input-field--select) {
   input {
     @extend .input-focused;
   }
@@ -447,6 +448,41 @@ textarea {
 
   .caret {
     display: none;
+  }
+}
+
+.input-field--select:not(.input-field--filled) {
+  input {
+    color: $color-font-grey;
+  }
+}
+
+.input-field__helper {
+  display: none;
+  margin-top: .5em;
+  font-size: 14px;
+  line-height: 1.2;
+}
+
+.input-field.error {
+  input:not(.browser-default) {
+    @extend .input-focused;
+    border: 2px solid $color-red !important;
+  }  
+  .input-field__helper {
+    display: block;
+    color: $color-red;
+  }
+}
+
+.input-field.valid {
+  input:not(.browser-default) {
+    @extend .input-focused;
+    border: 2px solid $color-green;
+  }  
+  .input-field__helper {
+    display: block;
+    color: $color-green;
   }
 }
 

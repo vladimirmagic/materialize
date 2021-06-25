@@ -1,0 +1,229 @@
+.account-page {
+	padding-top: 80px;
+	padding-bottom: 24px;
+	text-align: center;
+}
+
+.account-page__suptitle {
+	display: inline-block;
+	margin-bottom: 1.5em;
+}
+
+a.account-page__suptitle:not(.btn) {
+	text-decoration: none;
+	
+	&:hover {
+		text-decoration: underline;
+	}
+}
+
+.account-page__title {
+	margin-bottom: 1em;
+}
+
+.account-page__section {
+	padding: 0 2.5em 2em;
+	margin-bottom: 2em;
+	border-bottom: 1px solid $color-grey;
+}
+
+.account-page__section-title {
+	margin-bottom: 2em;
+}
+
+.account-page__form {
+	max-width: 432px;
+	margin: 0 auto;
+	text-align: left;
+
+	.input-field + .input-field {
+		margin-top: 2.5em;
+	}
+}
+
+.account__address-type {
+	margin-bottom: 3em;
+
+	label {
+		display: flex;
+		margin-bottom: 24px;
+		font-size: 1em;
+		color: $color-base;
+		cursor: pointer;
+	}
+}
+
+.account__address-use-as-shipping {
+	margin-top: 3em;
+}
+
+.cards--account {
+	padding-top: 0;
+	padding-bottom: 0;
+	background: #fff;
+}
+
+.modal-watchlist {
+	max-width: 720px;
+	text-align: center;
+
+	.modal-content {
+		padding-bottom: 4em;
+	}
+}
+
+.modal-watchlist__buttons {
+	.btn {
+		min-width: 192px;
+	}
+	.btn + .btn {
+		margin-left: 24px;
+	}
+}
+
+.account__orders {
+	@extend .content;
+	text-align: left;
+}
+
+.account__orders-inner {
+	max-width: $width-4cards;
+	margin: 0 auto;
+}
+
+.account__orders-auction,
+.account__orders-buy {
+	margin-bottom: 2.5em;
+}
+
+.account__orders-tbody {
+	& + & {
+		border-top: 1px solid $color-grey;
+	}
+
+	.tr + .tr:not(.tr-nobrd) {
+		.td {
+			border-top: 1px solid #eee;
+		}
+	}
+
+	.tr-nobrd {
+		.td {
+			height: 1.5rem;
+			padding-top: 0;
+		}
+	}
+}
+
+.account__orders-td-first {
+	padding-left: 2.5rem;
+}
+
+.account__orders-td-last {
+	padding-right: 2.5rem;
+}
+
+.account__orders-auction-td-title {
+	width: 13rem;
+}
+
+.account__orders-auction-tr-total {
+	font-weight: 500;
+}
+
+.account__orders-tbody-subtotal {
+	@extend .h6;
+	color: #fff;
+	background: $color-turquoise;
+
+	.td {
+		height: 60px;
+		padding: 0 !important;
+		text-align: center;
+		vertical-align: middle;
+	}
+}
+
+.account__orders-auction-note {
+	margin-bottom: 5em;
+}
+
+.account__orders-note {
+	max-width: 60%;
+	margin-bottom: 1.75em;
+}
+
+.account__orders-info {
+	margin-bottom: 1.25em;
+}
+
+.account__orders-info-row {
+	display: flex;
+	margin-bottom: .5em;
+}
+
+.account__orders-info-label {
+	flex: 0 1 6em;
+	font-weight: 500;
+}
+
+.account__orders-buy-td-title {
+	width: 70%;
+}
+
+a.account__orders-buy-link:not(.btn) {
+	font-weight: 400;
+	color: $primary-color;
+
+	&:before {
+		display: none;
+	}
+}
+
+@media #{$large-and-down} {
+	.account__orders-note {
+		max-width: 100%;
+	}
+}
+
+@media #{$medium-and-down} {
+	.account-page {
+		padding-top: 52px;
+	}
+
+	.account-page__section {
+		padding: 0 1.5em 2em;
+	}
+
+	.modal-watchlist__buttons {
+		.btn {
+			min-width: 0;
+		}
+		.btn + .btn {
+			margin-left: 16px;
+		}
+	}
+
+	.account__orders {
+		overflow-x: auto;
+	}
+
+	// .account__orders-auction {
+	// 	thead {
+	// 		display: none;
+	// 	}
+	// }
+
+	// .account__orders-tbody {
+	// 	.tr {
+	// 		display: flex;
+	// 		justify-content: space-between;
+	// 		flex-wrap: wrap;
+	// 		width: 100%;
+	// 	}
+	// }
+
+	// .account__orders-auction-td-title {
+	// 	width: 100%;
+	// }
+}

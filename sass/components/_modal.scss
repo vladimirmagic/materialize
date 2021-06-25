@@ -170,11 +170,27 @@
   background: white;
 }
 
-
-
 .modal-trigger {
   cursor: pointer;
 }
+
+.modal__loader {
+	display: none;
+	justify-content: center;
+	align-items: center;
+	width: 100%;
+	height: 440px;
+}
+
+.modal.sync {
+  .modal__loader {
+    display: flex;
+  }
+  .modal-content {
+    display: none;
+  }
+}
+
 
 @media #{$small-and-down} {
 	.modal {

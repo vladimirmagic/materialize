@@ -83,11 +83,42 @@ header {
 
 	.btn {
 		width: 100%;
-		margin-bottom: 32px;
 	}
 
 	.input-field {
 		margin-bottom: 20px;
+	}
+
+	.g-recaptcha-field {
+		margin-bottom: 2em;
+	}
+
+	.g-recaptcha {
+		display: inline-block;
+	}
+}
+
+.modal-register__submit {
+	.preloader-wrapper {
+		display: none;
+		width: 20px;
+		height: 20px;
+		margin: 0 0 -4px 16px;
+	}
+}
+
+.modal-password-form,
+.modal-register-form,
+.modal-signin-form {
+	&.sync {
+		pointer-events: none;
+
+		.modal-register__submit .icon {
+			display: none;
+		}
+		.preloader-wrapper {
+			display: inline-block;
+		}
 	}
 }
 
@@ -100,21 +131,35 @@ header {
 	.icon {
 		margin: -4px 8px 0 0;
 	}
+
+	&:hover {
+		background: #4e6bb3;
+	}
+}
+
+.modal-register__facebook {
+	margin-bottom: 2em;
 }
 
 .modal-register__terms {
+	margin-top: 2em;
+	margin-bottom: 2em;
 	font-size: 14px;
-	margin-top: -10px;
-	margin-bottom: 20px;
 }
 
 .modal-register__forgot {
-	margin-top: -20px;
-	margin-bottom: 40px;
+	margin-top: 2em;
+	margin-bottom: 3em;
 }
 
 .modal-register__switch {
+	margin-top: 2em;
+	margin-bottom: 2em;
 	font-size: 16px;
+}
+
+.modal-password-form.modal-content {
+	padding-bottom: 4em;
 }
 
 .header__col {
@@ -192,6 +237,11 @@ header {
 	&:first-child {
 		margin-left: 0;
 	}
+}
+
+.header__menu-link-handle {
+	display: inline-block;
+	height: 70%;
 }
 
 .header__menu-level1 {
@@ -363,6 +413,7 @@ header {
     svg {
         width: 200px;
         height: 48px;
+		fill: currentColor;
     }
 
 	&:before {

@@ -370,8 +370,13 @@
             'bag.html': 'jade/propstore/bag.jade',
             'checkout.html': 'jade/propstore/checkout.jade',
             'checkout-2.html': 'jade/propstore/checkout-2.jade',
+            'order-confirmed.html': 'jade/propstore/order-confirmed.jade',
             'blog.html': 'jade/propstore/blog.jade',
             'blog-single.html': 'jade/propstore/blog-single.jade',
+            'account.html': 'jade/propstore/account.jade',
+            'account-details.html': 'jade/propstore/account-details.jade',
+            'account-watchlist.html': 'jade/propstore/account-watchlist.jade',
+            'account-orders.html': 'jade/propstore/account-orders.jade',
           }
         }
       },
