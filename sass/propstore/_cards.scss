@@ -8,7 +8,11 @@
 
 .cards-blog {
     @extend .cards;
+    &.cards-blog--single {
+        padding-bottom: 120px;
+    }
 }
+
 
 .cards__inner {
 	max-width: $width-4cards + $card-margin;
@@ -28,6 +32,12 @@
 			margin: inherit;
 		}
 	}
+}
+
+.cards-blog__title {
+    text-align: center;
+    margin-top: 1em;
+    margin-bottom: 2.5em;
 }
 
 @media #{$breakpoint-4cards} {

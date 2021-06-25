@@ -430,6 +430,17 @@ button.btn-floating {
   }
 }
 
+// Extra small button
+.btn-extra-small {
+  @extend .btn;
+  height: $button-extra-small-height;
+  line-height: $button-extra-small-height;
+  font-size: $button-extra-small-font-size;
+  i {
+    font-size: $button-extra-small-icon-font-size;
+  }
+}
+
 // Block button
 .btn-block {
   display: block;

@@ -23,3 +23,14 @@
     ga('require', 'displayfeatures');
     ga('send', 'pageview');
     </script>
+    
+    <script>
+    const svgSprite = document.createElement('div');
+    svgSprite.id = 'svg-sprite';
+    document.body.append(svgSprite);
+    fetch('dist/defs/svg/sprite.defs.svg', {
+        // cache: 'force-cache',
+    })
+        .then(response => response.text())
+        .then(html => svgSprite.innerHTML = html);
+    </script>
