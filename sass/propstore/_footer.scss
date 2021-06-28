@@ -169,6 +169,7 @@ a:not(.btn).footer__terms-link {
 	display: inline-block;
 	margin: 0 .5em;
 	font-size: .8em;
+	transform: translateY(-1px);
 }
 
 @media #{$breakpoint-4cards} {
