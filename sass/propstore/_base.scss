@@ -1,6 +1,6 @@
 html, body {
     position: relative;
-	overflow-x: hidden; // fix x-scroll after sidenav
+	// overflow-x: hidden; // fix x-scroll after sidenav // breakes sticky(
 	font-size: 16px;
 	font-weight: 300;
 	color: $color-base;

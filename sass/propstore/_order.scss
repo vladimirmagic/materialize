@@ -66,6 +66,9 @@
 }
 
 .order__summary {
+	align-self: flex-start;
+	position: sticky;
+	top: 1em;
 	width: 100%;
 	max-width: 432px;
 	margin-left: 100px;
