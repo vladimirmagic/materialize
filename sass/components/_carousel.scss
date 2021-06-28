@@ -115,6 +115,21 @@
     &.arrow--next {
       right: 5%;
     }
+
+    &:before {
+      content: '';
+      position: absolute;
+      left: -1.2em;
+      right: -.8em;
+      top: -1em;
+      bottom: -1em;
+      border-radius: 5em;
+      transition: all .3s ease-in-out;
+    }
+  }
+
+  &:hover .arrow:before {
+    background: rgba(255,255,255,.15);
   }
 
   .indicators {
