@@ -157,22 +157,24 @@
 		}
 
 		/** REGISTER */
+		$('#modal-password').modal();
+		$('#modal-register').modal();
 		$('#modal-signin').modal({ // load form on modal open
             onOpenStart: function (el) {
-				el.classList.add('sync');
-                $.post('#/ajax/modalSignin.action')
-				.done(data => {
-					$('.modal-signin-form').html(data);
-					M.updateTextFields();
-				})
-				.fail(data => {
-					$('.modal-signin-form').html(data);
-				})
-				.always(data => {
-					$('.modal-signin-form').html(data.responseText);
-					M.updateTextFields();
-					el.classList.remove('sync');
-				});
+				// el.classList.add('sync');
+                // $.post('#')
+				// .done(data => {
+				// 	$('.modal-signin-form').html(data);
+				// 	M.updateTextFields();
+				// })
+				// .fail(data => {
+				// 	$('.modal-signin-form').html(data);
+				// })
+				// .always(data => {
+				// 	$('.modal-signin-form').html(data.responseText);
+				// 	M.updateTextFields();
+				// 	el.classList.remove('sync');
+				// });
             }
         });
 		const modalRegisterForm = document.querySelector('.modal-register-form');
