@@ -35,7 +35,7 @@ $img-ok-white: url("data:image/svg+xml,%3Csvg viewBox='0 0 12 12' xmlns='http://
     &:not(.filled-in) ~ span:not(.lever):after {
       content: '';
       position: absolute;
-      top: 0;
+      top: 2px;
       left: 0;
       width: 18px;
       height: 18px;
@@ -129,7 +129,7 @@ $img-ok-white: url("data:image/svg+xml,%3Csvg viewBox='0 0 12 12' xmlns='http://
 
     // Unchecked style
     &:not(:checked) ~ span:not(.lever):before {
-      top: 1px;
+      top: 2px;
       left: 4px;
       width: 12px;
       height: 12px;
@@ -143,14 +143,14 @@ $img-ok-white: url("data:image/svg+xml,%3Csvg viewBox='0 0 12 12' xmlns='http://
       width: 20px;
       background-color: transparent;
       border: 1px solid $radio-empty-color;
-      top: 0px;
+      top: 2px;
       z-index: 0;
     }
 
     // Checked style
     &:checked {
       ~ span:not(.lever):before {
-        top: 1px;
+        top: 2px;
         left: 4px;
         width: 12px;
         height: 12px;
@@ -160,7 +160,7 @@ $img-ok-white: url("data:image/svg+xml,%3Csvg viewBox='0 0 12 12' xmlns='http://
       }
 
       ~ span:not(.lever):after {
-        top: 0;
+        top: 2px;
         width: 20px;
         height: 20px;
         border: 2px solid $color-base;
