@@ -129,8 +129,7 @@ a:not(.btn).footer__menu-link {
 	margin-top: 40px;
 	margin-bottom: 40px;
 
-	a {
-		display: block;
+	div {
 		margin-top: 16px;
 
 		.icon {
@@ -215,7 +214,7 @@ a:not(.btn).footer__terms-link {
 		order: 1;
 		margin: 0 0 0 .5em;
 	
-		a {
+		div {
 			display: inline-block;
 			margin: 0 1em 0 0;
 
@@ -253,7 +252,7 @@ a:not(.btn).footer__terms-link {
 	.footer__links-banners {
 		margin: 0;
 	
-		a {
+		div {
 			display: block;
 			margin: 0 0 1em;
 		}
@@ -312,7 +311,7 @@ a:not(.btn).footer__terms-link {
 	.footer__links-banners {
 		margin: 2.5em -2em 2.5em -1em;
 	
-		a {
+		div {
 			display: inline-block;
 			margin: 0 1em 0 0;
 		}
