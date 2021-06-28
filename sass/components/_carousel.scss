@@ -105,6 +105,10 @@
 
     &:hover {
       opacity: 1;
+
+      &:before {
+        opacity: 0 !important;
+      }
     }
 
     &.arrow--prev {
@@ -124,12 +128,15 @@
       top: -1em;
       bottom: -1em;
       border-radius: 5em;
-      transition: all .3s ease-in-out;
+      background: rgba(0,0,0,.2);
+      border: 1px solid #fff;
+      opacity: 0;
+      transition: opacity .2s ease;
     }
   }
 
   &:hover .arrow:before {
-    background: rgba(255,255,255,.15);
+    opacity: 1;
   }
 
   .indicators {
