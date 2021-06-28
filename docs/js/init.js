@@ -273,7 +273,7 @@ document.addEventListener('DOMContentLoaded', () => {
 				if (thumbnail) {
 					productThumbnails.forEach(thumbnail => thumbnail.classList.remove('active'));
 					thumbnail.classList.add('active');
-					thumbnail.scrollIntoView({behavior: 'smooth', inline: 'center', block: 'nearest'});
+					// thumbnail.scrollIntoView({behavior: 'smooth', inline: 'center', block: 'nearest'}); // scrolls on page load(
 				}
 			},
 			onDestroy: function() {
