@@ -109,12 +109,13 @@ a:not(.btn).footer__menu-link {
 }
 
 .footer__links-follow {
+	margin: 0 -7px;
 	white-space: nowrap;
 
 	a {
-		width: 40px;
-		height: 40px;
-		line-height: 40px;
+		width: 37px;
+		height: 37px;
+		line-height: 35px;
 		color: #fff;
 
 		.icon {
