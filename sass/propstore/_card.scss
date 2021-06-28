@@ -131,7 +131,8 @@ a.card:not(.btn) { // fix a
 
 .card-blog__info {
     @extend .card__info;
-    max-height: 290px;
+    height: 100% !important;
+	max-height: 290px;
 }
 
 .card__description {
@@ -162,11 +163,6 @@ a.card:not(.btn) { // fix a
    	-webkit-box-orient: vertical;
 	max-height: 4em;
     margin-bottom: .6em;
-}
-
-.card-blog__info {
-    margin-bottom: .5em;
-    font-size: 14px;
 }
 
 .card-blog__meta {
@@ -338,8 +334,9 @@ a.card:not(.btn) { // fix a
     .card__info {
         height: $card-height-m - $card-width-m;
         padding: 20px;
+
         &.card-blog__info {
-            max-height: 290px;
+			padding: 1.5rem 1.5rem 2rem;
         }
     }
 

@@ -1,5 +1,5 @@
 .cards {
-	padding-top: 100px;
+	padding-top: 20px;
 	padding-bottom: 100px;
 	padding-left: 48px;
 	padding-right: 48px;
@@ -26,7 +26,7 @@
 
 	.card,
 	.card-auction {
-		margin: $card-margin $card-margin 0 0;
+		margin: 5em $card-margin 0 0;
 
 		& + & {
 			margin: inherit;
@@ -42,7 +42,7 @@
 
 @media #{$breakpoint-4cards} {
 	.cards {
-		padding-top: 60px;
+		padding-top: 0;
 		padding-bottom: 60px;
 
 		.card__actions {
@@ -59,11 +59,11 @@
 	
 	.cards__list {
 		margin-left: -$card-margin-m;
-		transform: translate($card-margin-m, -$card-margin-m);
+		transform: translateX($card-margin-m);
 	
 		.card,
 		.card-auction {
-			margin: $card-margin-m $card-margin-m 0 0;
+			margin: 5em $card-margin-m 0 0;
 		}
 	}
 }
@@ -83,6 +83,13 @@
 	.cards__inner {
 		transform: none;
 	}
+
+	.cards__list {
+		.card,
+		.card-auction {
+			margin-top: 3.75em;
+		}
+	}
 }
 
 @media #{$medium-and-down} {
@@ -93,6 +100,14 @@
         .card__info.card-blog__info {
             max-height: 256px;
         }
+
+		.cards__list {
+			.card,
+			.card-auction {
+				margin-top: 2.5em;
+			}
+		}
+
 		.card {
 			width: 50%;
 			max-width: calc(50% - #{$card-margin-m * 1.5});
@@ -126,7 +141,7 @@
 			font-size: 10px;
 		}
 	
-		.card__info {
+		.card__info:not(.card-blog__info) {
 			height: $card-height-s - $card-width-s;
 			padding: 20px 16px 16px;
 		}
@@ -196,8 +211,7 @@
         .card-blog {
             width: 100%;
             max-width: 100%;
-            margin-right: 32px;
-            margin-bottom: 24px;
+            margin-right: 24px;
         }
 	}
 
