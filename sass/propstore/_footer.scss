@@ -213,11 +213,11 @@ a:not(.btn).footer__terms-link {
 
 	.footer__links-banners {
 		order: 1;
-		margin: 0;
+		margin: 0 0 0 .5em;
 	
 		a {
 			display: inline-block;
-			margin: 0 16px 0 0;
+			margin: 0 1em 0 0;
 
 			.icon {
 				width: 110px;
@@ -255,7 +255,7 @@ a:not(.btn).footer__terms-link {
 	
 		a {
 			display: block;
-			margin: 0 0 16px;
+			margin: 0 0 1em;
 		}
 	}
 
@@ -310,11 +310,11 @@ a:not(.btn).footer__terms-link {
 	}
 
 	.footer__links-banners {
-		margin: 40px -32px;
+		margin: 2.5em -2em 2.5em -1em;
 	
 		a {
 			display: inline-block;
-			margin: 0 16px 0 0;
+			margin: 0 1em 0 0;
 		}
 	}
 }
