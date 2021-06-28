@@ -223,6 +223,15 @@
       background-color: rgba(255,255,255,.3);
       border-radius: 2px;
     }
+    
+    &:after {
+      content: '';
+      position: absolute;
+      height: 2em;
+      top: -1em;
+      left: 0;
+      right: 0;
+    }
   }
 
   .indicator-item + .indicator-item {
