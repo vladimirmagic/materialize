@@ -340,7 +340,7 @@
       this.el.focus();
 
       window.history.pushState(null, 'Close modal');
-      window.onpopstate = () => this.close();
+      window.onpopstate = () => this.close(true);
 
       return this;
     }
@@ -348,7 +348,7 @@
     /**
      * Close Modal
      */
-    close() {
+    close(isBack = false) {
       if (!this.isOpen) {
         return;
       }
@@ -377,6 +377,7 @@
       anim.remove(this.el);
       anim.remove(this.$overlay[0]);
       this._animateOut();
+      if (!isBack) window.history.back();
       return this;
     }
   }
