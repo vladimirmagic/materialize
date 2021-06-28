@@ -167,6 +167,10 @@ a.product__title:not(.btn) {
 	color: $color-base;
 	border-color: $color-grey;
 
+	.icon {
+		margin-top: -2px;
+	}
+
 	& + & {
 		margin-left: 24px;
 	}
