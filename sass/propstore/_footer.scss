@@ -29,8 +29,20 @@ footer {
 	color: #fff;
 
 	.icon {
-		width: 42px;
-		height: 42px;
+		width: 60px;
+		height: 60px;
+	}
+}
+
+a:not(.btn).footer__logo {
+	color: #fff;
+	
+	&:hover {
+		color: #ffffffcc;
+	}
+
+	&:active {
+		color: #fff;
 	}
 }
 
@@ -178,6 +190,11 @@ a:not(.btn).footer__terms-link {
 
 	.footer__column--logo {
 		flex-basis: 50px;
+
+		.icon {
+			width: 40px;
+			height: 40px;
+		}
 	}
 	
 	.footer__column--menu {
