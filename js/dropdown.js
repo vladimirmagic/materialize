@@ -171,10 +171,6 @@
     _handleClick(e) {
       e.preventDefault();
       this.open();
-      // setTimeout(() => {
-      //   // fix for 2 triggers with one dropdown
-      //   this.open();
-      // }, 50); // wait the first trigger close
     }
 
     _handleMouseEnter() {
@@ -571,6 +567,10 @@
     open() {
       if (this.isOpen) {
         return;
+      }
+      const dropdownStyle = getComputedStyle(this.dropdownEl);
+      if (dropdownStyle && dropdownStyle.display === 'block') {
+        return; // fix for mobile
       }
       this.isOpen = true;
 
