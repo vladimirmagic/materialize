@@ -65,6 +65,8 @@ a.card:not(.btn) { // fix a
 	background-size: contain;
 	background-repeat: no-repeat;
 	background-color: color("grey", "darken-4");
+	border-top-left-radius: 6px;
+	border-top-right-radius: 6px;
 }
 
 .card-blog__img {
