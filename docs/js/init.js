@@ -83,11 +83,7 @@
 
 document.addEventListener('DOMContentLoaded', () => {
 	// const out = document.createElement('div');
-	// out.style.position = 'fixed';
-	// out.style.bottom = '40px';
-	// out.style.left = '40px';
-	// out.style.background = 'white';
-	// out.style.zIndex = '2000';
+	// out.classList.add('out');
 	// document.body.append(out);
 
 	document.body.classList.add('loaded');

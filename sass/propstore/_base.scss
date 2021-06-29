@@ -36,6 +36,16 @@ fieldset {
 	display: none;
 }
 
+.out {
+	position: fixed;
+	bottom: 40px;
+	height: 40px;
+	left: 40px;
+	right: 40px;
+	background: white;
+	z-index: 2000;
+}
+
 @media #{$media-fullhd-up} {
 	$content-padding: calc(50% - 900px);
     .content {
