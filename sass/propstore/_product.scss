@@ -146,7 +146,8 @@ a.product__title:not(.btn) {
 }
 
 .product__price-i {
-	margin-top: 1px;
+	position: absolute;
+	transform: translate(-.5em, -.5em);
 	color: $color-turquoise;
 
 	.icon {
@@ -423,11 +424,5 @@ a.product__certificate:not(.btn) { // fix a
 		&:after {
 			min-width: 12px;
 		}
-	}
-
-	.product__price-i {
-		position: absolute;
-		top: -8px;
-		right: -16px;
 	}
 }

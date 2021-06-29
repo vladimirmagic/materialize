@@ -236,8 +236,7 @@ a.card:not(.btn) { // fix a
 
 .card__price-i {
 	position: absolute;
-	top: -14px;
-	right: -16px;
+	transform: translate(-.5em, -1.1em);
 	color: $color-turquoise;
 
 	.icon {
