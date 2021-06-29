@@ -148,7 +148,7 @@
     _handleModalCloseClick(e) {
       let $closeTrigger = $(e.target).closest('.modal-close');
       if ($closeTrigger.length) {
-        this.close();
+        this.close($closeTrigger.hasClass('modal-trigger')); // dont back history if another modal opened
       }
     }
 
@@ -339,7 +339,11 @@
       // Focus modal
       this.el.focus();
 
-      window.history.pushState(null, 'Close modal');
+      if (this._openingTrigger && this._openingTrigger.classList.contains('modal-close')) {
+        // dont push history if another modal opened
+      } else {
+        window.history.pushState(null, 'Close modal');
+      }
       window.onpopstate = () => this.close(true);
 
       return this;
