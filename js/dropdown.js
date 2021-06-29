@@ -170,11 +170,11 @@
 
     _handleClick(e) {
       e.preventDefault();
-      if (!this.isOpen)
-        setTimeout(() => {
-          // fix for 2 triggers with one dropdown
-          this.open();
-        }, 50); // wait the first trigger close
+      if (!this.isOpen) this.open;
+      // setTimeout(() => {
+      //   // fix for 2 triggers with one dropdown
+      //   this.open();
+      // }, 50); // wait the first trigger close
     }
 
     _handleMouseEnter() {
