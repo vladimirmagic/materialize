@@ -1,10 +1,10 @@
 $main-link-height: 72px;
 
 .sidenav {
-	height: 100%;
+	height: calc(100% + 200px); // hack 200px for mobile address bar
 	width: 95vw;
 	max-width: 360px;
-	padding: 0;
+	padding: 0 0 200px;
 }
 
 .sidenav__inner {
