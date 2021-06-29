@@ -170,7 +170,7 @@
 
     _handleClick(e) {
       e.preventDefault();
-      if (!this.isOpen) this.open;
+      this.open;
       // setTimeout(() => {
       //   // fix for 2 triggers with one dropdown
       //   this.open();
