@@ -113,7 +113,10 @@ document.addEventListener('DOMContentLoaded', () => {
 			document.addEventListener('scroll', M.throttle((e) => {
 				const currentScroll = document.body.scrollTop || window.scrollY || document.documentElement.scrollTop;
 				if (currentScroll <= previousScroll) {
-					if (previousScroll - currentScroll > HEADER_THRESHOLD) {
+					if (
+						previousScroll - currentScroll > HEADER_THRESHOLD ||
+						currentScroll < top
+					) {
 						previousScroll = currentScroll;
 						header.classList.remove('sticky-out');
 						if (currentScroll < top * 2) {
