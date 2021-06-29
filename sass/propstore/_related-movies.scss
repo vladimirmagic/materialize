@@ -62,6 +62,20 @@ $movie-list-padding: 24px;
 	}
 }
 
+a.related-movies__item:not(.btn) { // fix a
+	font-weight: 300;
+	color: #fff;
+	text-decoration: none;
+
+	&:before {
+		display: none;
+	}
+
+	&:active {
+		color: #fff;
+	}
+}
+
 .related-movies__img {
 	height: $movie-img-height;
 	background-position: 50% 50%;
