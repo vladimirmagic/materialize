@@ -24,7 +24,7 @@ if (typeof define === 'function' && define.amd) {
   exports.default = M;
 }
 
-M.version = '1.0.0';
+M.version = '1.0.20210629';
 
 M.keys = {
   TAB: 9,
