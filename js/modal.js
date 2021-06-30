@@ -148,7 +148,7 @@
     _handleModalCloseClick(e) {
       let $closeTrigger = $(e.target).closest('.modal-close');
       if ($closeTrigger.length) {
-        this.close();
+        this.close($closeTrigger.hasClass('modal-trigger')); // dont back history if another modal opened
       }
     }
 
@@ -339,8 +339,12 @@
       // Focus modal
       this.el.focus();
 
-      window.history.pushState(null, 'Close modal');
-      window.onpopstate = () => this.close();
+      if (this._openingTrigger && this._openingTrigger.classList.contains('modal-close')) {
+        // dont push history if another modal opened
+      } else {
+        window.history.pushState(null, 'Close modal');
+      }
+      window.onpopstate = () => this.close(true);
 
       return this;
     }
@@ -348,7 +352,7 @@
     /**
      * Close Modal
      */
-    close() {
+    close(isBack = false) {
       if (!this.isOpen) {
         return;
       }
@@ -377,6 +381,7 @@
       anim.remove(this.el);
       anim.remove(this.$overlay[0]);
       this._animateOut();
+      if (!isBack) window.history.back();
       return this;
     }
   }

@@ -331,6 +331,11 @@ ul.staggered-list li {
     display: block !important;
   }
 }
+.hide-on-400 {
+  @media only screen and (max-width: 400px) {
+    display: none !important;
+  }
+}
 
 
 // Center text on mobile

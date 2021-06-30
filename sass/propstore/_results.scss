@@ -20,6 +20,7 @@
 
 	input[type=search] {
 		height: 64px !important;
+		padding: 0 1.5em !important;
 		font-size: 36px;
 		font-weight: 300;
 		text-align: center;
@@ -27,7 +28,7 @@
 }
 
 .cards__no-results {
-	padding: 40px 0;
+	padding: 5em 0 2.5em;
 	text-align: center;
 }
 
@@ -35,6 +36,18 @@
 	margin-bottom: 2em;
 	font-size: 28px;
 	font-weight: 300;
+}
+
+@media #{$large-and-down} {
+	.cards__no-results {
+		padding-right: 8px;
+	}
+}
+
+@media #{$medium-and-down} {
+	.cards__no-results {
+		padding-right: 16px;
+	}
 }
 
 @media #{$small-and-down} {
@@ -51,7 +64,8 @@
 	}
 
 	.cards__no-results {
-		padding: 0;
+		padding-top: 4em;
+		padding-bottom: 0;
 	}
 
 	.cards__no-results-text {

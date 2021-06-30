@@ -47,7 +47,7 @@
 		// $('.dropdown-trigger:not(.header__account):not(.card__price-i)').dropdown();
 		$('.slider').slider();
 		$('.materialboxed').materialbox();
-		$('.modal:not(.modal-register)').modal();
+		$('.modal:not(.modal-register):not(.modal-payment-plan)').modal();
 		$('.datepicker').datepicker();
 		$('.tabs').tabs();
 		$('.timepicker').timepicker();
@@ -83,11 +83,7 @@
 
 document.addEventListener('DOMContentLoaded', () => {
 	// const out = document.createElement('div');
-	// out.style.position = 'fixed';
-	// out.style.bottom = '40px';
-	// out.style.left = '40px';
-	// out.style.background = 'white';
-	// out.style.zIndex = '2000';
+	// out.classList.add('out');
 	// document.body.append(out);
 
 	document.body.classList.add('loaded');
@@ -113,7 +109,10 @@ document.addEventListener('DOMContentLoaded', () => {
 			document.addEventListener('scroll', M.throttle((e) => {
 				const currentScroll = document.body.scrollTop || window.scrollY || document.documentElement.scrollTop;
 				if (currentScroll <= previousScroll) {
-					if (previousScroll - currentScroll > HEADER_THRESHOLD) {
+					if (
+						previousScroll - currentScroll > HEADER_THRESHOLD ||
+						currentScroll < top
+					) {
 						previousScroll = currentScroll;
 						header.classList.remove('sticky-out');
 						if (currentScroll < top * 2) {
@@ -142,11 +141,15 @@ document.addEventListener('DOMContentLoaded', () => {
 	const account = document.querySelectorAll('.header__account');
 	if (account) M.Dropdown.init(account, { alignment: 'right' });
 
+	// HEADER BAG DROPDOWN
+	const bagDropdown = document.querySelectorAll('.header__bag');
+	if (bagDropdown) M.Dropdown.init(bagDropdown, { alignment: 'right' });
+
 	// MENU
 	const MENU_THRESHOLD = 100; // ms
-	const menu = document.querySelector('.header__menu');
-	const menuItems = document.querySelectorAll('.header__menu-link');
-	let menuOpenTimer;
+	var menu = document.querySelector('.header__menu');
+	var menuItems = document.querySelectorAll('.header__menu-link');
+	var menuOpenTimer;
 	function menuClickOutside (e) {
 		const inside = e.target.closest('.header__menu');
 		if (!inside) menuClose();
@@ -269,7 +272,7 @@ document.addEventListener('DOMContentLoaded', () => {
 				if (thumbnail) {
 					productThumbnails.forEach(thumbnail => thumbnail.classList.remove('active'));
 					thumbnail.classList.add('active');
-					thumbnail.scrollIntoView({behavior: 'smooth', inline: 'center', block: 'nearest'});
+					// thumbnail.scrollIntoView({behavior: 'smooth', inline: 'center', block: 'nearest'}); // scrolls on page load(
 				}
 			},
 			onDestroy: function() {
@@ -311,5 +314,18 @@ document.addEventListener('DOMContentLoaded', () => {
 				}, timer);
 			}
 		}
+	});
+
+	// MODAL PAYMENT PLAN
+
+	$('#modal-payment-plan').modal({
+		onOpenEnd: () => {
+			$($('.modal-payment-plan__months-buttons input:checked').data('tab')).show();
+		}
+	});
+
+	$('.modal-payment-plan__months-buttons input').on('change', function () {
+		$('.modal-payment-plan__tab').hide();
+		$($(this).data('tab')).show();
 	});
 });

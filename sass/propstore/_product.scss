@@ -30,7 +30,7 @@
 .product__slider {
 	height: 736px;
 	overflow: hidden;
-	background-color: color("grey", "darken-4");
+	// background-color: color("grey", "darken-4"); // fix dark corners
 	border-radius: 6px;
 }
 
@@ -147,13 +147,12 @@ a.product__title:not(.btn) {
 
 .product__price-i {
 	position: absolute;
-	top: -8px;
-	right: -16px;
+	transform: translate(-.5em, -.5em);
 	color: $color-turquoise;
 
 	.icon {
-		width: 16px;
-		height: 16px;
+		width: 14px;
+		height: 14px;
 	}
 }
 
@@ -168,6 +167,10 @@ a.product__title:not(.btn) {
 	padding: 0 8px;
 	color: $color-base;
 	border-color: $color-grey;
+
+	.icon {
+		margin-top: -2px;
+	}
 
 	& + & {
 		margin-left: 24px;
@@ -321,6 +324,90 @@ a.product__certificate:not(.btn) { // fix a
 	}
 }
 
+.modal-payment-plan {
+	text-align: center;
+
+	.modal__title {
+		margin-bottom: .75em;
+	}
+}
+
+.modal-content.modal-payment-plan-form {
+	padding-bottom: 4em;
+}
+
+.modal-payment-plan__months {
+	margin-top: 3em;
+	padding-top: 1.75em;
+	text-align: left;
+	border-top: 1px solid $color-grey;
+}
+
+.modal-payment-plan__months-buttons {
+	display: flex;
+	flex-wrap: wrap;
+	margin-right: -1.5em;
+	margin-bottom: 1em;
+}
+
+.modal-payment-plan__months-button {
+	margin: 0 2em 2em 0;
+
+	strong {
+		@extend .h6;
+		display: block;
+		min-width: 10.5em;
+		margin: 0;
+		padding: 0 2em;
+		height: 4em;
+		line-height: 4em;
+		color: $color-base;
+		text-align: center;
+		border: 1px solid $color-grey;
+	}
+
+	&:hover strong {
+		background: $color-bg;
+	}
+
+	input:checked + strong {
+		color: #fff;
+		background: $color-base;
+		border-color: $color-base;
+	}
+}
+
+.modal-payment-plan__row {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	min-height: 3.75em;
+	padding: 1.25em;
+
+	&:nth-child(odd) {
+		background: $color-bg;
+	}
+}
+
+.modal-payment-plan__row-label {
+	.p-t {
+		margin: 0;
+	}
+}
+
+.modal-payment-plan__row-value {
+	text-align: right;
+}
+
+.modal-payment-plan__note {
+	margin-top: 2em;
+	text-align: left;
+}
+
+.modal-payment-plan__submit {
+	margin-top: 2.5em;
+}
+
 @media #{$breakpoint-4cards} {
 	.product {
 		padding-top: 60px;
@@ -367,6 +454,7 @@ a.product__certificate:not(.btn) { // fix a
 	
 	.product__gallery {
 		max-width: 100%;
+		width: 100%;
 	}
 
 	.product__info {
@@ -399,6 +487,18 @@ a.product__certificate:not(.btn) { // fix a
 			display: block;
 			min-width: 28px;
 		}
+	}
+
+	.modal-payment-plan__months-buttons {
+		margin-right: -1em;
+	}
+	
+	.modal-payment-plan__months-button {
+		margin: 0 1.5em 1.5em 0;
+	}
+
+	.modal-payment-plan__row {
+		padding: 1em;
 	}
 }
 

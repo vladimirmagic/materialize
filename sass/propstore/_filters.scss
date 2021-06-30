@@ -3,8 +3,8 @@
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
-	padding-top: 40px;
-	padding-bottom: 24px;
+	padding-top: 2.5em;
+	padding-bottom: 2em;
 	background: #fff;
     &.filters--centered {
         align-items: baseline;
@@ -155,8 +155,6 @@
     }
 	.filters {
 		display: block;
-		padding-top: 40px;
-		padding-bottom: 40px;
         
        &.filters--small-top-gap {
             padding-top: 40px;

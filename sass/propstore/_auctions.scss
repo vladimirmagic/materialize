@@ -163,6 +163,13 @@ $auction-width: 1648px;
 	height: 40px;
 	line-height: 40px;
 	padding: 0 20px;
+
+	&.section-auctions__item-alert--hidden {
+		height: 0;
+		margin: 0;
+		opacity: 0;
+		pointer-events: none;
+	}
 }
 
 .section-auctions__item-info {

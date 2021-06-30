@@ -65,6 +65,7 @@ header {
 	height: 40px;
 	line-height: 40px;
 	color: $color-font-grey;
+	white-space: nowrap;
 }
 
 .header__settings-divider1,
@@ -461,7 +462,9 @@ header {
 }
 
 .modal-bag {
-	max-width: 504px;
+	min-width: 504px;
+	padding: 0;
+	box-shadow: $shadow-base-hover;
 
 	.modal__title {
 		margin-top: -48px;
@@ -474,6 +477,7 @@ header {
 
 	.modal__footer {
 		text-align: center;
+		padding-bottom: 2em;
 	}
 }
 
@@ -687,6 +691,8 @@ a.modal-bag__item:not(.btn) { // fix a
     }
 
 	.modal-bag {
+		min-width: 100%;
+
 		.modal-content {
 			padding: 0 24px 24px;
 		}

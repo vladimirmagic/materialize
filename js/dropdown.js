@@ -568,6 +568,10 @@
       if (this.isOpen) {
         return;
       }
+      const dropdownStyle = getComputedStyle(this.dropdownEl);
+      if (dropdownStyle && dropdownStyle.display === 'block') {
+        return; // fix for mobile
+      }
       this.isOpen = true;
 
       // onOpenStart callback
