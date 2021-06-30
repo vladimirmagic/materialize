@@ -30,7 +30,7 @@
 .product__slider {
 	height: 736px;
 	overflow: hidden;
-	background-color: color("grey", "darken-4");
+	// background-color: color("grey", "darken-4"); // fix dark corners
 	border-radius: 6px;
 }
 
