@@ -107,9 +107,11 @@
     position: sticky;
     z-index: 100;
     top: 0;
+    pointer-events: none; // dont hover content
 
     .modal-close {
       background: #ffffff88;
+      pointer-events: all;
 
       &:hover {
         background: $color-bg;

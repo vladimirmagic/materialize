@@ -62,11 +62,11 @@
                 </span>
             </div>
             <div class="product__buttons-grey">
-                <button class="product__button-grey waves-effect waves-grey btn btn--secondary">
+                <button class="product__button-grey waves-effect waves-grey btn btn--secondary modal-trigger" href="#modal-shipping-quote">
                     <i class='icon'><svg><use xlink:href="#globe"></use></svg></i>
                     <span class="product__buttons-grey-small">Get</span> Shipping Quote
                 </button>
-                <button class="product__button-grey waves-effect waves-grey btn btn--secondary">
+                <button class="product__button-grey waves-effect waves-grey btn btn--secondary modal-trigger" href="#modal-payment-plan">
                     <i class='icon'><svg><use xlink:href="#pay-card"></use></svg></i>
                     Payment Plans
                 </button>
@@ -137,4 +137,209 @@
             src="http://www.youtube.com/embed/XmUUG4OUvWw?controls=2"
         ></iframe>
     </div>
+</div>
+
+<div id="modal-payment-plan" class="modal modal-payment-plan">
+    <div class="modal-header modal-header--sticky">
+        <a class="modal-close btn-flat btn--icon">
+            <i class='icon'><svg><use xlink:href="#close"></use></svg></i>
+        </a>
+    </div>
+    <form class="modal-content modal-payment-plan-form">
+        <div class="modal__title h3">Payment Plan Calculator</div>
+        <p class="p-r">
+            For only <strong>£1,400</strong> interest free
+        </p>
+        <div class="modal-payment-plan__months">
+            <div class="modal-payment-plan__months-title c-r">
+                Over how many months?
+            </div>
+            <div class="modal-payment-plan__months-buttons">
+                <label class="modal-payment-plan__months-button">
+                    <input name="payment-plan-month" type="radio" data-tab="#payment-plan-tab-1" />
+                    <strong class="waves-effect waves-grey">1 Month</strong>
+                </label>
+                <label class="modal-payment-plan__months-button">
+                    <input name="payment-plan-month" type="radio" data-tab="#payment-plan-tab-2" />
+                    <strong class="waves-effect waves-grey">2 Months</strong>
+                </label>
+                <label class="modal-payment-plan__months-button">
+                    <input name="payment-plan-month" type="radio" data-tab="#payment-plan-tab-3" />
+                    <strong class="waves-effect waves-grey">3 Months</strong>
+                </label>
+                <label class="modal-payment-plan__months-button">
+                    <input name="payment-plan-month" type="radio" data-tab="#payment-plan-tab-4" checked />
+                    <strong class="waves-effect waves-grey">4 Months</strong>
+                </label>
+            </div>
+            <div class="modal-payment-plan__months-title c-r">
+                Payment Plan Breakdown
+            </div>
+            <div id="payment-plan-tab-1" class="modal-payment-plan__tab" style="display: none;">
+                <div class="modal-payment-plan__row">
+                    <div class="modal-payment-plan__row-label">
+                        <strong>Today 20%</strong> Deposit (Non-Refundable)
+                    </div>
+                    <div class="modal-payment-plan__row-value">
+                        <strong>£280</strong>
+                    </div>
+                </div>
+                <div class="modal-payment-plan__row">
+                    <div class="modal-payment-plan__row-label">
+                        <strong>Month 1</strong>
+                    </div>
+                    <div class="modal-payment-plan__row-value">
+                        <strong>£280</strong>
+                    </div>
+                </div>
+                <div class="modal-payment-plan__row">
+                    <div class="modal-payment-plan__row-label">
+                        <strong class="c-r">TOTAL</strong>
+                        <div class="p-t">VAT included (where applicable)</div>
+                    </div>
+                    <div class="modal-payment-plan__row-value c-r">
+                        £1,400
+                    </div>
+                </div>
+            </div>
+            <div id="payment-plan-tab-2" class="modal-payment-plan__tab" style="display: none;">
+                <div class="modal-payment-plan__row">
+                    <div class="modal-payment-plan__row-label">
+                        <strong>Today 20%</strong> Deposit (Non-Refundable)
+                    </div>
+                    <div class="modal-payment-plan__row-value">
+                        <strong>£280</strong>
+                    </div>
+                </div>
+                <div class="modal-payment-plan__row">
+                    <div class="modal-payment-plan__row-label">
+                        <strong>Month 1</strong>
+                    </div>
+                    <div class="modal-payment-plan__row-value">
+                        <strong>£280</strong>
+                    </div>
+                </div>
+                <div class="modal-payment-plan__row">
+                    <div class="modal-payment-plan__row-label">
+                        <strong>Month 2</strong>
+                    </div>
+                    <div class="modal-payment-plan__row-value">
+                        <strong>£280</strong>
+                    </div>
+                </div>
+                <div class="modal-payment-plan__row">
+                    <div class="modal-payment-plan__row-label">
+                        <strong class="c-r">TOTAL</strong>
+                        <div class="p-t">VAT included (where applicable)</div>
+                    </div>
+                    <div class="modal-payment-plan__row-value c-r">
+                        £1,400
+                    </div>
+                </div>
+            </div>
+            <div id="payment-plan-tab-3" class="modal-payment-plan__tab" style="display: none;">
+                <div class="modal-payment-plan__row">
+                    <div class="modal-payment-plan__row-label">
+                        <strong>Today 20%</strong> Deposit (Non-Refundable)
+                    </div>
+                    <div class="modal-payment-plan__row-value">
+                        <strong>£280</strong>
+                    </div>
+                </div>
+                <div class="modal-payment-plan__row">
+                    <div class="modal-payment-plan__row-label">
+                        <strong>Month 1</strong>
+                    </div>
+                    <div class="modal-payment-plan__row-value">
+                        <strong>£280</strong>
+                    </div>
+                </div>
+                <div class="modal-payment-plan__row">
+                    <div class="modal-payment-plan__row-label">
+                        <strong>Month 2</strong>
+                    </div>
+                    <div class="modal-payment-plan__row-value">
+                        <strong>£280</strong>
+                    </div>
+                </div>
+                <div class="modal-payment-plan__row">
+                    <div class="modal-payment-plan__row-label">
+                        <strong>Month 3</strong>
+                    </div>
+                    <div class="modal-payment-plan__row-value">
+                        <strong>£280</strong>
+                    </div>
+                </div>
+                <div class="modal-payment-plan__row">
+                    <div class="modal-payment-plan__row-label">
+                        <strong class="c-r">TOTAL</strong>
+                        <div class="p-t">VAT included (where applicable)</div>
+                    </div>
+                    <div class="modal-payment-plan__row-value c-r">
+                        £1,400
+                    </div>
+                </div>
+            </div>
+            <div id="payment-plan-tab-4" class="modal-payment-plan__tab" style="display: none;">
+                <div class="modal-payment-plan__row">
+                    <div class="modal-payment-plan__row-label">
+                        <strong>Today 20%</strong> Deposit (Non-Refundable)
+                    </div>
+                    <div class="modal-payment-plan__row-value">
+                        <strong>£280</strong>
+                    </div>
+                </div>
+                <div class="modal-payment-plan__row">
+                    <div class="modal-payment-plan__row-label">
+                        <strong>Month 1</strong>
+                    </div>
+                    <div class="modal-payment-plan__row-value">
+                        <strong>£280</strong>
+                    </div>
+                </div>
+                <div class="modal-payment-plan__row">
+                    <div class="modal-payment-plan__row-label">
+                        <strong>Month 2</strong>
+                    </div>
+                    <div class="modal-payment-plan__row-value">
+                        <strong>£280</strong>
+                    </div>
+                </div>
+                <div class="modal-payment-plan__row">
+                    <div class="modal-payment-plan__row-label">
+                        <strong>Month 3</strong>
+                    </div>
+                    <div class="modal-payment-plan__row-value">
+                        <strong>£280</strong>
+                    </div>
+                </div>
+                <div class="modal-payment-plan__row">
+                    <div class="modal-payment-plan__row-label">
+                        <strong>Month 4</strong>
+                    </div>
+                    <div class="modal-payment-plan__row-value">
+                        <strong>£280</strong>
+                    </div>
+                </div>
+                <div class="modal-payment-plan__row">
+                    <div class="modal-payment-plan__row-label">
+                        <strong class="c-r">TOTAL</strong>
+                        <div class="p-t">VAT included (where applicable)</div>
+                    </div>
+                    <div class="modal-payment-plan__row-value c-r">
+                        £1,400
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal-payment-plan__note"><i>
+            <strong>Please note:</strong> This subtotal does not include shipping. You will receive an order confirmation e-mail with the shipping rate and final cost.
+        </i></div>
+
+        <button type="submit" class="waves-effect waves-light btn modal-payment-plan__submit">
+            <span class='btn__title'>Add to bag <span class="hide-on-400">with payment plan</span></span>
+            <i class='icon'><svg><use xlink:href="#bag"></use></svg></i>
+        </button>
+    </form>
 </div>

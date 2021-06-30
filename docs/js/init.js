@@ -47,7 +47,7 @@
 		// $('.dropdown-trigger:not(.header__account):not(.card__price-i)').dropdown();
 		$('.slider').slider();
 		$('.materialboxed').materialbox();
-		$('.modal:not(.modal-register)').modal();
+		$('.modal:not(.modal-register):not(.modal-payment-plan)').modal();
 		$('.datepicker').datepicker();
 		$('.tabs').tabs();
 		$('.timepicker').timepicker();
@@ -314,5 +314,18 @@ document.addEventListener('DOMContentLoaded', () => {
 				}, timer);
 			}
 		}
+	});
+
+	// MODAL PAYMENT PLAN
+
+	$('#modal-payment-plan').modal({
+		onOpenEnd: () => {
+			$($('.modal-payment-plan__months-buttons input:checked').data('tab')).show();
+		}
+	});
+
+	$('.modal-payment-plan__months-buttons input').on('change', function () {
+		$('.modal-payment-plan__tab').hide();
+		$($(this).data('tab')).show();
 	});
 });
