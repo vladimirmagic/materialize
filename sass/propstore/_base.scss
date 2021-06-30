@@ -46,6 +46,24 @@ fieldset {
 	z-index: 2000;
 }
 
+.general {
+	@extend .content;
+	text-align: center;
+
+	.h1 {
+		margin-bottom: .7em;
+	}
+}
+
+.general__inner {
+	max-width: 36em;
+	margin: 0 auto;
+}
+
+.general__btn {
+	margin-top: 3em;
+}
+
 @media #{$media-fullhd-up} {
 	$content-padding: calc(50% - 900px);
     .content {
