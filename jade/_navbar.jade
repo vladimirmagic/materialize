@@ -122,7 +122,7 @@ header(style='z-index: 999;')
 
     li.no-padding
       ul.collapsible.collapsible-accordion
-        li.bold(class=(page == "Propstore UI" || page == "Home" || page == "Buy now" || page == "Results" || page == "Product" || page == "Auctions" || page == "Bag" || page == "Checkout" || page == "Checkout (split order)" || page == "Order confirmed" || page == "Blog" || page == "Account" || page == "Account Details" || page == "Account Watchlist" || page == "Account Orders" ? "active" : ""))
+        li.bold(class=(page == "Propstore UI" || page == "Home" || page == "Buy now" || page == "Results" || page == "Product" || page == "Auctions" || page == "Bag" || page == "Checkout" || page == "Checkout (split order)" || page == "Order confirmed" || page == "Blog" || page == "Account" || page == "Account Details" || page == "Account Watchlist" || page == "Account Orders" || page == "General" ? "active" : ""))
               a.collapsible-header(class="waves-effect waves-grey")
                 | Propstore
               .collapsible-body
@@ -159,4 +159,5 @@ header(style='z-index: 999;')
                     a(href='blog.html' target='_blank') Blog
                   li(class=(page == "Blog single" ? "active" : ""))
                     a(href='blog-single.html' target='_blank') Blog single
-  
+                  li(class=(page == "General" ? "active" : ""))
+                    a(href='general.html' target='_blank') General
