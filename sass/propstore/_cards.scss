@@ -77,7 +77,7 @@
 @media #{$large-and-down} {
 	.cards {
 		padding-left: 40px;
-		padding-right: 32px;
+		padding-right: 24px;
 	}
 
 	.cards__inner {
@@ -95,13 +95,16 @@
 @media #{$medium-and-down} {
 	.cards {
 		padding-left: 24px;
-		padding-right: 8px;
+		padding-right: 0;
 
         .card__info.card-blog__info {
             max-height: 256px;
         }
 
 		.cards__list {
+			margin-left: 0;
+			transform: none;
+
 			.card,
 			.card-auction {
 				margin-top: 2.5em;
@@ -110,7 +113,7 @@
 
 		.card {
 			width: 50%;
-			max-width: calc(50% - #{$card-margin-m * 1.5});
+			max-width: calc(50% - #{$card-margin-m * 1.25});
 			min-width: 0;
 			height: $card-height-s;
 		}
