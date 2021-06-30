@@ -197,13 +197,23 @@
 	});
 </script>
 
-<!-- Click for Blog listing categories -->
+<!-- Click for Blog listing categories on cards -->
 <script>
     jQuery(document).ready(() => {
         $('.card-blog').on('click', function(event) {
             const fakeUrl = $(event.target).data('href');
             if(fakeUrl) event.preventDefault();
             window.location.href = fakeUrl;
+        });
+    });
+</script>
+
+<!-- Click for Blog listing menu categories -->
+<script>
+    jQuery(document).ready(() => {
+        $('.filters__select-category select').on('change', function(event) {
+            const link = event.target.value;
+            window.location.href = link;
         });
     });
 </script>
