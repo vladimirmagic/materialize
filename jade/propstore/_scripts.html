@@ -133,12 +133,12 @@
 		/** ACCOUNT */
 
 		// SHIPPING ADDRESS
-		const shippingAddressCheckbox = document.querySelector('input[name="account-billing-address-use-as-shipping"]');
+		const shippingAddressCheckbox = document.querySelector('input[name="shippingAsBilling"]');
 		const shippingAddressForm = document.querySelector('.account-shipping-address-form');
 		if (shippingAddressCheckbox && shippingAddressForm) {
 			function accountShippingAddress () {
 				shippingAddressForm.style.display = shippingAddressCheckbox.checked ? 'none' : 'block';
-			}	
+			}
 			shippingAddressCheckbox.addEventListener('change', accountShippingAddress);
 			accountShippingAddress();
 		}
