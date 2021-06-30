@@ -56,7 +56,7 @@
                             <p class="order__step-p">
                                 Is shipping required?
                             </p>
-                            <div class="order__step-radio order__step-radio--shipping-required">
+                            <div class="order__step-radio order__step-radio--shipping-required error">
                                 <div class="order__step-radio-item">
                                     <label>
                                         <input name="checkout-shipping-required" type="radio" data-tab="#checkout-shipping-tab-1" checked />
@@ -69,6 +69,7 @@
                                         <span>No, I will pick up my order in person</span>
                                     </label>
                                 </div>
+                                <div class="input-field__helper">You have to check</div>
                             </div>
                         </div>
     
@@ -79,7 +80,7 @@
                                 </p>
                                 <div class="order__step-radio">
                                     <div class="order__form">
-                                        <div class="order__address-type">
+                                        <div class="order__address-type error">
                                             <label>
                                                 <input name="order-shipping-address-type" type="radio" checked />
                                                 <span>Residential Address</span>
@@ -88,6 +89,7 @@
                                                 <input name="order-shipping-address-type" type="radio" />
                                                 <span>Business Address</span>
                                             </label>
+                                            <div class="input-field__helper">You have to check</div>
                                         </div>
                                         <div class="order__form-row">
                                             <div class="input-field input-field--label">
