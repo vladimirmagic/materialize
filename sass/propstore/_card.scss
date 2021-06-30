@@ -364,8 +364,12 @@ a.card:not(.btn) { // fix a
     }
 }
 
-@media only screen and (max-width: 450px) {
+@media #{$small-and-down} {
 	.dropdown-currency {
-		min-width: 100%;
+		left: 1em !important;
+		right: .5em !important;
+		width: calc(100% - 1em) !important;
+		min-width: 0;
+		padding: 1em;
 	}
 }
