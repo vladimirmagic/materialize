@@ -247,13 +247,11 @@
       this._setValueToInput();
 
       // Add caret
-      const dropdownIcon = $(
-        '<svg class="caret" width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path fill-rule="evenodd" clip-rule="evenodd" d="M14.53 5.47a.75.75 0 00-1.06 0L8 10.94 2.53 5.47a.75.75 0 00-1.06 1.06l6 6c.3.3.77.3 1.06 0l6-6c.3-.3.3-.77 0-1.06z" /></svg>'
-      );
+      const dropdownIcon = $('<svg class="caret"><use xlink:href="#drop"></use></svg>');
       $(this.wrapper).append(dropdownIcon[0]);
-      const clean = $(`<span class="waves-effect btn-flat btn--icon input-field__clean"><i class='icon'>
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path fill-rule="evenodd" clip-rule="evenodd" d="M10 20a10 10 0 100-20 10 10 0 000 20zm0-8.94l-3.32 3.32-1.06-1.06L8.94 10 5.62 6.68l1.06-1.06L10 8.94l3.32-3.32 1.06 1.06L11.06 10l3.32 3.32-1.06 1.06L10 11.06z"/></svg>
-      </i></span>`);
+      const clean = $(
+        `<span class="waves-effect btn-flat btn--icon input-field__clean"><i class='icon'><svg><use xlink:href="#clean"></use></svg></i></span>`
+      );
       $(this.wrapper).append(clean[0]);
 
       // Initialize dropdown
