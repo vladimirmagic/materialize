@@ -121,6 +121,17 @@
 			}
 		}
 
+		// PAYMENT CARD
+		const paymentCard = document.querySelector('select[name="checkout-payment-card"]');
+		const paymentCardNew = document.querySelector('#checkout-payment-card-new');
+		if (paymentCard && paymentCardNew) {
+			function isPaymentCardNew () {
+				paymentCardNew.style.display = (paymentCard.value == 0) ? 'block' : 'none';
+			}
+			paymentCard.addEventListener('change', isPaymentCardNew);
+			isPaymentCardNew();
+		}
+
 		// BILLING ADDRESS
 		const billingAddressCheckbox = document.querySelector('input[name="checkout-billing-address"]');
 		const billingAddressForm = document.querySelector('.checkout-billing-address-form');

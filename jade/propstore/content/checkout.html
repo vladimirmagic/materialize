@@ -425,20 +425,31 @@
                                     Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Maecenas sed diam eget risus varius blandit sit amet non magna. Vestibulum id ligula porta felis euismod semper. Cras justo odio, dapibus ac facilisis in, egestas eget quam.
                                 </i></p>
                                 <div class="order__form">
-                                    <div class="order__form-row order__form-row--full">
-                                        <div class="input-field input-field--label">
-                                            <input type="text" placeholder="xxxx xxxx xxxx xxxx">
-                                            <label>Card number</label>
+                                    <div class="order__form-row">
+                                        <div class="input-field input-field--label input-field--select">
+                                            <select name="checkout-payment-card">
+                                                <option value="1">***4242 1/1997</option>
+                                                <option value="0">New card</option>
+                                            </select>
+                                            <label>Credit / Debit Card</label>
                                         </div>
                                     </div>
-                                    <div class="order__form-row">
-                                        <div class="input-field input-field--label">
-                                            <input type="text" placeholder="MM / YY">
-                                            <label>Expiry</label>
+                                    <div id="checkout-payment-card-new" style="display: none;">
+                                        <div class="order__form-row order__form-row--full">
+                                            <div class="input-field input-field--label">
+                                                <input type="text" placeholder="xxxx xxxx xxxx xxxx">
+                                                <label>Card number</label>
+                                            </div>
                                         </div>
-                                        <div class="input-field input-field--label">
-                                            <input type="text" placeholder="xxx">
-                                            <label>CCV</label>
+                                        <div class="order__form-row">
+                                            <div class="input-field input-field--label">
+                                                <input type="text" placeholder="MM / YY">
+                                                <label>Expiry</label>
+                                            </div>
+                                            <div class="input-field input-field--label">
+                                                <input type="text" placeholder="xxx">
+                                                <label>CCV</label>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
