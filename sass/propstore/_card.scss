@@ -169,7 +169,6 @@ a.card:not(.btn) { // fix a
 
 .card-blog__meta {
     display: -webkit-box;
-    max-width: calc(100% - 80px);
     overflow: hidden;
     text-overflow: ellipsis;
     -webkit-line-clamp: 1;

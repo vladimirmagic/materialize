@@ -36,8 +36,9 @@
 
 .cards-blog__title {
     text-align: center;
-    margin-top: 1em;
-    margin-bottom: 2.5em;
+    margin: 0;
+    padding-top: 3.5em;
+    padding-bottom: 1em;
 }
 
 @media #{$breakpoint-4cards} {
