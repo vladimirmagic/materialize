@@ -16,7 +16,7 @@
 </div>
 
 <form class="order" action="#action">
-    <input type="hidden" name="checkout-step" value="review" />
+    <input type="hidden" name="checkout-step" value="review"/>
 
     <div id="checkout-step-tab-shipping" class="checkout-step-tab" style="display: none;">
         <div class="order__indicators">
@@ -56,7 +56,7 @@
                             <p class="order__step-p">
                                 Is shipping required?
                             </p>
-                            <div class="order__step-radio order__step-radio--shipping-required error">
+                            <div class="order__step-radio order__step-radio--shipping-required">
                                 <div class="order__step-radio-item">
                                     <label>
                                         <input name="checkout-shipping-required" type="radio" data-tab="#checkout-shipping-tab-1" checked />
@@ -69,7 +69,6 @@
                                         <span>No, I will pick up my order in person</span>
                                     </label>
                                 </div>
-                                <div class="input-field__helper">You have to check</div>
                             </div>
                         </div>
     
@@ -80,7 +79,7 @@
                                 </p>
                                 <div class="order__step-radio">
                                     <div class="order__form">
-                                        <div class="order__address-type error">
+                                        <div class="order__address-type">
                                             <label>
                                                 <input name="order-shipping-address-type" type="radio" checked />
                                                 <span>Residential Address</span>
@@ -89,7 +88,6 @@
                                                 <input name="order-shipping-address-type" type="radio" />
                                                 <span>Business Address</span>
                                             </label>
-                                            <div class="input-field__helper">You have to check</div>
                                         </div>
                                         <div class="order__form-row">
                                             <div class="input-field input-field--label">
@@ -164,6 +162,7 @@
                                         </label>
                                     </div>
                                 </div>
+                                <div class="input-field__helper error">You have to check</div>
                             </div>
                         </div>
                         <div id="checkout-shipping-tab-2" class="checkout-shipping-tab" style="display: none;">
@@ -420,31 +419,51 @@
                                     </label>
                                 </div>
                             </div>
-                            <div id="checkout-payment-type-1" class="order__form checkout-payment-type" style="display: none;">
-                                <div class="order__form-row order__form-row--full">
-                                    <div class="input-field input-field--label">
-                                        <input type="text" placeholder="xxxx xxxx xxxx xxxx">
-                                        <label>Card number</label>
+                            <div id="checkout-payment-type-1" class="checkout-payment-type" style="display: none;">
+                                <p class="p-s"><i>
+                                    <strong>Credit / Debit Card notes</strong><br>
+                                    Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Maecenas sed diam eget risus varius blandit sit amet non magna. Vestibulum id ligula porta felis euismod semper. Cras justo odio, dapibus ac facilisis in, egestas eget quam.
+                                </i></p>
+                                <div class="order__form">
+                                    <div class="order__form-row">
+                                        <div class="input-field input-field--label input-field--select">
+                                            <select name="checkout-payment-card">
+                                                <option value="1">***4242 1/1997</option>
+                                                <option value="0">New card</option>
+                                            </select>
+                                            <label>Credit / Debit Card</label>
+                                        </div>
+                                    </div>
+                                    <div id="checkout-payment-card-new" style="display: none;">
+                                        <div class="order__form-row order__form-row--full">
+                                            <div class="input-field input-field--label">
+                                                <input type="text" placeholder="xxxx xxxx xxxx xxxx">
+                                                <label>Card number</label>
+                                            </div>
+                                        </div>
+                                        <div class="order__form-row">
+                                            <div class="input-field input-field--label">
+                                                <input type="text" placeholder="MM / YY">
+                                                <label>Expiry</label>
+                                            </div>
+                                            <div class="input-field input-field--label">
+                                                <input type="text" placeholder="xxx">
+                                                <label>CCV</label>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="order__form-row">
-                                    <div class="input-field input-field--label">
-                                        <input type="text" placeholder="MM / YY">
-                                        <label>Expiry</label>
-                                    </div>
-                                    <div class="input-field input-field--label">
-                                        <input type="text" placeholder="xxx">
-                                        <label>CCV</label>
-                                    </div>
-                                </div>
-                                <div class="order__form-row order__form-row--full">
-                                    <div class="input-field input-field--label">
-                                        <textarea class="materialize-textarea" placeholder="Please Enter"></textarea>
-                                        <label>Comment</label>
-                                    </div>
-                                </div>
+
+                                <br/>
                             </div>
-                            <div id="checkout-payment-type-2" class="order__form checkout-payment-type" style="display: none;">
+                            <div id="checkout-payment-type-2" class="checkout-payment-type" style="display: none;">
+                                <p class="p-s"><i>
+                                    <strong>PayPal notes</strong><br>
+                                    Donec sed odio dui. Maecenas sed diam eget risus varius blandit sit amet non magna. Aenean lacinia bibendum nulla sed consectetur.
+                                </i></p>
+                            </div>
+
+                            <div class="order__form">
                                 <div class="order__form-row order__form-row--full">
                                     <div class="input-field input-field--label">
                                         <textarea class="materialize-textarea" placeholder="Please Enter"></textarea>
@@ -462,14 +481,161 @@
                                         <input type="hidden" />
                                         <span>My billing address is the same as my shipping address</span>
                                     </label>
+
+                                    <div class="order__row checkout-billing-address-form" style="display: none;">
+                                        <br/>
+                                        <div class="order__step-radio">
+                                            <div class="order__form">
+                                                <div class="order__step-p">
+                                                    Billing address
+                                                </div>
+                                                <div class="order__address-type">
+                                                    <label>
+                                                        <input name="order-billing-address-type" type="radio" checked />
+                                                        <span>Residential Address</span>
+                                                    </label>
+                                                    <label>
+                                                        <input name="order-billing-address-type" type="radio" />
+                                                        <span>Business Address</span>
+                                                    </label>
+                                                </div>
+                                                <div class="order__form-row">
+                                                    <div class="input-field input-field--label">
+                                                        <input type="text" placeholder="Please Enter">
+                                                        <label>First Name</label>
+                                                    </div>
+                                                    <div class="input-field input-field--label">
+                                                        <input type="text" placeholder="Please Enter">
+                                                        <label>Surname</label>
+                                                    </div>
+                                                </div>
+                                                <div class="order__form-row">
+                                                    <div class="input-field input-field--label">
+                                                        <input type="text" placeholder="Please Enter">
+                                                        <label>Contact Number</label>
+                                                    </div>
+                                                    <div class="input-field input-field--label input-field--select">
+                                                        <select>
+                                                            <option value="0" disabled selected>Please Choose</option>
+                                                            <option value="1">United Kingdom</option>
+                                                            <option value="2">Option 2</option>
+                                                            <option value="3">Option 3</option>
+                                                        </select>
+                                                        <label>Country</label>
+                                                    </div>
+                                                </div>
+                                                <div class="order__form-row order__form-row--full">
+                                                    <div class="input-field input-field--label">
+                                                        <textarea class="materialize-textarea" placeholder="Please Enter"></textarea>
+                                                        <label>Address</label>
+                                                    </div>
+                                                </div>
+                                                <div class="order__form-row">
+                                                    <div class="input-field input-field--label">
+                                                        <input type="text" placeholder="Please Enter">
+                                                        <label>State</label>
+                                                    </div>
+                                                    <div class="input-field input-field--label">
+                                                        <input type="text" placeholder="Please Enter">
+                                                        <label>City</label>
+                                                    </div>
+                                                </div>
+                                                <div class="order__form-row">
+                                                    <div class="input-field input-field--label">
+                                                        <input type="text" placeholder="Please Enter">
+                                                        <label>ZIP / Post code</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
+
                                 <div class="order__checkbox">
                                     <label class="checkbox__label">
                                         <input type="checkbox" name="checkout-resale-certificate" class="filled-in" />
                                         <input type="hidden" />
                                         <span>I have a resale certificate</span>
-                                    </label>    
+                                    </label>
+
+                                    <div class="order__row checkout-resale-certificate-form" style="display: none;">
+                                        <br/>
+                                        <div class="order__step-radio">
+                                            <div class="order__form">
+                                                <div class="order__step-p">
+                                                    Resale certificate
+                                                </div>
+                                                <div class="p-s">
+                                                    Sales tax is not charged to businesses purchasing for resale. Resale customers must provide a completed BOE-230 resale form and a copy of their valid resale certificate, per California state law. Prop Store must have completed form BOE-230 and customer rescale certificates on file at time order is processed.
+                                                    <br/>
+                                                    <a href="#pdf" target="_blank">Download form BOE-230 here</a>
+                                                </div>
+
+                                                <div class="checkout-resale-certificate__uploaded">
+                                                    <br/>
+                                                    <div class="p-r">
+                                                        <strong>Uploaded:</strong> Uplodaed_file_name.pdf
+                                                    </div>
+                                                    <br/>
+                                                </div>
+
+                                                <div class="order__form-row order__form-row--file">
+                                                    <div class="file-field__label h6">Upload completed form</div>
+                                                    <div class="file-field input-field">
+                                                        <div class="btn">
+                                                            <span>File</span>
+                                                            <input type="file">
+                                                        </div>
+                                                        <div class="file-path-wrapper">
+                                                            <input class="file-path validate" type="text">
+                                                            <span class="helper-text">10MB max</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="order__form-row order__form-row--file">
+                                                    <div class="file-field__label h6">Upload resale certificate</div>
+                                                    <div class="file-field input-field">
+                                                        <div class="btn">
+                                                            <span>File</span>
+                                                            <input type="file">
+                                                        </div>
+                                                        <div class="file-path-wrapper">
+                                                            <input class="file-path validate" type="text">
+                                                            <span class="helper-text">10MB max</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="order__form-row order__form-row--full">
+                                                    <div class="input-field input-field--label">
+                                                        <input type="text" placeholder="Please Enter">
+                                                        <label>Resale number</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
+
+                                <div class="order__checkbox">
+                                    <label class="checkbox__label">
+                                        <input type="checkbox" name="checkout-business" class="filled-in" />
+                                        <input type="hidden" />
+                                        <span>I am a registered business</span>
+                                    </label>
+
+                                    <div class="order__row checkout-business-form" style="display: none;">
+                                        <br/>
+                                        <div class="order__form">
+                                            <div class="order__form-row">
+                                                <div class="input-field input-field--label">
+                                                    <input type="text" placeholder="Please Enter">
+                                                    <label>VAT Number</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
                                 <div class="order__checkbox">
                                     <label class="checkbox__label error">
                                         <input type="checkbox" class="filled-in" />
@@ -477,120 +643,6 @@
                                         <span>I have read and understood the <a href="#terms">terms and conditions</a> and can confirm I am over 18 years of age</span>
                                     </label>
                                     <div class="input-field__helper">You have to read and understand</div>
-                                </div>
-                            </div>
-                        </div>
-    
-                        <div class="order__row checkout-billing-address-form" style="display: none;">
-                            <p class="order__step-p">
-                                Billing address
-                            </p>
-                            <div class="order__step-radio">
-                                <div class="order__form">
-                                    <div class="order__address-type">
-                                        <label>
-                                            <input name="order-billing-address-type" type="radio" checked />
-                                            <span>Residential Address</span>
-                                        </label>
-                                        <label>
-                                            <input name="order-billing-address-type" type="radio" />
-                                            <span>Business Address</span>
-                                        </label>
-                                    </div>
-                                    <div class="order__form-row">
-                                        <div class="input-field input-field--label">
-                                            <input type="text" placeholder="Please Enter">
-                                            <label>First Name</label>
-                                        </div>
-                                        <div class="input-field input-field--label">
-                                            <input type="text" placeholder="Please Enter">
-                                            <label>Surname</label>
-                                        </div>
-                                    </div>
-                                    <div class="order__form-row">
-                                        <div class="input-field input-field--label">
-                                            <input type="text" placeholder="Please Enter">
-                                            <label>Contact Number</label>
-                                        </div>
-                                        <div class="input-field input-field--label input-field--select">
-                                            <select>
-                                                <option value="0" disabled selected>Please Choose</option>
-                                                <option value="1">United Kingdom</option>
-                                                <option value="2">Option 2</option>
-                                                <option value="3">Option 3</option>
-                                            </select>
-                                            <label>Country</label>
-                                        </div>
-                                    </div>
-                                    <div class="order__form-row order__form-row--full">
-                                        <div class="input-field input-field--label">
-                                            <textarea class="materialize-textarea" placeholder="Please Enter"></textarea>
-                                            <label>Address</label>
-                                        </div>
-                                    </div>
-                                    <div class="order__form-row">
-                                        <div class="input-field input-field--label">
-                                            <input type="text" placeholder="Please Enter">
-                                            <label>State</label>
-                                        </div>
-                                        <div class="input-field input-field--label">
-                                            <input type="text" placeholder="Please Enter">
-                                            <label>City</label>
-                                        </div>
-                                    </div>
-                                    <div class="order__form-row">
-                                        <div class="input-field input-field--label">
-                                            <input type="text" placeholder="Please Enter">
-                                            <label>ZIP / Post code</label>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-    
-                        <div class="order__row checkout-resale-certificate-form" style="display: none;">
-                            <p class="order__step-p">
-                                Resale certificate
-                            </p>
-                            <p>
-                                Sales tax is not charged to businesses purchasing for resale. Resale customers must provide a completed BOE-230 resale form and a copy of their valid resale certificate, per California state law. Prop Store must have completed form BOE-230 and customer rescale certificates on file at time order is processed.
-                                <br/>
-                                <a href="#pdf" target="_blank">Download form BOE-230 here</a>
-                            </p>
-                            <div class="order__step-radio">
-                                <div class="order__form">
-                                    <div class="order__form-row order__form-row--file">
-                                        <div class="file-field__label h6">Upload completed form</div>
-                                        <div class="file-field input-field">
-                                            <div class="btn">
-                                                <span>File</span>
-                                                <input type="file">
-                                            </div>
-                                            <div class="file-path-wrapper">
-                                                <input class="file-path validate" type="text">
-                                                <span class="helper-text">10MB max</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="order__form-row order__form-row--file">
-                                        <div class="file-field__label h6">Upload resale certificate</div>
-                                        <div class="file-field input-field">
-                                            <div class="btn">
-                                                <span>File</span>
-                                                <input type="file">
-                                            </div>
-                                            <div class="file-path-wrapper">
-                                                <input class="file-path validate" type="text">
-                                                <span class="helper-text">10MB max</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="order__form-row order__form-row--full">
-                                        <div class="input-field input-field--label">
-                                            <input type="text" placeholder="Please Enter">
-                                            <label>Resale number</label>
-                                        </div>
-                                    </div>
                                 </div>
                             </div>
                         </div>

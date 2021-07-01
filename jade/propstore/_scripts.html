@@ -28,14 +28,27 @@
 						checkoutStepActive.value = checkoutStep.dataset.step;
 						checkoutStepTabs.forEach(checkoutStepTab => checkoutStepTab.style.display = 'none');
 						const checkoutStepTab = document.getElementById('checkout-step-tab-' + checkoutStep.dataset.step);
-						if (checkoutStepTab) checkoutStepTab.style.display = 'block';
+						if (checkoutStepTab) {
+							checkoutStepTab.style.display = 'block';
+							setTimeout(() => scrollToError(checkoutStepTab), 100); // wait display
+						}
 					});
 				}
 			});
 
 			const checkoutStepTab = document.getElementById('checkout-step-tab-' + checkoutStepActive.value);
-			if (checkoutStepTab) checkoutStepTab.style.display = 'block';
+			if (checkoutStepTab) {
+				checkoutStepTab.style.display = 'block';
+				setTimeout(() => scrollToError(checkoutStepTab), 100); // wait display
+			}
 		}
+
+		// ERRORS
+		function scrollToError (container = document) {
+			const error = container.querySelector('.error');
+			if (error) error.scrollIntoView({behavior: 'smooth', block: 'center'});
+		}
+		scrollToError();
 
 		// SHIPPING
 		const shippingRequired = document.querySelectorAll('input[name="checkout-shipping-required"]');
@@ -108,6 +121,17 @@
 			}
 		}
 
+		// PAYMENT CARD
+		const paymentCard = document.querySelector('select[name="checkout-payment-card"]');
+		const paymentCardNew = document.querySelector('#checkout-payment-card-new');
+		if (paymentCard && paymentCardNew) {
+			function isPaymentCardNew () {
+				paymentCardNew.style.display = (paymentCard.value == 0) ? 'block' : 'none';
+			}
+			paymentCard.addEventListener('change', isPaymentCardNew);
+			isPaymentCardNew();
+		}
+
 		// BILLING ADDRESS
 		const billingAddressCheckbox = document.querySelector('input[name="checkout-billing-address"]');
 		const billingAddressForm = document.querySelector('.checkout-billing-address-form');
@@ -130,15 +154,26 @@
 			checkoutResaleСertificate();
 		}
 
+		// REGISTERED BUSINESS
+		const businessCheckbox = document.querySelector('input[name="checkout-business"]');
+		const businessForm = document.querySelector('.checkout-business-form');
+		if (businessCheckbox && businessForm) {
+			function isRegisteredBusiness () {
+				businessForm.style.display = businessCheckbox.checked ? 'block' : 'none';
+			}
+			businessCheckbox.addEventListener('change', isRegisteredBusiness);
+			isRegisteredBusiness();
+		}
+
 		/** ACCOUNT */
 
 		// SHIPPING ADDRESS
-		const shippingAddressCheckbox = document.querySelector('input[name="account-billing-address-use-as-shipping"]');
+		const shippingAddressCheckbox = document.querySelector('input[name="shippingAsBilling"]');
 		const shippingAddressForm = document.querySelector('.account-shipping-address-form');
 		if (shippingAddressCheckbox && shippingAddressForm) {
 			function accountShippingAddress () {
 				shippingAddressForm.style.display = shippingAddressCheckbox.checked ? 'none' : 'block';
-			}	
+			}
 			shippingAddressCheckbox.addEventListener('change', accountShippingAddress);
 			accountShippingAddress();
 		}
