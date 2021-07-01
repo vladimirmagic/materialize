@@ -28,14 +28,27 @@
 						checkoutStepActive.value = checkoutStep.dataset.step;
 						checkoutStepTabs.forEach(checkoutStepTab => checkoutStepTab.style.display = 'none');
 						const checkoutStepTab = document.getElementById('checkout-step-tab-' + checkoutStep.dataset.step);
-						if (checkoutStepTab) checkoutStepTab.style.display = 'block';
+						if (checkoutStepTab) {
+							checkoutStepTab.style.display = 'block';
+							setTimeout(() => scrollToError(checkoutStepTab), 100); // wait display
+						}
 					});
 				}
 			});
 
 			const checkoutStepTab = document.getElementById('checkout-step-tab-' + checkoutStepActive.value);
-			if (checkoutStepTab) checkoutStepTab.style.display = 'block';
+			if (checkoutStepTab) {
+				checkoutStepTab.style.display = 'block';
+				setTimeout(() => scrollToError(checkoutStepTab), 100); // wait display
+			}
 		}
+
+		// ERRORS
+		function scrollToError (container = document) {
+			const error = container.querySelector('.error');
+			if (error) error.scrollIntoView({behavior: 'smooth', block: 'center'});
+		}
+		scrollToError();
 
 		// SHIPPING
 		const shippingRequired = document.querySelectorAll('input[name="checkout-shipping-required"]');
