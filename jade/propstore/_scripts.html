@@ -154,6 +154,17 @@
 			checkoutResaleСertificate();
 		}
 
+		// REGISTERED BUSINESS
+		const businessCheckbox = document.querySelector('input[name="checkout-business"]');
+		const businessForm = document.querySelector('.checkout-business-form');
+		if (businessCheckbox && businessForm) {
+			function isRegisteredBusiness () {
+				businessForm.style.display = businessCheckbox.checked ? 'block' : 'none';
+			}
+			businessCheckbox.addEventListener('change', isRegisteredBusiness);
+			isRegisteredBusiness();
+		}
+
 		/** ACCOUNT */
 
 		// SHIPPING ADDRESS
