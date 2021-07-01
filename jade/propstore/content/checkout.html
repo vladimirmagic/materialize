@@ -16,7 +16,7 @@
 </div>
 
 <form class="order" action="#action">
-    <input type="hidden" name="checkout-step" value="review" />
+    <input type="hidden" name="checkout-step" value="payment" />
 
     <div id="checkout-step-tab-shipping" class="checkout-step-tab" style="display: none;">
         <div class="order__indicators">
@@ -419,31 +419,40 @@
                                     </label>
                                 </div>
                             </div>
-                            <div id="checkout-payment-type-1" class="order__form checkout-payment-type" style="display: none;">
-                                <div class="order__form-row order__form-row--full">
-                                    <div class="input-field input-field--label">
-                                        <input type="text" placeholder="xxxx xxxx xxxx xxxx">
-                                        <label>Card number</label>
+                            <div id="checkout-payment-type-1" class="checkout-payment-type" style="display: none;">
+                                <p class="p-s"><i>
+                                    <strong>Credit / Debit Card notes</strong><br>
+                                    Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Maecenas sed diam eget risus varius blandit sit amet non magna. Vestibulum id ligula porta felis euismod semper. Cras justo odio, dapibus ac facilisis in, egestas eget quam.
+                                </i></p>
+                                <div class="order__form">
+                                    <div class="order__form-row order__form-row--full">
+                                        <div class="input-field input-field--label">
+                                            <input type="text" placeholder="xxxx xxxx xxxx xxxx">
+                                            <label>Card number</label>
+                                        </div>
+                                    </div>
+                                    <div class="order__form-row">
+                                        <div class="input-field input-field--label">
+                                            <input type="text" placeholder="MM / YY">
+                                            <label>Expiry</label>
+                                        </div>
+                                        <div class="input-field input-field--label">
+                                            <input type="text" placeholder="xxx">
+                                            <label>CCV</label>
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="order__form-row">
-                                    <div class="input-field input-field--label">
-                                        <input type="text" placeholder="MM / YY">
-                                        <label>Expiry</label>
-                                    </div>
-                                    <div class="input-field input-field--label">
-                                        <input type="text" placeholder="xxx">
-                                        <label>CCV</label>
-                                    </div>
-                                </div>
-                                <div class="order__form-row order__form-row--full">
-                                    <div class="input-field input-field--label">
-                                        <textarea class="materialize-textarea" placeholder="Please Enter"></textarea>
-                                        <label>Comment</label>
-                                    </div>
-                                </div>
+
+                                <br/>
                             </div>
-                            <div id="checkout-payment-type-2" class="order__form checkout-payment-type" style="display: none;">
+                            <div id="checkout-payment-type-2" class="checkout-payment-type" style="display: none;">
+                                <p class="p-s"><i>
+                                    <strong>PayPal notes</strong><br>
+                                    Donec sed odio dui. Maecenas sed diam eget risus varius blandit sit amet non magna. Aenean lacinia bibendum nulla sed consectetur.
+                                </i></p>
+                            </div>
+
+                            <div class="order__form">
                                 <div class="order__form-row order__form-row--full">
                                     <div class="input-field input-field--label">
                                         <textarea class="materialize-textarea" placeholder="Please Enter"></textarea>
