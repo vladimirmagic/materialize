@@ -421,6 +421,15 @@ textarea {
   transform: translateY(-50%);
 }
 
+.input-field__button--blog {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+}
+
 .input-field__clean {
   position: absolute;
   right: .25rem;
