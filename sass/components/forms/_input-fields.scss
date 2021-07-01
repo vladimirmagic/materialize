@@ -473,7 +473,8 @@ textarea {
   line-height: 1.2;
 
   .error &,
-  .error + & {
+  .error + &,
+  &.error {
     display: block;
     width: 100%;
     color: $color-red;
