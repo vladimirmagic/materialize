@@ -373,7 +373,7 @@ a.card:not(.btn) { // fix a
 
 @media #{$small-and-down} {
 	.dropdown-currency {
-		left: 1em !important;
+		left: .5em !important;
 		right: .5em !important;
 		width: calc(100% - 1em) !important;
 		min-width: 0;
