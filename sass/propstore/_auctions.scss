@@ -170,6 +170,21 @@ $auction-width: 1648px;
 		opacity: 0;
 		pointer-events: none;
 	}
+
+	&.section-auctions__item-alert--added {
+		background: $color-red;
+
+		.section-auctions__item-alert-added {
+			display: inline;
+		}
+		.section-auctions__item-alert-add {
+			display: none;
+		}
+	}
+}
+
+.section-auctions__item-alert-added {
+	display: none;
 }
 
 .section-auctions__item-info {

@@ -135,10 +135,23 @@
                             </div>
                         </div>
                     </div>
-                    <button class="waves-effect waves-light btn btn--tertiary section-auctions__item-alert">
+                    <a href="#" target="_blank" class="waves-effect waves-light btn btn--tertiary section-auctions__item-alert" onclick='handleAlertClick(this, {
+                        "summary": "Entertainment Memorabilia Live Auction",
+                        "location": "Los Angeles",
+                        "description": "Prop Store proudly presents over 1,300 exciting lots of original props, costumes and entertainment memorabilia.",
+                        "start": {
+                          "dateTime": "2021-08-01T09:00:00-07:00",
+                          "timeZone": "America/Los_Angeles"
+                        },
+                        "end": {
+                          "dateTime": "2021-08-15T17:00:00-07:00",
+                          "timeZone": "America/Los_Angeles"
+                        }
+                      })'>
                         <i class='icon'><svg><use xlink:href="#bell-line"></use></svg></i>
-                        Set an alert
-                    </button>
+                        <span class="section-auctions__item-alert-add">Set an alert</span>
+                        <span class="section-auctions__item-alert-added">Added to&nbsp;calendar</span>
+                    </a>
                 </div>
             </div>
             <div class="section-auctions__item-info">
@@ -153,7 +166,7 @@
                     <div class="section-auctions__item-details">
                         <div class="section-auctions__item-details-item">
                             <i class='icon'><svg><use xlink:href="#calendar"></use></svg></i>
-                            28 May - 1 June
+                            1 Aug - 15 Aug
                         </div>
                         <div class="section-auctions__item-details-item">
                             <i class='icon'><svg><use xlink:href="#auction-line"></use></svg></i>
@@ -285,3 +298,45 @@
         </div>
     </div>
 </div>
+
+<script>
+    var clientId = '831875635243-3p9d37o2fc36un4mlvc1sr0p8oi4itvh.apps.googleusercontent.com';
+    var scopes = 'https://www.googleapis.com/auth/calendar.events';
+
+    function handleAlertClick(trigger, options) {
+        if (!trigger.classList.contains('section-auctions__item-alert--added')) {
+            gapi.auth.authorize(
+                {client_id: clientId, scope: scopes, immediate: false},
+                () => makeApiCall(trigger, options)
+            );
+            return false;
+        }
+    }
+
+    function makeApiCall(trigger, options) {
+        gapi.client.load('calendar', 'v3', function() {
+            var event = $.extend(options, {
+                'reminders': {
+					'useDefault': false,
+					'overrides': [
+						{'method': 'email', 'minutes': 24 * 60},
+						{'method': 'popup', 'minutes': 10}
+					]
+				}
+            });
+            var request = gapi.client.calendar.events.insert({
+                'calendarId': 'primary',
+                'resource': event
+            });
+                
+            request.execute(function(resp) {
+                if (resp && resp.htmlLink) {
+                    $(trigger)
+                        .addClass('section-auctions__item-alert--added')
+                        .attr('href', resp.htmlLink);
+                }
+            });
+        });
+    }
+</script>
+<script src="https://apis.google.com/js/client.js"></script>
