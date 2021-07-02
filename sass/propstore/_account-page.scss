@@ -133,8 +133,20 @@ a.account-page__suptitle:not(.btn) {
 	padding-right: 2.5rem;
 }
 
-.account__orders-auction-td-title {
-	width: 13rem;
+.account__orders-auction-td-lot {
+	width: 5rem;
+	padding-left: 2rem;
+}
+
+.account__orders-auction-td-vat-status {
+	width: 4rem;
+	padding-right: 1rem;
+}
+
+.account__orders-auction-td-title {}
+
+.account__orders-auction-td-trans-type {
+	white-space: nowrap;
 }
 
 .account__orders-auction-tr-total {
