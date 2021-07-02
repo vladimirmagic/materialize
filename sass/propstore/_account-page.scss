@@ -18,7 +18,7 @@ a.account-page__suptitle:not(.btn) {
 }
 
 .account-page__title {
-	margin-bottom: 0;
+	margin-bottom: 1em;
 }
 
 .account-page__section {
@@ -61,6 +61,10 @@ a.account-page__suptitle:not(.btn) {
 
 .account__address-use-as-shipping {
 	margin-top: 3em;
+}
+
+.account__watchlist-title {
+	margin-bottom: 0;
 }
 
 .cards--account {
