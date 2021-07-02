@@ -244,7 +244,8 @@ a.card:not(.btn) { // fix a
 
 .card__price-i {
 	position: absolute;
-	transform: translate(-.5em, -1.1em);
+	top: -14px;
+	right: -16px;
 	color: $color-turquoise;
 
 	.icon {
