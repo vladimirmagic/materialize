@@ -18,13 +18,19 @@ a.account-page__suptitle:not(.btn) {
 }
 
 .account-page__title {
-	margin-bottom: 1em;
+	margin-bottom: 0;
 }
 
 .account-page__section {
 	padding: 0 2.5em 2em;
 	margin-bottom: 2em;
 	border-bottom: 1px solid $color-grey;
+
+	&:last-child {
+		padding-bottom: 0;
+		margin-bottom: 0;
+		border-bottom: 0;
+	}
 }
 
 .account-page__section-title {
@@ -42,7 +48,7 @@ a.account-page__suptitle:not(.btn) {
 }
 
 .account__address-type {
-	margin-bottom: 3em;
+	margin-bottom: -1.5em;
 
 	label {
 		display: flex;
