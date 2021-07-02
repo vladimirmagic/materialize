@@ -1298,6 +1298,15 @@ a {
 }
 }
 
+.section-svg {
+	color: #2D2E41;
+
+	svg {
+		margin: 0 1em 1em 0;
+		fill: currentColor;
+	}
+}
+
 @media #{$small-and-down} {
 	body.themes {
 		.themes-section {
