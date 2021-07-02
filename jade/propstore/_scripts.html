@@ -51,24 +51,30 @@
 		scrollToError();
 
 		// SHIPPING
-		const shippingRequired = document.querySelectorAll('input[name="checkout-shipping-required"]');
-		const shippingRequiredTabs = document.querySelectorAll('.checkout-shipping-tab');
-		if (shippingRequired && shippingRequired.length && shippingRequiredTabs && shippingRequiredTabs.length) {
-			shippingRequired.forEach(input => {
-				if (input.dataset && input.dataset.tab) {
-					input.addEventListener('change', () => {
-						shippingRequiredTabs.forEach(shippingRequiredTab => shippingRequiredTab.style.display = 'none');
-						const shippingRequiredTab = document.querySelector(input.dataset.tab);
-						if (shippingRequiredTab) shippingRequiredTab.style.display = 'block';
-					});
+		const shippingRequired = document.querySelectorAll('.checkout-shipping-required');
+		const shippingRequiredChecked = document.querySelectorAll('.checkout-shipping-required:checked');
+		if (shippingRequired && shippingRequired.length && shippingRequiredChecked && shippingRequiredChecked.length) {
+			function isShippingRequired (input) {
+				const tabs = document.querySelectorAll('.' + input.name + '-tab');
+				if (tabs && tabs.length) {
+					tabs.forEach(tab => tab.style.display = 'none');
+					const tab = document.querySelector('#' + input.name + '-tab-' + input.value);
+					if (tab) tab.style.display = 'block';
 				}
+				const address = document.querySelector('.checkout-shipping-address');
+				const shippingRequiredChecked = document.querySelectorAll('.checkout-shipping-required:checked');
+				if (address && shippingRequiredChecked && shippingRequiredChecked.length) { // show address if any part requires shipping
+					let isRequired = 0;
+					shippingRequiredChecked.forEach(input => isRequired += Number(input.value));
+					address.style.display = isRequired ? 'block' : 'none';
+				}
+			}
+			shippingRequiredChecked.forEach(input => {
+				isShippingRequired(input);
 			});
-		}
-
-		const shippingRequiredChecked = document.querySelector('input[name="checkout-shipping-required"]:checked');
-		if (shippingRequiredChecked && shippingRequiredChecked.dataset && shippingRequiredChecked.dataset.tab) {
-			const shippingRequiredTab = document.querySelector(shippingRequiredChecked.dataset.tab);
-			if (shippingRequiredTab) shippingRequiredTab.style.display = 'block';
+			shippingRequired.forEach(input => {
+				input.addEventListener('change', () => isShippingRequired(input));
+			});
 		}
 
 		// PAYMENTS PLAN

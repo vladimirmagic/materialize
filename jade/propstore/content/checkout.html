@@ -59,20 +59,20 @@
                             <div class="order__step-radio order__step-radio--shipping-required">
                                 <div class="order__step-radio-item">
                                     <label>
-                                        <input name="checkout-shipping-required" type="radio" data-tab="#checkout-shipping-tab-1" checked />
+                                        <input name="checkout-shipping-required" class="checkout-shipping-required" type="radio" value="1" checked />
                                         <span>Yes, I would like my order shipped</span>
                                     </label>
                                 </div>
                                 <div class="order__step-radio-item">
                                     <label>
-                                        <input name="checkout-shipping-required" type="radio" data-tab="#checkout-shipping-tab-2" />
+                                        <input name="checkout-shipping-required" class="checkout-shipping-required" type="radio" value="0" />
                                         <span>No, I will pick up my order in person</span>
                                     </label>
                                 </div>
                             </div>
                         </div>
     
-                        <div id="checkout-shipping-tab-1" class="checkout-shipping-tab" style="display: none;">
+                        <div id="checkout-shipping-required-tab-1" class="checkout-shipping-required-tab" style="display: none;">
                             <div class="order__row">
                                 <p class="order__step-p">
                                     Shipping address
@@ -164,8 +164,6 @@
                                 </div>
                                 <div class="input-field__helper error">You have to check</div>
                             </div>
-                        </div>
-                        <div id="checkout-shipping-tab-2" class="checkout-shipping-tab" style="display: none;">
                         </div>
     
                         <button class="waves-effect waves-light btn order__body-next">
