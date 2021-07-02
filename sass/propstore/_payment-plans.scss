@@ -1,0 +1,159 @@
+.payment-plans {
+	@extend .content;
+	text-align: center;
+
+	.h1 {
+		margin: 0 0 .7em;
+	}
+}
+
+.payment-plans__top {
+	margin-bottom: 8em;
+	padding-top: 6em;
+	color: #fff;
+	background: $color-base;
+	border-bottom-left-radius: 140px;
+}
+
+.payment-plans__inner {
+	max-width: 38em;
+	margin: 0 auto;
+	padding: 0 1em;
+}
+
+.payment-plans__steps {
+	display: flex;
+	justify-content: center;
+	padding: 0 .75em;
+	transform: translateY(5em);
+}
+
+.payment-plans__step {
+	flex: 1 1 33%;
+	display: block;
+	max-width: 27em;
+	margin: .75em .75em;
+	padding: 3em 2em 3.5em;
+	text-align: center;
+	color: $color-base;
+    background: #fff;
+	box-shadow: $shadow-base;
+	border-radius: 6px;
+	overflow: hidden;
+}
+
+.payment-plans__step-img {
+	width: 180px;
+	height: 128px;
+	margin-bottom: 1.25em;
+}
+
+.payment-plans__step-title {
+	margin-bottom: .6em;
+}
+
+.payment-plans__table {
+	max-width: 55em;
+	margin: 0 auto;
+	padding-top: 6em;
+}
+
+.payment-plans__table-title {
+	margin-bottom: .75em;
+}
+
+.payment-plans__table-description {
+	margin-bottom: 4em;
+}
+
+.payment-plans__row {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	min-height: 3.75em;
+	padding: 1.25em;
+
+	&:nth-child(odd) {
+		background: $color-bg;
+	}
+}
+
+.payment-plans__row-label {
+	text-align: left;
+
+	.p-t {
+		margin: 0;
+	}
+}
+
+.payment-plans__row-value {
+	text-align: right;
+}
+
+.payment-plans__note {
+	padding-top: 3em;
+	text-align: left;
+	font-style: italic;
+}
+
+@media #{$large-and-down} {
+	.payment-plans__top {
+		margin-bottom: 6em;
+		padding-top: 5em;
+		border-bottom-left-radius: 100px;
+	}
+}
+
+@media #{$medium-and-down} {
+	.payment-plans__top {
+		margin-left: -2.5em;
+		margin-right: -2.5em;
+		padding-top: 4em;
+		border-bottom-left-radius: 0;
+		border-bottom-right-radius: 80px;
+	}
+
+	.payment-plans__steps {
+		padding: 0 1.5em;
+	}
+
+	.payment-plans__step {
+		margin: .25em .25em;
+		padding: 1.5em .5em 1.5em;
+	}
+	
+	.payment-plans__step-img {
+		width: 100%;
+	}
+}
+
+@media #{$small-and-down} {
+	.payment-plans__top {
+		margin-left: -1.5em;
+		margin-right: -1.5em;
+	}
+	
+	.payment-plans__steps {
+		display: block;
+		margin-top: -2em;
+		padding: 0 1.5em;
+	}
+
+	.payment-plans__step {
+		max-width: none;
+		margin: 1.5em 0;
+		padding: 1.5em;
+	}
+	
+	.payment-plans__step-img {
+		width: 100%;
+	}
+
+	.payment-plans__table {
+		padding-top: 3em;
+	}
+
+	.payment-plans__table-description {
+		margin-bottom: 2em;
+	}
+}
