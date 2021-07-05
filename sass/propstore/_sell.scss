@@ -1,0 +1,28 @@
+.sell__tabs {
+	padding: 4em 0;
+	text-align: center;
+}
+
+.sell__tab {
+	& + & {
+		margin-left: 1rem;
+	}
+
+	&.active {
+		pointer-events: none;
+	}
+}
+
+.sell__content {
+	padding: 6em 0 10em;
+	background: $color-bg;
+}
+
+@media #{$large-and-down} {
+}
+
+@media #{$medium-and-down} {
+}
+
+@media #{$small-and-down} {
+}

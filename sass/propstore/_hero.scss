@@ -203,12 +203,9 @@
 
 .hero__carousel-info-title {
 	margin: .3em 0 .2em;
-	font-size: 40px;
-	line-height: 1.2;
 }
 
 .hero__carousel-info-description {
-	font-size: 20px;
 }
 
 @media #{$extra-large-and-up} {
@@ -372,10 +369,6 @@
 
 	.hero__carousel-info-title {
 		font-size: 28px;
-	}
-	
-	.hero__carousel-info-description {
-		font-size: 18px;
 	}
 }
 

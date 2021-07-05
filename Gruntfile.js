@@ -379,6 +379,7 @@
             'account-orders.html': 'jade/propstore/account-orders.jade',
             'general.html': 'jade/propstore/general.jade',
             'payment-plans.html': 'jade/propstore/payment-plans.jade',
+            'sell.html': 'jade/propstore/sell.jade',
           }
         }
       },

@@ -2,7 +2,8 @@
 	padding-top: 160px;
 
 	.auctions &,
-	.home & {
+	.home &,
+	.sell & {
 		padding-top: 0;
 		background: linear-gradient(to bottom, $color-bg 0%, $color-bg 66%, #fff 66%);
 	}
@@ -12,6 +13,10 @@
 	display: flex;
 	margin: 0 auto;
 	max-width: $width-4cards;
+
+	.footer-actions--sell & {
+		max-width: $w84;
+	}
 }
 
 .footer-actions__row {
