@@ -1,14 +1,20 @@
 <div class="sell">
     <div class="sell__tabs">
-        <a href="#valuation" class="waves-effect btn-flat btn--rounded sell__tab active">
-            Request a valuation
-        </a>
-        <a href="#guide" class="waves-effect btn-flat btn--rounded sell__tab">
-            Get started guide
-        </a>
-        <a href="#offer" class="waves-effect btn-flat btn--rounded sell__tab">
-            What we offer
-        </a>
+        <div class="sell__tab">
+            <a href="#valuation" class="waves-effect btn-flat btn--rounded active">
+                Request a valuation
+            </a>
+        </div>
+        <div class="sell__tab">
+            <a href="#guide" class="waves-effect btn-flat btn--rounded">
+                Get started guide
+            </a>
+        </div>
+        <div class="sell__tab">
+            <a href="#offer" class="waves-effect btn-flat btn--rounded">
+                What we offer
+            </a>
+        </div>
     </div>
     <div class="sell__content">
         <div id="valuation" class="sell__tab-content sell__valuation">
@@ -70,13 +76,182 @@
                         </a>
                     </div>
                 </div>
-            </div>            
+            </div>
+            <div class="sell__inner">
+                <div class="sell-cta sell-cta--valuation">
+                    <div class="sell-cta__img" style="background-image:url(images/speak-to-expert.jpg)"></div>
+                    <div class="sell-cta__info">
+                        <div class="sell-cta__info-inner">
+                            <div class="sell-cta__title h2">
+                                Speak to an expert
+                            </div>
+                            <div class="sell-cta__text p-r">
+                                Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Sed posuere consectetur est at lobortis. Maecenas sed diam eget risus varius blandit sit amet non magna. 
+                            </div>
+                            <a class="waves-effect waves-light btn">
+                                <span class='btn__title'>Learn more</span>
+                                <i class='icon'><svg><use xlink:href="#arrow-right"></use></svg></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sell__valuation-form-title h2">
+                    Request a FREE no obligation valuation
+                </div>
+                <form class="sell-form">
+                    <div class="sell-form__section">
+                        <div class="sell-form__p">
+                            How you’d like to proceed
+                        </div>
+                        <div class="sell-form__radio">
+                            <div class="sell-form__radio-item">
+                                <label>
+                                    <input name="sell-how" type="radio" value="0" checked />
+                                    <span>Standard Valuation</span>
+                                </label>
+                            </div>
+                            <div class="sell-form__radio-item">
+                                <label>
+                                    <input name="sell-how" type="radio" value="1" />
+                                    <span>Request a live video chat</span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="sell-form__section">
+                        <div class="sell-form__p">
+                            Valuation request form
+                        </div>
+                        <div class="sell-form__row">
+                            <div class="input-field input-field--label">
+                                <input type="text" placeholder="E.g Spear of Destiny">
+                                <label>Item</label>
+                            </div>
+                            <div class="input-field input-field--label">
+                                <input type="text" placeholder="Film or TV Show Name">
+                                <label>Film or TV Show (optional)</label>
+                            </div>
+                        </div>
+                        <div class="sell-form__row sell-form__row--full">
+                            <div class="input-field input-field--label">
+                                <textarea class="materialize-textarea" placeholder="A short history of how you accuired the item"></textarea>
+                                <label>Item history (optional)</label>
+                            </div>
+                        </div>
+                        <div class="sell-form__row">
+                            <div class="input-field input-field--label">
+                                <input type="text" placeholder="Please Enter">
+                                <label>Full Name</label>
+                            </div>
+                            <div class="input-field input-field--label">
+                                <input type="email" placeholder="Please Enter">
+                                <label>Email Address</label>
+                            </div>
+                        </div>
+                        <div class="sell-form__row">
+                            <div class="input-field input-field--label">
+                                <input type="tel" placeholder="Please Enter">
+                                <label>Phone Number</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="sell-form__section">
+                        <div class="sell-form__p">
+                            Upload Images
+                        </div>
+
+                        <div class="sell-form__uploaded">
+                            <div class="h5">Uploaded:</div>
+                            <div class="p-r">Uplodaed_file_name.jpg</div>
+                            <div class="p-r">Uplodaed_file_name-02.jpg</div>
+                        </div>
+
+                        <div class="sell-form__row sell-form__row--full">
+                            <div class="file-field input-field">
+                                <div class="btn">
+                                    <span>Files</span>
+                                    <input type="file" multiple>
+                                </div>
+                                <div class="file-path-wrapper">
+                                    <input class="file-path" type="text">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="sell-form__checkboxes">
+                        <div class="sell-form__checkbox">
+                            <label class="checkbox__label error">
+                                <input type="checkbox" class="filled-in" />
+                                <input type="hidden" />
+                                <span>I agree to the <a href="#">Privacy Policy</a> *</span>
+                            </label>
+                            <div class="input-field__helper">You have to agree</div>
+                        </div>
+                        <div class="sell-form__checkbox">
+                            <label class="checkbox__label">
+                                <input type="checkbox" class="filled-in" />
+                                <input type="hidden" />
+                                <span>Sign me up for upcoming news, offers and competitions updates</span>
+                            </label>    
+                        </div>
+                        <div class="sell-form__checkbox">
+                            <label class="checkbox__label">
+                                <input type="checkbox" class="filled-in" />
+                                <input type="hidden" />
+                                <span>Sign me up for upcoming auction updates</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="sell-form__submit">
+                        <button type="submit" class="waves-effect waves-light btn">
+                            <span class='btn__title'>Help me sell my item</span>
+                            <i class='icon'><svg><use xlink:href="#arrow-right"></use></svg></i>
+                        </button>
+                    </div>
+                </form>
+            </div>
         </div>
         <div id="guide" class="sell__tab-content sell__guide" style="display: none;">
-            Guide
+            Guide redeploy
         </div>
         <div id="offer" class="sell__tab-content sell__offer" style="display: none;">
-            Offer
+            <div class="sell__inner">
+                <div class="sell-cta">
+                    <div class="sell-cta__img">
+                        <img class="sell-cta__img-image" src="images/hoverboard.png">
+                        <div class="sell-cta__img-info">
+                            <div class="sell-cta__img-title">
+                                Sold for
+                            </div>
+                            <div class="sell-cta__img-price h4">
+                                £393,600
+                            </div>
+                            <div class="sell-cta__img-price1 p-t">
+                                Approx. $522k
+                            </div>
+                        </div>
+                    </div>
+                    <div class="sell-cta__info">
+                        <div class="sell-cta__info-inner">
+                            <div class="sell-cta__title h2">
+                                Speak to an expert
+                            </div>
+                            <div class="sell-cta__text p-r">
+                                Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Sed posuere consectetur est at lobortis. Maecenas sed diam eget risus varius blandit sit amet non magna. 
+                            </div>
+                            <a class="waves-effect waves-light btn">
+                                <span class='btn__title'>Learn more</span>
+                                <i class='icon'><svg><use xlink:href="#arrow-right"></use></svg></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>

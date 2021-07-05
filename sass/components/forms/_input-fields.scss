@@ -348,6 +348,10 @@ textarea {
     resize: none;
     min-height: $input-height;
     box-sizing: border-box;
+
+    &:focus {
+      min-height: 5.5em;
+    }
   }
 }
 

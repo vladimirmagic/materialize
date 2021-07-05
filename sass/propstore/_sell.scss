@@ -4,6 +4,8 @@
 }
 
 .sell__tab {
+	display: inline-block;
+
 	& + & {
 		margin-left: 1rem;
 	}
@@ -14,15 +16,292 @@
 }
 
 .sell__content {
-	padding: 6em 0 10em;
+	padding-top: 6em;
+	padding-bottom: 10em;
 	background: $color-bg;
 }
 
+.sell__inner {
+	@extend .content;
+	max-width: $w84;
+	margin: 0 auto;
+}
+
+.sell-cta {
+	display: flex;
+	color: #fff;
+
+	&.sell-cta--valuation {
+		margin-top: 7.5em;
+	}
+}
+
+.sell-cta__img {
+	width: 100%;
+	max-width: 27em;
+	min-height: 28em;
+	background: $primary-color;
+	background-position: 50% 0;
+	background-size: cover;
+	background-repeat: no-repeat;
+	border-bottom-left-radius: 140px;
+}
+
+.sell-cta__img-image {
+	max-width: 105%;
+	margin: 5em 0 0 -4em;
+}
+
+.sell-cta__img-info {
+	padding: 0 2.5em 2em 0;
+	text-align: right;
+	line-height: 1;
+}
+
+.sell-cta__img-title {
+	margin-bottom: 1em;
+	text-transform: uppercase;
+	font-size: 10px;
+	font-weight: 600;
+	letter-spacing: .12em;
+}
+
+.sell-cta__img-price {
+	margin-bottom: .25em;
+}
+
+.sell-cta__img-price1 {
+	opacity: .5;
+	font-weight: 400;
+}
+
+.sell-cta__info {
+	display: flex;
+	align-items: center;
+	width: 100%;
+	padding: 5.5em 2.5em 6em 11em;
+	background: $color-base;
+}
+
+.sell-cta__info-inner {
+	max-width: 36em;
+}
+
+.sell-cta__title {
+	margin-bottom: .5em;
+}
+
+.sell-cta__text {
+	margin-bottom: 2em;
+}
+
+.sell__valuation-form-title {
+	margin: 3em 0 2em;
+	text-align: center;
+}
+
+.sell-form {
+	padding: 7.5em 15em;
+	background: #fff;
+	border-radius: 6px;
+	box-shadow: $shadow-base;
+}
+
+.sell-form__section {
+	& + & {
+		margin-top: 3em;
+	}
+}
+
+.sell-form__p {
+	margin-bottom: 1.2em;
+	font-size: 20px;
+	font-weight: 400;
+}
+
+.sell-form__radio {
+	display: flex;
+	justify-content: space-between;
+}
+
+.sell-form__radio-item {
+	position: relative;
+	width: 100%;
+
+	label {
+		display: flex;
+		align-items: center;
+		min-height: 4em;
+		padding: 20px;
+		font-size: 1em;
+		color: $color-base;
+		background: #fff;
+		border-radius: 6px;
+		border: 1px solid $color-grey;
+		cursor: pointer;
+	}
+
+	& + & {
+		margin-left: 1.5em;
+	}
+}
+
+
+.sell-form__row {
+	display: flex;
+	justify-content: space-between;
+	align-items: flex-start;
+
+	.input-field {
+		flex: 0 1 calc(50% - 12px);
+	}
+
+	.input-field + .input-field {
+		margin-left: 1.5em;
+	}
+
+	& + & {
+		margin-top: .5em;
+	}
+
+	&.sell-form__row--full {
+		width: 100%;
+
+		.input-field {
+			flex-basis: 100%;
+		}	
+	}
+}
+
+.sell-form__uploaded {
+	margin: 2em 0;
+}
+
+
+.sell-form__checkboxes {
+	label {
+		display: flex;
+	}
+}
+
+.sell-form__checkbox {
+	margin-top: 3em;
+
+	& + & {
+		margin-top: 1em;
+	}
+
+	.input-field__helper {
+		padding-left: 35px;
+	}
+}
+
+.sell-form__submit {
+	margin-top: 3em;
+}
+
+@media only screen and (min-width: $w84) {
+	.sell__inner {
+		padding-left: 0;
+		padding-right: 0;
+	}
+}
+
+@media only screen and (max-width: $w84) {
+	.sell-cta__img-image {
+		max-width: 100%;
+		margin-left: -2em;
+	}
+
+	.sell-cta__info {
+		padding: 4.5em 2.5em 5em 3em;
+	}
+
+	.sell-form {
+		padding: 7.5em 7.5em;
+	}
+}
+
 @media #{$large-and-down} {
+	.sell__content {
+		padding-top: 4em;
+		padding-bottom: 5em;
+	}
+
+	.sell-cta {
+		&.sell-cta--valuation {
+			margin-top: 5em;
+		}
+	}
 }
 
 @media #{$medium-and-down} {
+	.sell-cta {
+		display: block;
+	}
+
+	.sell-cta__img {
+		max-width: 100% !important;
+		min-height: 24em;
+		border-bottom-left-radius: 0;
+		border-top-left-radius: 100px;
+	}
+
+	.sell-cta__img-image {
+		margin-top: 4em;
+	}
+
+	.sell-cta__img-info {
+		padding-right: 2em;
+	}
+
+	.sell-cta__info {
+		padding: 3em 2em 4em;
+	}
+
+	.sell-cta__info-inner {
+		max-width: 32em;
+		margin: 0 auto;
+	}
+
+	.sell-form {
+		padding: 3.5em 1.5em;
+	}
+
+	.sell-form__radio {
+		flex-wrap: wrap;
+	}
+
+	.sell-form__radio-item {
+		flex-basis: 100%;
+
+		& + & {
+			margin-left: 0;
+			margin-top: 1em;
+		}
+	}
+
+	.sell-form__row {
+		flex-wrap: wrap;
+		
+		.input-field {
+			flex-basis: 100%;
+		}
+
+		.input-field + .input-field {
+			margin-left: 0;
+			margin-top: 1.5em;
+		}
+	}
 }
 
 @media #{$small-and-down} {
+	.sell__tab {
+		display: block;
+
+		& + & {
+			margin-left: 0;
+			margin-top: 1.5rem;
+		}
+	}
 }
