@@ -1,5 +1,12 @@
 div(class="cards")
     div(class="cards__inner")
+        div(class="cards__showing-results")
+            div(class="cards__showing-results-label h5") Showing results for
+            div(class="cards__showing-results-value") Murray
+                a(href="#clean" class="waves-effect btn-flat btn--icon cards__showing-results-clean")
+                    i(class="icon")
+                        svg
+                            use(xlink:href="#clean")
         div(class="cards__list")
             include card-05.html
             include card-06.html

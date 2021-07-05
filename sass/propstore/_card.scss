@@ -244,7 +244,8 @@ a.card:not(.btn) { // fix a
 
 .card__price-i {
 	position: absolute;
-	transform: translate(-.5em, -1.1em);
+	top: -14px;
+	right: -16px;
 	color: $color-turquoise;
 
 	.icon {
@@ -372,7 +373,7 @@ a.card:not(.btn) { // fix a
 
 @media #{$small-and-down} {
 	.dropdown-currency {
-		left: 1em !important;
+		left: .5em !important;
 		right: .5em !important;
 		width: calc(100% - 1em) !important;
 		min-width: 0;

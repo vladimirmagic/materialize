@@ -25,6 +25,12 @@ a.account-page__suptitle:not(.btn) {
 	padding: 0 2.5em 2em;
 	margin-bottom: 2em;
 	border-bottom: 1px solid $color-grey;
+
+	&:last-child {
+		padding-bottom: 0;
+		margin-bottom: 0;
+		border-bottom: 0;
+	}
 }
 
 .account-page__section-title {
@@ -46,7 +52,7 @@ a.account-page__suptitle:not(.btn) {
 
 	label {
 		display: flex;
-		margin-bottom: 24px;
+		margin-bottom: 1.5em;
 		font-size: 1em;
 		color: $color-base;
 		cursor: pointer;
@@ -55,6 +61,22 @@ a.account-page__suptitle:not(.btn) {
 
 .account__address-use-as-shipping {
 	margin-top: 3em;
+}
+
+.account-page__checkboxes {
+	margin-bottom: -1.5em;
+
+	label {
+		display: flex;
+		margin-bottom: 1.5em;
+		font-size: 1em;
+		color: $color-base;
+		cursor: pointer;
+	}
+}
+
+.account__watchlist-title {
+	margin-bottom: 0;
 }
 
 .cards--account {
@@ -123,8 +145,20 @@ a.account-page__suptitle:not(.btn) {
 	padding-right: 2.5rem;
 }
 
-.account__orders-auction-td-title {
-	width: 13rem;
+.account__orders-auction-td-lot {
+	width: 5rem;
+	padding-left: 2rem;
+}
+
+.account__orders-auction-td-vat-status {
+	width: 4rem;
+	padding-right: 1rem;
+}
+
+.account__orders-auction-td-title {}
+
+.account__orders-auction-td-trans-type {
+	white-space: nowrap;
 }
 
 .account__orders-auction-tr-total {

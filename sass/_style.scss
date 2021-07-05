@@ -1298,6 +1298,15 @@ a {
 }
 }
 
+.section-svg {
+	color: #2D2E41;
+
+	svg {
+		margin: 0 1em 1em 0;
+		fill: currentColor;
+	}
+}
+
 @media #{$small-and-down} {
 	body.themes {
 		.themes-section {
@@ -1336,6 +1345,7 @@ a {
 @import './propstore/share';
 @import './propstore/also-like';
 @import './propstore/table';
+@import './propstore/how';
 
 @import './propstore/home';
 @import './propstore/auctions';
@@ -1345,3 +1355,5 @@ a {
 @import './propstore/order';
 @import './propstore/account';
 @import './propstore/account-page';
+@import './propstore/payment-plans';
+@import './propstore/sell';

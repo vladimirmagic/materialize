@@ -373,12 +373,14 @@
             'order-confirmed.html': 'jade/propstore/order-confirmed.jade',
             'blog.html': 'jade/propstore/blog.jade',
             'blog-single.html': 'jade/propstore/blog-single.jade',
+            'faq.html': 'jade/propstore/faq.jade',
             'account.html': 'jade/propstore/account.jade',
             'account-details.html': 'jade/propstore/account-details.jade',
             'account-watchlist.html': 'jade/propstore/account-watchlist.jade',
             'account-orders.html': 'jade/propstore/account-orders.jade',
             'general.html': 'jade/propstore/general.jade',
-            'faq.html': 'jade/propstore/faq.jade',
+            'payment-plans.html': 'jade/propstore/payment-plans.jade',
+            'sell.html': 'jade/propstore/sell.jade',
           }
         }
       },

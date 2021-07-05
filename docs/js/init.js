@@ -328,4 +328,41 @@ document.addEventListener('DOMContentLoaded', () => {
 		$('.modal-payment-plan__tab').hide();
 		$($(this).data('tab')).show();
 	});
+
+	// SELL
+	const sellTabsA = document.querySelectorAll('.sell__tab');
+	const sellTabs = document.querySelectorAll('.sell__tab-content');
+	if (sellTabsA && sellTabsA.length && sellTabs && sellTabs.length) {
+		function showSellTab (e) {
+			let active;
+			if (e) { // click
+				e.preventDefault();
+				active = this.getAttribute('href');
+				window.history.pushState(null, this.innerText, this.href);
+				window.onpopstate = () => showSellTab();
+			} else { // init
+				const hashes = window.location.href.split('#'); // find hash in url
+				if (hashes && hashes.length && hashes.length > 1) {
+					let hash = hashes[1];
+					const query = hash.search(/[^\w]/g);
+					if (query > -1) hash = hash.substr(0, query);
+					active = '#' + hash;
+				} else { // if no hash in url - take first tab
+					const tabActive = document.querySelector('.sell__tab:first-of-type');
+					if (tabActive) active = tabActive.getAttribute('href');
+				}
+			}
+			if (active) {
+				sellTabs.forEach(tab => tab.style.display = 'none');
+				const tab = document.querySelector(active);
+				if (tab) tab.style.display = 'block';
+				const tabActive = document.querySelector('.sell__tab.active');
+				if (tabActive) tabActive.classList.remove('active');
+				const newActive = document.querySelector('.sell__tab[href="' + active + '"]');
+				if (newActive) newActive.classList.add('active');
+			}
+		}
+		sellTabsA.forEach(a => a.addEventListener('click', showSellTab));
+		showSellTab();
+	}
 });

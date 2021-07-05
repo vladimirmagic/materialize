@@ -21,7 +21,8 @@ span.badge {
     margin-right: 4px;
   }
 
-  &.orange {
+  &.orange,
+  &.turquoise {
     color: $color-base;
   }
 

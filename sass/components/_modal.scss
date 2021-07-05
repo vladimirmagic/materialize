@@ -195,12 +195,18 @@
 	height: 440px;
 }
 
+.modal-content {
+  opacity: 1;
+	transition: opacity .5s ease-in;
+}
+
 .modal.sync {
   .modal__loader {
     display: flex;
   }
   .modal-content {
-    display: none;
+    max-height: 0;
+    opacity: 0;
   }
 }
 
