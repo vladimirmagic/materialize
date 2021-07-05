@@ -378,6 +378,7 @@
             'account-watchlist.html': 'jade/propstore/account-watchlist.jade',
             'account-orders.html': 'jade/propstore/account-orders.jade',
             'general.html': 'jade/propstore/general.jade',
+            'faq.html': 'jade/propstore/faq.jade',
           }
         }
       },
