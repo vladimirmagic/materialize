@@ -330,7 +330,7 @@ document.addEventListener('DOMContentLoaded', () => {
 	});
 
 	// SELL
-	const sellTabsA = document.querySelectorAll('.sell__tab');
+	const sellTabsA = document.querySelectorAll('.sell__tab a');
 	const sellTabs = document.querySelectorAll('.sell__tab-content');
 	if (sellTabsA && sellTabsA.length && sellTabs && sellTabs.length) {
 		function showSellTab (e) {
@@ -348,7 +348,7 @@ document.addEventListener('DOMContentLoaded', () => {
 					if (query > -1) hash = hash.substr(0, query);
 					active = '#' + hash;
 				} else { // if no hash in url - take first tab
-					const tabActive = document.querySelector('.sell__tab:first-of-type');
+					const tabActive = document.querySelector('.sell__tab:first-of-type a');
 					if (tabActive) active = tabActive.getAttribute('href');
 				}
 			}
@@ -356,9 +356,9 @@ document.addEventListener('DOMContentLoaded', () => {
 				sellTabs.forEach(tab => tab.style.display = 'none');
 				const tab = document.querySelector(active);
 				if (tab) tab.style.display = 'block';
-				const tabActive = document.querySelector('.sell__tab.active');
+				const tabActive = document.querySelector('.sell__tab a.active');
 				if (tabActive) tabActive.classList.remove('active');
-				const newActive = document.querySelector('.sell__tab[href="' + active + '"]');
+				const newActive = document.querySelector('.sell__tab a[href="' + active + '"]');
 				if (newActive) newActive.classList.add('active');
 			}
 		}
