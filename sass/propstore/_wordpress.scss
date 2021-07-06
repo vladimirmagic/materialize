@@ -56,6 +56,102 @@
     .yarpp-related {
         margin: 0;
     }
+    
+    &.page-general-faqs {
+        .faq-general {
+            color: #fff;
+            background: $color-base;
+            cursor: default;
+        }
+    }
+    
+    &.page-auction-faq {
+        .faq-auctions {
+            color: #fff;
+            background: $color-base;
+            cursor: default;
+        }
+    }
+    
+    &.page-poster-auction-faqs {
+        .faq-poster-auction-faqs {
+            color: #fff;
+            background: $color-base;
+            cursor: default;
+        }
+    }
+    
+    &.page-video-guides {
+        .faq-video-guides {
+            color: #fff;
+            background: $color-base;
+            cursor: default;
+        }
+    }
+    
+    &.page-ordering-faqs {
+        .faq-ordering-faqs {
+            color: #fff;
+            background: $color-base;
+            cursor: default;
+        }
+    }
+    
+    &.page-shipping {
+        .faq-shipping {
+            color: #fff;
+            background: $color-base;
+            cursor: default;
+        }
+    }
+    
+    &.page-shipping-from-our-uk-office {
+        .faq-shipping-from-our-uk-office {
+            color: #fff;
+            background: $color-base;
+            cursor: default;
+        }
+    }
+    
+    &.page-shipping-from-our-us-office {
+        .faq-shipping-from-our-us-office {
+            color: #fff;
+            background: $color-base;
+            cursor: default;
+        }
+    }
+    
+    &.page-payment-plans {
+        .faq-payment-plans {
+            color: #fff;
+            background: $color-base;
+            cursor: default;
+        }
+    }
+    
+    &.page-gift-vouchers {
+        .faq-gift-vouchers {
+            color: #fff;
+            background: $color-base;
+            cursor: default;
+        }
+    }
+    
+    &.page-certificate-of-authenticity-2 {
+        .faq-certificate-of-authenticity-2 {
+            color: #fff;
+            background: $color-base;
+            cursor: default;
+        }
+    }
+    
+    &.page-copyright-2 {
+        .faq-copyright-2 {
+            color: #fff;
+            background: $color-base;
+            cursor: default;
+        }
+    }
 }
 
 @media #{$large-and-down} {
