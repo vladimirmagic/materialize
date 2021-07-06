@@ -109,6 +109,7 @@ document.addEventListener('DOMContentLoaded', () => {
 			document.addEventListener('scroll', M.throttle((e) => {
 				const currentScroll = document.body.scrollTop || window.scrollY || document.documentElement.scrollTop;
 				if (currentScroll <= previousScroll) {
+					if (document.body.classList.contains('autoscroll')) return; // dont show header if autoscroll
 					if (
 						previousScroll - currentScroll > HEADER_THRESHOLD ||
 						currentScroll < top
@@ -386,7 +387,16 @@ document.addEventListener('DOMContentLoaded', () => {
 					const step = this.dataset.step;
 					sellSteps.forEach(step => step.style.display = 'none');
 					const stepActive = document.querySelector('#sell__step-' + step);
-					if (stepActive) stepActive.style.display = 'block';
+					if (stepActive) {
+						stepActive.style.display = 'block';
+						if (this.classList.contains('sell__step-button--next')) { // bottom buttons -> scroll up to the step top
+							document.body.classList.add('autoscroll');
+							stepActive.scrollIntoView ({behavior: 'smooth', block: 'nearest'});
+							setTimeout(() => {
+								document.body.classList.remove('autoscroll');
+							}, 500);
+						}
+					}
 					sellStepButtons.forEach(button => {
 						if (button.dataset && button.dataset.step && button.dataset.step <= step) {
 							button.classList.add('filled');
