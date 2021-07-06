@@ -178,6 +178,17 @@ a.account-page__suptitle:not(.btn) {
 	}
 }
 
+.account__orders-code-block {
+	& + & {
+		padding-top: 1rem;
+	}
+}
+
+.account__orders-code-row {
+	margin-bottom: .5rem;
+	white-space: nowrap;
+}
+
 .account__orders-auction-note {
 	margin-bottom: 5em;
 }
