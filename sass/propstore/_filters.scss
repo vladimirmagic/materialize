@@ -55,6 +55,9 @@
     display: inline-flex;
     flex-wrap: wrap;
     margin-right: 16px;
+    &.filters__menu-categories--faq {
+        justify-content: center;
+    }
 }
 
 .filters__menu-category {

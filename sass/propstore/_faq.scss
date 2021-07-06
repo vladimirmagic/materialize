@@ -28,8 +28,12 @@
         margin-bottom: 12px;
         box-shadow: 0px 8px 32px -10px rgba(0, 0, 0, 0.15);
         border-radius: 6px;
+        transition: box-shadow .2s ease-in;
         &:last-child {
             margin-bottom: 0;
+        }
+        &:hover {
+            box-shadow: 0px 8px 32px -10px rgba(0, 0, 0, 0.25);
         }
         &.active {
             .faq__collapsible-header .icon {
