@@ -30,9 +30,14 @@
 .sell-cta {
 	display: flex;
 	color: #fff;
+	text-align: left;
 
 	&.sell-cta--valuation {
 		margin-top: 7.5em;
+	}
+
+	&.sell-cta--guide {
+		margin-top: 5em;
 	}
 }
 
@@ -84,7 +89,7 @@
 }
 
 .sell-cta__info-inner {
-	max-width: 36em;
+	max-width: $w36;
 }
 
 .sell-cta__title {
@@ -200,6 +205,88 @@
 	margin-top: 3em;
 }
 
+
+.sell-guide {
+	text-align: center;
+}
+
+.sell-guide__text1 {
+	max-width: $w55;
+	margin: 0 auto;
+	padding-bottom: 3.5em;
+}
+
+.sell__steps {
+	padding: 6em 1.5em;
+	background: #fff;
+	border-radius: 6px;
+	box-shadow: $shadow-base;
+}
+
+.sell__steps-inner {
+	max-width: $w36;
+	margin: 0 auto;
+}
+
+.sell-guide__text2 {
+	max-width: $w36;
+	margin: 3em auto 0;
+}
+
+.sell__indicators {
+	display: flex;
+	justify-content: center;
+	margin-bottom: 3.5em;
+}
+
+.sell__indicator {
+	position: relative;
+	flex: 0 0 120px;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	cursor: pointer;
+
+	& + & {
+		&:before {
+			content: '';
+			position: absolute;
+			left: -12.5%;
+			top: 30px;
+			width: 30px;
+			height: 1px;
+			background: $color-grey;
+		}
+	}
+
+	&.filled {
+		.sell__indicator-number {
+			color: #fff;
+			background: $color-base;
+		}
+	}
+}
+
+.sell__indicator-number {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 60px;
+	height: 60px;
+	font-size: 20px;
+	font-weight: 500;
+	border-radius: 60px;
+	border: 1px solid $color-grey;
+}
+
+.sell__step-buttons {
+	margin-top: 3.5rem;
+
+	.btn + .btn {
+		margin-left: 1.5rem;
+	}
+}
+
 @media only screen and (min-width: $w84) {
 	.sell__inner {
 		padding-left: 0;
@@ -232,6 +319,19 @@
 		&.sell-cta--valuation {
 			margin-top: 5em;
 		}
+
+		&.sell-cta--guide {
+			margin-top: 3.5em;
+		}
+	}
+
+	.sell-guide__text1 {
+		padding-bottom: 2.5em;
+	}
+
+	.sell__steps {
+		padding-top: 3.5em;
+		padding-bottom: 3.5em;
 	}
 }
 
@@ -293,6 +393,18 @@
 			margin-top: 1.5em;
 		}
 	}
+
+	.sell__step-buttons {
+		margin-top: 2.5rem;
+
+		.btn {
+			display: block;
+		}
+	
+		.btn + .btn {
+			margin: 1.5rem 0 0 0;
+		}
+	}
 }
 
 @media #{$small-and-down} {
@@ -303,5 +415,23 @@
 			margin-left: 0;
 			margin-top: 1.5rem;
 		}
+	}
+
+	.sell__indicator {
+		flex-basis: 80px;
+
+		& + & {
+			&:before {
+				top: 20px;
+				width: 20px;
+			}
+		}
+	}
+	
+	.sell__indicator-number {
+		width: 40px;
+		height: 40px;
+		font-size: 16px;
+		border-radius: 40px;
 	}
 }

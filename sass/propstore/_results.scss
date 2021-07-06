@@ -15,7 +15,7 @@
 .showing-results__search {
 	display: inline-block;
 	width: 100%;
-	max-width: 584px;
+	max-width: $w36;
 	margin: 0;
 
 	input[type=search] {
