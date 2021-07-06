@@ -67,7 +67,7 @@ a.account-page__suptitle:not(.btn) {
 	margin-bottom: -1.5em;
 
 	label {
-		display: flex;
+		display: inline-flex;
 		margin-bottom: 1.5em;
 		font-size: 1em;
 		color: $color-base;
@@ -176,6 +176,22 @@ a.account-page__suptitle:not(.btn) {
 		text-align: center;
 		vertical-align: middle;
 	}
+}
+
+.account__orders-code {
+	white-space: nowrap;
+	line-height: 2;
+}
+
+.account__orders-code-block {
+	& + & {
+		padding-top: 1rem;
+	}
+}
+
+.account__orders-code-row {
+	margin-bottom: .5rem;
+	white-space: nowrap;
 }
 
 .account__orders-auction-note {

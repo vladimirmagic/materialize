@@ -488,7 +488,7 @@ a.order__summary-calculate-shipping:not(.btn) {
 
 .order__checkboxes {
 	label {
-		display: flex;
+		display: inline-flex;
 	}
 }
 
@@ -504,8 +504,10 @@ a.order__summary-calculate-shipping:not(.btn) {
 
 .order__vaucher {
 	display: flex;
+	width: 100%;
 
 	.input-field {
+		flex: 0 1 60%;
 		margin: 0 1em 0 0;
 	}
 }
@@ -561,6 +563,7 @@ a.order__item:not(.btn) { // fix a
 }
 
 .order__item-details {
+	flex: 0 1 100%;
 	margin-right: 100px;
 	padding-top: 1em;
 }
@@ -757,7 +760,7 @@ a.order__item:not(.btn) { // fix a
 .order-confirmed__payment-row {
 	display: flex;
 	justify-content: space-between;
-	padding: 1em 2em;
+	padding: 1em 2rem;
 
 	&:nth-child(odd) {
 		background: $color-bg;
@@ -1077,7 +1080,18 @@ a.order__item:not(.btn) { // fix a
 	}
 
 	.order-confirmed__payment-row {
-		padding: 1em 1em;
+		padding: 1rem;
+	}
+
+	.order__vaucher {
+		.input-field {
+			flex-basis: 100%;
+		}
+	}
+
+	.order__vaucher-apply {
+		flex: 1 0 5rem;
+		padding: 0 .5rem;
 	}
 }
 
