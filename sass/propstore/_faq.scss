@@ -72,3 +72,44 @@
     }
   }  
 }
+
+.faq__search-suggester {
+    position: absolute;
+    top: 57px;
+    z-index: 9;
+    width: 100%;
+    background: #FFF;
+    border: 1px solid $color-grey;
+    box-shadow: 0px 4px 30px -10px rgba(0, 0, 0, .15);
+    border-radius: 4px;
+}
+
+.faq__search-suggester__item {
+    display: flex;
+    text-decoration: none;
+    max-height: 4.5em;
+    padding: 19px;
+    margin: 0;
+    text-align: left;
+    font-weight: 300;
+    cursor: pointer;
+    transition: background .2s ease-in;
+    &:hover {
+        background: rgba(0,0,0,0.05);
+    }
+}
+
+.faq__search-suggester__item-text {
+    display: -webkit-box;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+}
+
+a.faq__search-suggester__item:not(.btn):not(.btn-large):not(.btn-small):not(.btn-extra-small):not(.btn-flat) {
+    text-decoration: none;
+    &:hover {
+        background: rgba(0,0,0,0.05);
+    }
+}
