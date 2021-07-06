@@ -563,6 +563,7 @@ a.order__item:not(.btn) { // fix a
 }
 
 .order__item-details {
+	flex: 0 1 100%;
 	margin-right: 100px;
 	padding-top: 1em;
 }
@@ -759,7 +760,7 @@ a.order__item:not(.btn) { // fix a
 .order-confirmed__payment-row {
 	display: flex;
 	justify-content: space-between;
-	padding: 1em 2em;
+	padding: 1em 2rem;
 
 	&:nth-child(odd) {
 		background: $color-bg;
@@ -1079,7 +1080,7 @@ a.order__item:not(.btn) { // fix a
 	}
 
 	.order-confirmed__payment-row {
-		padding: 1em 1em;
+		padding: 1rem;
 	}
 
 	.order__vaucher {
