@@ -178,6 +178,11 @@ a.account-page__suptitle:not(.btn) {
 	}
 }
 
+.account__orders-code {
+	white-space: nowrap;
+	line-height: 2;
+}
+
 .account__orders-code-block {
 	& + & {
 		padding-top: 1rem;
