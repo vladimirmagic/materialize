@@ -82,6 +82,9 @@
     border: 1px solid $color-grey;
     box-shadow: 0px 4px 30px -10px rgba(0, 0, 0, .15);
     border-radius: 4px;
+    &.faq__search-suggester--init {
+        display: none;
+    }
     &.faq__search-suggester--empty {
         &:before {
             content: 'Nothing found';
