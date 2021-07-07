@@ -99,6 +99,7 @@ header {
 	}
 }
 
+.modal-form__submit,
 .modal-register__submit {
 	.preloader-wrapper {
 		display: none;
@@ -108,12 +109,14 @@ header {
 	}
 }
 
+.modal-form,
 .modal-password-form,
 .modal-register-form,
 .modal-signin-form {
 	&.sync {
 		pointer-events: none;
 
+		.modal-form__submit .icon,
 		.modal-register__submit .icon {
 			display: none;
 		}
