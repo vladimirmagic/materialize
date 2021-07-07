@@ -410,6 +410,7 @@ a.product__certificate:not(.btn) { // fix a
 
 .modal-shipping-quote {
 	text-align: center;
+	width: 90%;
 	max-width: $w55;
 
 	.modal__title {
@@ -437,6 +438,7 @@ a.product__certificate:not(.btn) { // fix a
 	text-align: left;
 
 	.input-field {
+		margin-top: 1em;
 		flex: 0 1 calc(50% - 12px);
 	}
 }
@@ -635,5 +637,9 @@ a.product__certificate:not(.btn) { // fix a
 		&:after {
 			min-width: 12px;
 		}
+	}
+
+	.modal-shipping-quote {
+		width: 100%;
 	}
 }
