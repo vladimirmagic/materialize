@@ -317,19 +317,6 @@ document.addEventListener('DOMContentLoaded', () => {
 		}
 	});
 
-	// MODAL PAYMENT PLAN
-
-	$('#modal-payment-plan').modal({
-		onOpenEnd: () => {
-			$($('.modal-payment-plan__months-buttons input:checked').data('tab')).show();
-		}
-	});
-
-	$('.modal-payment-plan__months-buttons input').on('change', function () {
-		$('.modal-payment-plan__tab').hide();
-		$($(this).data('tab')).show();
-	});
-
 	// SELL
 	const sellTabsA = document.querySelectorAll('.sell__tab a');
 	const sellTabs = document.querySelectorAll('.sell__tab-content');
