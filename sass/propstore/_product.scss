@@ -423,6 +423,10 @@ a.product__certificate:not(.btn) { // fix a
 	padding-top: 2em;
 	text-align: left;
 	border-top: 1px solid $color-grey;
+
+	.c-r {
+		margin-bottom: .5em;
+	}
 }
 
 .modal-shipping-quote-form {
