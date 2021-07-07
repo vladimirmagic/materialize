@@ -265,6 +265,24 @@
                     this.classList.remove('sync');
                 });
         });
+
+		$('.header__bag').dropdown({ // load form on open
+			alignment: 'right',
+			onOpenStart: function (el) {
+				el.classList.add('sync');
+				const $form = $('#modal-bag').find('.modal-form');
+				$.post('/ajax/rest.action?actions=productBasket')
+					.done(data => {
+						$form.html(data);
+					})
+					.fail(data => {
+						if (data && data.statusText) $form.html(data.statusText);
+					})
+					.always(data => {
+						el.classList.remove('sync');
+					});
+			}
+		});
 	});
 </script>
 
