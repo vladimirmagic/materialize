@@ -430,14 +430,24 @@ a.product__certificate:not(.btn) { // fix a
 	}
 }
 
-.modal-shipping-quote__radio {
+.modal-shipping-quote-form__row {
 	display: flex;
-	margin-top: 2em;
+	justify-content: space-between;
 	text-align: left;
 
+	.input-field {
+		flex: 0 1 calc(50% - 12px);
+	}
+}
+
+.modal-shipping-quote__radio {
+	margin-top: 2em;
+	text-align: left;
+}
+
+.modal-shipping-quote__radio-item {
 	label {
-		display: flex;
-		margin-right: 2em;
+		display: inline-flex;
 		margin-bottom: 1em;
 		font-size: 1em;
 		color: $color-base;
@@ -596,6 +606,14 @@ a.product__certificate:not(.btn) { // fix a
 	.modal-payment-plan__row {
 		padding: 1em;
 	}
+
+	.modal-shipping-quote-form__row {
+		flex-wrap: wrap;
+	
+		.input-field {
+			flex-basis: 100%;
+		}
+	}
 }
 
 @media #{$small-and-down} {
@@ -615,15 +633,6 @@ a.product__certificate:not(.btn) { // fix a
 	
 		&:after {
 			min-width: 12px;
-		}
-	}
-
-	.modal-shipping-quote__radio {
-		flex-wrap: wrap;
-	
-		label {
-			flex-basis: 100%;
-			margin-right: 0;
 		}
 	}
 }
