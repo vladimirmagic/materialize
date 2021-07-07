@@ -343,3 +343,200 @@
         </button>
     </form>
 </div>
+
+<div id="modal-shipping-quote" class="modal modal-shipping-quote">
+    <div class="modal-header modal-header--sticky">
+        <a class="modal-close btn-flat btn--icon">
+            <i class='icon'><svg><use xlink:href="#close"></use></svg></i>
+        </a>
+    </div>
+    <form class="modal-content modal-form modal-shipping-quote-form" action="action">
+        <div class="modal__title h3">Shipping Quote</div>
+        <p class="p-r">
+            Enter your location to obtain your shipping quote
+        </p>
+
+        <div class="modal-shipping-quote__radio">
+            <label>
+                <input name="address-type" type="radio" checked />
+                <span>Residential Address</span>
+            </label>
+            <label>
+                <input name="address-type" type="radio" />
+                <span>Business Address</span>
+            </label>
+        </div>
+
+        <div class="input-field input-field--label error">
+            <input type="text" placeholder="Please Enter">
+            <label>ZIP / Postcode</label>
+            <div class="input-field__helper">Invalid ZIP or Postcode</div>
+        </div>
+
+        <div class="input-field input-field--label input-field--select">
+            <select>
+                <option value="0" disabled selected>Please Choose</option>
+                <option value="1">United Kingdom</option>
+                <option value="2">Option 2</option>
+                <option value="3">Option 3</option>
+            </select>
+            <label>Country</label>
+        </div>
+
+        <div class="input-field g-recaptcha-field error">
+            <div id="g-recaptcha" class="g-recaptcha" name="code"></div>
+            <div class="input-field__helper">Please confirm</div>
+        </div>
+        
+        <button type="submit" class="waves-effect waves-light btn modal-form__submit modal-shipping-quote__submit">
+            <span class='btn__title'>Get quote</span>
+            <i class='icon'><svg><use xlink:href="#arrow-right"></use></svg></i>
+            <div class="preloader-wrapper active"><div class="spinner-layer spinner-white-only"><div class="circle-clipper left"><div class="circle"></div></div><div class="gap-patch"><div class="circle"></div></div><div class="circle-clipper right"><div class="circle"></div></div></div></div>
+        </button>
+
+        <div class="modal-shipping-quote__methods">
+            <div class="modal-shipping-quote__method">
+                <label>
+                    <input name="shipping-method" type="radio" checked />
+                    <span>FedEx Overnight</span>
+                    <i>FedEx Overnight has a typical delivery time of 1 business day from FedEx carrier pickup.</i>
+                    <strong>£98</strong>
+                </label>
+            </div>
+            <div class="modal-shipping-quote__method">
+                <label>
+                    <input name="shipping-method" type="radio" />
+                    <span>FedEx 2Day</span>
+                    <i>FedEx 2Day has a typical delivery time of 2 business days from FedEx carrier pickup.</i>
+                    <strong>£59</strong>
+                </label>
+            </div>
+            <div class="modal-shipping-quote__method">
+                <label>
+                    <input name="shipping-method" type="radio" />
+                    <span>FedEx Express Saver</span>
+                    <i>FedEx Express Saver has a typical delivery time of 3 business days from FedEx carrier pickup.</i>
+                    <strong>£52</strong>
+                </label>
+            </div>
+            <div class="modal-shipping-quote__method">
+                <label>
+                    <input name="shipping-method" type="radio" />
+                    <span>FedEx Ground</span>
+                    <i>FedEx Ground has a typical delivery time of 1-5 business days from FedEx carrier pickup, depending on your proximity to California.</i>
+                    <strong>£39</strong>
+                </label>
+            </div>
+            <div class="modal-shipping-quote__method">
+                <label>
+                    <input name="shipping-method" type="radio" />
+                    <span>USPS Priority</span>
+                    <i>USPS Priority has a typical delivery time of 2-3 business days from USPS carrier pickup, depending on your proximity to California.</i>
+                    <strong>£30</strong>
+                </label>
+            </div>
+            <div class="modal-shipping-quote__method">
+                <label>
+                    <input name="shipping-method" type="radio" />
+                    <span>USPS Express</span>
+                    <i>USPS Express has a typical delivery time of 2 to 3 business days from carrier pick up, depending on your proximity to California.</i>
+                    <strong>£52</strong>
+                </label>
+            </div>
+
+            <div class="modal-shipping-quote__question">
+                <div class="modal-shipping-quote__question-text c-r">
+                    Have a question about this quote?
+                </div>
+                <button type="submit" class="waves-effect waves-grey btn btn--secondary modal-shipping-quote__question-button">
+                    <span class='btn__title'>Contact Prop Store Staff</span>
+                    <i class='icon'><svg><use xlink:href="#email"></use></svg></i>
+                </button>
+            </div>
+
+            <div class="modal-shipping-quote__method-note"><i>
+                <strong>Please note</strong> that due to the unique nature of Prop Store's inventory, the quotes provided here are estimates only. In the unlikely event that Prop Store's staff reviews your order and finds the quote inaccurate you will be contacted to approve the changes.
+            </i></div>
+        </div>
+
+        <div class="modal-shipping-quote__note">
+            <div class="c-r">
+                To obtain a quote for multiple products
+            </div>
+            <i>
+                To obtain a quote for multiple products shipped together, please add those products to your cart and then select the "Get quote now" option within the cart.
+            </i>
+        </div>
+    </form>
+
+    <form class="modal-content modal-form modal-shipping-quote-form" action="action">
+        <div class="modal__title h3">Shipping Quote</div>
+        <p class="p-r">
+            Sorry, an online shipping quote for your item is not available. Please fill request below. We will provide you with a comprehensive shipping quote within 24 hours.
+        </p>
+
+        <div class="input-field input-field--label error">
+            <input type="text" placeholder="Please Enter">
+            <label>Your name</label>
+            <div class="input-field__helper">Please Enter</div>
+        </div>
+
+        <div class="input-field input-field--label error">
+            <input type="email" placeholder="Please Enter">
+            <label>Your email</label>
+            <div class="input-field__helper">Invalid</div>
+        </div>
+
+        <div class="input-field input-field--label error">
+            <input type="text" placeholder="Please Enter">
+            <label>ZIP / Postcode</label>
+            <div class="input-field__helper">Invalid ZIP or Postcode</div>
+        </div>
+
+        <div class="input-field input-field--label input-field--select">
+            <select>
+                <option value="0" disabled selected>Please Choose</option>
+                <option value="1">United Kingdom</option>
+                <option value="2">Option 2</option>
+                <option value="3">Option 3</option>
+            </select>
+            <label>Country</label>
+        </div>
+
+        <div class="modal-shipping-quote__radio">
+            <label>
+                <input name="address-type" type="radio" checked />
+                <span>Residential Address</span>
+            </label>
+            <label>
+                <input name="address-type" type="radio" />
+                <span>Business Address</span>
+            </label>
+        </div>
+
+        <div class="input-field input-field--label input-field--select">
+            <select>
+                <option value="0" disabled selected>Please Choose</option>
+                <option value="1">Royal Mail</option>
+                <option value="2">FedEx</option>
+            </select>
+            <label>Preferred Shipping Carrier</label>
+        </div>
+
+        <div class="input-field input-field--label">
+            <textarea class="materialize-textarea" placeholder="Please Enter"></textarea>
+            <label>Comment</label>
+        </div>
+
+        <div class="input-field g-recaptcha-field error">
+            <div id="g-recaptcha" class="g-recaptcha" name="code"></div>
+            <div class="input-field__helper">Please confirm</div>
+        </div>
+        
+        <button type="submit" class="waves-effect waves-light btn modal-form__submit modal-shipping-quote__submit">
+            <span class='btn__title'>Send request</span>
+            <i class='icon'><svg><use xlink:href="#arrow-right"></use></svg></i>
+            <div class="preloader-wrapper active"><div class="spinner-layer spinner-white-only"><div class="circle-clipper left"><div class="circle"></div></div><div class="gap-patch"><div class="circle"></div></div><div class="circle-clipper right"><div class="circle"></div></div></div></div>
+        </button>
+    </form>
+</div>

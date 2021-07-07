@@ -235,6 +235,36 @@
 					});
 			});
 		}
+
+		$('#modal-payment-plan').modal({
+			onOpenEnd: () => {
+				$($('.modal-payment-plan__months-buttons input:checked').data('tab')).show();
+			}
+		});
+
+		$('.modal-payment-plan__months-buttons input').on('change', function () {
+			$('.modal-payment-plan__tab').hide();
+			$($(this).data('tab')).show();
+		});
+
+		$('.modal-shipping-quote-form').submit(function (e) {
+            e.preventDefault();
+            this.classList.add('sync');
+            $.post(
+                this.action,
+                $(this).serialize(),
+            )
+                .done(data => {
+                    this.innerHTML = data;
+					M.updateTextFields();
+                })
+                .fail(data => {
+                    if (data && data.statusText) this.innerHTML = data.statusText;
+                })
+                .always(data => {
+                    this.classList.remove('sync');
+                });
+        });
 	});
 </script>
 
