@@ -142,10 +142,6 @@ document.addEventListener('DOMContentLoaded', () => {
 	const account = document.querySelectorAll('.header__account');
 	if (account) M.Dropdown.init(account, { alignment: 'right' });
 
-	// HEADER BAG DROPDOWN
-	const bagDropdown = document.querySelectorAll('.header__bag');
-	if (bagDropdown) M.Dropdown.init(bagDropdown, { alignment: 'right' });
-
 	// MENU
 	const MENU_THRESHOLD = 100; // ms
 	var menu = document.querySelector('.header__menu');

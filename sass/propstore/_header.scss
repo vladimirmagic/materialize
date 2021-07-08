@@ -454,6 +454,12 @@ header {
 	background: $color-turquoise;
 	border-radius: 24px;
 	z-index: 1;
+	transform: scale(1);
+	transition: all .1s ease-in-out;
+
+	&.empty {
+		transform: scale(0);
+	}
 }
 
 .header__burger {

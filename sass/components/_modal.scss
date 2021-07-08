@@ -200,10 +200,14 @@
 	transition: opacity .5s ease-in;
 }
 
+.dropdown-content.sync,
 .modal.sync {
+  overflow: hidden;
+
   .modal__loader {
     display: flex;
   }
+
   .modal-content {
     max-height: 0;
     opacity: 0;

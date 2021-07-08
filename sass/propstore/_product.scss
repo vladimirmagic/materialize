@@ -410,6 +410,7 @@ a.product__certificate:not(.btn) { // fix a
 
 .modal-shipping-quote {
 	text-align: center;
+	width: 90%;
 	max-width: $w55;
 
 	.modal__title {
@@ -422,22 +423,42 @@ a.product__certificate:not(.btn) { // fix a
 	padding-top: 2em;
 	text-align: left;
 	border-top: 1px solid $color-grey;
+
+	.c-r {
+		margin-bottom: .5em;
+	}
 }
 
 .modal-shipping-quote-form {
 	.input-field {
 		margin-top: 2em;
+		text-align: left;
+	}
+
+	.g-recaptcha-field {
+		margin-top: 1em;
+	}
+}
+
+.modal-shipping-quote-form__row {
+	display: flex;
+	justify-content: space-between;
+	text-align: left;
+
+	.input-field {
+		margin-top: 1em;
+		flex: 0 1 calc(50% - 12px);
 	}
 }
 
 .modal-shipping-quote__radio {
-	display: flex;
 	margin-top: 2em;
 	text-align: left;
+}
 
+.modal-shipping-quote__radio-item {
 	label {
-		display: flex;
-		margin-right: 2em;
+		display: inline-flex;
 		margin-bottom: 1em;
 		font-size: 1em;
 		color: $color-base;
@@ -596,6 +617,14 @@ a.product__certificate:not(.btn) { // fix a
 	.modal-payment-plan__row {
 		padding: 1em;
 	}
+
+	.modal-shipping-quote-form__row {
+		flex-wrap: wrap;
+	
+		.input-field {
+			flex-basis: 100%;
+		}
+	}
 }
 
 @media #{$small-and-down} {
@@ -618,12 +647,7 @@ a.product__certificate:not(.btn) { // fix a
 		}
 	}
 
-	.modal-shipping-quote__radio {
-		flex-wrap: wrap;
-	
-		label {
-			flex-basis: 100%;
-			margin-right: 0;
-		}
+	.modal-shipping-quote {
+		width: 100%;
 	}
 }
