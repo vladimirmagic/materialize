@@ -401,6 +401,9 @@
 	}
 	.hero__image {
 		height: 198px;
+        &.hero__image--blog {
+            height: 312px;
+        }
 	}
 }
 
