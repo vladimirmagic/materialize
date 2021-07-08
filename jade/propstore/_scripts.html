@@ -271,7 +271,7 @@
 			onOpenStart: function (el) {
 				el.classList.add('sync');
 				const $form = $('#modal-bag').find('.modal-form');
-				$.post('/ajax/rest.action?actions=productBasket')
+				$.get('/ajax/rest.action?actions=productBasket')
 					.done(data => {
 						$form.html(data);
 					})

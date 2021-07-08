@@ -200,6 +200,7 @@
 	transition: opacity .5s ease-in;
 }
 
+.dropdown-content.sync,
 .modal.sync {
   .modal__loader {
     display: flex;
