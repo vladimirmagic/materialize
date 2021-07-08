@@ -334,7 +334,8 @@
                         $clone.find('.faq__search-suggester__item-text').text(suggest.headerString);
                         $('.faq__search-suggester').append($clone);
                     });
-                    $('.faq__search-suggester').toggleClass('faq__search-suggester--empty', results.length === 0);
+                    const isEmpty = results.length === 0 && search !== '';
+                    $('.faq__search-suggester').toggleClass('faq__search-suggester--empty', isEmpty);
                
             }
             
@@ -351,6 +352,7 @@
 
             $('.faq__search-container input').on('keyup', Search);
             $('.faq__search-container input').on('click', Search);
+            
             
             $('.faq__search-container input').on('focusout', function(event) {
                 setTimeout(function() {
