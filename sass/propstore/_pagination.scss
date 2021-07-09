@@ -1,6 +1,7 @@
 .pagination {
-    padding-top: 30px;
-    padding-bottom: 130px;
+    width: 100%;
+    padding-top: 0px;
+    padding-bottom: 140px;
 	padding-left: 48px;
 	padding-right: 48px;
 	background: $color-bg;
@@ -90,6 +91,14 @@
         }
     }
     &.pagination__pages-page--ellipsis {
+        position: relative;
+        cursor: default;
+        display: inline-block;
+        overflow: hidden;
+        user-select: none;
+        -webkit-tap-highlight-color: transparent;
+        vertical-align: middle;
+        z-index: 1;
         &:hover, &:focus {
             color: color("grey", "darken-4");
             &:after {
@@ -112,8 +121,8 @@
 
 @media #{$breakpoint-4cards} {
 	.pagination {
-		padding-top: 60px;
-		padding-bottom: 60px;
+		padding-top: 0px;
+		padding-bottom: 80px;
 
 	}
 
@@ -140,6 +149,6 @@
 
 @media #{$small-and-down} {
     .pagination {
-        padding-top: 20px;
+        padding-top: 0px;
     }
 }

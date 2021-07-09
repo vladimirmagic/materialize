@@ -51,6 +51,56 @@
         font-size: 20px;
         font-weight: 300;
         line-height: 1.4;
+        &.p-l { // Para – Large
+            margin-bottom: 1em;
+            font-size: 28px;
+            font-weight: 300;
+            line-height: 1.3;
+        }
+
+        &.p-r { // Para – Regular
+            margin-bottom: 1em;
+            font-size: 20px;
+            font-weight: 300;
+            line-height: 1.4;
+        }
+
+        &.p-s { // Para – Small
+            margin-bottom: 1em;
+            font-size: 16px;
+            font-weight: 300;
+            line-height: 1.5;
+        }
+
+        &.p-t { // Para – Tiny
+            margin-bottom: 1em;
+            font-size: 14px;
+            font-weight: 300;
+            line-height: 1.5;
+        }
+
+        &.c-r { // Caption – Regular
+            margin-bottom: 1em;
+            font-size: 20px;
+            font-weight: 500;
+            line-height: 1.4;
+        }
+
+        &.c-s { // Caption – Small
+            margin-bottom: 1em;
+            font-size: 16px;
+            font-weight: 500;
+            line-height: 1.5;
+        }
+    }
+    
+    iframe {
+        max-width: 100%;
+    }
+    
+    img {
+        max-width: 100%;
+        height: auto;
     }
     
     .yarpp-related {
@@ -186,6 +236,21 @@
 
         p {
             font-size: 18px;
+            &.p-l {
+                font-size: 24px;
+            }
+
+            &.p-r {
+                font-size: 18px;
+            }
+
+            &.p-s {
+                font-size: 14px;
+            }
+
+            &.c-r {
+                font-size: 16px;
+            }
         }
     }
 }
