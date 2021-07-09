@@ -4,16 +4,8 @@
 	background: $color-bg;
 }
 
-.also-like__title {
-	font-size: 36px;
-}
-
 @media #{$large-and-down} {
 	.also-like {
 		padding-top: 80px;
-	}
-
-	.also-like__title {
-		font-size: 28px;
 	}
 }

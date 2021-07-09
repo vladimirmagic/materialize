@@ -20,8 +20,7 @@ $movie-list-padding: 24px;
 }
 
 .related-movies__title {
-	margin-bottom: 40px;
-	font-size: 40px;
+	margin-bottom: 1em;
 }
 
 .related-movies__list {
@@ -105,10 +104,6 @@ a.related-movies__item:not(.btn) { // fix a
 	.related-movies__inner {
 		padding: 60px 0;
 		border-top-right-radius: 100px;
-	}
-
-	.related-movies__title {
-		font-size: 24px;
 	}
 
 	.related-movies__list {
