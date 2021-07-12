@@ -7,6 +7,10 @@
 	background: $color-bg;
 }
 
+.pagination__pages {
+    display: flex;
+}
+
 .pagination__inner {
 	max-width: $width-4cards;
 	margin: 0 auto;
@@ -23,6 +27,7 @@
     justify-content: center;
     align-items: center;
     min-height: 40px;
+    height: 40px;
     min-width: 40px;
     background: #FFFFFF;
     border-radius: 50%;

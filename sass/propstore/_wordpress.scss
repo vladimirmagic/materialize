@@ -204,6 +204,11 @@
     }
 }
 
+#headerMenuAuctions {
+    display: flex;
+    flex-wrap: wrap;
+}
+
 @media #{$large-and-down} {
     .wp {
         h1 {
