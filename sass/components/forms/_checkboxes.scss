@@ -4,8 +4,7 @@
 $img-ok-white: url("data:image/svg+xml,%3Csvg viewBox='0 0 12 12' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M10.2492.703125L4.75078 7.95234 1.5 4.70391l-1.5 1.5 4.99922 4.99919L12 2.20312 10.2492.703125z' fill='%23fff'/%3E%3C/svg%3E%0A");
 
 .checkbox__label {
-  font-size: 16px;
-  font-weight: 400;
+  font-size: 1rem;
   color: $color-base;
 
   /* Remove default checkbox */

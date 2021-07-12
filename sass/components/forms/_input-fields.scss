@@ -203,7 +203,7 @@ textarea.materialize-textarea {
   position: relative;
   margin-top: 1rem;
   margin-bottom: 1rem;
-  &. input-field--no-bottom-gap {
+  &.input-field--no-bottom-gap {
     margin-bottom: 0;
   }
 
@@ -492,7 +492,8 @@ textarea {
 }
 
 .input-field.error {
-  input:not(.browser-default) {
+  input:not(.browser-default),
+  textarea.materialize-textarea {
     @extend .input-focused;
     border: 2px solid $color-red !important;
   }  
