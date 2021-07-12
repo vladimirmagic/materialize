@@ -408,7 +408,7 @@ a.order__summary-calculate-shipping:not(.btn) {
 
 .order__address-type {
 	label {
-		display: flex;
+		display: flex !important;
 		margin-bottom: 24px;
 		font-size: 1em;
 		color: $color-base;
