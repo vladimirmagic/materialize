@@ -489,6 +489,10 @@ textarea {
     width: 100%;
     color: $color-red;
   }
+
+  .errorMessage {
+    margin: 0;
+  }
 }
 
 .input-field.error {
