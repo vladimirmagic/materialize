@@ -792,6 +792,23 @@ a.order__item:not(.btn) { // fix a
 	text-align: center;
 }
 
+.__PrivateStripeElement {
+	position: relative;
+	width: calc(100% - 2px);
+	height: $input-height;
+	margin: 0 1px;
+	padding: 1em 0 1em 1.5em;
+	font-size: $input-font-size;
+	color: $color-base;
+	border: $input-border;
+
+	&.focus,
+	&:focus-within {
+		width: 100%;
+		margin: 0;
+		border: 2px solid $input-focus-color;
+	  }
+}
 
 /** MEDIA */
 
@@ -945,6 +962,12 @@ a.order__item:not(.btn) { // fix a
 	.order-confirmed__share {
 		padding: 40px 24px;
 		border-bottom-right-radius: 80px;
+	}
+
+	.order__form--stripe {
+		width: calc(100% + 6em);
+		margin-left: -3em;
+		margin-right: -3em;
 	}
 }
 
