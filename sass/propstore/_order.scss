@@ -513,7 +513,7 @@ a.order__summary-calculate-shipping:not(.btn) {
 		margin-top: 24px;
 	}
 
-	.input-field__helper {
+	& > .input-field__helper {
 		padding-left: 35px;
 	}
 }
