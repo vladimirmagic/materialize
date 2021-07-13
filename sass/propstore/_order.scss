@@ -815,6 +815,10 @@ a.order__item:not(.btn) { // fix a
 	  }
 }
 
+.checkout-step-tab {
+	width: 100%;
+}
+
 /** MEDIA */
 
 @media #{$breakpoint-4cards} {
