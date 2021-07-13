@@ -497,8 +497,19 @@ a.order__summary-calculate-shipping:not(.btn) {
 	margin-top: 1.5em;
 }
 
-#checkout-payment-card-0 {
-	margin-top: .5em;
+.checkout-payment-card-new__container {
+	position: relative;
+}
+
+.checkout-payment-card-new__label {
+	@extend .h6;
+	position: absolute;
+	left: 1rem;
+	z-index: 100;
+	transform: translateY(-.5rem);
+	padding: 0 .5rem;
+	white-space: nowrap;
+	background: #fff;
 }
 
 .order__row-card {
