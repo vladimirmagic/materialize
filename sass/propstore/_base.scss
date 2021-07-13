@@ -17,6 +17,10 @@ body {
 	&.loaded {
 		opacity: 1;
 	}
+
+	&.blocked {
+		pointer-events: none;
+	}
 }
 
 main {
@@ -62,6 +66,19 @@ fieldset {
 
 .general__btn {
 	margin-top: 3em;
+}
+
+.loader-block {
+	position: fixed;
+	z-index: 1000;
+	left: 0;
+	right: 0;
+	top: 0;
+	bottom: 0;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background: rgba(255, 255, 255, .8);
 }
 
 @media #{$media-fullhd-up} {
