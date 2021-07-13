@@ -1,5 +1,11 @@
+.bag {
+	.order__summary {
+		margin-top: 0;
+	}
+}
+
 .bag__title {
-	margin: 80px 0;
+	margin: 20px 0 80px;
 	text-align: center;
 }
 
@@ -131,7 +137,7 @@ a.bag__item:not(.btn) { // fix a
 
 @media #{$large-and-down} {
     .bag__title {
-		margin: 40px 0;
+		margin: 0 0 40px;
 	}
 }
 

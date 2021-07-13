@@ -71,6 +71,7 @@
 	top: 1em;
 	width: 100%;
 	max-width: 432px;
+	margin-top: 180px; // indicators
 	margin-left: 100px;
 }
 
@@ -189,9 +190,12 @@ a.order__summary-calculate-shipping:not(.btn) {
 }
 
 .order__indicators {
+	position: absolute;
+	left: 0;
+	right: 0;
+	top: 0;
 	display: flex;
 	justify-content: center;
-	margin-bottom: 80px;
 }
 
 .order__indicator {
@@ -246,6 +250,7 @@ a.order__summary-calculate-shipping:not(.btn) {
 
 .order__steps {
 	width: 100%;
+	margin-top: 180px; // indicators
 	margin-bottom: 2.5em;
 }
 
@@ -840,8 +845,9 @@ a.order__item:not(.btn) { // fix a
 		padding-top: 40px;
 	}
 
-	.order__indicators {
-		margin-bottom: 40px;
+	.order__steps,
+	.order__summary {
+		margin-top: 140px;
 	}
 
 	.order__step-radio--shipping-required {
@@ -925,6 +931,14 @@ a.order__item:not(.btn) { // fix a
 		display: block;
 	}
 
+	.order__indicators {
+		position: static;
+	}
+
+	.order__steps {
+		margin-top: 40px;
+	}
+
 	.order__indicator {
 		flex: 0 0 96px;
 		& + & {
@@ -956,6 +970,7 @@ a.order__item:not(.btn) { // fix a
 
 	.order__summary {
 		max-width: 100%;
+		margin-top: 0;
 		margin-left: 0;
 	}
 

@@ -18,34 +18,34 @@
 <form class="order" action="#action">
     <input type="hidden" name="checkout-step" value="review"/>
 
-    <div id="checkout-step-tab-shipping" class="checkout-step-tab" style="display: none;">
-        <div class="order__indicators">
-            <div class="order__indicator filled">
-                <div class="order__indicator-number">
-                    1
+    <div class="order__inner">
+        <div id="checkout-step-tab-shipping" class="checkout-step-tab" style="display: none;">
+            <div class="order__indicators">
+                <div class="order__indicator filled">
+                    <div class="order__indicator-number">
+                        1
+                    </div>
+                    <div class="order__indicator-label">
+                        Shipping
+                    </div>
                 </div>
-                <div class="order__indicator-label">
-                    Shipping
+                <div class="order__indicator">
+                    <div class="order__indicator-number">
+                        2
+                    </div>
+                    <div class="order__indicator-label">
+                        Payment
+                    </div>
+                </div>
+                <div class="order__indicator">
+                    <div class="order__indicator-number">
+                        3
+                    </div>
+                    <div class="order__indicator-label">
+                        Review
+                    </div>
                 </div>
             </div>
-            <div class="order__indicator">
-                <div class="order__indicator-number">
-                    2
-                </div>
-                <div class="order__indicator-label">
-                    Payment
-                </div>
-            </div>
-            <div class="order__indicator">
-                <div class="order__indicator-number">
-                    3
-                </div>
-                <div class="order__indicator-label">
-                    Review
-                </div>
-            </div>
-        </div>
-        <div class="order__inner">
             <div class="order__steps">
                 <div class="order__step active">
                     <div class="order__step-header">
@@ -71,7 +71,7 @@
                                 </div>
                             </div>
                         </div>
-    
+
                         <div id="checkout-shipping-required-tab-1" class="checkout-shipping-required-tab" style="display: none;">
                             <div class="order__row">
                                 <p class="order__step-p">
@@ -139,7 +139,7 @@
                                     </div>
                                 </div>
                             </div>
-    
+
                             <div class="order__row">
                                 <p class="order__step-p">
                                     Choose a shipping method
@@ -165,7 +165,7 @@
                                 <div class="input-field__helper error">You have to check</div>
                             </div>
                         </div>
-    
+
                         <button class="waves-effect waves-light btn order__body-next">
                             <span class='btn__title'>Next: Payment</span>
                             <i class='icon'><svg><use xlink:href="#arrow-right"></use></svg></i>
@@ -183,83 +183,37 @@
                     </div>
                 </div>
             </div>
-            <div class="order__summary">
-                <div class="order__summary-main">
-                    <div class="order__summary-title h4">
-                        Order Summary
-                    </div>
-                    <div class="order__summary-row">
-                        <div class="order__summary-label">
-                            Subtotal:
-                        </div>
-                        <div class="order__summary-value">
-                            £5,685
-                        </div>
-                    </div>
-                    <div class="order__summary-row">
-                        <div class="order__summary-label">
-                            Shipping:
-                        </div>
-                        <div class="order__summary-value">
-                            Choose
-                        </div>
-                    </div>
-
-                    <div class="order__summary-divider"></div>
-
-                    <div class="order__summary-row order__summary-row--total c-r">
-                        <div class="order__summary-label">
-                            TOTAL
-                        </div>
-                        <div class="order__summary-value">
-                            £6,550
-                        </div>
-                    </div>
-                    <div class="order__summary-total-note p-t">
-                        VAT included (where applicable)
-                    </div>
-        
-                    <div class="order__submit">
-                        <button class="waves-effect waves-light btn">
-                            <span class='btn__title'>Next: Payment</span>
-                            <i class='icon'><svg><use xlink:href="#arrow-right"></use></svg></i>
-                        </button>
-                    </div>
-                </div>
-            </div>
         </div>
-    </div>
 
-    <!-- PAYMENT -->
+        <!-- PAYMENT -->
 
-    <div id="checkout-step-tab-payment" class="checkout-step-tab" style="display: none;">
-        <div class="order__indicators">
-            <div class="order__indicator filled order-step" data-step="shipping">
-                <div class="order__indicator-number">
-                    1
+        <div id="checkout-step-tab-payment" class="checkout-step-tab" style="display: none;">
+            <div class="order__indicators">
+                <div class="order__indicator filled order-step" data-step="shipping">
+                    <div class="order__indicator-number">
+                        1
+                    </div>
+                    <div class="order__indicator-label">
+                        Shipping
+                    </div>
                 </div>
-                <div class="order__indicator-label">
-                    Shipping
+                <div class="order__indicator filled">
+                    <div class="order__indicator-number">
+                        2
+                    </div>
+                    <div class="order__indicator-label">
+                        Payment
+                    </div>
+                </div>
+                <div class="order__indicator">
+                    <div class="order__indicator-number">
+                        3
+                    </div>
+                    <div class="order__indicator-label">
+                        Review
+                    </div>
                 </div>
             </div>
-            <div class="order__indicator filled">
-                <div class="order__indicator-number">
-                    2
-                </div>
-                <div class="order__indicator-label">
-                    Payment
-                </div>
-            </div>
-            <div class="order__indicator">
-                <div class="order__indicator-number">
-                    3
-                </div>
-                <div class="order__indicator-label">
-                    Review
-                </div>
-            </div>
-        </div>
-        <div class="order__inner">
             <div class="order__steps">
                 <div class="order__step filled order-step" data-step="shipping">
                     <div class="order__step-header">
@@ -666,83 +620,37 @@
                     </div>
                 </div>
             </div>
-            <div class="order__summary">
-                <div class="order__summary-main">
-                    <div class="order__summary-title h4">
-                        Order Summary
-                    </div>
-                    <div class="order__summary-row">
-                        <div class="order__summary-label">
-                            Subtotal:
-                        </div>
-                        <div class="order__summary-value">
-                            £5,685
-                        </div>
-                    </div>
-                    <div class="order__summary-row">
-                        <div class="order__summary-label">
-                            Shipping:
-                        </div>
-                        <div class="order__summary-value">
-                            £135
-                        </div>
-                    </div>
-
-                    <div class="order__summary-divider"></div>
-
-                    <div class="order__summary-row order__summary-row--total c-r">
-                        <div class="order__summary-label">
-                            TOTAL
-                        </div>
-                        <div class="order__summary-value">
-                            £6,550
-                        </div>
-                    </div>
-                    <div class="order__summary-total-note p-t">
-                        VAT included (where applicable)
-                    </div>
-        
-                    <div class="order__submit">
-                        <button class="waves-effect waves-light btn">
-                            <span class='btn__title'>Next: Review & Pay</span>
-                            <i class='icon'><svg><use xlink:href="#arrow-right"></use></svg></i>
-                        </button>
-                    </div>
-                </div>
-            </div>
         </div>
-    </div>
 
-    <!-- REVIEW -->
+        <!-- REVIEW -->
 
-    <div id="checkout-step-tab-review" class="checkout-step-tab" style="display: none;">
-        <div class="order__indicators">
-            <div class="order__indicator filled order-step" data-step="shipping">
-                <div class="order__indicator-number">
-                    1
+        <div id="checkout-step-tab-review" class="checkout-step-tab" style="display: none;">
+            <div class="order__indicators">
+                <div class="order__indicator filled order-step" data-step="shipping">
+                    <div class="order__indicator-number">
+                        1
+                    </div>
+                    <div class="order__indicator-label">
+                        Shipping
+                    </div>
                 </div>
-                <div class="order__indicator-label">
-                    Shipping
+                <div class="order__indicator filled order-step" data-step="payment">
+                    <div class="order__indicator-number">
+                        2
+                    </div>
+                    <div class="order__indicator-label">
+                        Payment
+                    </div>
+                </div>
+                <div class="order__indicator filled">
+                    <div class="order__indicator-number">
+                        3
+                    </div>
+                    <div class="order__indicator-label">
+                        Review
+                    </div>
                 </div>
             </div>
-            <div class="order__indicator filled order-step" data-step="payment">
-                <div class="order__indicator-number">
-                    2
-                </div>
-                <div class="order__indicator-label">
-                    Payment
-                </div>
-            </div>
-            <div class="order__indicator filled">
-                <div class="order__indicator-number">
-                    3
-                </div>
-                <div class="order__indicator-label">
-                    Review
-                </div>
-            </div>
-        </div>
-        <div class="order__inner">
             <div class="order__steps">
                 <div class="order__step filled order-step" data-step="shipping">
                     <div class="order__step-header">
@@ -1001,64 +909,65 @@
                     </div>
                 </div>
             </div>
-            <div class="order__summary">
-                <div class="order__summary-main">
-                    <div class="order__summary-title h4">
-                        Order Summary
-                    </div>
-                    <div class="order__summary-row">
-                        <div class="order__summary-label">
-                            Subtotal:
-                        </div>
-                        <div class="order__summary-value">
-                            £5,685
-                        </div>
-                    </div>
-                    <div class="order__summary-row">
-                        <div class="order__summary-label">
-                            Shipping:
-                        </div>
-                        <div class="order__summary-value">
-                            £135
-                        </div>
-                    </div>
-                    <div class="order__summary-row">
-                        <div class="order__summary-label">
-                            Payment Plan:
-                        </div>
-                        <div class="order__summary-value">
-                            6 months
-                        </div>
-                    </div>
-                    <div class="order__summary-row c-s">
-                        <div class="order__summary-label">
-                            Pay Today:
-                        </div>
-                        <div class="order__summary-value">
-                            £1,135
-                        </div>
-                    </div>
+        </div>
 
-                    <div class="order__summary-divider"></div>
+        <div class="order__summary">
+            <div class="order__summary-main">
+                <div class="order__summary-title h4">
+                    Order Summary
+                </div>
+                <div class="order__summary-row">
+                    <div class="order__summary-label">
+                        Subtotal:
+                    </div>
+                    <div class="order__summary-value">
+                        £5,685
+                    </div>
+                </div>
+                <div class="order__summary-row">
+                    <div class="order__summary-label">
+                        Shipping:
+                    </div>
+                    <div class="order__summary-value">
+                        £135
+                    </div>
+                </div>
+                <div class="order__summary-row">
+                    <div class="order__summary-label">
+                        Payment Plan:
+                    </div>
+                    <div class="order__summary-value">
+                        6 months
+                    </div>
+                </div>
+                <div class="order__summary-row c-s">
+                    <div class="order__summary-label">
+                        Pay Today:
+                    </div>
+                    <div class="order__summary-value">
+                        £1,135
+                    </div>
+                </div>
 
-                    <div class="order__summary-row order__summary-row--total c-r">
-                        <div class="order__summary-label">
-                            TOTAL
-                        </div>
-                        <div class="order__summary-value">
-                            £6,550
-                        </div>
+                <div class="order__summary-divider"></div>
+
+                <div class="order__summary-row order__summary-row--total c-r">
+                    <div class="order__summary-label">
+                        TOTAL
                     </div>
-                    <div class="order__summary-total-note p-t">
-                        VAT included (where applicable)
+                    <div class="order__summary-value">
+                        £6,550
                     </div>
-        
-                    <div class="order__submit">
-                        <button class="waves-effect waves-light btn">
-                            <span class='btn__title'>Pay securely now</span>
-                            <i class='icon'><svg><use xlink:href="#lock"></use></svg></i>
-                        </button>
-                    </div>
+                </div>
+                <div class="order__summary-total-note p-t">
+                    VAT included (where applicable)
+                </div>
+
+                <div class="order__submit">
+                    <button class="waves-effect waves-light btn">
+                        <span class='btn__title'>Pay securely now</span>
+                        <i class='icon'><svg><use xlink:href="#lock"></use></svg></i>
+                    </button>
                 </div>
             </div>
         </div>
