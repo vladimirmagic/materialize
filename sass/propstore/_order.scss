@@ -497,21 +497,6 @@ a.order__summary-calculate-shipping:not(.btn) {
 	margin-top: 1.5em;
 }
 
-.checkout-payment-card-new__container {
-	position: relative;
-}
-
-.checkout-payment-card-new__label {
-	@extend .h6;
-	position: absolute;
-	left: 1rem;
-	z-index: 100;
-	transform: translateY(-.5rem);
-	padding: 0 .5rem;
-	white-space: nowrap;
-	background: #fff;
-}
-
 .order__row-card {
 	display: flex;
 	justify-content: space-between;
@@ -808,12 +793,28 @@ a.order__item:not(.btn) { // fix a
 	text-align: center;
 }
 
+.checkout-payment-card-new__container {
+	position: relative;
+	margin-top: 1.5em;
+}
+
+.checkout-payment-card-new__label {
+	@extend .h6;
+	position: absolute;
+	left: 1rem;
+	z-index: 100;
+	transform: translateY(-.5rem);
+	padding: 0 .5rem;
+	white-space: nowrap;
+	background: #fff;
+}
+
 .__PrivateStripeElement {
 	position: relative;
 	width: calc(100% - 2px);
-	height: $input-height;
+	height: $input-height + 8;
 	margin: 0 1px;
-	padding: 1em 0 1em 1.5em;
+	padding: 1.5em 0 1em 1.5em;
 	font-size: $input-font-size;
 	color: $color-base;
 	border: $input-border;
