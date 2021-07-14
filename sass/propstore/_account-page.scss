@@ -106,6 +106,11 @@ a.account-page__suptitle:not(.btn) {
 .account__orders {
 	@extend .content;
 	text-align: left;
+
+	.transfer {
+		font-size: 11px;
+		font-weight: 400;
+	}
 }
 
 .account__orders-inner {
@@ -116,11 +121,6 @@ a.account-page__suptitle:not(.btn) {
 .account__orders-auction,
 .account__orders-buy {
 	margin-bottom: 2.5em;
-
-	.transfer {
-		font-size: 11px;
-		font-weight: 400;
-	}
 }
 
 .account__orders-tbody {
