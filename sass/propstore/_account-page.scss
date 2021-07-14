@@ -194,8 +194,25 @@ a.account-page__suptitle:not(.btn) {
 	white-space: nowrap;
 }
 
+.account__orders-auction-info {
+	display: flex;
+	justify-content: space-between;
+}
+
 .account__orders-auction-note {
+	flex: 1 1 60%;
 	margin-bottom: 5em;
+}
+
+.account__orders-auction-plan {
+	flex: 1 1 40%;
+	white-space: nowrap;
+	font-weight: 500;
+
+	.transfer {
+		font-size: 11px;
+		font-weight: 400;
+	}
 }
 
 .account__orders-note {
@@ -233,6 +250,15 @@ a.account__orders-buy-link:not(.btn) {
 @media #{$large-and-down} {
 	.account__orders-note {
 		max-width: 100%;
+	}
+
+	.account__orders-auction-info {
+		flex-wrap: wrap;
+	}
+	
+	.account__orders-auction-note,
+	.account__orders-auction-plan {
+		flex-basis: 100%;
 	}
 }
 
