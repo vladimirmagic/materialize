@@ -831,6 +831,16 @@ a.order__item:not(.btn) { // fix a
 	width: 100%;
 }
 
+#paypal-button-step,
+#paypal-button-summary {
+	height: 56px;
+	overflow: hidden;
+}
+
+#paypal-button-step {
+	max-width: 352px;
+}
+
 /** MEDIA */
 
 @media #{$breakpoint-4cards} {
