@@ -128,7 +128,7 @@ a.order__summary-calculate-shipping:not(.btn) {
 	}
 }
 
-.order__summary-vaucher {
+.order__summary-voucher {
 	display: flex;
 	justify-content: center;
 	align-items: flex-end;
@@ -519,7 +519,7 @@ a.order__summary-calculate-shipping:not(.btn) {
 	}
 }
 
-.order__vaucher {
+.order__voucher {
 	display: flex;
 	width: 100%;
 
@@ -1162,13 +1162,13 @@ a.order__item:not(.btn) { // fix a
 		padding: 1rem;
 	}
 
-	.order__vaucher {
+	.order__voucher {
 		.input-field {
 			flex-basis: 100%;
 		}
 	}
 
-	.order__vaucher-apply {
+	.order__voucher-apply {
 		flex: 1 0 5rem;
 		padding: 0 .5rem;
 	}
