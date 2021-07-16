@@ -1003,7 +1003,7 @@ a.order__item:not(.btn) { // fix a
 		margin-top: 0;
 		margin-left: 0;
 		
-		.order__summary.review {
+		&.review {
 			display: none;
 		}
 	}
