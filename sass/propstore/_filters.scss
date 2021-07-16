@@ -15,7 +15,7 @@
     }
     &.filters--faq {
         padding-top: 0;
-        padding-bottom: 86px;
+        padding-bottom: 72px;
     }
 }
 
@@ -177,6 +177,10 @@
         
         .filters__search-container {
             display: block;
+        }
+
+        &.filters--faq {
+            padding: 0 0 18px 0;
         }
 	}
 
