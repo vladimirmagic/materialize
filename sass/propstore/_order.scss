@@ -136,7 +136,7 @@ a.order__summary-calculate-shipping:not(.btn) {
 	display: flex;
 	justify-content: center;
 	align-items: flex-end;
-	height: 60px;
+	height: 3.5rem;
 	margin: 1.5em 0 0;
 	font-weight: 500;
 	border-top: 1px solid rgba(255,255,255,.3);
@@ -175,8 +175,8 @@ a.order__summary-calculate-shipping:not(.btn) {
 
 .order__summary-divider {
 	height: 1px;
-	margin-top: 2em;
-	margin-bottom: 2em;
+	margin-top: 1.5em;
+	margin-bottom: 1.25em;
 	background: rgba(255,255,255,.3);
 }
 
