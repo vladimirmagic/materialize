@@ -23,15 +23,21 @@
 }
 
 .product__gallery {
+	position: relative;
 	width: 736px;
 	max-width: 50%;
+	overflow: hidden;
 }
 
 .product__slider {
 	height: 736px;
 	overflow: hidden;
-	// background-color: color("grey", "darken-4"); // fix dark corners
 	border-radius: 6px;
+	border: 1px solid rgba(0,0,0,.1);
+
+	.carousel-item {
+		border-radius: 6px;
+	}
 }
 
 .product__thumbnails {
@@ -85,6 +91,21 @@
 
 .product__discount-value {
 	font-size: 24px;
+}
+
+.product__featured {
+	position: absolute;
+	z-index: 100;
+	left: -45px;
+	top: 60px;
+	width: 240px;
+	text-align: center;
+	color: #fff;
+	font-size: 20px;
+	font-weight: 600;
+	background: $color-turquoise;
+	transform-origin: 45px 50%;
+	transform: rotate(-30deg);
 }
 
 .product__info {
