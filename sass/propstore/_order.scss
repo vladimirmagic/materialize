@@ -1002,6 +1002,10 @@ a.order__item:not(.btn) { // fix a
 		max-width: 100%;
 		margin-top: 0;
 		margin-left: 0;
+		
+		.order__summary.review {
+			display: none;
+		}
 	}
 
 	.order-confirmed__share {
