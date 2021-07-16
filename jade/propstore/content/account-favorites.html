@@ -1,4 +1,4 @@
-<form class="account-page">
+<div class="account-page">
     <a href="/account.html" class="account-page__suptitle h6">
         My Account
     </a>
@@ -9,10 +9,15 @@
     <div class="account__favorites">
         <div class="account__favorites-inner">
             <div class="account__favorites-col account__favorites-col--movies">
-                <div class="input-field input-field--label input-field--autocomplete">
-                    <input type="text" class="autocomplete" placeholder="Start Typing...">
-                    <label>Movies & series</label>
-                </div>
+                <form action="#movie" id="form-movie">
+                    <input type="hidden" name="movieId">
+                    <input type="hidden" name="movieName">
+                    <div class="input-field input-field--label input-field--autocomplete">
+                        <input type="text" id="autocomplete-movie" class="autocomplete" placeholder="Start Typing..." autocomplete="off">
+                        <label>Movies & series</label>
+                    </div>
+                </form>
+
                 <ul class="account__favorites-list collapsible expandable">
                     <li class="account__favorites-item">
                         <div class="account__favorites-item-header collapsible-header">
@@ -33,11 +38,63 @@
                 </ul>
             </div>
             <div class="account__favorites-col account__favorites-col--genres">
-                <div class="input-field input-field--label input-field--autocomplete">
-                    <input type="text" class="autocomplete" placeholder="Start Typing...">
-                    <label>Genres</label>
-                </div>
+                <form action="#genre" id="form-genre">
+                    <div class="input-field input-field--label input-field--select">
+                        <select id="genreId" name="genreId">
+                            <option value="0" disabled selected>Please Choose</option>
+                            <option value="genre01">genre 01</option>
+                            <option value="genre02">genre 2</option>
+                        </select>
+                        <label>Genres</label>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
-</form>
+</div>
+
+<div class="loader-block" style="display: none;">
+    <div class="preloader-wrapper active"><div class="spinner-layer"><div class="circle-clipper left"><div class="circle"></div></div><div class="gap-patch"><div class="circle"></div></div><div class="circle-clipper right"><div class="circle"></div></div></div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+$(function() {
+    $('#autocomplete-movie').autocomplete({
+        data: { 'Movie 01': 'Movie01', 'Movie 02': 'Movie02', 'Movie 3': 'Movie3' },
+        addCustom: 'Add',
+        onAutocomplete: (val) => {
+            if (val.substr(0, 9) == 'addcustom') {
+                $('input[name="movieName"]').val(val.substr(9));
+            } else {
+                $('input[name="movieId"]').val(val);
+            }
+            $('#form-movie').submit();
+        }
+    });
+
+    $('#genreId').on('change', function (e) {
+        $('#form-genre').submit();
+    });
+
+    $('#form-movie').submit(function (e) {
+        const $movieId = $('input[name="movieId"]');
+        const $movieName = $('input[name="movieName"]');
+        if (!$movieId.val() && !$movieName.val()) { // submit by enter
+            const val = $('#autocomplete-movie').val();
+            if (val) {
+                $movieName.val(val);
+            } else {
+                e.preventDefault();
+                return;
+            }   
+        }
+        $('.loader-block').show();
+    });
+
+    $('#form-genre').submit(function (e) {
+        $('.loader-block').show();
+    });
+});
+});
+</script>

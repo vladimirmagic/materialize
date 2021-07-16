@@ -378,6 +378,15 @@
     _renderDropdown(data, val) {
       this._resetAutocomplete();
 
+      if (val.trim() && this.options.addCustom) {
+        let $autocompleteOption = $('<li></li>');
+        $autocompleteOption[0].setAttribute('data-value', 'addcustom' + val);
+        $autocompleteOption.html(
+          '<span>' + this.options.addCustom + ' <strong>`' + val + '`</strong></span>'
+        );
+        $(this.container).append($autocompleteOption);
+      }
+
       let matchingData = [];
 
       // Gather all matching data
@@ -419,13 +428,6 @@
 
         $(this.container).append($autocompleteOption);
         this._highlight(val, $autocompleteOption);
-      }
-
-      if (!matchingData.length && this.options.addCustom) {
-        let $autocompleteOption = $('<li></li>');
-        $autocompleteOption[0].setAttribute('data-value', 'addcustom=' + val);
-        $autocompleteOption.html('<span>No matсhes. Add <strong>`' + val + '`</strong></span>');
-        $(this.container).append($autocompleteOption);
       }
     }
 
