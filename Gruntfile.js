@@ -378,6 +378,7 @@
             'account-details.html': 'jade/propstore/account-details.jade',
             'account-watchlist.html': 'jade/propstore/account-watchlist.jade',
             'account-orders.html': 'jade/propstore/account-orders.jade',
+            'account-favorites.html': 'jade/propstore/account-favorites.jade',
             'general.html': 'jade/propstore/general.jade',
             'payment-plans.html': 'jade/propstore/payment-plans.jade',
             'sell.html': 'jade/propstore/sell.jade',

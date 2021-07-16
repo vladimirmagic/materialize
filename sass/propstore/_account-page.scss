@@ -247,6 +247,41 @@ a.account__orders-buy-link:not(.btn) {
 	}
 }
 
+.account__favorites {
+	@extend .content;
+	text-align: left;
+
+	.transfer {
+		font-size: 11px;
+		font-weight: 400;
+	}
+}
+
+.account__favorites-inner {
+	display: flex;
+	justify-content: space-between;
+	max-width: $w84;
+	margin: 0 auto;
+}
+
+.account__favorites-col {
+	width: calc(50% - 2em);
+}
+
+.account__favorites-list {
+	margin-top: 2em;
+
+	&.collapsible {
+		border: 0;
+		box-shadow: none;
+		list-style: none;
+
+		& > li.active .icon--dropdown {
+			transform: rotate(180deg);
+		}
+	}
+}
+
 @media #{$large-and-down} {
 	.account__orders-note {
 		max-width: 100%;
