@@ -118,6 +118,7 @@ a.bag__item:not(.btn) { // fix a
 .bag__price-approx {
 	display: inline-block;
 	font-size: 14px;
+	font-weight: 300;
 	color: $color-font-grey;
 
 	.bag__item & {
@@ -197,7 +198,6 @@ a.bag__item:not(.btn) { // fix a
 	.bag__price-approx {
 		display: block;
 		text-transform: none;
-		font-weight: 300;
 	}
 }
 
