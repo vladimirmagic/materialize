@@ -307,62 +307,79 @@
         });
     });
 </script>
-<!-- Live search for FAQs -->
-<script>
-    jQuery(document).ready(() => {
-        try {
-            function Search(event) {
-                $('.faq__search-suggester').removeClass('faq__search-suggester--init');
-                
-                    const results = [];
-                    const search = event.target.value.toLowerCase();
-                    $('.faq__collapsible-header').each((idx, el) => {
-                        const headerString = $(el).text();
-                        const bodyString = $('.faq__collapsible-body').eq(idx).text();
-                        const $parentEl = $(el).closest('li');
-                        
-                        const isShow = bodyString.toLowerCase().includes(search) || headerString.toLowerCase().includes(search);
-                        
-                        $parentEl.toggle(isShow);
-                        if (isShow && search) {
-                            results.push({idx, headerString});
-                        }
-                    });
-                    
-                    $('.faq__search-suggester').text('');
-                    results.forEach((suggest) => {
-                        const $clone = $view.clone();
-                        $clone.data(suggest);
-                        $clone.find('.faq__search-suggester__item-text').text(suggest.headerString);
-                        $('.faq__search-suggester').append($clone);
-                    });
-                    const isEmpty = results.length === 0 && search !== '';
-                    $('.faq__search-suggester').toggleClass('faq__search-suggester--empty', isEmpty);
-               
-            }
-            
-            const $span = $('<span/>', {class: 'faq__search-suggester__item-text'});
-            const $link = $('<a/>', {class: 'faq__search-suggester__item p-s'});
-            const $view = $link.append($span);
-            
-            $('.faq__search-suggester').on('click', (event) => {
-                const target = event.target;
-                const linkData = $(target).closest('a').data();
-                $('.faq__collapsible li').get(linkData.idx).scrollIntoView({behavior: 'smooth'});
-                $('.faq__collapsible li .faq__collapsible-header').get(linkData.idx).click();
+    <!-- Live search for FAQs -->
+    <script>
+        jQuery(document).ready(() => {
+            $('.card-blog').on('click', function(event) {
+                const fakeUrl = $(event.target).data('href');
+                if(fakeUrl) event.preventDefault();
+                window.location.href = fakeUrl;
             });
 
-            $('.faq__search-container input').on('keyup', Search);
-            $('.faq__search-container input').on('click', Search);
-            
-            
-            $('.faq__search-container input').on('focusout', function(event) {
-                setTimeout(function() {
-                    $('.faq__search-suggester').addClass('faq__search-suggester--init');
-                }, 300);
+            $('.filters__select-category select').on('change', function(event) {
+                const link = event.target.value;
+                window.location.href = link;
             });
-        } catch (e) {
-            console.error(e);
-        }
-    });
-</script>
+
+            try {
+                function Search(event) {
+                    if (event.key === 'Enter') {
+                        $('.faq__search-suggester').addClass('faq__search-suggester--init');
+                        return;
+                    }
+                    $('.faq__search-suggester').removeClass('faq__search-suggester--init');
+                    
+                        const results = [];
+                        const search = event.target.value.toLowerCase();
+                        $('.faq__collapsible-header').each((idx, el) => {
+                            const headerString = $(el).text();
+                            const bodyString = $('.faq__collapsible-body').eq(idx).text();
+                            const $parentEl = $(el).closest('li');
+                            
+                            const isShow = bodyString.toLowerCase().includes(search) || headerString.toLowerCase().includes(search);
+                            
+                            $parentEl.toggle(isShow);
+                            if (isShow && search) {
+                                results.push({idx, headerString});
+                            }
+                        });
+                        
+                        $('.faq__search-suggester').text('');
+                        results.forEach((suggest) => {
+                            const $clone = $view.clone();
+                            $clone.data(suggest);
+                            $clone.find('.faq__search-suggester__item-text').text(suggest.headerString);
+                            $('.faq__search-suggester').append($clone);
+                        });
+                        const isEmpty = results.length === 0 && search !== '';
+                        $('.faq__search-suggester').toggleClass('faq__search-suggester--empty', isEmpty);
+                   
+                }
+                
+                const $span = $('<span/>', {class: 'faq__search-suggester__item-text'});
+                const $link = $('<a/>', {class: 'faq__search-suggester__item p-s'});
+                const $view = $link.append($span);
+                
+                $('.faq__search-suggester').on('click', (event) => {
+                    const target = event.target;
+                    const linkData = $(target).closest('a').data();
+                    $('.faq__collapsible li').get(linkData.idx).scrollIntoView({behavior: 'smooth'});
+                    if (!$('.faq__collapsible li').hasClass('active')) {
+                        $('.faq__collapsible li .faq__collapsible-header').get(linkData.idx).click();
+                    }
+                });
+
+                $('.faq__search-container input').on('keyup', Search);
+                $('.faq__search-container input').on('click', Search);
+                
+                
+                $('.faq__search-container input').on('focusout', function(event) {
+                    setTimeout(function() {
+                        $('.faq__search-suggester').addClass('faq__search-suggester--init');
+                    }, 300);
+                });
+            } catch (e) {
+                console.error(e);
+            }
+        });
+    </script>
