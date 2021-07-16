@@ -1,5 +1,11 @@
+.bag {
+	.order__summary {
+		margin-top: 0;
+	}
+}
+
 .bag__title {
-	margin: 80px 0;
+	margin: 20px 0 80px;
 	text-align: center;
 }
 
@@ -18,7 +24,7 @@
 .bag__item {
 	display: flex;
 	justify-content: space-between;
-	padding: 1.75em 0;
+	padding: 1.75em 0 0;
 	border-top: 1px solid $color-grey;
 
 	&:last-child {
@@ -39,6 +45,7 @@ a.bag__item:not(.btn) { // fix a
 	flex: 0 0 128px;
 	height: 128px;
 	margin-right: 24px;
+	margin-bottom: 1.75em;
 	border-radius: 6px;
 	background-position: 50% 50%;
 	background-size: contain;
@@ -47,7 +54,9 @@ a.bag__item:not(.btn) { // fix a
 }
 
 .bag__item-details {
+	width: 100%;
 	margin-right: 100px;
+	margin-bottom: 1.75em;
 }
 
 .bag__item-label {
@@ -78,7 +87,7 @@ a.bag__item:not(.btn) { // fix a
    	-webkit-line-clamp: 2;
    	-webkit-box-orient: vertical;
 	max-height: 3em;
-	margin-bottom: .5em;
+	margin-bottom: 0;
 }
 
 .bag__item-location {
@@ -86,7 +95,32 @@ a.bag__item:not(.btn) { // fix a
 }
 
 .bag__item-price {
-	flex: 0 0 144px;
+	flex: 0 0 184px;
+}
+
+.bag__price {
+	margin-bottom: 1.5em;
+}
+
+.bag__price-title {
+	font-size: 20px;
+	font-weight: 500;
+	line-height: 1.4;
+}
+
+.bag__price-old {
+	color: $color-font-grey;
+	text-decoration: line-through;
+}
+
+.bag__price-new {
+	color: $color-red;
+}
+
+.bag__price-approx {
+	display: inline-block;
+	font-size: 14px;
+	color: $color-font-grey;
 }
 
 .bag__item-actions {
@@ -94,7 +128,7 @@ a.bag__item:not(.btn) { // fix a
 	text-align: right;
 
 	.btn-flat {
-		margin-top: 14px;
+		margin-top: 12px;
 		margin-right: -8px;
 		padding: 0;
 
@@ -125,13 +159,17 @@ a.bag__item:not(.btn) { // fix a
 	}
 	
 	.bag__item-price {
-		flex: 0 0 96px;
+		flex: 0 0 144px;
 	}
 }
 
 @media #{$large-and-down} {
     .bag__title {
-		margin: 40px 0;
+		margin: 0 0 40px;
+	}
+
+	.bag__item-price {
+		flex: 0 0 80px;
 	}
 }
 
@@ -153,6 +191,7 @@ a.bag__item:not(.btn) { // fix a
 
 	.bag__item-img {
 		margin-right: 16px;
+		margin-bottom: 1em;
 	}
 
 	.bag__item-details {
@@ -169,6 +208,10 @@ a.bag__item:not(.btn) { // fix a
 		flex: 0 0 88px;
 		margin-left: 112px;
 	}
+
+	.bag__item-price {
+		flex: 0 1 calc(100% - 200px);
+	}
 	
 	.bag__item-actions {
 		position: absolute;
@@ -181,5 +224,16 @@ a.bag__item:not(.btn) { // fix a
 				height: 12px;
 			}
 		}
+	}
+}
+
+@media only screen and (max-width: 360px) {
+	.bag__item-location {
+		flex: 0 0 112px;
+		margin-left: 0;
+	}
+
+	.bag__item-price {
+		flex: 0 1 calc(100% - 112px);
 	}
 }

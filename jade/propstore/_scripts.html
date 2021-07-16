@@ -17,6 +17,8 @@
 
 		/** CHECKOUT */
 
+		$('.__PrivateStripeElement').attr('style', ' ');
+
 		// STEPS
 		const checkoutSteps = document.querySelectorAll('.order-step');
 		const checkoutStepTabs = document.querySelectorAll('.checkout-step-tab');
@@ -129,7 +131,7 @@
 
 		// PAYMENT CARD
 		const paymentCard = document.querySelector('select[name="checkout-payment-card"]');
-		const paymentCardNew = document.querySelector('#checkout-payment-card-new');
+		const paymentCardNew = document.querySelector('.checkout-payment-card-new__container');
 		if (paymentCard && paymentCardNew) {
 			function isPaymentCardNew () {
 				paymentCardNew.style.display = (paymentCard.value == 0) ? 'block' : 'none';

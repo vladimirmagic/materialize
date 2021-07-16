@@ -127,6 +127,7 @@ $main-link-height: 72px;
 
 	&:focus-within,
 	.sidenav__menu-link:focus-within + & {
+		position: relative;
 		max-height: none;
 		opacity: 1;
 		pointer-events: all;

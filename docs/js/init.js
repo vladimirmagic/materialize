@@ -57,7 +57,9 @@
 			.formSelect();
 		$('.sidenav').sidenav();
 		$('input.autocomplete').autocomplete({
-			data: { 'Movie 01': 'Movie01', 'Movie 02': 'Movie02', 'Movie 3': 'Movie3' }
+			data: { 'Movie 01': 'Movie01', 'Movie 02': 'Movie02', 'Movie 3': 'Movie3' },
+			addCustom: true,
+			onAutocomplete: (val) => console.log(val)
 		});
 		$('input[data-length], textarea[data-length]').characterCounter();
 

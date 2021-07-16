@@ -9,7 +9,8 @@
     sortFunction: function(a, b, inputString) {
       // Sort function for sorting autocomplete results
       return a.indexOf(inputString) - b.indexOf(inputString);
-    }
+    },
+    addCustom: false
   };
 
   /**
@@ -39,6 +40,7 @@
        * @prop {Boolean} indicators
        * @prop {Boolean} noWrap
        * @prop {Function} onCycleTo
+       * @prop {Boolean} addCustom // if no matches add option 'Add custom'
        */
       this.options = $.extend({}, Autocomplete.defaults, options);
 
@@ -417,6 +419,13 @@
 
         $(this.container).append($autocompleteOption);
         this._highlight(val, $autocompleteOption);
+      }
+
+      if (!matchingData.length && this.options.addCustom) {
+        let $autocompleteOption = $('<li></li>');
+        $autocompleteOption[0].setAttribute('data-value', 'addcustom=' + val);
+        $autocompleteOption.html('<span>No matсhes. Add <strong>`' + val + '`</strong></span>');
+        $(this.container).append($autocompleteOption);
       }
     }
 
