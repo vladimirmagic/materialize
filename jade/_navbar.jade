@@ -122,7 +122,7 @@ header(style='z-index: 999;')
 
     li.no-padding
       ul.collapsible.collapsible-accordion
-        li.bold(class=(page == "Propstore UI" || page == "Home" || page == "Buy now" || page == "Results" || page == "Product" || page == "Auctions" || page == "Bag" || page == "Checkout" || page == "Checkout (split order)" || page == "Order confirmed" || page == "Blog" || page == "Account" || page == "Account Details" || page == "Account Watchlist" || page == "Account Orders" || page == "Account Favorites" || page == "General" || page == "Sell" ? "active" : ""))
+        li.bold(class=(page == "Propstore UI" || page == "Home" || page == "Buy now" || page == "Results" || page == "Product" || page == "Auctions" || page == "Bag" || page == "Checkout" || page == "Checkout (split order)" || page == "Order confirmed" || page == "Blog" || page == "Account" || page == "Account Details" || page == "Account Watchlist" || page == "Account Orders" || page == "Account Favorites" || page == "Account COA" || page == "General" || page == "Sell" ? "active" : ""))
               a.collapsible-header(class="waves-effect waves-grey")
                 | Propstore
               .collapsible-body
@@ -157,6 +157,8 @@ header(style='z-index: 999;')
                     a(href='account-orders.html' target='_blank') Account Orders
                   li(class=(page == "Account Favorites" ? "active" : ""))
                     a(href='account-favorites.html' target='_blank') Account Favorites
+                  li(class=(page == "Account COA" ? "active" : ""))
+                    a(href='account-coa.html' target='_blank') Account COA
                   li(class=(page == "Blog listing" ? "active" : ""))
                     a(href='blog.html' target='_blank') Blog
                   li(class=(page == "Blog single" ? "active" : ""))

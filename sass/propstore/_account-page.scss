@@ -337,6 +337,42 @@ a.account__orders-buy-link:not(.btn) {
 	}
 }
 
+.account__coa {
+	@extend .content;
+}
+
+.account__coa-inner {
+	max-width: 432px;
+	margin: 0 auto;
+}
+
+.account__coa-img {
+	position: relative;
+	border: 1px solid $color-grey;
+	border-radius: 6px;
+	overflow: hidden;
+	margin-bottom: 3em;
+
+	img {
+		width: 100%;
+	}
+
+	&:before { // fix image
+		content: '';
+		position: absolute;
+		left: 5px;
+		top: 10px;
+		right: 5px;
+		bottom: 15px;
+		border: 10px solid #fff;
+	}
+}
+
+.account__coa-btn {
+	margin-top: 1rem;
+	width: 100%;
+}
+
 @media #{$large-and-down} {
 	.account__orders-note {
 		max-width: 100%;
