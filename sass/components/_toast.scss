@@ -3,42 +3,37 @@
   position: fixed;
   z-index: 10000;
 
-  @media #{$small-and-down} {
-    min-width: 100%;
-    bottom: 0%;
-  }
   @media #{$medium-only} {
-    left: 5%;
-    bottom: 7%;
-    max-width: 90%;
+    left: 1.5rem;
+    bottom: 1.5rem;
+    max-width: calc(100% - 3rem);
   }
   @media #{$large-and-up} {
-    top: 10%;
-    right: 7%;
-    max-width: 86%;
+    bottom: 2.5rem;
+    left: 2.5rem;
+    max-width: calc(100% - 5rem);
   }
 }
 
 .toast {
-  @extend .z-depth-1;
-  border-radius: 2px;
-  top: 35px;
-  width: auto;
-  margin-top: 10px;
   position: relative;
-  max-width:100%;
-  height: auto;
-  min-height: $toast-height;
-  line-height: 1.5em;
-  background-color: $toast-color;
-  padding: 10px 25px;
-  font-size: 1.1rem;
-  font-weight: 300;
-  color: $toast-text-color;
+  top: 35px;
   display: flex;
   align-items: center;
   justify-content: space-between;
+  width: auto;
+  margin-top: 10px;
+  max-width:100%;
+  height: auto;
+  min-height: $toast-height;
+  padding: 1rem 1.5rem;
+  font-size: 1rem;
+  color: #fff;
+  line-height: 1.5;
+  background-color: $color-turquoise;
+  border-radius: 6px;
   cursor: default;
+  box-shadow: $shadow-base;
 
   .toast-action {
     color: $toast-action-color;
@@ -53,6 +48,5 @@
 
   @media #{$small-and-down} {
     width: 100%;
-    border-radius: 0;
   }
 }
