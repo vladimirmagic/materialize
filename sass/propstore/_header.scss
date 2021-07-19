@@ -87,7 +87,11 @@ header {
 	}
 
 	.input-field {
-		margin-bottom: 20px;
+		margin-bottom: 1em;
+	}
+
+	.input-field + .input-field {
+		margin-top: 2em;
 	}
 
 	.g-recaptcha-field {
@@ -97,6 +101,11 @@ header {
 	.g-recaptcha {
 		display: inline-block;
 	}
+}
+
+.modal-register__remember {
+	margin-top: 2em;
+	text-align: left;
 }
 
 .modal-form__submit,
