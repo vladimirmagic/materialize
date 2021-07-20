@@ -669,37 +669,12 @@ a.order__item:not(.btn) { // fix a
 }
 
 .order__review-total {
-	max-width: 320px;
-}
-
-.order__review-total-row {
-	display: flex;
-	justify-content: space-between;
-
-	& + & {
-		margin-top: .75em;
-	}
-
-	&.order__review-total-row--total {
-		margin-top: 1.5em;
-		margin-bottom: 0;
-	}
-}
-
-.order__review-total-row-cell2 {
-	text-align: right;
-}
-
-.order__review-total-split {
 	display: flex;
 	justify-content: space-between;
 
 	.order__split {
 		flex: 1 1 50%;
-	}
-
-	.order__review-total {
-		max-width: 280px;
+		max-width: 45%;
 	}
 }
 
@@ -939,15 +914,15 @@ a.order__item:not(.btn) { // fix a
 		flex-basis: 96px;
 	}
 
-	.order__review-total-split {
+	.order__review-total {
 		display: block;
 	
-		.order__split + .order__split {
-			margin-top: 3em;
+		.order__split {
+			max-width: 320px;
 		}
 
-		.order__review-total {
-			max-width: 320px;
+		.order__split + .order__split {
+			margin-top: 3em;
 		}
 	}
 
@@ -1155,7 +1130,9 @@ a.order__item:not(.btn) { // fix a
 	}
 
 	.order__review-total {
-		max-width: none;
+		.order__split {
+			max-width: none;
+		}
 	}
 
 	.order-confirmed__item {
