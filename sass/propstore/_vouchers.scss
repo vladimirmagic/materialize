@@ -43,7 +43,7 @@
 .vouchers__cards {
     display: flex;
     flex-wrap: wrap;
-    padding: 20px 0 72px 0;
+    padding: 100px 0 72px 0;
 	margin-left: -$card-margin;
 	transform: translateX($card-margin);
 	
@@ -223,7 +223,7 @@ a.voucher:not(.btn) { // fix a
                 & + .btn--secondary {
                     margin-top: 0;
                     margin-left: 1em;
-			}
+                }
 			}
 		}
 	}
@@ -235,15 +235,15 @@ a.voucher:not(.btn) { // fix a
 	
 	.vouchers__cards {
 		margin-left: -$card-margin-m;
-        padding-bottom: 20px;
+        padding-top: 20px;
+        padding-bottom: 80px;
 		transform: translateX($card-margin-m);
     }
 
-		.voucher {
-            flex-direction: column;
-			margin: 5em $card-margin-m 0 0;
-		}
-	}
+    .voucher {
+        flex-direction: column;
+        margin: 5em $card-margin-m 0 0;
+    }
 
     .voucher {
         width: $card-width-m;
