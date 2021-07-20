@@ -142,7 +142,7 @@ a.voucher:not(.btn) { // fix a
 .voucher__description {
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
 	padding: 1.5em;
     height: $card-height-xxxs;
 }
