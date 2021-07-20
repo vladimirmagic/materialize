@@ -87,7 +87,11 @@ header {
 	}
 
 	.input-field {
-		margin-bottom: 20px;
+		margin-bottom: 1em;
+	}
+
+	.input-field + .input-field {
+		margin-top: 2em;
 	}
 
 	.g-recaptcha-field {
@@ -97,6 +101,11 @@ header {
 	.g-recaptcha {
 		display: inline-block;
 	}
+}
+
+.modal-register__remember {
+	margin-top: 2em;
+	text-align: left;
 }
 
 .modal-form__submit,
@@ -575,13 +584,18 @@ a.modal-bag__item:not(.btn) { // fix a
 .modal-bag__total {
 	display: flex;
 	justify-content: space-between;
-	align-items: flex-end;
-	margin-bottom: 1.2em;
+	align-items: flex-start;
+	margin-bottom: .75em;
 	font-size: 20px;
+	font-weight: 500;
+
+	.bag__price-approx {
+		display: block;
+	}
 }
 
 .modal-bag__total-value {
-	font-weight: 600;
+	text-align: right;
 }
 
 .modal-bag__submit {

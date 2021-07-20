@@ -379,6 +379,7 @@
             'account-watchlist.html': 'jade/propstore/account-watchlist.jade',
             'account-orders.html': 'jade/propstore/account-orders.jade',
             'account-favorites.html': 'jade/propstore/account-favorites.jade',
+            'account-coa.html': 'jade/propstore/account-coa.jade',
             'general.html': 'jade/propstore/general.jade',
             'payment-plans.html': 'jade/propstore/payment-plans.jade',
             'sell.html': 'jade/propstore/sell.jade',

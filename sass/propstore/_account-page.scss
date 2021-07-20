@@ -282,6 +282,97 @@ a.account__orders-buy-link:not(.btn) {
 	}
 }
 
+.account__favorites-item {
+	position: relative;
+	padding: 0 1.5em;
+	border-radius: 6px;
+	box-shadow: $shadow-base;
+
+	& + & {
+		margin-top: 1em;
+	}
+}
+
+.account__favorites-item-header {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	height: 5em;
+	padding: 0 2.25rem 0 0;
+	border: 0;
+	background: #fff !important;
+}
+
+.account__favorites-item-title {
+	flex: 1 1 100%;
+	max-width: calc(100% - 6em);
+	height: 1.5em;
+	margin: 0;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+
+	.account__favorites-col--genres & {
+		max-width: 100%;
+	}
+}
+
+.account__favorites-item-delete {
+	position: absolute;
+	top: 1rem;
+	right: .25rem;
+
+	.icon {
+		width: 1rem;
+		height: 1rem;
+	}
+}
+
+.account__favorites-item-body {
+	padding: 0 0 1.5em;
+	border: 0;
+
+	li + li {
+		margin-top: .5em;
+	}
+}
+
+.account__coa {
+	@extend .content;
+}
+
+.account__coa-inner {
+	max-width: 432px;
+	margin: 0 auto;
+}
+
+.account__coa-img {
+	position: relative;
+	border: 1px solid $color-grey;
+	border-radius: 6px;
+	overflow: hidden;
+	margin-bottom: 3em;
+
+	img {
+		width: 100%;
+	}
+
+	&:before { // fix image
+		content: '';
+		position: absolute;
+		left: 5px;
+		top: 10px;
+		right: 5px;
+		bottom: 15px;
+		border: 10px solid #fff;
+	}
+}
+
+.account__coa-btn {
+	margin-top: 1rem;
+	width: 100%;
+}
+
 @media #{$large-and-down} {
 	.account__orders-note {
 		max-width: 100%;
@@ -337,4 +428,18 @@ a.account__orders-buy-link:not(.btn) {
 	// .account__orders-auction-td-title {
 	// 	width: 100%;
 	// }
+
+	.account__favorites-inner {
+		display: block;
+	}
+
+	.account__favorites-col {
+		width: 100%;
+
+		&.account__favorites-col--genres {
+			margin-top: 4em;
+			padding-top: 4em;
+			border-top: 1px solid $color-grey;
+		}
+	}
 }

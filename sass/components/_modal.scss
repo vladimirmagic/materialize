@@ -91,7 +91,6 @@
 
 .modal-blocked {
   overflow: hidden;
-  pointer-events: none;
 
   .modal,
   .modal-overlay {
@@ -128,6 +127,7 @@
 .modal__title {
   margin-bottom: 40px;
   font-size: 28px;
+  font-weight: 400;
 }
 
 .modal-gallery {
