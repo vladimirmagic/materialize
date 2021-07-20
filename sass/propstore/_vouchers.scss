@@ -218,6 +218,7 @@ a.voucher:not(.btn) { // fix a
 		padding-bottom: 0px;
 
 		.voucher__actions {
+            height: auto;
 			.btn {
 				width: 100%;
                 & + .btn--secondary {
@@ -294,6 +295,7 @@ a.voucher:not(.btn) { // fix a
         justify-content: flex-end;
         width: 100%;
         min-width: 100%;
+        height: auto;
         padding: 0;
     }
 }
@@ -366,6 +368,7 @@ a.voucher:not(.btn) { // fix a
             .voucher__actions {
                 flex-direction: column;
                 width: 100%;
+                height: auto;
 
                 .btn {
                     width: 100%;
