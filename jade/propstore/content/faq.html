@@ -27,11 +27,11 @@
                     <button data-category="general" class="filters__menu-category waves-effect btn-flat btn--rounded">General</button>
                     <button data-category="buynow" class="filters__menu-category waves-effect btn-flat btn--rounded">Buy now</button>
                     <button data-category="auction" class="filters__menu-category waves-effect btn-flat btn--rounded">Auctions</button>
-                    <a href="/shipping/" class="filters__menu-category waves-effect btn-flat btn--rounded">Shipping</a>
-                    <a href="#" class="filters__menu-category waves-effect btn-flat btn--rounded">Selling</a>
-                    <a href="#" class="filters__menu-category waves-effect btn-flat btn--rounded">Account</a>
-                    <a href="#" class="filters__menu-category waves-effect btn-flat btn--rounded">Glossary</a>
-                    <a href="#" class="filters__menu-category waves-effect btn-flat btn--rounded">Authenticity</a>
+                    <button data-category="shipping" class="filters__menu-category waves-effect btn-flat btn--rounded">Shipping</button>
+                    <button data-category="selling" class="filters__menu-category waves-effect btn-flat btn--rounded">Selling</button>
+                    <button data-category="account" class="filters__menu-category waves-effect btn-flat btn--rounded">Account</button>
+                    <button data-category="glossary" class="filters__menu-category waves-effect btn-flat btn--rounded">Glossary</button>
+                    <button data-category="authenticity"class="filters__menu-category waves-effect btn-flat btn--rounded">Authenticity</button>
                 </div>
                 <div class="filters__select-category">
                     <div class="input-field">
@@ -41,10 +41,10 @@
                             <option value="buynow">Buy now</option>
                             <option value="auction">Auctions</option>
                             <option value="shipping">Shipping</option>
-                            <option value="#">Selling</option>
-                            <option value="#">Account</option>
-                            <option value="#">Glossary</option>
-                            <option value="#">Authenticity</option>
+                            <option value="selling">Selling</option>
+                            <option value="account">Account</option>
+                            <option value="glossary">Glossary</option>
+                            <option value="authenticity">Authenticity</option>
                         </select>
                     </div>
                 </div>
@@ -91,7 +91,7 @@
                         <p class="p-s">Prop Store's inventory can be browsed in a number of different ways. If you are looking for something specific, our website features a powerful search engine. Simply type in a keyword, such as an actor name or film title, and click search to see what we have available. If you'd like to browse the inventory of a specific film, you can select that film from the drop down menu in the upper-left hand corner of the site. Our inventory can also be browsed by broader memorabilia categories such as <a href="/category/movie-props/">"props"</a> or <a href="/category/movie-wardrobe/">"wardrobe"</a>. The category drop-down menu can be found immediately below the film title menu. You can further fine-tune your results by opting to browse either with full information and photos, or in quick view list format without photos. A variety of filtering options are also available to determine the order in which items appear.</p>
                     </div>
                 </li>
-                <li class="faq__item">
+                <li class="faq__item category-shipping">
                     <div class="collapsible-header faq__collapsible-header">
                         How do I know if these are authentic?
                         <i class="icon"><svg><use xlink:href="#close"></use></svg></i>
@@ -100,7 +100,7 @@
                         <p class="p-s">Every item on our website has been researched as thoroughly as possible and has met our internal standards of authenticity. Our reputation is impeccable and not something we ever take for granted. All products sold by Prop Store are guaranteed for the life of the business. We never tire in researching the history of film props and costumes. Prop Store's global network of industry professionals is unmatched and we often call on them to assist in researching our collections. Authenticity is everything. Please see our <a href="/certificate-of-authenticity/">Certificate of Authenticity</a> (COA) page for additional information.</p>
                     </div>
                 </li>
-                <li class="faq__item">
+                <li class="faq__item category-selling">
                     <div class="collapsible-header faq__collapsible-header">
                         Was this piece really held by my favorite actor?
                         <i class="icon"><svg><use xlink:href="#close"></use></svg></i>
@@ -112,7 +112,7 @@
                         <p class="p-s">Because of the fact that pieces are almost always used in multiples during a production, it is not always possible to guarantee a particular item is the one seen in the final cut of a film or show. All of the items in Prop Store's inventory are guaranteed to be originals from the production, unless otherwise stated. In some cases it may be possible to provide further evidence about the use of an individual item based on matching "tells" on the item to what's on screen, or based on other relevant information. When this is the case, Prop Store will include that information in the description.</p>
                     </div>
                 </li>
-                <li class="faq__item">
+                <li class="faq__item category-account">
                     <div class="collapsible-header faq__collapsible-header">
                         How do I buy an item from the website?
                         <i class="icon"><svg><use xlink:href="#close"></use></svg></i>
@@ -121,7 +121,7 @@
                         <p class="p-s">Please see our <a href="/ordering-faqs/">Ordering FAQ</a>.</p>
                     </div>
                 </li>
-                <li class="faq__item">
+                <li class="faq__item category-glossary">
                     <div class="collapsible-header faq__collapsible-header">
                         Can you let me know when you have items from my favorite film?
                         <i class="icon"><svg><use xlink:href="#close"></use></svg></i>
@@ -132,7 +132,7 @@
                         <p class="p-s"><strong>Order History</strong><br>Logging into your account will allow you to check the status of both current and past purchases.</p>
                     </div>
                 </li>
-                <li class="faq__item">
+                <li class="faq__item category-authenticity">
                     <div class="collapsible-header faq__collapsible-header">
                         I see an item I like in the Archive section of your site, is it available?
                         <i class="icon"><svg><use xlink:href="#close"></use></svg></i>
@@ -141,7 +141,7 @@
                         <p class="p-s">We provide the <a href="/category/memorabilia-archive/">Archive </a> section as a resource to collectors, enabling them to see pieces that have passed through our hands in the past. Sorry, but everything in the Archive has already been sold. In some cases, we may be able to locate an item from the archive for you, or a similar item. See our requests page for more information.</p>
                     </div>
                 </li>
-                <li class="faq__item">
+                <li class="faq__item category-selling">
                     <div class="collapsible-header faq__collapsible-header">
                         What is a storyboard?
                         <i class="icon"><svg><use xlink:href="#close"></use></svg></i>
@@ -152,7 +152,7 @@
                         <p class="p-s">Customers can rest assured that all storyboards listed by the Prop Store are guaranteed to be genuine production-used originals. Prop Store does not manufacture new storyboard copies, we only sell original paperwork used during the production of the movie.</p>
                     </div>
                 </li>
-                <li class="faq__item">
+                <li class="faq__item category-account">
                     <div class="collapsible-header faq__collapsible-header">
                         What are the photos with the ruler in your product listings?
                         <i class="icon"><svg><use xlink:href="#close"></use></svg></i>
@@ -161,7 +161,7 @@
                         <p class="p-s">Scale reference photos are included as the final image in the photo set for all of our product listings. This allows our customers to more accurately envision the size of the piece being offered.</p>
                     </div>
                 </li>
-                <li class="faq__item">
+                <li class="faq__item category-glossary">
                     <div class="collapsible-header faq__collapsible-header">
                         Do you buy props and costumes?
                         <i class="icon"><svg><use xlink:href="#close"></use></svg></i>
