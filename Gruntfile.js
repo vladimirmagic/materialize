@@ -384,6 +384,7 @@
             'payment-plans.html': 'jade/propstore/payment-plans.jade',
             'sell.html': 'jade/propstore/sell.jade',
             'gift-vouchers.html': 'jade/propstore/gift-vouchers.jade',
+            'voucher.html': 'jade/propstore/voucher.jade',
           }
         }
       },

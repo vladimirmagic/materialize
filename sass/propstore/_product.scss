@@ -37,12 +37,41 @@
 
 	.carousel-item {
 		border-radius: 6px;
+        &.carousel-item--voucher {
+            &:before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 0;
+                bottom: 0;
+                right: 0;
+                background: radial-gradient(rgba(0, 0, 0, 0), color("grey", "darken-4"));
+            }
+        }
 	}
+    
+    .carousel-item__price {
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #fff;
+        font-weight: bold;
+        font-size: 48px;
+    }
 }
 
 .product__thumbnails {
 	width: calc(100% + 24px);
 	margin-top: 24px;
+}
+
+.gift-voucher .product__thumbnails {
+    display: none !important;
 }
 
 .product__thumbnails-scroll {
