@@ -236,7 +236,7 @@ a.voucher:not(.btn) { // fix a
 	.vouchers__cards {
 		margin-left: -$card-margin-m;
         padding-top: 20px;
-        padding-bottom: 80px;
+        padding-bottom: 60px;
 		transform: translateX($card-margin-m);
     }
 
@@ -308,6 +308,10 @@ a.voucher:not(.btn) { // fix a
 	.vouchers {
 		padding-left: 40px;
 		padding-right: 24px;
+        &.vouchers--content {
+            padding-left: 24px;
+            padding-right: 24px;
+        }
 	}
 
 	.vouchers__inner {
@@ -331,6 +335,10 @@ a.voucher:not(.btn) { // fix a
 		padding-left: 24px;
 		padding-right: 0;
         padding-bottom: 0;
+        &.vouchers--content {
+            padding-left: 24px;
+            padding-right: 24px;
+        }
 
 		.vouchers__cards {
 			margin-left: 0;
@@ -347,6 +355,7 @@ a.voucher:not(.btn) { // fix a
             }
             
             .voucher__info {
+                padding: 16px;
                 height: $card-height-xs - $card-width-s;
             }
             
