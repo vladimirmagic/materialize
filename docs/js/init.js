@@ -286,6 +286,13 @@ document.addEventListener('DOMContentLoaded', () => {
 			thumbnail.addEventListener('mousemove', onClickProductThumbnail);
 		});
 	}
+
+	// VOUCHER
+	const voucherItems = [...document.querySelectorAll('.carousel-item--voucher')];
+	if (voucherItems.length) {
+		$('.product__slider').carousel();
+	}
+
 	$('.modal-gallery').modal({
 		opacity: .75,
 		onCloseStart: (el) => {
