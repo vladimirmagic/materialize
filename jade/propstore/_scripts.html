@@ -332,11 +332,35 @@
         });
 
         try {
+            let debounceTimer = null; 
             function Search(event) {
                 if (event.key === 'Enter') {
                     $('.faq__search-suggester').addClass('faq__search-suggester--init');
                     return;
                 }
+                
+                clearTimeout(debounceTimer);
+                debounceTimer = setTimeout(function(){
+                    var searchValue = $('.input-field--faq-search input').val();
+                    var customFilter = new RegExp(searchValue, 'ig');
+                    var replacedString = "<span class='faq__highlight'>" + searchValue + "</span>";
+                    $('.faq__content').find('.faq__highlight').contents().unwrap();
+                    
+                    $('.faq__collapsible-header-text').each(function() {
+                        if(searchValue.length > 1){
+                            const content = $(this).html().replace(customFilter, replacedString);
+                            $(this).html(content);
+                        }
+                    });
+                    
+                    $('.collapsible-body').each(function() {
+                        if(searchValue.length > 1){
+                            const content = $(this).html().replace(customFilter, replacedString);
+                            $(this).html(content);
+                        }
+                    });
+                }, 300);
+                
                 $('.faq__search-suggester').removeClass('faq__search-suggester--init');
                 
                 const results = [];
@@ -364,22 +388,22 @@
                     $clone.find('.faq__search-suggester__item-text').text(suggest.headerString);
                     $('.faq__search-suggester').append($clone);
                 });
+
                 const isEmpty = results.length === 0 && search !== '';
                 $('.faq__search-suggester').toggleClass('faq__search-suggester--empty', isEmpty);
-               
             }
-            
+
             const $span = $('<span/>', {class: 'faq__search-suggester__item-text'});
             const $link = $('<a/>', {class: 'faq__search-suggester__item p-s'});
             const $view = $link.append($span);
-            
+
             $('.faq__search-suggester').on('click', (event) => {
                 const target = event.target;
                 const linkData = $(target).closest('a').data();
                 
                 $('.faq__collapsible li.active .collapsible-header').click();
                 $('.faq__collapsible li .faq__collapsible-header').get(linkData.idx).click();
-                
+
                 setTimeout(function() {
                     $('.faq__collapsible li').get(linkData.idx).scrollIntoView({behavior: 'smooth'});
                 }, 300);
