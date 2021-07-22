@@ -78,6 +78,10 @@ header {
 	margin: 0 -4px;
 }
 
+.header__guest {
+	white-space: nowrap;
+}
+
 .modal-register {
 	max-width: $w36;
 	text-align: center;
