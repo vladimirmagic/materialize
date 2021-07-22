@@ -343,7 +343,7 @@
                 debounceTimer = setTimeout(function(){
                     var searchValue = $('.input-field--faq-search input').val();
                     var customFilter = new RegExp(searchValue, 'ig');
-                    var replacedString = "<span class='faq__highlight'>" + searchValue + "</span>";
+                    var replacedString = "<span class='faq__highlight'>$&</span>";
                     $('.faq__content').find('.faq__highlight').contents().unwrap();
                     
                     $('.faq__collapsible-header-text').each(function() {
