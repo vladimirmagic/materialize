@@ -372,7 +372,8 @@ header {
 	flex-wrap: wrap;
 }
 
-.header__menu-block3-link {
+.header__menu-block3-link,
+header .menu-auction-link {
 	display: block;
 	width: 176px;
 	height: auto;
@@ -653,13 +654,11 @@ a.modal-bag__item:not(.btn) { // fix a
         max-width: 248px;
     }
 
-	.header__menu-block3-link {
-		.header__menu-level1--auctions & {
-			width: 176px;
+	header .menu-auction-link {
+		width: 176px;
 	
-			.icon {
-				height: 96px;
-			}
+		.icon {
+			height: 96px;
 		}
 	}
 }
