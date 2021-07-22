@@ -34,7 +34,7 @@
             sourcemap: false
           },
           files: {
-            'dist/css/materialize.css': 'sass/materialize.scss'
+            'dist/css/propstore-ui.css': 'sass/propstore-ui.scss'
           }
         },
   
@@ -44,7 +44,7 @@
             sourcemap: false
           },
           files: {
-            'dist/css/materialize.min.css': 'sass/materialize.scss'
+            'dist/css/propstore-ui.min.css': 'sass/propstore-ui.scss'
           }
         },
   
@@ -55,7 +55,8 @@
             sourcemap: false
           },
           files: {
-            'css/ghpages-materialize.css': 'sass/ghpages-materialize.scss'
+            'css/ghpages-materialize.css': 'sass/ghpages-materialize.scss',
+            'css/propstore-ui.css': 'sass/propstore-ui.scss'
           }
         },
   
@@ -87,13 +88,13 @@
           ]
         },
         expanded: {
-          src: 'dist/css/materialize.css'
+          src: 'dist/css/propstore-ui.css'
         },
         min: {
-          src: 'dist/css/materialize.min.css'
+          src: 'dist/css/propstore-ui.min.css'
         },
         gh: {
-          src: 'css/ghpages-materialize.css'
+          src: ['css/ghpages-materialize.css', 'css/propstore-ui.css']
         },
         bin: {
           src: 'bin/materialize.css'
@@ -108,7 +109,8 @@
             'transform-es2015-block-scoping',
             'transform-es2015-classes',
             'transform-es2015-template-literals',
-            'transform-es2015-object-super'
+            'transform-es2015-object-super',
+            'transform-es2015-parameters'
           ]
         },
         bin: {
@@ -128,7 +130,7 @@
   
       // Browser Sync integration
       browserSync: {
-        bsFiles: ['bin/*', 'css/ghpages-materialize.css', '!**/node_modules/**/*'],
+        bsFiles: ['bin/*', 'css/ghpages-materialize.css', 'css/propstore-ui.css', '!**/node_modules/**/*'],
         options: {
           server: {
             baseDir: './' // make server from root dir
@@ -594,6 +596,7 @@
   
     // define the tasks
     grunt.registerTask('release', [
+      'svg_sprite',
       'sass:expanded',
       'sass:min',
       'postcss:expanded',
@@ -601,8 +604,8 @@
       'concat:dist',
       'babel:dist',
       'uglify:dist',
-      'uglify:extras',
-      'usebanner:release',
+      // 'uglify:extras',
+      // 'usebanner:release',
       'compress:main',
       'compress:src',
       'replace:version',
@@ -621,9 +624,13 @@
     grunt.registerTask('sass_compile', [
       'sass:gh',
       'sass:bin',
+      'sass:expanded',
+      'sass:min',
       'postcss:gh',
       'postcss:bin',
-      'notify:sass_compile'
+      'postcss:expanded',
+      'postcss:min',
+      'notify:sass_compile',
     ]);
     grunt.registerTask('server', ['browserSync', 'notify:server']);
     grunt.registerTask('monitor', ['concurrent:monitor']);
