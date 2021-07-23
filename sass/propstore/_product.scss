@@ -394,7 +394,7 @@ a.product__certificate:not(.btn) { // fix a
 
 .modal-payment-plan {
 	width: 90%;
-	max-width: $w55;
+	max-width: 66rem; // to fit 6 months with vertical scroll
 	text-align: center;
 
 	.modal__title {

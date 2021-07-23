@@ -12117,6 +12117,10 @@ a.card:not(.btn):not(.btn-large):not(.btn-small):not(.btn-extra-small).card--arc
   background: #F93838;
 }
 
+.card__featured ~ .card__discount {
+  top: 64px;
+}
+
 .card__discount-value {
   font-size: 20px;
 }
@@ -13411,6 +13415,10 @@ a.related-movies__item:not(.btn):not(.btn-large):not(.btn-small):not(.btn-extra-
   background: #F93838;
 }
 
+.product__featured ~ .product__discount {
+  top: 80px;
+}
+
 .product__discount-value {
   font-size: 24px;
 }
@@ -13724,7 +13732,7 @@ a.product__certificate:not(.btn):not(.btn-large):not(.btn-small):not(.btn-extra-
 
 .modal-payment-plan {
   width: 90%;
-  max-width: 55rem;
+  max-width: 66rem;
   text-align: center;
 }
 
