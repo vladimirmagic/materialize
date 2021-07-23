@@ -130,6 +130,10 @@
 	line-height: 1;
 	border-radius: 72px;
 	background: $color-red;
+
+	.product__featured ~ & {
+		top: 80px;
+	}
 }
 
 .product__discount-value {
