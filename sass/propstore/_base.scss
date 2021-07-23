@@ -11,6 +11,12 @@ body {
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
+	opacity: 0;
+	transition: opacity .5s ease-in;
+
+	&.loaded {
+		opacity: 1;
+	}
 
 	&.blocked {
 		pointer-events: none;
