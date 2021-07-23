@@ -10716,6 +10716,12 @@ a.modal-bag__item:not(.btn):not(.btn-large):not(.btn-small):not(.btn-extra-small
   line-height: 1;
 }
 
+@media only screen and (min-width: 993px) {
+  .sidenav {
+    display: none;
+  }
+}
+
 .pagination {
   width: 100%;
   padding-top: 0px;

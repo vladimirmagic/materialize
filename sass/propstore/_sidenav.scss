@@ -248,3 +248,9 @@ $main-link-height: 72px;
 	padding-left: 16px;
 	line-height: 1;
 }
+
+@media #{$large-and-up} {
+	.sidenav {
+		display: none;
+	}	
+}
