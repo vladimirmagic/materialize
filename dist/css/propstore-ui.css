@@ -15153,6 +15153,13 @@ tbody .tr:last-child .td {
   margin-top: 1em;
 }
 
+.page .article__info-title {
+  margin-top: 0;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 2em;
+}
+
 .article-share.article-share--top {
   display: block;
 }
@@ -15175,6 +15182,10 @@ tbody .tr:last-child .td {
   }
   .article__info-title {
     max-width: 100%;
+  }
+  .page .article__info-title {
+    position: relative;
+    top: inherit;
   }
   .cards-blog__title {
     padding-top: 1.75em;
@@ -15257,6 +15268,13 @@ tbody .tr:last-child .td {
 .faq__content {
   max-width: 65rem;
   margin: 0 auto;
+}
+
+.faq__highlight {
+  padding: 0 2px;
+  color: #fff;
+  white-space: nowrap;
+  background: #764AAF;
 }
 
 .faq__collapsible {
@@ -18432,14 +18450,6 @@ a.account__orders-buy-link:not(.btn):not(.btn-large):not(.btn-small):not(.btn-ex
   }
 }
 
-.gift-vouchers main:before {
-  content: '';
-  position: absolute;
-  top: 152px;
-  width: 100%;
-  border-top: 1px solid #c7c7c7;
-}
-
 .vouchers {
   padding: 0;
   text-align: center;
@@ -18512,6 +18522,10 @@ a.account__orders-buy-link:not(.btn):not(.btn-large):not(.btn-small):not(.btn-ex
   -webkit-backface-visibility: hidden;
           backface-visibility: hidden;
   will-change: transform;
+}
+
+.voucher + .voucher {
+  margin-left: 0;
 }
 
 .voucher:hover {
@@ -18675,17 +18689,29 @@ a.voucher:not(.btn):not(.btn-large):not(.btn-small):not(.btn-extra-small):before
       -ms-flex-direction: column;
           flex-direction: column;
   width: auto;
-  min-width: auto;
+  min-width: 200px;
   height: 204px;
   padding: 1.5em;
 }
 
 .voucher__actions .btn, .voucher__actions .btn-large, .voucher__actions .btn-small, .voucher__actions .btn-extra-small {
   padding: 0 8px;
+  margin-left: 0;
+  -webkit-box-flex: inherit;
+  -webkit-flex: inherit;
+      -ms-flex: inherit;
+          flex: inherit;
+  width: 100%;
 }
 
 .voucher__actions .btn + .btn--secondary, .voucher__actions .btn-large + .btn--secondary, .voucher__actions .btn-small + .btn--secondary, .voucher__actions .btn-extra-small + .btn--secondary {
   margin-top: 1em;
+  margin-left: 0;
+  -webkit-box-flex: inherit;
+  -webkit-flex: inherit;
+      -ms-flex: inherit;
+          flex: inherit;
+  width: 100%;
 }
 
 .voucher__actions .btn__title + .icon {
@@ -18705,6 +18731,7 @@ a.voucher:not(.btn):not(.btn-large):not(.btn-small):not(.btn-extra-small):before
   }
   .vouchers .voucher__actions {
     height: auto;
+    min-width: 100%;
   }
   .vouchers .voucher__actions .btn, .vouchers .voucher__actions .btn-large, .vouchers .voucher__actions .btn-small, .vouchers .voucher__actions .btn-extra-small {
     width: 100%;
@@ -18732,6 +18759,9 @@ a.voucher:not(.btn):not(.btn-large):not(.btn-small):not(.btn-extra-small):before
         -ms-flex-direction: column;
             flex-direction: column;
     margin: 5em 16px 0 0;
+  }
+  .voucher + .voucher {
+    margin-left: 0;
   }
   .voucher {
     width: 304px;
