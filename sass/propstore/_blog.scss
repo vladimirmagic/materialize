@@ -76,6 +76,12 @@
     margin-top: 1em;
 }
 
+.page .article__info-title {
+    margin-top: 0;
+    position: sticky;
+    top: 2em;
+}
+
 .article-share {
     &.article-share--top {
         display: block;
@@ -99,8 +105,14 @@
         max-width: 100%;
         width: 100%;
     }
+    
     .article__info-title {
         max-width: 100%;
+    }
+    
+    .page .article__info-title {
+        position: relative;
+        top: inherit;
     }
     
     .cards-blog__title {
