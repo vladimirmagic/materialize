@@ -130,6 +130,10 @@
 	line-height: 1;
 	border-radius: 72px;
 	background: $color-red;
+
+	.product__featured ~ & {
+		top: 80px;
+	}
 }
 
 .product__discount-value {
@@ -390,7 +394,7 @@ a.product__certificate:not(.btn) { // fix a
 
 .modal-payment-plan {
 	width: 90%;
-	max-width: $w55;
+	max-width: 66rem; // to fit 6 months with vertical scroll
 	text-align: center;
 
 	.modal__title {

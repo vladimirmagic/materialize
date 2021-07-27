@@ -174,7 +174,8 @@ $main-link-height: 72px;
 	text-transform: none;
 }
 
-.sidenav__menu-block-link {
+.sidenav__menu-block-link,
+.sidenav .menu-auction-link {
 	@extend .sidenav__menu-underline;
 	height: $main-link-height;
 	line-height: $main-link-height;
@@ -246,4 +247,10 @@ $main-link-height: 72px;
 .sidenav__settings-sign-register {
 	padding-left: 16px;
 	line-height: 1;
+}
+
+@media #{$large-and-up} {
+	.sidenav {
+		display: none;
+	}
 }

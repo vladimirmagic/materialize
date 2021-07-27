@@ -116,6 +116,10 @@ a.card:not(.btn) { // fix a
 	line-height: 1;
 	border-radius: 60px;
 	background: $color-red;
+
+	.card__featured ~ & {
+		top: 64px;
+	}
 }
 
 .card__discount-value {

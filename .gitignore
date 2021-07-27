@@ -45,6 +45,9 @@ _SpecRunner.html
 # Ignore compiled files
 css/ghpages-materialize.css
 bin/
+css/propstore-ui.css
+dist/css/propstore-ui.css
+dist/css/propstore-ui.min.css
 
 # Ignore lock
 yarn.lock

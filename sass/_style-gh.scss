@@ -1307,6 +1307,10 @@ a {
 	}
 }
 
+.sidenav {
+	display: block !important;
+}
+
 @media #{$small-and-down} {
 	body.themes {
 		.themes-section {
