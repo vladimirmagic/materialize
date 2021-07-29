@@ -92,6 +92,13 @@
             font-weight: 500;
             line-height: 1.5;
         }
+        &.faq__inner--paragraph {
+            font-weight: 300;
+        }
+
+        .article__text > div {
+            max-width: 100%;
+        }
     }
     
     iframe {

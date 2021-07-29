@@ -348,14 +348,14 @@
                     
                     $('.faq__collapsible-header-text').each(function() {
                         if(searchValue.length > 1){
-                            const content = $(this).html().replace(customFilter, replacedString);
+                            const content = $(this).text().replace(customFilter, replacedString);
                             $(this).html(content);
                         }
                     });
                     
                     $('.collapsible-body').each(function() {
                         if(searchValue.length > 1){
-                            const content = $(this).html().replace(customFilter, replacedString);
+                            const content = $(this).text().replace(customFilter, replacedString);
                             $(this).html(content);
                         }
                     });
