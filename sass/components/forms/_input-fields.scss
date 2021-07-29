@@ -353,7 +353,11 @@ textarea {
     box-sizing: border-box;
 
     &:focus {
-      min-height: 4.5em;
+      min-height: 4.3125em;
+    }
+    
+    &:focus-within {
+      padding: 23px 24px;
     }
   }
 }
