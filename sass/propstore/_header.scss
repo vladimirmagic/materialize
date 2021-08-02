@@ -540,6 +540,10 @@ a.modal-bag__item:not(.btn) { // fix a
 	background-color: color("grey", "darken-4");
 }
 
+.modal-bag__item-details {
+	flex: 1 1 100%;
+}
+
 .modal-bag__item-movie {
 	display: -webkit-box;
 	overflow: hidden;
@@ -549,6 +553,7 @@ a.modal-bag__item:not(.btn) { // fix a
 	max-height: 2.8em;
 	margin-bottom: .5em;
 	font-size: 16px;
+	font-weight: 500;
 	line-height: 1.4;
 }
 
