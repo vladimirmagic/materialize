@@ -7,11 +7,10 @@
     const svgSprite = document.createElement('div');
 	svgSprite.id = 'svg-sprite';
 	document.body.append(svgSprite);
-	fetch('dist/defs/svg/sprite.defs.svg', {
-		// cache: 'force-cache',
-	})
-		.then(response => response.text())
-		.then(html => svgSprite.innerHTML = html);
+	fetch('dist/defs/svg/sprite.defs.svg', { cache: 'force-cache' })
+		.then(function(response) { return response.text(); })
+		.then(function(html) { svgSprite.innerHTML = html; })
+		.finally(function() { document.body.classList.add('loaded'); });
 
 	document.addEventListener('DOMContentLoaded', () => {
 
