@@ -81,6 +81,18 @@ fieldset {
 	background: rgba(255, 255, 255, .8);
 }
 
+hr {
+	display: block;
+    margin: 1em 0;
+	height: 1px;
+    border: 0;
+	background: $color-grey;
+
+	&.small {
+		margin: 0.25em 0;
+	}
+}
+
 @media #{$media-fullhd-up} {
 	$content-padding: calc(50% - 900px);
     .content {

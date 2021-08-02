@@ -6593,6 +6593,7 @@ $jscomp.polyfill = function (e, r, p, m) {
 
     // Set font properties of hiddenDiv
     var fontFamily = $textarea.css('font-family');
+    var fontWeight = $textarea.css('font-weight');
     var fontSize = $textarea.css('font-size');
     var lineHeight = $textarea.css('line-height');
 
@@ -6607,6 +6608,9 @@ $jscomp.polyfill = function (e, r, p, m) {
     }
     if (fontFamily) {
       hiddenDiv.css('font-family', fontFamily);
+    }
+    if (fontWeight) {
+      hiddenDiv.css('font-weight', fontWeight);
     }
     if (lineHeight) {
       hiddenDiv.css('line-height', lineHeight);
@@ -6651,7 +6655,7 @@ $jscomp.polyfill = function (e, r, p, m) {
      * original height of the textarea
      */
     if ($textarea.data('original-height') <= hiddenDiv.innerHeight()) {
-      $textarea.css('height', hiddenDiv.innerHeight() + 'px');
+      $textarea.css('height', hiddenDiv.outerHeight() + 'px');
     } else if ($textarea[0].value.length < $textarea.data('previous-length')) {
       /**
        * In case the new height is less than original height, it
