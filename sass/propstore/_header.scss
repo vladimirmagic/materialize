@@ -612,6 +612,10 @@ a.modal-bag__item:not(.btn) { // fix a
 	margin-bottom: .5em;
 }
 
+#dropdown-account {
+    min-width: 9em;
+}
+
 @keyframes animation-header-sticky-in {
 	0% { transform: translateY(-100%); }
 	100% { transform: translateY(0); }
