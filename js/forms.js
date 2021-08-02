@@ -70,12 +70,16 @@
     let fontWeight = $textarea.css('font-weight');
     let fontSize = $textarea.css('font-size');
     let lineHeight = $textarea.css('line-height');
+    let letterSpacing = $textarea.css('letter-spacing');
 
     // Firefox can't handle padding shorthand.
     let paddingTop = $textarea.css('padding-top');
     let paddingRight = $textarea.css('padding-right');
     let paddingBottom = $textarea.css('padding-bottom');
     let paddingLeft = $textarea.css('padding-left');
+
+    // Check border width for hiddenDiv
+    let border = $textarea.css('border');
 
     if (fontSize) {
       hiddenDiv.css('font-size', fontSize);
@@ -89,6 +93,9 @@
     if (lineHeight) {
       hiddenDiv.css('line-height', lineHeight);
     }
+    if (letterSpacing) {
+      hiddenDiv.css('letter-spacing', letterSpacing);
+    }
     if (paddingTop) {
       hiddenDiv.css('padding-top', paddingTop);
     }
@@ -100,6 +107,9 @@
     }
     if (paddingLeft) {
       hiddenDiv.css('padding-left', paddingLeft);
+    }
+    if (border) {
+      hiddenDiv.css('border', border);
     }
 
     // Set original-height, if none
