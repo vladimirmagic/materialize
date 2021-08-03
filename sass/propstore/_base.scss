@@ -1,5 +1,7 @@
 html, body {
     position: relative;
+	height: 100%;
+	min-height: 100%;
 	// overflow-x: hidden; // fix x-scroll after sidenav // breakes sticky(
 	font-size: 16px;
 	font-weight: 300;
@@ -52,6 +54,9 @@ fieldset {
 
 .general {
 	@extend .content;
+	display: flex;
+	align-items: center;
+	height: 100%;
 	text-align: center;
 
 	.h1 {
@@ -62,6 +67,20 @@ fieldset {
 .general__inner {
 	max-width: $w36;
 	margin: 0 auto;
+
+	.general--error & {
+		max-width: $w55;
+
+		.h2 {
+			margin-top: .5em;
+			margin-bottom: .25em;
+		}
+	}
+}
+
+.general-error__code {
+	margin-top: 5em;
+	color: $color-font-grey;
 }
 
 .general__btn {
