@@ -124,7 +124,7 @@
 	text-align: right;
 }
 
-a.order__summary-calculate-shipping:not(.btn) {
+.order__summary a.order__summary-calculate-shipping:not(.btn) {
 	color: #fff;
 
 	&:active {
@@ -177,7 +177,11 @@ a.order__summary-calculate-shipping:not(.btn) {
 	height: 1px;
 	margin-top: 1.5em;
 	margin-bottom: 1.25em;
-	background: rgba(255,255,255,.3);
+	background: $color-grey;
+
+	.order__summary & {
+		background: rgba(255,255,255,.3);
+	}
 }
 
 .pay-logo {

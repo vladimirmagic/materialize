@@ -16041,11 +16041,11 @@ a.bag__item:not(.btn):not(.btn-large):not(.btn-small):not(.btn-extra-small):befo
   text-align: right;
 }
 
-a.order__summary-calculate-shipping:not(.btn):not(.btn-large):not(.btn-small):not(.btn-extra-small) {
+.order__summary a.order__summary-calculate-shipping:not(.btn):not(.btn-large):not(.btn-small):not(.btn-extra-small) {
   color: #fff;
 }
 
-a.order__summary-calculate-shipping:not(.btn):not(.btn-large):not(.btn-small):not(.btn-extra-small):active {
+.order__summary a.order__summary-calculate-shipping:not(.btn):not(.btn-large):not(.btn-small):not(.btn-extra-small):active {
   color: #fff;
 }
 
@@ -16103,6 +16103,10 @@ a.order__summary-calculate-shipping:not(.btn):not(.btn-large):not(.btn-small):no
   height: 1px;
   margin-top: 1.5em;
   margin-bottom: 1.25em;
+  background: #c7c7c7;
+}
+
+.order__summary .order__summary-divider {
   background: rgba(255, 255, 255, 0.3);
 }
 
