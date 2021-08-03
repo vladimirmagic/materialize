@@ -86,7 +86,7 @@ document.addEventListener('DOMContentLoaded', () => {
 	// out.classList.add('out');
 	// document.body.append(out);
 
-	// document.body.classList.add('loaded');
+	document.body.classList.add('loaded');
 
 	function resize () {
 		headerFloat();
