@@ -6596,12 +6596,16 @@ $jscomp.polyfill = function (e, r, p, m) {
     var fontWeight = $textarea.css('font-weight');
     var fontSize = $textarea.css('font-size');
     var lineHeight = $textarea.css('line-height');
+    var letterSpacing = $textarea.css('letter-spacing');
 
     // Firefox can't handle padding shorthand.
     var paddingTop = $textarea.css('padding-top');
     var paddingRight = $textarea.css('padding-right');
     var paddingBottom = $textarea.css('padding-bottom');
     var paddingLeft = $textarea.css('padding-left');
+
+    // Check border width for hiddenDiv
+    var border = $textarea.css('border');
 
     if (fontSize) {
       hiddenDiv.css('font-size', fontSize);
@@ -6615,6 +6619,9 @@ $jscomp.polyfill = function (e, r, p, m) {
     if (lineHeight) {
       hiddenDiv.css('line-height', lineHeight);
     }
+    if (letterSpacing) {
+      hiddenDiv.css('letter-spacing', letterSpacing);
+    }
     if (paddingTop) {
       hiddenDiv.css('padding-top', paddingTop);
     }
@@ -6626,6 +6633,9 @@ $jscomp.polyfill = function (e, r, p, m) {
     }
     if (paddingLeft) {
       hiddenDiv.css('padding-left', paddingLeft);
+    }
+    if (border) {
+      hiddenDiv.css('border', border);
     }
 
     // Set original-height, if none

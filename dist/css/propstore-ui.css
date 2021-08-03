@@ -6557,6 +6557,7 @@ textarea.materialize-textarea + label:after, .select-wrapper + label:after {
   display: block;
   font-size: 12px;
   color: rgba(0, 0, 0, 0.54);
+  cursor: default;
 }
 
 .input-field .helper-text::after {
@@ -6679,6 +6680,10 @@ textarea.materialize-textarea:focus {
   min-height: 5.5em;
 }
 
+textarea.materialize-textarea:focus-within {
+  padding: 23px 24px;
+}
+
 .hiddendiv {
   visibility: hidden;
   white-space: pre-wrap;
@@ -6781,6 +6786,10 @@ textarea.materialize-textarea:focus {
 
 .input-field--filled:not(.input-field--select) .caret {
   display: none;
+}
+
+.input-field--filled.input-field--select .input-field__clean .icon {
+  background: #fff;
 }
 
 .input-field--select:not(.input-field--filled) input {
