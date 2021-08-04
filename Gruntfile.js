@@ -384,6 +384,7 @@
             'account-coa.html': 'jade/propstore/account-coa.jade',
             'general.html': 'jade/propstore/general.jade',
             'error.html': 'jade/propstore/error.jade',
+            'password.html': 'jade/propstore/password.jade',
             'payment-plans.html': 'jade/propstore/payment-plans.jade',
             'sell.html': 'jade/propstore/sell.jade',
             'gift-vouchers.html': 'jade/propstore/gift-vouchers.jade',
