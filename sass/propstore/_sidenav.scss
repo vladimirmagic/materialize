@@ -250,7 +250,13 @@ $main-link-height: 72px;
 }
 
 @media #{$large-and-up} {
-	.sidenav {
+	.sidenav:not(.sidenav-filter) {
+		display: none;
+	}
+}
+
+@media #{$extra-large-and-up} {
+	.sidenav-filter {
 		display: none;
 	}
 }

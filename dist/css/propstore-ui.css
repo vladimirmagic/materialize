@@ -10776,7 +10776,13 @@ a.modal-bag__item:not(.btn):not(.btn-large):not(.btn-small):not(.btn-extra-small
 }
 
 @media only screen and (min-width: 993px) {
-  .sidenav {
+  .sidenav:not(.sidenav-filter) {
+    display: none;
+  }
+}
+
+@media only screen and (min-width: 1201px) {
+  .sidenav-filter {
     display: none;
   }
 }
