@@ -18154,6 +18154,10 @@ a.account__orders-buy-link:not(.btn):not(.btn-large):not(.btn-small):not(.btn-ex
   text-align: center;
 }
 
+.sell__valuation-form-thank {
+  text-align: center;
+}
+
 .sell-form {
   padding: 7.5em 15em;
   background: #fff;

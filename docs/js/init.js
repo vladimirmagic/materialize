@@ -321,82 +321,88 @@ document.addEventListener('DOMContentLoaded', () => {
 	});
 
 	// SELL
-	const sellTabsA = document.querySelectorAll('.sell__tab a');
-	const sellTabs = document.querySelectorAll('.sell__tab-content');
-	if (sellTabsA && sellTabsA.length && sellTabs && sellTabs.length) {
-		function showSellTab (e) {
-			let active;
-			if (e) { // click
-				e.preventDefault();
-				active = this.getAttribute('href');
-				window.history.pushState(null, this.innerText, this.href);
-				window.onpopstate = () => showSellTab();
-			} else { // init
-				const hashes = window.location.href.split('#'); // find hash in url
-				if (hashes && hashes.length && hashes.length > 1) {
-					let hash = hashes[1];
-					const query = hash.search(/[^\w]/g);
-					if (query > -1) hash = hash.substr(0, query);
-					active = '#' + hash;
-				} else { // if no hash in url - take first tab
-					const tabActive = document.querySelector('.sell__tab:first-of-type a');
-					if (tabActive) active = tabActive.getAttribute('href');
-				}
-			}
-			if (active) {
-				sellTabs.forEach(tab => tab.style.display = 'none');
-				const tab = document.querySelector(active);
-				if (tab) tab.style.display = 'block';
-				const tabActive = document.querySelector('.sell__tab a.active');
-				if (tabActive) tabActive.classList.remove('active');
-				const newActive = document.querySelector('.sell__tab a[href="' + active + '"]');
-				if (newActive) newActive.classList.add('active');
-			}
-		}
-		sellTabsA.forEach(a => a.addEventListener('click', showSellTab));
-		showSellTab();
+    const $sellTabsA = $('.sell__tab a');
+    const $sellTabs = $('.sell__tab-content');
+    if ($sellTabsA.length && $sellTabs.length) {
+        function showSellTab (e) {
+            let active;
+            if (e) { // click
+                e.preventDefault();
+                active = this.getAttribute('href');
+                window.history.pushState(null, this.innerText, this.href);
+                window.onpopstate = () => showSellTab();
+            } else { // init
+                const hashes = window.location.href.split('#'); // find hash in url
+                if (hashes && hashes.length && hashes.length > 1) {
+                    let hash = hashes[1];
+                    const query = hash.search(/[^\w]/g);
+                    if (query > -1) hash = hash.substr(0, query);
+                    active = '#' + hash;
+                } else { // if no hash in url - take first tab
+                    const tabActive = document.querySelector('.sell__tab:first-of-type a');
+                    if (tabActive) active = tabActive.getAttribute('href');
+                }
+            }
+            if (active) {
+                $sellTabs.hide();
+                $(active).show();
+                $('.sell__tab a.active').removeClass('active');
+                $('.sell__tab a[href="' + active + '"]').addClass('active');
+            }
+        }
+        $sellTabsA.on('click', showSellTab);
+        showSellTab();
 
-		const sellButtonValuation = document.querySelectorAll('.sell__step-button-valuation');
-		if (sellButtonValuation && sellButtonValuation.length) {
-			function sellButtonValuationClick () {
-				valuationTab.click();
-				valuationForm.scrollIntoView({behavior: 'smooth', block: 'start'});
-			}
-			const valuationTab = document.querySelector('.sell__tab a[href="#valuation"]');
-			const valuationForm = document.querySelector('.sell__valuation-form-title');
-			if (valuationTab && valuationForm) {
-				sellButtonValuation.forEach(button => button.addEventListener('click', sellButtonValuationClick));
-			}
-		}
+        const $sellButtonValuation = $('.sell__step-button-valuation');
+        if ($sellButtonValuation.length) {
+            function sellButtonValuationClick () {
+                $valuationTab[0].click();
+                $valuationForm[0].scrollIntoView({behavior: 'smooth', block: 'start'});
+            }
+            const $valuationTab = $('.sell__tab a[href="#valuation"]');
+            const $valuationForm = $('.sell__valuation-form-title');
+            if ($valuationTab.length && $valuationForm.length) {
+                $sellButtonValuation.on('click', sellButtonValuationClick);
+            }
+        }
 
-		const sellStepButtons = document.querySelectorAll('.sell__step-button');
-		const sellSteps = document.querySelectorAll('.sell__step');
-		if (sellStepButtons && sellStepButtons.length && sellSteps && sellSteps.length) {
-			function sellStepButtonClick () {
-				if (this.dataset && this.dataset.step) {
-					const step = this.dataset.step;
-					sellSteps.forEach(step => step.style.display = 'none');
-					const stepActive = document.querySelector('#sell__step-' + step);
-					if (stepActive) {
-						stepActive.style.display = 'block';
-						if (this.classList.contains('sell__step-button--next')) { // bottom buttons -> scroll up to the step top
-							document.body.classList.add('autoscroll');
-							stepActive.scrollIntoView ({behavior: 'smooth', block: 'nearest'});
-							setTimeout(() => {
-								document.body.classList.remove('autoscroll');
-							}, 500);
-						}
-					}
-					sellStepButtons.forEach(button => {
-						if (button.dataset && button.dataset.step && button.dataset.step <= step) {
-							button.classList.add('filled');
-						} else {
-							button.classList.remove('filled');
-						}
-					});
-				}
+        const $sellStepButtons = $('.sell__step-button');
+        const $sellSteps = $('.sell__step');
+        if ($sellStepButtons.length && $sellSteps.length) {
+            function sellStepButtonClick () {
+                if (this.dataset && this.dataset.step) {
+                    const step = this.dataset.step;
+                    $sellSteps.hide();
+                    const $stepActive = $('#sell__step-' + step);
+                    if ($stepActive.length) {
+                        $stepActive.show();
+                        if (this.classList.contains('sell__step-button--next')) { // bottom buttons -> scroll up to the step top
+                            $('body').addClass('autoscroll');
+                            $stepActive[0].scrollIntoView ({behavior: 'smooth', block: 'nearest'});
+                            setTimeout(() => {
+                                $('body').removeClass('autoscroll');
+                            }, 500);
+                        }
+                    }
+                    $sellStepButtons.each((index, button) => {
+                        if (button.dataset && button.dataset.step && button.dataset.step <= step) {
+                            $(button).addClass('filled');
+                        } else {
+                            $(button).removeClass('filled');
+                        }
+                    });
+                }
+            }
+            $sellStepButtons.on('click', sellStepButtonClick);
+        }
+
+		const $valuationFormNext = $('.sell__valuation-form-next-button');
+		if ($valuationFormNext.length) {
+			function valuationFormNextClick () {
+				$('.sell__valuation-form-thank').hide();
+				$('.sell__valuation-form-container').show();
 			}
-			sellStepButtons.forEach(button => button.addEventListener('click', sellStepButtonClick));
+			$valuationFormNext.on('click', valuationFormNextClick);
 		}
-	}
+    }
 });
