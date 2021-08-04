@@ -10051,6 +10051,8 @@ header:not(.sticky-out) .header__menu-link.active + .header__menu-level1 .header
 
 .header__menu-level-title {
   display: block;
+  height: 3.5rem;
+  line-height: 3.5rem;
   margin-bottom: 12px;
   padding-left: 8px;
   font-size: 20px;
@@ -10070,6 +10072,8 @@ header:not(.sticky-out) .header__menu-link.active + .header__menu-level1 .header
 }
 
 .header__menu-block3-title {
+  height: 3.5rem;
+  line-height: 3.5rem;
   margin-bottom: 16px;
   font-size: 20px;
   letter-spacing: 0;
