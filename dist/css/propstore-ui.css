@@ -10052,6 +10052,7 @@ header:not(.sticky-out) .header__menu-link.active + .header__menu-level1 .header
 .header__menu-level-title {
   display: block;
   margin-bottom: 12px;
+  padding-left: 8px;
   font-size: 20px;
   letter-spacing: 0;
   font-weight: 400;
@@ -10672,6 +10673,9 @@ a.modal-bag__item:not(.btn):not(.btn-large):not(.btn-small):not(.btn-extra-small
 }
 
 .sidenav__menu-level-title {
+  height: 3.5rem;
+  line-height: 3.5rem;
+  padding-left: 1.5rem;
   font-size: 20px;
   letter-spacing: 0;
   font-weight: 400;
