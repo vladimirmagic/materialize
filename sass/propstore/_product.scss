@@ -545,40 +545,35 @@ a.product__certificate:not(.btn) { // fix a
 	position: relative;
 	width: 100%;
 	margin-top: 1em;
+	display: flex;
+	align-items: center;
+	flex-wrap: wrap;
+	min-height: 64px;
+	padding: 24px;
+	padding-right: 72px;
+	font-size: 1em;
+	color: $color-base;
+	background: #fff;
+	border-radius: 6px;
+	border: 1px solid $color-grey;
 
-	label {
-		display: flex;
-		align-items: center;
-		flex-wrap: wrap;
-		min-height: 64px;
-		padding: 20px;
-		padding-right: 72px;
-		font-size: 1em;
-		color: $color-base;
-		background: #fff;
-		border-radius: 6px;
-		border: 1px solid $color-grey;
-		cursor: pointer;
+	span {
+		display: inline-block;
+		width: 100%;
+		margin-bottom: .5em;
+		font-weight: 500;
+	}
 
-		span {
-			display: inline-block;
-			width: 100%;
-			margin-bottom: .5em;
-			font-weight: 500;
-		}
-	
-		i {
-			padding-left: 44px;
-			font-style: normal;
-		}
+	i {
+		font-style: normal;
+	}
 
-		strong {
-			position: absolute;
-			top: 20px;
-			right: 20px;
-			line-height: 24px;
-			font-weight: 500;
-		}
+	strong {
+		position: absolute;
+		top: 20px;
+		right: 20px;
+		line-height: 24px;
+		font-weight: 500;
 	}
 }
 

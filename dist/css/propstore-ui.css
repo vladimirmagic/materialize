@@ -13973,9 +13973,6 @@ a.product__certificate:not(.btn):not(.btn-large):not(.btn-small):not(.btn-extra-
   position: relative;
   width: 100%;
   margin-top: 1em;
-}
-
-.modal-shipping-quote__method label {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -13988,29 +13985,27 @@ a.product__certificate:not(.btn):not(.btn-large):not(.btn-small):not(.btn-extra-
       -ms-flex-wrap: wrap;
           flex-wrap: wrap;
   min-height: 64px;
-  padding: 20px;
+  padding: 24px;
   padding-right: 72px;
   font-size: 1em;
   color: #2D2E41;
   background: #fff;
   border-radius: 6px;
   border: 1px solid #c7c7c7;
-  cursor: pointer;
 }
 
-.modal-shipping-quote__method label span {
+.modal-shipping-quote__method span {
   display: inline-block;
   width: 100%;
   margin-bottom: .5em;
   font-weight: 500;
 }
 
-.modal-shipping-quote__method label i {
-  padding-left: 44px;
+.modal-shipping-quote__method i {
   font-style: normal;
 }
 
-.modal-shipping-quote__method label strong {
+.modal-shipping-quote__method strong {
   position: absolute;
   top: 20px;
   right: 20px;
