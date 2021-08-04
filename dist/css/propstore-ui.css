@@ -18376,7 +18376,7 @@ a.account__orders-buy-link:not(.btn):not(.btn-large):not(.btn-small):not(.btn-ex
   -webkit-flex: 1 1 33%;
       -ms-flex: 1 1 33%;
           flex: 1 1 33%;
-  padding: 2.5em 1.5em;
+  padding: 2.5em 4em;
   text-align: center;
   background: #fff;
   border-radius: 6px;
@@ -18557,6 +18557,9 @@ a.account__orders-buy-link:not(.btn):not(.btn-large):not(.btn-small):not(.btn-ex
     height: 40px;
     font-size: 16px;
     border-radius: 40px;
+  }
+  .sell-offer__expertise {
+    padding: 2.5em 1.5em;
   }
 }
 
