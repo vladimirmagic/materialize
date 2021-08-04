@@ -278,6 +278,8 @@ header {
 	transform: scaleY(0);
 	transition: all .01s ease-in-out;
 	transition-delay: .1s;
+	backface-visibility: hidden;
+	will-change: transform;
 
 	header:not(.sticky-out) .header__menu-link.active + & {
 		transform: scaleY(1);
@@ -288,7 +290,7 @@ header {
 
 		.header__menu-level-block > * {
 			opacity: 1;
-			transform: translateY(0);
+			transform: translate3d(0, 0, 0);
 			transition-delay: .1s;
 		}
 	}
@@ -307,8 +309,10 @@ header {
 
 .header__menu-level-block > * {
 	opacity: 0;
-	transform: translateY(-24px);
+	transform: translate3d(0, -24px, 0);
 	transition: all .1s ease-in-out;
+	backface-visibility: hidden;
+	will-change: transform;
 }
 
 .header__menu-level-block--1 {

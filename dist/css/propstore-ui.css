@@ -9959,6 +9959,9 @@ header ~ main {
   transition: all .01s ease-in-out;
   -webkit-transition-delay: .1s;
           transition-delay: .1s;
+  -webkit-backface-visibility: hidden;
+          backface-visibility: hidden;
+  will-change: transform;
 }
 
 header:not(.sticky-out) .header__menu-link.active + .header__menu-level1 {
@@ -9976,8 +9979,8 @@ header:not(.sticky-out) .header__menu-link.active + .header__menu-level1 {
 
 header:not(.sticky-out) .header__menu-link.active + .header__menu-level1 .header__menu-level-block > * {
   opacity: 1;
-  -webkit-transform: translateY(0);
-          transform: translateY(0);
+  -webkit-transform: translate3d(0, 0, 0);
+          transform: translate3d(0, 0, 0);
   -webkit-transition-delay: .1s;
           transition-delay: .1s;
 }
@@ -9996,10 +9999,13 @@ header:not(.sticky-out) .header__menu-link.active + .header__menu-level1 .header
 
 .header__menu-level-block > * {
   opacity: 0;
-  -webkit-transform: translateY(-24px);
-          transform: translateY(-24px);
+  -webkit-transform: translate3d(0, -24px, 0);
+          transform: translate3d(0, -24px, 0);
   -webkit-transition: all .1s ease-in-out;
   transition: all .1s ease-in-out;
+  -webkit-backface-visibility: hidden;
+          backface-visibility: hidden;
+  will-change: transform;
 }
 
 .header__menu-level-block--1 {
