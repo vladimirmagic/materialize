@@ -532,6 +532,21 @@ textarea {
   }
 }
 
+.input-field.input-field--phone {
+  display: flex;
+  justify-content: space-between;
+
+  .input-field.input-field--phone-code {
+    margin: 0;
+    flex: 0 0 9em;
+  }
+
+  .input-field.input-field--phone-number {
+    flex: 1 1 100%;
+    margin: 0 0 0 1em;
+  }
+}
+
 @media #{$medium-and-down} {
   .autocomplete-content {
     min-width: 0;

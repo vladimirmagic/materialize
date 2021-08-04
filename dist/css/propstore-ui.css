@@ -6833,6 +6833,33 @@ textarea.materialize-textarea:focus-within {
   color: #19BA5D;
 }
 
+.input-field.input-field--phone {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.input-field.input-field--phone .input-field.input-field--phone-code {
+  margin: 0;
+  -webkit-box-flex: 0;
+  -webkit-flex: 0 0 9em;
+      -ms-flex: 0 0 9em;
+          flex: 0 0 9em;
+}
+
+.input-field.input-field--phone .input-field.input-field--phone-number {
+  -webkit-box-flex: 1;
+  -webkit-flex: 1 1 100%;
+      -ms-flex: 1 1 100%;
+          flex: 1 1 100%;
+  margin: 0 0 0 1em;
+}
+
 @media only screen and (max-width: 992px) {
   .autocomplete-content {
     min-width: 0;
