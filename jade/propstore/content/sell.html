@@ -100,7 +100,8 @@
                     Request a FREE no obligation valuation
                 </div>
                 <form class="sell-form">
-                    <div class="sell__valuation-form-thank error"> <!-- добавить после отправки (error чтоб доскролить)-->
+                    <!-- добавить после отправки (error чтоб доскролить)-->
+                    <!-- <div class="sell__valuation-form-thank error">
                         <p class="p-r">
                             Thank you! Your submission has been received!
                         </p>
@@ -109,8 +110,8 @@
                             <span class='btn__title'>Tell about next item</span>
                             <i class='icon'><svg><use xlink:href="#arrow-right"></use></svg></i>
                         </a>
-                    </div>
-                    <div class="sell__valuation-form-container" style="display: none;"> <!-- style добавить после отправки -->
+                    </div> -->
+                    <div class="sell__valuation-form-container"> <!--  style="display: none;" style добавить после отправки -->
                         <div class="sell-form__section">
                             <div class="sell-form__p">
                                 How you’d like to proceed
@@ -232,22 +233,19 @@
                                 Upload Images
                             </div>
     
-                            <div class="sell-form__uploaded">
-                                <div class="h5">Uploaded:</div>
-                                <div class="p-r">Uplodaed_file_name.jpg</div>
-                                <div class="p-r">Uplodaed_file_name-02.jpg</div>
-                            </div>
-    
-                            <div class="sell-form__row sell-form__row--full">
+                            <div class="droppable">
+                                <i class='icon droppable__icon'><svg><use xlink:href="#upload"></use></svg></i>
+                                Drag and drop photos of your item here
                                 <div class="file-field input-field">
                                     <div class="btn">
-                                        <span>Files</span>
-                                        <input type="file" multiple>
+                                        <span>Browse files</span>
+                                        <input type="file" multiple id="files" name="files">
                                     </div>
                                     <div class="file-path-wrapper">
                                         <input class="file-path" type="text">
                                     </div>
                                 </div>
+                                <div class="files-preview"></div>
                             </div>
                         </div>
     

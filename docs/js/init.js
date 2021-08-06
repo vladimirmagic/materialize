@@ -404,5 +404,69 @@ document.addEventListener('DOMContentLoaded', () => {
 			}
 			$valuationFormNext.on('click', valuationFormNextClick);
 		}
+
+		$droppable = $('.droppable');
+		if ($droppable.length) {
+			$files = $('#files');
+			const dT = new DataTransfer();
+
+			// tmp
+			// $('.sell-form').on('submit', function (e) {
+			// 	e.preventDefault();
+			// 	console.log($('#files')[0].files, dT.files);
+			// });
+
+			function removePreview() {
+				$(this).off('click', removePreview);
+				const index = $(this).index();
+				dT.items.remove(index);
+				$files[0].files = dT.files;
+				$(this).remove();
+			}
+
+			function renderPreview(file) {
+				const reader = new FileReader();
+				reader.onload = function(e) {
+					the_url = e.target.result;
+					$preview = $('<div class="files-preview__item" style="background-image:url(' + the_url + ')" title="' + file.name + '">' +
+						'<i class="icon files-preview__remove"><svg><use xlink:href="#close"></use></svg></i>' +
+					'</div>');
+					$('.files-preview').append($preview);
+					$preview.on('click', removePreview);
+				}
+				reader.readAsDataURL(file);
+			}
+
+			function renderPreviews(files) {
+				if (files && files.length) {
+					const filesArray = Array.prototype.slice.call(files);
+					filesArray.forEach(file => {
+						renderPreview(file);
+						dT.items.add(file);
+					});
+					$files[0].files = dT.files;
+				}
+			}
+
+			$droppable.on('dragover dragenter', function(e) {
+				e.preventDefault();
+				this.classList.add('drop');
+			});
+
+			$droppable.on('dragleave и dragend', function(e) {
+				this.classList.remove('drop');
+			});
+
+			$droppable.on('drop', function(e) {
+				e.preventDefault();
+				const dt = (e.originalEvent.target.files && e.originalEvent.target.files.length > 0) ||
+					(e.originalEvent.dataTransfer && e.originalEvent.dataTransfer.files);
+				renderPreviews(dt);
+			});
+
+			$files.on('change', function() {
+				renderPreviews(this.files);
+			});
+		}
     }
 });
