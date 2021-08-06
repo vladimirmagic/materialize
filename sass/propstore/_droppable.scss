@@ -77,3 +77,14 @@
 	opacity: 0;
 	transition: all .3s ease;
 }
+
+@media #{$small-and-down} {
+	.files-preview {
+		padding: 1em;
+	}
+
+	.files-preview__item {
+		width: 4em;
+		height: 4em;
+	}	
+}

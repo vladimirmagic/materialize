@@ -14495,6 +14495,16 @@ tbody .tr:last-child .td {
   transition: all .3s ease;
 }
 
+@media only screen and (max-width: 600px) {
+  .files-preview {
+    padding: 1em;
+  }
+  .files-preview__item {
+    width: 4em;
+    height: 4em;
+  }
+}
+
 .whatsnew {
   margin-top: 140px;
   text-align: center;
