@@ -10022,6 +10022,11 @@ header:not(.sticky-out) .header__menu-link.active + .header__menu-level1 .header
   -webkit-justify-content: space-between;
       -ms-flex-pack: justify;
           justify-content: space-between;
+  max-height: calc(100vh - 136px);
+}
+
+header.sticky-in .header__menu-level1-inner {
+  max-height: calc(100vh - 96px);
 }
 
 .header__menu-level-block > * {
@@ -10062,6 +10067,7 @@ header:not(.sticky-out) .header__menu-link.active + .header__menu-level1 .header
           flex: 1 1 60%;
   padding: 60px 64px 64px;
   background: #F4F4F4;
+  overflow-y: auto;
 }
 
 .header__menu-level-block--4 {

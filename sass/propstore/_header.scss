@@ -301,6 +301,11 @@ header {
 	padding-right: 0;
 	display: flex;
 	justify-content: space-between;
+	max-height: calc(100vh - #{$header-settings-height + $header-main-sticky-height});
+
+	header.sticky-in & {
+		max-height: calc(100vh - #{$header-main-sticky-height});
+	}
 
 	.header__menu-level1--sell & {
 		@extend .content;
@@ -333,6 +338,7 @@ header {
 	flex: 1 1 60%;
 	padding: 60px 64px 64px;
 	background: $color-bg;
+	overflow-y: auto;
 }
 
 .header__menu-level-block--4 {
