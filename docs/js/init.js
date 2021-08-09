@@ -415,39 +415,23 @@ document.addEventListener('DOMContentLoaded', () => {
 			// 	console.log($('#files')[0].files);
 			// });
 
-			function removePreview() {
-				$(this).off('click', removePreview);
-				const index = $(this).index();
-				const dT = new DataTransfer();
-				dT.files = $files[0].files;
-				dT.items.remove(index);
-				$files[0].files = dT.files;
-				$(this).remove();
-			}
-
 			function renderPreview(file) {
 				const reader = new FileReader();
 				reader.onload = function(e) {
 					the_url = e.target.result;
-					$preview = $('<div class="files-preview__item" style="background-image:url(' + the_url + ')" title="' + file.name + '">' +
-						'<i class="icon files-preview__remove"><svg><use xlink:href="#close"></use></svg></i>' +
-					'</div>');
+					$preview = $('<div class="files-preview__item" style="background-image:url(' + the_url + ')" title="' + file.name + '"/>');
 					$('.files-preview').append($preview);
-					$preview.on('click', removePreview);
 				}
 				reader.readAsDataURL(file);
 			}
 
 			function renderPreviews(files) {
+				$('.files-preview').html('');
 				if (files && files.length) {
 					const filesArray = Array.prototype.slice.call(files);
-					const dT = new DataTransfer();
-					dT.files = $files[0].files;
 					filesArray.forEach(file => {
 						renderPreview(file);
-						dT.items.add(file);
 					});
-					$files[0].files = dT.files;
 				}
 			}
 
@@ -465,6 +449,7 @@ document.addEventListener('DOMContentLoaded', () => {
 				const dt = (e.originalEvent.target.files && e.originalEvent.target.files.length > 0) ||
 					(e.originalEvent.dataTransfer && e.originalEvent.dataTransfer.files);
 				renderPreviews(dt);
+				$files[0].files = dt;
 			});
 
 			$files.on('change', function() {
