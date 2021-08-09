@@ -411,10 +411,10 @@ document.addEventListener('DOMContentLoaded', () => {
 			const dT = new DataTransfer();
 
 			// tmp
-			// $('.sell-form').on('submit', function (e) {
-			// 	e.preventDefault();
-			// 	console.log($('#files')[0].files, dT.files);
-			// });
+			$('.sell-form').on('submit', function (e) {
+				e.preventDefault();
+				console.log($('#files')[0].files, dT.files);
+			});
 
 			function removePreview() {
 				$(this).off('click', removePreview);
@@ -438,6 +438,7 @@ document.addEventListener('DOMContentLoaded', () => {
 			}
 
 			function renderPreviews(files) {
+				console.log('renderPreviews', files);
 				if (files && files.length) {
 					const filesArray = Array.prototype.slice.call(files);
 					filesArray.forEach(file => {
