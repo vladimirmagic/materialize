@@ -14426,20 +14426,17 @@ tbody .tr:last-child .td {
   transition: all .5s ease;
 }
 
-.droppable .file-field {
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+.droppable.drop {
+  background: #F4F4F4;
+}
+
+.droppable__btn {
   margin-top: 2em;
 }
 
-.droppable .file-path-wrapper {
-  display: none;
-}
-
-.droppable.drop {
-  background: #F4F4F4;
+.droppable__btn input {
+  position: absolute;
+  z-index: -1;
 }
 
 .droppable__icon {

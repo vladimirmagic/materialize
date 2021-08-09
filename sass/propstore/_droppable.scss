@@ -5,17 +5,17 @@
 	text-align: center;
 	transition: all .5s ease;
 
-	.file-field {
-		justify-content: center;
-		margin-top: 2em;
-	}
-
-	.file-path-wrapper {
-		display: none;
-	}
-
 	&.drop {
 		background: $color-bg;
+	}
+}
+
+.droppable__btn {
+	margin-top: 2em;
+
+	input {
+		position: absolute;
+		z-index: -1;
 	}
 }
 

@@ -438,7 +438,6 @@ document.addEventListener('DOMContentLoaded', () => {
 			}
 
 			function renderPreviews(files) {
-				console.log('renderPreviews', files);
 				if (files && files.length) {
 					const filesArray = Array.prototype.slice.call(files);
 					filesArray.forEach(file => {
@@ -454,7 +453,7 @@ document.addEventListener('DOMContentLoaded', () => {
 				this.classList.add('drop');
 			});
 
-			$droppable.on('dragleave и dragend', function(e) {
+			$droppable.on('dragleave dragend drop', function(e) {
 				this.classList.remove('drop');
 			});
 
