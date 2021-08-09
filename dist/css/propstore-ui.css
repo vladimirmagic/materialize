@@ -14436,6 +14436,7 @@ tbody .tr:last-child .td {
 
 .droppable__btn input {
   position: absolute;
+  z-index: -1;
 }
 
 .droppable__icon {
