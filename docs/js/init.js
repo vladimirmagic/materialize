@@ -408,17 +408,18 @@ document.addEventListener('DOMContentLoaded', () => {
 		$droppable = $('.droppable');
 		if ($droppable.length) {
 			$files = $('#files');
-			const dT = new DataTransfer();
-
+			
 			// tmp
-			$('.sell-form').on('submit', function (e) {
-				e.preventDefault();
-				console.log($('#files')[0].files, dT.files);
-			});
+			// $('.sell-form').on('submit', function (e) {
+			// 	e.preventDefault();
+			// 	console.log($('#files')[0].files);
+			// });
 
 			function removePreview() {
 				$(this).off('click', removePreview);
 				const index = $(this).index();
+				const dT = new DataTransfer();
+				dT.files = $files[0].files;
 				dT.items.remove(index);
 				$files[0].files = dT.files;
 				$(this).remove();
@@ -438,9 +439,10 @@ document.addEventListener('DOMContentLoaded', () => {
 			}
 
 			function renderPreviews(files) {
-				console.log('renderPreviews', files);
 				if (files && files.length) {
 					const filesArray = Array.prototype.slice.call(files);
+					const dT = new DataTransfer();
+					dT.files = $files[0].files;
 					filesArray.forEach(file => {
 						renderPreview(file);
 						dT.items.add(file);
