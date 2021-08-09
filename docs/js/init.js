@@ -438,6 +438,7 @@ document.addEventListener('DOMContentLoaded', () => {
 			}
 
 			function renderPreviews(files) {
+				console.log('renderPreviews', files);
 				if (files && files.length) {
 					const filesArray = Array.prototype.slice.call(files);
 					filesArray.forEach(file => {
