@@ -3,9 +3,9 @@
 <script>
 	try {
 		const testES6 = () => {};
-	} catch {
+	} catch (err) {
 		document.body.classList.add('unsupported');
-		console.log('not ES6')
+		console.log('not ES6', err)
 	}
 </script>
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
