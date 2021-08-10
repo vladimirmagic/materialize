@@ -18,7 +18,8 @@ body {
 	opacity: 0;
 	transition: opacity .5s ease-in;
 
-	&.loaded {
+	&.loaded,
+	&.unsupported {
 		opacity: 1;
 	}
 
