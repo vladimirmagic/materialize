@@ -3,19 +3,8 @@
 <script>
 	function checkES6() {
 		if (typeof Symbol == "undefined" || typeof document.body.append == "undefined") return false;
-		if (navigator.userAgent.indexOf('Safari') > 0) {
-			var sayswho = (function(){
-				var ua= navigator.userAgent, tem, 
-				M= ua.match(/(opera|chrome|safari|firefox|msie|trident(?=\/))\/?\s*(\d+)/i) || [];
-				if(M[1]=== 'Chrome'){
-					tem= ua.match(/\b(OPR|Edge)\/(\d+)/);
-					if(tem!= null) return tem.slice(1).join(' ').replace('OPR', 'Opera');
-				}
-				M= M[2]? [M[1], M[2]]: [navigator.appName, navigator.appVersion, '-?'];
-				if((tem= ua.match(/version\/(\d+)/i))!= null) M.splice(1, 1, tem[1]);
-				return M;
-			})();
-			console.log(sayswho);
+		if (/constructor/i.test(window.HTMLElement) || (function (p) { return p.toString() === "[object SafariRemoteNotification]"; })(!window['safari'] || (typeof safari !== 'undefined' && window['safari'].pushNotification))) { // Safari
+			console.log(navigator.appVersion);
 		}
     	return true;
 	}
