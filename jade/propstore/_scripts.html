@@ -306,7 +306,7 @@
             this.classList.add('sync');
             $.post(
                 this.action,
-                $(this).serialize(),
+                $(this).serialize()
             )
                 .done(data => {
                     this.innerHTML = data;
