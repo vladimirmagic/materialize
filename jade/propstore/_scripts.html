@@ -3,10 +3,12 @@
 <script>
 	function checkES6() {
     	"use strict";
+		console.log('typeof Symbol', typeof Symbol);
 		if (typeof Symbol == "undefined") return false;
 		try {
 			eval("class Foo {}"); eval("var bar = (x) => x+1");
 		} catch (e) { return false; }
+		console.log('checkES6');
     	return true;
 	}
 	if (!checkES6()) document.body.classList.add('unsupported');
