@@ -9427,7 +9427,7 @@ body.loaded, body.unsupported {
 }
 
 body.unsupported > * {
-  display: none;
+  display: none !important;
 }
 
 body.unsupported .unsupported__text {
