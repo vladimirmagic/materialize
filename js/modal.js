@@ -60,6 +60,13 @@
         this.$el.append(this.$close);
       }
 
+      this.$container = this.$el.closest('.modal-container');
+      if (!this.$container.length) {
+        this.$container = $('<div class="modal-container"/>');
+        this.$container.insertAfter(this.$el);
+        this.$container.append(this.$el);
+      }
+
       Modal._count++;
       this._setupEventHandlers();
     }
@@ -179,6 +186,7 @@
      */
     _animateIn() {
       // Set initial styles
+      this.$container.css('display', 'flex');
       $.extend(this.el.style, {
         display: 'block',
         opacity: 0
@@ -222,16 +230,14 @@
       } else {
         const animOptions =
           window.innerWidth <= 600
-            ? {
-                translateY: ['5%', '0']
-              }
+            ? {}
             : {
                 scaleX: [0.8, 1],
-                scaleY: [0.8, 1],
-                translateY: ['-45%', '-50%']
+                scaleY: [0.8, 1]
               };
         $.extend(enterAnimOptions, animOptions, {
-          opacity: 1
+          opacity: 1,
+          translateY: ['5%', '0']
         });
         anim(enterAnimOptions);
       }
@@ -257,6 +263,7 @@
         // Handle modal ready callback
         complete: () => {
           this.el.style.display = 'none';
+          this.$container.css('display', 'none');
           this.$overlay.remove();
 
           // Call onCloseEnd callback
