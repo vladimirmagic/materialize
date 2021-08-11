@@ -3,6 +3,10 @@
 <script>
 	function checkES6() {
 		if (typeof Symbol == "undefined" || typeof document.body.append == "undefined") return false;
+		if (
+			navigator.userAgent.includes('Safari') &&
+			typeof Promise.finally == "undefined" // need Safari 11
+		) return false;
     	return true;
 	}
 	window.checkES6 = checkES6();
