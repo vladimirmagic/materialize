@@ -3,8 +3,8 @@
 <script>
 	function checkES6() {
 		if (typeof Symbol == "undefined" || typeof document.body.append == "undefined") return false;
-		if (/constructor/i.test(window.HTMLElement) || (function (p) { return p.toString() === "[object SafariRemoteNotification]"; })(!window['safari'] || (typeof safari !== 'undefined' && window['safari'].pushNotification))) { // Safari
-			console.log(navigator.appVersion);
+		if (navigator.appVersion.indexOf(' OS 10_') > 0 && navigator.appVersion.indexOf(' OS 10_3') < 0) { // Safari < 10.3
+			return false;
 		}
     	return true;
 	}
