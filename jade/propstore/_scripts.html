@@ -2,21 +2,17 @@
 <!--  Scripts-->
 <script>
 	function checkES6() {
-    	"use strict";
-		console.log('typeof Symbol', typeof Symbol, typeof document.body.append);
 		if (typeof Symbol == "undefined" || typeof document.body.append == "undefined") return false;
-		try {
-			eval("class Foo {}"); eval("var bar = (x) => x+1");
-		} catch (e) { return false; }
-		console.log('checkES6');
     	return true;
 	}
-	if (!checkES6()) document.body.classList.add('unsupported');
+	window.checkES6 = checkES6();
+	if (!window.checkES6) document.body.className += ' unsupported';
 </script>
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 <script defer src="bin/materialize.js"></script>
 <script defer src="docs/js/init.js"></script>
 <script defer>
+	if (!window.checkES6) return;
     const svgSprite = document.createElement('div');
 	svgSprite.id = 'svg-sprite';
 	document.body.append(svgSprite);
