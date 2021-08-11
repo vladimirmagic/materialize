@@ -23,6 +23,18 @@ body {
 		opacity: 1;
 	}
 
+	&.unsupported {
+		& > * {
+			display: none;
+		}
+
+		.unsupported__text {
+			display: block !important;
+			margin: 5vh auto;
+			text-align: center;
+		}
+	}
+
 	&.blocked {
 		pointer-events: none;
 	}

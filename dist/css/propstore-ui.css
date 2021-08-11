@@ -9426,6 +9426,16 @@ body.loaded, body.unsupported {
   opacity: 1;
 }
 
+body.unsupported > * {
+  display: none;
+}
+
+body.unsupported .unsupported__text {
+  display: block !important;
+  margin: 5vh auto;
+  text-align: center;
+}
+
 body.blocked {
   pointer-events: none;
 }
