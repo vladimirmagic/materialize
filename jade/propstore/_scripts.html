@@ -12,7 +12,6 @@
 <script defer src="bin/materialize.js"></script>
 <script defer src="docs/js/init.js"></script>
 <script defer>
-	if (!window.checkES6) return;
     const svgSprite = document.createElement('div');
 	svgSprite.id = 'svg-sprite';
 	document.body.append(svgSprite);
@@ -23,7 +22,7 @@
 		.catch(loaded);
 
 	document.addEventListener('DOMContentLoaded', () => {
-
+		if (!window.checkES6) return;
 		/** CHECKOUT */
 
 		$('.__PrivateStripeElement').attr('style', ' ');
