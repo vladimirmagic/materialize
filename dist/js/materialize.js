@@ -2964,6 +2964,13 @@ $jscomp.polyfill = function (e, r, p, m) {
         _this13.$el.append(_this13.$close);
       }
 
+      _this13.$container = _this13.$el.closest('.modal-container');
+      if (!_this13.$container.length) {
+        _this13.$container = $('<div class="modal-container"/>');
+        _this13.$container.insertAfter(_this13.$el);
+        _this13.$container.append(_this13.$el);
+      }
+
       Modal._count++;
       _this13._setupEventHandlers();
       return _this13;
@@ -3098,6 +3105,7 @@ $jscomp.polyfill = function (e, r, p, m) {
         var _this14 = this;
 
         // Set initial styles
+        this.$container.css('display', 'flex');
         $.extend(this.el.style, {
           display: 'block',
           opacity: 0
@@ -3139,15 +3147,13 @@ $jscomp.polyfill = function (e, r, p, m) {
 
           // Normal modal animation
         } else {
-          var animOptions = window.innerWidth <= 600 ? {
-            translateY: ['5%', '0']
-          } : {
+          var animOptions = window.innerWidth <= 600 ? {} : {
             scaleX: [0.8, 1],
-            scaleY: [0.8, 1],
-            translateY: ['-45%', '-50%']
+            scaleY: [0.8, 1]
           };
           $.extend(enterAnimOptions, animOptions, {
-            opacity: 1
+            opacity: 1,
+            translateY: ['5%', '0']
           });
           anim(enterAnimOptions);
         }
@@ -3178,6 +3184,7 @@ $jscomp.polyfill = function (e, r, p, m) {
           // Handle modal ready callback
           complete: function () {
             _this15.el.style.display = 'none';
+            _this15.$container.css('display', 'none');
             _this15.$overlay.remove();
 
             // Call onCloseEnd callback
