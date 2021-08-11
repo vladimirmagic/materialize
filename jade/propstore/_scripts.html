@@ -16,7 +16,7 @@
 	svgSprite.id = 'svg-sprite';
 	document.body.append(svgSprite);
 	const loaded = function() {document.body.classList.add('loaded')};
-	fetch('dist/defs/svg/sprite.defs.svg', { cache: 'force-cache' })
+	if (fetch) fetch('dist/defs/svg/sprite.defs.svg', { cache: 'force-cache' })
 		.then(response => response.text())
 		.then(html => { svgSprite.innerHTML = html; loaded(); })
 		.catch(loaded);
