@@ -12,9 +12,9 @@
 	if (!checkES6()) document.body.classList.add('unsupported');
 </script>
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-<script src="bin/materialize.js"></script>
-<script src="docs/js/init.js"></script>
-<script>
+<script defer src="bin/materialize.js"></script>
+<script defer src="docs/js/init.js"></script>
+<script defer>
     const svgSprite = document.createElement('div');
 	svgSprite.id = 'svg-sprite';
 	document.body.append(svgSprite);
