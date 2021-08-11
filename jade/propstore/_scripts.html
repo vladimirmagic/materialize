@@ -4,7 +4,7 @@
 	function checkES6() {
     	"use strict";
 		console.log('typeof Symbol', typeof Symbol, typeof document.body.append);
-		if (typeof Symbol == "undefined" || document.body.append == "undefined") return false;
+		if (typeof Symbol == "undefined" || typeof document.body.append == "undefined") return false;
 		try {
 			eval("class Foo {}"); eval("var bar = (x) => x+1");
 		} catch (e) { return false; }
