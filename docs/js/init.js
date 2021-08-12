@@ -448,8 +448,8 @@ document.addEventListener('DOMContentLoaded', () => {
 				e.preventDefault();
 				const dt = (e.originalEvent.target.files && e.originalEvent.target.files.length > 0) ||
 					(e.originalEvent.dataTransfer && e.originalEvent.dataTransfer.files);
-				renderPreviews(dt);
 				$files[0].files = dt;
+				setTimeout(() => renderPreviews(dt));
 			});
 
 			$files.on('change', function() {
