@@ -6405,8 +6405,11 @@ $jscomp.polyfill = function (e, r, p, m) {
 
         if (val.trim() && this.options.addCustom) {
           var $autocompleteOption = $('<li></li>');
-          $autocompleteOption[0].setAttribute('data-value', 'addcustom' + val);
-          $autocompleteOption.html('<span>' + this.options.addCustom + ' <strong>`' + val + '`</strong></span>');
+          var _escape = document.createElement('textarea');
+          _escape.textContent = val;
+          var valEscaped = _escape.innerHTML;
+          $autocompleteOption[0].setAttribute('data-value', 'addcustom' + valEscaped);
+          $autocompleteOption.html('<span>' + this.options.addCustom + ' <strong>`' + valEscaped + '`</strong></span>');
           $(this.container).append($autocompleteOption);
         }
 
