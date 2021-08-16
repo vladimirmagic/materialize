@@ -15903,10 +15903,6 @@ a.bag__item:not(.btn):not(.btn-large):not(.btn-small):not(.btn-extra-small):befo
   .bag__title {
     margin: 0 0 40px;
   }
-  .bag .order__summary {
-    max-width: 320px;
-    margin-left: 40px;
-  }
   .bag__item .bag__price-title {
     line-height: 1.2;
   }
@@ -16719,92 +16715,15 @@ a.bag__item:not(.btn):not(.btn-large):not(.btn-small):not(.btn-extra-small):befo
   margin-top: 2em;
 }
 
-.order__item {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: justify;
-  -webkit-justify-content: space-between;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
+.order__review-items .bag__item {
+  padding: 0;
+  border: 0;
 }
 
-.order__item + .order__item {
-  margin-top: 1.5em;
-}
-
-a.order__item:not(.btn):not(.btn-large):not(.btn-small):not(.btn-extra-small) {
-  font-weight: 400;
-  text-decoration: none;
-}
-
-a.order__item:not(.btn):not(.btn-large):not(.btn-small):not(.btn-extra-small):before {
-  display: none;
-}
-
-.order__item-img {
-  -webkit-box-flex: 0;
-  -webkit-flex: 0 0 128px;
-      -ms-flex: 0 0 128px;
-          flex: 0 0 128px;
-  height: 128px;
-  margin-right: 24px;
-  border-radius: 6px;
-  background-position: 50% 50%;
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-color: #212121;
-}
-
-.order__item-details {
-  -webkit-box-flex: 0;
-  -webkit-flex: 0 1 100%;
-      -ms-flex: 0 1 100%;
-          flex: 0 1 100%;
-  margin-right: 100px;
-  padding-top: 1em;
-}
-
-.order__item-value .icon {
-  margin: -2px 8px 0 0;
-}
-
-.order__item-movie {
-  display: -webkit-box;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
-  max-height: 2.8em;
-  margin-bottom: .5em;
-}
-
-.order__item-title {
-  display: -webkit-box;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
-  max-height: 3em;
-  margin-bottom: .5em;
-}
-
-.order__item-location {
-  -webkit-box-flex: 0;
-  -webkit-flex: 0 0 96px;
-      -ms-flex: 0 0 96px;
-          flex: 0 0 96px;
-  padding-top: 1em;
-}
-
-.order__item-price {
-  -webkit-box-flex: 0;
-  -webkit-flex: 0 0 112px;
-      -ms-flex: 0 0 112px;
-          flex: 0 0 112px;
-  padding-top: 1em;
-  text-align: right;
+.order__review-items .bag__item-price {
+  -webkit-flex-basis: 104px;
+      -ms-flex-preferred-size: 104px;
+          flex-basis: 104px;
 }
 
 .order__review-payment {
@@ -17055,6 +16974,10 @@ a.order__item:not(.btn):not(.btn-large):not(.btn-small):not(.btn-extra-small):be
   .order__summary {
     margin-top: 140px;
   }
+  .order__summary {
+    max-width: 320px;
+    margin-left: 40px;
+  }
   .order__step-radio--shipping-required {
     display: block;
   }
@@ -17085,29 +17008,6 @@ a.order__item:not(.btn):not(.btn-large):not(.btn-small):not(.btn-extra-small):be
   }
   .order__review-address {
     padding-right: 0;
-  }
-  .order__item-img {
-    -webkit-box-flex: 0;
-    -webkit-flex: 0 0 96px;
-        -ms-flex: 0 0 96px;
-            flex: 0 0 96px;
-    height: 96px;
-  }
-  .order__item-details {
-    margin-right: 40px;
-  }
-  .order__item-location {
-    -webkit-flex-basis: 64px;
-        -ms-flex-preferred-size: 64px;
-            flex-basis: 64px;
-  }
-  .order__item-location .icon {
-    display: none;
-  }
-  .order__item-price {
-    -webkit-flex-basis: 96px;
-        -ms-flex-preferred-size: 96px;
-            flex-basis: 96px;
   }
   .order__review-total {
     display: block;
@@ -17169,6 +17069,16 @@ a.order__item:not(.btn):not(.btn-large):not(.btn-small):not(.btn-extra-small):be
   .order-confirmed__share {
     padding: 40px 24px;
     border-bottom-right-radius: 80px;
+  }
+  .order__review-items .bag__item-details {
+    max-width: calc(100% - 96px);
+    padding-right: 0;
+  }
+  .order__review-items .bag__item-price {
+    -webkit-box-flex: 0;
+    -webkit-flex: 0 1 calc(100% - 168px);
+        -ms-flex: 0 1 calc(100% - 168px);
+            flex: 0 1 calc(100% - 168px);
   }
 }
 
@@ -17248,35 +17158,6 @@ a.order__item:not(.btn):not(.btn-large):not(.btn-small):not(.btn-extra-small):be
   }
   .order__review-address-item + .order__review-address-item {
     margin-top: 2em;
-  }
-  .order__item {
-    -webkit-flex-wrap: wrap;
-        -ms-flex-wrap: wrap;
-            flex-wrap: wrap;
-    -webkit-box-pack: start;
-    -webkit-justify-content: flex-start;
-        -ms-flex-pack: start;
-            justify-content: flex-start;
-  }
-  .order__item-img {
-    margin-right: 16px;
-  }
-  .order__item-details {
-    max-width: calc(100% - 112px);
-    margin: 0 0 1em;
-    padding-right: 24px;
-    padding-top: 0;
-  }
-  .order__item-location {
-    margin-left: 112px;
-    padding-top: 0;
-  }
-  .order__item-price {
-    -webkit-flex-basis: 72px;
-        -ms-flex-preferred-size: 72px;
-            flex-basis: 72px;
-    padding-top: 0;
-    text-align: left;
   }
   .order__review-payment-row1-cell1 {
     -webkit-box-flex: 1;
