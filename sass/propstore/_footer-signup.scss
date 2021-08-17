@@ -15,11 +15,27 @@
 
 .footer-signup__checkboxes {
 	flex: 0 0 100%;
-	padding: 0 0 40px;
+	margin: 0 0 40px;
+
+	.checkbox__label {
+		position: relative;
+	}
 
 	.checkbox__label + .checkbox__label {
 		margin-left: 40px;
 	}
+
+	.input-field__helper {
+		position: absolute;
+		left: 35px;
+		top: 100%;
+		text-align: left;
+	}
+}
+
+.footer-signup__recaptcha {
+	flex: 0 0 100%;
+	margin-top: -40px;
 }
 
 .footer-signup__input {
@@ -49,8 +65,12 @@
 		order: 1;
 		margin: 0 0 24px 0;
 	}
-	.footer-signup__checkboxes {
+	.footer-signup__recaptcha {
 		order: 2;
+		margin: 0;
+	}
+	.footer-signup__checkboxes {
+		order: 3;
 		padding-left: 40px;
 		text-align: left;
 
