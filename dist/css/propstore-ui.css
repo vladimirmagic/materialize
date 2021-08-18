@@ -11259,6 +11259,17 @@ a.modal-bag__item:not(.btn):not(.btn-large):not(.btn-small):not(.btn-extra-small
   margin-top: -40px;
 }
 
+.footer-signup__recaptcha .g-recaptcha {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
 .footer-signup__input {
   margin: 0 24px 0 0;
   width: 100%;

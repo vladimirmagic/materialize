@@ -36,6 +36,11 @@
 .footer-signup__recaptcha {
 	flex: 0 0 100%;
 	margin-top: -40px;
+
+	.g-recaptcha {
+		display: flex;
+		justify-content: center;
+	}
 }
 
 .footer-signup__input {
