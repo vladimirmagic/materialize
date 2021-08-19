@@ -54,6 +54,7 @@
 		$('.tooltipped').tooltip();
 		$('select')
 			.not('.disabled')
+			.not('#modal-shipping-quote-country')
 			.formSelect();
 		$('.sidenav').sidenav();
 		$('input.autocomplete:not(#autocomplete-movie):not(#autocomplete-genre)').autocomplete({
@@ -285,6 +286,8 @@ document.addEventListener('DOMContentLoaded', () => {
 		productThumbnails.forEach(thumbnail => {
 			thumbnail.addEventListener('mousemove', onClickProductThumbnail);
 		});
+
+		$('#modal-shipping-quote-country').formSelect({dropdownOptions: {container: document.body}});
 	}
 
 	// VOUCHER
