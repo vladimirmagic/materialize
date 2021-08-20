@@ -318,7 +318,7 @@ M.checkPossibleAlignments = function(el, container, bounding, offset) {
   // Check for container and viewport for Bottom
   canAlign.spaceOnTop = !containerAllowsOverflow
     ? scrolledYBottomEdge - (bounding.height + offset)
-    : elOffsetRect.bottom - (bounding.height - offset);
+    : elOffsetRect.bottom - (bounding.height + offset);
   if (canAlign.spaceOnTop < 0) {
     canAlign.bottom = false;
   }
