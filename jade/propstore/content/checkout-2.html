@@ -1304,8 +1304,76 @@
                     <div class="order__summary-aware-label">Please Be Aware</div>
                     Your are ordering products located in two different offices. As Propstore's inventory is comprised largely of unique items, our material is split between our two facilities. Your products will be charged and shipped from the office they are located in, meaning you receive two separate charges and two separate shipments.
                 </div>
+
+                <div class="order__summary-brick">
+                    <strong><i>Guest checkout</i></strong>
+                    <div class="order__summary-brick-text">
+                        You are checking out as a guest using the email john.doe@email.com
+                    </div>
+                    <a class="waves-effect waves-grey btn btn--secondary modal-trigger" href="#modal-guest">Edit email address</a>
+                </div>
+
+                <div class="order__summary-brick">
+                    <strong><i>Become a member for free</i></strong>
+                    <div class="order__summary-brick-text">
+                        Get access to your complete order history, save searches, get updates and alerts alerts and more by becoming a Propstore member. 
+                        <p>It’s free and will take just a few extra seconds! </p>
+                        We will remember your order and the details you’ve already shared in this checkout.
+                    </div>
+                    <a class="waves-effect waves-grey btn btn--secondary modal-trigger" href="#modal-register">Sign up as a member</a>
+                </div>
+
             </div>
         </div>
     </div>
     
 </form>
+
+<div id="modal-guest" class="modal modal-register modal-ajax">
+    <div class="modal-header modal-header--sticky">
+        <a class="modal-close btn-flat btn--icon"><i class='icon'><svg><use xlink:href="#close"></use></svg></i></a>
+    </div>
+    <form class="modal-content modal-guest-form" action="/ajax/xz.action">
+        <div class="modal__title">Guest Checkout</div>
+        <p class="left-align modal-guest__text">
+            Before you checkout, we need to confirm your email address so we can send your order confirmation.
+        </p>
+        
+        <div class="input-field input-field--label">
+            <input type="email" placeholder="Please Enter">
+            <label>Email</label>
+            <div class="input-field__helper">The email you entered is not valid</div>
+        </div>
+
+        <div class="input-field input-field--label">
+            <input type="email" placeholder="Please Enter">
+            <label>Confirm Email</label>
+            <div class="input-field__helper">The email you entered is not valid</div>
+        </div>
+
+        <p class="left-align">
+            <i><strong>Please note:</strong> We will never send marketing information without your permission or share your details with any third party. </i>
+        </p>
+
+        <div class="left-align block-aware">
+            <strong>Please be aware:</strong> The email address you share is where your order confirmation will be sent, please check carefully to make sure it is correct
+        </div>
+
+        <button type="submit" class="waves-effect waves-light btn modal-register__submit">
+            <span class='btn__title'>Continue to guest checkout</span>
+            <i class='icon'><svg><use xlink:href="#arrow-right"></use></svg></i>
+        </button>
+
+        <div class="divider-or"><span>or</span></div>
+
+        <a class="waves-effect waves-light btn btn--facebook modal-register__facebook modal-close">
+            <i class='icon'><svg><use xlink:href="#facebook"></use></svg></i>
+            <span class='btn__title'>Continue with Facebook</span>
+        </a>
+
+        <div class="modal-register__switch">
+            Members can skip this step. <a class="modal-trigger modal-close" href="#modal-register">Why not Register?</a>
+        </div>
+    </form>
+    <div class="modal__loader"><div class="preloader-wrapper active"><div class="spinner-layer"><div class="circle-clipper left"><div class="circle"></div></div><div class="gap-patch"><div class="circle"></div></div><div class="circle-clipper right"><div class="circle"></div></div></div></div></div>
+</div>

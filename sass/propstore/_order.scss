@@ -173,6 +173,22 @@
 	font-weight: 500;
 }
 
+.order__summary-brick {
+	margin-top: 2em;
+	padding: 1.25em;
+	background: $color-bg;
+	border-radius: 6px;
+}
+
+.order__summary-brick-text {
+	margin: .5em 0 1em;
+	font-style: italic;
+
+	p {
+		margin: .5em 0;
+	}
+}
+
 .order__summary-divider {
 	height: 1px;
 	margin-top: 1.5em;
@@ -182,6 +198,16 @@
 	.order__summary & {
 		background: rgba(255,255,255,.3);
 	}
+}
+
+#modal-guest {
+	.modal__title {
+		margin-bottom: 1rem;
+	}
+}
+
+.modal-guest__text {
+	margin-bottom: 1.5em;
 }
 
 .pay-logo {

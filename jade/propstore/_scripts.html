@@ -290,6 +290,9 @@
 			});
 		}
 
+		$('#modal-guest').modal();
+		
+
 		$('#modal-payment-plan').modal({
 			onOpenEnd: () => {
 				$($('.modal-payment-plan__months-buttons input:checked').data('tab')).show();
