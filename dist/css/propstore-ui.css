@@ -13921,6 +13921,7 @@ a.product__certificate:not(.btn):not(.btn-large):not(.btn-small):not(.btn-extra-
   height: 1.5rem;
   line-height: 1.5rem;
   font-size: 14px;
+  white-space: nowrap;
   color: #8F8F8F;
   background: #F4F4F4;
   border-radius: .75rem;
