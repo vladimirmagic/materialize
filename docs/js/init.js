@@ -225,6 +225,10 @@ document.addEventListener('DOMContentLoaded', () => {
 	const currency = document.querySelectorAll('.card__price-i');
 	if (currency) M.Dropdown.init(currency, { container: document.body });
 
+	// MARGIN DROPDOWN
+    const margin = document.querySelectorAll('.margin-dropdown');
+    if (margin) M.Dropdown.init(margin, { container: document.body });
+
 	// FILTER
 	function mobileFilterToggle () {
 		const button = document.querySelector('.filters__open-button');

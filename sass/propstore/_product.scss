@@ -392,6 +392,19 @@ a.product__certificate:not(.btn) { // fix a
 	}
 }
 
+.product__margin {
+	display: inline-block;
+	margin-top: 1rem;
+	padding: 0 1rem;
+	height: 1.5rem;
+	line-height: 1.5rem;
+	font-size: 14px;
+	color: $color-font-grey;
+	background: $color-bg;
+	border-radius: .75rem;
+	cursor: pointer;
+}
+
 .modal-payment-plan {
 	width: 90%;
 	max-width: 66rem; // to fit 6 months with vertical scroll
