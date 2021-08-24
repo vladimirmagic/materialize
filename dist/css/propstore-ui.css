@@ -19375,7 +19375,7 @@ a.voucher:not(.btn):not(.btn-large):not(.btn-small):not(.btn-extra-small):before
   -webkit-flex: 1 1 100%;
       -ms-flex: 1 1 100%;
           flex: 1 1 100%;
-  padding: 0 3em 0 10em;
+  padding: 1em 3em 1em 10em;
 }
 
 .auclist.auchome .aucdes p {
@@ -19411,7 +19411,7 @@ a.voucher:not(.btn):not(.btn-large):not(.btn-small):not(.btn-extra-small):before
 .auclist.auchome .auclting__type .icon, .auclist.auchome .auclting__date .icon, .auclist.auchome .auclting__lots .icon {
   position: absolute;
   left: 0;
-  top: .25em;
+  top: .3em;
 }
 
 .auclist.auchome .auction_list_date_dash {
@@ -19433,4 +19433,37 @@ a.voucher:not(.btn):not(.btn-large):not(.btn-small):not(.btn-extra-small):before
 
 .auclist.auchome .auclink .btn + .btn--secondary, .auclist.auchome .auclink .btn-large + .btn--secondary, .auclist.auchome .auclink .btn-small + .btn--secondary, .auclist.auchome .auclink .btn-extra-small + .btn--secondary {
   margin-left: 1em;
+}
+
+@media only screen and (max-width: 1496px) {
+  .auclist.auchome {
+    padding: 3em 2.5em;
+  }
+  .auclist.auchome .auclting + .auclting {
+    margin-top: 2em;
+  }
+  .auclist.auchome .aucdes {
+    padding-left: 5em;
+  }
+}
+
+@media only screen and (max-width: 1200px) {
+  .auclist.auchome {
+    padding: 3em 1.5em;
+  }
+  .auclist.auchome .auclting {
+    -webkit-box-align: start;
+    -webkit-align-items: flex-start;
+        -ms-flex-align: start;
+            align-items: flex-start;
+    min-height: 0;
+  }
+  .auclist.auchome .aucimg {
+    -webkit-flex-basis: 320px;
+        -ms-flex-preferred-size: 320px;
+            flex-basis: 320px;
+  }
+  .auclist.auchome .aucdes {
+    padding-left: 3em;
+  }
 }

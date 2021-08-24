@@ -180,6 +180,7 @@ $main-link-height: 72px;
 .sidenav__menu-block-link,
 .sidenav .menu-auction-link {
 	@extend .sidenav__menu-underline;
+	width: 100%;
 	height: $main-link-height;
 	line-height: $main-link-height;
 	font-size: 16px;

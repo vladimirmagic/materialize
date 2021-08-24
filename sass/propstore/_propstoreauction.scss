@@ -1,4 +1,5 @@
-$itemHeight: 440px;
+$imgSize: 440px;
+$imgSizeM: 320px;
 
 .auclist.auchome {
 	padding: 6em 2.5em;
@@ -9,7 +10,7 @@ $itemHeight: 440px;
 	}
 	
 	.auc_box {
-		max-width: 1496px;
+		max-width: $width-4cards;
 		margin: 0 auto;
 	}
 
@@ -18,7 +19,7 @@ $itemHeight: 440px;
 		display: flex;
 		justify-content: space-between;
 		align-items: center;
-		min-height: $itemHeight;
+		min-height: $imgSize;
 		margin: 0;
 		background: white;
 		border-radius: 6px;
@@ -36,7 +37,7 @@ $itemHeight: 440px;
 
 	.aucimg {
 		position: relative;
-		flex: 0 0 $itemHeight;
+		flex: 0 0 $imgSize;
 		height: 100%;
 
 		figure {
@@ -52,7 +53,7 @@ $itemHeight: 440px;
 
 	.aucdes {
 		flex: 1 1 100%;
-		padding: 0 3em 0 10em;
+		padding: 1em 3em 1em 10em;
 
 		p {
 			display: none;
@@ -84,7 +85,7 @@ $itemHeight: 440px;
 		.icon {
 			position: absolute;
 			left: 0;
-			top: .25em;
+			top: .3em;
 		}
 	}
 
@@ -106,6 +107,39 @@ $itemHeight: 440px;
 
 		.btn + .btn--secondary {
 			margin-left: 1em;
+		}
+	}
+}
+
+@media only screen and (max-width: #{$width-4cards}) {
+	.auclist.auchome {
+		padding: 3em 2.5em;
+		
+		.auclting + .auclting {
+			margin-top: 2em;
+		}
+	
+		.aucdes {
+			padding-left: 5em;
+		}
+	}
+}
+
+@media #{$large-and-down} {
+	.auclist.auchome {
+		padding: 3em 1.5em;
+
+		.auclting {
+			align-items: flex-start;
+			min-height: 0;
+		}
+
+		.aucimg {
+			flex-basis: $imgSizeM;
+		}
+	
+		.aucdes {
+			padding-left: 3em;
 		}
 	}
 }
