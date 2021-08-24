@@ -1,0 +1,111 @@
+$itemHeight: 440px;
+
+.auclist.auchome {
+	padding: 6em 2.5em;
+	background: $color-bg;
+
+	.toppag {
+		display: none;
+	}
+	
+	.auc_box {
+		max-width: 1496px;
+		margin: 0 auto;
+	}
+
+	.auclting {
+		position: relative;
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		min-height: $itemHeight;
+		margin: 0;
+		background: white;
+		border-radius: 6px;
+		box-shadow: $shadow-base;
+		overflow: hidden;
+	}
+
+	.auclting + .auclting {
+		margin-top: 3em;
+	}
+
+	.accimg, .accname, .aucspon, .sale-no {
+		display: none;
+	}
+
+	.aucimg {
+		position: relative;
+		flex: 0 0 $itemHeight;
+		height: 100%;
+
+		figure {
+			margin: 0;
+		}
+
+		img {
+			display: block;
+			width: 100%;
+			height: 100%;
+		}
+	}
+
+	.aucdes {
+		flex: 1 1 100%;
+		padding: 0 3em 0 10em;
+
+		p {
+			display: none;
+		}
+	}
+
+	.h2 {
+		margin-bottom: .5em;
+	}
+
+	a:not(.btn) {
+		text-decoration: none;
+		font-weight: inherit;
+	}
+
+	.auclting__details {
+		display: flex;
+	}
+
+	.auclting__date, .auclting__lots {
+		margin-left: 2em;
+	}
+
+	.auclting__type, .auclting__date, .auclting__lots {
+		position: relative;
+		padding-left: 2em;
+		font-weight: 400; 
+
+		.icon {
+			position: absolute;
+			left: 0;
+			top: .25em;
+		}
+	}
+
+	.auction_list_date_dash {
+		margin: 0 .25em;
+	}
+
+	.auclting__lots {
+		white-space: nowrap;
+	}
+
+	.auclting__text {
+		margin-top: 1em;
+		font-size: 20px;
+	}
+
+	.auclink {
+		margin-top: 2.5em;
+
+		.btn + .btn--secondary {
+			margin-left: 1em;
+		}
+	}
+}
