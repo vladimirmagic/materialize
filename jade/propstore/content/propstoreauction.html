@@ -912,6 +912,8 @@ window.setInterval(function(){$.get('/general/data/sitewidemessage.txt?ts=' + Ma
             const id = idString.length > 1 ? idString[0] : 0;
             if (!id) return;
 
+            $img = $(item).find('.aucimg a');
+            $img.addClass('auclting__img').css('background-image', 'url(' + $img.find('img').prop('src') + ')');
             $title.addClass('h2');
             $desc = $(item).find('.aucdes');
             $badge = $desc.find('#auc' + id).hide();

@@ -19331,10 +19331,10 @@ a.voucher:not(.btn):not(.btn-large):not(.btn-small):not(.btn-extra-small):before
   -webkit-justify-content: space-between;
       -ms-flex-pack: justify;
           justify-content: space-between;
-  -webkit-box-align: center;
-  -webkit-align-items: center;
-      -ms-flex-align: center;
-          align-items: center;
+  -webkit-box-align: stretch;
+  -webkit-align-items: stretch;
+      -ms-flex-align: stretch;
+          align-items: stretch;
   min-height: 440px;
   margin: 0;
   background: white;
@@ -19358,17 +19358,25 @@ a.voucher:not(.btn):not(.btn-large):not(.btn-small):not(.btn-extra-small):before
   -webkit-flex: 0 0 440px;
       -ms-flex: 0 0 440px;
           flex: 0 0 440px;
-  height: 100%;
 }
 
 .auclist.auchome .aucimg figure {
-  margin: 0;
-}
-
-.auclist.auchome .aucimg img {
   display: block;
   width: 100%;
   height: 100%;
+  margin: 0;
+}
+
+.auclist.auchome .auclting__img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  background: 50% 50% no-repeat #2D2E41;
+  background-size: cover;
+}
+
+.auclist.auchome .auclting__img img {
+  display: none;
 }
 
 .auclist.auchome .aucdes {
@@ -19376,7 +19384,24 @@ a.voucher:not(.btn):not(.btn-large):not(.btn-small):not(.btn-extra-small):before
   -webkit-flex: 1 1 100%;
       -ms-flex: 1 1 100%;
           flex: 1 1 100%;
-  padding: 1em 3em 1em 10em;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: start;
+  -webkit-align-items: flex-start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  padding: 2em 3em 2em 10em;
 }
 
 .auclist.auchome .aucdes p {
@@ -19453,11 +19478,7 @@ a.voucher:not(.btn):not(.btn-large):not(.btn-small):not(.btn-extra-small):before
     padding: 3em 1.5em;
   }
   .auclist.auchome .auclting {
-    -webkit-box-align: start;
-    -webkit-align-items: flex-start;
-        -ms-flex-align: start;
-            align-items: flex-start;
-    min-height: 0;
+    min-height: 320px;
   }
   .auclist.auchome .aucimg {
     -webkit-flex-basis: 320px;
@@ -19466,5 +19487,58 @@ a.voucher:not(.btn):not(.btn-large):not(.btn-small):not(.btn-extra-small):before
   }
   .auclist.auchome .aucdes {
     padding-left: 3em;
+  }
+}
+
+@media only screen and (max-width: 992px) {
+  .auclist.auchome {
+    padding: 3em 1em;
+  }
+  .auclist.auchome .auclting {
+    display: block;
+  }
+  .auclist.auchome .aucimg {
+    height: 320px;
+  }
+  .auclist.auchome .aucdes {
+    padding: 2em;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+        -ms-flex-align: center;
+            align-items: center;
+    text-align: center;
+  }
+  .auclist.auchome .auclting__details {
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-flex-wrap: wrap;
+        -ms-flex-wrap: wrap;
+            flex-wrap: wrap;
+  }
+  .auclist.auchome .auclting__type, .auclist.auchome .auclting__date, .auclist.auchome .auclting__lots {
+    -webkit-box-flex: 0;
+    -webkit-flex: 0 0 100%;
+        -ms-flex: 0 0 100%;
+            flex: 0 0 100%;
+    margin: .5em 0 0;
+    padding: 0;
+  }
+  .auclist.auchome .auclting__type .icon, .auclist.auchome .auclting__date .icon, .auclist.auchome .auclting__lots .icon {
+    display: none;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .auclist.auchome .auclink {
+    max-width: 320px;
+    margin-top: 1.5em;
+  }
+  .auclist.auchome .auclink .btn, .auclist.auchome .auclink .btn-large, .auclist.auchome .auclink .btn-small, .auclist.auchome .auclink .btn-extra-small {
+    width: 100%;
+  }
+  .auclist.auchome .auclink .btn + .btn--secondary, .auclist.auchome .auclink .btn-large + .btn--secondary, .auclist.auchome .auclink .btn-small + .btn--secondary, .auclist.auchome .auclink .btn-extra-small + .btn--secondary {
+    margin: 1em 0 0;
   }
 }
