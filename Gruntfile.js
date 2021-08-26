@@ -390,6 +390,7 @@
             'gift-vouchers.html': 'jade/propstore/gift-vouchers.jade',
             'voucher.html': 'jade/propstore/voucher.jade',
             'propstoreauction.html': 'jade/propstore/propstoreauction.jade',
+            'propstoreauction-product.html': 'jade/propstore/propstoreauction-product.jade',
           }
         }
       },

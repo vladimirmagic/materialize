@@ -1,0 +1,61 @@
+
+<link href="https://use.typekit.net/dul3srx.css" rel="stylesheet">
+<link href="css/ghpages-materialize.css" type="text/css" rel="stylesheet" media="screen,projection">
+
+<!--  Scripts-->
+<script>
+    document.querySelectorAll('head style, head link[rel="stylesheet"]').forEach(item => item.remove());
+</script>
+<!-- <script defer src="https://code.jquery.com/jquery-3.2.1.min.js"></script> -->
+<script defer src="bin/materialize.js"></script>
+<script defer src="docs/js/init.js"></script>
+<script defer>
+    const svgSprite = document.createElement('div');
+	svgSprite.id = 'svg-sprite';
+	document.body.append(svgSprite);
+	const loaded = function() {document.body.classList.add('loaded')};
+	if (typeof fetch != "undefined") fetch('dist/defs/svg/sprite.defs.svg', { cache: 'force-cache' })
+		.then(response => response.text())
+		.then(html => { svgSprite.innerHTML = html; loaded(); })
+		.catch(loaded);
+
+    document.addEventListener('DOMContentLoaded', () => {
+        $('.auclting').each((i, item) => {
+            $title = $(item).find('h6');
+            $title.addClass('h2')
+            const path = $title.find('a').prop('href').split('/view-auctions/info/id/');
+            const idString = path.length > 1 ? path[1].split('/') : '';
+            const id = idString.length > 1 ? idString[0] : 0;
+            if (!id) return;
+
+            $img = $(item).find('.aucimg a');
+            $img.addClass('auclting__img').css('background-image', 'url(' + $img.find('img').prop('src') + ')');
+            $desc = $(item).find('.aucdes');
+            $badge = $desc.find('#auc' + id).hide();
+            $badgeNew = $('<span class="badge auclting__badge">');
+            if ($badge.find('.in-progress').length) {
+                $badgeNew.addClass('green').append(`<i class="icon"><svg><use xlink:href="#live"></use></svg></i>Live`);
+            } else if ($badge.find('.ended').length) {
+                $badgeNew.addClass('red').append(`<i class='icon'><svg><use xlink:href="#flag"></use></svg></i>Ended`);
+            } else {
+                $badgeNew.addClass('orange').append(`<i class='icon'><svg><use xlink:href="#clockwise"></use></svg></i>Upcoming`);
+            }
+            $desc.prepend($badgeNew);
+
+            $type = $('<div class="auclting__type"><i class="icon"><svg><use xlink:href="#auction-line"></use></svg></i></div>');
+            $type.append($desc.find('#sale' + id));
+            $date = $('<div class="auclting__date"><i class="icon"><svg><use xlink:href="#calendar"></use></svg></i></div>');
+            $date.append($desc.find('#aucdate' + id));
+            $lots = $('<div class="auclting__lots"><i class="icon"><svg><use xlink:href="#ticket"></use></svg></i></div>');
+            $lots.append($desc.find('p+p').text());
+            $details = $('<div class="auclting__details">');
+            $details.append($type).append($date).append($lots);
+            $details.insertAfter($title);
+
+            $desc.append($(item).find('.auclink'));
+
+            $(item).find('.reg').addClass('waves-effect waves-light btn');
+            $(item).find('.cat').addClass('waves-effect waves-grey btn btn--secondary');
+        });
+    });
+</script>

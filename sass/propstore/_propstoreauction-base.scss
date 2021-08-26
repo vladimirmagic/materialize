@@ -1,0 +1,18 @@
+$card-height-auc: 692px;
+$card-height-auc-m: 620px;
+
+body.index-index,
+body.lot-details-index {
+	#custom-header,
+	.mymenu,
+	.auctions-filter,
+	.srch_sec,
+	.bodybox:before1 {
+		display: none;
+	}
+}
+
+.header__btn .aucheader__settings-icon-blank {
+	width: 12px;
+	height: 12px;
+}
