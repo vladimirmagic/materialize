@@ -19364,12 +19364,12 @@ body.index-index #custom-header,
 body.index-index .mymenu,
 body.index-index .auctions-filter,
 body.index-index .srch_sec,
-body.index-index .bodybox:before1,
+body.index-index .bodybox,
 body.lot-details-index #custom-header,
 body.lot-details-index .mymenu,
 body.lot-details-index .auctions-filter,
 body.lot-details-index .srch_sec,
-body.lot-details-index .bodybox:before1 {
+body.lot-details-index .bodybox {
   display: none;
 }
 

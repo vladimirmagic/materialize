@@ -17,7 +17,7 @@
  <script type="text/javascript" src="https://propstore-staging32.auctionserver.net/assets/js/vendor/_core/_qc_minified.js?1615315788"></script>
  <script type="text/javascript" src="https://propstore-staging32.auctionserver.net/assets/dist/m.js?1616216191"></script>
 
- <style type="text/css" data-v2>@import url("https://propstore-staging32.auctionserver.net/css/custom/propstore-responsive.css?1629839849");</style>
+ <style type="text/css" data-v2-delete>@import url("https://propstore-staging32.auctionserver.net/css/custom/propstore-responsive.css?1629839849");</style>
 
 <script type="text/javascript" src="https://propstore-staging32.auctionserver.net/assets/dist/m_lotDetails_index.js?1616216191"></script></head>
 <body class="lot-details lot-details-index auction244 type-live-sale">
@@ -214,14 +214,22 @@ Lot #6<span class="lot-name">Lot #6 - 24 (TV SERIES, 2001-2010) - Jack Bauer's (
  <div class="message-lot"><span id="lac24_ctl" class="qlabel-ctl" ></span></div>
  <div>
  <div class="bidfrm">
- <div class="message-closed">
- <span id="lac28_ctl" class="qlabel-ctl" ><span id="lac28" >Lot closed - Winning bid:<span class="exratetip" rev="cur:2" rel="cur:">£3,250</span></span></span> <a class="biddingHistoryLink " data-id="66265" href="https://propstore-staging32.auctionserver.net/auctions/bidding-history/id/244/lot/66265?url=%2Flot-details%2Findex%2Fcatalog%2F244%2Flot%2F66265%3Furl%3D%252Fauctions%252Fcatalog%252Fid%252F244">(11 bids)</a> <div class="clear"></div>
- <span class="estimate">
- Estimate:
- </span>
- <span class="estimate-val">£<span class="exratetip" rev="cur:2" rel="cur:">2,000</span> - £<span class="exratetip" rev="cur:2" rel="cur:">3,000</span></span>
- <div class="clear"></div>
- </div>
+<div class="message-closed">
+    <span id="lac28_ctl" class="qlabel-ctl"><span id="lac28">Lot closed - Winning bid:<span class="exratetip" rev="cur:2"
+                rel="cur:">£3,250</span></span>
+    </span>
+    <a class="biddingHistoryLink " data-id="66265"
+        href="https://propstore-staging32.auctionserver.net/auctions/bidding-history/id/244/lot/66265?url=%2Flot-details%2Findex%2Fcatalog%2F244%2Flot%2F66265%3Furl%3D%252Fauctions%252Fcatalog%252Fid%252F244">(11
+        bids)
+    </a>
+    <div class="clear"></div>
+    <span class="estimate">
+        Estimate:
+    </span>
+    <span class="estimate-val">£<span class="exratetip" rev="cur:2" rel="cur:">2,000</span> - £<span class="exratetip"
+            rev="cur:2" rel="cur:">3,000</span></span>
+    <div class="clear"></div>
+</div>
 
  </div>
  </div>
@@ -798,9 +806,9 @@ $(document).ready(function(){qcodoLoaded(10);});</script>
                     </div>
                 </div>
 
-                <div class="aucproduct__form">
+                <div class="aucproduct__form" style="display: none;">
                     <div class="input-field input-field--label aucproduct__form-item">
-                        <input type="text" placeholder="$700 or more">
+                        <input type="text" placeholder="">
                     </div>
                     <button class="waves-effect waves-light btn aucproduct__form-item">
                         <span class='btn__title'>Register to bid</span>
@@ -808,15 +816,15 @@ $(document).ready(function(){qcodoLoaded(10);});</script>
                     </button>
                 </div>
                 
-                <div class="product__buttons-grey">
-                    <button class="product__button-grey waves-effect waves-grey btn btn--secondary modal-trigger" href="#modal-shipping-quote">
+                <div class="product__buttons-grey" style="display: none;">
+                    <a class="product__button-grey waves-effect waves-grey btn btn--secondary modal-trigger" href="#modal-shipping-quote">
                         <i class='icon'><svg><use xlink:href="#globe"></use></svg></i>
                         <span class="product__buttons-grey-small">Get</span> Shipping Quote
-                    </button>
-                    <button class="product__button-grey waves-effect waves-grey btn btn--secondary">
+                    </a>
+                    <a class="product__button-grey waves-effect waves-grey btn btn--secondary">
                         <i class='icon'><svg><use xlink:href="#heart-fill"></use></svg></i>
                         Add to watchlist
-                    </button>
+                    </a>
                 </div>
 
                 <ul class="product__details collapsible expandable">
@@ -825,39 +833,23 @@ $(document).ready(function(){qcodoLoaded(10);});</script>
                             Our expert’s notes
                             <i class='icon icon--dropdown'><svg><use xlink:href="#drop"></use></svg></i>
                         </div>
-                        <div class='collapsible-body'>
-                            <p>
-                                Vestibulum id ligula porta felis euismod semper. Cras mattis consectetur purus sit amet fermentum. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Curabitur blandit tempus porttitor.
-                            </p>
-                            <p>
-                                Cras mattis consectetur purus sit amet fermentum. Etiam porta sem malesuada magna mollis euismod. Vestibulum id ligula porta felis euismod semper. Donec sed odio dui. 
-                            </p>
-                        </div>
-                    </li>
-                    <li class="product__detail active">
-                        <div class="product__detail-title collapsible-header">
-                            Size
-                            <i class='icon icon--dropdown'><svg><use xlink:href="#drop"></use></svg></i>
-                        </div>
-                        <div class='collapsible-body'>
-                            1 &times; 1
-                        </div>
+                        <div class='collapsible-body'></div>
                     </li>
                 </ul>
 
                 <div class="aucproduct__buttons">
-                    <button class="waves-effect waves-grey btn btn--secondary">
+                    <a class="waves-effect waves-grey btn btn--secondary modal-trigger" href="#modal-buyers-guide">
                         <span class="hide-on-small-only">Buyers</span> guide
-                    </button>
-                    <button class="waves-effect waves-grey btn btn--secondary">
+                    </a>
+                    <a class="waves-effect waves-grey btn btn--secondary modal-trigger" href="#modal-shipping">
                         Shipping info
-                    </button>
-                    <button class="waves-effect waves-grey btn btn--secondary">
+                    </a>
+                    <a class="waves-effect waves-grey btn btn--secondary modal-trigger" href="#modal-terms">
                         Terms
-                    </button>
+                    </a>
                 </div>
 
-                <a class="product__certificate" href="#certificate">
+                <a class="product__certificate" href="#certificate" style="display: none;">
                     <div class="product__certificate-icon">
                         <svg class="product__certificate-img"><use xlink:href="#big-authentic"></use></svg>
                     </div>
@@ -867,23 +859,21 @@ $(document).ready(function(){qcodoLoaded(10);});</script>
                     </div>
                 </a>
 
-                <div class="aucproduct__certificate">
-                    This is an original asset used in the production of MythBusters (TV). The asset is made available by Prop Store in association with the Grant Imahara STEAM Foundation.
-                </div>
+                <div class="aucproduct__certificate" style="display: none;"></div>
 
                 <div class="share product__share">
                     <span class="share__title">
                         Share
                     </span>
-                    <a class="waves-effect btn-flat btn--icon share__item" href="#facebook">
+                    <a href="https://www.facebook.com/share.php?u=" target="_blank" rel="noreferrer" class="waves-effect btn-flat btn--icon share__item">
                         <i class='icon'><svg><use xlink:href="#follow-facebook"></use></svg></i>
-                    </a><a class="waves-effect btn-flat btn--icon share__item" href="#twitter">
+                    </a>
+                    <a href="https://twitter.com/intent/tweet?url=" target="_blank" rel="noreferrer" class="waves-effect btn-flat btn--icon share__item">
                         <i class='icon'><svg><use xlink:href="#follow-twitter"></use></svg></i>
-                    </a><a class="waves-effect btn-flat btn--icon share__item" href="#pinterest">
+                    </a>
+                    <a href="https://www.pinterest.ru/pin/create/button/?url=" target="_blank" rel="noreferrer" class="waves-effect btn-flat btn--icon share__item">
                         <i class='icon'><svg><use xlink:href="#share-pinterest"></use></svg></i>
-                    </a><a class="waves-effect btn-flat btn--icon share__item" href="mailto:?subject=Prop%20Store&body=https://propstore.com/">
-                        <i class='icon'><svg><use xlink:href="#email"></use></svg></i>
-                  </a>
+                    </a>
                 </div>
             </div>
         </div>
@@ -1040,6 +1030,27 @@ Lot # 28: Episode "Dog Myths" and Episode "Voice Flame Extinguisher" (2007, E74/
         </div>
       </div>
 
+    <div id="modal-buyers-guide" class="modal">
+        <div class="modal-header modal-header--sticky">
+            <a class="modal-close btn-flat btn--icon"><i class='icon'><svg><use xlink:href="#close"></use></svg></i></a>
+        </div>
+        <div class="modal-content"></div>
+    </div>
+
+    <div id="modal-shipping" class="modal">
+        <div class="modal-header modal-header--sticky">
+            <a class="modal-close btn-flat btn--icon"><i class='icon'><svg><use xlink:href="#close"></use></svg></i></a>
+        </div>
+        <div class="modal-content"></div>
+    </div>
+
+    <div id="modal-terms" class="modal">
+        <div class="modal-header modal-header--sticky">
+            <a class="modal-close btn-flat btn--icon"><i class='icon'><svg><use xlink:href="#close"></use></svg></i></a>
+        </div>
+        <div class="modal-content"></div>
+    </div>
+
 
 
 
@@ -1050,7 +1061,7 @@ Lot # 28: Episode "Dog Myths" and Episode "Voice Flame Extinguisher" (2007, E74/
 
 <!--  Scripts-->
 <script>
-    document.querySelectorAll('style:not([data-v2]), link[rel="stylesheet"]:not([data-v2])').forEach(item => item.remove());
+    document.querySelectorAll('style:not([data-v2-delete]), link[rel="stylesheet"]:not([data-v2])').forEach(item => item.remove());
 </script>
 <script defer src="bin/materialize.js"></script>
 <script defer src="docs/js/init.js"></script>
@@ -1068,6 +1079,32 @@ Lot # 28: Episode "Dog Myths" and Episode "Voice Flame Extinguisher" (2007, E74/
         $('#headsec').remove();
         $('body').prepend($('header'));
         $('<main></main>').append($('#wrapper')).insertAfter($('header'));
+
+        let status;
+        if ($('.sale-closed').length) status = 'closed';
+
+        let aucPoster = window.getComputedStyle(document.querySelector('.bodybox'), ':before');
+        $('.hero__image').css({backgroundImage: aucPoster.backgroundImage});
+        $('[data-v2-delete]').remove(); // delete css after image set
+
+        $aucTitle = $('.tle-lot h3').clone();
+        $aucTitle.find('span').remove();
+        $('.hero__static-title').html($aucTitle.text());
+        $('.hero__static-date').append($('.sale-date').first());
+        if (status) {
+            $badge = $('.aucproduct__hero .badge');
+            switch (status) {
+            case 'closed':
+                $badge.addClass('red').append('Closed').show().find('use').attr('xlink:href', '#flag');
+                break;
+            }
+        }
+
+        $itemTitleH = $('.tle-lot + h3');
+        $itemTitle = $itemTitleH.find('.lot-name');
+        $itemTitleH.find('.lot-name').remove();
+        $('.product__number').html($itemTitleH.text());
+        $('.product__title').html($itemTitle.text());
 
         $carouselItem = $('.product__slider .carousel-item').clone();
         $slider = $('.product__slider').html('');
@@ -1087,13 +1124,49 @@ Lot # 28: Episode "Dog Myths" and Episode "Voice Flame Extinguisher" (2007, E74/
             $gallery.append($galleryItemNew.css(img));
         });
 
-        let aucPoster = window.getComputedStyle(document.querySelector('.bodybox'), ':before');
-        $('.hero__image').css({backgroundImage: aucPoster.backgroundImage});
+        $detailsLine = $('.aucproduct__details-line').clone();
+        $details = $('.aucproduct__details');
+        $details.html('');
 
-        $aucTitle = $('.tle-lot h3').clone();
-        $aucTitle.find('span').remove();
-        $('.hero__static-title').html($aucTitle.html());
-        $('.hero__static-date').append($('.sale-date').first());
+        $win = $('#lac28');
+        if ($win.length) {
+            $winVal = $win.find('span');
+            $win.find('span').remove();
+            $winVal.append(' ').append($('.biddingHistoryLink'));
+            $lineWin = $detailsLine.clone();
+            $lineWin.html($win.text() + ' <strong>' + $winVal.html() + '</strong>');
+            $details.append($lineWin);
+        }
+
+        $estimate = $('.estimate');
+        $estimateVal = $('.estimate-val');
+        if ($estimate.length && $estimateVal.length) {
+            $lineEstimate = $detailsLine.clone();
+            $lineEstimate.html($estimate.text() + ' <strong>' + $estimateVal.html() + '</strong>');
+            $details.append($lineEstimate);
+        }
+
+        $('.product__detail .collapsible-body').html($('.l1desctextwhite').html());
+        $('#modal-buyers-guide .modal-content').append($('h4:contains("Product Questions")').parent());
+        $('body').append($('#modal-buyers-guide'));
+
+        $('#modal-shipping .modal-content').append($('.shipping-info-content'));
+        $('body').append($('#modal-shipping'));
+
+        $('#modal-terms .modal-content').append($('.terms-content'));
+        $('body').append($('#modal-terms'));
+
+        if ($('.description-info-content :contains("Certificate of Authenticity")').length) {
+            $('.product__certificate').show();
+        }
+        $originalNote = $('.description-info-content p:contains("original asset")');
+        if ($originalNote.length) {
+            $('.aucproduct__certificate').html($originalNote.html()).show();
+        }
+
+        $('.share__item').each((index, item) => {
+            item.href += window.location.href;
+        });
 
         $('.container').prepend($('.aucproduct__also'));
         $('.container').prepend($('.aucproduct'));
