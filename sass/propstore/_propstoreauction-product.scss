@@ -25,6 +25,10 @@
 .aucproduct {
 	margin-top: 3em;
 	background: $color-bg;
+
+	.product__slider {
+		background: white;
+	}
 }
 
 .aucproduct__details {

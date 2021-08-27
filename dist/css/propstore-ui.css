@@ -19641,6 +19641,10 @@ body.lot-details-index .bodybox {
   background: #F4F4F4;
 }
 
+.aucproduct .product__slider {
+  background: white;
+}
+
 .aucproduct__details {
   margin-bottom: 2rem;
   font-size: 1.5em;
