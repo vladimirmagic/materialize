@@ -2,8 +2,10 @@ $card-height-auc: 692px;
 $card-height-auc-m: 620px;
 
 body.index-index,
-body.lot-details-index {
+body.lot-details-index,
+body.auctions-catalog {
 	#custom-header,
+	#headsec,
 	.mymenu,
 	.auctions-filter,
 	.srch_sec,

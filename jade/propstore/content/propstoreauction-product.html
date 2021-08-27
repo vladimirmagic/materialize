@@ -23,42 +23,7 @@
 <body class="lot-details lot-details-index auction244 type-live-sale">
 <a href="#" class="back-to-top"></a>
 <div id="custom-header"><!-- ADM Smart Pixel - Props Store - smart pixel - DO NOT MODIFY -->
-<link rel="stylesheet" href="https://use.typekit.net/euo2gpm.css">
-<script type="text/javascript">!function(a,e,d,m,t){a.adm={};a.adm.pixid=147441;var o=e.getElementsByTagName("head")[0],c=e.createElement("script");a.adm.json="https://ps.l.admedo.com/8bfdd2a5-b62a-40aa-9b68-8f2a7e269016.json",a.adm.pixurl="https://pool.admedo.com",c.src="https://pj.l.admedo.com/admtracker.lib.min.js",c.async=!0,o.appendChild(c)}(window,document);</script>
-<noscript><img height="1" width="1" style="display:none" src="https://pool.admedo.com/pixel?id=147441&t=img" /></noscript>
-<!-- End of ADM Smart Pixel -->
-<script type="text/javascript">
-_linkedin_partner_id = "2100202";
-window._linkedin_data_partner_ids = window._linkedin_data_partner_ids || [];
-window._linkedin_data_partner_ids.push(_linkedin_partner_id);
-</script><script type="text/javascript">
-(function(){var s = document.getElementsByTagName("script")[0];
-var b = document.createElement("script");
-b.type = "text/javascript";b.async = true;
-b.src = "https://snap.licdn.com/li.lms-analytics/insight.min.js";
-s.parentNode.insertBefore(b, s);})();
-</script>
-<noscript>
-<img height="1" width="1" style="display:none;" alt="" src="https://px.ads.linkedin.com/collect/?pid=2100202&fmt=gif" />
-</noscript>
-<!-- Reddit Pixel -->
-<script>
-!function(w,d){if(!w.rdt){var p=w.rdt=function(){p.sendEvent?p.sendEvent.apply(p,arguments):p.callQueue.push(arguments)};p.callQueue=[];var t=d.createElement("script");t.src="https://www.redditstatic.com/ads/pixel.js",t.async=!0;var s=d.getElementsByTagName("script")[0];s.parentNode.insertBefore(t,s)}}(window,document);rdt('init','t2_699xn');rdt('track', 'PageVisit');
-</script>
-<!-- DO NOT MODIFY -->
-<!-- End Reddit Pixel -->
-<!-- Google Tag Manager -->
-<script id>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','GTM-W4LKVM');</script>
-<!-- End Google Tag Manager -->
 
-<!-- Google Tag Manager (noscript) -->
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-W4LKVM"
-height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-<!-- End Google Tag Manager (noscript) -->
 
 <link href="https://use.typekit.net/dul3srx.css" rel="stylesheet" data-v2>
 <link href="css/ghpages-materialize.css" type="text/css" rel="stylesheet" media="screen,projection" data-v2>
@@ -767,10 +732,10 @@ $(document).ready(function(){qcodoLoaded(10);});</script>
                             <i class='icon'><svg><use xlink:href="#calendar"></use></svg></i>
                         </div>
                         <div class="hero__static-buttons">
-                            <a class="waves-effect waves-light btn hero__btn">
+                            <a class="waves-effect waves-light btn hero__btn aucproduct__hero-aucinfo">
                                 Auction info
                             </a>
-                            <a class="waves-effect waves-light btn hero__btn">
+                            <a class="waves-effect waves-light btn hero__btn aucproduct__hero-auccatalog">
                                 All catalogue items
                             </a>
                         </div>
@@ -1105,6 +1070,8 @@ Lot # 28: Episode "Dog Myths" and Episode "Voice Flame Extinguisher" (2007, E74/
         $itemTitleH.find('.lot-name').remove();
         $('.product__number').html($itemTitleH.text());
         $('.product__title').html($itemTitle.text());
+        $('.aucproduct__hero-aucinfo').attr('href', $('.aucinfo').attr('href'));
+        $('.aucproduct__hero-auccatalog').attr('href', $('.catlg').attr('href'));
 
         $carouselItem = $('.product__slider .carousel-item').clone();
         $slider = $('.product__slider').html('');

@@ -391,6 +391,7 @@
             'voucher.html': 'jade/propstore/voucher.jade',
             'propstoreauction.html': 'jade/propstore/propstoreauction.jade',
             'propstoreauction-product.html': 'jade/propstore/propstoreauction-product.jade',
+            'propstoreauction-catalog.html': 'jade/propstore/propstoreauction-catalog.jade',
           }
         }
       },
