@@ -232,61 +232,68 @@
 
             <div class="cards">
               <div class="cards__inner">
-                <div class="auccatalog__search-panel">
-                    <div class="auccatalog__search-panel-title h4">Advanced Search</div>
-                    <div class="input-field">
-                        <input type="text" placeholder="Search" value="">
-                    </div>
-                    <div class="input-field input-field--label">
-                        <input type="text" placeholder="Any">
-                        <label>Lot number</label>
-                    </div>
-                    <div class="input-field input-field--label input-field--select">
-                        <select>
-                            <option value="0" title="" data-id="order_num" selected="selected">Default</option><option value="1" title="" data-id="time_left">Time Left</option><option value="2" title="" data-id="lot_num">Lot#</option><option value="3" title="" data-id="lot_name">Lot Name</option><option value="4" title="" data-id="newest">Newest</option><option value="5" title="" data-id="highest">Highest Price</option><option value="6" title="" data-id="lowest">Lowest Price</option><option value="7" title="" data-id="bids">Bids</option><option value="8" title="" data-id="views">Views</option></select>
-                        </select>
-                        <label>Sort by</label>
-                    </div>
-                    <div class="auccatalog__search-panel-subtitle c-s">
-                        Auction Items
-                    </div>
-                    <div class="auccatalog__search-panel-checkboxes">
-                        <label class="checkbox__label">
-                            <input type="checkbox" name="checkout-business" class="filled-in" />
-                            <span>Live Auctions</span>
-                        </label>
-                        <label class="checkbox__label">
-                            <input type="checkbox" name="checkout-business" class="filled-in" />
-                            <span>Upcoming Only</span>
-                        </label>
-                        <label class="checkbox__label">
-                            <input type="checkbox" name="checkout-business" class="filled-in" />
-                            <span>Sold Items</span>
-                        </label>
-                        <label class="checkbox__label">
-                            <input type="checkbox" name="checkout-business" class="filled-in" />
-                            <span>Featured</span>
-                        </label>
-                        <label class="checkbox__label">
-                            <input type="checkbox" name="checkout-business" class="filled-in" />
-                            <span>Show Closed Lots</span>
-                        </label>
-                    </div>
-
-                    <div class="auccatalog__search-panel-row">
-                        <div class="input-field input-field--label">
-                            <input type="text" placeholder="0">
-                            <label>Min price</label>
+                <div class="auccatalog__search-panel collapsible">
+                    <li class="collapsible-li">
+                        <div class="auccatalog__search-panel-title h4 collapsible-header">
+                            Advanced Search
+                            <i class='icon'><svg><use xlink:href="#close"></use></svg></i>
                         </div>
-                        <div class="input-field input-field--label">
-                            <input type="text" placeholder="No">
-                            <label>Max price</label>
+                        <div class='collapsible-body'>
+                            <div class="input-field">
+                                <input type="text" placeholder="Search" value="">
+                            </div>
+                            <div class="input-field input-field--label">
+                                <input type="text" placeholder="Any">
+                                <label>Lot number</label>
+                            </div>
+                            <div class="input-field input-field--label input-field--select">
+                                <select>
+                                    <option value="0" title="" data-id="order_num" selected="selected">Default</option><option value="1" title="" data-id="time_left">Time Left</option><option value="2" title="" data-id="lot_num">Lot#</option><option value="3" title="" data-id="lot_name">Lot Name</option><option value="4" title="" data-id="newest">Newest</option><option value="5" title="" data-id="highest">Highest Price</option><option value="6" title="" data-id="lowest">Lowest Price</option><option value="7" title="" data-id="bids">Bids</option><option value="8" title="" data-id="views">Views</option></select>
+                                </select>
+                                <label>Sort by</label>
+                            </div>
+                            <div class="auccatalog__search-panel-subtitle c-s">
+                                Auction Items
+                            </div>
+                            <div class="auccatalog__search-panel-checkboxes">
+                                <label class="checkbox__label">
+                                    <input type="checkbox" name="checkout-business" class="filled-in" />
+                                    <span>Live Auctions</span>
+                                </label>
+                                <label class="checkbox__label">
+                                    <input type="checkbox" name="checkout-business" class="filled-in" />
+                                    <span>Upcoming Only</span>
+                                </label>
+                                <label class="checkbox__label">
+                                    <input type="checkbox" name="checkout-business" class="filled-in" />
+                                    <span>Sold Items</span>
+                                </label>
+                                <label class="checkbox__label">
+                                    <input type="checkbox" name="checkout-business" class="filled-in" />
+                                    <span>Featured</span>
+                                </label>
+                                <label class="checkbox__label">
+                                    <input type="checkbox" name="checkout-business" class="filled-in" />
+                                    <span>Show Closed Lots</span>
+                                </label>
+                            </div>
+        
+                            <div class="auccatalog__search-panel-row">
+                                <div class="input-field input-field--label">
+                                    <input type="text" placeholder="0">
+                                    <label>Min price</label>
+                                </div>
+                                <div class="input-field input-field--label">
+                                    <input type="text" placeholder="No">
+                                    <label>Max price</label>
+                                </div>
+                            </div>
+        
+                            <button class="waves-effect waves-light btn btn--tertiary auccatalog__search-btn">
+                                Search
+                            </button>
                         </div>
-                    </div>
-
-                    <button class="waves-effect waves-light btn btn--tertiary auccatalog__search-btn">
-                        Search
-                    </button>
+                    </li>
                 </div>
                 <div class="cards__list">
                     <a class="card card--liked aucproduct__card" href="#card-05">

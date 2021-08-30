@@ -132,13 +132,44 @@
 	top: 0;
 	flex: 0 0 $card-width;
 	margin: 5em $card-margin 0 0;
-	padding: 1.5rem 1.5rem 2rem;
 	background: white;
 	border-radius: 6px;
 	box-shadow: $shadow-base;
+	overflow: hidden;
 
 	.input-field {
 		margin-bottom: 2rem;
+	}
+
+	.collapsible-li {
+		margin: 0;
+		padding: 0;
+		list-style: none;
+	}
+
+	.collapsible-header {
+		margin: 0;
+		padding: 1.5rem;
+		border: 0 none;
+		background: white !important;
+	}
+
+	.collapsible-body {
+		padding: 0 1.5rem 2rem;
+	}
+}
+
+.auccatalog__search-panel-title {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+
+	.icon {
+		margin: 0;
+
+		.collapsible-li:not(.active) & {
+			transform: rotate(45deg);
+		}
 	}
 }
 
@@ -263,6 +294,24 @@
 
 	.auccatalog__search-panel {
 		margin-top: 3.75em;
+	}
+}
+
+@media #{$large-and-up} {
+	.auccatalog__search-panel {
+		.collapsible-li {
+			pointer-events: none;
+		}
+	
+		.collapsible-header {
+			.icon {display:
+				none;
+			}
+		}
+	
+		.collapsible-body {
+			display: block;
+		}
 	}
 }
 
