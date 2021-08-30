@@ -19731,6 +19731,16 @@ body.auctions-catalog .bodybox {
   padding-bottom: 3.75rem;
 }
 
+.auccatalog__nav.auccatalog__nav--footer {
+  padding-bottom: 0;
+}
+
+.auccatalog__nav.auccatalog__nav--footer .auccatalog__nav-inner {
+  padding: 0;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+
 .auccatalog__nav-inner {
   display: -webkit-box;
   display: -webkit-flex;
@@ -19775,6 +19785,85 @@ body.auctions-catalog .bodybox {
 
 .auccatalog__nav-results {
   margin: 0 0 0 2rem;
+}
+
+.auccatalog__nav-paginator {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.auccatalog__nav-paginator .input-field {
+  width: 6rem;
+  margin-left: 1rem;
+}
+
+.auccatalog__nav-paginator #c2_ctl {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.auccatalog__nav-paginator .paginator * {
+  display: inline-block;
+  margin: 0 .25rem;
+  font-size: 20px;
+}
+
+.auccatalog__nav-paginator .paginator a:not(.btn):not(.btn-large):not(.btn-small):not(.btn-extra-small) {
+  font-weight: 300;
+  text-decoration: none;
+  color: #8F8F8F;
+}
+
+.auccatalog__nav-paginator .paginator a:not(.btn):not(.btn-large):not(.btn-small):not(.btn-extra-small):hover {
+  color: #2D2E41;
+}
+
+.auccatalog__nav-paginator .break {
+  position: relative;
+  margin: 0 1rem;
+  color: rgba(0, 0, 0, 0);
+}
+
+.auccatalog__nav-paginator .break:before {
+  content: '';
+  position: absolute;
+  top: -.75rem;
+  width: 1px;
+  height: 3.5rem;
+  background: #c7c7c7;
+}
+
+.auccatalog__nav-paginator .selected {
+  font-weight: 500;
+}
+
+.auccatalog__nav-paginator .arrow {
+  color: #8F8F8F;
+}
+
+.auccatalog__nav-view {
+  font-size: 20px;
+}
+
+.auccatalog__nav-view a:not(.btn):not(.btn-large):not(.btn-small):not(.btn-extra-small) {
+  margin-left: .75rem;
+  color: #c7c7c7;
+}
+
+.auccatalog__nav-view a:not(.btn):not(.btn-large):not(.btn-small):not(.btn-extra-small):hover, .auccatalog__nav-view a:not(.btn):not(.btn-large):not(.btn-small):not(.btn-extra-small).current {
+  color: #2D2E41;
 }
 
 .auccatalog .cards__inner {

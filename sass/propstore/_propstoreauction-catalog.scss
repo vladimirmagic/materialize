@@ -2,6 +2,15 @@
 	@extend .content;
 	padding-top: 3.75rem;
 	padding-bottom: 3.75rem;
+
+	&.auccatalog__nav--footer {
+		padding-bottom: 0;
+
+		.auccatalog__nav-inner {
+			padding: 0;
+			box-shadow: none;
+		}
+	}
 }
 
 .auccatalog__nav-inner {
@@ -32,6 +41,74 @@
 
 .auccatalog__nav-results {
 	margin: 0 0 0 2rem;
+}
+
+.auccatalog__nav-paginator {
+	display: flex;
+	align-items: center;
+
+	.input-field {
+		width: 6rem;
+		margin-left: 1rem;
+	}
+
+	#c2_ctl {
+		display: flex;
+		align-items: center;
+	}
+
+	.paginator * {
+		display: inline-block;
+		margin: 0 .25rem;
+		font-size: 20px;
+	}
+
+	.paginator a:not(.btn) {
+		font-weight: 300;
+		text-decoration: none;
+		color: $color-font-grey;
+
+		&:hover {
+			color: $color-base;
+		}
+	}
+
+	.break {
+		position: relative;
+		margin: 0 1rem;
+		color: rgba(0,0,0,0);
+
+		&:before {
+			content: '';
+			position: absolute;
+			top: -.75rem;
+			width: 1px;
+			height: 3.5rem;
+			background: $color-grey;
+		}
+	}
+
+	.selected {
+		font-weight: 500;
+	}
+
+	.arrow {
+		color: $color-font-grey;
+	}
+}
+
+.auccatalog__nav-view {
+	font-size: 20px;
+
+	a:not(.btn) {
+		margin-left: .75rem;
+		color: $color-grey;
+
+		&:hover,
+		&.current {
+			color: $color-base;
+		}
+	}
 }
 
 .auccatalog {
