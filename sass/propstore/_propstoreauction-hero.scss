@@ -1,4 +1,4 @@
-.aucproduct__hero {
+.auc__hero {
 	.hero__static-title {
 		font-size: 40px;
 	}
@@ -23,7 +23,7 @@
 }
 
 @media #{$medium-and-down} {
-	.aucproduct__hero {
+	.auc__hero {
 		.hero__btn {
 			margin-top: 1.5rem;
 		}
@@ -32,7 +32,7 @@
 
 
 @media #{$small-and-down} {
-	.aucproduct__hero {
+	.auc__hero {
 		.hero__static-title {
 			font-size: 32px;
 		}

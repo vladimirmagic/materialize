@@ -213,6 +213,10 @@
 		max-height: 4.2em;
 		line-height: 1.4;
 	}
+
+	a:not(.btn) {
+		text-decoration: none;
+	}
 }
 
 .aucproduct__card-details {
@@ -225,7 +229,7 @@
 }
 
 .aucproduct__card-details-label {
-	flex: 0 0 5em;
+	flex: 0 0 7em;
 	font-weight: 500;
 }
 

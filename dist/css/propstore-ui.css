@@ -19359,18 +19359,21 @@ body.index-index .mymenu,
 body.index-index .auctions-filter,
 body.index-index .srch_sec,
 body.index-index .bodybox,
+body.index-index .smpagination,
 body.lot-details-index #custom-header,
 body.lot-details-index #headsec,
 body.lot-details-index .mymenu,
 body.lot-details-index .auctions-filter,
 body.lot-details-index .srch_sec,
 body.lot-details-index .bodybox,
+body.lot-details-index .smpagination,
 body.auctions-catalog #custom-header,
 body.auctions-catalog #headsec,
 body.auctions-catalog .mymenu,
 body.auctions-catalog .auctions-filter,
 body.auctions-catalog .srch_sec,
-body.auctions-catalog .bodybox {
+body.auctions-catalog .bodybox,
+body.auctions-catalog .smpagination {
   display: none;
 }
 
@@ -19998,6 +20001,10 @@ body.auctions-catalog .bodybox {
   line-height: 1.4;
 }
 
+.aucproduct__card a:not(.btn):not(.btn-large):not(.btn-small):not(.btn-extra-small) {
+  text-decoration: none;
+}
+
 .aucproduct__card-details {
   margin: 1em 0;
 }
@@ -20012,9 +20019,9 @@ body.auctions-catalog .bodybox {
 
 .aucproduct__card-details-label {
   -webkit-box-flex: 0;
-  -webkit-flex: 0 0 5em;
-      -ms-flex: 0 0 5em;
-          flex: 0 0 5em;
+  -webkit-flex: 0 0 7em;
+      -ms-flex: 0 0 7em;
+          flex: 0 0 7em;
   font-weight: 500;
 }
 
@@ -20148,39 +20155,39 @@ body.auctions-catalog .bodybox {
   }
 }
 
-.aucproduct__hero .hero__static-title {
+.auc__hero .hero__static-title {
   font-size: 40px;
 }
 
-.aucproduct__hero .hero__static-date {
+.auc__hero .hero__static-date {
   font-weight: 500;
 }
 
-.aucproduct__hero .hero__static-date .icon {
+.auc__hero .hero__static-date .icon {
   margin: -.25em .25em 0 0;
 }
 
-.aucproduct__hero .hero__btn {
+.auc__hero .hero__btn {
   height: 2.5rem;
   line-height: 2.5rem;
   padding: 0 1rem;
 }
 
-.aucproduct__hero .hero__btn:first-child {
+.auc__hero .hero__btn:first-child {
   margin-right: 1em;
 }
 
 @media only screen and (max-width: 992px) {
-  .aucproduct__hero .hero__btn {
+  .auc__hero .hero__btn {
     margin-top: 1.5rem;
   }
 }
 
 @media only screen and (max-width: 600px) {
-  .aucproduct__hero .hero__static-title {
+  .auc__hero .hero__static-title {
     font-size: 32px;
   }
-  .aucproduct__hero .hero__static-date .icon {
+  .auc__hero .hero__static-date .icon {
     display: none;
   }
 }
