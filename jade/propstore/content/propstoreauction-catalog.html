@@ -1767,10 +1767,10 @@
                                 </div>
                             </div>
                             <div class="card__actions">
-                                <button class="waves-effect waves-light btn" tabindex="0">
+                                <a class="waves-effect waves-light btn aucproduct__card-btn" tabindex="0">
                                     <span class="btn__title">View details</span>
                                     <i class="icon"><svg><use xlink:href="#arrow-right"></use></svg></i>
-                                </button>
+                                </a>
                             </div>
                         </div>
                     </div>
@@ -1868,6 +1868,8 @@
                 $infoRow.find('.aucproduct__card-details-value').html($(info).find('.value').html());
                 $cardItem.find('.aucproduct__card-details').append($infoRow);
             });
+            $cardItem.find('.aucproduct__card-btn').prop('href', $(item).find('.orng').prop('href'));
+
             $('.cards__list').append($cardItem);
         });
 
