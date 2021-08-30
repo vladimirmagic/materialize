@@ -1861,7 +1861,7 @@
             } else if ($(item).find('.ended.unsold').length) {
                 $badge.append('Unsold').show().find('use').attr('xlink:href', '#archive');
             }
-            $('.item-status').remove();
+            $(item).find('.item-status').remove();
             $(item).find('.price-info li').each((k, info) => {
                 $infoRow = $cardDetails.clone();
                 $infoRow.find('.aucproduct__card-details-label').html($(info).find('.title').html());
