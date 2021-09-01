@@ -1,0 +1,57 @@
+.droppable {
+	width: 100%;
+	padding: 3em 0 0;
+	border: 2px dashed $color-grey;
+	text-align: center;
+	transition: all .5s ease;
+
+	&.drop {
+		background: $color-bg;
+	}
+}
+
+.droppable__btn {
+	margin-top: 2em;
+
+	input {
+		position: absolute;
+		z-index: -1;
+	}
+}
+
+.droppable__icon {
+	display: block;
+	width: 100%;
+	height: 44px;
+	margin-bottom: .5em;
+}
+
+.files-preview {
+	width: 100%;
+	padding: 1em 2em 1em;
+}
+
+.files-preview__item {
+	position: relative;
+	display: inline-block;
+	width: 6em;
+	height: 6em;
+	margin: .5em;
+	background-size: contain;
+	background-position: 50% 50%;
+	background-repeat: no-repeat;
+	background-color: $color-base;
+	border-radius: 6px;
+	overflow: hidden;
+}
+
+@media #{$small-and-down} {
+	.files-preview {
+		padding: 1em;
+	}
+
+	.files-preview__item {
+		width: 4em;
+		height: 4em;
+	}	
+}

@@ -1,8 +1,12 @@
 html, body {
     position: relative;
+	height: 100%;
+	min-height: 100%;
 	// overflow-x: hidden; // fix x-scroll after sidenav // breakes sticky(
+	font-family: acumin-pro, sans-serif;
 	font-size: 16px;
 	font-weight: 300;
+	font-style: normal;
 	color: $color-base;
 	letter-spacing: -0.02em;
 }
@@ -14,8 +18,21 @@ body {
 	opacity: 0;
 	transition: opacity .5s ease-in;
 
-	&.loaded {
+	&.loaded,
+	&.unsupported {
 		opacity: 1;
+	}
+
+	&.unsupported {
+		& > * {
+			display: none !important;
+		}
+
+		.unsupported__text {
+			display: block !important;
+			margin: 10% auto;
+			text-align: center;
+		}
 	}
 
 	&.blocked {
@@ -52,6 +69,9 @@ fieldset {
 
 .general {
 	@extend .content;
+	display: flex;
+	align-items: center;
+	height: 100%;
 	text-align: center;
 
 	.h1 {
@@ -62,6 +82,20 @@ fieldset {
 .general__inner {
 	max-width: $w36;
 	margin: 0 auto;
+
+	.general--error & {
+		max-width: $w55;
+
+		.h2 {
+			margin-top: .5em;
+			margin-bottom: .25em;
+		}
+	}
+}
+
+.general-error__code {
+	margin-top: 5em;
+	color: $color-font-grey;
 }
 
 .general__btn {
@@ -91,6 +125,48 @@ hr {
 	&.small {
 		margin: 0.25em 0;
 	}
+}
+
+.block-aware {
+	margin: 1em 0;
+	padding: 1.25em;
+	font-style: italic;
+	color: $color-red;
+	background: $color-bg-red;
+	border-radius: 6px;
+}
+
+.block-aware__label {
+	font-weight: 500;
+}
+
+.divider-or {
+	position: relative;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 80px;
+	color: $color-font-grey;
+	text-align: center;
+
+	&:before {
+		content: '';
+		position: absolute;
+		left: 0;
+		right: 0;
+		top: 50%;
+		height: 1px;
+		background: $color-grey;
+	}
+
+	span {
+		position: relative;
+		display: inline-block;
+		padding: 0 1rem;
+		background: white;
+	}
+
+
 }
 
 @media #{$media-fullhd-up} {

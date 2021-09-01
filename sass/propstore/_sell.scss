@@ -66,6 +66,10 @@
 .sell-cta__img-image {
 	width: 105%;
 	margin: 2.5em 0 0 -4em;
+
+	&.sell-cta__img-image--hat {
+		margin-top: 4em;
+	}
 }
 
 .sell-cta__img-info {
@@ -113,6 +117,10 @@
 
 .sell__valuation-form-title {
 	margin: 3em 0 2em;
+	text-align: center;
+}
+
+.sell__valuation-form-thank {
 	text-align: center;
 }
 
@@ -311,7 +319,7 @@
 
 .sell-offer__expertise {
 	flex: 1 1 33%;
-	padding: 2.5em 1.5em;
+	padding: 2.5em 4em;
 	text-align: center;
 	background: #fff;
 	border-radius: 6px;
@@ -408,7 +416,7 @@
 				border-bottom-right-radius: 140px;
 			}
 			.sell-cta__img-image {
-				margin: 2.55em 0 0 2em;
+				margin: 4em 0 2em 2em;
 			}
 			
 			.sell-cta__img-info {
@@ -426,13 +434,14 @@
 
 	.sell-cta__img {
 		max-width: 100% !important;
-		min-height: 24em;
+		min-height: 0;
 		border-bottom-left-radius: 0;
 		border-top-left-radius: 100px;
 	}
 
 	.sell-cta__img-info {
 		padding-right: 2em;
+		padding-bottom: 1em;
 	}
 
 	.sell-cta__info {
@@ -513,5 +522,17 @@
 		height: 40px;
 		font-size: 16px;
 		border-radius: 40px;
+	}
+
+	.sell-offer__expertise {
+		padding: 2.5em 1.5em;
+	}
+
+	.sell-cta__info {
+		padding-bottom: 2.5em;
+	}
+
+	.sell-cta__img-image {
+		margin-left: -1em;
 	}
 }

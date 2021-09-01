@@ -20,6 +20,7 @@
 @import './propstore/also-like';
 @import './propstore/table';
 @import './propstore/how';
+@import './propstore/droppable';
 
 @import './propstore/home';
 @import './propstore/auctions';
@@ -34,3 +35,9 @@
 @import './propstore/vouchers';
 
 @import './propstore/wordpress';
+
+@import './propstore/propstoreauction-base';
+@import './propstore/propstoreauction';
+@import './propstore/propstoreauction-product';
+@import './propstore/propstoreauction-catalog';
+@import './propstore/propstoreauction-hero';

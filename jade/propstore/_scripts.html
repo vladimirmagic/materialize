@@ -1,20 +1,31 @@
 
 <!--  Scripts-->
-<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-<script src="bin/materialize.js"></script>
-<script src="docs/js/init.js"></script>
 <script>
+	function checkES6() {
+		if (typeof Symbol == "undefined" || typeof document.body.append == "undefined") return false;
+		if (navigator.appVersion.indexOf(' OS 10_') > 0 && navigator.appVersion.indexOf(' OS 10_3') < 0) { // Safari < 10.3
+			return false;
+		}
+    	return true;
+	}
+	window.checkES6 = checkES6();
+	if (!window.checkES6) document.body.className += ' unsupported';
+</script>
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<script defer src="bin/materialize.js"></script>
+<script defer src="docs/js/init.js"></script>
+<script defer>
     const svgSprite = document.createElement('div');
 	svgSprite.id = 'svg-sprite';
 	document.body.append(svgSprite);
-	const loaded = () => document.body.classList.add('loaded');
-	fetch('dist/defs/svg/sprite.defs.svg', { cache: 'force-cache' })
+	const loaded = function() {document.body.classList.add('loaded')};
+	if (typeof fetch != "undefined") fetch('dist/defs/svg/sprite.defs.svg', { cache: 'force-cache' })
 		.then(response => response.text())
 		.then(html => { svgSprite.innerHTML = html; loaded(); })
 		.catch(loaded);
 
 	document.addEventListener('DOMContentLoaded', () => {
-
+		if (!window.checkES6) return;
 		/** CHECKOUT */
 
 		$('.__PrivateStripeElement').attr('style', ' ');
@@ -46,8 +57,9 @@
 		}
 
 		// ERRORS
-		function scrollToError (container = document) {
-			const error = container.querySelector('.error');
+		function scrollToError (container) {
+			container = container || document;
+			const error = container.querySelector('main .error');
 			if (error) error.scrollIntoView({behavior: 'smooth', block: 'center'});
 		}
 		scrollToError();
@@ -66,7 +78,7 @@
 				const address = document.querySelector('.checkout-shipping-address');
 				const shippingRequiredChecked = document.querySelectorAll('.checkout-shipping-required:checked');
 				if (address && shippingRequiredChecked && shippingRequiredChecked.length) { // show address if any part requires shipping
-					let isRequired = 0;
+					var isRequired = 0;
 					shippingRequiredChecked.forEach(input => isRequired += Number(input.value));
 					address.style.display = isRequired ? 'block' : 'none';
 				}
@@ -204,20 +216,60 @@
 		$('#modal-register').modal();
 		$('#modal-signin').modal({ // load form on modal open
             onOpenStart: function (el) {
-				// el.classList.add('sync');
-                // $.post('#')
-				// .done(data => {
-				// 	$('.modal-signin-form').html(data);
-				// 	M.updateTextFields();
-				// })
-				// .fail(data => {
-				// 	$('.modal-signin-form').html(data);
-				// })
-				// .always(data => {
-				// 	$('.modal-signin-form').html(data.responseText);
-				// 	M.updateTextFields();
-				// 	el.classList.remove('sync');
-				// });
+				el.classList.add('sync');
+                $.post('#')
+				.always(data => {
+					$('.modal-signin-form').html(`<div class="modal__title">Sign In</div>
+        <a class="waves-effect waves-light btn btn--facebook modal-register__facebook modal-close">
+            <i class='icon'><svg><use xlink:href="#facebook"></use></svg></i>
+            <span class='btn__title'>Sign in with Facebook</span>
+        </a>
+
+        <div class="input-field input-field--label error">
+            <input type="email" placeholder="Please Enter">
+            <label>Email</label>
+            <div class="input-field__helper">The email you entered is not valid</div>
+        </div>
+
+        <div class="input-field input-field--label">
+            <input type="password" placeholder="Please Enter">
+            <label>Password</label>
+            <div class="input-field__helper">Password is required</div>
+        </div>
+
+        <div class="modal-register__remember">
+            <label class="checkbox__label">
+                <input type="checkbox" name="rememberMe" value="true" id="rememberMe" class="filled-in">
+                <span>Remember me</span>
+            </label>
+        </div>
+
+        <div class="modal-register__forgot">
+            <a class="btn-flat btn--link modal-trigger modal-close" href="#modal-password">Forgot password?</a>
+        </div>
+
+        <button type="submit" class="waves-effect waves-light btn modal-register__submit">
+            <span class='btn__title'>Sign in</span>
+            <i class='icon'><svg><use xlink:href="#arrow-right"></use></svg></i>
+            <div class="preloader-wrapper active">
+                <div class="spinner-layer spinner-white-only">
+                    <div class="circle-clipper left">
+                        <div class="circle"></div>
+                    </div><div class="gap-patch">
+                        <div class="circle"></div>
+                    </div><div class="circle-clipper right">
+                        <div class="circle"></div>
+                    </div>
+                </div>
+            </div>
+        </button>
+
+        <div class="modal-register__switch">
+            Don’t have an account? <a class="modal-trigger modal-close" href="#modal-register">Register</a>
+        </div>`);
+					M.updateTextFields();
+					el.classList.remove('sync');
+				});
             }
         });
 		const modalRegisterForm = document.querySelector('.modal-register-form');
@@ -238,6 +290,9 @@
 			});
 		}
 
+		$('#modal-guest').modal();
+		
+
 		$('#modal-payment-plan').modal({
 			onOpenEnd: () => {
 				$($('.modal-payment-plan__months-buttons input:checked').data('tab')).show();
@@ -254,7 +309,7 @@
             this.classList.add('sync');
             $.post(
                 this.action,
-                $(this).serialize(),
+                $(this).serialize()
             )
                 .done(data => {
                     this.innerHTML = data;
@@ -284,6 +339,11 @@
 						el.classList.remove('sync');
 					});
 			}
+		});
+
+		// FOOTER_SIGNUP
+		$('.footer-signup__form input').on('focus', function () {
+			$('.footer-signup__recaptcha').show();
 		});
 	});
 </script>

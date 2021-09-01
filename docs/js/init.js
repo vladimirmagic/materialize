@@ -54,6 +54,7 @@
 		$('.tooltipped').tooltip();
 		$('select')
 			.not('.disabled')
+			.not('#modal-shipping-quote-country')
 			.formSelect();
 		$('.sidenav').sidenav();
 		$('input.autocomplete:not(#autocomplete-movie):not(#autocomplete-genre)').autocomplete({
@@ -86,7 +87,7 @@ document.addEventListener('DOMContentLoaded', () => {
 	// out.classList.add('out');
 	// document.body.append(out);
 
-	// document.body.classList.add('loaded');
+	document.body.classList.add('loaded');
 
 	function resize () {
 		headerFloat();
@@ -224,6 +225,10 @@ document.addEventListener('DOMContentLoaded', () => {
 	const currency = document.querySelectorAll('.card__price-i');
 	if (currency) M.Dropdown.init(currency, { container: document.body });
 
+	// MARGIN DROPDOWN
+    const margin = document.querySelectorAll('.margin-dropdown');
+    if (margin) M.Dropdown.init(margin, { container: document.body });
+
 	// FILTER
 	function mobileFilterToggle () {
 		const button = document.querySelector('.filters__open-button');
@@ -285,6 +290,8 @@ document.addEventListener('DOMContentLoaded', () => {
 		productThumbnails.forEach(thumbnail => {
 			thumbnail.addEventListener('mousemove', onClickProductThumbnail);
 		});
+
+		$('#modal-shipping-quote-country').formSelect({dropdownOptions: {container: document.body}});
 	}
 
 	// VOUCHER
@@ -322,82 +329,140 @@ document.addEventListener('DOMContentLoaded', () => {
 	});
 
 	// SELL
-	const sellTabsA = document.querySelectorAll('.sell__tab a');
-	const sellTabs = document.querySelectorAll('.sell__tab-content');
-	if (sellTabsA && sellTabsA.length && sellTabs && sellTabs.length) {
-		function showSellTab (e) {
-			let active;
-			if (e) { // click
-				e.preventDefault();
-				active = this.getAttribute('href');
-				window.history.pushState(null, this.innerText, this.href);
-				window.onpopstate = () => showSellTab();
-			} else { // init
-				const hashes = window.location.href.split('#'); // find hash in url
-				if (hashes && hashes.length && hashes.length > 1) {
-					let hash = hashes[1];
-					const query = hash.search(/[^\w]/g);
-					if (query > -1) hash = hash.substr(0, query);
-					active = '#' + hash;
-				} else { // if no hash in url - take first tab
-					const tabActive = document.querySelector('.sell__tab:first-of-type a');
-					if (tabActive) active = tabActive.getAttribute('href');
+    const $sellTabsA = $('.sell__tab a');
+    const $sellTabs = $('.sell__tab-content');
+    if ($sellTabsA.length && $sellTabs.length) {
+        function showSellTab (e) {
+            let active;
+            if (e) { // click
+                e.preventDefault();
+                active = this.getAttribute('href');
+                window.history.pushState(null, this.innerText, this.href);
+                window.onpopstate = () => showSellTab();
+            } else { // init
+                const hashes = window.location.href.split('#'); // find hash in url
+                if (hashes && hashes.length && hashes.length > 1) {
+                    let hash = hashes[1];
+                    const query = hash.search(/[^\w]/g);
+                    if (query > -1) hash = hash.substr(0, query);
+                    active = '#' + hash;
+                } else { // if no hash in url - take first tab
+                    const tabActive = document.querySelector('.sell__tab:first-of-type a');
+                    if (tabActive) active = tabActive.getAttribute('href');
+                }
+            }
+            if (active) {
+                $sellTabs.hide();
+                $(active).show();
+                $('.sell__tab a.active').removeClass('active');
+                $('.sell__tab a[href="' + active + '"]').addClass('active');
+            }
+        }
+        $sellTabsA.on('click', showSellTab);
+        showSellTab();
+
+        const $sellButtonValuation = $('.sell__step-button-valuation');
+        if ($sellButtonValuation.length) {
+            function sellButtonValuationClick () {
+                $valuationTab[0].click();
+                $valuationForm[0].scrollIntoView({behavior: 'smooth', block: 'start'});
+            }
+            const $valuationTab = $('.sell__tab a[href="#valuation"]');
+            const $valuationForm = $('.sell__valuation-form-title');
+            if ($valuationTab.length && $valuationForm.length) {
+                $sellButtonValuation.on('click', sellButtonValuationClick);
+            }
+        }
+
+        const $sellStepButtons = $('.sell__step-button');
+        const $sellSteps = $('.sell__step');
+        if ($sellStepButtons.length && $sellSteps.length) {
+            function sellStepButtonClick () {
+                if (this.dataset && this.dataset.step) {
+                    const step = this.dataset.step;
+                    $sellSteps.hide();
+                    const $stepActive = $('#sell__step-' + step);
+                    if ($stepActive.length) {
+                        $stepActive.show();
+                        if (this.classList.contains('sell__step-button--next')) { // bottom buttons -> scroll up to the step top
+                            $('body').addClass('autoscroll');
+                            $stepActive[0].scrollIntoView ({behavior: 'smooth', block: 'nearest'});
+                            setTimeout(() => {
+                                $('body').removeClass('autoscroll');
+                            }, 500);
+                        }
+                    }
+                    $sellStepButtons.each((index, button) => {
+                        if (button.dataset && button.dataset.step && button.dataset.step <= step) {
+                            $(button).addClass('filled');
+                        } else {
+                            $(button).removeClass('filled');
+                        }
+                    });
+                }
+            }
+            $sellStepButtons.on('click', sellStepButtonClick);
+        }
+
+		const $valuationFormNext = $('.sell__valuation-form-next-button');
+		if ($valuationFormNext.length) {
+			function valuationFormNextClick () {
+				$('.sell__valuation-form-thank').hide();
+				$('.sell__valuation-form-container').show();
+			}
+			$valuationFormNext.on('click', valuationFormNextClick);
+		}
+
+		$droppable = $('.droppable');
+		if ($droppable.length) {
+			$files = $('#files');
+			
+			// tmp
+			// $('.sell-form').on('submit', function (e) {
+			// 	e.preventDefault();
+			// 	console.log($('#files')[0].files);
+			// });
+
+			function renderPreview(file) {
+				const reader = new FileReader();
+				reader.onload = function(e) {
+					the_url = e.target.result;
+					$preview = $('<div class="files-preview__item" style="background-image:url(' + the_url + ')" title="' + file.name + '"/>');
+					$('.files-preview').append($preview);
 				}
+				reader.readAsDataURL(file);
 			}
-			if (active) {
-				sellTabs.forEach(tab => tab.style.display = 'none');
-				const tab = document.querySelector(active);
-				if (tab) tab.style.display = 'block';
-				const tabActive = document.querySelector('.sell__tab a.active');
-				if (tabActive) tabActive.classList.remove('active');
-				const newActive = document.querySelector('.sell__tab a[href="' + active + '"]');
-				if (newActive) newActive.classList.add('active');
-			}
-		}
-		sellTabsA.forEach(a => a.addEventListener('click', showSellTab));
-		showSellTab();
 
-		const sellButtonValuation = document.querySelectorAll('.sell__step-button-valuation');
-		if (sellButtonValuation && sellButtonValuation.length) {
-			function sellButtonValuationClick () {
-				valuationTab.click();
-				valuationForm.scrollIntoView({behavior: 'smooth', block: 'start'});
-			}
-			const valuationTab = document.querySelector('.sell__tab a[href="#valuation"]');
-			const valuationForm = document.querySelector('.sell__valuation-form-title');
-			if (valuationTab && valuationForm) {
-				sellButtonValuation.forEach(button => button.addEventListener('click', sellButtonValuationClick));
-			}
-		}
-
-		const sellStepButtons = document.querySelectorAll('.sell__step-button');
-		const sellSteps = document.querySelectorAll('.sell__step');
-		if (sellStepButtons && sellStepButtons.length && sellSteps && sellSteps.length) {
-			function sellStepButtonClick () {
-				if (this.dataset && this.dataset.step) {
-					const step = this.dataset.step;
-					sellSteps.forEach(step => step.style.display = 'none');
-					const stepActive = document.querySelector('#sell__step-' + step);
-					if (stepActive) {
-						stepActive.style.display = 'block';
-						if (this.classList.contains('sell__step-button--next')) { // bottom buttons -> scroll up to the step top
-							document.body.classList.add('autoscroll');
-							stepActive.scrollIntoView ({behavior: 'smooth', block: 'nearest'});
-							setTimeout(() => {
-								document.body.classList.remove('autoscroll');
-							}, 500);
-						}
-					}
-					sellStepButtons.forEach(button => {
-						if (button.dataset && button.dataset.step && button.dataset.step <= step) {
-							button.classList.add('filled');
-						} else {
-							button.classList.remove('filled');
-						}
+			function renderPreviews(files) {
+				$('.files-preview').html('');
+				if (files && files.length) {
+					const filesArray = Array.prototype.slice.call(files);
+					filesArray.forEach(file => {
+						renderPreview(file);
 					});
 				}
 			}
-			sellStepButtons.forEach(button => button.addEventListener('click', sellStepButtonClick));
+
+			$droppable.on('dragover dragenter', function(e) {
+				e.preventDefault();
+				this.classList.add('drop');
+			});
+
+			$droppable.on('dragleave dragend drop', function(e) {
+				this.classList.remove('drop');
+			});
+
+			$droppable.on('drop', function(e) {
+				e.preventDefault();
+				const dt = (e.originalEvent.target.files && e.originalEvent.target.files.length > 0) ||
+					(e.originalEvent.dataTransfer && e.originalEvent.dataTransfer.files);
+				$files[0].files = dt;
+				setTimeout(() => renderPreviews(dt));
+			});
+
+			$files.on('change', function() {
+				renderPreviews(this.files);
+			});
 		}
-	}
+    }
 });

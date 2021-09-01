@@ -380,9 +380,12 @@
 
       if (val.trim() && this.options.addCustom) {
         let $autocompleteOption = $('<li></li>');
-        $autocompleteOption[0].setAttribute('data-value', 'addcustom' + val);
+        const escape = document.createElement('textarea');
+        escape.textContent = val;
+        const valEscaped = escape.innerHTML;
+        $autocompleteOption[0].setAttribute('data-value', 'addcustom' + valEscaped);
         $autocompleteOption.html(
-          '<span>' + this.options.addCustom + ' <strong>`' + val + '`</strong></span>'
+          '<span>' + this.options.addCustom + ' <strong>`' + valEscaped + '`</strong></span>'
         );
         $(this.container).append($autocompleteOption);
       }

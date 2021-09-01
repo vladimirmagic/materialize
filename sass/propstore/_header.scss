@@ -278,6 +278,8 @@ header {
 	transform: scaleY(0);
 	transition: all .01s ease-in-out;
 	transition-delay: .1s;
+	backface-visibility: hidden;
+	will-change: transform;
 
 	header:not(.sticky-out) .header__menu-link.active + & {
 		transform: scaleY(1);
@@ -288,7 +290,7 @@ header {
 
 		.header__menu-level-block > * {
 			opacity: 1;
-			transform: translateY(0);
+			transform: translate3d(0, 0, 0);
 			transition-delay: .1s;
 		}
 	}
@@ -299,6 +301,11 @@ header {
 	padding-right: 0;
 	display: flex;
 	justify-content: space-between;
+	max-height: calc(100vh - #{$header-settings-height + $header-main-sticky-height});
+
+	header.sticky-in & {
+		max-height: calc(100vh - #{$header-main-sticky-height});
+	}
 
 	.header__menu-level1--sell & {
 		@extend .content;
@@ -307,8 +314,10 @@ header {
 
 .header__menu-level-block > * {
 	opacity: 0;
-	transform: translateY(-24px);
+	transform: translate3d(0, -24px, 0);
 	transition: all .1s ease-in-out;
+	backface-visibility: hidden;
+	will-change: transform;
 }
 
 .header__menu-level-block--1 {
@@ -329,6 +338,7 @@ header {
 	flex: 1 1 60%;
 	padding: 60px 64px 64px;
 	background: $color-bg;
+	overflow-y: auto;
 }
 
 .header__menu-level-block--4 {
@@ -342,7 +352,10 @@ header {
 
 .header__menu-level-title {
 	display: block;
+	height: 3.5rem;
+	line-height: 3.5rem;
 	margin-bottom: 12px;
+	padding-left: 8px;
 	font-size: 20px;
 	letter-spacing: 0;
 	font-weight: 400;
@@ -360,7 +373,10 @@ header {
 }
 
 .header__menu-block3-title {
+	height: 3.5rem;
+	line-height: 3.5rem;
 	margin-bottom: 16px;
+	padding-left: 8px;
 	font-size: 20px;
 	letter-spacing: 0;
 	font-weight: 400;

@@ -1,23 +1,27 @@
+.modal-container {
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  display: none;
+  justify-content: center;
+  align-items: center;
+}
+
 .modal {
   &:focus {
     outline: none;
   }
 
-  display: none;
-  position: fixed;
-  left: 0;
-  top: 50%;
-  right: 0;
-  background-color: #fff;
   padding: 0;
   max-height: 100vh;
   width: 55%;
-  margin: auto;
   overflow-y: auto;
-
+  background-color: #fff;
   border-radius: 6px;
   box-shadow: $shadow-base;
-  will-change: top, opacity;
 
   @media #{$medium-and-down} {
    width: 80%;
@@ -216,9 +220,10 @@
 
 
 @media #{$small-and-down} {
+  .modal-container {
+    align-items: flex-end;
+  }
 	.modal {
-		top: unset;
-		bottom: 0;
 		width: 100%;
 		max-width: 100% !important;
 		max-height: 90vh;

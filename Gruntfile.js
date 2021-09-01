@@ -383,10 +383,15 @@
             'account-favorites.html': 'jade/propstore/account-favorites.jade',
             'account-coa.html': 'jade/propstore/account-coa.jade',
             'general.html': 'jade/propstore/general.jade',
+            'error.html': 'jade/propstore/error.jade',
+            'password.html': 'jade/propstore/password.jade',
             'payment-plans.html': 'jade/propstore/payment-plans.jade',
             'sell.html': 'jade/propstore/sell.jade',
             'gift-vouchers.html': 'jade/propstore/gift-vouchers.jade',
             'voucher.html': 'jade/propstore/voucher.jade',
+            'propstoreauction.html': 'jade/propstore/propstoreauction.jade',
+            'propstoreauction-product.html': 'jade/propstore/propstoreauction-product.jade',
+            'propstoreauction-catalog.html': 'jade/propstore/propstoreauction-catalog.jade',
           }
         }
       },

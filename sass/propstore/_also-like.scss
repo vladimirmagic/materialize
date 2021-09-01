@@ -4,6 +4,57 @@
 	background: $color-bg;
 }
 
+.also-like__arrows {
+	position: absolute;
+	left: 0;
+	top: $card-height / 2;
+	right: 0;
+}
+
+a:not(.btn).also-like__arrow {
+	position: absolute;
+	top: 0;
+	width: 56px;
+	height: 56px;
+	transform: translateY(-50%);
+	background-color: #fff;
+	border-radius: 56px;
+	cursor: pointer;
+
+	&:before,
+	&:focus:before {
+		content: '';
+		position: absolute;
+		left: 0;
+		right: 0;
+		top: 0;
+		bottom: 0;
+		background-position: 60% 50%;
+		background-size: 24px 24px;
+		background-repeat: no-repeat;
+		background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 14'%3E%3Cpath fill-rule='evenodd' clip-rule='evenodd' d='M.47.47c-.3.3-.3.77 0 1.06L5.94 7 .47 12.47a.75.75 0 101.06 1.06l6-6c.3-.3.3-.77 0-1.06l-6-6a.75.75 0 00-1.06 0z' fill='%232D2E41'/%3E%3C/svg%3E%0A");
+		background-color: transparent;
+		opacity: .3;
+		transition: all .3s ease-in-out;
+	}
+
+	&:hover:before {
+		opacity: 1;
+	}
+
+	&.also-like__arrow--left {
+		left: -4vw;
+
+		&:before {
+			transform: rotate(180deg);
+		}
+	}
+
+	&.also-like__arrow--right {
+		right: -4vw;
+	}
+}
+
 @media #{$large-and-down} {
 	.also-like {
 		padding-top: 80px;

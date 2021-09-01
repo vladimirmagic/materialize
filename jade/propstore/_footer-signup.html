@@ -14,20 +14,28 @@
                 <input type="hidden" />
                 <span>Upcoming auction updates</span>
             </label>
-            <label class="checkbox__label">
+            <label class="checkbox__label error">
                 <input type="checkbox" class="filled-in" checked="checked" />
                 <input type="hidden" />
                 <span>I agree to the <a href="#">Privacy Policy</a> *</span>
+                <div class="input-field__helper">You have to agree</div>
             </label>
         </fieldset>
-        <div class="footer-signup__input input-field">
+        <fieldset class="footer-signup__recaptcha" style="display: none;">
+            <div class="input-field g-recaptcha-field error">
+                <div id="g-recaptcha" class="g-recaptcha" name="code"></div>
+                <div class="input-field__helper">Please confirm</div>
+            </div>
+        </fieldset>
+        <div class="footer-signup__input input-field error">
             <input id="footer-signup__name" type="text">
             <label for="footer-signup__name">Name</label>
+            <div class="input-field__helper">You name is invalid</div>
         </div>
-        <div class="footer-signup__input input-field">
+        <div class="footer-signup__input input-field error">
             <input id="footer-signup__email" type="email">
             <label for="footer-signup__email">Email</label>
-            <span class="helper-text" data-error="Invalid email" data-success="Valid email"></span>
+            <div class="input-field__helper">Invalid email</div>
         </div>
         <button type="submit" class="waves-effect waves-light btn footer-signup__submit">
             <span class='btn__title'>Sign up</span>

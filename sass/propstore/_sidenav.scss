@@ -146,6 +146,9 @@ $main-link-height: 72px;
 }
 
 .sidenav__menu-level-title {
+	height: 3.5rem;
+	line-height: 3.5rem;
+	padding-left: 1.5rem;
 	font-size: 20px;
 	letter-spacing: 0;
 	font-weight: 400;
@@ -177,6 +180,7 @@ $main-link-height: 72px;
 .sidenav__menu-block-link,
 .sidenav .menu-auction-link {
 	@extend .sidenav__menu-underline;
+	width: 100%;
 	height: $main-link-height;
 	line-height: $main-link-height;
 	font-size: 16px;
@@ -250,7 +254,13 @@ $main-link-height: 72px;
 }
 
 @media #{$large-and-up} {
-	.sidenav {
+	.sidenav:not(.sidenav-filter) {
+		display: none;
+	}
+}
+
+@media #{$extra-large-and-up} {
+	.sidenav-filter {
 		display: none;
 	}
 }

@@ -1354,7 +1354,7 @@ M.checkPossibleAlignments = function (el, container, bounding, offset) {
   }
 
   // Check for container and viewport for Bottom
-  canAlign.spaceOnTop = !containerAllowsOverflow ? scrolledYBottomEdge - (bounding.height - offset) : elOffsetRect.bottom - (bounding.height + offset);
+  canAlign.spaceOnTop = !containerAllowsOverflow ? scrolledYBottomEdge - (bounding.height + offset) : elOffsetRect.bottom - (bounding.height + offset);
   if (canAlign.spaceOnTop < 0) {
     canAlign.bottom = false;
   }
@@ -2964,6 +2964,13 @@ $jscomp.polyfill = function (e, r, p, m) {
         _this13.$el.append(_this13.$close);
       }
 
+      _this13.$container = _this13.$el.closest('.modal-container');
+      if (!_this13.$container.length) {
+        _this13.$container = $('<div class="modal-container"/>');
+        _this13.$container.insertAfter(_this13.$el);
+        _this13.$container.append(_this13.$el);
+      }
+
       Modal._count++;
       _this13._setupEventHandlers();
       return _this13;
@@ -3098,6 +3105,7 @@ $jscomp.polyfill = function (e, r, p, m) {
         var _this14 = this;
 
         // Set initial styles
+        this.$container.css('display', 'flex');
         $.extend(this.el.style, {
           display: 'block',
           opacity: 0
@@ -3139,15 +3147,13 @@ $jscomp.polyfill = function (e, r, p, m) {
 
           // Normal modal animation
         } else {
-          var animOptions = window.innerWidth <= 600 ? {
-            translateY: ['5%', '0']
-          } : {
+          var animOptions = window.innerWidth <= 600 ? {} : {
             scaleX: [0.8, 1],
-            scaleY: [0.8, 1],
-            translateY: ['-45%', '-50%']
+            scaleY: [0.8, 1]
           };
           $.extend(enterAnimOptions, animOptions, {
-            opacity: 1
+            opacity: 1,
+            translateY: ['5%', '0']
           });
           anim(enterAnimOptions);
         }
@@ -3178,6 +3184,7 @@ $jscomp.polyfill = function (e, r, p, m) {
           // Handle modal ready callback
           complete: function () {
             _this15.el.style.display = 'none';
+            _this15.$container.css('display', 'none');
             _this15.$overlay.remove();
 
             // Call onCloseEnd callback
@@ -6398,8 +6405,11 @@ $jscomp.polyfill = function (e, r, p, m) {
 
         if (val.trim() && this.options.addCustom) {
           var $autocompleteOption = $('<li></li>');
-          $autocompleteOption[0].setAttribute('data-value', 'addcustom' + val);
-          $autocompleteOption.html('<span>' + this.options.addCustom + ' <strong>`' + val + '`</strong></span>');
+          var _escape = document.createElement('textarea');
+          _escape.textContent = val;
+          var valEscaped = _escape.innerHTML;
+          $autocompleteOption[0].setAttribute('data-value', 'addcustom' + valEscaped);
+          $autocompleteOption.html('<span>' + this.options.addCustom + ' <strong>`' + valEscaped + '`</strong></span>');
           $(this.container).append($autocompleteOption);
         }
 
@@ -6596,12 +6606,16 @@ $jscomp.polyfill = function (e, r, p, m) {
     var fontWeight = $textarea.css('font-weight');
     var fontSize = $textarea.css('font-size');
     var lineHeight = $textarea.css('line-height');
+    var letterSpacing = $textarea.css('letter-spacing');
 
     // Firefox can't handle padding shorthand.
     var paddingTop = $textarea.css('padding-top');
     var paddingRight = $textarea.css('padding-right');
     var paddingBottom = $textarea.css('padding-bottom');
     var paddingLeft = $textarea.css('padding-left');
+
+    // Check border width for hiddenDiv
+    var border = $textarea.css('border');
 
     if (fontSize) {
       hiddenDiv.css('font-size', fontSize);
@@ -6615,6 +6629,9 @@ $jscomp.polyfill = function (e, r, p, m) {
     if (lineHeight) {
       hiddenDiv.css('line-height', lineHeight);
     }
+    if (letterSpacing) {
+      hiddenDiv.css('letter-spacing', letterSpacing);
+    }
     if (paddingTop) {
       hiddenDiv.css('padding-top', paddingTop);
     }
@@ -6626,6 +6643,9 @@ $jscomp.polyfill = function (e, r, p, m) {
     }
     if (paddingLeft) {
       hiddenDiv.css('padding-left', paddingLeft);
+    }
+    if (border) {
+      hiddenDiv.css('border', border);
     }
 
     // Set original-height, if none
