@@ -82,6 +82,13 @@ a.card-auction:not(.btn) { // fix a
 	}
 }
 
+@media #{$breakpoint-pre-tablet} {
+    .card-auction {
+		width: calc(33.333% * 2 - #{$card-margin-m});
+		min-width: calc(33.333% * 2 - #{$card-margin-m});
+    }
+}
+
 @media #{$large-and-down} {
 	.card-auction {
 		border-radius: 100px 6px 6px 6px;
