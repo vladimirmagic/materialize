@@ -404,14 +404,14 @@
                         $(this).html(content);
                     }
                 });
-                $('.collapsible-body').each(function() {
+                $('.faq__collapsible .collapsible-body').each(function() {
                     if(searchValue.length > 1){
                         const content = $(this).text().replace(customFilter, replacedString);
                         $(this).html(content);
                     }
                 });
             }
-            
+
             function find(withCategory = false) {
                 const results = [];
                 const search = $('.input-field--faq-search input').val().toLowerCase();
