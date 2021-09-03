@@ -6785,11 +6785,16 @@ textarea.materialize-textarea:focus-within {
   display: none;
 }
 
-.input-field--filled.input-field--select .input-field__clean .icon {
+.input-field.input-field--filled .input-field__clean .icon svg {
   background: #fff;
+  border-radius: 50%;
 }
 
-.input-field--select:not(.input-field--filled) input {
+.input-field.input-field--filled .input-field__clean:hover .icon svg {
+  background: #f2f2f2;
+}
+
+.input-field.input-field--filled .input-field__clean .icon svg .input-field--select:not(.input-field--filled) input {
   color: #8F8F8F;
 }
 
@@ -12733,6 +12738,13 @@ a.card-auction:not(.btn):not(.btn-large):not(.btn-small):not(.btn-extra-small):b
   }
 }
 
+@media only screen and (min-width: 993px) and (max-width: 1023px) {
+  .card-auction {
+    width: calc(33.333% * 2 - 16px);
+    min-width: calc(33.333% * 2 - 16px);
+  }
+}
+
 @media only screen and (max-width: 1200px) {
   .card-auction {
     border-radius: 100px 6px 6px 6px;
@@ -12847,6 +12859,15 @@ a.card-auction:not(.btn):not(.btn-large):not(.btn-small):not(.btn-extra-small):b
 @media only screen and (max-width: 1304px) {
   .cards__inner {
     max-width: 960px;
+  }
+}
+
+@media only screen and (min-width: 993px) and (max-width: 1023px) {
+  .cards .card, .cards-blog .card, .cards .card-blog, .cards-blog .card-blog {
+    width: 33.333%;
+    max-width: calc(33.333% - 16px);
+    min-width: 0;
+    height: 550px;
   }
 }
 
@@ -15762,7 +15783,7 @@ tbody .tr:last-child .td {
   display: -ms-flexbox;
   display: flex;
   text-decoration: none;
-  max-height: 4.5em;
+  max-height: 4.25em;
   padding: 19px;
   margin: 0;
   text-align: left;
@@ -17371,6 +17392,23 @@ a.bag__item:not(.btn):not(.btn-large):not(.btn-small):not(.btn-extra-small):befo
   .order__review-payment-button .btn, .order__review-payment-button .btn-large, .order__review-payment-button .btn-small, .order__review-payment-button .btn-extra-small {
     width: 100%;
     padding: 0 8px;
+  }
+  .order__form-row.order__form-row--file .input-field {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: column;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+  .order__form-row.order__form-row--file .input-field .file-path-wrapper {
+    margin-top: 8px;
+    margin-left: 0;
+  }
+  .order__item-location {
+    -webkit-box-flex: 0;
+    -webkit-flex: 0 0 40px;
+        -ms-flex: 0 0 40px;
+            flex: 0 0 40px;
   }
 }
 
