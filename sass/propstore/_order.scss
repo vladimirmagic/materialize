@@ -1117,4 +1117,20 @@
 			padding: 0 8px;
 		}
 	}
+    
+    .order__form-row {
+        &.order__form-row--file {
+            .input-field {
+                flex-direction: column;
+                .file-path-wrapper {
+                    margin-top: 8px;
+                    margin-left: 0;
+                }
+            }
+        }
+    }
+    
+    .order__item-location {
+        flex: 0 0 40px;
+    }
 }

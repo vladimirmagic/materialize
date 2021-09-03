@@ -302,6 +302,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 	$('.modal-gallery').modal({
 		opacity: .75,
+        dismissible: true,
 		onCloseStart: (el) => {
 			const carouselElement = el.querySelector('.modal-gallery__carousel');
 			if (carouselElement) {

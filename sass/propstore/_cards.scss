@@ -88,6 +88,19 @@
 	}
 }
 
+
+@media #{$breakpoint-pre-tablet} {
+	.cards {
+		.card {
+			width: 33.333%;
+			max-width: calc(33.333% - #{$card-margin-m});
+			min-width: 0;
+			height: $card-height-m;
+		}
+    }
+}
+
+
 @media #{$large-and-down} {
 	.cards {
 		padding-left: 40px;

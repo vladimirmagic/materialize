@@ -476,13 +476,21 @@ textarea {
   }
 }
 
-.input-field--filled.input-field--select {
+.input-field.input-field--filled {
   .input-field__clean {
-    .icon {
-       background: #fff;
+    .icon svg {
+      background: #fff;
+      border-radius: 50%;
+    }
+    &:hover {
+      .icon svg {
+        background: #f2f2f2;
+      }
     }
   }
 }
+
+.input-field.input-field--filled .input-field__clean .icon svg
 
 .input-field--select:not(.input-field--filled) {
   input {

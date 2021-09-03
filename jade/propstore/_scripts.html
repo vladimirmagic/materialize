@@ -350,23 +350,22 @@
 </script>
 
 <!-- Click for Blog listing categories on cards -->
-<script>
-    jQuery(document).ready(() => {
-        $('.card-blog').on('click', function(event) {
-            const fakeUrl = $(event.target).data('href');
-            if(fakeUrl) event.preventDefault();
-            window.location.href = fakeUrl;
-        });
-    });
-</script>
 <!-- Click for Blog listing menu categories -->
 <script>
     jQuery(document).ready(() => {
-		// это только для блога
-        // $('.filters__select-category select').on('change', function(event) {
-        //     const link = event.target.value;
-        //     window.location.href = link;
-        // });
+        if ($('.wp.blog').length || $('.wp.archive').length) {
+            $('.card-blog').on('click', function(event) {
+                const fakeUrl = $(event.target).data('href');
+                if (fakeUrl) {
+                    event.preventDefault();
+                    window.location.href = fakeUrl;
+                }
+            });
+
+            $('.blog .filters__select-category select').on('change', function(event) {
+                window.location.href = event.target.value;
+            });
+        }
     });
 </script>
 <!-- Live search for FAQs -->
@@ -384,6 +383,7 @@
         $('.filters__menu-category').on('click', function(event) {
             $('.filters__menu-category').removeClass('active');
             $(this).addClass('active');
+            $('.faq__collapsible li.active .collapsible-header').click();
             $('.filters__select-category select').val($(this).data('category'));
             changeCategory($(this).data('category'));
         });
@@ -391,56 +391,78 @@
         $('.filters__select-category select').on('change', function(event) {
             changeCategory($(this).val());
         });
-
+        
         try {
-            var debounceTimer = null; 
-            function Search(event) {
-                if (event.key === 'Enter') {
-                    $('.faq__search-suggester').addClass('faq__search-suggester--init');
-                    return;
-                }
-                
-                clearTimeout(debounceTimer);
-                debounceTimer = setTimeout(function(){
-                    var searchValue = $('.input-field--faq-search input').val();
-                    var customFilter = new RegExp(searchValue, 'ig');
-                    var replacedString = "<span class='faq__highlight'>$&</span>";
-                    $('.faq__content').find('.faq__highlight').contents().unwrap();
-                    
-                    $('.faq__collapsible-header-text').each(function() {
-                        if(searchValue.length > 1){
-                            const content = $(this).text().replace(customFilter, replacedString);
-                            $(this).html(content);
-                        }
-                    });
-                    
-                    $('.collapsible-body').each(function() {
-                        if(searchValue.length > 1){
-                            const content = $(this).text().replace(customFilter, replacedString);
-                            $(this).html(content);
-                        }
-                    });
-                }, 300);
-                
-                $('.faq__search-suggester').removeClass('faq__search-suggester--init');
-                
+            function highlight() {
+                var searchValue = $('.input-field--faq-search input').val();
+                searchValue.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+                var customFilter = new RegExp(searchValue, 'ig');
+                var replacedString = "<span class='faq__highlight'>$&</span>";
+                $('.faq__content').find('.faq__highlight').contents().unwrap();
+                $('.faq__collapsible-header-text').each(function() {
+                    if(searchValue.length > 1){
+                        const content = $(this).text().replace(customFilter, replacedString);
+                        $(this).html(content);
+                    }
+                });
+                $('.faq__collapsible .collapsible-body').each(function() {
+                    if(searchValue.length > 1){
+                        const content = $(this).text().replace(customFilter, replacedString);
+                        $(this).html(content);
+                    }
+                });
+            }
+
+            function find(withCategory = false) {
                 const results = [];
-                const search = event.target.value.toLowerCase();
+                const search = $('.input-field--faq-search input').val().toLowerCase();
                 const category = $('.filters__select-category select').val();
                 $('.faq__collapsible-header').each((idx, el) => {
                     const headerString = $(el).text();
                     const bodyString = $('.faq__collapsible-body').eq(idx).text();
-                    const $parentEl = $(el).closest('.faq__item');
-                    
-                    const isCategory = category == 0 || $parentEl.hasClass('category-' + category);
+
                     const isMatch = bodyString.toLowerCase().includes(search) || headerString.toLowerCase().includes(search);
-                    const isShow = isCategory && isMatch;
-                    
-                    $parentEl.toggle(isShow);
-                    if (isShow && search) {
-                        results.push({idx, headerString});
+					
+					const $parentEl = $(el).closest('.faq__item');
+					const itemCatClass = $parentEl.attr('class').split(/\s+/).find(className => ~className.indexOf('category'));
+
+					if (withCategory || search == '') {
+						const isCategory = category == 0 || $parentEl.hasClass('category-' + category);
+						const isShow = isCategory && isMatch;
+						$parentEl.toggle(isShow);
+					}
+
+                    if (isMatch && search) {
+                        results.push({idx, headerString, itemCatClass});
                     }
                 });
+				if (search == '') {
+					highlight();
+                    $('.faq__collapsible li.active .collapsible-header').click();
+				}
+                return results;
+            }
+
+			function onEnter(event) {
+				$('.filters__menu-categories').find(`button[data-category=0]`).click();
+				const results = find(true);
+				highlight();
+			}
+            
+            $('.input-field--faq-search .input-field__button').on('click', function(event) {
+				$('.filters__menu-categories').find(`button[data-category=0]`).click();
+				const results = find(true);
+				highlight();
+            });
+
+            function Search(event) {
+                if (event.key === 'Enter') return onEnter(event);
+                
+                var searchValue = $('.input-field--faq-search input').val();
+                $('.faq__search-suggester').removeClass('faq__search-suggester--init');
+                
+                const results = find();
+                const search = event.target.value.toLowerCase();
                 
                 $('.faq__search-suggester').text('');
                 results.forEach((suggest) => {
@@ -461,13 +483,21 @@
             $('.faq__search-suggester').on('click', (event) => {
                 const target = event.target;
                 const linkData = $(target).closest('a').data();
-                
-                $('.faq__collapsible li.active .collapsible-header').click();
-                $('.faq__collapsible li .faq__collapsible-header').get(linkData.idx).click();
+                highlight();
+				const suggesterCategory = linkData.itemCatClass.replace('category-', '');
+
+				$('.filters__select-category select').val(suggesterCategory);
+				$('.filters__menu-category[data-category="' + suggesterCategory + '"]').click();
 
                 setTimeout(function() {
-                    $('.faq__collapsible li').get(linkData.idx).scrollIntoView({behavior: 'smooth'});
+                     $('.faq__collapsible li.active .collapsible-header').click();
+                     $('.faq__collapsible li .faq__collapsible-header').get(linkData.idx).click();
                 }, 300);
+                
+
+                setTimeout(function() {
+                     $('.faq__collapsible li').get(linkData.idx).scrollIntoView({behavior: 'smooth'});
+                }, 600);
 
             });
 
