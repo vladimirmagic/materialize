@@ -201,6 +201,12 @@ a.bag__item:not(.btn) { // fix a
 	}
 }
 
+#modal-bag-register {
+	.modal__title {
+		font-size: 1.25rem;
+	}
+}
+
 .order__summary-total-note {
 	margin-top: .5em;
 	margin-bottom: 0;
