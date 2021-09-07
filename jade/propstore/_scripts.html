@@ -444,12 +444,16 @@
 
 			function onEnter(event) {
 				$('.filters__menu-categories').find(`button[data-category=0]`).click();
+				//$('.filters__select-category select').val('0').prop('selected', true);                
+                //$('.filters__select-category select').val().click();
 				const results = find(true);
 				highlight();
 			}
             
             $('.input-field--faq-search .input-field__button').on('click', function(event) {
 				$('.filters__menu-categories').find(`button[data-category=0]`).click();
+                //$('.filters__select-category select').val('0').prop('selected', true);
+                //$('.filters__select-category select').val().click();
 				const results = find(true);
 				highlight();
             });
@@ -484,8 +488,9 @@
                 const linkData = $(target).closest('a').data();
                 highlight();
 				const suggesterCategory = linkData.itemCatClass.replace('category-', '');
-
-				$('.filters__select-category select').val(suggesterCategory);
+				const suggesterCategoryName = $('.filters__select-category select').val(suggesterCategory);
+                $('.filters__select-category select').val(suggesterCategory);
+                $('.filters__select-category .select-dropdown').trigger('click');
 				$('.filters__menu-category[data-category="' + suggesterCategory + '"]').click();
 
                 setTimeout(function() {
