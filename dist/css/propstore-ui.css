@@ -15783,7 +15783,7 @@ tbody .tr:last-child .td {
   display: -ms-flexbox;
   display: flex;
   text-decoration: none;
-  max-height: 4.5em;
+  max-height: 4.25em;
   padding: 19px;
   margin: 0;
   text-align: left;
@@ -16028,6 +16028,10 @@ a.bag__item:not(.btn):not(.btn-large):not(.btn-small):not(.btn-extra-small):befo
 .order__summary .bag__price-approx {
   display: block;
   text-transform: none;
+}
+
+#modal-bag-register .modal__title {
+  font-size: 1.25rem;
 }
 
 .order__summary-total-note {
