@@ -489,7 +489,6 @@
                 const linkData = $(target).closest('a').data();
                 highlight();
 				const suggesterCategory = linkData.itemCatClass.replace('category-', '');
-				const suggesterCategoryName = $('.filters__select-category select').val(suggesterCategory);
                 $('.filters__select-category select').val(suggesterCategory);
                 $('.filters__select-category .select-dropdown').trigger('click');
 				$('.filters__menu-category[data-category="' + suggesterCategory + '"]').click();
