@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', () => {
 	svgSprite.id = 'svg-sprite';
 	document.body.append(svgSprite);
 	const loaded = function() {document.body.classList.add('loaded')};
-	if (typeof fetch != "undefined") fetch('http://localhost:8000/dist/defs/svg/sprite.defs.svg', { cache: 'force-cache' })
+	if (typeof fetch != "undefined") fetch('https://propstore-ui.netlify.app/dist/defs/svg/sprite.defs.svg', { cache: 'force-cache' })
 		.then(response => response.text())
 		.then(html => { svgSprite.innerHTML = html; loaded(); })
 		.catch(loaded);
