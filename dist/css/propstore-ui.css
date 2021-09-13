@@ -20136,7 +20136,7 @@ body.auctions-catalog .smpagination {
 }
 
 @media only screen and (min-width: 993px) {
-  .auccatalog__search-panel .collapsible-li {
+  .auccatalog__search-panel .collapsible-header {
     pointer-events: none;
   }
   .auccatalog__search-panel .collapsible-header .icon {
