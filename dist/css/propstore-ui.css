@@ -5748,7 +5748,7 @@ body.keyboard-focused .dropdown-content li:focus {
 }
 
 .modal__title {
-  margin-bottom: 40px;
+  margin-bottom: 32px;
   font-size: 28px;
   font-weight: 400;
 }
@@ -9842,6 +9842,10 @@ header ~ main {
   margin-bottom: 1em;
 }
 
+.modal-register .input-field input:not(.browser-default) {
+  height: 3.25rem;
+}
+
 .modal-register .input-field + .input-field {
   margin-top: 2em;
 }
@@ -9908,7 +9912,7 @@ header ~ main {
 }
 
 .modal-register__facebook {
-  margin-bottom: 2em;
+  margin-bottom: 1.5em;
 }
 
 .modal-register__terms {
@@ -9918,14 +9922,18 @@ header ~ main {
 }
 
 .modal-register__forgot {
-  margin-top: 2em;
-  margin-bottom: 3em;
+  margin-top: 1.5em;
+  margin-bottom: 2.5em;
 }
 
 .modal-register__switch {
   margin-top: 2em;
-  margin-bottom: 2em;
+  margin-bottom: 1em;
   font-size: 16px;
+}
+
+.modal-register__switch + .modal-register__switch {
+  margin-top: 1.5rem;
 }
 
 .modal-password-form.modal-content {
@@ -10327,7 +10335,7 @@ header .menu-auction-link .icon {
 
 .modal-bag .modal__title {
   margin-top: -48px;
-  margin-bottom: 1.5rem;
+  margin-bottom: .5rem;
 }
 
 .modal-bag .modal-content {
@@ -20136,7 +20144,7 @@ body.auctions-catalog .smpagination {
 }
 
 @media only screen and (min-width: 993px) {
-  .auccatalog__search-panel .collapsible-li {
+  .auccatalog__search-panel .collapsible-header {
     pointer-events: none;
   }
   .auccatalog__search-panel .collapsible-header .icon {

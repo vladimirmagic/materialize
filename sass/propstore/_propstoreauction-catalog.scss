@@ -303,11 +303,9 @@
 
 @media #{$large-and-up} {
 	.auccatalog__search-panel {
-		.collapsible-li {
-			pointer-events: none;
-		}
-	
 		.collapsible-header {
+			pointer-events: none;
+
 			.icon {display:
 				none;
 			}
