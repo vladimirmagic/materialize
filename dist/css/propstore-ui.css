@@ -9842,10 +9842,6 @@ header ~ main {
   margin-bottom: 1em;
 }
 
-.modal-register .input-field input:not(.browser-default) {
-  height: 3.25rem;
-}
-
 .modal-register .input-field + .input-field {
   margin-top: 2em;
 }
