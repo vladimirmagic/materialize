@@ -9842,10 +9842,6 @@ header ~ main {
   margin-bottom: 1em;
 }
 
-.modal-register .input-field input:not(.browser-default) {
-  height: 3.25rem;
-}
-
 .modal-register .input-field + .input-field {
   margin-top: 2em;
 }
@@ -16036,10 +16032,6 @@ a.bag__item:not(.btn):not(.btn-large):not(.btn-small):not(.btn-extra-small):befo
 .order__summary .bag__price-approx {
   display: block;
   text-transform: none;
-}
-
-#modal-bag-register .modal__title {
-  font-size: 1.25rem;
 }
 
 .order__summary-total-note {

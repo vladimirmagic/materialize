@@ -410,18 +410,13 @@
         <a class="modal-close btn-flat btn--icon"><i class='icon'><svg><use xlink:href="#close"></use></svg></i></a>
     </div>
     <form class="modal-content modal-bag-register-form" action="/ajax/xz.action">
-        <div class="modal__title">Please 
-            <a class="modal-trigger modal-close" href="#modal-signin">sign in</a>
-            or sign up for a Propstore account for the best experience.
-        </div>
-        
-        
+        <div class="modal__title">Sign In</div>
         <a class="waves-effect waves-light btn btn--facebook modal-register__facebook modal-close">
             <i class='icon'><svg><use xlink:href="#facebook"></use></svg></i>
-            <span class='btn__title'>Register with Facebook</span>
+            <span class='btn__title'>Sign in with Facebook</span>
         </a>
 
-        <div class="input-field input-field--label">
+        <div class="input-field input-field--label error1">
             <input type="email" placeholder="Please Enter">
             <label>Email</label>
             <div class="input-field__helper">The email you entered is not valid</div>
@@ -433,35 +428,35 @@
             <div class="input-field__helper">Password is required</div>
         </div>
 
-        <div class="input-field input-field--label">
-            <input type="password" placeholder="Please Enter">
-            <label>Confirm Password</label>
-            <div class="input-field__helper">Confirm Password is required</div>
+        <div class="modal-register__remember">
+            <label class="checkbox__label">
+                <input type="checkbox" name="rememberMe" value="true" id="rememberMe" class="filled-in">
+                <span>Remember me</span>
+            </label>
         </div>
 
-        <div class="input-field input-field--label">
-            <input type="text" placeholder="Please Enter">
-            <label>Full name</label>
-            <div class="input-field__helper">The full name you entered is not valid</div>
-        </div>
-
-        <div class="modal-register__terms">
-            By signing up, you agree to our <a href="#terms">Terms of use</a> and <a href="#policy">Privacy Policy</a>
-        </div>
-
-        <div class="input-field g-recaptcha-field">
-            <div id="g-recaptcha" class="g-recaptcha" name="code"></div>
-            <div class="input-field__helper">Please confirm</div>
+        <div class="modal-register__forgot">
+            <a class="btn-flat btn--link modal-trigger modal-close" href="#modal-password">Forgot password?</a>
         </div>
 
         <button type="submit" class="waves-effect waves-light btn modal-register__submit">
-            <span class='btn__title'>Register</span>
+            <span class='btn__title'>Sign in</span>
             <i class='icon'><svg><use xlink:href="#arrow-right"></use></svg></i>
-            <div class="preloader-wrapper active"><div class="spinner-layer spinner-white-only"><div class="circle-clipper left"><div class="circle"></div></div><div class="gap-patch"><div class="circle"></div></div><div class="circle-clipper right"><div class="circle"></div></div></div></div>
+            <div class="preloader-wrapper active">
+                <div class="spinner-layer spinner-white-only">
+                    <div class="circle-clipper left">
+                        <div class="circle"></div>
+                    </div><div class="gap-patch">
+                        <div class="circle"></div>
+                    </div><div class="circle-clipper right">
+                        <div class="circle"></div>
+                    </div>
+                </div>
+            </div>
         </button>
 
         <div class="modal-register__switch">
-            Already have an account? <a class="modal-trigger modal-close" href="#modal-signin">Sign In</a>
+            Don’t have an account? <a class="modal-trigger modal-close" href="#modal-register">Register</a>
         </div>
         <div class="modal-register__switch">
             Don’t want to register? <a class="modal-trigger modal-close" href="#modal-guest">Guest checkout</a>
