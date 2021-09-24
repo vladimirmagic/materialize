@@ -101,7 +101,7 @@
         }
     }
     
-    iframe {
+    iframe, video {
         max-width: 100%;
     }
     
@@ -118,6 +118,18 @@
 #headerMenuAuctions {
     display: flex;
     flex-wrap: wrap;
+}
+
+.dextercontainer, .voxluxcontainer, .mutecontainer, .la2018container, .emla2019container, .backgroundbg, .everestcontainer, .friendscontainer, .gijoecontainer, .previewgallerycontainer, .hannibalcontainer, .hauntingcontainer, .cos, .mutecontainer, .NiloRodiscontainer {
+    max-width: 100%;
+}
+
+.cos .section {
+    height: auto !important;
+}
+
+.cos .item-block {
+    max-width: 100%;
 }
 
 @media #{$large-and-down} {
