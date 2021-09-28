@@ -120,6 +120,14 @@ $imgSizeM: 320px;
 		.btn + .btn--secondary {
 			margin-left: 1em;
 		}
+
+		.unibtn {
+			display: inline;
+		}
+
+		.unibtn + .unibtn {
+			margin-left: 1em;
+		}
 	}
 }
 

@@ -15742,6 +15742,8 @@ tbody .tr:last-child .td {
   top: 57px;
   z-index: 9;
   width: 100%;
+  max-height: 50vh;
+  overflow-x: auto;
   background: #FFF;
   border: 1px solid #c7c7c7;
   -webkit-box-shadow: 0px 4px 30px -10px rgba(0, 0, 0, 0.15);
@@ -19333,7 +19335,7 @@ a.voucher:not(.btn):not(.btn-large):not(.btn-small):not(.btn-extra-small):before
   max-width: 100%;
 }
 
-.wp iframe {
+.wp iframe, .wp video {
   max-width: 100%;
 }
 
@@ -19354,6 +19356,18 @@ a.voucher:not(.btn):not(.btn-large):not(.btn-small):not(.btn-extra-small):before
   -webkit-flex-wrap: wrap;
       -ms-flex-wrap: wrap;
           flex-wrap: wrap;
+}
+
+.dextercontainer, .voxluxcontainer, .mutecontainer, .la2018container, .emla2019container, .backgroundbg, .everestcontainer, .friendscontainer, .gijoecontainer, .previewgallerycontainer, .hannibalcontainer, .hauntingcontainer, .cos, .mutecontainer, .NiloRodiscontainer {
+  max-width: 100%;
+}
+
+.cos .section {
+  height: auto !important;
+}
+
+.cos .item-block {
+  max-width: 100%;
 }
 
 @media only screen and (max-width: 1200px) {
@@ -19575,6 +19589,14 @@ body.auctions-catalog .smpagination {
 }
 
 .auclist.auchome .auclink .btn + .btn--secondary, .auclist.auchome .auclink .btn-large + .btn--secondary, .auclist.auchome .auclink .btn-small + .btn--secondary, .auclist.auchome .auclink .btn-extra-small + .btn--secondary {
+  margin-left: 1em;
+}
+
+.auclist.auchome .auclink .unibtn {
+  display: inline;
+}
+
+.auclist.auchome .auclink .unibtn + .unibtn {
   margin-left: 1em;
 }
 

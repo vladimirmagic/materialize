@@ -539,9 +539,9 @@ Lot # 28: Episode "Dog Myths" and Episode "Voice Flame Extinguisher" (2007, E74/
         $('.auclting').each((i, item) => {
           $title = $(item).find('h6');
           $title.addClass('h2')
-          const path = $title.find('a').prop('href').split('/view-auctions/info/id/');
+          const path = $title.find('a').prop('href').split('auctions/info/id/');
           const idString = path.length > 1 ? path[1].split('/') : '';
-          const id = idString.length > 1 ? idString[0] : 0;
+          const id = idString.length > 1 ? idString[0] : idString || 0;
           if (!id) return;
 
           $img = $(item).find('.aucimg a');
@@ -556,6 +556,13 @@ Lot # 28: Episode "Dog Myths" and Episode "Voice Flame Extinguisher" (2007, E74/
           } else {
               $badgeNew.addClass('orange').append(`<i class='icon'><svg><use xlink:href="#clockwise"></use></svg></i>Upcoming`);
           }
+          const $bidder = $(item).find('.bidder-status-closed');
+          if ($bidder.length) {
+            const $text = $('<div class="auclting__text">');
+            $text.append($bidder);
+            $desc.append($text);
+          }
+          
           $desc.prepend($badgeNew);
 
           $type = $('<div class="auclting__type"><i class="icon"><svg><use xlink:href="#auction-line"></use></svg></i></div>');
