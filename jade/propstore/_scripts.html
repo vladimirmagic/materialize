@@ -395,17 +395,26 @@
         try {
             function highlight() {
                 var searchValue = $('.input-field--faq-search input').val();
+
+                //escape all regex symbols
+                searchValue = searchValue.replace(/[\$\&\+\,\:\:\=\?\@\#\|\/\'\{\}\[\]\>\<\.\^\*\(\)\%\!\-]/g, '\\$&');
+                //search, ignoring src and hrefs
+                searchValue = searchValue.replace(/^[A-Za-z0-9_]+$/gi, '\\$&');
+
+                var customFilter = new RegExp(searchValue, 'gi');
+
                 var replacedString = "<span class='faq__highlight'>$&</span>";
+
                 $('.faq__content').find('.faq__highlight').contents().unwrap();
                 $('.faq__collapsible-header-text').each(function() {
                     if(searchValue.length > 1){
-                        const content = $(this).html().replace(searchValue, replacedString);
+                        const content = $(this).html().replace(customFilter, replacedString);
                         $(this).html(content);
                     }
                 });
                 $('.faq__collapsible .collapsible-body').each(function() {
                     if(searchValue.length > 1){
-                        const content = $(this).html().replace(searchValue, replacedString);
+                        const content = $(this).html().replace(customFilter, replacedString);
                         $(this).html(content);
                     }
                 });
@@ -422,7 +431,6 @@
 					
 					const $parentEl = $(el).closest('.faq__item');
 					const itemCatClass = $parentEl.attr('class').split(/\s+/).find(className => ~className.indexOf('category'));
-
 					if (withCategory || search == '') {
 						const isCategory = category == 0 || $parentEl.hasClass('category-' + category);
 						const isShow = isCategory && isMatch;
