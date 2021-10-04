@@ -19847,6 +19847,10 @@ body.auctions-catalog .smpagination {
   width: 6rem;
 }
 
+.auccatalog__nav-perpage .customSelectInner {
+  opacity: 0;
+}
+
 .auccatalog__nav-perpage-label {
   margin: 0 1rem 0 0;
 }
