@@ -141,6 +141,11 @@
 		margin-bottom: 2rem;
 	}
 
+	.collapsible {
+		border: 0;
+		box-shadow: none;
+	}
+
 	.collapsible-li {
 		margin: 0;
 		padding: 0;
@@ -155,7 +160,29 @@
 	}
 
 	.collapsible-body {
-		padding: 0 1.5rem 2rem;
+		padding: 0 1.5rem 1rem;
+		border: 0;
+	}
+
+	.selector {
+		display: flex;
+		margin: .5em 0;
+
+		input {
+			flex: 0 0 20px;
+			height: 20px;
+			margin-right: .5rem;
+		}
+
+		label {
+			color: $color-base;
+			font-size: 1rem;
+			line-height: 20px;
+		}
+	}
+
+	.categories-match {
+		margin-top: 2rem;
 	}
 }
 
@@ -163,6 +190,10 @@
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
+
+	.h4 {
+		margin: 0;
+	}
 
 	.icon {
 		margin: 0;
@@ -181,6 +212,12 @@
 	.checkbox__label {
 		display: block;
 		margin: .5em 0;
+	}
+}
+
+#adv_search_categories {
+	label {
+		color: $color-base;
 	}
 }
 

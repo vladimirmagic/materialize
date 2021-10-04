@@ -661,7 +661,7 @@ Lot # 28: Episode "Dog Myths" and Episode "Voice Flame Extinguisher" (2007, E74/
     <div class="auccatalog">
         <div class="auccatalog__nav">
             <div class="auccatalog__nav-inner">
-                <div class="auccatalog__nav-perpage">
+                <div class="auccatalog__nav-perpage auccatalog__nav-perpage--header">
                     <div class="auccatalog__nav-perpage-label c-r">Items per page</div>
                     <div class="input-field input-field--select"></div>
                 </div>
@@ -673,8 +673,8 @@ Lot # 28: Episode "Dog Myths" and Episode "Voice Flame Extinguisher" (2007, E74/
 
         <div class="cards">
           <div class="cards__inner">
-            <div class="auccatalog__search-panel collapsible">
-                <li class="collapsible-li">
+            <div class="auccatalog__search-panel">
+                <li class="collapsible-li" style="display:none;">
                     <div class="auccatalog__search-panel-title h4 collapsible-header">
                         Advanced Search
                         <i class='icon'><svg><use xlink:href="#close"></use></svg></i>
@@ -760,7 +760,7 @@ Lot # 28: Episode "Dog Myths" and Episode "Voice Flame Extinguisher" (2007, E74/
 
         <div class="auccatalog__nav auccatalog__nav--footer">
             <div class="auccatalog__nav-inner">
-                <div class="auccatalog__nav-perpage">
+                <div class="auccatalog__nav-perpage auccatalog__nav-perpage--footer">
                     <div class="auccatalog__nav-perpage-label c-r">Items per page</div>
                     <div class="input-field input-field--select"></div>
                 </div>
@@ -797,7 +797,52 @@ Lot # 28: Episode "Dog Myths" and Episode "Voice Flame Extinguisher" (2007, E74/
 			}
 			$('.auc__hero-aucinfo').attr('href', $('.aucinfo').attr('href'));
 
-			$('.auccatalog__nav-perpage .input-field').append($('#c3').removeProp('id'));
+			const $searcContent = $('.advSearchAccordionContent');
+			const $searchKey = $('<div class="input-field">');
+			$searchKey.append($('#advsKey_ctl'));
+			$searcContent.prepend($searchKey);
+			const $searchInner = $('#ads01 > .adsrch').addClass('collapsible-body');
+			const $searchHeader = $('.advSearchAccordionButton').addClass('auccatalog__search-panel-title collapsible-header');
+			$searchHeader.find('h3').addClass('h4');
+			$searchHeader.append('<i class="icon"><svg><use xlink:href="#close"></use></svg></i>');
+			const $searchLi = $('<li class="collapsible-li">').append($searchHeader).append($searchInner);
+			$('#ads01').addClass('collapsible').append($searchLi);
+			$('#advsSearch').addClass('waves-effect waves-light btn btn--tertiary auccatalog__search-btn');
+
+			const $searchSort = $('<div class="input-field input-field--label input-field--select">');
+			$searchSort.append($('section.sort-by label').addClass('active')).append($('#advsSort'));
+			$('section.sort-by').append($searchSort);
+			$('section.sort-by .drplist').hide();
+
+			$('#adv_search_categories .scroll-list').addClass('auccatalog__search-panel-checkboxes');
+			$('#adv_search_categories > label').addClass('h6');
+			$('#adv_search_categories .accordion-header').click();
+			// $('#adv_search_categories .scroll-list').show();
+
+			const $searchMatch = $('<div class="input-field input-field--label input-field--select">');
+			$searchMatch.append($('.categories-match label').addClass('active')).append($('#advsCatMatch'));
+			$('.categories-match').append($searchMatch);
+			$('#advsCatMatch_ctl').hide();
+
+			const $searchPriceMin = $('<div class="input-field input-field--label">');
+			$searchPriceMin.append($('#advsMinPrice')).append($('<label>Min price</label>'));
+			const $searchPriceMax = $('<div class="input-field input-field--label">');
+			$searchPriceMax.append($('#advsMaxPrice')).append($('<label>Max price</label>'));
+			const $searchPrice = $('<div class="auccatalog__search-panel-row">');
+			$searchPrice.append($searchPriceMin).append($searchPriceMax);
+			const $searchPriceSource = $searcContent.find('.price-range');
+			$searchPrice.insertAfter($searchPriceSource);
+			$searchPriceSource.remove();
+
+			const $searchLotSource = $searcContent.find('.lotnum');
+			const $searchLot = $('<div class="input-field input-field--label">');
+			$searchLot.append($searchLotSource.find('label').addClass('active')).append($('#advsLotNum_ctl'));
+			$searchLotSource.append($searchLot);
+
+			$('.auccatalog__search-panel').append($('#ads01'));
+
+			$('.auccatalog__nav-perpage--header .input-field').append($('#c3'));
+			$('.auccatalog__nav-perpage--footer .input-field').append($('#c4'));
 			const results = $('.page:contains("Results:")').html();
 			$('.auccatalog__nav-results').html(results.replace('<b>Results:</b>&nbsp;Viewing&nbsp;items&nbsp;', 'Results:&nbsp;'));
 			$('.auccatalog__nav-paginator').append($('#c2_ctl'));
