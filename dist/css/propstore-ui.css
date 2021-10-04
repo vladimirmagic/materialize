@@ -19416,6 +19416,7 @@ body.index-index .auctions-filter,
 body.index-index .srch_sec,
 body.index-index .bodybox,
 body.index-index .smpagination,
+body.index-index .mobileheaderbg,
 body.lot-details-index #custom-header,
 body.lot-details-index #headsec,
 body.lot-details-index .mymenu,
@@ -19423,13 +19424,15 @@ body.lot-details-index .auctions-filter,
 body.lot-details-index .srch_sec,
 body.lot-details-index .bodybox,
 body.lot-details-index .smpagination,
+body.lot-details-index .mobileheaderbg,
 body.auctions-catalog #custom-header,
 body.auctions-catalog #headsec,
 body.auctions-catalog .mymenu,
 body.auctions-catalog .auctions-filter,
 body.auctions-catalog .srch_sec,
 body.auctions-catalog .bodybox,
-body.auctions-catalog .smpagination {
+body.auctions-catalog .smpagination,
+body.auctions-catalog .mobileheaderbg {
   display: none;
 }
 

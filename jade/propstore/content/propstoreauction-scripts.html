@@ -1,61 +1,1178 @@
+<!--Imports Bootstrap for responsiveness in the footer-->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+<script src="https://s3-eu-west-1.amazonaws.com/content.propstore.com/scripts/moment.js"></script>
 
-<link href="https://use.typekit.net/dul3srx.css" rel="stylesheet">
-<link href="css/ghpages-materialize.css" type="text/css" rel="stylesheet" media="screen,projection">
+<!--Start footer-->
+    <footer class="ct-footer">
+        <div class="container">
+            <ul class="ct-footer-list text-center-sm">
+                <li>
+                    <a class="collapseButton" data-toggle="collapse" href="#multiCollapseAuctions" role="button" aria-expanded="false" aria-controls="multiCollapseAuctions"><h2 class="ct-footer-list-header">Auctions</h2></a>
+                    <div class="content collapse multi-collapse" id="multiCollapseAuctions">
+                    <ul>
+                        <li>
+                            <a href="https://propstoreauction.com">Browse All Auctions</a>
+                        </li>
+                        <li>
+                            <a href="https://propstoreauction.com/m/my-items/watchlist/">My Watchlist</a>
+                        </li>
+                        <li>
+                            <a href="https://propstore.com/auction-faq/">Auction Guide</a>
+                        </li>
+                    </ul>
+                    </div>
+                </li>
+                <li>
+                    <a class="collapseButton" data-toggle="collapse" href="#multiCollapseBuyNow" role="button" aria-expanded="false" aria-controls="multiCollapseBuyNow"><h2 class="ct-footer-list-header">Buy It Now</h2></a>
+                    <div class="content collapse multi-collapse" id="multiCollapseBuyNow">
+                    <ul>
+                        <li>
+                            <a href="https://propstore.com/products/">All Items</a>
+                        </li>
+                        <li>
+                            <a href="https://propstore.com/category/new-additions/">New Additions</a>
+                        </li>
+                        <li>
+                            <a href="https://propstore.com/category/movie-props/">Movie Props</a>
+                        </li>
+                        <li>
+                            <a href="https://propstore.com/category/movie-wardrobe/">Movie Wardrobe</a>
+                        </li>
+                        <li>
+                            <a href="https://propstore.com/category/film-production/">Film Productions</a>
+                        </li>
+                        <li>
+                            <a href="https://propstore.com/category/crew-promo/">Crew/Promo</a>
+                        </li>
+                        <li>
+                            <a href="https://propstore.com/category/prop-replicas/">Prop Replicas</a>
+                        </li>
+                        <li>
+                            <a href="https://propstore.com/category/artwork/">Artwork</a>
+                        </li>
+                        <li>
+                            <a href="https://propstore.com/category/autographs/">Autographs</a>
+                        </li>
+                        <li>
+                            <a href="https://propstore.com/category/archive/">Archive</a>
+                        </li>
+                    </ul>
+                    </div>
+                </li>
+                <li>
+                    <a class="collapseButton" data-toggle="collapse" href="#multiCollapseDiscover" role="button" aria-expanded="false" aria-controls="multiCollapseDiscover"><h2 class="ct-footer-list-header">Discover</h2></a>
+                    <div class="content collapse multi-collapse" id="multiCollapseDiscover">
+                    <ul>
+                        <li>
+                            <a href="https://propstore.com/about-us/">About Prop Store</a>
+                        </li>
+                        <li>
+                            <a href="https://propstore.com/blog/">Blog</a>
+                        </li>
+                        <li>
+                            <a href="https://propstore.com/certificate-of-authenticity/">Certificate of Authenticity</a>
+                        </li>
+                        <li>
+                            <a href="https://propstore.com/requests.action">Submit a Request</a>
+                        </li>
+                     </ul>
+                    </div>
+                </li>
+                <li>
+                    <a class="collapseButton" data-toggle="collapse" href="#multiCollapseMore" role="button" aria-expanded="false" aria-controls="multiCollapseMore"><h2 class="ct-footer-list-header">More</h2></a>
+                    <div class="content collapse multi-collapse" id="multiCollapseMore">
+                    <ul>
+                        <li>
+                            <a href="https://propstore.com/auction-faq/">Auction FAQs</a>
+                        </li>
+                        <li>
+                            <a href="https://propstore.com/general-faqs/">General FAQs</a>
+                        </li>
+                        <li>
+                            <a href="https://propstore.com/sellorconsign.action">Sell or Consign</a>
+                        </li>
+                        <li>
+                            <a href="https://propstore.com/contact-details/">Contact Us</a>
+                        </li>
+                        <li>
+                            <a href="https://propstore.com/terms-and-conditions/">Terms and Conditions</a>
+                        </li>
+                        <li>
+                            <a href="https://propstore.com/copyright/">Copyright</a>
+                        </li>
+                    </ul>
+                    </div>
+                </li>
+            </ul>
+            <div class="ct-footer-meta text-center-sm">
+                <div class="row">
+                    <div class="col-sm-6 col-md-2">
+                        <img alt="logo" src="https://s3-eu-west-1.amazonaws.com/content.propstore.com/auction/logosmall-02.png">
+                    </div>
+                    <div class="col-sm-6 col-md-3">
+                        <address>
+                            <span>Prop Store - London Office<br></span>Great House Farm, Chenies<br>
+                            Rickmansworth, Hertfordshire, WD3 6EP, UK<br>
+                            <span>Phone: <a href="tel:4401494766485">+44 (0)1494-766485</a></span>
+                        </address>
+                    </div>
+                    <div class="col-sm-6 col-md-3">
+                        <address>
+                            <span>Prop Store - Los Angeles Office<br></span>28014 Harrison Pkwy<br>
+                            Valencia, CA 91355, USA<br>
+                            <span>Phone: <a href="tel:18187277829">+1(818) 727-7829</a></span>
+                        </address>
+                    </div>
+                    <div class="col-sm-6 col-md-3">
+                        <ul class="ct-socials list-unstyled list-inline">
+                            <li>
+                                <a href="http://www.facebook.com/pages/Prop-Store/104664682900207?ref=nf" rel="noopener noreferrer" target="_blank"><img alt="facebook" src="https://propstore.com/main/img/facebook.png"></a>
+                            </li>
+                            <li>
+                                <a href="http://twitter.com/propstore_com" rel="noopener noreferrer" target="_blank"><img alt="twitter" src="https://propstore.com/main/img/twitter.png"></a>
+                            </li>
+                            <li>
+                                <a href="http://www.youtube.com/user/thepropstore" rel="noopener noreferrer" target="_blank"><img alt="youtube" src="https://propstore.com/main/img/youtube.png"></a>
+                            </li>
+                            <li>
+                                <a href="http://instagram.com/Prop_Store" rel="noopener noreferrer" target="_blank"><img alt="instagram" src="https://propstore.com/main/img/instagram.png"></a>
+                            </li>
+                            <li>
+                                <a href="http://pinterest.com/propstore" rel="noopener noreferrer" target="_blank"><img alt="pinterest" src="https://propstore.com/main/img/pinterest.png"></a>
+                            </li>
+                            <li>
+                                <a href="http://prop-store.tumblr.com" rel="noopener noreferrer" target="_blank"><img alt="tumblr" src="https://propstore.com/main/img/tumblr.png"></a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+<!--End Footer-->
 
-<!--  Scripts-->
-<script>
-    document.querySelectorAll('head style, head link[rel="stylesheet"]').forEach(item => item.remove());
-</script>
-<!-- <script defer src="https://code.jquery.com/jquery-3.2.1.min.js"></script> -->
-<script defer src="bin/materialize.js"></script>
-<script defer src="docs/js/init.js"></script>
-<script defer>
-    const svgSprite = document.createElement('div');
-	svgSprite.id = 'svg-sprite';
-	document.body.append(svgSprite);
-	const loaded = function() {document.body.classList.add('loaded')};
-	if (typeof fetch != "undefined") fetch('dist/defs/svg/sprite.defs.svg', { cache: 'force-cache' })
-		.then(response => response.text())
-		.then(html => { svgSprite.innerHTML = html; loaded(); })
-		.catch(loaded);
+<!--Start custom jQuery scripts, injecting various elements into the page-->
+    <script>
+    //example old url: https://mobiletest.propstoreauction.com/m/lot-details/index/catalog/4/lot/70/
 
-    document.addEventListener('DOMContentLoaded', () => {
-        $('.auclting').each((i, item) => {
-            $title = $(item).find('h6');
-            $title.addClass('h2')
-            const path = $title.find('a').prop('href').split('/view-auctions/info/id/');
-            const idString = path.length > 1 ? path[1].split('/') : '';
-            const id = idString.length > 1 ? idString[0] : 0;
-            if (!id) return;
+    //upon landing at old url, reroute to legacy page; first conditions check for bad url
+    if (window.location.pathname.indexOf("/m/lot-details/index/catalog") > -1 && window.location.pathname.indexOf("/lot/", 30) > -1) {
+        //extract catalogue id and check if it's in the old range; if so, extract lot id and reroute to the legacy page
+        let catID = window.location.pathname.substring(29, window.location.pathname.indexOf("/", 30));
+        let catIDInt = parseInt(catID);
 
-            $img = $(item).find('.aucimg a');
-            $img.addClass('auclting__img').css('background-image', 'url(' + $img.find('img').prop('src') + ')');
-            $desc = $(item).find('.aucdes');
-            $badge = $desc.find('#auc' + id).hide();
-            $badgeNew = $('<span class="badge auclting__badge">');
-            if ($badge.find('.in-progress').length) {
-                $badgeNew.addClass('green').append(`<i class="icon"><svg><use xlink:href="#live"></use></svg></i>Live`);
-            } else if ($badge.find('.ended').length) {
-                $badgeNew.addClass('red').append(`<i class='icon'><svg><use xlink:href="#flag"></use></svg></i>Ended`);
-            } else {
-                $badgeNew.addClass('orange').append(`<i class='icon'><svg><use xlink:href="#clockwise"></use></svg></i>Upcoming`);
+        let lotID;
+        if (window.location.pathname.indexOf("/", 35 + catID.length) > -1)
+            lotID = window.location.pathname.substring(34 + catID.length, window.location.pathname.indexOf("/", 35 + catID.length));
+        else
+            lotID = window.location.pathname.substring(34 + catID.length);
+        if (catIDInt < 152) {
+            //correctly redirect
+            window.location.replace("https://propstoreauction.com/view-auctions/catalog/id/" + catID + "/lot/" + lotID + "/");
+        }
+        else {
+            if(AuctionInfo.auction_id === 274 && LotInfo.lot_item_id > 67472){
+                changeHeader(274, "https://s3-eu-west-1.amazonaws.com/content.propstore.com/auction/HauntingAnthology/ProductHeader-bly-new.jpg");
             }
-            $desc.prepend($badgeNew);
+            //if we're looking at the marvel auction, update the header
+            else if (catIDInt === 198) {
+                headerAutomation(catIDInt, parseInt(lotID),
+                    43068, "https://s3-eu-west-1.amazonaws.com/content.propstore.com/auction/brooklyn/ifheader.jpg",
+                    42858, "https://s3-eu-west-1.amazonaws.com/content.propstore.com/auction/brooklyn/lcheader.jpg"
+                );
+            }
+            //regardless, make everything visible
+            document.getElementsByTagName("html")[0].style.visibility = "visible";
+            numTextDel();
+        }
+    }
+    else
+        document.getElementsByTagName("html")[0].style.visibility = "visible";
 
-            $type = $('<div class="auclting__type"><i class="icon"><svg><use xlink:href="#auction-line"></use></svg></i></div>');
-            $type.append($desc.find('#sale' + id));
-            $date = $('<div class="auclting__date"><i class="icon"><svg><use xlink:href="#calendar"></use></svg></i></div>');
-            $date.append($desc.find('#aucdate' + id));
-            $lots = $('<div class="auclting__lots"><i class="icon"><svg><use xlink:href="#ticket"></use></svg></i></div>');
-            $lots.append($desc.find('p+p').text());
-            $details = $('<div class="auclting__details">');
-            $details.append($type).append($date).append($lots);
-            $details.insertAfter($title);
+    //fix formatting issue on live sale pages
+    if(window.location.pathname.indexOf("/live-sale/", 16) === 16){
+        /*var titleDown = document.createElement("br");
+        insertAfter(titleDown, document.getElementsByClassName("num-lots")[0]);*/
+        let z7 = document.getElementById("z7");
+        document.getElementsByClassName("lot-title")[0].remove();
+        insertAfter(z7,document.getElementsByClassName("short-sep")[0]);
+        var btnDown = document.createElement("br");
+        insertBefore(btnDown, document.getElementById("z15"));
+    }
+    else if(window.location.pathname.includes("/login", 2)){
+        let loginMessage = document.createElement("div");
+        loginMessage.innerText = "To register for a specific auction you need an account for Prop Store’s auction bidding platform. Please login now or create a new account below.";
+        loginMessage.id = "login-message";
+        document.getElementsByClassName("bodybox")[0].prepend(loginMessage);
+    }
+    else if (window.location.pathname.includes("/signup", 2)) {
+        let message = document.createElement("div");
+        message.id = "signup-message";
+        message.innerText = "Here you will create your account for Prop Store’s bidding platform. Once you have an account, you can register to bid in a specific auction.";
 
-            $desc.append($(item).find('.auclink'));
+        insertAfter(message, document.getElementsByClassName("bodybox")[0].children[0]);
+    }
+    else if(window.location.pathname.includes("/confirm-bidder-options", 11)){
+        let cboop = document.getElementById("cboopt23");
+        let promoMsg = document.createElement("div");
+        promoMsg.innerText = cboop.value.trim();
+        cboop.remove();
+        promoMsg.id = "cboopt-rep";
+        document.getElementById("cboopt23_ctl").append(promoMsg);
+    }
+    //remove option to view catalogs prior to auction beginning
+    else if (window.location.pathname === "/m/" || window.location.pathname.length === 1) {
+        //remove lot count if either it is 0 or it does not exist
+        let ld = document.getElementsByClassName("aucdes");
+        for(let i = 0; i < ld.length; i++){
+            let l = ld[i].children[0].children[2];
+            if(l.innerHTML[6] === "0" || l.innerHTML === "Lots: "){
+                l.remove();
+                ld[i].parentNode.children[5].children[0].children[1].remove();
+           }
+        }
+    }
+    else{
+        let isViewAuctions = window.location.pathname.includes("/view-auctions/", 2);
+        if(isViewAuctions || window.location.pathname.includes("/m/search")){
+            let titleBoxes = document.getElementsByClassName("bdttle");
+            heightMatchTitleBoxes(titleBoxes, isViewAuctions);
+            if(window.location.pathname.includes("/198/", 27)){
+                let titleTexts = document.getElementsByTagName("H2");
+                for(let i = 0; i < titleBoxes.length; i++){
+                    let lotNo = titleTexts[i].children[0].textContent;
+                    lotNo = parseInt(lotNo.substring(lotNo.indexOf("# ") + 2, lotNo.indexOf(":")));
+                    if(lotNo < 452){ //Daredevil
+                        titleBoxes[i].classList.add("dd-title");
+                    }
+                    else if(lotNo > 661){ //Iron Fist
+                        titleBoxes[i].classList.add("if-title");
+                    }
+                    else{ //Luke Cage
+                        titleBoxes[i].classList.add("lc-title");
+                    }
+                }
+            }
+            if(!window.location.pathname.includes("/info/id", 16)){
+                switch(AuctionInfo.auction_id) {
+                    case 274:
+                        catalogCopyrightOverwrite("Paramount Television Studios, a division of Paramount Pictures Corporation");
+                        break;
+                }
+                reorderCategories();
+                document.getElementsByClassName("advSearchAccordionContent")[0].children[4].remove();
+                fixATitles();
+            }
+            else{
+                if(AuctionInfo.auction_id === 267){
+                    window.location.replace("https://propstore.com/entertainment-memorabilia-live-auction-la-2020/");
+                }
+                else{
+                    if(AuctionInfo.auction_id === 244){
+                        document.getElementsByClassName("catmdle")[0].remove();
+                    }
+                    document.getElementsByClassName("view-auctions-info")[0].style.visibility = "visible";
+                    if(window.location.pathname.includes("/257", 24) || window.location.pathname.includes("/198", 24) || window.location.pathname.includes("/220", 24))
+                        marvelInfoTCFix();
+                    else if(AuctionInfo.auction_id > 260 && AuctionInfo.auction_id !== 274){
+                        document.getElementsByClassName("catmdle")[0].remove();
+                    }
+                    //automation update
+                    let ts = document.getElementsByClassName("auctitle");
+                    if(Date.parse(ts[1].children[0].children[0].children[1].innerHTML) > Date.now() && AuctionInfo.auction_id !== 270 && AuctionInfo.auction_id !== 242)
+                        ts[0].children[1].remove();
+                }
+            }
+        }
 
-            $(item).find('.reg').addClass('waves-effect waves-light btn');
-            $(item).find('.cat').addClass('waves-effect waves-grey btn btn--secondary');
-        });
+        //breakout for t&c page
+        else if (window.location.pathname.indexOf("/terms-and-conditions/", 11) === 11) {
+            let tC = document.createElement("div");
+            tC.id = "brokenOutTC";
+            tC.innerText = "Terms and conditions:";
+            let everythingElse = document.getElementsByClassName("loginfrm")[0];
+            let bb = document.getElementsByClassName("bodybox")[0];
+
+            let idStr = window.location.pathname.substring(32);
+            if(idStr.includes("/id/198")){
+                let tac = document.getElementById("tac4");
+                tac.children[1].remove();
+                let actualTerms = tac.children[0].children;
+                actualTerms[0].remove();
+                actualTerms[0].remove();
+                let mTC = actualTerms[0].parentNode;
+                mTC.id = "marvelTC";
+                tac.children[1].id = "marvelTC2";
+                tac.children[2].remove();
+
+                mTC.children[0].innerHTML = "These Terms and Conditions of Sale (“Conditions”) set out the agreement between the Bidder/Buyer and Prop Store and the Seller. By registering to bid and participate in a Prop Store Auction, you will be deemed to have read and agreed to be bound by these Conditions and the accompanying Buyer’s Guide, as set forth in the catalog for the Auction and online at <a href='http://www.propstore.com/'>www.propstore.com.</a>";
+
+                let tableRows = mTC.getElementsByTagName("TR");
+                tableRows[7].remove();
+                tableRows[4].remove();
+                let tableCells = mTC.getElementsByTagName("TD");
+                console.log(tableCells.length);
+                for(let c = 0; c < tableCells.length; c+=2){
+                    if(tableCells[c].children.length > 1)
+                        tableCells[c].children[0].remove();
+                }
+                tableCells[11].children[1].remove();
+                tableCells[7].innerHTML = "<p style='margin-left:3.5pt;'>Prop Store’s Buyer’s Guide, from time to time as may be amended, a copy of which appears in the catalog for the Auction and online at <a href='http://www.propstore.com/'>www.propstore.com</a></p>";
+            }
+            document.getElementsByClassName("opencollapse")[0].remove();
+            bb.appendChild(tC);
+            bb.appendChild(everythingElse);
+        }
+    }
+
+    //This function works backwards because it assumes the first header is the default one, so using < would accidentally overwrite it
+    //ARGUMENTS SHOULD BE: aucID, lotID, lot ID before last section, last section URL, lot ID before second-to-last section, second-to-last section URL,..., second section URL
+    function headerAutomation() {
+        for (let i = 2; i < arguments.length; i++) {
+            if (arguments[1] > arguments[i++]) {
+                changeHeader(arguments[0], arguments[i]);
+                return;
+            }
+        }
+    }
+
+    function marvelInfoTCFix() {
+        let nav = document.getElementById("nav");
+        nav.children[0].children[0].remove();
+        let terms = nav.getElementsByClassName("terms");
+
+        let pTags = terms[0].getElementsByTagName("P");
+        for (let i = 0; i < pTags.length;) {
+            if (pTags[i].innerHTML === "\n&nbsp;") {
+                pTags[i].remove();
+            }
+            else {
+                pTags[i].style.textAlign = "justify !important";
+                i++;
+            }
+        }
+        
+        let sec1 = terms[1].children[0];
+        let sec2 = terms[1].children[1];
+        sec1.children[0].remove();
+        sec1.id = "marvelTC";
+        sec2.id = "marvelTC2";
+        sec1.children[0].innerHTML = "These Terms and Conditions of Sale (“Conditions”) set out the agreement between the Bidder/Buyer and Prop Store and the Seller. By registering to bid and participate in a Prop Store Auction, you will be deemed to have read and agreed to be bound by these Conditions and the accompanying Buyer’s Guide, as set forth in the catalog for the Auction and online at <a href='http://www.propstore.com/'>www.propstore.com.</a>";
+
+        let trs = sec1.getElementsByTagName("TR");
+        trs[3].children[1].innerHTML = "<p style='margin-left:3.5pt;'>Prop Store’s Buyer’s Guide, from time to time as may be amended, a copy of which appears in the catalog for the Auction and online at <a href='http://www.propstore.com/'>www.propstore.com</a></p>";
+
+        trs[4].remove();
+        trs[5].children[1].children[1].remove();
+        trs[6].remove();
+
+        let rest = terms[1].children;
+
+        for (let i = 3; i < rest.length; i++) {
+            let el = rest[i];
+            if (el.tagName !== "H3")
+                el.style.textAlign = "justify";
+        }
+
+        let descChil = document.getElementsByClassName("desc")[0].children;
+        for(let i = 0; i < descChil.length;){
+            if(descChil[i].tagName === "BR" || (descChil[i].tagName === "P" && descChil[i].children.length === 0))
+                descChil[i].remove();
+            else if(descChil.className === "backgroundbg")
+                break;
+            else
+                i++;
+        }
+    }
+
+    function numTextDel(){
+        let imgs = document.getElementsByClassName("lot");        
+        for(let i = 0 ; i < imgs.length; i++){
+            let oldHTML = imgs[i].innerHTML;
+            imgs[i].innerHTML = oldHTML.substring(oldHTML.indexOf("<"));
+        }
+    }
+
+    function reorderCategories(){
+        let categoryList = document.getElementsByClassName("categories-list")[0];
+        let categories = categoryList.children;
+        let newCategoryList = [];
+        let properLength = categories.length - 1;
+
+        for(let i = 0; i < properLength; i++){
+            if(categories[i] !== "A"){
+                newCategoryList.push(document.createElement("div"));
+                newCategoryList[i].classList = "selector smsel";
+                newCategoryList[i].innerHTML = categories[i].innerHTML;
+            }
+            else{
+                categories[i].remove();
+            }
+        }
+        for(let i = 0 ; i < categories.length;){
+            categories[i].remove();
+        }
+        newCategoryList = quickSortInnerText(newCategoryList);
+        for(let i = 0; i < newCategoryList.length; i++){
+            categoryList.append(newCategoryList[i]);
+        }
+    }
+
+    function quickSortInnerText(elements){
+        if(elements.length > 0){
+            let later = [];
+            let earlier = [];
+
+            for(let i = 1; i < elements.length; i++){
+                if(elements[i].innerText > elements[0].innerText)
+                    later.push(elements[i]);
+                else
+                    earlier.push(elements[i]);
+            }
+            return quickSortInnerText(earlier).concat(elements[0]).concat(quickSortInnerText(later));
+        }
+        return [];
+    }
+
+    function fixATitles() {
+        let c = 1;
+        if(window.getComputedStyle(document.getElementsByClassName("advSearchAccordionContent")[0].children[2], null).getPropertyValue("display") === "none")
+            c = 2;
+        let images = document.getElementsByTagName("FIGURE");
+        let titleBoxes = document.getElementsByClassName("bdttle");
+        for (let i = 0; i < images.length; i++) {
+            let title = images[i].children[0].children[0].title;
+            let a = titleBoxes[i].children[c].children[0];
+            if (title.includes("Lot # ")) {
+                if (title.indexOf(": ", 7) > 6 && title.indexOf(": ", 7) < 11)
+                    a.title = title.substring(title.indexOf(": ") + 2);
+                else
+                    a.title = title.substring(title.indexOf(" - ", 7) + 3);
+            }
+            else
+                a.title = title;
+        }
+    }
+
+    function catalogCopyrightOverwrite(copyrightHolder){
+        var sheet = document.styleSheets[0];
+        sheet.insertRule("#c21 > .item-block > .item-block-wrapper > figure::after {content: '© " + copyrightHolder + " ' !important; font-size: 8pt; padding: 0px 8px; display: inline-block;}");
+    }
+
+    //overwrite CSS to display header, given an auction ID and an image URL
+    function changeHeader(auctionID, imgURL) {
+        let sheet = document.styleSheets[0];
+        sheet.insertRule("form[action*='catalog/" + auctionID + "/'] div.lot-details-container .bodybox:before { background-image: url(" + imgURL + ") !important;}");
+    }
+
+    function heightMatchTitleBoxes(titleBoxes, isViewAuctions) {
+        //prevent loop from trying to access invalid number; limit = titleBoxes.length unless titleBoxes.length is odd, in which case, limit = titleBoxes.length - 1
+        let limit = titleBoxes.length - titleBoxes.length % 2;
+        for(let i = 0; i < titleBoxes.length; i++){
+            if(isViewAuctions)
+                titleBoxes[i].children[1].children[0].style = "display: inline-block !important;";
+            else
+                titleBoxes[i].children[2].children[0].style = "display: inline-block !important;";
+        }
+        for (let i = 0; i < limit; i+=2) {
+            let tb1 = titleBoxes[i];
+            let tb2 = titleBoxes[i + 1];
+            let tb1h = window.getComputedStyle(tb1).getPropertyValue("height");
+            let tb2h = window.getComputedStyle(tb2).getPropertyValue("height");
+            let tb1hNumVal = parseInt(tb1h);
+            let tb2hNumVal = parseInt(tb2h);
+            if (tb1hNumVal > tb2hNumVal)
+                tb2.style.height = tb1h;
+            else if (tb2hNumVal > tb1hNumVal)
+                tb1.style.height = tb2h;
+        }
+    }
+
+    function insertAfter(el, referenceNode) {
+        referenceNode.parentNode.insertBefore(el, referenceNode.nextSibling);
+    }
+
+    function insertBefore(el, referenceNode) {
+        referenceNode.parentNode.insertBefore(el, referenceNode);
+    }
+
+    //removes auction numbers; does this by targeting h6 children of a and, for each, removing the first space and everything before it
+    !function removeAucNumbers() {
+        let aChildrenOfH6 = $("h6 > a");
+
+        if (aChildrenOfH6) {
+            for (let i = 0; i < aChildrenOfH6.length; i++) {
+                aChildrenOfH6[i].innerText = aChildrenOfH6[i].text.substring(aChildrenOfH6[i].text.indexOf(" ") + 1);
+            }
+        }
+    }();
+
+    // Live sale class inserters, fixes single sheet responsive to allow adjustments for the live auctions.
+    $(".live-sale").parent().addClass("lotpagelivenav");
+
+    if ($(".live-sale").length) {
+        $(".similar-item").parent().addClass("lotpageitemsnav");
+    }
+
+    //if($(window).width() < 568){
+    $(window).load(function () {
+        if ($(".live-sale").length) {
+            $(".lot-bidding").insertBefore(".lot-images-container");
+        }
     });
-</script>
+    //}</script>
+<script>
+    // Gets window size and runs functions accordingly, atm just open or close footer.
+
+    //Add in extra bounds here to change what happens on window sizing
+    //////////////////////////////////////////////////////////////////////////////////////////
+    // Format: {min:MINIMUM_RESOLUTION_SIZE,max:MAXIMUM_RESOLUTION_SIZE,func:FUNCTION_NAME},//
+    //////////////////////////////////////////////////////////////////////////////////////////
+    var bounds = [
+        { min: 0, max: 999, func: closeFooter },
+        { min: 1000, func: openFooter }
+    ];
+
+    // Setting up resizing function, is complete
+    var resizeFn = function () {
+        var lastBoundry; // cache the last boundry used
+        return function () {
+            var width = window.innerWidth;
+            var boundry, min, max;
+            for (var i = 0; i < bounds.length; i++) {
+                boundry = bounds[i];
+                min = boundry.min || Number.MIN_VALUE;
+                max = boundry.max || Number.MAX_VALUE;
+                if (width > min && width < max && lastBoundry !== boundry) {
+                    lastBoundry = boundry;
+                    return boundry.func.call(boundry);
+                }
+            }
+        }
+    };
+    // Running resizing function
+    $(window).resize(resizeFn());
+    $(document).ready(function () {
+        $(window).trigger('resize');
+    });
+
+    // Functions to run on resize
+    function closeFooter() {
+        // remove the show class so the css doesn't do its override
+        $(".collapse").removeClass("show");
+    }
+
+    function openFooter() {
+        // add the show class so override works
+        $(".collapse").addClass("show");
+    }</script>
+<script>
+    // Nilo Rodis + lange custom edits.
+    var urlpathname = top.location.pathname;
+    var newaucdesc = "Rodis-Jamero was a key collaborator with George Lucas on the original Star Wars films. Among his more famous designs are Boba Fett’s Slave I and the Biker Scout. He recently brought his unique insight into the galaxy’s visual language to a series of new concept sketches for vehicles, character and costumes.<br/><br/>'I had fun re-imagining Star Wars and remembering what the designs looked like, and why. Once satisfied, I started sketching alternate designs and rekindling ideas that were dismissed along the way,' said Rodis-Jamero.";
+    //nilo
+    if (urlpathname.includes("/181/")) {
+        if (urlpathname.includes("/catalog/id/")) {
+            $(".sale-no").remove();
+
+            var title = $(".tle > h3").text();
+            title = title.substring(0, title.indexOf("0"));
+
+            var timerange = $(".tle > h3 > span").text();
+
+            var endDate = $("#auc-starts-ending-date").text();
+
+            var resulttext = timerange.substring(0, timerange.indexOf("-"));
+
+            var addStringHTML = ("Opens " + resulttext + " - ");
+
+            $(".tle > h3").remove();
+
+            var newTitle = ("<h6 style=\"text-align:center\">\n" + newaucdesc + "\n<h6>\n<br>\n<h3>\n" + addStringHTML + "Starts Ending " + endDate + "</h3>\n");
+            $(".tle").append(newTitle);
+        }
+        else {
+            $(".sale-no").remove();
+
+            var title = $(".tle-lot > h3").text();
+            title = title.substring(0, title.indexOf("0"));
+
+            var timerange = $(".tle-lot > h3 > span").text();
+
+            var endDate = $("#auc-starts-ending-date").text();
+
+            var resulttext = timerange.substring(0, timerange.indexOf("-"));
+
+            var addStringHTML = ("Opens " + resulttext + " - ");
+
+            $(".tle-lot > h3").remove();
+
+            var newTitle = ("<h6 style=\"text-align:center;padding-top:15px;\">\n" + newaucdesc + "\n<h6>\n<br>\n<h3>\n" + addStringHTML + "Starts Ending " + endDate + "</h3>\n");
+            $(".tle-lot").append(newTitle);
+        }
+    }
+
+    //advanced search accordion button arrow and cursor fix
+    $(document).ready(function () {
+        //Steve Brown add:
+        //.advSearchAccordionButton style fix
+        if ($(".advSearchAccordionButton")) {
+            if (document.documentElement.clientWidth >= 570) {
+                $(".advSearchAccordionButton").addClass("advSearchAccordionButtonFix");
+            }
+        }
+
+        //lot view description box position fix
+
+        !function fixDescriptionBoxPosition() {
+            if (typeof LotInfo !== 'undefined') {
+                if(AuctionInfo.auction_id > 259 || AuctionInfo.auction_id === 257 || AuctionInfo.auction_id === 215)
+                    newBreakout();
+                else
+                    descriptionBreakout();
+
+                switch(AuctionInfo.auction_id) {
+                    case 274:
+                        lotCopyrightOverwrite("2020 Paramount Television Studios, a division of Paramount Pictures Corporation");
+                        break;
+                }
+                
+                if(AuctionInfo.auction_id === 265){
+                    let series = document.getElementById("nav").children[2].innerText;
+                    if(series === "Marvel's Daredevil (TV Series)"){
+                        changeHeader(265, "http://s3.eu-west-1.amazonaws.com/content.propstore.com/auction/marvel_2020/ddheader.jpg");
+                    }
+                    else if(series === "Marvel's Jessica Jones (TV Series)"){
+                        changeHeader(265, "https://s3-eu-west-1.amazonaws.com/content.propstore.com/auction/marvel_2020/jjheader.jpg");
+                    }
+                    else if(series === "Marvel's Luke Cage (TV Series)"){
+                        changeHeader(265, "https://s3-eu-west-1.amazonaws.com/content.propstore.com/auction/marvel_2020/lcheader.jpg")
+                    }
+                    else if(series === "Marvel's Iron Fist (TV Series)"){
+                        changeHeader(265, "https://s3-eu-west-1.amazonaws.com/content.propstore.com/auction/marvel_2020/ifheader.jpg")
+                    }
+                    else{
+                        changeHeader(265, "https://s3-eu-west-1.amazonaws.com/content.propstore.com/auction/marvel_2020/defheader.jpg")
+                    }
+                }
+                else if(AuctionInfo.auction_id === 267){
+                    if(LotInfo.lot_item_id > 62544)
+                        changeHeader(267, "https://s3-eu-west-1.amazonaws.com/content.propstore.com/auction/EMLA+LA/EMLA-LA_ProductHeader_Daybreak-02.jpg");
+                    else
+                        changeHeader(267, "https://s3-eu-west-1.amazonaws.com/content.propstore.com/auction/EMLA+LA/EMLA-LA_ProductHeader_Daybreak-01.jpg");
+                }
+                var width = window.innerWidth
+                          || document.documentElement.clientWidth
+                          || document.body.clientWidth;
+                if(width > 1200){
+                    let area = document.getElementsByClassName("container");
+                    let leftSide = area[0].getElementsByClassName("auc_slide")[0];
+                    let leftSideHeight = window.getComputedStyle(leftSide, null).getPropertyValue("height");
+                    let leftSidePx = Number(leftSideHeight.slice(0, -2));
+
+                    let infoBox = area[0].getElementsByClassName("auc_info")[0];
+                    let infoBoxHeight = window.getComputedStyle(infoBox, null).getPropertyValue("height");
+                    let infoBoxPx = Number(infoBoxHeight.slice(0, -2));
+
+                    let miniPics = document.getElementById("slider4-pager");
+
+                    miniPics.style.marginBottom = (-1 * leftSidePx + infoBoxPx) + "px";
+
+                    let catImgs = area[0].getElementsByClassName("lot-catalog-list")[0];
+                    let catImgsHeight = window.getComputedStyle(catImgs, null).getPropertyValue("height");
+                    let catImgsPx = Number(catImgsHeight.slice(0, -2));
+
+                    let foot = area[1].parentElement;
+                    foot.style.marginTop = (catImgsPx + 5) + "px";
+
+                    let nav = document.getElementById("nav");
+                    let navHeight = window.getComputedStyle(nav, null).getPropertyValue("height");
+                    let navPx = Number(navHeight.slice(0, -2));
+                    if(leftSidePx > navPx + infoBoxPx){
+                        nav.style.marginBottom = (16 + leftSidePx - infoBoxPx - navPx) + "px";
+                    }
+                }
+                let n = document.getElementsByClassName("lot-name");
+                if(n.length > 1)
+                    n[0].remove();
+            }
+        }();
+        //end Steve Brown add
+    });
+
+    function lotCopyrightOverwrite(copyrightHolder){
+        var sheet = document.styleSheets[0];
+        sheet.insertRule(".auc_slide .rslides > li figure:first-child:after {  content: '© " + copyrightHolder + " Click to open full-size image; newly-opened image can be zoomed in or out.' !important;}");
+        sheet.insertRule(".iv-container::before { content: 'zoom / pan : use scroll for desktop, or two fingers for mobiles © " + copyrightHolder + "' !important;}");
+    }
+
+    function newBreakout(){
+        //get the nav element to display the description
+        let nav = document.getElementById("nav");
+
+        //gather the elements to move them around
+        let breakoutContent = document.getElementById("breakout-content").innerHTML;
+        let shippingInfo = nav.getElementsByClassName("shipping-info-content")[0].innerHTML;
+        let modals = document.getElementById("modal-set").children;
+
+        //T&C may not be set yet...plan for this!
+        let terms = nav.getElementsByClassName("terms-content")[0];
+        if(terms === undefined)
+            terms = "<p>TERMS AND CONDITIONS NOT YET ADDED</p>";
+        else
+            terms = terms.innerHTML;
+        
+        //empty the nav element before displaying anything
+        do{
+            nav.removeChild(nav.firstChild);
+        }while(nav.firstChild)
+
+        //make everything visible
+        document.getElementsByClassName("lot-details-index")[0].style.visibility = "visible";
+
+        //grab the auction_info element so we can add the modals to it
+        let aucInfo = document.getElementsByClassName("auc_info")[0];
+
+        //put the lot title element where it needs to be
+        let name = document.getElementsByClassName("lot-name")[0];
+        name.remove();
+        insertAfter(name, aucInfo.getElementsByClassName("navigate")[0]);
+
+        //add the description to the nav element
+        nav.insertAdjacentHTML('beforeend', breakoutContent);
+
+        //append the text to the modals
+        modals[1].children[0].insertAdjacentHTML('beforeend', shippingInfo);
+        modals[2].children[0].insertAdjacentHTML('beforeend', terms);
+
+        //append the modals to the auction_info element
+        aucInfo.append(modals[0]);
+        aucInfo.append(modals[0]);
+        aucInfo.append(modals[0]);
+    }
+
+    function descriptionBreakout() {
+        //grab the link and script here
+        let navArr = document.getElementsByClassName("description-info-content")[0].children;
+
+        //make an arr of content children; [0] for product description, [1] for buyer's info
+        var contentChildren = document.getElementById("auction-section").children;
+
+        //coa gets moved around when not in marvel, so we have to adjust it; first section works outside of marvel
+        let catID = window.location.pathname.substring(29, window.location.pathname.indexOf("/", 30));
+        let catIDInt = parseInt(catID);
+        if (catIDInt !== 258 && catIDInt !== 255 && catIDInt !== 238 && catIDInt !== 250 && catIDInt !== 249 && catIDInt !== 198 && catIDInt !== 191 && catIDInt !== 220) {
+            var contentGrandchildren = contentChildren[1].children;
+
+            //start with hr tag
+            var cOA = [document.createElement("hr")];
+
+            //push in all of the content
+            for (let i = 0; i < contentGrandchildren.length; i++) {
+                if (contentGrandchildren[i].className === "text-center")
+                    cOA.push(contentGrandchildren[i]);
+            }
+
+            //remove the original stuff
+            do {
+                contentGrandchildren[0].remove();
+            } while (contentGrandchildren.length > 1);
+        }
+
+        //steal description html content
+        //var content = document.getElementsByClassName("description-info-content")[0].children[0].innerHTML;
+        var content = contentChildren[0].innerHTML;
+        var guide = contentChildren[1].innerHTML;
+
+        //make modal buttons
+        var bGBtn = makeModal(0, "Buyer's Guide", "buyers-guide-modal", "buyers-guide-button", "buyers-guide-modal-close", guide);
+        var sIBtn = makeModal("shipping-info-content", "Shipping Info", "shipping-info-modal", "shipping-info-button", "shipping-modal-close");
+        if (document.getElementsByClassName("terms-content")[0])
+            var tCBtn = makeModal("terms-content", "Terms & Conditions", "terms-info-modal", "terms-button", "terms-close");
+
+        window.onclick = function (event) {
+            var modals = document.getElementsByClassName("modal");
+            if (event.target == modals[0]) {
+                modals[0].style.display = "none";
+            }
+            else if (event.target == modals[1]) {
+                modals[1].style.display = "none";
+            }
+            else if (event.target == modals[2]) {
+                modals[2].style.display = "none";
+            }
+        }
+
+        if(catIDInt === 257 || catIDInt === 198 || catIDInt === 220)
+            marvelTCFix();
+
+        //stick everything else in #nav
+        var navBox = document.getElementById("nav");
+
+        navBox.innerHTML = content;
+
+        var grayBtnBox = document.createElement("div");
+        grayBtnBox.setAttribute("id", "infoBtnBox");
+        grayBtnBox.append(bGBtn);
+        grayBtnBox.append(sIBtn);
+        if (tCBtn)
+            grayBtnBox.append(tCBtn);
+
+        navBox.prepend(navArr[1]);
+        navBox.prepend(navArr[0]);
+
+        //move sharing and shipping quote buttons
+        if (document.getElementsByClassName("addthis_toolbox")[0]) {
+            var shareBtns = document.getElementsByClassName("addthis_toolbox")[0];
+            sQ = document.getElementById("shippingQuote");
+            iL = document.getElementById("itemLocation");
+            shareBtns.remove();
+
+            //remove blank space
+            for (let i = 0; i < shareBtns.children.length;) {
+                if (shareBtns.children[i].tagName === "BR" || shareBtns.children[i].tagName === "P") {
+                    shareBtns.children[i].remove();
+                }
+                else
+                    i++;
+            }
+
+            shareBtns.appendChild(sQ);
+            if (catIDInt === 258 || catIDInt === 255 || catIDInt === 238 || catIDInt === 250 || catIDInt === 249 || catIDInt === 198 || catIDInt === 191 || catIDInt === 220) {
+                var iLHolder = document.createElement("span");
+                iLHolder.setAttribute("id", "itemLocationAdjuster");
+                iLHolder.appendChild(iL);
+                shareBtns.appendChild(iLHolder);
+                iLHolder.style.marginLeft = "-12px";
+
+                //account for a firefox/chrome discrepency in the item location display at certain window sizes
+                var isChrome = !!window.chrome && (!!window.chrome.webstore || !!window.chrome.runtime);
+                if (isChrome) {
+                    var sheet = document.styleSheets[0];
+                    sheet.insertRule("@media (min-width : 449px) and (max-width : 568px) { #itemLocation{ top: -2.5px !important;}}");
+                }
+            }
+            else{
+                var iLHolder = document.createElement("span");
+                iLHolder.setAttribute("id", "itemLocationAdjuster");
+                iLHolder.style.marginLeft = "-12px";
+                iLHolder.appendChild(iL);
+                shareBtns.appendChild(iLHolder);
+            }
+            if (catIDInt === 187) {
+                var sBBreak = document.createElement("p");
+                navBox.appendChild(sBBreak);
+            }
+            else if (catIDInt === 258 || catIDInt === 255 || catIDInt === 238 || catIDInt === 250 || catIDInt === 249 || catIDInt === 198 || catIDInt === 191|| catIDInt === 220) {
+                var buttonBreak = document.createElement("p");
+                navBox.appendChild(buttonBreak);
+            }
+            navBox.appendChild(shareBtns);
+        }
+
+        if (catIDInt !== 258 && catIDInt !== 255 && catIDInt !== 238 && catIDInt !== 250 && catIDInt !== 249 && catIDInt !== 198 && catIDInt !== 191 && catIDInt !== 220) {
+            navBox.append(grayBtnBox);
+            for(let i = 0; i < cOA.length; i++)
+                navBox.append(cOA[i]);
+        }
+        //marvel auction COA move
+        else {
+            let hrTags = document.getElementsByTagName("HR");
+            let marvelHR = hrTags[0];
+            let marvelCOA = document.getElementsByClassName("text-center");
+            let t1 = marvelCOA[0];
+            let img = marvelCOA[1];
+            let t2 = marvelCOA[2];
+            marvelHR.remove();
+            t1.remove();
+            img.remove();
+            t2.remove();
+            navBox.append(grayBtnBox);
+            navBox.append(marvelHR);
+            navBox.append(t1);
+            navBox.append(img);
+            navBox.append(t2);
+        }
+
+        //delete the "Product Description" header because unnecessary
+        if (window.location.pathname.indexOf("/187/", 28) > -1) {
+            navBox.children[6].remove();
+            navBox.children[4].remove();
+        }
+        if(document.getElementsByTagName("h3")[0].innerText.substring(0,7) === "Test - ")
+            document.getElementById("itemLocationAdjuster").style.marginLeft = "-12px";
+
+        if(AuctionInfo.auction_id === 228 || AuctionInfo.auction_id === 235){
+            document.querySelectorAll("a[href='http://www.propstore.com/cms/certificate-of-authenticity-2/']")[0].remove();
+        }
+    }
+
+    function lineBreak(str) {
+        while (str.includes("\n")) {
+            str = str.replace("\n", "<br>");
+        }
+        return str;
+    }
+
+    function marvelTCFix() {
+        let mIC = document.getElementsByClassName("modalInnerContainer")[2];
+        let mTC1 = mIC.children[1];
+        let mTC2 = mIC.children[3];
+        mTC1.id = "marvelTC";
+        mTC2.id = "marvelTC2";
+        mTC1.children[0].children[0].remove();
+        let pTags = mIC.getElementsByTagName("P");
+        for (let i = 0; i < pTags.length;) {
+            if (pTags[i].innerHTML === "\n&nbsp;") {
+                pTags[i].remove();
+            }
+            else{
+                pTags[i].style.textAlign = "justify !important";
+                i++;
+            }
+        }
+        mTC1.children[1].innerHTML = "These Terms and Conditions of Sale (“Conditions”) set out the agreement between the Bidder/Buyer and Prop Store and the Seller. By registering to bid and participate in a Prop Store Auction, you will be deemed to have read and agreed to be bound by these Conditions and the accompanying Buyer’s Guide, as set forth in the catalog for the Auction and online at <a href='http://www.propstore.com/'>www.propstore.com.</a>";
+
+        let trTags = mTC1.getElementsByTagName("TR");
+        trTags[3].children[1].innerHTML = "<p style='margin-left:3.5pt;'>Prop Store’s Buyer’s Guide, from time to time as may be amended, a copy of which appears in the catalog for the Auction and online at <a href='http://www.propstore.com/'>www.propstore.com</a></p>";
+
+        trTags[4].remove();
+        trTags[5].children[1].children[1].remove();
+        trTags[6].remove();
+
+        let mTC3 = document.createElement("div");
+        mTC3.id = "marvelTC3";
+        for(let i = 3; i < mIC.children.length; i++){
+           let el = mIC.children[i];
+           if(el.tagName !== "H3")
+               el.style.textAlign = "justify";
+        }
+    }
+
+    function makeModal(htmlSourceClassName, buttonText, modalID, modalButtonID, closeID, rawHtml) {
+        //steal html content
+        var content;
+        if (!rawHtml)
+            content = document.getElementsByClassName(htmlSourceClassName)[0].innerHTML;
+        else
+            content = rawHtml;
+
+        //create modal button and give it text and id
+        var modalButton = document.createElement("button");
+        modalButton.setAttribute("id", modalButtonID);
+        modalButton.classList.add("modalButton");
+        //var buttonName = document.createTextNode(buttonText);
+        //modalButton.appendChild(buttonName);
+        modalButton.innerHTML = lineBreak(buttonText);
+
+        //create modal and give it relevant class and id
+        var modal = document.createElement("div");
+        modal.classList.add("modal");
+        modal.setAttribute("id", modalID);
+
+        //create a close option
+        var closeOpt = document.createElement("div");
+        closeOpt.classList.add("close");
+        closeOpt.innerText = "X";
+        closeOpt.setAttribute("id", closeID);
+
+        //create a container to hold everything in the modal
+        var modalInnerContainer = document.createElement("div");
+        modalInnerContainer.classList.add("modalInnerContainer");
+
+        //add onclick to modal button
+        modalButton.onclick = function () {
+            event.preventDefault();
+            modal.style.display = "block";
+        }
+
+        function closeModal() {
+            modal.style.display = "none";
+        }
+
+        //put the close option and content in the container, then put the container in the modal
+        modalInnerContainer.appendChild(closeOpt);
+        modalInnerContainer.innerHTML += content;
+        modal.appendChild(modalInnerContainer);
+        document.getElementsByClassName("auc_info")[0].append(modal);
+        document.getElementById(closeID).addEventListener("click", closeModal);
+
+        //return button so we can hold onto it as we finish making more modals; we will put buttons into nav once we are done
+        return modalButton;
+    }
+
+    /*
+     * Return outerHTML for the first element in a jQuery object,
+     * or an empty string if the jQuery object is empty;
+     */
+    jQuery.fn.outerHTML = function () {
+        return (this[0]) ? this[0].outerHTML : '';
+    };</script>
+<script>
+    // Generic layout modifications
+    var urlpathname = top.location.pathname;
+
+    if (urlpathname.includes("/lot/", 30)) {
+        shiftTitle();
+        //fixNavBox();
+        changeArrowColour();
+        realignTitle();
+        //timeFix();
+        console.log("Ping");
+    }
+
+    function shiftTitle() {
+        $(".aucdttle").children().last().addClass("lottitleshifted");
+        var title = $(".aucdttle").children().last().html();
+        $(".aucdttle").children().last().remove();
+
+        $(title).insertAfter(".navigate");
+        $(".lot-name").css("font-weight", "bold");
+        //$(".lot-name").css("top", "10px");
+    }
+
+    function changeArrowColour() {
+        $(".advSearchAccordionButton").css("background", "url(https://s3-eu-west-1.amazonaws.com/content.propstore.com/auction/smarwblk.png) no-repeat");
+        $(".advSearchAccordionButton").css("background-position", "96% -28px");
+    }
+
+    function realignTitle() {
+        var titleHTML = "";
+        $(".auc-lot-form").remove();
+        titleHTML = $(".lot-name")[0].outerHTML;
+
+        $(".lot-name").remove();
+
+        $(".auc_info").prepend(titleHTML);
+        $(".lot-name").attr('style', 'font-weight: bold; right: 0%; max-width: 100%;'); //removed "transform: translate(0%, 100%); line-height: 20px !important;" from style
+
+        let lotName = document.getElementsByClassName("lot-name")[0];
+        document.getElementsByClassName("lot-name")[0].remove();
+
+        $(lotName).insertAfter(".navigate");
+
+        //reformatTitle();
+
+        //$(".lot-name").text(($(".lot-name").text() + "                                                             "));
+    }
+
+    /*function timeFix() {
+        var timegrab = "";
+
+        if ($("#auc-starts-ending-date").length) {
+            timegrab = $("#auc-starts-ending-date").text();
+        }
+        else {
+            var endtimestring = $(".tle-lot > h3 > span").text();
+            let eTS = $(".tle-lot > h3 > span");
+            timegrab = endtimestring.substr(endtimestring.indexOf('-') + 1, endtimestring.length);
+        }
+
+        var endtime = moment(timegrab, "MM/DD/YYYY hh:mm A Z");
+
+        // Time format is |Dayofweek, Month Dayofmonth Year - Hour:Minutes AmPm|  Search moment.js formats to change
+        var endresult = "<br> Bidding Ends " + fixTimeZone(endtime.format("dddd, MMMM Do YYYY - h:mm A ZZ").toString());
+
+        if (endtime.isValid()) {
+            if ($('.tle-lot')[0]) {
+                var title = $(".tle-lot > h3").text();
+                title = title.substr(0, title.indexOf('('));
+                $(".sale-no").remove();
+
+                var starttimestring = $(".tle-lot > h3 > span").text();
+                timegrab = starttimestring.substr(0, starttimestring.indexOf('-'));
+                var starttime = moment(timegrab, "MM/DD/YYYY hh:mm A Z");
+                var startresult = "<br> Bidding Starts " + fixTimeZone(starttime.format("dddd, MMMM Do YYYY - h:mm A ZZ").toString());
+                if (starttime.isValid()) {
+
+                    $(".tle-lot > h3").empty();
+
+                    $(".tle-lot > h3").append(title);
+                    $(".tle-lot > h3").append(startresult);
+                    $(".tle-lot > h3").append(endresult);
+                }
+
+                let catID = window.location.pathname.substring(28,33)
+                if(catID === "/198/"){
+                    let lotID = Number(window.location.pathname.substring(37, 42));
+                    if(lotID > 42858){
+                        let textSource = document.getElementsByClassName("tle-lot")[0].children[0].children[0];
+                        textSource.innerText = textSource.innerText.replace("/12/", "/13/");
+                    }
+                }
+            }
+            else {
+                var title = $(".tle > h3").text();
+                title = title.substr(0, title.indexOf('('));
+
+                $(".sale-no").remove();
+
+                var starttimestring = $(".tle > h3 > span").text();
+                timegrab = starttimestring.substr(0, starttimestring.indexOf('-'));
+
+                var title = $(".tle > h3").text();
+                title = title.substr(0, title.indexOf('('));
+
+                var starttime = moment(timegrab, "MM/DD/YYYY hh:mm A Z");
+                var startresult = "<br> Bidding Starts " + starttime.format("dddd, MMMM Do YYYY - h:mm A Z").toString();
+
+                if (starttime.isValid()) {
+
+                    $(".tle > h3").empty();
+
+                    $(".tle > h3").append(title);
+                    $(".tle > h3").append(startresult);
+                    $(".tle > h3").append(endresult);
+                }
+            }
+        }
+    }
+
+    //MAY NEED TO BE FIXED TO ACCOUNT FOR DATES, MAY NEED TO BE FIXED IF ADDITIONAL SITES ADDED
+    function fixTimeZone(time){
+        let timeZone = "";
+        if(time.lastIndexOf("+") === -1){//LA
+            timeZone = time.substring(time.lastIndexOf("-"));
+            time = time.substring(0, time.lastIndexOf("-"));
+            switch(timeZone){
+                case "-0700": timeZone = "PDT"; break; //LA, summer
+                case "-0800": timeZone = "PST"; break; //LA, winter
+            }
+        }
+        else{ //London
+            timeZone = time.substring(time.lastIndexOf("+"));
+            time = time.substring(0, time.lastIndexOf("+"));
+            switch(timeZone){
+                case "+0100": timeZone = "BST"; break; //London, summer
+                case "+0000": timeZone = "GMT"; break; //London, winter
+            }
+        }
+
+        return time + timeZone;
+    }*/
+
+    /*
+    * Return outerHTML for the first element in a jQuery object,
+    * or an empty string if the jQuery object is empty;
+    */
+    jQuery.fn.outerHTML = function () {
+        return (this[0]) ? this[0].outerHTML : '';
+    };</script>
+<script>
+    // Generic header banner (adds one to pages with gap)
+    var urlpathname = top.location.pathname;
+
+    // $(window).load(function(){
+    if (!(urlpathname.includes("/id/"))) {
+        $("#AdvancedSearch").css("background", "url(https://s3-eu-west-1.amazonaws.com/content.propstore.com/auction/PS_genericheader.jpg) no-repeat");
+    }
+
+    //  });</script>
+<script>
+    var urlpathname = top.location.pathname;
+
+    if (urlpathname.includes("/info/")) {
+        $('.bodybox').addClass('noheader');
+    }</script>
