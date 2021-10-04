@@ -202,10 +202,11 @@
 }
 
 .aucproduct__card {
-	height: $card-height-auc;
+	position: relative;
+	height: auto;
 
 	.card__info {
-		height: $card-height-auc - $card-width;
+		height: calc(100% - #{$card-width});
 	}
 
 	.card__movie {
@@ -239,7 +240,16 @@
 }
 
 .aucproduct__card-details-timer {
-	color: $color-red;
+	.timelft {
+		margin: 0;
+		font-size: 0px;
+
+		a:not(.btn) {
+			color: $color-red;
+			font-size: 1rem;
+			font-weight: 300 !important;
+		}
+	}
 }
 
 @media #{$breakpoint-4cards} {
@@ -253,10 +263,10 @@
 	}
 
     .aucproduct__card {
-        height: $card-height-auc-m;
+        height: auto;
 
 		.card__info {
-			height: $card-height-auc-m - $card-width-m;
+			height: calc(100% - #{$card-width-m});
 		}
     }
 }

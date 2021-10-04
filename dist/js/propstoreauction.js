@@ -747,19 +747,9 @@ Lot # 28: Episode "Dog Myths" and Episode "Voice Flame Extinguisher" (2007, E74/
                     <div class="card__info">
                         <div class="card__description">
                             <div class="card__movie"></div>
-                            <div class="aucproduct__card-details">
-                                <div class="aucproduct__card-details-row">
-                                    <div class="aucproduct__card-details-label"></div>
-                                    <div class="aucproduct__card-details-value"></div>
-                                </div>
-                            </div>
+                            <div class="aucproduct__card-details"></div>
                         </div>
-                        <div class="card__actions">
-                            <a class="waves-effect waves-light btn aucproduct__card-btn" tabindex="0">
-                                <span class="btn__title">View details</span>
-                                <i class="icon"><svg><use xlink:href="#arrow-right"></use></svg></i>
-                            </a>
-                        </div>
+                        <div class="card__actions"></div>
                     </div>
                 </div>
             </div>
@@ -817,7 +807,6 @@ Lot # 28: Episode "Dog Myths" and Episode "Voice Flame Extinguisher" (2007, E74/
 			$('.grid_list .sqr').html('<i class="icon"><svg><use xlink:href="#view-grid"></use></svg></i>');
 			$('.auccatalog__nav-view').html($('.grid_list').html());
 
-			$cardDetails = $('.aucproduct__card-details-row').clone();
 			$('.aucproduct__card-details').html();
 			$card = $('.card').clone();
 			$('.cards__list').html('');
@@ -835,12 +824,27 @@ Lot # 28: Episode "Dog Myths" and Episode "Voice Flame Extinguisher" (2007, E74/
 				}
 				$(item).find('.item-status').remove();
 				$(item).find('.price-info li').each((k, info) => {
-					$infoRow = $cardDetails.clone();
-					$infoRow.find('.aucproduct__card-details-label').html($(info).find('.title').html());
-					$infoRow.find('.aucproduct__card-details-value').html($(info).find('.value').html());
-					$cardItem.find('.aucproduct__card-details').append($infoRow);
+					const $info = $(info);
+					if ($info.text()) {
+						$info.find('.title').addClass('aucproduct__card-details-label');
+						$info.find('.value').addClass('aucproduct__card-details-value');
+						$info.addClass('aucproduct__card-details-row');
+						$cardItem.find('.aucproduct__card-details').append($info);
+					}
 				});
-				$cardItem.find('.aucproduct__card-btn').prop('href', $(item).find('.orng').prop('href'));
+				const $timelft = $(item).find('.timelft');
+				if ($timelft.length && $timelft.text()) {
+					$cardItem.find('.aucproduct__card-details').append(`<div class="aucproduct__card-details-row">
+						<div class="aucproduct__card-details-label">Time Left</div>
+						<div class="aucproduct__card-details-value aucproduct__card-details-timer"></div>
+					</div>`);
+					$cardItem.find('.aucproduct__card-details-timer').append($timelft);
+				}
+				const $btn = $(item).find('.auclistbtn .orng');
+				if ($btn.length) {
+					$btn.addClass('waves-effect waves-light btn aucproduct__card-btn');
+					$cardItem.find('.card__actions').append($btn);
+				}
 
 				$('.cards__list').append($cardItem);
 			});
