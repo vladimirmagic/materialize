@@ -15742,6 +15742,8 @@ tbody .tr:last-child .td {
   top: 57px;
   z-index: 9;
   width: 100%;
+  max-height: 50vh;
+  overflow-x: auto;
   background: #FFF;
   border: 1px solid #c7c7c7;
   -webkit-box-shadow: 0px 4px 30px -10px rgba(0, 0, 0, 0.15);
@@ -19333,7 +19335,7 @@ a.voucher:not(.btn):not(.btn-large):not(.btn-small):not(.btn-extra-small):before
   max-width: 100%;
 }
 
-.wp iframe {
+.wp iframe, .wp video {
   max-width: 100%;
 }
 
@@ -19354,6 +19356,18 @@ a.voucher:not(.btn):not(.btn-large):not(.btn-small):not(.btn-extra-small):before
   -webkit-flex-wrap: wrap;
       -ms-flex-wrap: wrap;
           flex-wrap: wrap;
+}
+
+.dextercontainer, .voxluxcontainer, .mutecontainer, .la2018container, .emla2019container, .backgroundbg, .everestcontainer, .friendscontainer, .gijoecontainer, .previewgallerycontainer, .hannibalcontainer, .hauntingcontainer, .cos, .mutecontainer, .NiloRodiscontainer {
+  max-width: 100%;
+}
+
+.cos .section {
+  height: auto !important;
+}
+
+.cos .item-block {
+  max-width: 100%;
 }
 
 @media only screen and (max-width: 1200px) {
@@ -19575,6 +19589,14 @@ body.auctions-catalog .smpagination {
 }
 
 .auclist.auchome .auclink .btn + .btn--secondary, .auclist.auchome .auclink .btn-large + .btn--secondary, .auclist.auchome .auclink .btn-small + .btn--secondary, .auclist.auchome .auclink .btn-extra-small + .btn--secondary {
+  margin-left: 1em;
+}
+
+.auclist.auchome .auclink .unibtn {
+  display: inline;
+}
+
+.auclist.auchome .auclink .unibtn + .unibtn {
   margin-left: 1em;
 }
 
@@ -19825,6 +19847,10 @@ body.auctions-catalog .smpagination {
   width: 6rem;
 }
 
+.auccatalog__nav-perpage .customSelectInner {
+  opacity: 0;
+}
+
 .auccatalog__nav-perpage-label {
   margin: 0 1rem 0 0;
 }
@@ -19956,6 +19982,12 @@ body.auctions-catalog .smpagination {
   margin-bottom: 2rem;
 }
 
+.auccatalog__search-panel .collapsible {
+  border: 0;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+
 .auccatalog__search-panel .collapsible-li {
   margin: 0;
   padding: 0;
@@ -19970,7 +20002,35 @@ body.auctions-catalog .smpagination {
 }
 
 .auccatalog__search-panel .collapsible-body {
-  padding: 0 1.5rem 2rem;
+  padding: 0 1.5rem 1rem;
+  border: 0;
+}
+
+.auccatalog__search-panel .selector {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  margin: .5em 0;
+}
+
+.auccatalog__search-panel .selector input {
+  -webkit-box-flex: 0;
+  -webkit-flex: 0 0 20px;
+      -ms-flex: 0 0 20px;
+          flex: 0 0 20px;
+  height: 20px;
+  margin-right: .5rem;
+}
+
+.auccatalog__search-panel .selector label {
+  color: #2D2E41;
+  font-size: 1rem;
+  line-height: 20px;
+}
+
+.auccatalog__search-panel .categories-match {
+  margin-top: 2rem;
 }
 
 .auccatalog__search-panel-title {
@@ -19986,6 +20046,10 @@ body.auctions-catalog .smpagination {
   -webkit-align-items: center;
       -ms-flex-align: center;
           align-items: center;
+}
+
+.auccatalog__search-panel-title .h4 {
+  margin: 0;
 }
 
 .auccatalog__search-panel-title .icon {
@@ -20004,6 +20068,10 @@ body.auctions-catalog .smpagination {
 .auccatalog__search-panel-checkboxes .checkbox__label {
   display: block;
   margin: .5em 0;
+}
+
+#adv_search_categories label {
+  color: #2D2E41;
 }
 
 .auccatalog__search-panel-row {
@@ -20030,11 +20098,12 @@ body.auctions-catalog .smpagination {
 }
 
 .aucproduct__card {
-  height: 692px;
+  position: relative;
+  height: auto;
 }
 
 .aucproduct__card .card__info, .aucproduct__card .card-blog__info {
-  height: 336px;
+  height: calc(100% - 356px);
 }
 
 .aucproduct__card .card__movie {
@@ -20075,8 +20144,15 @@ body.auctions-catalog .smpagination {
   font-weight: 300;
 }
 
-.aucproduct__card-details-timer {
+.aucproduct__card-details-timer .timelft {
+  margin: 0;
+  font-size: 0px;
+}
+
+.aucproduct__card-details-timer .timelft a:not(.btn):not(.btn-large):not(.btn-small):not(.btn-extra-small) {
   color: #F93838;
+  font-size: 1rem;
+  font-weight: 300 !important;
 }
 
 @media only screen and (max-width: 1608px) {
@@ -20090,10 +20166,10 @@ body.auctions-catalog .smpagination {
     margin-right: 16px;
   }
   .aucproduct__card {
-    height: 620px;
+    height: auto;
   }
   .aucproduct__card .card__info, .aucproduct__card .card-blog__info {
-    height: 316px;
+    height: calc(100% - 304px);
   }
 }
 

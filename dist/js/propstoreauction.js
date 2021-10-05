@@ -1,36 +1,37 @@
 document.addEventListener('DOMContentLoaded', () => {
-  const svgSprite = document.createElement('div');
+	if (window.location.href.includes('#nomaterialize')) { // don't materialize
+		document.querySelectorAll('[data-v2]').forEach(item => item.remove());
+		return;
+	}
+	const svgSprite = document.createElement('div');
 	svgSprite.id = 'svg-sprite';
 	document.body.append(svgSprite);
-	const loaded = function() {document.body.classList.add('loaded')};
+	const loaded = function () { document.body.classList.add('loaded') };
 	if (typeof fetch != "undefined") fetch('https://propstore-ui.netlify.app/dist/defs/svg/sprite.defs.svg', { cache: 'force-cache' })
 		.then(response => response.text())
 		.then(html => { svgSprite.innerHTML = html; loaded(); })
 		.catch(loaded);
 
-  $(function() {
-      document.body.classList.add('loaded'); // if svg fail
+	$(function () {
+		function is_touch_device() {
+			try {
+				document.createEvent('TouchEvent');
+				return true;
+			} catch (e) {
+				return false;
+			}
+		}
 
-      // Detect touch screen and enable scrollbar if necessary
-      function is_touch_device() {
-          try {
-              document.createEvent('TouchEvent');
-              return true;
-          } catch (e) {
-              return false;
-          }
-      }
-  
-      if (is_touch_device()) {
-          $('body').removeClass('no-touch').addClass('touch');
-      } else {
-          $('body').removeClass('touch').addClass('no-touch');
-      }
+		if (is_touch_device()) {
+			$('body').removeClass('no-touch').addClass('touch');
+		} else {
+			$('body').removeClass('touch').addClass('no-touch');
+		}
 
 
 
-      if ($('body').hasClass('lot-details-index')) { // PRODUCT
-        $('footer').append(`
+		if ($('body').hasClass('lot-details-index')) { // PRODUCT
+			$('footer').append(`
         <header>
         <div class="header__settings">
             <div class="header__col header__col--left"></div>
@@ -378,205 +379,212 @@ Lot # 28: Episode "Dog Myths" and Episode "Voice Flame Extinguisher" (2007, E74/
         <div class="modal-content"></div>
     </div>
         `);
-        $('#headsec').remove();
-        $('body').prepend($('header'));
-        $('<main></main>').append($('#wrapper')).insertAfter($('header'));
+			$('#headsec').remove();
+			$('body').prepend($('header'));
+			$('<main></main>').append($('#wrapper')).insertAfter($('header'));
 
-        let status;
-        if ($('.sale-closed').length) status = 'closed';
+			let status;
+			if ($('.sale-closed').length) status = 'closed';
 
-        let aucPoster = window.getComputedStyle(document.querySelector('.bodybox'), ':before');
-        $('.hero__image').css({backgroundImage: aucPoster.backgroundImage});
-        document.querySelectorAll('style:not([data-v2]), link[rel="stylesheet"]:not([data-v2])').forEach(item => item.remove());
+			let aucPoster = window.getComputedStyle(document.querySelector('.bodybox'), ':before');
+			$('.hero__image').css({ backgroundImage: aucPoster.backgroundImage });
+			document.querySelectorAll('style:not([data-v2]), link[rel="stylesheet"]:not([data-v2])').forEach(item => item.remove());
 
-        $aucTitle = $('.tle-lot h3').clone();
-        $aucTitle.find('span').remove();
-        $('.hero__static-title').html($aucTitle.text());
-        $('.hero__static-date').append($('.sale-date').first());
-        if (status) {
-            $badge = $('.auc__hero .badge');
-            switch (status) {
-            case 'closed':
-                $badge.addClass('red').append('Closed').show().find('use').attr('xlink:href', '#flag');
-                break;
-            }
-        }
+			$aucTitle = $('.tle-lot h3').clone();
+			$aucTitle.find('span').remove();
+			$('.hero__static-title').html($aucTitle.text());
+			$('.hero__static-date').append($('.sale-date').first());
+			if (status) {
+				$badge = $('.auc__hero .badge');
+				switch (status) {
+					case 'closed':
+						$badge.addClass('red').append('Closed').show().find('use').attr('xlink:href', '#flag');
+						break;
+				}
+			}
 
-        $itemTitleH = $('.tle-lot + h3');
-        $itemTitle = $itemTitleH.find('.lot-name');
-        $itemTitleH.find('.lot-name').remove();
-        $('.product__number').html($itemTitleH.text());
-        $('.product__title').html($itemTitle.text());
-        $('.auc__hero-aucinfo').attr('href', $('.aucinfo').attr('href'));
-        $('.auc__hero-auccatalog').attr('href', $('.catlg').attr('href'));
+			$itemTitleH = $('.tle-lot + h3');
+			$itemTitle = $itemTitleH.find('.lot-name');
+			$itemTitleH.find('.lot-name').remove();
+			$('.product__number').html($itemTitleH.text());
+			$('.product__title').html($itemTitle.text());
+			$('.auc__hero-aucinfo').attr('href', $('.aucinfo').attr('href'));
+			$('.auc__hero-auccatalog').attr('href', $('.catlg').attr('href'));
 
-        $carouselItem = $('.product__slider .carousel-item').clone();
-        $slider = $('.product__slider').html('');
-        $thumbnailsItem = $('.product__thumbnail').clone();
-        $thumbnails = $('.product__thumbnails-scroll').html('');
-        $galleryItem = $('.modal-gallery__carousel .carousel-item').clone();
-        $gallery = $('.modal-gallery__carousel').html('');
+			$carouselItem = $('.product__slider .carousel-item').clone();
+			$slider = $('.product__slider').html('');
+			$thumbnailsItem = $('.product__thumbnail').clone();
+			$thumbnails = $('.product__thumbnails-scroll').html('');
+			$galleryItem = $('.modal-gallery__carousel .carousel-item').clone();
+			$gallery = $('.modal-gallery__carousel').html('');
 
-        $('.image-thumb-slide').each((i, item) => {
-            const img = {backgroundImage: 'url(' + item.href + ')'};
-            const imgPrev = {backgroundImage: 'url(' + item.dataset.image + ')'};
-            $carouselItemNew = $carouselItem.clone();
-            $slider.append($carouselItemNew.css(imgPrev));
-            $thumbnailsItemNew = $thumbnailsItem.clone();
-            $thumbnails.append($thumbnailsItemNew.css(imgPrev));
-            $galleryItemNew = $galleryItem.clone();
-            $gallery.append($galleryItemNew.css(img));
-        });
+			$('.image-thumb-slide').each((i, item) => {
+				const img = { backgroundImage: 'url(' + item.href + ')' };
+				const imgPrev = { backgroundImage: 'url(' + item.dataset.image + ')' };
+				$carouselItemNew = $carouselItem.clone();
+				$slider.append($carouselItemNew.css(imgPrev));
+				$thumbnailsItemNew = $thumbnailsItem.clone();
+				$thumbnails.append($thumbnailsItemNew.css(imgPrev));
+				$galleryItemNew = $galleryItem.clone();
+				$gallery.append($galleryItemNew.css(img));
+			});
 
-        $detailsLine = $('.aucproduct__details-line').clone();
-        $details = $('.aucproduct__details');
-        $details.html('');
+			$detailsLine = $('.aucproduct__details-line').clone();
+			$details = $('.aucproduct__details');
+			$details.html('');
 
-        $win = $('#lac28');
-        if ($win.length) {
-            $winVal = $win.find('span');
-            $win.find('span').remove();
-            $winVal.append(' ').append($('.biddingHistoryLink'));
-            $lineWin = $detailsLine.clone();
-            $lineWin.html($win.text() + ' <strong>' + $winVal.html() + '</strong>');
-            $details.append($lineWin);
-        }
+			$win = $('#lac28');
+			if ($win.length) {
+				$winVal = $win.find('span');
+				$win.find('span').remove();
+				$winVal.append(' ').append($('.biddingHistoryLink'));
+				$lineWin = $detailsLine.clone();
+				$lineWin.html($win.text() + ' <strong>' + $winVal.html() + '</strong>');
+				$details.append($lineWin);
+			}
 
-        $estimate = $('.estimate');
-        $estimateVal = $('.estimate-val');
-        if ($estimate.length && $estimateVal.length) {
-            $lineEstimate = $detailsLine.clone();
-            $lineEstimate.html($estimate.text() + ' <strong>' + $estimateVal.html() + '</strong>');
-            $details.append($lineEstimate);
-        }
+			$estimate = $('.estimate');
+			$estimateVal = $('.estimate-val');
+			if ($estimate.length && $estimateVal.length) {
+				$lineEstimate = $detailsLine.clone();
+				$lineEstimate.html($estimate.text() + ' <strong>' + $estimateVal.html() + '</strong>');
+				$details.append($lineEstimate);
+			}
 
-        $('.product__detail .collapsible-body').html($('.l1desctextwhite').html());
-        $('#modal-buyers-guide .modal-content').append($('h4:contains("Product Questions")').parent());
-        $('body').append($('#modal-buyers-guide'));
+			$('.product__detail .collapsible-body').html($('.l1desctextwhite').html());
+			$('#modal-buyers-guide .modal-content').append($('h4:contains("Product Questions")').parent());
+			$('body').append($('#modal-buyers-guide'));
 
-        $('#modal-shipping .modal-content').append($('.shipping-info-content'));
-        $('body').append($('#modal-shipping'));
+			$('#modal-shipping .modal-content').append($('.shipping-info-content'));
+			$('body').append($('#modal-shipping'));
 
-        $('#modal-terms .modal-content').append($('.terms-content'));
-        $('body').append($('#modal-terms'));
+			$('#modal-terms .modal-content').append($('.terms-content'));
+			$('body').append($('#modal-terms'));
 
-        if ($('.description-info-content :contains("Certificate of Authenticity")').length) {
-            $('.product__certificate').show();
-        }
-        $originalNote = $('.description-info-content p:contains("original asset")');
-        if ($originalNote.length) {
-            $('.aucproduct__certificate').html($originalNote.html()).show();
-        }
+			if ($('.description-info-content :contains("Certificate of Authenticity")').length) {
+				$('.product__certificate').show();
+			}
+			$originalNote = $('.description-info-content p:contains("original asset")');
+			if ($originalNote.length) {
+				$('.aucproduct__certificate').html($originalNote.html()).show();
+			}
 
-        $('.share__item').each((index, item) => {
-            item.href += window.location.href;
-        });
+			$('.share__item').each((index, item) => {
+				item.href += window.location.href;
+			});
 
-        $('.container').prepend($('.aucproduct__also'));
-        $('.container').prepend($('.aucproduct'));
-        $('.container').prepend($('.auc__hero'));
+			$('.container').prepend($('.aucproduct__also'));
+			$('.container').prepend($('.aucproduct'));
+			$('.container').prepend($('.auc__hero'));
 
-        // PRODUCT
-        const productItems = [...document.querySelectorAll('.carousel-item')];
-        const productThumbnails = [...document.querySelectorAll('.product__thumbnail')];
-        if (productItems.length && productThumbnails.length) {
-          const productSlider = $('.product__slider').carousel({
-            onCycleTo: function(item, dragged) {
-              const index = productItems.indexOf(item);
-              const thumbnail = productThumbnails[index];
-              if (thumbnail) {
-                productThumbnails.forEach(thumbnail => thumbnail.classList.remove('active'));
-                thumbnail.classList.add('active');
-                // thumbnail.scrollIntoView({behavior: 'smooth', inline: 'center', block: 'nearest'}); // scrolls on page load(
-              }
-            },
-            onDestroy: function() {
-              productThumbnails.forEach(thumbnail => {
-                thumbnail.removeEventListener('mousemove', onClickProductThumbnail);
-              });
-            },
-          });
-          function onClickProductThumbnail (e) {
-            const index = productThumbnails.indexOf(e.target);
-            productSlider[0].M_Carousel.set(index);
-          }
-          productThumbnails.forEach(thumbnail => {
-            thumbnail.addEventListener('mousemove', onClickProductThumbnail);
-          });
+			// PRODUCT
+			const productItems = [...document.querySelectorAll('.carousel-item')];
+			const productThumbnails = [...document.querySelectorAll('.product__thumbnail')];
+			if (productItems.length && productThumbnails.length) {
+				const productSlider = $('.product__slider').carousel({
+					onCycleTo: function (item, dragged) {
+						const index = productItems.indexOf(item);
+						const thumbnail = productThumbnails[index];
+						if (thumbnail) {
+							productThumbnails.forEach(thumbnail => thumbnail.classList.remove('active'));
+							thumbnail.classList.add('active');
+							// thumbnail.scrollIntoView({behavior: 'smooth', inline: 'center', block: 'nearest'}); // scrolls on page load(
+						}
+					},
+					onDestroy: function () {
+						productThumbnails.forEach(thumbnail => {
+							thumbnail.removeEventListener('mousemove', onClickProductThumbnail);
+						});
+					},
+				});
+				function onClickProductThumbnail(e) {
+					const index = productThumbnails.indexOf(e.target);
+					productSlider[0].M_Carousel.set(index);
+				}
+				productThumbnails.forEach(thumbnail => {
+					thumbnail.addEventListener('mousemove', onClickProductThumbnail);
+				});
 
-          $('#modal-shipping-quote-country').formSelect({dropdownOptions: {container: document.body}});
-        }
+				$('#modal-shipping-quote-country').formSelect({ dropdownOptions: { container: document.body } });
+			}
 
-        $('.modal-gallery').modal({
-          opacity: .75,
-              dismissible: true,
-          onCloseStart: (el) => {
-            const carouselElement = el.querySelector('.modal-gallery__carousel');
-            if (carouselElement) {
-              const carousel = M.Carousel.getInstance(carouselElement);
-              if (carousel) carousel.destroy();
-            }
-          },
-          onOpenEnd: (el, trigger) => {
-            const modalSlider = $(el).find('.modal-gallery__carousel').carousel({
-              fullWidth: true,
-              indicators: true,
-              onCycleTo: function(item, dragged) {}
-            });
-            const productGallery = trigger.closest('.product__gallery');
-            if (productGallery) {
-              const timer = document.body.classList.contains('touch') ? 300 : 0; // on touch wait for active
-              setTimeout(() => {
-                const active = productGallery.querySelector('.carousel-item.active');
-                const index = productItems.indexOf(active);
-                modalSlider[0].M_Carousel.set(index);
-              }, timer);
-            }
-          }
-        });
-      } else if ($('body').hasClass('index-index')) { // INDEX
-        document.querySelectorAll('style:not([data-v2]), link[rel="stylesheet"]:not([data-v2])').forEach(item => item.remove());
-        $('.auclting').each((i, item) => {
-          $title = $(item).find('h6');
-          $title.addClass('h2')
-          const path = $title.find('a').prop('href').split('/view-auctions/info/id/');
-          const idString = path.length > 1 ? path[1].split('/') : '';
-          const id = idString.length > 1 ? idString[0] : 0;
-          if (!id) return;
+			$('.modal-gallery').modal({
+				opacity: .75,
+				dismissible: true,
+				onCloseStart: (el) => {
+					const carouselElement = el.querySelector('.modal-gallery__carousel');
+					if (carouselElement) {
+						const carousel = M.Carousel.getInstance(carouselElement);
+						if (carousel) carousel.destroy();
+					}
+				},
+				onOpenEnd: (el, trigger) => {
+					const modalSlider = $(el).find('.modal-gallery__carousel').carousel({
+						fullWidth: true,
+						indicators: true,
+						onCycleTo: function (item, dragged) { }
+					});
+					const productGallery = trigger.closest('.product__gallery');
+					if (productGallery) {
+						const timer = document.body.classList.contains('touch') ? 300 : 0; // on touch wait for active
+						setTimeout(() => {
+							const active = productGallery.querySelector('.carousel-item.active');
+							const index = productItems.indexOf(active);
+							modalSlider[0].M_Carousel.set(index);
+						}, timer);
+					}
+				}
+			});
+		} else if ($('body').hasClass('index-index')) { // INDEX
+			document.querySelectorAll('style:not([data-v2]), link[rel="stylesheet"]:not([data-v2])').forEach(item => item.remove());
+			$('.auclting').each((i, item) => {
+				$title = $(item).find('h6');
+				$title.addClass('h2')
+				const path = $title.find('a').prop('href').split('auctions/info/id/');
+				const idString = path.length > 1 ? path[1].split('/') : '';
+				const id = idString.length > 1 ? idString[0] : idString || 0;
+				if (!id) return;
 
-          $img = $(item).find('.aucimg a');
-          $img.addClass('auclting__img').css('background-image', 'url(' + $img.find('img').prop('src') + ')');
-          $desc = $(item).find('.aucdes');
-          $badge = $desc.find('#auc' + id).hide();
-          $badgeNew = $('<span class="badge auclting__badge">');
-          if ($badge.find('.in-progress').length) {
-              $badgeNew.addClass('green').append(`<i class="icon"><svg><use xlink:href="#live"></use></svg></i>Live`);
-          } else if ($badge.find('.ended').length) {
-              $badgeNew.addClass('red').append(`<i class='icon'><svg><use xlink:href="#flag"></use></svg></i>Ended`);
-          } else {
-              $badgeNew.addClass('orange').append(`<i class='icon'><svg><use xlink:href="#clockwise"></use></svg></i>Upcoming`);
-          }
-          $desc.prepend($badgeNew);
+				$img = $(item).find('.aucimg a');
+				$img.addClass('auclting__img').css('background-image', 'url(' + $img.find('img').prop('src') + ')');
+				$desc = $(item).find('.aucdes');
+				$badge = $desc.find('#auc' + id).hide();
+				$badgeNew = $('<span class="badge auclting__badge">');
+				if ($badge.find('.in-progress').length) {
+					$badgeNew.addClass('green').append(`<i class="icon"><svg><use xlink:href="#live"></use></svg></i>Live`);
+				} else if ($badge.find('.ended').length) {
+					$badgeNew.addClass('red').append(`<i class='icon'><svg><use xlink:href="#flag"></use></svg></i>Ended`);
+				} else {
+					$badgeNew.addClass('orange').append(`<i class='icon'><svg><use xlink:href="#clockwise"></use></svg></i>Upcoming`);
+				}
+				const $bidder = $(item).find('.bidder-status-closed');
+				if ($bidder.length) {
+					const $text = $('<div class="auclting__text">');
+					$text.append($bidder);
+					$desc.append($text);
+				}
 
-          $type = $('<div class="auclting__type"><i class="icon"><svg><use xlink:href="#auction-line"></use></svg></i></div>');
-          $type.append($desc.find('#sale' + id));
-          $date = $('<div class="auclting__date"><i class="icon"><svg><use xlink:href="#calendar"></use></svg></i></div>');
-          $date.append($desc.find('#aucdate' + id));
-          $lots = $('<div class="auclting__lots"><i class="icon"><svg><use xlink:href="#ticket"></use></svg></i></div>');
-          $lots.append($desc.find('p+p').text());
-          $details = $('<div class="auclting__details">');
-          $details.append($type).append($date).append($lots);
-          $details.insertAfter($title);
+				$desc.prepend($badgeNew);
 
-          $desc.append($(item).find('.auclink'));
+				$type = $('<div class="auclting__type"><i class="icon"><svg><use xlink:href="#auction-line"></use></svg></i></div>');
+				$type.append($desc.find('#sale' + id));
+				$date = $('<div class="auclting__date"><i class="icon"><svg><use xlink:href="#calendar"></use></svg></i></div>');
+				$date.append($desc.find('#aucdate' + id));
+				$lots = $('<div class="auclting__lots"><i class="icon"><svg><use xlink:href="#ticket"></use></svg></i></div>');
+				$lots.append($desc.find('p+p').text());
+				$details = $('<div class="auclting__details">');
+				$details.append($type).append($date).append($lots);
+				$details.insertAfter($title);
 
-          $(item).find('.reg').addClass('waves-effect waves-light btn');
-          $(item).find('.cat').addClass('waves-effect waves-grey btn btn--secondary');
+				$desc.append($(item).find('.auclink'));
 
-          $('.filters').hide();
-        });
-      } else if ($('body').hasClass('auctions-catalog')) { // CATALOG
-        $('footer').append(`
+				$(item).find('.reg').addClass('waves-effect waves-light btn');
+				$(item).find('.cat').addClass('waves-effect waves-grey btn btn--secondary');
+
+				$('.filters').hide();
+			});
+		} else if ($('body').hasClass('auctions-catalog')) { // CATALOG
+			$('footer').append(`
         <header>
         <div class="header__settings">
             <div class="header__col header__col--left"></div>
@@ -653,7 +661,7 @@ Lot # 28: Episode "Dog Myths" and Episode "Voice Flame Extinguisher" (2007, E74/
     <div class="auccatalog">
         <div class="auccatalog__nav">
             <div class="auccatalog__nav-inner">
-                <div class="auccatalog__nav-perpage">
+                <div class="auccatalog__nav-perpage auccatalog__nav-perpage--header">
                     <div class="auccatalog__nav-perpage-label c-r">Items per page</div>
                     <div class="input-field input-field--select"></div>
                 </div>
@@ -665,8 +673,8 @@ Lot # 28: Episode "Dog Myths" and Episode "Voice Flame Extinguisher" (2007, E74/
 
         <div class="cards">
           <div class="cards__inner">
-            <div class="auccatalog__search-panel collapsible">
-                <li class="collapsible-li">
+            <div class="auccatalog__search-panel">
+                <li class="collapsible-li" style="display:none;">
                     <div class="auccatalog__search-panel-title h4 collapsible-header">
                         Advanced Search
                         <i class='icon'><svg><use xlink:href="#close"></use></svg></i>
@@ -739,19 +747,9 @@ Lot # 28: Episode "Dog Myths" and Episode "Voice Flame Extinguisher" (2007, E74/
                     <div class="card__info">
                         <div class="card__description">
                             <div class="card__movie"></div>
-                            <div class="aucproduct__card-details">
-                                <div class="aucproduct__card-details-row">
-                                    <div class="aucproduct__card-details-label"></div>
-                                    <div class="aucproduct__card-details-value"></div>
-                                </div>
-                            </div>
+                            <div class="aucproduct__card-details"></div>
                         </div>
-                        <div class="card__actions">
-                            <a class="waves-effect waves-light btn aucproduct__card-btn" tabindex="0">
-                                <span class="btn__title">View details</span>
-                                <i class="icon"><svg><use xlink:href="#arrow-right"></use></svg></i>
-                            </a>
-                        </div>
+                        <div class="card__actions"></div>
                     </div>
                 </div>
             </div>
@@ -762,7 +760,7 @@ Lot # 28: Episode "Dog Myths" and Episode "Voice Flame Extinguisher" (2007, E74/
 
         <div class="auccatalog__nav auccatalog__nav--footer">
             <div class="auccatalog__nav-inner">
-                <div class="auccatalog__nav-perpage">
+                <div class="auccatalog__nav-perpage auccatalog__nav-perpage--footer">
                     <div class="auccatalog__nav-perpage-label c-r">Items per page</div>
                     <div class="input-field input-field--select"></div>
                 </div>
@@ -774,72 +772,132 @@ Lot # 28: Episode "Dog Myths" and Episode "Voice Flame Extinguisher" (2007, E74/
       </div>
         `);
 
-        $('#headsec').remove();
-        $('body').prepend($('header'));
-        $('<main></main>').append($('#wrapper')).insertAfter($('header'));
+			$('#headsec').remove();
+			$('body').prepend($('header'));
+			$('<main></main>').append($('#wrapper')).insertAfter($('header'));
 
-        let status;
-        if ($('.sale-closed').length) status = 'closed';
+			let status;
+			if ($('.sale-closed').length) status = 'closed';
 
-        let aucPoster = window.getComputedStyle(document.querySelector('#AdvancedSearch'), ':before');
-        $('.hero__image').css({backgroundImage: aucPoster.backgroundImage});
-        document.querySelectorAll('style:not([data-v2]), link[rel="stylesheet"]:not([data-v2])').forEach(item => item.remove());
+			let aucPoster = window.getComputedStyle(document.querySelector('#AdvancedSearch'), ':before');
+			$('.hero__image').css({ backgroundImage: aucPoster.backgroundImage });
+			document.querySelectorAll('style:not([data-v2]), link[rel="stylesheet"]:not([data-v2])').forEach(item => item.remove());
 
-        $aucTitle = $('.tle h3').clone();
-        $aucTitle.find('span').remove();
-        $('.hero__static-title').html($aucTitle.text());
-        $('.hero__static-date').append($('.sale-date').first());
-        if (status) {
-            $badge = $('.auc__hero .badge');
-            switch (status) {
-            case 'closed':
-                $badge.addClass('red').append('Closed').show().find('use').attr('xlink:href', '#flag');
-                break;
-            }
-        }
-        $('.auc__hero-aucinfo').attr('href', $('.aucinfo').attr('href'));
+			$aucTitle = $('.tle h3').clone();
+			$aucTitle.find('span').remove();
+			$('.hero__static-title').html($aucTitle.text());
+			$('.hero__static-date').append($('.sale-date').first());
+			if (status) {
+				$badge = $('.auc__hero .badge');
+				switch (status) {
+					case 'closed':
+						$badge.addClass('red').append('Closed').show().find('use').attr('xlink:href', '#flag');
+						break;
+				}
+			}
+			$('.auc__hero-aucinfo').attr('href', $('.aucinfo').attr('href'));
 
-        $('.auccatalog__nav-perpage .input-field').append($('#c3').removeProp('id'));
-        const results = $('.page:contains("Results:")').html();
-        $('.auccatalog__nav-results').html(results.replace('<b>Results:</b>&nbsp;Viewing&nbsp;items&nbsp;', 'Results:&nbsp;'));
-        $('.auccatalog__nav-paginator').append($('#c2_ctl'));
-        $('.pageselector').wrap('<div class="input-field input-field--select" />');
-        $('.grid_list .lst').remove();
-        $('.grid_list .com').html('<i class="icon"><svg><use xlink:href="#view-list"></use></svg></i>');
-        $('.grid_list .sqr').html('<i class="icon"><svg><use xlink:href="#view-grid"></use></svg></i>');
-        $('.auccatalog__nav-view').html($('.grid_list').html());
+			const $searcContent = $('.advSearchAccordionContent');
+			const $searchKey = $('<div class="input-field">');
+			$searchKey.append($('#advsKey_ctl'));
+			$searcContent.prepend($searchKey);
+			const $searchInner = $('#ads01 > .adsrch').addClass('collapsible-body');
+			const $searchHeader = $('.advSearchAccordionButton').addClass('auccatalog__search-panel-title collapsible-header');
+			$searchHeader.find('h3').addClass('h4');
+			$searchHeader.append('<i class="icon"><svg><use xlink:href="#close"></use></svg></i>');
+			const $searchLi = $('<li class="collapsible-li">').append($searchHeader).append($searchInner);
+			$('#ads01').addClass('collapsible').append($searchLi);
+			$('#advsSearch').addClass('waves-effect waves-light btn btn--tertiary auccatalog__search-btn');
 
-        $cardDetails = $('.aucproduct__card-details-row').clone();
-        $('.aucproduct__card-details').html();
-        $card = $('.card').clone();
-        $('.cards__list').html('');
-        
+			const $searchSort = $('<div class="input-field input-field--label input-field--select">');
+			$searchSort.append($('section.sort-by label').addClass('active')).append($('#advsSort'));
+			$('section.sort-by').append($searchSort);
+			$('section.sort-by .drplist').hide();
 
-        $('.item-block').each((i, item) => {
-            $cardItem = $card.clone();
-            $cardItem.find('.card__img').css('background-image', 'url(' + $(item).find('figure img').prop('src') + ')');
-            $cardItem.find('.card__movie').append($(item).find('.yaaa'));
-            $badge = $cardItem.find('.card__badge')
-            if ($(item).find('.ended.sold').length) {
-                $badge.addClass('red').append('Sold').show().find('use').attr('xlink:href', '#flag');
-            } else if ($(item).find('.ended.unsold').length) {
-                $badge.append('Unsold').show().find('use').attr('xlink:href', '#archive');
-            }
-            $(item).find('.item-status').remove();
-            $(item).find('.price-info li').each((k, info) => {
-                $infoRow = $cardDetails.clone();
-                $infoRow.find('.aucproduct__card-details-label').html($(info).find('.title').html());
-                $infoRow.find('.aucproduct__card-details-value').html($(info).find('.value').html());
-                $cardItem.find('.aucproduct__card-details').append($infoRow);
-            });
-            $cardItem.find('.aucproduct__card-btn').prop('href', $(item).find('.orng').prop('href'));
+			$('#adv_search_categories .scroll-list').addClass('auccatalog__search-panel-checkboxes');
+			$('#adv_search_categories > label').addClass('h6');
+			$('#adv_search_categories .accordion-header').click();
+			// $('#adv_search_categories .scroll-list').show();
 
-            $('.cards__list').append($cardItem);
-        });
+			const $searchMatch = $('<div class="input-field input-field--label input-field--select">');
+			$searchMatch.append($('.categories-match label').addClass('active')).append($('#advsCatMatch'));
+			$('.categories-match').append($searchMatch);
+			$('#advsCatMatch_ctl').hide();
 
-        $('.container').prepend($('.auccatalog'));
-        $('.container').prepend($('.auc__hero'));
-      }
+			const $searchPriceMin = $('<div class="input-field input-field--label">');
+			$searchPriceMin.append($('#advsMinPrice')).append($('<label>Min price</label>'));
+			const $searchPriceMax = $('<div class="input-field input-field--label">');
+			$searchPriceMax.append($('#advsMaxPrice')).append($('<label>Max price</label>'));
+			const $searchPrice = $('<div class="auccatalog__search-panel-row">');
+			$searchPrice.append($searchPriceMin).append($searchPriceMax);
+			const $searchPriceSource = $searcContent.find('.price-range');
+			$searchPrice.insertAfter($searchPriceSource);
+			$searchPriceSource.remove();
+
+			const $searchLotSource = $searcContent.find('.lotnum');
+			const $searchLot = $('<div class="input-field input-field--label">');
+			$searchLot.append($searchLotSource.find('label').addClass('active')).append($('#advsLotNum_ctl'));
+			$searchLotSource.append($searchLot);
+
+			$('.auccatalog__search-panel').append($('#ads01'));
+
+			$('#c3, #c4').addClass('browser-default').attr('style', '');
+			$('.auccatalog__nav-perpage--header .input-field').append($('#c3_ctl'));
+			$('.auccatalog__nav-perpage--footer .input-field').append($('#c4_ctl'));
+			const results = $('.page:contains("Results:")').html();
+			$('.auccatalog__nav-results').html(results.replace('<b>Results:</b>&nbsp;Viewing&nbsp;items&nbsp;', 'Results:&nbsp;'));
+			$('.auccatalog__nav-paginator').append($('#c2_ctl'));
+			$('.pageselector').wrap('<div class="input-field input-field--select" />');
+			$('.grid_list .lst').remove();
+			$('.grid_list .com').html('<i class="icon"><svg><use xlink:href="#view-list"></use></svg></i>');
+			$('.grid_list .sqr').html('<i class="icon"><svg><use xlink:href="#view-grid"></use></svg></i>');
+			$('.auccatalog__nav-view').html($('.grid_list').html());
+
+			$('.aucproduct__card-details').html();
+			$card = $('.card').clone();
+			$('.cards__list').html('');
+
+
+			$('.item-block').each((i, item) => {
+				$cardItem = $card.clone();
+				$cardItem.find('.card__img').css('background-image', 'url(' + $(item).find('figure img').prop('src') + ')');
+				$cardItem.find('.card__movie').append($(item).find('.yaaa'));
+				$badge = $cardItem.find('.card__badge')
+				if ($(item).find('.ended.sold').length) {
+					$badge.addClass('red').append('Sold').show().find('use').attr('xlink:href', '#flag');
+				} else if ($(item).find('.ended.unsold').length) {
+					$badge.append('Unsold').show().find('use').attr('xlink:href', '#archive');
+				}
+				$(item).find('.item-status').remove();
+				$(item).find('.price-info li').each((k, info) => {
+					const $info = $(info);
+					if ($info.text()) {
+						$info.find('.title').addClass('aucproduct__card-details-label');
+						$info.find('.value').addClass('aucproduct__card-details-value');
+						$info.addClass('aucproduct__card-details-row');
+						$cardItem.find('.aucproduct__card-details').append($info);
+					}
+				});
+				const $timelft = $(item).find('.timelft');
+				if ($timelft.length && $timelft.text()) {
+					$cardItem.find('.aucproduct__card-details').append(`<div class="aucproduct__card-details-row">
+						<div class="aucproduct__card-details-label">Time Left</div>
+						<div class="aucproduct__card-details-value aucproduct__card-details-timer"></div>
+					</div>`);
+					$cardItem.find('.aucproduct__card-details-timer').append($timelft);
+				}
+				const $btn = $(item).find('.auclistbtn .orng');
+				if ($btn.length) {
+					$btn.addClass('waves-effect waves-light btn aucproduct__card-btn');
+					$cardItem.find('.card__actions').append($btn);
+				}
+
+				$('.cards__list').append($cardItem);
+			});
+
+			$('.container').prepend($('.auccatalog'));
+			$('.container').prepend($('.auc__hero'));
+		}
 
 
 
@@ -852,69 +910,72 @@ Lot # 28: Episode "Dog Myths" and Episode "Voice Flame Extinguisher" (2007, E74/
 
 
 
-    // Plugin initialization
-    $('.collapsible').collapsible({
-        onOpenEnd: (el) => {
-            const body = el.querySelector('.collapsible-body');
-            if (body) body.scrollIntoView({behavior: 'smooth', block: 'nearest'});
-        }
-    });
-    $('.collapsible.expandable').collapsible({
-        accordion: false
-    });
+		// Plugin initialization
+		$('.collapsible').collapsible({
+			onOpenEnd: (el) => {
+				const body = el.querySelector('.collapsible-body');
+				if (body) body.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+			}
+		});
+		$('.collapsible.expandable').collapsible({
+			accordion: false
+		});
 
-    $('.materialboxed').materialbox();
-    $('.modal:not(.modal-ajax)').modal();
-    $('.tabs').tabs();
-    $('select').not('.disabled').formSelect();
-    $('.sidenav').sidenav();
-    $('input[data-length], textarea[data-length]').characterCounter();
-    M.updateTextFields();
-  
-      function resize () {
-          headerFloat();
-      }
-      resize();
-      $(window).on('resize', resize);
-  
-      // HEADER
-      const HEADER_THRESHOLD = 100; // px
-      let previousScroll = 0;
-      function headerFloat () {
-          const $header = $('header');
-          if ($header.length) {
-              $header.css('maxWidth', $('main').width() + 'px');
-              const top = $('.header__main').offset().top;
-              const bottom = $header.height();
-              $(window).on('scroll', M.throttle((e) => {
-                  const currentScroll = document.body.scrollTop || window.scrollY || document.documentElement.scrollTop;
-                  if (currentScroll <= previousScroll) {
-                      if (document.body.classList.contains('autoscroll')) return; // dont show header if autoscroll
-                      if (
-                          previousScroll - currentScroll > HEADER_THRESHOLD ||
-                          currentScroll < top
-                      ) {
-                          previousScroll = currentScroll;
-                          $header.removeClass('sticky-out');
-                          if (currentScroll < top * 2) {
-                              $header.removeClass('sticky-in');
-                          } else if (currentScroll > bottom) {
-                              $header.addClass('sticky-in');
-                          }
-                      }
-                  } else {
-                      previousScroll = currentScroll;
-                      if (
-                          currentScroll > bottom &&
-                          $header.hasClass('sticky-in')
-                      ) {
-                          previousScroll = currentScroll;
-                          $header.removeClass('sticky-in');
-                          $header.addClass('sticky-out');
-                      }
-                  }
-              }, 100));
-          }
-      }  
-  }); // end of document ready
+		$('.materialboxed').materialbox();
+		$('.modal:not(.modal-ajax)').modal();
+		$('.tabs').tabs();
+		$('select').not('.disabled').formSelect();
+		$('.sidenav').sidenav();
+		$('input[data-length], textarea[data-length]').characterCounter();
+		M.updateTextFields();
+
+		function resize() {
+			headerFloat();
+		}
+		resize();
+		$(window).on('resize', resize);
+
+		// HEADER
+		const HEADER_THRESHOLD = 100; // px
+		let previousScroll = 0;
+		function headerFloat() {
+			if (!$('.header__main').length) return; // no header
+
+			const $header = $('header');
+			if ($header.length) {
+				$header.css('maxWidth', $('main').width() + 'px');
+				const top = $('.header__main').offset().top;
+				const bottom = $header.height();
+				$(window).on('scroll', M.throttle((e) => {
+					const currentScroll = document.body.scrollTop || window.scrollY || document.documentElement.scrollTop;
+					if (currentScroll <= previousScroll) {
+						if (document.body.classList.contains('autoscroll')) return; // dont show header if autoscroll
+						if (
+							previousScroll - currentScroll > HEADER_THRESHOLD ||
+							currentScroll < top
+						) {
+							previousScroll = currentScroll;
+							$header.removeClass('sticky-out');
+							if (currentScroll < top * 2) {
+								$header.removeClass('sticky-in');
+							} else if (currentScroll > bottom) {
+								$header.addClass('sticky-in');
+							}
+						}
+					} else {
+						previousScroll = currentScroll;
+						if (
+							currentScroll > bottom &&
+							$header.hasClass('sticky-in')
+						) {
+							previousScroll = currentScroll;
+							$header.removeClass('sticky-in');
+							$header.addClass('sticky-out');
+						}
+					}
+				}, 100));
+			}
+		}
+		document.body.classList.add('loaded'); // if svg fail
+	}); // end of document ready
 });
