@@ -398,10 +398,16 @@
 
                 //escape all regex symbols
                 searchValue = searchValue.replace(/[\$\&\+\,\:\:\=\?\@\#\|\/\'\{\}\[\]\>\<\.\^\*\(\)\%\!\-]/g, '\\$&');
-                //search, ignoring src and hrefs
-                searchValue = searchValue.replace(/^[A-Za-z0-9_]+$/gi, '\\$&');
-
+                //search
+                searchValue = searchValue.replace(/[^a-z0-9_\S]/gi, '\\$&');
+                
+                console.log('searchValue - ');
+                console.log(searchValue);
+                
                 var customFilter = new RegExp(searchValue, 'gi');
+                
+                console.log('customFilter - ');
+                console.log(customFilter);
 
                 var replacedString = "<span class='faq__highlight'>$&</span>";
 
@@ -496,6 +502,10 @@
 								return part;
 							}
 						});
+                        
+                        console.log('processedParts - ');
+                        console.log(processedParts);
+                        
 						const content = processedParts.join('');
                         $(this).html(content);
                     }
