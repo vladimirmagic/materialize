@@ -10265,6 +10265,11 @@ header .menu-auction-link .icon {
   display: none;
 }
 
+.header__logo.auc-logo svg, .auc-logo.order-header__logo svg {
+  width: 326px;
+  height: 40px;
+}
+
 .header__search {
   width: 356px;
 }
@@ -10548,6 +10553,9 @@ a.modal-bag__item:not(.btn):not(.btn-large):not(.btn-small):not(.btn-extra-small
   }
   .header__logo svg, .order-header__logo svg {
     width: 160px;
+  }
+  .header__logo.auc-logo svg, .auc-logo.order-header__logo svg {
+    width: 190px;
   }
   .header__search {
     width: auto;
