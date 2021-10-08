@@ -393,6 +393,7 @@ Lot # 28: Episode "Dog Myths" and Episode "Voice Flame Extinguisher" (2007, E74/
 			$aucTitle = $('.tle-lot h3').clone();
 			$aucTitle.find('span').remove();
 			$('.hero__static-title').html($aucTitle.text());
+            $('.sale-date').find('br').remove();
 			$('.hero__static-date').append($('.sale-date').first());
 			if (status) {
 				$badge = $('.auc__hero .badge');
@@ -789,6 +790,7 @@ Lot # 28: Episode "Dog Myths" and Episode "Voice Flame Extinguisher" (2007, E74/
 			$aucTitle = $('.tle h3').clone();
 			$aucTitle.find('span').remove();
 			$('.hero__static-title').html($aucTitle.text());
+            $('.sale-date').find('br').remove();
 			$('.hero__static-date').append($('.sale-date').first());
 			if (status) {
 				$badge = $('.auc__hero .badge');
