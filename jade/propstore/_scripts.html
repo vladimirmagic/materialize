@@ -353,7 +353,7 @@
 <!-- Click for Blog listing menu categories -->
 <script>
     jQuery(document).ready(() => {
-        if ($('.wp.blog').length || $('.wp.archive').length) {
+        if ($('.wp.blog').length || $('.wp.archive').length || $('.wp.search').length) {
             $('.card-blog').on('click', function(event) {
                 const fakeUrl = $(event.target).data('href');
                 if (fakeUrl) {
@@ -362,7 +362,7 @@
                 }
             });
 
-            $('.blog .filters__select-category select').on('change', function(event) {
+            $('.filters__select-category select').on('change', function(event) {
                 window.location.href = event.target.value;
             });
         }
@@ -391,30 +391,122 @@
         $('.filters__select-category select').on('change', function(event) {
             changeCategory($(this).val());
         });
-        
+
         try {
             function highlight() {
                 var searchValue = $('.input-field--faq-search input').val();
 
                 //escape all regex symbols
                 searchValue = searchValue.replace(/[\$\&\+\,\:\:\=\?\@\#\|\/\'\{\}\[\]\>\<\.\^\*\(\)\%\!\-]/g, '\\$&');
-                //search, ignoring src and hrefs
-                searchValue = searchValue.replace(/^[A-Za-z0-9_]+$/gi, '\\$&');
-
+                //search
+                searchValue = searchValue.replace(/[^a-z0-9_\S]/gi, '\\$&');
+                
+                console.log('searchValue - ');
+                console.log(searchValue);
+                
                 var customFilter = new RegExp(searchValue, 'gi');
+                
+                console.log('customFilter - ');
+                console.log(customFilter);
 
                 var replacedString = "<span class='faq__highlight'>$&</span>";
 
                 $('.faq__content').find('.faq__highlight').contents().unwrap();
                 $('.faq__collapsible-header-text').each(function() {
-                    if(searchValue.length > 1){
-                        const content = $(this).html().replace(customFilter, replacedString);
+					if(searchValue.length > 1) {
+                        const textContent = $(this).text();
+						const htmlContent = $(this).html();
+
+						var textPart =  '';
+						var tagPart = '';
+						const replaceableParts = [];
+						var isOpened = false;
+
+						htmlContent.split('').forEach((char) => {
+							if (isOpened) {
+								tagPart += char;
+								if (char === '>') {
+									isOpened = false;
+									replaceableParts.push(tagPart);
+									tagPart = '';
+								}
+							} else {
+								if (char !== '<') {
+									textPart += char;
+								} else {
+									isOpened = true;
+									tagPart += char;
+									if (textPart) {
+										replaceableParts.push(textPart);
+									}
+									textPart = '' ;
+								}
+							}
+						});
+						if(textPart) {
+							replaceableParts.push(textPart);
+						}
+						const processedParts = replaceableParts.map((part) => {
+							var htmlTags = /<\/?[\w\s="/.':;#-\/\?]+>/gi;
+							if (part.match(htmlTags)) {
+								return part;
+							} else {
+								part = part.replace(customFilter, replacedString);
+								return part;
+							}
+						});
+						const content = processedParts.join('');
                         $(this).html(content);
                     }
                 });
                 $('.faq__collapsible .collapsible-body').each(function() {
-                    if(searchValue.length > 1){
-                        const content = $(this).html().replace(customFilter, replacedString);
+					if(searchValue.length > 1) {
+                        const textContent = $(this).text();
+						const htmlContent = $(this).html();
+
+						var textPart =  '';
+						var tagPart = '';
+						const replaceableParts = [];
+						var isOpened = false;
+
+						htmlContent.split('').forEach((char) => {
+							if (isOpened) {
+								tagPart += char;
+								if (char === '>') {
+									isOpened = false;
+									replaceableParts.push(tagPart);
+									tagPart = '';
+								}
+							} else {
+								if (char !== '<') {
+									textPart += char;
+								} else {
+									isOpened = true;
+									tagPart += char;
+									if (textPart) {
+										replaceableParts.push(textPart);
+									}
+									textPart = '' ;
+								}
+							}
+						});
+						if(textPart) {
+							replaceableParts.push(textPart);
+						}
+						const processedParts = replaceableParts.map((part) => {
+							var htmlTags = /<\/?[\w\s="/.':;#-\/\?]+>/gi;
+							if (part.match(htmlTags)) {
+								return part;
+							} else {
+								part = part.replace(customFilter, replacedString);
+								return part;
+							}
+						});
+                        
+                        console.log('processedParts - ');
+                        console.log(processedParts);
+                        
+						const content = processedParts.join('');
                         $(this).html(content);
                     }
                 });
