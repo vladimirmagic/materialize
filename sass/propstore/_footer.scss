@@ -140,6 +140,7 @@ a:not(.btn).footer__menu-link {
 }
 
 .footer__links-copyright {
+	margin-top: 1rem;
 	font-size: 14px;
 	line-height: 1.8em;
 	white-space: nowrap;
@@ -227,6 +228,7 @@ a:not(.btn).footer__terms-link {
 	}
 
 	.footer__links-copyright {
+		margin-top: 0;
 		order: 2;
 	}
 
@@ -316,5 +318,9 @@ a:not(.btn).footer__terms-link {
 			display: inline-block;
 			margin: 0 1em 0 0;
 		}
+	}
+
+	.footer__links-copyright {
+		margin-top: 1rem;
 	}
 }

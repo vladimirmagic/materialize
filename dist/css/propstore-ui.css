@@ -11532,6 +11532,7 @@ a:not(.btn):not(.btn-large):not(.btn-small):not(.btn-extra-small).footer__menu-l
 }
 
 .footer__links-copyright {
+  margin-top: 1rem;
   font-size: 14px;
   line-height: 1.8em;
   white-space: nowrap;
@@ -11632,6 +11633,7 @@ a:not(.btn):not(.btn-large):not(.btn-small):not(.btn-extra-small).footer__terms-
     height: 52px;
   }
   .footer__links-copyright {
+    margin-top: 0;
     -webkit-box-ordinal-group: 3;
     -webkit-order: 2;
         -ms-flex-order: 2;
@@ -11725,6 +11727,9 @@ a:not(.btn):not(.btn-large):not(.btn-small):not(.btn-extra-small).footer__terms-
   .footer__links-banners div {
     display: inline-block;
     margin: 0 1em 0 0;
+  }
+  .footer__links-copyright {
+    margin-top: 1rem;
   }
 }
 
