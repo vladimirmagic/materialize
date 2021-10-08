@@ -457,13 +457,6 @@ header .menu-auction-link {
 	&:before {
 		display: none;
 	}
-
-	&.auc-logo {
-		svg {
-			width: 326px;
-			height: 40px;
-		}
-	}
 }
 
 .header__search {
@@ -682,12 +675,6 @@ a.modal-bag__item:not(.btn) { // fix a
 	.header__logo {
 		svg {
 			width: 160px;
-		}
-
-		&.auc-logo {
-			svg {
-				width: 190px;
-			}
 		}
 	}
 

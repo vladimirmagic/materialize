@@ -32,54 +32,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
 		if ($('body').hasClass('lot-details-index')) { // PRODUCT
 			$('footer').append(`
-        <header>
-        <div class="header__settings">
-            <div class="header__col header__col--left"></div>
-            <div class="header__col header__col--right">
-                <a class="waves-effect btn-flat header__btn" href="https://propstore.com">
-                    Go to propstore.com
-                    <i class='icon aucheader__settings-icon-blank'><svg><use xlink:href="#target-blank"></use></svg></i>
-                </a>
-            </div>
-        </div>
-    
-        <div class="header__main">
-            <div class="header__col header__col--left">
-                <a data-target="sidenav" class="header__burger sidenav-trigger waves-effect btn-flat btn--icon">
-                    <i class='icon'><svg><use xlink:href="#burger"></use></svg></i>    
-                </a>
-    
-                <nav class="header__menu">
-                    <a class="btn-flat header__menu-link">
-                        <span class="header__menu-link-handle">
-                            All Auctions
-                        </span>
-                    </a>
-                    
-                    <a class="btn-flat header__menu-link">
-                        <span class="header__menu-link-handle">
-                            My Account
-                        </span>
-                    </a>
-                    
-                </nav>
-            </div>
-            <div class="header__col header__col--center">
-                <a class="header__logo" href='/home.html'>
-                    <svg><use xlink:href="#propstore"></use></svg>
-                </a>
-            </div>
-            <div class="header__col header__col--right">
-                <div class="header__search input-field input-field--search">
-                    <input placeholder="Search auctions" type="search">
-                    <a class="waves-effect btn-flat btn--icon input-field__button">
-                        <i class='icon'><svg><use xlink:href="#search"></use></svg></i>
-                    </a>
-                </div>
-            </div>
-        </div>
-    </header>
-
     <div class="hero hero--static auc__hero">
         <div class="hero__inner">
             <div class="hero__image"></div>
@@ -586,54 +538,6 @@ Lot # 28: Episode "Dog Myths" and Episode "Voice Flame Extinguisher" (2007, E74/
 			});
 		} else if ($('body').hasClass('auctions-catalog')) { // CATALOG
 			$('footer').append(`
-        <header>
-        <div class="header__settings">
-            <div class="header__col header__col--left"></div>
-            <div class="header__col header__col--right">
-                <a class="waves-effect btn-flat header__btn" href="https://propstore.com">
-                    Go to propstore.com
-                    <i class='icon aucheader__settings-icon-blank'><svg><use xlink:href="#target-blank"></use></svg></i>
-                </a>
-            </div>
-        </div>
-    
-        <div class="header__main">
-            <div class="header__col header__col--left">
-                <a data-target="sidenav" class="header__burger sidenav-trigger waves-effect btn-flat btn--icon">
-                    <i class='icon'><svg><use xlink:href="#burger"></use></svg></i>    
-                </a>
-    
-                <nav class="header__menu">
-                    <a class="btn-flat header__menu-link">
-                        <span class="header__menu-link-handle">
-                            All Auctions
-                        </span>
-                    </a>
-                    
-                    <a class="btn-flat header__menu-link">
-                        <span class="header__menu-link-handle">
-                            My Account
-                        </span>
-                    </a>
-                    
-                </nav>
-            </div>
-            <div class="header__col header__col--center">
-                <a class="header__logo" href='/home.html'>
-                    <svg><use xlink:href="#propstore"></use></svg>
-                </a>
-            </div>
-            <div class="header__col header__col--right">
-                <div class="header__search input-field input-field--search">
-                    <input placeholder="Search auctions" type="search">
-                    <a class="waves-effect btn-flat btn--icon input-field__button">
-                        <i class='icon'><svg><use xlink:href="#search"></use></svg></i>
-                    </a>
-                </div>
-            </div>
-        </div>
-    </header>
-
     <div class="hero hero--static auc__hero">
         <div class="hero__inner">
             <div class="hero__image"></div>
