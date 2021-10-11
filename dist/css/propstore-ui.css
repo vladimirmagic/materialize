@@ -10316,6 +10316,10 @@ header .menu-auction-link .icon {
 
 .header__burger {
   display: none;
+  -webkit-box-flex: 0;
+  -webkit-flex: 0 0 3rem;
+      -ms-flex: 0 0 3rem;
+          flex: 0 0 3rem;
 }
 
 .header__burger .icon {
@@ -10694,8 +10698,8 @@ a.modal-bag__item:not(.btn):not(.btn-large):not(.btn-small):not(.btn-extra-small
   transition: all .1s ease-in-out;
 }
 
-.sidenav__animation-out, .sidenav__menu:focus-within .sidenav__menu-link,
-.sidenav__menu:focus-within + .sidenav__settings, .sidenav__menu-level1 {
+.sidenav__animation-out, .sidenav:not(.auc-sidenav) .sidenav__menu:focus-within .sidenav__menu-link,
+.sidenav:not(.auc-sidenav) .sidenav__menu:focus-within + .sidenav__settings, .sidenav__menu-level1 {
   opacity: 0;
   pointer-events: none;
   max-height: 0;
@@ -19474,6 +19478,11 @@ body.auctions-catalog .smpagination {
 .auc-header .header__logo svg, .auc-header .order-header__logo svg {
   width: 326px;
   height: 40px;
+}
+
+.auc-sidenav .sidenav__menu-link .icon {
+  -webkit-transform: none;
+          transform: none;
 }
 
 @media only screen and (max-width: 1600px) {

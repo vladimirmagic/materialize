@@ -28,7 +28,10 @@ document.addEventListener('DOMContentLoaded', () => {
 			$('body').removeClass('touch').addClass('no-touch');
 		}
 
-
+        $('#headsec').remove();
+        $('body').prepend($('.auc-header'));
+        $('body').append($('.auc-sidenav'));
+        $('<main></main>').append($('#wrapper')).insertAfter($('.auc-header'));
 
 		if ($('body').hasClass('lot-details-index')) { // PRODUCT
 			$('footer').append(`
@@ -331,9 +334,6 @@ Lot # 28: Episode "Dog Myths" and Episode "Voice Flame Extinguisher" (2007, E74/
         <div class="modal-content"></div>
     </div>
         `);
-			$('#headsec').remove();
-			$('body').prepend($('header'));
-			$('<main></main>').append($('#wrapper')).insertAfter($('header'));
 
 			let status;
 			if ($('.sale-closed').length) status = 'closed';
@@ -676,10 +676,6 @@ Lot # 28: Episode "Dog Myths" and Episode "Voice Flame Extinguisher" (2007, E74/
 
       </div>
         `);
-
-			$('#headsec').remove();
-			$('body').prepend($('header'));
-			$('<main></main>').append($('#wrapper')).insertAfter($('header'));
 
 			let status;
 			if ($('.sale-closed').length) status = 'closed';
