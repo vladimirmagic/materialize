@@ -35,34 +35,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
 		if ($('body').hasClass('lot-details-index')) { // PRODUCT
 			$('footer').append(`
-    <div class="hero hero--static auc__hero">
-        <div class="hero__inner">
-            <div class="hero__image"></div>
-            <div class="hero__info">
-                <div class="hero__info-item">
-                    <div class="hero__info-item-inner">
-                        <span class="badge section-auctions__item-bage" style="display: none;">
-                            <i class='icon'><svg><use xlink:href="#"></use></svg></i>
-                        </span>
-                        <div class="hero__static-title">
-                        </div>
-                        <div class="hero__static-date">
-                            <i class='icon'><svg><use xlink:href="#calendar"></use></svg></i>
-                        </div>
-                        <div class="hero__static-buttons">
-                            <a class="waves-effect waves-light btn hero__btn auc__hero-aucinfo">
-                                Auction info
-                            </a>
-                            <a class="waves-effect waves-light btn hero__btn auc__hero-auccatalog">
-                                All catalogue items
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
     <div class="product aucproduct">
         <div class="product__inner">
             <div class="product__gallery">
@@ -361,8 +333,8 @@ Lot # 28: Episode "Dog Myths" and Episode "Voice Flame Extinguisher" (2007, E74/
 			$itemTitleH.find('.lot-name').remove();
 			$('.product__number').html($itemTitleH.text());
 			$('.product__title').html($itemTitle.text());
-			$('.auc__hero-aucinfo').attr('href', $('.aucinfo').attr('href'));
-			$('.auc__hero-auccatalog').attr('href', $('.catlg').attr('href'));
+			$('.auc__hero-aucinfo').attr('href', $('.aucinfo').attr('href')).show();
+			$('.auc__hero-auccatalog').attr('href', $('.catlg').attr('href')).show();
 
 			$carouselItem = $('.product__slider .carousel-item').clone();
 			$slider = $('.product__slider').html('');
@@ -428,7 +400,7 @@ Lot # 28: Episode "Dog Myths" and Episode "Voice Flame Extinguisher" (2007, E74/
 
 			$('.container').prepend($('.aucproduct__also'));
 			$('.container').prepend($('.aucproduct'));
-			$('.container').prepend($('.auc__hero'));
+			$('.container').prepend($('.auc__hero').show());
 
 			// PRODUCT
 			const productItems = [...document.querySelectorAll('.carousel-item')];
@@ -538,31 +510,6 @@ Lot # 28: Episode "Dog Myths" and Episode "Voice Flame Extinguisher" (2007, E74/
 			});
 		} else if ($('body').hasClass('auctions-catalog')) { // CATALOG
 			$('footer').append(`
-    <div class="hero hero--static auc__hero">
-        <div class="hero__inner">
-            <div class="hero__image"></div>
-            <div class="hero__info">
-                <div class="hero__info-item">
-                    <div class="hero__info-item-inner">
-                        <span class="badge section-auctions__item-bage" style="display: none;">
-                            <i class='icon'><svg><use xlink:href="#"></use></svg></i>
-                        </span>
-                        <div class="hero__static-title">
-                        </div>
-                        <div class="hero__static-date">
-                            <i class='icon'><svg><use xlink:href="#calendar"></use></svg></i>
-                        </div>
-                        <div class="hero__static-buttons">
-                            <a class="waves-effect waves-light btn hero__btn auc__hero-aucinfo">
-                                Auction info
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
     <div class="auccatalog">
         <div class="auccatalog__nav">
             <div class="auccatalog__nav-inner">
@@ -700,7 +647,7 @@ Lot # 28: Episode "Dog Myths" and Episode "Voice Flame Extinguisher" (2007, E74/
 						break;
 				}
 			}
-			$('.auc__hero-aucinfo').attr('href', $('.aucinfo').attr('href'));
+			$('.auc__hero-aucinfo').attr('href', $('.aucinfo').attr('href')).show();
 
 			const $searcContent = $('.advSearchAccordionContent');
 			const $searchKey = $('<div class="input-field">');
@@ -801,19 +748,8 @@ Lot # 28: Episode "Dog Myths" and Episode "Voice Flame Extinguisher" (2007, E74/
 			});
 
 			$('.container').prepend($('.auccatalog'));
-			$('.container').prepend($('.auc__hero'));
+			$('.container').prepend($('.auc__hero').show());
 		}
-
-
-
-
-
-
-
-
-
-
-
 
 		// Plugin initialization
 		$('.collapsible').collapsible({
