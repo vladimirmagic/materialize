@@ -20257,6 +20257,7 @@ body.auctions-catalog .smpagination {
   color: white;
   background: #11BFC5;
   border-radius: 4px;
+  white-space: nowrap;
 }
 
 .aucproduct__card .blkRegularBid {
@@ -20282,6 +20283,16 @@ body.auctions-catalog .smpagination {
 
 .aucproduct__card .max-bid-warning.warning {
   color: #F93838;
+}
+
+.aucproduct__card .lot-item {
+  position: absolute;
+  z-index: 100;
+  left: 0;
+  top: 0;
+  width: 2.5rem;
+  height: 2.5rem;
+  opacity: 0;
 }
 
 .aucproduct__card-details {

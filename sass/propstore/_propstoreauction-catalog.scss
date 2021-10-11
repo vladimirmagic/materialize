@@ -266,6 +266,7 @@
 		color: white;
 		background: $color-turquoise;
 		border-radius: 4px;
+		white-space: nowrap;
 	}
 
 	.blkRegularBid {
@@ -291,6 +292,16 @@
 
 	.max-bid-warning.warning {
 		color: $color-red;
+	}
+
+	.lot-item {
+		position: absolute;
+		z-index: 100;
+		left: 0;
+		top: 0;
+		width: 2.5rem;
+		height: 2.5rem;
+		opacity: 0;
 	}
 }
 
