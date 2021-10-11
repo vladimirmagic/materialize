@@ -12,6 +12,10 @@
 			box-shadow: none;
 		}
 	}
+
+	.select-wrapper + .select-wrapper {
+		display: none;
+	}
 }
 
 .auccatalog__nav-inner {

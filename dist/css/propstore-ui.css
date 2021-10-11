@@ -19952,6 +19952,10 @@ body.auctions-catalog .smpagination {
           box-shadow: none;
 }
 
+.auccatalog__nav .select-wrapper + .select-wrapper {
+  display: none;
+}
+
 .auccatalog__nav-inner {
   display: -webkit-box;
   display: -webkit-flex;
