@@ -605,6 +605,7 @@ Lot # 28: Episode "Dog Myths" and Episode "Voice Flame Extinguisher" (2007, E74/
                             <div class="aucproduct__card-details"></div>
                         </div>
                         <div class="card__actions"></div>
+                        <div class="card__bid"></div>
                     </div>
                 </div>
             </div>
@@ -741,10 +742,23 @@ Lot # 28: Episode "Dog Myths" and Episode "Voice Flame Extinguisher" (2007, E74/
 					</div>`);
 					$cardItem.find('.aucproduct__card-details-timer').append($timelft);
 				}
-				const $btn = $(item).find('.auclistbtn .orng');
+				const $btn = $(item).find('.auclistbtn .orng, .auclistbtn .grey');
 				if ($btn.length) {
 					$btn.addClass('waves-effect waves-light btn aucproduct__card-btn');
 					$cardItem.find('.card__actions').append($btn);
+				}
+                const $bid = $(item).find('[id^="blkRegularBid"]');
+                if ($bid.length) {
+                    $curInput = $bid.find('.currency-input');
+                    $curInputSpan = $('<div>');
+                    $curInputSpan.append($curInput.find('span'));
+                    $curInputLabel = $('<div class="currency-input__label">');
+                    $curInputLabel.html($curInput.html());
+                    $curInput.html('')
+                    $curInput.append($curInputLabel);
+                    $curInput.append($curInputSpan.find('span'));
+                    $bid.find('input[type="button"]').addClass('waves-effect waves-light btn');
+                    $cardItem.find('.card__bid').append($bid.addClass('blkRegularBid'));
 				}
 
 				$('.cards__list').append($cardItem);

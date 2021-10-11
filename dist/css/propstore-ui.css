@@ -19425,6 +19425,13 @@ body.index-index .auctions-filter,
 body.index-index .srch_sec,
 body.index-index .bodybox,
 body.index-index .smpagination,
+body.auctions-index #custom-header,
+body.auctions-index #headsec,
+body.auctions-index .mymenu,
+body.auctions-index .auctions-filter,
+body.auctions-index .srch_sec,
+body.auctions-index .bodybox,
+body.auctions-index .smpagination,
 body.lot-details-index #custom-header,
 body.lot-details-index #headsec,
 body.lot-details-index .mymenu,
@@ -20242,6 +20249,39 @@ body.auctions-catalog .smpagination {
 
 .aucproduct__card a:not(.btn):not(.btn-large):not(.btn-small):not(.btn-extra-small) {
   text-decoration: none;
+}
+
+.aucproduct__card .youre-winning {
+  padding: 0 4px 1px;
+  font-weight: 500;
+  color: white;
+  background: #11BFC5;
+  border-radius: 4px;
+}
+
+.aucproduct__card .blkRegularBid {
+  position: relative;
+  margin-top: 1rem;
+}
+
+.aucproduct__card .blkRegularBid section {
+  width: 100%;
+  max-width: calc(50% - 4px);
+}
+
+.aucproduct__card .blkRegularBid .btn, .aucproduct__card .blkRegularBid .btn-large, .aucproduct__card .blkRegularBid .btn-small, .aucproduct__card .blkRegularBid .btn-extra-small {
+  width: 100%;
+  padding: 0 8px;
+}
+
+.aucproduct__card .currency-input__label {
+  position: absolute;
+  margin: 15px 0 0 12px;
+  color: #8F8F8F;
+}
+
+.aucproduct__card .max-bid-warning.warning {
+  color: #F93838;
 }
 
 .aucproduct__card-details {

@@ -259,6 +259,39 @@
 	a:not(.btn) {
 		text-decoration: none;
 	}
+
+	.youre-winning {
+		padding: 0 4px 1px;
+		font-weight: 500;
+		color: white;
+		background: $color-turquoise;
+		border-radius: 4px;
+	}
+
+	.blkRegularBid {
+		position: relative;
+		margin-top: 1rem;
+
+		section {
+			width: 100%;
+			max-width: calc(50% - 4px);
+		}
+
+		.btn {
+			width: 100%;
+			padding: 0 8px;
+		}
+	}
+
+	.currency-input__label {
+		position: absolute;
+		margin: 15px 0 0 12px;
+		color: $color-font-grey;
+	}
+
+	.max-bid-warning.warning {
+		color: $color-red;
+	}
 }
 
 .aucproduct__card-details {
