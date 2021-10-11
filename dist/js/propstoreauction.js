@@ -463,7 +463,7 @@ Lot # 28: Episode "Dog Myths" and Episode "Voice Flame Extinguisher" (2007, E74/
 					}
 				}
 			});
-		} else if ($('body').hasClass('index-index')) { // INDEX
+		} else if ($('body').hasClass('index-index') || $('body').hasClass('auctions-index')) { // INDEX
 			document.querySelectorAll('style:not([data-v2]), link[rel="stylesheet"]:not([data-v2])').forEach(item => item.remove());
 			$('.auclting').each((i, item) => {
 				$title = $(item).find('h6');
@@ -716,7 +716,8 @@ Lot # 28: Episode "Dog Myths" and Episode "Voice Flame Extinguisher" (2007, E74/
 
 			$('.item-block').each((i, item) => {
 				$cardItem = $card.clone();
-				$cardItem.find('.card__img').css('background-image', 'url(' + $(item).find('figure img').prop('src') + ')');
+                const bg = $(item).find('figure img').prop('src');
+				$cardItem.find('.card__img').css('background-image', 'url(' + bg + ')');
 				$cardItem.find('.card__movie').append($(item).find('.yaaa'));
 				$badge = $cardItem.find('.card__badge')
 				if ($(item).find('.ended.sold').length) {
