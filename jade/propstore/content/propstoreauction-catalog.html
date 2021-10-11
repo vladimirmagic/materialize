@@ -1665,12 +1665,12 @@ sam.serverData.add("langGeneralLoadMore", "Load more", "translation");
                 </nav>
             </div>
             <div class="header__col header__col--right">
-                <div class="header__search input-field input-field--search">
-                    <input placeholder="Search auctions" type="search">
-                    <a class="waves-effect btn-flat btn--icon input-field__button">
+                <form action="/search" class="header__search input-field input-field--search">
+                    <input name="key" placeholder="Search auctions" type="search">
+                    <button type="submit" class="waves-effect btn-flat btn--icon input-field__button">
                         <i class='icon'><svg><use xlink:href="#search"></use></svg></i>
-                    </a>
-                </div>
+                    </button>
+                </form>
             </div>
         </div>
     </header>
