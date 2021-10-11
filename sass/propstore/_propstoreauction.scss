@@ -131,6 +131,12 @@ $imgSizeM: 320px;
 	}
 }
 
+.auccatalog__nav--index {
+	.sam_qform_control_paginatorget-ctl {
+		margin-right: 1rem;
+	}
+}
+
 @media only screen and (max-width: #{$width-4cards}) {
 	.auclist.auchome {
 		padding: 3em 2.5em;

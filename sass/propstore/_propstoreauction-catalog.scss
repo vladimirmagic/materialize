@@ -25,6 +25,11 @@
 	background: white;
 	border-radius: 6px;
 	box-shadow: $shadow-base;
+
+	.auccatalog__nav--index & {
+		padding: 0;
+		box-shadow: none;
+	}
 }
 
 .auccatalog__nav-perpage {

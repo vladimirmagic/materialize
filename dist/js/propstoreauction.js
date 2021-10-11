@@ -464,7 +464,28 @@ Lot # 28: Episode "Dog Myths" and Episode "Voice Flame Extinguisher" (2007, E74/
 				}
 			});
 		} else if ($('body').hasClass('index-index') || $('body').hasClass('auctions-index')) { // INDEX
+            $('footer').append(`
+        <div class="auccatalog__nav auccatalog__nav--index">
+            <div class="auccatalog__nav-inner">
+                <div class="auccatalog__nav-perpage auccatalog__nav-perpage--header">
+                    <div class="auccatalog__nav-perpage-label c-r">Items per page</div>
+                    <div class="input-field input-field--select"></div>
+                </div>
+                <div class="auccatalog__nav-paginator"></div>
+            </div>
+        </div>
+        `);
 			document.querySelectorAll('style:not([data-v2]), link[rel="stylesheet"]:not([data-v2])').forEach(item => item.remove());
+
+            $('#alf5').addClass('browser-default').attr('style', '');
+			$('.auccatalog__nav-perpage--header .input-field').append($('#alf5_ctl'));
+			$('.auccatalog__nav-paginator').append($('#c4_ctl'));
+            const $pageselector = $('<div class="input-field input-field--select">');
+			$pageselector.append($('.pageselector'));
+            $('.auccatalog__nav-paginator').append($pageselector);
+            $('main').prepend($('.auccatalog__nav'));
+            // $('main').append($('.auccatalog__nav').clone());
+
 			$('.auclting').each((i, item) => {
 				$title = $(item).find('h6');
 				$title.addClass('h2')
