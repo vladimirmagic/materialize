@@ -19871,7 +19871,6 @@ body.auctions-catalog .smpagination {
 }
 
 .aucproduct__button {
-  width: calc(50% - .75rem);
   margin-bottom: 2rem;
 }
 
