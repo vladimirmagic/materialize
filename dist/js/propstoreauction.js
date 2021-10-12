@@ -128,7 +128,7 @@ document.addEventListener('DOMContentLoaded', () => {
         <div class="cards">
           <div class="cards__inner">
             <div class="cards__list"></div>
-            <div class="also-like__arrows">
+            <div class="also-like__arrows" style="disply: none;">
                 <a href="#left" class="also-like__arrow also-like__arrow--left"></a>    
                 <a href="#right" class="also-like__arrow also-like__arrow--right"></a>    
             </div>
@@ -209,7 +209,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 			$('.image-thumb-slide').each((i, item) => {
 				const img = { backgroundImage: 'url(' + item.href + ')' };
-				const imgPrev = { backgroundImage: 'url(' + item.dataset.image + ')' };
+                const imgPrev = { backgroundImage: 'url(' + item.dataset.image.replace('_8.', '_9.') + ')' };
 				$carouselItemNew = $carouselItem.clone();
 				$slider.append($carouselItemNew.css(imgPrev));
 				$thumbnailsItemNew = $thumbnailsItem.clone();
@@ -730,7 +730,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 			$('.item-block').each((i, item) => {
 				$cardItem = $card.clone();
-                const bg = $(item).find('figure img').prop('src');
+                const bg = $(item).find('figure img').prop('src').replace('_4.', '_2.');
 				$cardItem.find('.card__img').css('background-image', 'url(' + bg + ')');
 				$cardItem.find('.card__movie').append($(item).find('.yaaa'));
 				$badge = $cardItem.find('.card__badge')
