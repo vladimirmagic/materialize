@@ -19924,6 +19924,11 @@ body.auctions-catalog .smpagination {
   color: #F93838;
 }
 
+.aucproduct__form .maxbid br {
+  display: inline;
+  content: '';
+}
+
 .aucproduct__form-item {
   -webkit-flex-basis: calc(50% - .75rem);
       -ms-flex-preferred-size: calc(50% - .75rem);
@@ -19937,20 +19942,8 @@ body.auctions-catalog .smpagination {
   background-color: white;
 }
 
-.aucproduct #watchlist_button {
-  -webkit-flex-basis: calc(50% - .75rem);
-      -ms-flex-preferred-size: calc(50% - .75rem);
-          flex-basis: calc(50% - .75rem);
-}
-
-.aucproduct #watchlist_button .product__button-grey {
-  width: 100%;
-  margin-left: 0;
-}
-
-.aucproduct #watchlist_button .remove-watch {
-  color: white;
-  background: #11BFC5;
+.aucproduct .product__buttons-grey #watchlist_button {
+  position: relative;
 }
 
 .aucproduct .product__button-grey {
@@ -19961,6 +19954,20 @@ body.auctions-catalog .smpagination {
 
 .aucproduct .product__button-grey + .aucproduct .product__button-grey {
   margin-left: 0;
+}
+
+.aucproduct .product__button-grey .watch {
+  position: absolute !important;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  text-decoration: none !important;
+}
+
+.aucproduct .product__button-grey .remove-watch:not(.btn):not(.btn-large):not(.btn-small):not(.btn-extra-small) {
+  color: white;
+  background: #11BFC5;
 }
 
 .aucproduct__buttons {

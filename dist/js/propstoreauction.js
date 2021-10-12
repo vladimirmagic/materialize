@@ -399,7 +399,6 @@ Lot # 28: Episode "Dog Myths" and Episode "Voice Flame Extinguisher" (2007, E74/
             $bidInput = $('.maxbid');
             if ($bidInput.length) {
                 $bidInput.addClass('aucproduct__form-item');
-                $bidInput.find('br').remove();
                 $('.aucproduct__form').show().append($bidInput);
             }
 
@@ -435,7 +434,7 @@ Lot # 28: Episode "Dog Myths" and Episode "Voice Flame Extinguisher" (2007, E74/
 
             $watchlist = $('#watchlist_button');
             if ($watchlist.length) {
-                $watchlist.find('a').addClass('waves-effect waves-grey btn btn--secondary product__button-grey');
+                $watchlist.addClass('waves-effect waves-grey btn btn--secondary product__button-grey');
                 $watchlist.find('.remove-watch').html('<i class="icon"><svg><use xlink:href="#heart-fill"></use></svg></i> <span class="product__buttons-grey-small">In</span> Watchlist');
                 $watchlist.find('.add-watch').html('<i class="icon"><svg><use xlink:href="#heart"></use></svg></i> <span class="product__buttons-grey-small">Add to</span> Watchlist');
                 $('.product__buttons-grey').show().append($watchlist);
