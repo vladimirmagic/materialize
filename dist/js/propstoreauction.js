@@ -57,26 +57,17 @@ document.addEventListener('DOMContentLoaded', () => {
                 <a href="#movie" class="product__title h2"></a>
 
                 <div class="aucproduct__details">
-                    <div class="aucproduct__details-line">
-                    </div>
+                    <div class="aucproduct__details-line"></div>
                 </div>
 
-                <div class="aucproduct__form" style="display: none;">
-                    <div class="input-field input-field--label aucproduct__form-item">
-                        <input type="text" placeholder="">
-                    </div>
-                    <button class="waves-effect waves-light btn aucproduct__form-item">
-                        <span class='btn__title'>Register to bid</span>
-                        <i class='icon'><svg><use xlink:href="#arrow-right"></use></svg></i>
-                    </button>
-                </div>
+                <div class="aucproduct__form" style="display: none;"></div>
                 
                 <div class="product__buttons-grey" style="display: none;">
                     <a class="product__button-grey waves-effect waves-grey btn btn--secondary modal-trigger" href="#modal-shipping-quote">
                         <i class='icon'><svg><use xlink:href="#globe"></use></svg></i>
                         <span class="product__buttons-grey-small">Get</span> Shipping Quote
                     </a>
-                    <a class="product__button-grey waves-effect waves-grey btn btn--secondary">
+                    <a class="product__button-grey waves-effect waves-grey btn btn--secondary" style="display: none;">
                         <i class='icon'><svg><use xlink:href="#heart-fill"></use></svg></i>
                         Add to watchlist
                     </a>
@@ -305,6 +296,16 @@ Lot # 28: Episode "Dog Myths" and Episode "Voice Flame Extinguisher" (2007, E74/
         </div>
         <div class="modal-content"></div>
     </div>
+
+    <div id="modal-shipping-quote" class="modal modal-shipping-quote sync">
+        <div class="modal-header modal-header--sticky">
+            <a class="modal-close btn-flat btn--icon"><i class='icon'><svg><use xlink:href="#close"></use></svg></i></a>
+        </div>
+        <div class="modal__loader">
+            <div class="preloader-wrapper active"><div class="spinner-layer"><div class="circle-clipper left"><div class="circle"></div></div><div class="gap-patch"><div class="circle"></div></div><div class="circle-clipper right"><div class="circle"></div></div></div></div>
+        </div>
+        <form class="modal-content modal-form modal-shipping-quote-form" action="action"></form>
+    </div>
         `);
 
 			let status;
@@ -361,6 +362,42 @@ Lot # 28: Episode "Dog Myths" and Episode "Voice Flame Extinguisher" (2007, E74/
 			$details = $('.aucproduct__details');
 			$details.html('');
 
+            $curBidLabel = $('#bidStatus');
+            if ($curBidLabel.length) {
+                $lineCurBid = $detailsLine.clone();
+				$lineCurBid.append($curBidLabel, ' ', $('#currentBid'), ' ', $('#bidHistory'));
+				$details.append($lineCurBid);
+            }
+
+            $askingLabel = $('.askingbid');
+            if ($askingLabel.length) {
+                $lineAsking = $detailsLine.clone();
+                $lineAsking.append($askingLabel, ' ', $('<strong>').append($('#asking').parent('span')));
+				$details.append($lineAsking);
+            }
+
+            $estimateTimed = $('#estimate-timed');
+            if ($estimateTimed.length) {
+                $lineEstimateTimed = $detailsLine.clone();
+                $estimateTimedLabel = $estimateTimed.find('span:first-child');
+                $estimateTimedLabel.appendTo($lineEstimateTimed);
+                $lineEstimateTimed.append(': ', $('<strong>').append($estimateTimed.html()));
+				$details.append($lineEstimateTimed);
+            }
+
+            $timeLeft = $('.time-left');
+            if ($timeLeft.length) {
+                $lineTimeLeft = $detailsLine.clone();
+                $lineTimeLeft.append($timeLeft);
+				$details.append($lineTimeLeft);
+            }
+
+            $btnPlaceBid = $('.bidfrm .place-bid');
+            if ($btnPlaceBid.length) {
+                $btnPlaceBid.addClass('waves-effect waves-light btn aucproduct__form-item');
+                $('.aucproduct__form').show().append($btnPlaceBid);
+            }
+
 			$win = $('#lac28');
 			if ($win.length) {
 				$winVal = $win.find('span');
@@ -378,6 +415,13 @@ Lot # 28: Episode "Dog Myths" and Episode "Voice Flame Extinguisher" (2007, E74/
 				$lineEstimate.html($estimate.text() + ' <strong>' + $estimateVal.html() + '</strong>');
 				$details.append($lineEstimate);
 			}
+
+            $shippingQuote = $('#shippingQuote');
+            if ($shippingQuote.length) {
+                $('.product__buttons-grey').show();
+
+            }
+
 
 			$('.product__detail .collapsible-body').html($('.l1desctextwhite').html());
 			$('#modal-buyers-guide .modal-content').append($('h4:contains("Product Questions")').parent());

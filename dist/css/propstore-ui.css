@@ -19839,6 +19839,11 @@ body.auctions-catalog .smpagination {
   font-size: 1.5em;
 }
 
+.aucproduct__details #currentBid,
+.aucproduct__details .biddingHistoryLink:not(.btn):not(.btn-large):not(.btn-small):not(.btn-extra-small) {
+  font-weight: 500;
+}
+
 .aucproduct__details-line {
   margin-top: .5rem;
 }

@@ -10,6 +10,11 @@
 .aucproduct__details {
 	margin-bottom: 2rem;
 	font-size: 1.5em;
+
+	#currentBid,
+	.biddingHistoryLink:not(.btn) {
+		font-weight: 500;
+	}
 }
 
 .aucproduct__details-line {
