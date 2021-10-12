@@ -440,16 +440,18 @@ document.addEventListener('DOMContentLoaded', () => {
                 });
             }
 
-            $others = $('#pnlOtherLots .lot');
-            if ($others.length) {
-                $list = $('.cards__list');
-                $others.each((index, item) => {
-                    $img = $('<div class="card__img">');
-                    $img.css('background-image', 'url(' + $(item).find('.other-lots-image').prop('src').replace('_4.', '_2.') + ')');
-                    $title = $('<div class="card__movie">').html($(item).find('.lot-description-timed').html());
-                    $list.append($(item).addClass('card aucproduct__card').html('').append($img, $('<div class="card__info">').append($('<div class="card__description">').append($title))));
-                });
-            }
+            setInterval(() => { // listen ajax updates
+                $others = $('#pnlOtherLots .lot');
+                if ($others.length) {
+                    $list = $('.cards__list');
+                    $others.each((index, item) => {
+                        $img = $('<div class="card__img">');
+                        $img.css('background-image', 'url(' + $(item).find('.other-lots-image').prop('src').replace('_4.', '_2.') + ')');
+                        $title = $('<div class="card__movie">').html($(item).find('.lot-description-timed').html());
+                        $list.append($(item).addClass('card aucproduct__card').html('').append($img, $('<div class="card__info">').append($('<div class="card__description">').append($title))));
+                    });
+                }
+            }, 1000);
 
 		} else if ($('body').hasClass('index-index') || $('body').hasClass('auctions-index')) { // INDEX
             $('footer').append(`
