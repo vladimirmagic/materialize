@@ -831,7 +831,7 @@ document.addEventListener('DOMContentLoaded', () => {
 		function resize() {
 			headerFloat();
 		}
-		resize();
+		setTimeout(resize, 500);
 		$(window).on('resize', resize);
 
 		// HEADER
