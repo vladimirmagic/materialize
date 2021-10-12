@@ -19844,6 +19844,14 @@ body.auctions-catalog .smpagination {
   font-weight: 500;
 }
 
+.aucproduct__details .time-left {
+  float: none !important;
+}
+
+.aucproduct__details .time-left .in-progress:last-child {
+  color: #F93838;
+}
+
 .aucproduct__details-line {
   margin-top: .5rem;
 }
