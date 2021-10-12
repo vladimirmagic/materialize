@@ -209,7 +209,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 			$('.image-thumb-slide').each((i, item) => {
 				const img = { backgroundImage: 'url(' + item.href + ')' };
-                const imgPrev = { backgroundImage: 'url(' + item.dataset.image.replace('_8.', '_9.') + ')' };
+                const imgPrev = { backgroundImage: 'url(' + item.dataset.image + ')' };
 				$carouselItemNew = $carouselItem.clone();
 				$slider.append($carouselItemNew.css(imgPrev));
 				$thumbnailsItemNew = $thumbnailsItem.clone();
