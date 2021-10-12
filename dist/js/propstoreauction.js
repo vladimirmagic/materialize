@@ -730,7 +730,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 			$('.item-block').each((i, item) => {
 				$cardItem = $card.clone();
-                const bg = $(item).find('figure img').prop('src').replace('_4.', '_2.');
+                const bg = $(item).find('figure img').prop('src').replace('_6.', '_2.');
 				$cardItem.find('.card__img').css('background-image', 'url(' + bg + ')');
 				$cardItem.find('.card__movie').append($(item).find('.yaaa'));
 				$badge = $cardItem.find('.card__badge')
