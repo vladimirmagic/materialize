@@ -128,7 +128,7 @@ document.addEventListener('DOMContentLoaded', () => {
         <div class="cards">
           <div class="cards__inner">
             <div class="cards__list"></div>
-            <div class="also-like__arrows" style="disply: none;">
+            <div class="also-like__arrows" style="display: none;">
                 <a href="#left" class="also-like__arrow also-like__arrow--left"></a>    
                 <a href="#right" class="also-like__arrow also-like__arrow--right"></a>    
             </div>
