@@ -450,6 +450,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         $title = $('<div class="card__movie">').html($(item).find('.lot-description-timed').html());
                         $list.append($(item).addClass('card aucproduct__card').html('').append($img, $('<div class="card__info">').append($('<div class="card__description">').append($title))));
                     });
+                    $list.append($('#prev_ctl'));
                 }
             }, 1000);
 
