@@ -444,6 +444,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 $others = $('#pnlOtherLots .lot');
                 if ($others.length) {
                     $list = $('.cards__list');
+                    $list.html('');
                     $others.each((index, item) => {
                         $img = $('<div class="card__img">');
                         $img.css('background-image', 'url(' + $(item).find('.other-lots-image').prop('src').replace('_4.', '_2.') + ')');
