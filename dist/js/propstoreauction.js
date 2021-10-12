@@ -455,12 +455,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
             $('.also-like__arrow--left').on('click', function (e) {
                 e.preventDefault();
-                $('#prev').trigger('click');
+                $('#prev')[0].click();
             });
 
             $('.also-like__arrow--right').on('click', function (e) {
                 e.preventDefault();
-                $('#next_ctl').trigger('click');
+                $('#next')[0].click();
             });
 
 		} else if ($('body').hasClass('index-index') || $('body').hasClass('auctions-index')) { // INDEX
