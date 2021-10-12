@@ -441,7 +441,7 @@ Lot # 28: Episode "Dog Myths" and Episode "Voice Flame Extinguisher" (2007, E74/
             }
 
 			$('.product__detail .collapsible-body').html($('.l1desctextwhite').html());
-			$('#modal-buyers-guide .modal-content').append($('h4:contains("Product Questions")').parent());
+			$('#modal-buyers-guide .modal-content').append($('#buyers-content'));
 			$('body').append($('#modal-buyers-guide'));
 
 			$('#modal-shipping .modal-content').append($('.shipping-info-content'));
