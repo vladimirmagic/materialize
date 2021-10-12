@@ -128,7 +128,7 @@ document.addEventListener('DOMContentLoaded', () => {
         <div class="cards">
           <div class="cards__inner">
             <div class="cards__list"></div>
-            <div class="also-like__arrows" style="display: none;">
+            <div class="also-like__arrows">
                 <a href="#left" class="also-like__arrow also-like__arrow--left"></a>    
                 <a href="#right" class="also-like__arrow also-like__arrow--right"></a>    
             </div>
@@ -450,9 +450,18 @@ document.addEventListener('DOMContentLoaded', () => {
                         $title = $('<div class="card__movie">').html($(item).find('.lot-description-timed').html());
                         $list.append($(item).addClass('card aucproduct__card').html('').append($img, $('<div class="card__info">').append($('<div class="card__description">').append($title))));
                     });
-                    $list.append($('#prev_ctl'));
                 }
             }, 1000);
+
+            $('.also-like__arrow--left').on('click', function (e) {
+                e.preventDefault();
+                $('#prev').trigger('click');
+            });
+
+            $('.also-like__arrow--right').on('click', function (e) {
+                e.preventDefault();
+                $('#next_ctl').trigger('click');
+            });
 
 		} else if ($('body').hasClass('index-index') || $('body').hasClass('auctions-index')) { // INDEX
             $('footer').append(`
