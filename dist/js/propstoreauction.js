@@ -127,145 +127,7 @@ document.addEventListener('DOMContentLoaded', () => {
         <div class="also-like__title h3">Other lots in this auction</div>
         <div class="cards">
           <div class="cards__inner">
-            <div class="cards__list">
-                <a class="card card--liked aucproduct__card" href="#card-05">
-                    <div class="card__img" style="background-image: url(https://www.fillmurray.com/400/800);">
-                        <span class="heart card__heart"></span>
-                        <span class="badge red card__badge">
-                            <i class="icon"><svg><use xlink:href="#flag"></use></svg></i>
-                            Sold
-                        </span>
-                    </div>
-                    <div class="card__info">
-                        <div class="card__description">
-                            <div class="card__movie">
-                                Lot # 2: Episode "Lead Balloon" (2008, E96): Episode Blueprint Signed by Eric Haven - Lead Balloon
-                            </div>
-                            <div class="aucproduct__card-details">
-                                <div class="aucproduct__card-details-row">
-                                    <div class="aucproduct__card-details-label">Asking:</div>
-                                    <div class="aucproduct__card-details-value">£450–£650</div>
-                                </div>
-                                <div class="aucproduct__card-details-row">
-                                    <div class="aucproduct__card-details-label">When:</div>
-                                    <div class="aucproduct__card-details-value">04 May 9:00am (PMT) – 13 May 2:00pm (PMT) 2021</div>
-                                </div>
-                                <div class="aucproduct__card-details-row">
-                                    <div class="aucproduct__card-details-label">Time Left:</div>
-                                    <div class="aucproduct__card-details-value aucproduct__card-details-timer">17h 20m 0s</div>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="card__actions">
-                            <button class="waves-effect waves-light btn" tabindex="0">
-                                <span class="btn__title">Register for the auction</span>
-                                <i class="icon"><svg><use xlink:href="#arrow-right"></use></svg></i>
-                            </button>
-                        </div>
-                    </div>
-                </a><a class="card aucproduct__card" href="#card-06">
-    <div class="card__img" style="background-image: url(https://www.fillmurray.com/700/800);">
-        <span class="heart card__heart"></span>
-        <span class="badge card__badge">
-            <i class="icon"><svg><use xlink:href="#auction"></use></svg></i>
-            Unsold
-        </span>
-    </div>
-    <div class="card__info">
-        <div class="card__description">
-            <div class="card__movie" title='Lot # 28: Episode "Dog Myths" and Episode "Voice Flame Extinguisher" (2007, E74/E76): Episode Blueprint Signed by Adam Savage - The Sensitive Flame'>
-Lot # 28: Episode "Dog Myths" and Episode "Voice Flame Extinguisher" (2007, E74/E76): Episode Blueprint Signed by Adam Savage - The Sensitive Flame
-            </div>
-            <div class="aucproduct__card-details">
-                <div class="aucproduct__card-details-row">
-                    <div class="aucproduct__card-details-label">Asking:</div>
-                    <div class="aucproduct__card-details-value">£450–£650</div>
-                </div>
-                <div class="aucproduct__card-details-row">
-                    <div class="aucproduct__card-details-label">When:</div>
-                    <div class="aucproduct__card-details-value">04 May 9:00am (PMT) – 13 May 2:00pm (PMT) 2021</div>
-                </div>
-            </div>
-        </div>
-        
-        <div class="card__actions">
-            <button class="waves-effect waves-light btn" tabindex="0">
-                <span class="btn__title">Bid now</span>
-                <i class="icon"><svg><use xlink:href="#auction"></use></svg></i>
-            </button>
-        </div>
-    </div>
-</a><a class="card card--liked aucproduct__card" href="#card-05">
-    <div class="card__img" style="background-image: url(https://www.fillmurray.com/400/800);">
-        <span class="heart card__heart"></span>
-        <span class="badge red card__badge">
-            <i class="icon"><svg><use xlink:href="#flag"></use></svg></i>
-            Sold
-        </span>
-    </div>
-    <div class="card__info">
-        <div class="card__description">
-            <div class="card__movie">
-                Lot # 2: Episode "Lead Balloon" (2008, E96): Episode Blueprint Signed by Eric Haven - Lead Balloon
-            </div>
-            <div class="aucproduct__card-details">
-                <div class="aucproduct__card-details-row">
-                    <div class="aucproduct__card-details-label">Asking:</div>
-                    <div class="aucproduct__card-details-value">£450–£650</div>
-                </div>
-                <div class="aucproduct__card-details-row">
-                    <div class="aucproduct__card-details-label">When:</div>
-                    <div class="aucproduct__card-details-value">08/20/2021 9:00 AM PDT-09/01/2021 10:33 AM PDT</div>
-                </div>
-                <div class="aucproduct__card-details-row">
-                    <div class="aucproduct__card-details-label">Time Left:</div>
-                    <div class="aucproduct__card-details-value aucproduct__card-details-timer">17h 20m 0s</div>
-                </div>
-            </div>
-        </div>
-        
-        <div class="card__actions">
-            <button class="waves-effect waves-light btn" tabindex="0">
-                <span class="btn__title">Register for the auction</span>
-                <i class="icon"><svg><use xlink:href="#arrow-right"></use></svg></i>
-            </button>
-        </div>
-    </div>
-</a><a class="card aucproduct__card" href="#card-06">
-<div class="card__img" style="background-image: url(https://www.fillmurray.com/700/800);">
-<span class="heart card__heart"></span>
-<span class="badge card__badge">
-<i class="icon"><svg><use xlink:href="#auction"></use></svg></i>
-Unsold
-</span>
-</div>
-<div class="card__info">
-<div class="card__description">
-<div class="card__movie" title='Lot # 28: Episode "Dog Myths" and Episode "Voice Flame Extinguisher" (2007, E74/E76): Episode Blueprint Signed by Adam Savage - The Sensitive Flame'>
-Lot # 28: Episode "Dog Myths" and Episode "Voice Flame Extinguisher" (2007, E74/E76): Episode Blueprint Signed by Adam Savage - The Sensitive Flame
-</div>
-<div class="aucproduct__card-details">
-<div class="aucproduct__card-details-row">
-    <div class="aucproduct__card-details-label">Asking:</div>
-    <div class="aucproduct__card-details-value">£450–£650</div>
-</div>
-<div class="aucproduct__card-details-row">
-    <div class="aucproduct__card-details-label">When:</div>
-    <div class="aucproduct__card-details-value">08/20/2021 9:00 AM PDT-09/01/2021 10:33 AM PDT</div>
-</div>
-</div>
-</div>
-
-<div class="card__actions">
-<button class="waves-effect waves-light btn" tabindex="0">
-<span class="btn__title">Bid now</span>
-<i class="icon"><svg><use xlink:href="#auction"></use></svg></i>
-</button>
-</div>
-</div>
-</a>
-            </div>
+            <div class="cards__list"></div>
             <div class="also-like__arrows">
                 <a href="#left" class="also-like__arrow also-like__arrow--left"></a>    
                 <a href="#right" class="also-like__arrow also-like__arrow--right"></a>    
@@ -575,6 +437,17 @@ Lot # 28: Episode "Dog Myths" and Episode "Voice Flame Extinguisher" (2007, E74/
                         .always(data => {
                             this.classList.remove('sync');
                         });
+                });
+            }
+
+            $others = $('#pnlOtherLots .lot');
+            if ($others.length) {
+                $list = $('.cards__list');
+                $others.each((index, item) => {
+                    $img = $('<div class="card__img">');
+                    $img.css('background-image', 'url(' + $(item).find('.other-lots-image').prop('src').replace('_4.', '_2.') + ')');
+                    $title = $('<div class="card__movie">').html($(item).find('.lot-description-timed').html());
+                    $list.append($(item).addClass('card aucproduct__card').html('').append($img, $('<div class="card__info">').append($('<div class="card__description">').append($title))));
                 });
             }
 
