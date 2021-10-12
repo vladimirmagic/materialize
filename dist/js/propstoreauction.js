@@ -60,6 +60,8 @@ document.addEventListener('DOMContentLoaded', () => {
                     <div class="aucproduct__details-line"></div>
                 </div>
 
+                <div class="aucproduct__button"></div>
+
                 <div class="aucproduct__form" style="display: none;"></div>
                 
                 <div class="product__buttons-grey" style="display: none;">
@@ -67,7 +69,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         <i class='icon'><svg><use xlink:href="#globe"></use></svg></i>
                         <span class="product__buttons-grey-small">Get</span> Shipping Quote
                     </a>
-                    <a class="product__button-grey waves-effect waves-grey btn btn--secondary" style="display: none;">
+                    <a class="product__button-grey waves-effect waves-grey btn btn--secondary aucproduct__button-watch" style="display: none;">
                         <i class='icon'><svg><use xlink:href="#heart-fill"></use></svg></i>
                         Add to watchlist
                     </a>
@@ -392,6 +394,19 @@ Lot # 28: Episode "Dog Myths" and Episode "Voice Flame Extinguisher" (2007, E74/
 				$details.append($lineTimeLeft);
             }
 
+            $nextBid = $('.bidfrm .next-bid');
+            if ($nextBid.length) {
+                $nextBid.addClass('waves-effect waves-light btn aucproduct__form-item');
+                $('.aucproduct__button').show().append($nextBid);
+            }
+
+            $bidInput = $('.maxbid');
+            if ($bidInput.length) {
+                $bidInput.addClass('aucproduct__form-item');
+                $bidInput.find('br').remove();
+                $('.aucproduct__form').show().append($bidInput);
+            }
+
             $btnPlaceBid = $('.bidfrm .place-bid');
             if ($btnPlaceBid.length) {
                 $btnPlaceBid.addClass('waves-effect waves-light btn aucproduct__form-item');
@@ -422,6 +437,12 @@ Lot # 28: Episode "Dog Myths" and Episode "Voice Flame Extinguisher" (2007, E74/
 
             }
 
+            $watchlist = $('#watchlist_button');
+            if ($watchlist.length) {
+                $watchlist.addClass('product__button-grey');
+                $watchlist.find('a').addClass('waves-effect waves-grey btn btn--secondary');
+                $('.product__buttons-grey').show().append($watchlist);
+            }
 
 			$('.product__detail .collapsible-body').html($('.l1desctextwhite').html());
 			$('#modal-buyers-guide .modal-content').append($('h4:contains("Product Questions")').parent());

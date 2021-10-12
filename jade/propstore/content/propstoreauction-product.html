@@ -207,7 +207,8 @@ Lot #6<span class="lot-name">Lot #6 - 24 (TV SERIES, 2001-2010) - Jack Bauer's (
     <div>
         <span class="left cur_bid">
             <span id="bidStatus">Current bid:</span>
-            <span id="currentBid"><span id="currbid" class="exratetip" rev="cur:1" rel="cur:">$1,300</span></span>
+            <span id="currentBid"><span id="currbid" class="exratetip" rev="cur:1" rel="cur:">$1,300</span> - <span
+                    class="bid-status-owner">You are the high bidder!</span></span>
             <span id="bidHistory"><a class="biddingHistoryLink " data-id="69853"
                     href="https://propstore-staging32-usm.auctionserver.net/auctions/bidding-history/id/282/lot/69853?url=%2Flot-details%2Findex%2Fcatalog%2F282%2Flot%2F69853">(2
                     bids)</a></span>
@@ -228,14 +229,50 @@ Lot #6<span class="lot-name">Lot #6 - 24 (TV SERIES, 2001-2010) - Jack Bauer's (
     <div class="message-lot"><span id="oai22_ctl" class="qlabel-ctl"></span></div>
     <div>
         <div class="bidfrm">
+            <!-- NEXT BID BLOCK -->
+            <fieldset class="bidding-fieldset nextbid">
+                <ul>
+                    <li>
+                        <label class="mxbid">&nbsp;</label>
+                        <span class="mxbid-input">&nbsp;</span>
+                    </li>
+                    <li>
+                        <div class="unibtn bidding bidding-next">
+                            <span id="bNext104483_ctl" class="qbutton-ctl"><input type="button" name="bNext104483"
+                                    id="bNext104483" value="Bid $1,350" disabled="disabled" class="button orng next-bid"
+                                    onclick="qc.pB('LotDetailsTimed', 'bNext104483', 'QClickEvent', '104483'); return false;" /></span>
+                        </div>
+                    </li>
+                </ul>
+            </fieldset>
+            <!-- //NEXT BID BLOCK -->
             <!-- MAIN BIDDING BLOCK -->
             <fieldset class="bidding-fieldset placebid">
                 <ul>
+                    <li class="maxbid">
+                        <label class="mxbid">My max bid</label>
+                        <span class="mxbid-input"><span class='maxbid-curr'>$</span><span id="tmbid104483_ctl"
+                                class="qtextbox-ctl"><input type="text" name="tmbid104483" id="tmbid104483" value="1300"
+                                    class="mrg txt-max-bid"
+                                    onclick="this.select();this.setSelectionRange(0,9999);this.contentEditable=true;"
+                                    onkeydown="if (event.keyCode == 13) {qc.pB('LotDetailsTimed', 'tmbid104483', 'QEnterKeyEvent', '');}"
+                                    style="width:150px;" /></span><span class="youre-winning"><br />Your high
+                                bid!</span></span>
+                        <label>
+                            <span class="note">(
+                                Enter <span class="scur104483">$</span><span id="enterAsking" class="exratetip"
+                                    rev="cur:1" rel="cur:">1,350</span>
+                                or more)
+                            </span>
+                            <span class="note reserve" id="reserve">
+                            </span>
+                        </label>
+                    </li>
                     <li>
                         <div class="unibtn">
                             <span id="bPbid104483_ctl" class="qbutton-ctl"><input type="button" name="bPbid104483"
-                                    id="bPbid104483" value="Login to bid" class="orng place-bid"
-                                    onclick="sam.redirect('/login/index?url=https%3A%2F%2Fpropstore-staging32-usm.auctionserver.net%2Flot-details%2Findex%2Fcatalog%2F282%2Flot%2F69853%3Fsale-reg%3D282&sale=282'); return false;" /></span>
+                                    id="bPbid104483" value="Change bid!" class="orng place-bid"
+                                    onclick="if(!window.sam.isBidValid(this, 'Invalid max bid', '#tmbid104483')) return false; if(!sam.excessiveBidChecker.checkSingleBid(this,'tmbid104483',null,'hidVisAskBid104483',1000)) return false; qc.pB('LotDetailsTimed', 'bPbid104483', 'QClickEvent', ''); return false;" /></span>
                         </div>
                     </li>
                 </ul>
@@ -243,7 +280,7 @@ Lot #6<span class="lot-name">Lot #6 - 24 (TV SERIES, 2001-2010) - Jack Bauer's (
             <!-- //MAIN BIDDING BLOCK -->
 
 
-            <!-- FORCE BID BLOCK -->
+            <!--  FORCE BID BLOCK -->
             <!-- //FORCE BID -->
 
         </div>
@@ -252,7 +289,15 @@ Lot #6<span class="lot-name">Lot #6 - 24 (TV SERIES, 2001-2010) - Jack Bauer's (
 
 </div> <!-- //auc_info_bid -->
 
- <div class="btmlinks">
+<div class="btmlinks">
+    <span id="watchlist_button" data-aid="282" data-lid="69853">
+<a href="#" id="removeFromWatchlist" class="watch remove-watch" >
+Remove from watchlist
+</a>
+<a href="#" id="addToWatchlist" class="watch add-watch" style="display: none;">
+Add to watchlist
+</a>
+</span>
  <a id="oai25" class="right tell-friend" href="https://propstore-staging32.auctionserver.net/auctions/tell-friend/id/244/lot/66265?url=%2Flot-details%2Findex%2Fcatalog%2F244%2Flot%2F66265%3Furl%3D%252Fauctions%252Fcatalog%252Fid%252F244">Tell a friend</a><a href="https://propstore-staging32.auctionserver.net/auctions/ask-question/id/244/lot/66265?url=%2Flot-details%2Findex%2Fcatalog%2F244%2Flot%2F66265%3Furl%3D%252Fauctions%252Fcatalog%252Fid%252F244" class="right ask">Ask a question</a> <div class="clearfix"></div>
  </div>
 

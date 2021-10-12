@@ -21,7 +21,17 @@
 
 		.in-progress:last-child {
 			color: $color-red;
+			font-weight: 500;
 		}
+	}
+
+	.bid-status-owner {
+		padding: 0 4px 1px;
+		font-size: 1.25rem;
+		color: white;
+		background: $color-turquoise;
+		border-radius: 4px;
+		white-space: nowrap;
 	}
 }
 
@@ -33,25 +43,65 @@
 	color: $color-red;
 }
 
+.aucproduct__button {
+	width: calc(50% - .75rem);
+	margin-bottom: 2rem;
+
+	.btn {
+		width: 100%;
+	}
+}
+
 .aucproduct__form {
 	display: flex;
 	justify-content: space-between;
 	margin-bottom: 2rem;
+
+	.maxbid {
+		list-style: none;
+
+		.mxbid {
+			display: none;
+		}
+
+		.maxbid-curr {
+			position: absolute;
+			z-index: 100;
+			margin: 15px 0 0 12px;
+			color: $color-font-grey;
+		}
+
+		.txt-max-bid {
+			width: 100% !important;
+		}
+
+		.youre-winning {
+			font-weight: 500;
+			color: $color-turquoise;
+		}
+
+		label {
+			color: $color-font-grey;
+		}
+	}
 }
 
 .aucproduct__form-item {
-	flex-basis: 50%;
-	height: 3.5rem;
+	flex-basis: calc(50% - .75rem);
 	margin-top: 0;
 	margin-bottom: 0;
-
-	& + & {
-		margin-left: 1.5rem;
-	}
 
 	input:not(.browser-default) {
 		height: 3.5rem !important;
 		background-color: white;
+	}
+}
+
+.aucproduct .product__button-grey {
+	flex-basis: calc(50% - .75rem);
+
+	& + & {
+		margin-left: 0;
 	}
 }
 

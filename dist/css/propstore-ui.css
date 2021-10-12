@@ -19850,6 +19850,16 @@ body.auctions-catalog .smpagination {
 
 .aucproduct__details .time-left .in-progress:last-child {
   color: #F93838;
+  font-weight: 500;
+}
+
+.aucproduct__details .bid-status-owner {
+  padding: 0 4px 1px;
+  font-size: 1.25rem;
+  color: white;
+  background: #11BFC5;
+  border-radius: 4px;
+  white-space: nowrap;
 }
 
 .aucproduct__details-line {
@@ -19858,6 +19868,15 @@ body.auctions-catalog .smpagination {
 
 .aucproduct__timer {
   color: #F93838;
+}
+
+.aucproduct__button {
+  width: calc(50% - .75rem);
+  margin-bottom: 2rem;
+}
+
+.aucproduct__button .btn, .aucproduct__button .btn-large, .aucproduct__button .btn-small, .aucproduct__button .btn-extra-small {
+  width: 100%;
 }
 
 .aucproduct__form {
@@ -19872,22 +19891,55 @@ body.auctions-catalog .smpagination {
   margin-bottom: 2rem;
 }
 
-.aucproduct__form-item {
-  -webkit-flex-basis: 50%;
-      -ms-flex-preferred-size: 50%;
-          flex-basis: 50%;
-  height: 3.5rem;
-  margin-top: 0;
-  margin-bottom: 0;
+.aucproduct__form .maxbid {
+  list-style: none;
 }
 
-.aucproduct__form-item + .aucproduct__form-item {
-  margin-left: 1.5rem;
+.aucproduct__form .maxbid .mxbid {
+  display: none;
+}
+
+.aucproduct__form .maxbid .maxbid-curr {
+  position: absolute;
+  z-index: 100;
+  margin: 15px 0 0 12px;
+  color: #8F8F8F;
+}
+
+.aucproduct__form .maxbid .txt-max-bid {
+  width: 100% !important;
+}
+
+.aucproduct__form .maxbid .youre-winning {
+  font-weight: 500;
+  color: #11BFC5;
+}
+
+.aucproduct__form .maxbid label {
+  color: #8F8F8F;
+}
+
+.aucproduct__form-item {
+  -webkit-flex-basis: calc(50% - .75rem);
+      -ms-flex-preferred-size: calc(50% - .75rem);
+          flex-basis: calc(50% - .75rem);
+  margin-top: 0;
+  margin-bottom: 0;
 }
 
 .aucproduct__form-item input:not(.browser-default) {
   height: 3.5rem !important;
   background-color: white;
+}
+
+.aucproduct .product__button-grey {
+  -webkit-flex-basis: calc(50% - .75rem);
+      -ms-flex-preferred-size: calc(50% - .75rem);
+          flex-basis: calc(50% - .75rem);
+}
+
+.aucproduct .product__button-grey + .aucproduct .product__button-grey {
+  margin-left: 0;
 }
 
 .aucproduct__buttons {
