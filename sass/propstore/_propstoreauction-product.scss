@@ -102,6 +102,20 @@
 	}
 }
 
+.aucproduct #watchlist_button {
+	flex-basis: calc(50% - .75rem);
+
+	.product__button-grey {
+		width: 100%;
+		margin-left: 0;
+	}
+
+	.remove-watch {
+		color: white;
+		background: $color-turquoise;
+	}
+}
+
 .aucproduct .product__button-grey {
 	flex-basis: calc(50% - .75rem);
 

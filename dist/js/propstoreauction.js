@@ -69,10 +69,6 @@ document.addEventListener('DOMContentLoaded', () => {
                         <i class='icon'><svg><use xlink:href="#globe"></use></svg></i>
                         <span class="product__buttons-grey-small">Get</span> Shipping Quote
                     </a>
-                    <a class="product__button-grey waves-effect waves-grey btn btn--secondary aucproduct__button-watch" style="display: none;">
-                        <i class='icon'><svg><use xlink:href="#heart-fill"></use></svg></i>
-                        Add to watchlist
-                    </a>
                 </div>
 
                 <ul class="product__details collapsible expandable">
@@ -299,7 +295,7 @@ Lot # 28: Episode "Dog Myths" and Episode "Voice Flame Extinguisher" (2007, E74/
         <div class="modal-content"></div>
     </div>
 
-    <div id="modal-shipping-quote" class="modal modal-shipping-quote sync">
+    <div id="modal-shipping-quote" class="modal modal-ajax modal-shipping-quote">
         <div class="modal-header modal-header--sticky">
             <a class="modal-close btn-flat btn--icon"><i class='icon'><svg><use xlink:href="#close"></use></svg></i></a>
         </div>
@@ -439,8 +435,9 @@ Lot # 28: Episode "Dog Myths" and Episode "Voice Flame Extinguisher" (2007, E74/
 
             $watchlist = $('#watchlist_button');
             if ($watchlist.length) {
-                $watchlist.addClass('product__button-grey');
-                $watchlist.find('a').addClass('waves-effect waves-grey btn btn--secondary');
+                $watchlist.find('a').addClass('waves-effect waves-grey btn btn--secondary product__button-grey');
+                $watchlist.find('.remove-watch').html('<i class="icon"><svg><use xlink:href="#heart-fill"></use></svg></i> <span class="product__buttons-grey-small">In</span> Watchlist');
+                $watchlist.find('.add-watch').html('<i class="icon"><svg><use xlink:href="#heart"></use></svg></i> <span class="product__buttons-grey-small">Add to</span> Watchlist');
                 $('.product__buttons-grey').show().append($watchlist);
             }
 
@@ -528,6 +525,60 @@ Lot # 28: Episode "Dog Myths" and Episode "Voice Flame Extinguisher" (2007, E74/
 					}
 				}
 			});
+
+            // MODAL SHIPPING QUOTE
+            if ($('#modal-shipping-quote').length) {
+                $('body').append($('#modal-shipping-quote'));
+                $('#modal-shipping-quote').modal({ // load form on modal open
+                    onOpenStart: function (el, trigger) {
+                        el.classList.add('sync');
+                        const $form = $(el).find('.modal-shipping-quote-form');
+                        $.get('#')
+                            .done(data => {
+                                // $form.html(data);
+                                M.updateTextFields();
+                                $('#modal-shipping-quote-country').formSelect({dropdownOptions: {container: document.body}});
+                                // grecaptchaRender('g-recaptcha-quote');
+                            })
+                            .fail(data => {
+                                if (data && data.statusText) $form.html(data.statusText);
+                            })
+                            .always(data => {
+                                setTimeout(() => {
+                                    $form.html(`Need form here`);
+                                    el.classList.remove('sync');
+                                }, 2000);
+                                // el.classList.remove('sync');
+                            });
+                    }
+                });
+
+                $('.modal-shipping-quote-form').on('submit', function (e) {
+                    e.preventDefault();
+                    this.classList.add('sync');
+                    let data = $(this).serialize();
+                    if (e.originalEvent.submitter && e.originalEvent.submitter.name === 'question') {
+                        data += '&question=1';
+                    }
+                    $.post(
+                        this.action,
+                        data,
+                    )
+                        .done(data => {
+                            this.innerHTML = data;
+                            M.updateTextFields();
+                            $('select').formSelect({dropdownOptions: {container: document.body}});
+                            // grecaptchaRender('g-recaptcha-quote');
+                        })
+                        .fail(data => {
+                            if (data && data.statusText) this.innerHTML = data.statusText;
+                        })
+                        .always(data => {
+                            this.classList.remove('sync');
+                        });
+                });
+            }
+
 		} else if ($('body').hasClass('index-index') || $('body').hasClass('auctions-index')) { // INDEX
             $('footer').append(`
         <div class="auccatalog__nav auccatalog__nav--index">

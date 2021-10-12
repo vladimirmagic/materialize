@@ -19937,6 +19937,22 @@ body.auctions-catalog .smpagination {
   background-color: white;
 }
 
+.aucproduct #watchlist_button {
+  -webkit-flex-basis: calc(50% - .75rem);
+      -ms-flex-preferred-size: calc(50% - .75rem);
+          flex-basis: calc(50% - .75rem);
+}
+
+.aucproduct #watchlist_button .product__button-grey {
+  width: 100%;
+  margin-left: 0;
+}
+
+.aucproduct #watchlist_button .remove-watch {
+  color: white;
+  background: #11BFC5;
+}
+
 .aucproduct .product__button-grey {
   -webkit-flex-basis: calc(50% - .75rem);
       -ms-flex-preferred-size: calc(50% - .75rem);
