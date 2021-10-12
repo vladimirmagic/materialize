@@ -19918,6 +19918,12 @@ body.auctions-catalog .smpagination {
   color: #8F8F8F;
 }
 
+.aucproduct__form .maxbid .warning {
+  display: block;
+  font-weight: 500;
+  color: #F93838;
+}
+
 .aucproduct__form-item {
   -webkit-flex-basis: calc(50% - .75rem);
       -ms-flex-preferred-size: calc(50% - .75rem);

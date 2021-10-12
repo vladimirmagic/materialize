@@ -82,6 +82,12 @@
 		label {
 			color: $color-font-grey;
 		}
+
+		.warning {
+			display: block;
+			font-weight: 500;
+			color: $color-red;
+		}
 	}
 }
 
