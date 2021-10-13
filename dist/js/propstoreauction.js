@@ -31,7 +31,7 @@ document.addEventListener('DOMContentLoaded', () => {
         $('#headsec').remove();
         $('body').prepend($('.auc-header'));
         $('body').append($('.auc-sidenav'));
-        $('<main></main>').append($('#wrapper')).insertAfter($('.auc-header'));
+        $('<main>').append($('#wrapper')).insertAfter($('.auc-header'));
 
 		if ($('body').hasClass('lot-details-index')) { // PRODUCT
 			$('footer').append(`
@@ -803,7 +803,33 @@ document.addEventListener('DOMContentLoaded', () => {
 
 			$('.container').prepend($('.auccatalog'));
 			$('.container').prepend($('.auc__hero').show());
-		}
+
+
+
+
+
+
+
+
+
+
+
+
+
+		} else if ($('body').hasClass('auctions-info')) { // INFO
+            document.querySelectorAll('style:not([data-v2]), link[rel="stylesheet"]:not([data-v2])').forEach(item => item.remove());
+        }
+
+
+
+
+
+
+
+
+
+
+        
 
 		// Plugin initialization
 		$('.collapsible').collapsible({
