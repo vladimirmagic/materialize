@@ -545,7 +545,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 </div>
                 <div class="auccatalog__nav-results c-r"></div>
                 <div class="auccatalog__nav-paginator"></div>
-                <div class="auccatalog__nav-view"></div>
             </div>
         </div>
 
@@ -727,10 +726,6 @@ document.addEventListener('DOMContentLoaded', () => {
 			$('.auccatalog__nav-results').html(results.replace('<b>Results:</b>&nbsp;Viewing&nbsp;items&nbsp;', 'Results:&nbsp;'));
 			$('.auccatalog__nav-paginator').append($('#c2_ctl'));
 			$('.pageselector').wrap('<div class="input-field input-field--select" />');
-			$('.grid_list .lst').remove();
-			$('.grid_list .com').html('<i class="icon"><svg><use xlink:href="#view-list"></use></svg></i>');
-			$('.grid_list .sqr').html('<i class="icon"><svg><use xlink:href="#view-grid"></use></svg></i>');
-			$('.auccatalog__nav-view').html($('.grid_list').html());
 
 			$('.aucproduct__card-details').html();
 			$card = $('.card').clone();
