@@ -182,7 +182,7 @@ document.addEventListener('DOMContentLoaded', () => {
 			$aucTitle.find('span').remove();
 			$('.hero__static-title').html($aucTitle.text());
             $('.sale-date').find('br').remove();
-			$('.hero__static-date').append($('.sale-date').first());
+			$('.hero__static-date').append($('.sale-date').first()).show();
 			if (status) {
 				$badge = $('.auc__hero .badge');
 				switch (status) {
@@ -533,6 +533,9 @@ document.addEventListener('DOMContentLoaded', () => {
 				$(item).find('.cat').addClass('waves-effect waves-grey btn btn--secondary');
 
 				$('.filters').hide();
+
+                $('.hero__static-text').show();
+                $('main').prepend($('.auc__hero').show());
 			});
 		} else if ($('body').hasClass('auctions-catalog')) { // CATALOG
 			$('footer').append(`
@@ -664,7 +667,7 @@ document.addEventListener('DOMContentLoaded', () => {
 			$aucTitle.find('span').remove();
 			$('.hero__static-title').html($aucTitle.text());
             $('.sale-date').find('br').remove();
-			$('.hero__static-date').append($('.sale-date').first());
+			$('.hero__static-date').append($('.sale-date').first()).show();
 			if (status) {
 				$badge = $('.auc__hero .badge');
 				switch (status) {
