@@ -9434,7 +9434,7 @@ main {
           flex: 1 1 100%;
 }
 
-.content, .general, .header__main, .header__menu-level1-inner, .header__menu-level1--sell .header__menu-level1-inner, .footer__inner, .hero, .filters, .showing-results, .related-movies, .how, .whatsnew__text, .section-auctions, .faq, .account__orders, .account__favorites, .account__coa, .payment-plans, .sell__inner, .vouchers, .auccatalog__nav, .auc-info__inner {
+.content, .general, .header__main, .header__menu-level1-inner, .header__menu-level1--sell .header__menu-level1-inner, .footer__inner, .hero, .filters, .showing-results, .related-movies, .how, .whatsnew__text, .section-auctions, .faq, .account__orders, .account__favorites, .account__coa, .payment-plans, .sell__inner, .vouchers, .auccatalog__nav, .auc-info__inner, .auc-info__video {
   padding-left: 60px;
   padding-right: 60px;
 }
@@ -9581,21 +9581,21 @@ hr.small {
 }
 
 @media only screen and (min-width: 1921px) {
-  .content, .general, .header__main, .header__menu-level1-inner, .header__menu-level1--sell .header__menu-level1-inner, .footer__inner, .hero, .filters, .showing-results, .related-movies, .how, .whatsnew__text, .section-auctions, .faq, .account__orders, .account__favorites, .account__coa, .payment-plans, .sell__inner, .vouchers, .auccatalog__nav, .auc-info__inner {
+  .content, .general, .header__main, .header__menu-level1-inner, .header__menu-level1--sell .header__menu-level1-inner, .footer__inner, .hero, .filters, .showing-results, .related-movies, .how, .whatsnew__text, .section-auctions, .faq, .account__orders, .account__favorites, .account__coa, .payment-plans, .sell__inner, .vouchers, .auccatalog__nav, .auc-info__inner, .auc-info__video {
     padding-left: calc(50% - 900px);
     padding-right: calc(50% - 900px);
   }
 }
 
 @media only screen and (max-width: 1200px) {
-  .content, .general, .header__main, .header__menu-level1-inner, .header__menu-level1--sell .header__menu-level1-inner, .footer__inner, .hero, .filters, .showing-results, .related-movies, .how, .whatsnew__text, .section-auctions, .faq, .account__orders, .account__favorites, .account__coa, .payment-plans, .sell__inner, .vouchers, .auccatalog__nav, .auc-info__inner {
+  .content, .general, .header__main, .header__menu-level1-inner, .header__menu-level1--sell .header__menu-level1-inner, .footer__inner, .hero, .filters, .showing-results, .related-movies, .how, .whatsnew__text, .section-auctions, .faq, .account__orders, .account__favorites, .account__coa, .payment-plans, .sell__inner, .vouchers, .auccatalog__nav, .auc-info__inner, .auc-info__video {
     padding-left: 40px;
     padding-right: 40px;
   }
 }
 
 @media only screen and (max-width: 600px) {
-  .content, .general, .header__main, .header__menu-level1-inner, .header__menu-level1--sell .header__menu-level1-inner, .footer__inner, .hero, .filters, .showing-results, .related-movies, .how, .whatsnew__text, .section-auctions, .faq, .account__orders, .account__favorites, .account__coa, .payment-plans, .sell__inner, .vouchers, .auccatalog__nav, .auc-info__inner {
+  .content, .general, .header__main, .header__menu-level1-inner, .header__menu-level1--sell .header__menu-level1-inner, .footer__inner, .hero, .filters, .showing-results, .related-movies, .how, .whatsnew__text, .section-auctions, .faq, .account__orders, .account__favorites, .account__coa, .payment-plans, .sell__inner, .vouchers, .auccatalog__nav, .auc-info__inner, .auc-info__video {
     padding-left: 24px;
     padding-right: 24px;
   }
@@ -14821,6 +14821,7 @@ tbody .tr:last-child .td {
 .buy-auctions__title {
   margin-bottom: .5em;
   font-size: 52px;
+  line-height: 1.2;
 }
 
 .buy-auctions__title .icon {
@@ -20823,6 +20824,37 @@ body.auctions-info .smpagination {
   font-size: 12px;
 }
 
+.auc-info__video {
+  position: relative;
+  max-width: 103rem;
+  margin: 100px auto 0;
+  height: 728px;
+}
+
+.auc-info__video div {
+  position: relative;
+  height: 100%;
+}
+
+.auc-info__video iframe {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+.auc-info__cta {
+  margin-top: 5rem;
+  text-align: center;
+}
+
+.auc-info__lots {
+  background: white;
+}
+
+.auc-info__lots .cards, .auc-info__lots .cards-blog {
+  background: white;
+}
+
 @media only screen and (max-width: 1700px) {
   .sell-cta.sell-cta--auction .sell-cta__img {
     max-width: 36em;
@@ -20865,6 +20897,10 @@ body.auctions-info .smpagination {
     border-bottom-left-radius: 0;
     border-top-left-radius: 100px;
   }
+  .auc-info__video {
+    margin-top: 60px;
+    height: 456px;
+  }
 }
 
 @media only screen and (max-width: 992px) {
@@ -20874,6 +20910,9 @@ body.auctions-info .smpagination {
   }
   .auc-info__grey .how {
     margin-bottom: 4rem;
+  }
+  .auc-info__cta {
+    margin-top: 3rem;
   }
 }
 
@@ -20904,6 +20943,9 @@ body.auctions-info .smpagination {
         -ms-flex-pack: center;
             justify-content: center;
     margin: 1.5rem 0;
+  }
+  .auc-info__video {
+    height: 180px;
   }
 }
 

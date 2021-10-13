@@ -164,6 +164,38 @@
 	font-size: 12px;
 }
 
+.auc-info__video {
+	@extend .content;
+	position: relative;
+	max-width: $w103;
+	margin: 100px auto 0;
+	height: 728px;
+
+	div {
+		position: relative;
+		height: 100%;
+	}
+
+	iframe {
+		position: absolute;
+		width: 100%;
+		height: 100%;
+	}
+}
+
+.auc-info__cta {
+	margin-top: 5rem;
+	text-align: center;
+}
+
+.auc-info__lots {
+	background: white;
+
+	.cards {
+		background: white;
+	}
+}
+
 @media only screen and (max-width: 1700px) {
 	.sell-cta.sell-cta--auction {
 		.sell-cta__img {
@@ -214,6 +246,11 @@
 			border-top-left-radius: 100px;
 		}
 	}
+
+	.auc-info__video {
+		margin-top: 60px;
+		height: 456px;
+	}
 }
 
 @media #{$medium-and-down} {
@@ -224,6 +261,10 @@
 		.how {
 			margin-bottom: 4rem;
 		}
+	}
+
+	.auc-info__cta {
+		margin-top: 3rem;
 	}
 }
 
@@ -252,6 +293,10 @@
 			justify-content: center;
 			margin: 1.5rem 0;
 		}
+	}
+
+	.auc-info__video {
+		height: 180px;
 	}
 }
 
