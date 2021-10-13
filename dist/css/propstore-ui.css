@@ -9983,7 +9983,7 @@ header ~ main {
 }
 
 .header__menu.active .header__menu-link {
-  color: #c7c7c7;
+  color: #92A4B5;
 }
 
 .header__menu.active .header__menu-link:hover, .header__menu.active .header__menu-link.active {
@@ -10011,7 +10011,7 @@ header ~ main {
 }
 
 .header__menu-link:hover, .header__menu-link.active {
-  color: #c7c7c7 !important;
+  color: #92A4B5 !important;
   background-color: rgba(0, 0, 0, 0);
 }
 
@@ -19470,8 +19470,17 @@ body.auctions-catalog .smpagination {
   padding: 0;
 }
 
+.auc-header .header__menu-link {
+  height: 2.5rem;
+  line-height: 2.5rem;
+}
+
 .auc-header__link-blank {
-  color: #8F8F8F;
+  color: #92A4B5;
+}
+
+.auc-header__link-blank:hover {
+  color: #2D2E41 !important;
 }
 
 .btn-flat .auc-header__icon-blank {

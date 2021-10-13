@@ -13,10 +13,18 @@
 			padding: 0;
 		}
 	}
+
+	.header__menu-link {
+		height: 2.5rem;
+		line-height: 2.5rem;
+	}
 }
 
 .auc-header__link-blank {
-	color: $color-font-grey;
+	color: $color-font-grey-blue;
+	&:hover {
+		color: $color-base !important;
+	}
 }
 
 .btn-flat .auc-header__icon-blank {

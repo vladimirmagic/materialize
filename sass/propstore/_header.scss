@@ -217,7 +217,7 @@ header {
 	transition: all .1s ease-in-out;
 
 	.header__menu.active & {
-		color: $color-grey;
+		color: $color-font-grey-blue;
 
 		&:hover,
 		&.active {
@@ -245,7 +245,7 @@ header {
 
 	&:hover,
 	&.active {
-		color: $color-grey !important;
+		color: $color-font-grey-blue !important;
 		background-color: rgba(0, 0, 0, 0);
 	}
 
