@@ -32,6 +32,7 @@ document.addEventListener('DOMContentLoaded', () => {
         $('body').prepend($('.auc-header'));
         $('body').append($('.auc-sidenav'));
         $('<main>').append($('#wrapper')).insertAfter($('.auc-header'));
+        if (!$('.container').length) $('#wrapper').append('<div class="container">');
 
 		if ($('body').hasClass('lot-details-index')) { // PRODUCT
 			$('footer').append(`
