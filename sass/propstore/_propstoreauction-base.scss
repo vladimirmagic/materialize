@@ -3,7 +3,8 @@ body.auctions-index,
 body.lot-details-index,
 body.auctions-catalog,
 body.auctions-info,
-body.search-index {
+body.search-index,
+#AdvancedSearch:before {
 	#custom-header,
 	#headsec,
 	.mymenu,

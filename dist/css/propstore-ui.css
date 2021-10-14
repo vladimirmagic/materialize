@@ -19461,7 +19461,15 @@ body.search-index .auctions-filter,
 body.search-index .srch_sec,
 body.search-index .bodybox,
 body.search-index #toppaginator,
-body.search-index .smpagination {
+body.search-index .smpagination,
+#AdvancedSearch:before #custom-header,
+#AdvancedSearch:before #headsec,
+#AdvancedSearch:before .mymenu,
+#AdvancedSearch:before .auctions-filter,
+#AdvancedSearch:before .srch_sec,
+#AdvancedSearch:before .bodybox,
+#AdvancedSearch:before #toppaginator,
+#AdvancedSearch:before .smpagination {
   display: none;
 }
 
