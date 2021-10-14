@@ -463,6 +463,34 @@ document.addEventListener('DOMContentLoaded', () => {
                 $('#next')[0].click();
             });
 
+            function giveLotViewCalendarButtonsLinks(){
+                const lotName = $itemTitle.text();
+                const $outlookCalendarBtn = $('#outlookCalendarBtn');
+                $outlookCalendarBtn.html('Outlook');
+                const outlookHref = generateICSFileURL(escape(lotName), window.location.href);
+                $outlookCalendarBtn.on('click', function(e){
+                    e.preventDefault();
+                    window.open(outlookHref, '_blank');
+                });
+
+                const $googleCalendarBtn = $('#googleCalendarBtn');
+                $googleCalendarBtn.html('Google');
+                const googleHref = generateGoogleCalendarURL(lotName, window.location.href);
+                $googleCalendarBtn.on('click', function(e){
+                    e.preventDefault();
+                    window.open(googleHref, '_blank');
+                });
+
+                const $textReminderBtn = $('#textReminderBtn');
+                $textReminderBtn.html('Text');
+
+                $('.calendarBtn').addClass('waves-effect waves-grey btn btn--secondary');
+                $('<div class="aucproduct__calendar">').insertAfter('.product__buttons-grey')
+                    .append('<div class="aucproduct__calendar-title h5">Add reminder</div>')
+                    .append($('#calendarBtnBox'));
+            }
+            giveLotViewCalendarButtonsLinks();
+
 		} else if ($('body').hasClass('index-index') || $('body').hasClass('auctions-index')) { // INDEX
             $('footer').append(`
         <div class="auccatalog__nav auccatalog__nav--index">
@@ -851,3 +879,11 @@ document.addEventListener('DOMContentLoaded', () => {
 		document.body.classList.add('loaded'); // if svg fail
 	}); // end of document ready
 });
+
+if (!generateGoogleCalendarURL) function generateGoogleCalendarURL(lotName, urlLink) {
+    return 'NeedGenerateGoogleCalendarURL';
+}
+
+if (!generateICSFileURL) function generateICSFileURL(lotName, urlLink) {
+    return 'NeedGenerateICSFileURL';
+}

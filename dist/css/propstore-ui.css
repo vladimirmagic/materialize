@@ -20045,6 +20045,60 @@ body.search-index form#AdvancedSearch:before {
   position: relative;
 }
 
+.aucproduct__calendar {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.aucproduct__calendar #calendarBtnBox {
+  -webkit-box-flex: 1;
+  -webkit-flex: 1 1 100%;
+      -ms-flex: 1 1 100%;
+          flex: 1 1 100%;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.aucproduct__calendar .calendarBtn {
+  -webkit-box-flex: 1;
+  -webkit-flex: 1 1 33%;
+      -ms-flex: 1 1 33%;
+          flex: 1 1 33%;
+  padding: 0 .5rem;
+  color: #2D2E41;
+  border-color: #c7c7c7;
+}
+
+.aucproduct__calendar .calendarBtn + .calendarBtn {
+  margin-left: .5rem;
+}
+
+.aucproduct__calendar-title {
+  margin-right: 1rem;
+  margin-bottom: 0;
+}
+
 @media only screen and (max-width: 1024px) {
   .aucproduct__form-item + .aucproduct__form-item {
     margin-left: 1rem;
@@ -20054,6 +20108,16 @@ body.search-index form#AdvancedSearch:before {
 @media only screen and (max-width: 992px) {
   .aucproduct__also .also-like__arrows {
     display: none;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .aucproduct__calendar {
+    display: block;
+  }
+  .aucproduct__calendar-title {
+    margin-right: 0;
+    margin-bottom: 1rem;
   }
 }
 

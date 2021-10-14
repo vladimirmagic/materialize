@@ -175,6 +175,36 @@
 	}
 }
 
+.aucproduct__calendar {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin-bottom: 1.5rem;
+
+	#calendarBtnBox {
+		flex: 1 1 100%;
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+	}
+
+	.calendarBtn {
+		flex: 1 1 33%;
+		padding: 0 .5rem;
+		color: $color-base;
+		border-color: $color-grey;
+	}
+
+	.calendarBtn + .calendarBtn {
+		margin-left: .5rem;
+	}
+}
+
+.aucproduct__calendar-title {
+	margin-right: 1rem;
+	margin-bottom: 0;
+}
+
 @media #{$breakpoint-tablet} {
 	.aucproduct__form-item {
 		& + & {
@@ -186,5 +216,16 @@
 @media #{$medium-and-down} {
 	.aucproduct__also .also-like__arrows {
 		display: none;
+	}
+}
+
+@media #{$small-and-down} {
+	.aucproduct__calendar {
+		display: block;
+	}
+
+	.aucproduct__calendar-title {
+		margin-right: 0;
+		margin-bottom: 1rem;
 	}
 }
