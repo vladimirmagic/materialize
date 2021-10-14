@@ -537,7 +537,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 $('.hero__static-text').show();
                 $('main').prepend($('.auc__hero').show());
 			});
-		} else if ($('body').hasClass('auctions-catalog')) { // CATALOG
+		} else if ($('body').hasClass('auctions-catalog') || $('body').hasClass('search-index')) { // CATALOG
 			$('footer').append(`
     <div class="auccatalog">
         <div class="auccatalog__nav">
@@ -553,69 +553,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         <div class="cards">
           <div class="cards__inner">
-            <div class="auccatalog__search-panel">
-                <li class="collapsible-li" style="display:none;">
-                    <div class="auccatalog__search-panel-title h4 collapsible-header">
-                        Advanced Search
-                        <i class='icon'><svg><use xlink:href="#close"></use></svg></i>
-                    </div>
-                    <div class='collapsible-body'>
-                        <div class="input-field">
-                            <input type="text" placeholder="Search" value="">
-                        </div>
-                        <div class="input-field input-field--label">
-                            <input type="text" placeholder="Any">
-                            <label>Lot number</label>
-                        </div>
-                        <div class="input-field input-field--label input-field--select">
-                            <select>
-                                <option value="0" title="" data-id="order_num" selected="selected">Default</option><option value="1" title="" data-id="time_left">Time Left</option><option value="2" title="" data-id="lot_num">Lot#</option><option value="3" title="" data-id="lot_name">Lot Name</option><option value="4" title="" data-id="newest">Newest</option><option value="5" title="" data-id="highest">Highest Price</option><option value="6" title="" data-id="lowest">Lowest Price</option><option value="7" title="" data-id="bids">Bids</option><option value="8" title="" data-id="views">Views</option></select>
-                            </select>
-                            <label>Sort by</label>
-                        </div>
-                        <div class="auccatalog__search-panel-subtitle c-s">
-                            Auction Items
-                        </div>
-                        <div class="auccatalog__search-panel-checkboxes">
-                            <label class="checkbox__label">
-                                <input type="checkbox" name="checkout-business" class="filled-in" />
-                                <span>Live Auctions</span>
-                            </label>
-                            <label class="checkbox__label">
-                                <input type="checkbox" name="checkout-business" class="filled-in" />
-                                <span>Upcoming Only</span>
-                            </label>
-                            <label class="checkbox__label">
-                                <input type="checkbox" name="checkout-business" class="filled-in" />
-                                <span>Sold Items</span>
-                            </label>
-                            <label class="checkbox__label">
-                                <input type="checkbox" name="checkout-business" class="filled-in" />
-                                <span>Featured</span>
-                            </label>
-                            <label class="checkbox__label">
-                                <input type="checkbox" name="checkout-business" class="filled-in" />
-                                <span>Show Closed Lots</span>
-                            </label>
-                        </div>
-    
-                        <div class="auccatalog__search-panel-row">
-                            <div class="input-field input-field--label">
-                                <input type="text" placeholder="0">
-                                <label>Min price</label>
-                            </div>
-                            <div class="input-field input-field--label">
-                                <input type="text" placeholder="No">
-                                <label>Max price</label>
-                            </div>
-                        </div>
-    
-                        <button class="waves-effect waves-light btn btn--tertiary auccatalog__search-btn">
-                            Search
-                        </button>
-                    </div>
-                </li>
-            </div>
+            <div class="auccatalog__search-panel"></div>
             <div class="cards__list">
                 <div class="card aucproduct__card">
                     <div class="card__img">
@@ -704,6 +642,11 @@ document.addEventListener('DOMContentLoaded', () => {
 			$searchMatch.append($('.categories-match label').addClass('active')).append($('#advsCatMatch'));
 			$('.categories-match').append($searchMatch);
 			$('#advsCatMatch_ctl').hide();
+
+            const $searchAuction = $('<div class="input-field input-field--label">');
+            $searchAuction.append($('<label class="active">Auction</label>')).append($('#advsAuction'));
+            $('#adv_search_auctions').append($searchAuction);
+            $('#adv_search_auctions > .ui-widget > label').remove();
 
 			const $searchPriceMin = $('<div class="input-field input-field--label">');
 			$searchPriceMin.append($('#advsMinPrice')).append($('<label>Min price</label>'));
