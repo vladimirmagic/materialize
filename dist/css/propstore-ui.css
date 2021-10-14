@@ -19453,7 +19453,15 @@ body.auctions-info .auctions-filter,
 body.auctions-info .srch_sec,
 body.auctions-info .bodybox,
 body.auctions-info #toppaginator,
-body.auctions-info .smpagination {
+body.auctions-info .smpagination,
+body.search-index #custom-header,
+body.search-index #headsec,
+body.search-index .mymenu,
+body.search-index .auctions-filter,
+body.search-index .srch_sec,
+body.search-index .bodybox,
+body.search-index #toppaginator,
+body.search-index .smpagination {
   display: none;
 }
 
@@ -20043,6 +20051,23 @@ body.auctions-info .smpagination {
   }
 }
 
+body.search-index .auccatalog__search {
+  display: block;
+}
+
+body.search-index #adv_search_categories,
+body.search-index #adv_search_auctions,
+body.search-index .categories-match {
+  display: none;
+}
+
+.auccatalog__search {
+  display: none;
+  margin-bottom: 0;
+  margin-top: 1em;
+  text-align: center;
+}
+
 .auccatalog__nav {
   padding-top: 3.75rem;
   padding-bottom: 3.75rem;
@@ -20330,8 +20355,13 @@ body.auctions-info .smpagination {
   margin: .5em 0;
 }
 
-#adv_search_categories label {
+#adv_search_categories label,
+.auction-type label {
   color: #2D2E41;
+}
+
+.auction-type {
+  padding-bottom: 1rem;
 }
 
 .auccatalog__search-panel-row {

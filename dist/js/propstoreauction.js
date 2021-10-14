@@ -537,9 +537,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 $('.hero__static-text').show();
                 $('main').prepend($('.auc__hero').show());
 			});
-		} else if ($('body').hasClass('auctions-catalog') || $('body').hasClass('search-index')) { // CATALOG
+		} else if ($('body').hasClass('auctions-catalog') || $('body').hasClass('search-index')) { // CATALOG || SEARCH
 			$('footer').append(`
     <div class="auccatalog">
+        <div class="auccatalog__search h1">Advanced Search</div>
         <div class="auccatalog__nav">
             <div class="auccatalog__nav-inner">
                 <div class="auccatalog__nav-perpage auccatalog__nav-perpage--header">
@@ -601,21 +602,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 document.querySelectorAll('style:not([data-v2]), link[rel="stylesheet"]:not([data-v2])').forEach(item => item.remove());
             });
 
-			$aucTitle = $('.tle h3').clone();
-			$aucTitle.find('span').remove();
-			$('.hero__static-title').html($aucTitle.text());
-            $('.sale-date').find('br').remove();
-			$('.hero__static-date').append($('.sale-date').first()).show();
-			if (status) {
-				$badge = $('.auc__hero .badge');
-				switch (status) {
-					case 'closed':
-						$badge.addClass('red').append('Closed').show().find('use').attr('xlink:href', '#flag');
-						break;
-				}
-			}
-			$('.auc__hero-aucinfo').attr('href', $('.aucinfo').attr('href')).show();
-
 			const $searcContent = $('.advSearchAccordionContent');
 			const $searchKey = $('<div class="input-field">');
 			$searchKey.append($('#advsKey_ctl'));
@@ -643,10 +629,8 @@ document.addEventListener('DOMContentLoaded', () => {
 			$('.categories-match').append($searchMatch);
 			$('#advsCatMatch_ctl').hide();
 
-            const $searchAuction = $('<div class="input-field input-field--label">');
-            $searchAuction.append($('<label class="active">Auction</label>')).append($('#advsAuction'));
-            $('#adv_search_auctions').append($searchAuction);
-            $('#adv_search_auctions > .ui-widget > label').remove();
+            $('.auction-type').insertBefore('.sort-by');
+            $('.auction-type > label').addClass('h6');
 
 			const $searchPriceMin = $('<div class="input-field input-field--label">');
 			$searchPriceMin.append($('#advsMinPrice')).append($('<label>Min price</label>'));
@@ -745,7 +729,23 @@ document.addEventListener('DOMContentLoaded', () => {
 			});
 
 			$('.container').prepend($('.auccatalog'));
-			$('.container').prepend($('.auc__hero').show());
+            if ($('body').hasClass('auctions-catalog')) {
+                $aucTitle = $('.tle h3').clone();
+                $aucTitle.find('span').remove();
+                $('.hero__static-title').html($aucTitle.text());
+                $('.sale-date').find('br').remove();
+                $('.hero__static-date').append($('.sale-date').first()).show();
+                if (status) {
+                    $badge = $('.auc__hero .badge');
+                    switch (status) {
+                        case 'closed':
+                            $badge.addClass('red').append('Closed').show().find('use').attr('xlink:href', '#flag');
+                            break;
+                    }
+                }
+                $('.auc__hero-aucinfo').attr('href', $('.aucinfo').attr('href')).show();
+                $('.container').prepend($('.auc__hero').show());
+            }
 
 
 

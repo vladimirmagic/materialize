@@ -1,3 +1,22 @@
+body.search-index {
+	.auccatalog__search {
+		display: block;
+	}
+
+	#adv_search_categories,
+	#adv_search_auctions,
+	.categories-match {
+		display: none;
+	}
+}
+
+.auccatalog__search {
+	display: none;
+	margin-bottom: 0;
+	margin-top: 1em;
+	text-align: center;
+}
+
 .auccatalog__nav {
 	@extend .content;
 	padding-top: 3.75rem;
@@ -228,10 +247,15 @@
 	}
 }
 
-#adv_search_categories {
+#adv_search_categories,
+.auction-type {
 	label {
 		color: $color-base;
 	}
+}
+
+.auction-type {
+	padding-bottom: 1rem;
 }
 
 .auccatalog__search-panel-row {
