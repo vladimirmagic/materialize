@@ -122,7 +122,7 @@ header(style='z-index: 999;')
 
     li.no-padding
       ul.collapsible.collapsible-accordion
-        li.bold(class=(page == "Propstore UI" || page == "Home" || page == "Buy now" || page == "Results" || page == "Product" || page == "Auctions" || page == "Bag" || page == "Checkout" || page == "Checkout (split order)" || page == "Order confirmed" || page == "Blog" || page == "Account" || page == "Account Details" || page == "Account Watchlist" || page == "Account Orders" || page == "Account Favorites" || page == "Account COA" || page == "General" || page == "Error" || page == "Password" || page == "Sell" || page == "Propstoreauction" || page == "Propstoreauction product" || page == "Propstoreauction catalog" || page == "Propstoreauction info" ? "active" : ""))
+        li.bold(class=(page == "Propstore UI" || page == "Home" || page == "Buy now" || page == "Results" || page == "Product" || page == "Auctions" || page == "Bag" || page == "Checkout" || page == "Checkout (split order)" || page == "Order confirmed" || page == "Blog" || page == "Account" || page == "Account Details" || page == "Account Watchlist" || page == "Account Orders" || page == "Account Favorites" || page == "Account COA" || page == "General" || page == "Error" || page == "Password" || page == "Sell" ? "active" : ""))
               a.collapsible-header(class="waves-effect waves-grey")
                 | Propstore
               .collapsible-body
@@ -179,6 +179,13 @@ header(style='z-index: 999;')
                     a(href='gift-vouchers.html' target='_blank') Gift vouchers
                   li(class=(page == "Gift voucher" ? "active" : ""))
                     a(href='voucher.html' target='_blank') Gift voucher
+    li.no-padding
+      ul.collapsible.collapsible-accordion
+        li.bold(class=(page == "Propstoreauction" || page == "Propstoreauction product" || page == "Propstoreauction catalog" || page == "Propstoreauction info" || page == "Propstoreauction search" ? "active" : ""))
+              a.collapsible-header(class="waves-effect waves-grey")
+                | PropstoreAuction
+              .collapsible-body
+                ul
                   li(class=(page == "Propstoreauction" ? "active" : ""))
                     a(href='propstoreauction.html' target='_blank') Propstoreauction
                   li(class=(page == "Propstoreauction product" ? "active" : ""))
@@ -187,3 +194,5 @@ header(style='z-index: 999;')
                     a(href='propstoreauction-catalog.html' target='_blank') Propstoreauction catalog
                   li(class=(page == "Propstoreauction info" ? "active" : ""))
                     a(href='propstoreauction-info.html' target='_blank') Propstoreauction info
+                  li(class=(page == "Propstoreauction search" ? "active" : ""))
+                    a(href='propstoreauction-search.html' target='_blank') Propstoreauction search
