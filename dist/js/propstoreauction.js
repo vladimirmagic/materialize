@@ -55,7 +55,7 @@ document.addEventListener('DOMContentLoaded', () => {
             </div>
             <div class="product__info">
                 <div class="product__number"></div>
-                <a href="#movie" class="product__title h2"></a>
+                <div class="product__title h2"></div>
 
                 <div class="aucproduct__details">
                     <div class="aucproduct__details-line"></div>
@@ -94,7 +94,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     </a>
                 </div>
 
-                <a class="product__certificate" href="#certificate" style="display: none;">
+                <a class="product__certificate" href="https://propstore.com/certificate-of-authenticity/" style="display: none;">
                     <div class="product__certificate-icon">
                         <svg class="product__certificate-img"><use xlink:href="#big-authentic"></use></svg>
                     </div>
@@ -837,7 +837,7 @@ document.addEventListener('DOMContentLoaded', () => {
 			const $header = $('header');
 			if ($header.length) {
 				$header.css('maxWidth', $('main').width() + 'px');
-				const top = $('.header__main').offset().top;
+				const top = 40; // px
 				const bottom = $header.height();
 				$(window).on('scroll', M.throttle((e) => {
 					const currentScroll = document.body.scrollTop || window.scrollY || document.documentElement.scrollTop;
