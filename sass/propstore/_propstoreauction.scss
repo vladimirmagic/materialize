@@ -28,7 +28,7 @@ $imgSizeM: 320px;
 	}
 
 	.auclting + .auclting {
-		margin-top: 3em;
+		margin-top: 3.5em;
 	}
 
 	.accimg, .accname, .aucspon, .sale-no {
@@ -188,15 +188,15 @@ $imgSizeM: 320px;
 		}
 
 		.auclting__details {
-			justify-content: center;
-			flex-wrap: wrap;
+			flex-direction: column;
+			align-items: center;
 		}
 
 		.auclting__type, .auclting__date, .auclting__lots {
-			flex: 0 0 100%;
 			margin: .5em 0 0;
-			padding: 0;
+		}
 
+		.auclting__date {
 			.icon {
 				display: none;
 			}

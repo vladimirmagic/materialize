@@ -19642,7 +19642,7 @@ body.search-index form#AdvancedSearch:before {
 }
 
 .auclist.auchome .auclting + .auclting {
-  margin-top: 3em;
+  margin-top: 3.5em;
 }
 
 .auclist.auchome .accimg, .auclist.auchome .accname, .auclist.auchome .aucspon, .auclist.auchome .sale-no {
@@ -19818,23 +19818,20 @@ body.search-index form#AdvancedSearch:before {
     text-align: center;
   }
   .auclist.auchome .auclting__details {
-    -webkit-box-pack: center;
-    -webkit-justify-content: center;
-        -ms-flex-pack: center;
-            justify-content: center;
-    -webkit-flex-wrap: wrap;
-        -ms-flex-wrap: wrap;
-            flex-wrap: wrap;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: column;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+        -ms-flex-align: center;
+            align-items: center;
   }
   .auclist.auchome .auclting__type, .auclist.auchome .auclting__date, .auclist.auchome .auclting__lots {
-    -webkit-box-flex: 0;
-    -webkit-flex: 0 0 100%;
-        -ms-flex: 0 0 100%;
-            flex: 0 0 100%;
     margin: .5em 0 0;
-    padding: 0;
   }
-  .auclist.auchome .auclting__type .icon, .auclist.auchome .auclting__date .icon, .auclist.auchome .auclting__lots .icon {
+  .auclist.auchome .auclting__date .icon {
     display: none;
   }
 }
