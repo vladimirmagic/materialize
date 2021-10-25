@@ -20257,6 +20257,15 @@ body.search-index .categories-match {
   color: #2D2E41;
 }
 
+.auccatalog__nav-paginator .paginator .arrow a:not(.btn):not(.btn-large):not(.btn-small):not(.btn-extra-small) {
+  font-weight: 300;
+  text-decoration: none;
+}
+
+.auccatalog__nav-paginator .paginator .arrow a:not(.btn):not(.btn-large):not(.btn-small):not(.btn-extra-small):hover {
+  color: #8F8F8F;
+}
+
 .auccatalog__nav-paginator .break {
   position: relative;
   margin: 0 1rem;

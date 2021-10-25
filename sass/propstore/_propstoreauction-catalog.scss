@@ -106,6 +106,15 @@ body.search-index {
 		}
 	}
 
+	.paginator .arrow a:not(.btn) {
+		font-weight: 300;
+		text-decoration: none;
+
+		&:hover {
+			color: $color-font-grey;
+		}
+	}
+
 	.break {
 		position: relative;
 		margin: 0 1rem;
