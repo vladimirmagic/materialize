@@ -20241,7 +20241,7 @@ body.search-index .categories-match {
           align-items: center;
 }
 
-.auccatalog__nav-paginator .paginator * {
+.auccatalog__nav-paginator .paginator > * {
   display: inline-block;
   margin: 0 .25rem;
   font-size: 20px;
