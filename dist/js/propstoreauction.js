@@ -575,6 +575,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 $reg = $(item).find('.reg');
                 $reg.addClass('waves-effect waves-light btn');
                 $reg.html($reg.html().replace('Login to bid', 'Sign in to bid'));
+                $reg.html($reg.html().replace('Register to bid!', 'Register for the auction'));
 				$cat = $(item).find('.cat');
                 $cat.html($cat.html().replace('View catalog', 'View catalogue items'));
                 $cat.addClass('waves-effect waves-grey btn btn--secondary');
