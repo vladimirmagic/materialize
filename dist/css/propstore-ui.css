@@ -20247,13 +20247,13 @@ body.search-index .categories-match {
   font-size: 20px;
 }
 
-.auccatalog__nav-paginator .paginator a:not(.btn):not(.btn-large):not(.btn-small):not(.btn-extra-small) {
+.auccatalog__nav-paginator .paginator .page a:not(.btn):not(.btn-large):not(.btn-small):not(.btn-extra-small) {
   font-weight: 300;
   text-decoration: none;
   color: #8F8F8F;
 }
 
-.auccatalog__nav-paginator .paginator a:not(.btn):not(.btn-large):not(.btn-small):not(.btn-extra-small):hover {
+.auccatalog__nav-paginator .paginator .page a:not(.btn):not(.btn-large):not(.btn-small):not(.btn-extra-small):hover {
   color: #2D2E41;
 }
 
