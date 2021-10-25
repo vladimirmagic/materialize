@@ -20158,6 +20158,12 @@ body.search-index .categories-match {
   display: none;
 }
 
+.auccatalog__nav .input-field--filled:not(:focus-within) input[type=text] {
+  border: 1px solid #c7c7c7;
+  width: calc(100% - 2px);
+  margin: 0 1px;
+}
+
 .auccatalog__nav-inner {
   display: -webkit-box;
   display: -webkit-flex;

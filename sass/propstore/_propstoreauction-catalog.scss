@@ -35,6 +35,12 @@ body.search-index {
 	.select-wrapper + .select-wrapper {
 		display: none;
 	}
+
+	.input-field--filled:not(:focus-within) input[type=text] {
+		border: $input-border;
+		width: calc(100% - 2px);
+		margin: 0 1px;
+	}
 }
 
 .auccatalog__nav-inner {
