@@ -20243,7 +20243,7 @@ body.search-index .categories-match {
 
 .auccatalog__nav-paginator .paginator > * {
   display: inline-block;
-  margin: 0 .25rem;
+  margin: 0 .5rem;
   font-size: 20px;
 }
 
