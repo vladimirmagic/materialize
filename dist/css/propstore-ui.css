@@ -20248,7 +20248,7 @@ body.search-index .categories-match {
 }
 
 .auccatalog__nav-paginator .paginator .page a:not(.btn):not(.btn-large):not(.btn-small):not(.btn-extra-small) {
-  font-weight: 300;
+  font-weight: 400;
   text-decoration: none;
   color: #8F8F8F;
 }
@@ -20258,7 +20258,7 @@ body.search-index .categories-match {
 }
 
 .auccatalog__nav-paginator .paginator .arrow a:not(.btn):not(.btn-large):not(.btn-small):not(.btn-extra-small) {
-  font-weight: 300;
+  font-weight: 400;
   text-decoration: none;
 }
 
