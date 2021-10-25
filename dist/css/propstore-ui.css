@@ -19589,7 +19589,7 @@ body.search-index form#AdvancedSearch:before {
     -webkit-justify-content: center;
         -ms-flex-pack: center;
             justify-content: center;
-    margin-top: 10px;
+    margin-top: 6px;
     margin-left: 1rem;
     margin-right: 4rem;
   }
