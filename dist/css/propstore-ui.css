@@ -19831,6 +19831,9 @@ body.search-index form#AdvancedSearch:before {
   .auclist.auchome .auclting__type, .auclist.auchome .auclting__date, .auclist.auchome .auclting__lots {
     margin: .5em 0 0;
   }
+  .auclist.auchome .auclting__date {
+    padding: 0;
+  }
   .auclist.auchome .auclting__date .icon {
     display: none;
   }
@@ -19844,7 +19847,11 @@ body.search-index form#AdvancedSearch:before {
   .auclist.auchome .auclink .btn, .auclist.auchome .auclink .btn-large, .auclist.auchome .auclink .btn-small, .auclist.auchome .auclink .btn-extra-small {
     width: 100%;
   }
-  .auclist.auchome .auclink .btn + .btn--secondary, .auclist.auchome .auclink .btn-large + .btn--secondary, .auclist.auchome .auclink .btn-small + .btn--secondary, .auclist.auchome .auclink .btn-extra-small + .btn--secondary {
+  .auclist.auchome .auclink .unibtn {
+    display: block;
+  }
+  .auclist.auchome .auclink .btn + .btn--secondary, .auclist.auchome .auclink .btn-large + .btn--secondary, .auclist.auchome .auclink .btn-small + .btn--secondary, .auclist.auchome .auclink .btn-extra-small + .btn--secondary,
+  .auclist.auchome .auclink .unibtn + .unibtn {
     margin: 1em 0 0;
   }
 }

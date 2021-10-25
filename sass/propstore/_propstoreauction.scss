@@ -197,6 +197,7 @@ $imgSizeM: 320px;
 		}
 
 		.auclting__date {
+			padding: 0;
 			.icon {
 				display: none;
 			}
@@ -214,7 +215,12 @@ $imgSizeM: 320px;
 				width: 100%;
 			}
 
-			.btn + .btn--secondary {
+			.unibtn {
+				display: block;
+			}
+
+			.btn + .btn--secondary,
+			.unibtn + .unibtn {
 				margin: 1em 0 0;
 			}
 		}
