@@ -572,8 +572,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
 				$desc.append($(item).find('.auclink'));
 
-				$(item).find('.reg').addClass('waves-effect waves-light btn');
-				$(item).find('.cat').addClass('waves-effect waves-grey btn btn--secondary');
+                $reg = $(item).find('.reg');
+                $reg.addClass('waves-effect waves-light btn');
+                $reg.html($reg.html().replace('Login to bid', 'Sign in to bid'));
+				$cat = $(item).find('.cat');
+                $cat.html($cat.html().replace('View catalog', 'View catalogue items'));
+                $cat.addClass('waves-effect waves-grey btn btn--secondary');
 
 				$('.filters').hide();
 
