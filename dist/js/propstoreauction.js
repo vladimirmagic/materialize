@@ -516,7 +516,7 @@ document.addEventListener('DOMContentLoaded', () => {
             $('.auccatalog__nav-paginator').append($pageselector);
             $('main').prepend($('.auccatalog__nav'));
             $('main').append($('.auccatalog__nav').clone().addClass('auccatalog__nav--footer'));
-            $('.auccatalog__nav--footer .auccatalog__nav-perpage--header .input-field').append($('#alf5_ctl').clone());
+            $('.auccatalog__nav--footer #alf5_ctl, .auccatalog__nav--footer #alf5').removeAttr('id');
 
 			$('.auclting').each((i, item) => {
 				$title = $(item).find('h6');
