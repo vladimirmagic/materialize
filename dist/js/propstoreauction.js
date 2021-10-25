@@ -505,8 +505,9 @@ document.addEventListener('DOMContentLoaded', () => {
         `);
 			document.querySelectorAll('style:not([data-v2]), link[rel="stylesheet"]:not([data-v2])').forEach(item => item.remove());
 
-            $('#alf5').addClass('browser-default').attr('style', '');
-			$('.auccatalog__nav-perpage--header .input-field').append($('#alf5_ctl'));
+            $itemsPerPage = $('#alf5').clone();
+            $itemsPerPage.removeAttr('id').addClass('auccatalog__nav-perpage-select');
+			$('.auccatalog__nav-perpage--header .input-field').append($itemsPerPage);
 			$('.auccatalog__nav-paginator').append($('#c2_ctl'));
             const $pageselector = $('<div class="input-field input-field--select">');
 			if ($('.pageselector').length > 1) {
@@ -516,7 +517,19 @@ document.addEventListener('DOMContentLoaded', () => {
             $('.auccatalog__nav-paginator').append($pageselector);
             $('main').prepend($('.auccatalog__nav'));
             $('main').append($('.auccatalog__nav').clone().addClass('auccatalog__nav--footer'));
-            $('.auccatalog__nav--footer #alf5_ctl').remove();
+
+            $('.auccatalog__nav-perpage-select').on('change', function (e) {
+                e.preventDefault();
+                const options = $(e.currentTarget).find('option').toArray();
+                const itemsPerPage = document.querySelector("#alf5");
+                options.forEach((option, index) => {
+                    if (option.selected) {
+                        itemsPerPage.value = option.value;
+                        $('#alf5').find('option')[index].selected = true
+                        itemsPerPage.dispatchEvent(new Event("change"));
+                    }
+                })
+            });
 
 			$('.auclting').each((i, item) => {
 				$title = $(item).find('h6');
