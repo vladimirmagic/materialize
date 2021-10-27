@@ -193,7 +193,6 @@ document.addEventListener('DOMContentLoaded', () => {
             requestAnimationFrame(() => {
                 const heroImage = window.getComputedStyle(document.querySelector('.hero__image'));
                 const aucPoster = window.getComputedStyle(document.querySelector('.bodybox'), ':before');
-                console.log(heroImage, heroImage.backgroundImage, aucPoster, aucPoster.backgroundImage);
                 $('.hero__image').css({ backgroundImage: heroImage.backgroundImage || aucPoster.backgroundImage });
                 document.querySelectorAll('style:not([data-v2]), link[rel="stylesheet"]:not([data-v2])').forEach(item => item.remove());
             });
