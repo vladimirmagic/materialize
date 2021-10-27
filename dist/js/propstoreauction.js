@@ -289,7 +289,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 $('.aucproduct__form').show().append($btnPlaceBid);
             }
 
-			$win = $('#lac28') || $('#oai21');
+			$win = $('#lac28, #oai21');
 			if ($win.length) {
 				$winVal = $win.find('span');
 				$win.find('span').remove();
