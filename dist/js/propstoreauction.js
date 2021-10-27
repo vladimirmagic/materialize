@@ -752,15 +752,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
 			$('.auccatalog__search-panel').append($('#ads01'));
 
-			// $('#c3, #c4').addClass('browser-default').attr('style', '');
-			// $('.auccatalog__nav-perpage--header .input-field').append($('#c3_ctl'));
-			// $('.auccatalog__nav-perpage--footer .input-field').append($('#c4_ctl'));
 			const results = $('.page:contains("Results:")').html();
 			$('.auccatalog__nav-results').html(results.replace('<b>Results:</b>&nbsp;Viewing&nbsp;items&nbsp;', 'Results:&nbsp;'));
 			$('.auccatalog__nav-paginator').append($('#c2_ctl'));
 			$('.pageselector').wrap('<div class="input-field input-field--select" />');
-            
-            $itemsPerPage = $('#c3').clone();
+
+            $itemsPerPage = $('#c3').attr('style', '').clone();
+            $('#c3').addClass('browser-default');
             $itemsPerPage.removeAttr('id').addClass('auccatalog__nav-perpage-select');
 			$('.auccatalog__nav-perpage--header .input-field').append($itemsPerPage);
             $('.auccatalog__nav-perpage--footer .input-field').append($itemsPerPage.clone());
@@ -769,10 +767,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 e.preventDefault();
                 const options = $(e.currentTarget).find('option').toArray();
                 const itemsPerPage = document.querySelector("#c3");
+                $('#c3').find('option[selected]').attr('selected', false);
                 options.forEach((option, index) => {
                     if (option.selected) {
-                        itemsPerPage.value = option.value;
-                        $('#c3').find('option')[index].selected = true
+                        itemsPerPage.value = +option.value;
+                        $('#c3').find('option').eq(index).attr('selected', true);
                         itemsPerPage.dispatchEvent(new Event("change"));
                     }
                 })

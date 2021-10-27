@@ -20279,6 +20279,7 @@ body.search-index .categories-match {
 
 .auccatalog__nav-paginator .break {
   position: relative;
+  width: 1px;
   margin: 0 1rem;
   color: rgba(0, 0, 0, 0);
 }
