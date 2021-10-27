@@ -539,7 +539,8 @@ document.addEventListener('DOMContentLoaded', () => {
         `);
 			document.querySelectorAll('style:not([data-v2]), link[rel="stylesheet"]:not([data-v2])').forEach(item => item.remove());
 
-            $itemsPerPage = $('#alf5').clone();
+            $itemsPerPage = $('#alf5').attr('style', '').clone();
+            $('#alf5').addClass('browser-default');
             $itemsPerPage.removeAttr('id').addClass('auccatalog__nav-perpage-select');
 			$('.auccatalog__nav-perpage--header .input-field').append($itemsPerPage);
 			$('.auccatalog__nav-paginator').append($('#c2_ctl'));
@@ -556,6 +557,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 e.preventDefault();
                 const options = $(e.currentTarget).find('option').toArray();
                 const itemsPerPage = document.querySelector("#alf5");
+                $('#alf5').find('option[selected]').attr('selected', false);
                 options.forEach((option, index) => {
                     if (option.selected) {
                         itemsPerPage.value = option.value;
@@ -866,6 +868,72 @@ document.addEventListener('DOMContentLoaded', () => {
                 $('.auc__hero-aucinfo').attr('href', $('.aucinfo').attr('href')).show();
                 $('.container').prepend($('.auc__hero').show());
             }
+/**
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * BIDS
+ */
+ } else if ($('body').hasClass('auctions-bidding-history')) {
+    $('footer').append(`
+<div class="aucpage">
+    <div class="aucpage__h1 h1"></div>
+    <div class="auccatalog__nav">
+        <div class="auccatalog__nav-inner">
+            <div class="auccatalog__nav-perpage auccatalog__nav-perpage--header">
+                <div class="auccatalog__nav-perpage-label c-r">Items per page</div>
+                <div class="input-field input-field--select"></div>
+            </div>
+            <div class="auccatalog__nav-paginator"></div>
+        </div>
+    </div>
+    <div class="aucpage__content"><div class="aucpage__content-inner"></div></div>
+</div>
+`);
+    document.querySelectorAll('style:not([data-v2]), link[rel="stylesheet"]:not([data-v2])').forEach(item => item.remove());
+
+    $itemsPerPage = $('#bhPagesBottom').attr('style', '').clone();
+    $('#bhPagesBottom').addClass('browser-default');
+    $itemsPerPage.removeAttr('id').addClass('auccatalog__nav-perpage-select');
+    $('.auccatalog__nav-perpage--header .input-field').append($itemsPerPage);
+    $('.auccatalog__nav-paginator').append($('#c3_ctl'));
+    const $pageselector = $('<div class="input-field input-field--select">');
+    if ($('.pageselector').length > 1) {
+        $('.pageselector:last-child').remove();
+    }
+    $pageselector.append($('.pageselector'));
+    $('.auccatalog__nav-paginator').append($pageselector);
+    $('.aucpage').append($('.auccatalog__nav').clone().addClass('auccatalog__nav--footer'));
+
+    $('.auccatalog__nav-perpage-select').on('change', function (e) {
+        e.preventDefault();
+        const options = $(e.currentTarget).find('option').toArray();
+        const itemsPerPage = document.querySelector("#bhPagesBottom");
+        $('#bhPagesBottom').find('option[selected]').attr('selected', false);
+        options.forEach((option, index) => {
+            if (option.selected) {
+                itemsPerPage.value = option.value;
+                $('#bhPagesBottom').find('option')[index].selected = true
+                itemsPerPage.dispatchEvent(new Event("change"));
+            }
+        })
+    });
+
+    $('.aucpage__h1').html($('.ltitle h2').html());
+    $('.aucpage__content-inner').append($('.tablesection'));
+
+    $('.container').prepend($('.aucpage'));
 /**
  * 
  * 

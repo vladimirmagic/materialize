@@ -3,6 +3,7 @@ body.auctions-index,
 body.lot-details-index,
 body.auctions-catalog,
 body.auctions-info,
+body.auctions-bidding-history,
 body.search-index {
 	#custom-header,
 	#headsec,
@@ -12,7 +13,8 @@ body.search-index {
 	.bodybox,
 	#toppaginator,
 	.smpagination,
-	form#AdvancedSearch:before {
+	form#AdvancedSearch:before,
+	.filters {
 		display: none;
 	}
 }
