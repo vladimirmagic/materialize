@@ -289,7 +289,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 $('.aucproduct__form').show().append($btnPlaceBid);
             }
 
-			$win = $('#lac28');
+			$win = $('#lac28') || $('#oai21');
 			if ($win.length) {
 				$winVal = $win.find('span');
 				$win.find('span').remove();
@@ -321,7 +321,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 $('.product__buttons-grey').show().append($watchlist);
             }
 
-			$('.product__detail .collapsible-body').html($('.l1desctextwhite').html());
+			$('.product__detail .collapsible-body').append($('.l1desctextwhite'));
 			$('#modal-buyers-guide .modal-content').append($('#buyers-content'));
 			$('body').append($('#modal-buyers-guide'));
 
