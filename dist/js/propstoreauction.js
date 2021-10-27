@@ -193,7 +193,7 @@ document.addEventListener('DOMContentLoaded', () => {
             requestAnimationFrame(() => {
                 const heroImage = window.getComputedStyle(document.querySelector('.hero__image'));
                 const aucPoster = window.getComputedStyle(document.querySelector('.bodybox'), ':before');
-                $('.hero__image').css({ backgroundImage: heroImage.backgroundImage || aucPoster.backgroundImage });
+                $('.hero__image').css({ backgroundImage: aucPoster.backgroundImage || heroImage.backgroundImage });
                 document.querySelectorAll('style:not([data-v2]), link[rel="stylesheet"]:not([data-v2])').forEach(item => item.remove());
             });
 
@@ -703,7 +703,7 @@ document.addEventListener('DOMContentLoaded', () => {
 			requestAnimationFrame(() => {
                 const heroImage = window.getComputedStyle(document.querySelector('.hero__image'));
                 const aucPoster = window.getComputedStyle(document.querySelector('#AdvancedSearch'), ':before');
-                $('.hero__image').css({ backgroundImage: heroImage.backgroundImage || aucPoster.backgroundImage });
+                $('.hero__image').css({ backgroundImage: aucPoster.backgroundImage || heroImage.backgroundImage });
                 document.querySelectorAll('style:not([data-v2]), link[rel="stylesheet"]:not([data-v2])').forEach(item => item.remove());
             });
 
