@@ -20120,6 +20120,19 @@ body.search-index .filters {
   margin-bottom: 0;
 }
 
+.aucproduct .product__detail b {
+  font-weight: 600;
+}
+
+.aucproduct .product__detail .l2desctextwhite {
+  font-weight: bold;
+  margin: .5em 0 .5em 1.5rem;
+}
+
+.aucproduct .product__detail .l3desctextwhite {
+  margin: 0 0 0 2.5rem;
+}
+
 @media only screen and (max-width: 1024px) {
   .aucproduct__form-item + .aucproduct__form-item {
     margin-left: 1rem;
