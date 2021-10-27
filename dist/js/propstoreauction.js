@@ -321,7 +321,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 $('.product__buttons-grey').show().append($watchlist);
             }
 
-			$('.product__detail .collapsible-body').append($('.l1desctextwhite'));
+			$('.product__detail .collapsible-body').append($('.l1desctextwhite, .l2desctextwhite, .l3desctextwhite'));
 			$('#modal-buyers-guide .modal-content').append($('#buyers-content'));
 			$('body').append($('#modal-buyers-guide'));
 
@@ -334,7 +334,7 @@ document.addEventListener('DOMContentLoaded', () => {
 			if ($('.description-info-content :contains("Certificate of Authenticity")').length) {
 				$('.product__certificate').show();
 			}
-			$originalNote = $('.description-info-content p:contains("original asset")');
+			$originalNote = $('.description-info-content p:contains("used in the production")');
 			if ($originalNote.length) {
 				$('.aucproduct__certificate').html($originalNote.html()).show();
 			}
