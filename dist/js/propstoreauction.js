@@ -34,7 +34,25 @@ document.addEventListener('DOMContentLoaded', () => {
         $('<main>').append($('#wrapper')).insertAfter($('.auc-header'));
         if (!$('.container').length) $('#wrapper').append('<div class="container">');
 
-		if ($('body').hasClass('lot-details-index')) { // PRODUCT
+/**
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * PRODUCT
+ */
+
+		if ($('body').hasClass('lot-details-index')) {
 			$('footer').append(`
     <div class="product aucproduct">
         <div class="product__inner">
@@ -490,8 +508,24 @@ document.addEventListener('DOMContentLoaded', () => {
                     .append($('#calendarBtnBox'));
             }
             giveLotViewCalendarButtonsLinks();
-
-		} else if ($('body').hasClass('index-index') || $('body').hasClass('auctions-index')) { // INDEX
+/**
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * INDEX
+ */
+		} else if ($('body').hasClass('index-index') || $('body').hasClass('auctions-index')) {
             $('footer').append(`
         <div class="auccatalog__nav auccatalog__nav--index">
             <div class="auccatalog__nav-inner">
@@ -589,7 +623,24 @@ document.addEventListener('DOMContentLoaded', () => {
                 $('.hero__static-text').show();
                 $('main').prepend($('.auc__hero').show());
 			});
-		} else if ($('body').hasClass('auctions-catalog') || $('body').hasClass('search-index')) { // CATALOG || SEARCH
+/**
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * CATALOG || SEARCH
+ */
+		} else if ($('body').hasClass('auctions-catalog') || $('body').hasClass('search-index')) {
 			$('footer').append(`
     <div class="auccatalog">
         <div class="auccatalog__search h1">Advanced Search</div>
@@ -701,13 +752,31 @@ document.addEventListener('DOMContentLoaded', () => {
 
 			$('.auccatalog__search-panel').append($('#ads01'));
 
-			$('#c3, #c4').addClass('browser-default').attr('style', '');
-			$('.auccatalog__nav-perpage--header .input-field').append($('#c3_ctl'));
-			$('.auccatalog__nav-perpage--footer .input-field').append($('#c4_ctl'));
+			// $('#c3, #c4').addClass('browser-default').attr('style', '');
+			// $('.auccatalog__nav-perpage--header .input-field').append($('#c3_ctl'));
+			// $('.auccatalog__nav-perpage--footer .input-field').append($('#c4_ctl'));
 			const results = $('.page:contains("Results:")').html();
 			$('.auccatalog__nav-results').html(results.replace('<b>Results:</b>&nbsp;Viewing&nbsp;items&nbsp;', 'Results:&nbsp;'));
 			$('.auccatalog__nav-paginator').append($('#c2_ctl'));
 			$('.pageselector').wrap('<div class="input-field input-field--select" />');
+            
+            $itemsPerPage = $('#c3').clone();
+            $itemsPerPage.removeAttr('id').addClass('auccatalog__nav-perpage-select');
+			$('.auccatalog__nav-perpage--header .input-field').append($itemsPerPage);
+            $('.auccatalog__nav-perpage--footer .input-field').append($itemsPerPage.clone());
+
+            $('.auccatalog__nav-perpage-select').on('change', function (e) {
+                e.preventDefault();
+                const options = $(e.currentTarget).find('option').toArray();
+                const itemsPerPage = document.querySelector("#c3");
+                options.forEach((option, index) => {
+                    if (option.selected) {
+                        itemsPerPage.value = option.value;
+                        $('#c3').find('option')[index].selected = true
+                        itemsPerPage.dispatchEvent(new Event("change"));
+                    }
+                })
+            });
 
 			$('.aucproduct__card-details').html();
 			$card = $('.card').clone();
@@ -798,35 +867,43 @@ document.addEventListener('DOMContentLoaded', () => {
                 $('.auc__hero-aucinfo').attr('href', $('.aucinfo').attr('href')).show();
                 $('.container').prepend($('.auc__hero').show());
             }
-
-
-
-
-
-
-
-
-
-
-
-
-
-		} else if ($('body').hasClass('auctions-info')) { // INFO
+/**
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * INFO
+ */
+		} else if ($('body').hasClass('auctions-info')) {
             document.querySelectorAll('style:not([data-v2]), link[rel="stylesheet"]:not([data-v2])').forEach(item => item.remove());
         }
-
-
-
-
-
-
-
-
-
-
-        
-
-		// Plugin initialization
+/**
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * Plugin initialization
+ */
 		$('.collapsible').collapsible({
 			onOpenEnd: (el) => {
 				const body = el.querySelector('.collapsible-body');
@@ -844,14 +921,29 @@ document.addEventListener('DOMContentLoaded', () => {
 		$('.sidenav').sidenav();
 		$('input[data-length], textarea[data-length]').characterCounter();
 		M.updateTextFields();
-
+/**
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * HEADER
+ */
 		function resize() {
 			headerFloat();
 		}
 		setTimeout(resize, 500);
 		$(window).on('resize', resize);
 
-		// HEADER
 		const HEADER_THRESHOLD = 100; // px
 		let previousScroll = 0;
 		function headerFloat() {
