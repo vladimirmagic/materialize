@@ -666,7 +666,7 @@ document.addEventListener('DOMContentLoaded', () => {
             <div class="cards__list">
                 <div class="card aucproduct__card">
                     <div class="card__img">
-                        <span class="heart card__heart"></span>
+                        <span class="heart card__heart" style="display: none;"></span>
                         <span class="badge card__badge" style="display: none;">
                             <i class="icon"><svg><use xlink:href="#"></use></svg></i>
                         </span>
@@ -847,7 +847,7 @@ document.addEventListener('DOMContentLoaded', () => {
 				}
                 const $heart = $(item).find('.bd-chk');
                 if ($heart.length) {
-                    $cardItem.find('.heart').append($heart);
+                    $cardItem.find('.heart').append($heart).show();
                     if ($heart.find('input').prop('checked')) $cardItem.addClass('card--liked');
                     $heart.find('input').on('change', function(e) {
                         $(e.target).closest('.card').toggleClass('card--liked', $heart.find('input').prop('checked'));
