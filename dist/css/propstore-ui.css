@@ -20750,6 +20750,9 @@ body.search-index .categories-match {
             flex: 1 1 100%;
     display: block;
   }
+  .auccatalog .cards--list .card__actions, .auccatalog .cards--list .card-blog__actions {
+    margin-top: 1.5rem;
+  }
 }
 
 @media only screen and (min-width: 601px) and (min-width: 1201px) {
