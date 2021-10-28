@@ -20729,6 +20729,10 @@ body.search-index .categories-match {
     -webkit-justify-content: space-between;
         -ms-flex-pack: justify;
             justify-content: space-between;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+        -ms-flex-align: center;
+            align-items: center;
   }
   .auccatalog .cards--list .card__img, .auccatalog .cards--list .card-blog__img {
     -webkit-box-flex: 0;
@@ -20744,6 +20748,7 @@ body.search-index .categories-match {
     -webkit-flex: 1 1 100%;
         -ms-flex: 1 1 100%;
             flex: 1 1 100%;
+    display: block;
   }
 }
 

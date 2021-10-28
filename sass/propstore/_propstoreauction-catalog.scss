@@ -504,6 +504,7 @@ body.search-index {
 			.card {
 				display: flex;
 				justify-content: space-between;
+				align-items: center;
 			}
 
 			.card__img {
@@ -515,6 +516,7 @@ body.search-index {
 
 			.card__info {
 				flex: 1 1 100%;
+				display: block;
 			}
 		}
 	}
