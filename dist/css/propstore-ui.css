@@ -20469,6 +20469,8 @@ body.search-index .categories-match {
 
 .auccatalog__search-panel-title .icon {
   margin: 0;
+  width: 16px;
+  height: 18px;
 }
 
 .collapsible-li:not(.active) .auccatalog__search-panel-title .icon {
