@@ -21162,6 +21162,12 @@ body.my-items .auccatalog__search {
   display: block;
 }
 
+body.my-items #adv_search_categories,
+body.my-items #adv_search_auctions,
+body.my-items .categories-match {
+  display: none;
+}
+
 .auccatalog__tabs {
   height: 2.5rem;
   margin-top: 2rem;

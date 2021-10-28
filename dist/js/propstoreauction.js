@@ -723,10 +723,14 @@ document.addEventListener('DOMContentLoaded', () => {
 			$('#ads01').addClass('collapsible').append($searchLi);
 			$('#advsSearch').addClass('waves-effect waves-light btn btn--tertiary auccatalog__search-btn');
 
-            const $searchSale = $('<div class="input-field input-field--label input-field--select">');
-            $searchSale.append($('section.auctions label').addClass('active')).append($('#advsSale'));
-            $('section.auctions').append($searchSale);
-            $('section.auctions .drplist').hide();
+            const $saleSelect = $('#advsSale');
+            if ($saleSelect.length) {
+                const $saleSelectContainer = $saleSelect.closest('section.auctions');
+                const $searchSale = $('<div class="input-field input-field--label input-field--select">');
+                $searchSale.append($saleSelectContainer.find('label').addClass('active')).append($saleSelect);
+                $saleSelectContainer.append($searchSale);
+                $saleSelectContainer.find('.drplist').hide();
+            }
 
 			const $searchSort = $('<div class="input-field input-field--label input-field--select">');
 			$searchSort.append($('section.sort-by label').addClass('active')).append($('#advsSort'));

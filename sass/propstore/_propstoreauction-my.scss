@@ -2,6 +2,12 @@ body.my-items {
 	.auccatalog__search {
 		display: block;
 	}
+
+	#adv_search_categories,
+	#adv_search_auctions,
+	.categories-match {
+		display: none;
+	}
 }
 
 .auccatalog__tabs {
