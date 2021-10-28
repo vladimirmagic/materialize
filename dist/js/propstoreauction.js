@@ -800,7 +800,11 @@ document.addEventListener('DOMContentLoaded', () => {
 			$('.aucproduct__card-details').html();
 			$card = $('.card').clone();
 			$('.cards__list').html('').toggleClass('cards__list--list', $('.compact_container'));
-            $('.cards').addClass($('.cont_list_grd').length ? 'cards--list' : 'cards--grid');
+            $('.cards').addClass(sam &&
+                sam.serverData &&
+                sam.serverData.variables &&
+                sam.serverData.variables.default &&
+                sam.serverData.variables.default.viewMode === 'list' ? 'cards--list' : 'cards--grid');
 
 
 			$('.item-block').each((i, item) => {
