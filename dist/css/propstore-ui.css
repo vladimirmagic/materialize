@@ -19484,7 +19484,17 @@ body.search-index .bodybox,
 body.search-index #toppaginator,
 body.search-index .smpagination,
 body.search-index form#AdvancedSearch:before,
-body.search-index .filters {
+body.search-index .filters,
+body.my-items #custom-header,
+body.my-items #headsec,
+body.my-items .mymenu,
+body.my-items .auctions-filter,
+body.my-items .srch_sec,
+body.my-items .bodybox,
+body.my-items #toppaginator,
+body.my-items .smpagination,
+body.my-items form#AdvancedSearch:before,
+body.my-items .filters {
   display: none;
 }
 
@@ -21146,4 +21156,41 @@ body.search-index .categories-match {
 .auctions-bidding-history .tablesection th {
   width: auto !important;
   text-transform: uppercase;
+}
+
+body.my-items .auccatalog__search {
+  display: block;
+}
+
+.auccatalog__tabs {
+  height: 2.5rem;
+  margin-top: 2rem;
+  overflow: hidden;
+  text-align: center;
+}
+
+.auccatalog__tabs #tabnav {
+  height: 4rem;
+  margin: 0;
+  padding: 0 1rem;
+  overflow-y: hidden;
+  overflow-x: scroll;
+  white-space: nowrap;
+}
+
+.auccatalog__tabs .tabnav-tab {
+  display: inline-block;
+  margin: 0 .5rem;
+}
+
+.auccatalog__tabs .tabnav-tab.selected a {
+  color: #fff;
+  background: #2D2E41;
+  cursor: default;
+}
+
+@media only screen and (max-width: 992px) {
+  .auccatalog__tabs .tabnav-tab {
+    margin: 0 .25rem;
+  }
 }

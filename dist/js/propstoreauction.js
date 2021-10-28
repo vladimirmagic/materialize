@@ -641,9 +641,11 @@ document.addEventListener('DOMContentLoaded', () => {
  * 
  * 
  * 
- * CATALOG || SEARCH
+ * CATALOG
+ * SEARCH
+ * MY ITEMS
  */
-		} else if ($('body').hasClass('auctions-catalog') || $('body').hasClass('search-index')) {
+		} else if ($('body').hasClass('auctions-catalog') || $('body').hasClass('search-index') || $('body').hasClass('my-items')) {
 			$('footer').append(`
     <div class="auccatalog">
         <div class="auccatalog__search h1">Advanced Search</div>
@@ -720,6 +722,11 @@ document.addEventListener('DOMContentLoaded', () => {
 			const $searchLi = $('<li class="collapsible-li">').append($searchHeader).append($searchInner);
 			$('#ads01').addClass('collapsible').append($searchLi);
 			$('#advsSearch').addClass('waves-effect waves-light btn btn--tertiary auccatalog__search-btn');
+
+            const $searchSale = $('<div class="input-field input-field--label input-field--select">');
+            $searchSale.append($('section.auctions label').addClass('active')).append($('#advsSale'));
+            $('section.auctions').append($searchSale);
+            $('section.auctions .drplist').hide();
 
 			const $searchSort = $('<div class="input-field input-field--label input-field--select">');
 			$searchSort.append($('section.sort-by label').addClass('active')).append($('#advsSort'));
@@ -869,6 +876,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
                 $('.auc__hero-aucinfo').attr('href', $('.aucinfo').attr('href')).show();
                 $('.container').prepend($('.auc__hero').show());
+            } else if ($('body').hasClass('my-items')) {
+                $('.auccatalog__search').html('My Items');
+                $('<div class="auccatalog__tabs" />').insertAfter('.auccatalog__search').append($('#tabnav'));
+                $('#tabnav a').addClass('waves-effect btn-flat btn--rounded');
+                requestAnimationFrame(() => $('.tabnav-tab.selected')[0].scrollIntoView({inline: 'center'}));
             }
 /**
  * 

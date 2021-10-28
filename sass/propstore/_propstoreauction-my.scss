@@ -1,0 +1,40 @@
+body.my-items {
+	.auccatalog__search {
+		display: block;
+	}
+}
+
+.auccatalog__tabs {
+	height: 2.5rem;
+	margin-top: 2rem;
+	overflow: hidden;
+	text-align: center;
+
+	#tabnav {
+		height: 4rem;
+		margin: 0;
+		padding: 0 1rem;
+		overflow-y: hidden;
+		overflow-x: scroll;
+		white-space: nowrap;
+	}
+
+	.tabnav-tab {
+		display: inline-block;
+		margin: 0 .5rem;
+
+		&.selected a {
+			color: #fff;
+			background: $color-base;
+			cursor: default;
+		}
+	}
+}
+
+@media #{$medium-and-down} {
+	.auccatalog__tabs {
+		.tabnav-tab {
+			margin: 0 .25rem;
+		}
+	}
+}
