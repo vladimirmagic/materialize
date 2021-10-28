@@ -20708,6 +20708,7 @@ body.search-index .categories-match {
     -webkit-flex-wrap: wrap;
         -ms-flex-wrap: wrap;
             flex-wrap: wrap;
+    padding-right: .5rem;
   }
   .auccatalog__search-panel {
     position: relative;
