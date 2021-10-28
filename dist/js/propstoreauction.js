@@ -772,8 +772,8 @@ document.addEventListener('DOMContentLoaded', () => {
 			$('.auccatalog__nav-results').html(results.replace('<b>Results:</b>&nbsp;Viewing&nbsp;items&nbsp;', 'Results:&nbsp;'));
 			$('.auccatalog__nav-paginator').append($('#c2_ctl'));
 			$('.pageselector').wrap('<div class="input-field input-field--select" />');
-			$('.grid_list .lst').remove();
-			$('.grid_list .com').html('<i class="icon"><svg><use xlink:href="#view-list"></use></svg></i>');
+			$('.grid_list .com').remove();
+			$('.grid_list .lst').html('<i class="icon"><svg><use xlink:href="#view-list"></use></svg></i>');
 			$('.grid_list .sqr').html('<i class="icon"><svg><use xlink:href="#view-grid"></use></svg></i>');
 			$('.auccatalog__nav-view').html($('.grid_list').html());
 
@@ -799,13 +799,17 @@ document.addEventListener('DOMContentLoaded', () => {
 
 			$('.aucproduct__card-details').html();
 			$card = $('.card').clone();
-			$('.cards__list').html('');
+			$('.cards__list').html('').toggleClass('cards__list--list', $('.compact_container'));
+            $('.cards').addClass($('.cont_list_grd').length ? 'cards--list' : 'cards--grid');
 
 
 			$('.item-block').each((i, item) => {
 				$cardItem = $card.clone();
-                const bg = $(item).find('figure img').prop('src').replace('_6.', '_2.');
-				$cardItem.find('.card__img').css('background-image', 'url(' + bg + ')');
+                let bg = $(item).find('figure img').prop('src');
+                if (bg) {
+                    bg = bg.replace('_6.', '_2.');
+                    $cardItem.find('.card__img').css('background-image', 'url(' + bg + ')');
+                }
 				$cardItem.find('.card__movie').append($(item).find('.yaaa'));
 				$badge = $cardItem.find('.card__badge')
 				if ($(item).find('.ended.sold').length) {
