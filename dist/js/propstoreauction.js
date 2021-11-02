@@ -821,7 +821,7 @@ document.addEventListener('DOMContentLoaded', () => {
 				} else if ($(item).find('.ended.unsold').length) {
 					$badge.append('Unsold').show().find('use').attr('xlink:href', '#archive');
 				} else if ($(item).find('.ended').length) {
-					$badge.addClass('red').append('Closed').show().find('use').attr('xlink:href', '#archive');
+					$badge.append('Closed').show().find('use').attr('xlink:href', '#archive');
 				}
                 
 				$(item).find('.item-status').remove();
