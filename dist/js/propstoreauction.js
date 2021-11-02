@@ -652,7 +652,7 @@ document.addEventListener('DOMContentLoaded', () => {
         <div class="auccatalog__nav">
             <div class="auccatalog__nav-inner">
                 <div class="auccatalog__nav-perpage auccatalog__nav-perpage--header">
-                    <div class="auccatalog__nav-perpage-label c-r">Items per page</div>
+                    <div class="auccatalog__nav-perpage-label c-r">Lots per page</div>
                     <div class="input-field input-field--select"></div>
                 </div>
                 <div class="auccatalog__nav-results c-r"></div>
@@ -690,7 +690,7 @@ document.addEventListener('DOMContentLoaded', () => {
         <div class="auccatalog__nav auccatalog__nav--footer">
             <div class="auccatalog__nav-inner">
                 <div class="auccatalog__nav-perpage auccatalog__nav-perpage--footer">
-                    <div class="auccatalog__nav-perpage-label c-r">Items per page</div>
+                    <div class="auccatalog__nav-perpage-label c-r">Lots per page</div>
                     <div class="input-field input-field--select"></div>
                 </div>
                 
@@ -898,8 +898,23 @@ document.addEventListener('DOMContentLoaded', () => {
                 $('<div class="auccatalog__tabs" />').insertAfter('.auccatalog__search').append($('#tabnav'));
                 $('#tabnav a').addClass('waves-effect btn-flat btn--rounded');
                 $('.tab-my-items-all:not(.selected)').hide();
-                requestAnimationFrame(() => $('.tabnav-tab.selected')[0].scrollIntoView({inline: 'center'}));
+                requestAnimationFrame(() => {
+                    function getNodesThatContain(text) {
+                        var textNodes = $('.auccatalog__tabs, .auccatalog__nav').find('*')
+                            .contents().filter(function() {
+                               return this.nodeType == 3 && this.textContent.indexOf(text) > -1;
+                            });
+                        return textNodes.parent();
+                    };
+                    $item = getNodesThatContain('Item').add($('.auccatalog__search'));
+                    $item.each((i, item) => {
+                        item.innerHTML = item.innerHTML.replace('Item', 'Lot');
+                    });
+                    
+                    $('.tabnav-tab.selected')[0].scrollIntoView({inline: 'center'});
+                });
             }
+            
 /**
  * 
  * 
