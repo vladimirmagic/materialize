@@ -293,10 +293,10 @@ document.addEventListener('DOMContentLoaded', () => {
 			$win = $('#lac28, #oai21');
 			if ($win.length) {
 				$winVal = $win.find('span');
+                $win.find('span').remove();
                 $lineWin = $detailsLine.clone();
 				$lineWin.html($win.text());
                 if ($winVal.length) {
-                    $lineWin.find('span').remove();
 				    $winVal.append(' ').append($('.biddingHistoryLink'));
                     $lineWin.html($lineWin.html() + ' <strong>' + $winVal.html() + '</strong>');
                 }
