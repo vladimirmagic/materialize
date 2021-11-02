@@ -820,7 +820,10 @@ document.addEventListener('DOMContentLoaded', () => {
 					$badge.addClass('red').append('Sold').show().find('use').attr('xlink:href', '#flag');
 				} else if ($(item).find('.ended.unsold').length) {
 					$badge.append('Unsold').show().find('use').attr('xlink:href', '#archive');
+				} else if ($(item).find('.ended').length) {
+					$badge.addClass('red').append('Closed').show().find('use').attr('xlink:href', '#archive');
 				}
+                
 				$(item).find('.item-status').remove();
 				$(item).find('.price-info li').each((k, info) => {
 					const $info = $(info);
