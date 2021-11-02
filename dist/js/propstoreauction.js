@@ -296,7 +296,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 $lineWin = $detailsLine.clone();
 				$lineWin.html($win.text());
                 if ($winVal.length) {
-                    $win.find('span').remove();
+                    $lineWin.find('span').remove();
 				    $winVal.append(' ').append($('.biddingHistoryLink'));
                     $lineWin.html($lineWin.html() + ' <strong>' + $winVal.html() + '</strong>');
                 }
