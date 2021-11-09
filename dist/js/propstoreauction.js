@@ -1020,7 +1020,6 @@ document.addEventListener('DOMContentLoaded', () => {
         <div class="modal-content"></div>
     </div>
         `);
-            document.querySelectorAll('style:not([data-v2]), link[rel="stylesheet"]:not([data-v2])').forEach(item => item.remove());
             const status = $('#status').text().toLowerCase();
 
             $badge = $('.section-auctions__item-bage');
@@ -1100,13 +1099,20 @@ document.addEventListener('DOMContentLoaded', () => {
                 $(item).attr('href', $(item).attr('href') + $('#info_url').text());
             });
             
-            $('.container').prepend($('.desc'));
+            if ($('.auc-info').length) { // new template
+                document.querySelectorAll('style:not([data-v2]), link[rel="stylesheet"]:not([data-v2])').forEach(item => item.remove());
+                $('.container').prepend($('.auc-info'));
 
-            $('#modal-shipping .modal-content').append($('div.shipping'));
-			$('body').append($('#modal-shipping'));
+                $('#modal-shipping .modal-content').append($('div.shipping'));
+                $('body').append($('#modal-shipping'));
 
-			$('#modal-terms .modal-content').append($('div.terms'));
-			$('body').append($('#modal-terms'));
+                $('#modal-terms .modal-content').append($('div.terms'));
+                $('body').append($('#modal-terms'));
+            } else {
+                $('.container').prepend($('div.terms').removeClass('terms'));
+                $('.container').prepend($('div.shipping').removeClass('shipping'));
+                $('.container').prepend($('.desc').html());
+            }
         }
 /**
  * 
