@@ -1100,7 +1100,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 $(item).attr('href', $(item).attr('href') + $('#info_url').text());
             });
             
-            $('.container').prepend($('.auc-info'));
+            $('.container').prepend($('.desc'));
 
             $('#modal-shipping .modal-content').append($('div.shipping'));
 			$('body').append($('#modal-shipping'));
