@@ -1084,7 +1084,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     }
                 }
                 $timer.show();
-                $('.hero__timer-panel-title').append(label);
+                // $('.hero__timer-panel-title').html(label);
                 setTimer($timer, remain);
             }
 
