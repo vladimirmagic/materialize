@@ -1095,6 +1095,10 @@ document.addEventListener('DOMContentLoaded', () => {
             if ($catalogueTimer.length) {
                 setTimer($catalogueTimer, $catalogueTimer.data('sec'));
             }
+
+            $('.share__item').each((i, item) => {
+                $(item).attr('href', $(item).attr('href') + $('#info_url').text());
+            });
             
             $('.container').prepend($('.auc-info'));
 
