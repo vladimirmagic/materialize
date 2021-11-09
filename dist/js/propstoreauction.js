@@ -1005,7 +1005,104 @@ document.addEventListener('DOMContentLoaded', () => {
  * INFO
  */
 		} else if ($('body').hasClass('auctions-info')) {
+            $('footer').append(`
+    <div id="modal-shipping" class="modal">
+        <div class="modal-header modal-header--sticky">
+            <a class="modal-close btn-flat btn--icon"><i class='icon'><svg><use xlink:href="#close"></use></svg></i></a>
+        </div>
+        <div class="modal-content"></div>
+    </div>
+
+    <div id="modal-terms" class="modal">
+        <div class="modal-header modal-header--sticky">
+            <a class="modal-close btn-flat btn--icon"><i class='icon'><svg><use xlink:href="#close"></use></svg></i></a>
+        </div>
+        <div class="modal-content"></div>
+    </div>
+        `);
             document.querySelectorAll('style:not([data-v2]), link[rel="stylesheet"]:not([data-v2])').forEach(item => item.remove());
+            const status = $('#status').text().toLowerCase();
+
+            $badge = $('.section-auctions__item-bage');
+            switch (status) {
+                case 'upcoming': {
+                    $badge.addClass('orange').append('Upcoming').find('use').attr('xlink:href', '#clockwise');
+                    break;
+                }
+                case 'in progress': {
+                    $badge.addClass('green').append('Live').find('use').attr('xlink:href', '#live');
+                    break;
+                }
+                case 'closed': {
+                    $badge.addClass('red').append('Closed').find('use').attr('xlink:href', '#flag');
+                    break;
+                }
+            }
+
+            $('.hero__static-title').append($('#name').text());
+
+            let start_date = $('#start_date').text();
+            if (start_date) {
+                start_date = moment(start_date).format('D MMM h:mma');
+                const start_date_tz_code = $('#start_date_tz_code').text();
+                if (start_date_tz_code) start_date += ` (${start_date_tz_code})`;
+            }
+
+            let end_date = $('#end_date').text();
+            if (end_date) {
+                end_date = moment(end_date).format('D MMM h:mma');
+                const end_date_tz_code = $('#end_date_tz_code').text();
+                if (end_date_tz_code) end_date += ` (${end_date_tz_code})`;
+            }
+
+            if (start_date || end_date) {
+                $('.hero__static-date').show().append([start_date, end_date].join(' &minus; '));
+            }
+
+            const time_left = $('#time_left').text();
+            $timer = $('.hero__timer-panel');
+            if (time_left) {
+                let label = '';
+                let time = '';
+                let remain = 0;
+                const kk = {
+                    'd': 60 * 60 * 24,
+                    'h': 60 * 60,
+                    'm': 60,
+                }
+                for (let i = 0; i<time_left.length; i++) { // run string
+                    if (Number(time_left[i]) > 0 || time_left[i] === '0') {
+                        time += time_left[i];
+                    } else {
+                        if (time) {
+                            const k = kk[time_left[i]] || 0;
+                            remain += time * k;
+                            time = '';
+                        } else if (!remain) {
+                            label += time_left[i];
+                        }
+                    }
+                }
+                $timer.show();
+                $('.hero__timer-panel-title').append(label);
+                setTimer($timer, remain);
+            }
+
+            $('.auc-btn__register').attr('href', $('#register_to_bid_url').text());
+            $('.auc-btn__catalog').attr('href', $('#catalog_url').text());
+
+            $catalogueTimer = $('.sell-cta__catalog-timer');
+            if ($catalogueTimer.length) {
+                setTimer($catalogueTimer, $catalogueTimer.data('sec'));
+            }
+            
+            $('.container').prepend($('.auc-info'));
+
+            $('#modal-shipping .modal-content').append($('div.shipping'));
+			$('body').append($('#modal-shipping'));
+
+			$('#modal-terms .modal-content').append($('div.terms'));
+			$('body').append($('#modal-terms'));
         }
 /**
  * 
@@ -1110,6 +1207,32 @@ document.addEventListener('DOMContentLoaded', () => {
 			if (warning) warning.scrollIntoView({behavior: 'smooth', block: 'center'});
 		}
         requestAnimationFrame(scrollToWarning);
+
+        function setTimer ($timer, seconds) {
+			let day = 0;
+            let hour = 0;
+            let min = 0;
+            let sec = seconds;
+            if (seconds && seconds > 0) {
+                const interval = setInterval(() => {
+                    sec = --seconds;
+                    if (sec <= 0) {
+                        clearInterval(interval);
+                        window.location.reload();
+                    }
+                    day = Math.floor(sec / 60 / 60 / 24);
+                    sec -= day * 60 * 60 * 24;
+                    hour = Math.floor(sec / 60 / 60);
+                    sec -= hour * 60 * 60;
+                    min = Math.floor(sec / 60 );
+                    sec -= min * 60;
+                    $timer.find('.day').html(day);
+                    $timer.find('.hour').html(hour);
+                    $timer.find('.min').html(min);
+                    $timer.find('.sec').html(sec);
+                }, 1000);
+            }
+		}
 
 		document.body.classList.add('loaded'); // if svg fail
 	}); // end of document ready

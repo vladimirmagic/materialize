@@ -150,20 +150,35 @@
 
 
 
+                    <article class="bodybox">
+                        <section class="auctitle">
+                            <div class="tle">
+                                <section class="auctitle catitle">
+                                    <div class="account-info">
+                                    </div>
+                                    <div class="tle">
+                                        <h3>
+                                            MWS Timed Auction Test <span class="sale-no">(#280)</span>
+                                            <span class="sale-date"><br />09/30/2021 12:00 AM PDT - 10/23/2021 12:00 AM
+                                                PDT</span>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+                                        </h3>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                    <a href="https://propstore-staging32-usm.auctionserver.net/auctions/info/id/282"
+                                        class="aucinfo">Auction Info</a>
+                                    <div class="clearfix"></div>
+                                </section>
+                                <div class="unibtn">
+                                    Approved</div>
+                            </div>
+                            <a href="https://propstore-staging32-usm.auctionserver.net/auctions/catalog/id/282"
+                                class="catlg catmdle">View all lots</a>
+                            <div class="clearfix"></div>
+                        </section>
+                        <ul id="nav">
+                            <fieldset class="description-fieldset">
+                                <div class="desc">
 <div class="auc-info">
     <div class="hero hero--auctions auc__hero">
         <div class="hero__inner">
@@ -173,27 +188,21 @@
             <div class="hero__info">
                 <div class="hero__info-item">
                     <div class="hero__info-item-inner">
-                        <span class="badge orange section-auctions__item-bage">
-                            <i class='icon'><svg><use xlink:href="#clockwise"></use></svg></i>
-                            Upcoming
+                        <span class="badge section-auctions__item-bage">
+                            <i class='icon'><svg><use xlink:href="#live"></use></svg></i>
                         </span>
-                        <div class="hero__static-title">
-                            Zoolander 2 Auction
-                        </div>
-                        <div class="hero__static-date">
+                        <div class="hero__static-title"></div>
+                        <div class="hero__static-date" style="display:none;">
                             <i class='icon'><svg><use xlink:href="#calendar"></use></svg></i>
-                            30 April 9:00am (PMT) – 13 May 2:00pm (PMT) 2021
                         </div>
                         <div class="hero__static-text">
                             Propstore, in association with Paramount Pictures, invites you to the runway with an exclusive online auction of over 80 original costume looks from the production of Zoolander 2.
                         </div>
-                        <div class="hero__timer-panel">
-                            <div class="hero__timer-panel-title">
-                                Countdown to&nbsp;Auction
-                            </div>
+                        <div class="hero__timer-panel" style="display: none;">
+                            <div class="hero__timer-panel-title"></div>
                             <div class="hero__timer">
                                 <div class="hero__timer-item">
-                                    <div class="hero__timer-value">
+                                    <div class="hero__timer-value day">
                                         00
                                     </div>
                                     <div class="hero__timer-label">
@@ -201,7 +210,7 @@
                                     </div>
                                 </div>
                                 <div class="hero__timer-item">
-                                    <div class="hero__timer-value">
+                                    <div class="hero__timer-value hour">
                                         00
                                     </div>
                                     <div class="hero__timer-label">
@@ -209,7 +218,7 @@
                                     </div>
                                 </div>
                                 <div class="hero__timer-item">
-                                    <div class="hero__timer-value">
+                                    <div class="hero__timer-value min">
                                         00
                                     </div>
                                     <div class="hero__timer-label">
@@ -217,7 +226,7 @@
                                     </div>
                                 </div>
                                 <div class="hero__timer-item">
-                                    <div class="hero__timer-value">
+                                    <div class="hero__timer-value sec">
                                         00
                                     </div>
                                     <div class="hero__timer-label">
@@ -227,10 +236,10 @@
                             </div>
                         </div>
                         <div class="hero__static-buttons">
-                            <a href="#" class="waves-effect waves-light btn hero__btn auc__hero-aucinfo">
+                            <a href="#" class="waves-effect waves-light btn hero__btn auc-btn__register">
                                 Register to bid
                             </a>
-                            <a href="#" class="waves-effect waves-light btn btn--secondary hero__btn auc__hero-auccatalog">
+                            <a href="#" class="waves-effect waves-light btn btn--secondary hero__btn auc-btn__catalog">
                                 View the catalogue
                             </a>
                         </div>
@@ -240,13 +249,13 @@
         </div>
     </div>
     <div class="auc-info__nav content">
-        <a href="#" class="waves-effect waves-light btn btn--secondary">
+        <a href="#" class="waves-effect waves-light btn btn--secondary auc-btn__catalog">
             All auction items
         </a>
-        <a href="#" class="waves-effect waves-light btn btn--secondary">
+        <a class="waves-effect waves-light btn btn--secondary modal-trigger" href="#modal-shipping">
             Shipping information
         </a>
-        <a href="#" class="waves-effect waves-light btn btn--secondary">
+        <a class="waves-effect waves-light btn btn--secondary modal-trigger" href="#modal-terms">
             Terms & Conditions
         </a>
         <div class="share">
@@ -330,9 +339,9 @@
                             Catalogue available in
                         </div>
                         <div class="sell-cta__catalog-timer-panel">
-                            <div class="sell-cta__catalog-timer">
+                            <div class="sell-cta__catalog-timer" data-sec="123456">
                                 <div class="sell-cta__catalog-timer-item">
-                                    <div class="sell-cta__catalog-timer-value">
+                                    <div class="sell-cta__catalog-timer-value day">
                                         00
                                     </div>
                                     <div class="sell-cta__catalog-timer-label">
@@ -340,7 +349,7 @@
                                     </div>
                                 </div>
                                 <div class="sell-cta__catalog-timer-item">
-                                    <div class="sell-cta__catalog-timer-value">
+                                    <div class="sell-cta__catalog-timer-value hour">
                                         00
                                     </div>
                                     <div class="sell-cta__catalog-timer-label">
@@ -348,7 +357,7 @@
                                     </div>
                                 </div>
                                 <div class="sell-cta__catalog-timer-item">
-                                    <div class="sell-cta__catalog-timer-value">
+                                    <div class="sell-cta__catalog-timer-value min">
                                         00
                                     </div>
                                     <div class="sell-cta__catalog-timer-label">
@@ -356,7 +365,7 @@
                                     </div>
                                 </div>
                                 <div class="sell-cta__catalog-timer-item">
-                                    <div class="sell-cta__catalog-timer-value">
+                                    <div class="sell-cta__catalog-timer-value sec">
                                         00
                                     </div>
                                     <div class="sell-cta__catalog-timer-label">
@@ -397,7 +406,7 @@
                         <div class="buy-auctions__text">
                             Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Maecenas sed diam eget risus varius blandit sit amet non magna. Vestibulum id ligula porta felis euismod semper. Cras justo odio, dapibus ac facilisis in, egestas eget quam.
                         </div>
-                        <a class="waves-effect waves-light btn" href="#">
+                        <a class="waves-effect waves-light btn auc-btn__register" href="#">
                             <span class='btn__title'>Register now</span>
                             <i class='icon'><svg><use xlink:href="#arrow-right"></use></svg></i>
                         </a>
@@ -414,7 +423,7 @@
                         <div class="buy-auctions__text">
                             Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Maecenas sed diam eget risus varius blandit sit amet non magna. Vestibulum id ligula porta felis euismod semper. Cras justo odio, dapibus ac facilisis in, egestas eget quam.
                         </div>
-                        <a class="waves-effect waves-light btn" href="#">
+                        <a class="waves-effect waves-light btn auc-btn__register" href="#">
                             <span class='btn__title'>Register now</span>
                             <i class='icon'><svg><use xlink:href="#arrow-right"></use></svg></i>
                         </a>
@@ -432,7 +441,7 @@
         </div>
 
         <div class="auc-info__cta">
-            <a class="waves-effect waves-light btn" href="#">
+            <a class="waves-effect waves-light btn auc-btn__register" href="#">
                 <span class='btn__title'>Register now</span>
                 <i class='icon'><svg><use xlink:href="#arrow-right"></use></svg></i>
             </a>
@@ -445,104 +454,206 @@
         <div class="cards">
             <div class="cards__inner">
                 <div class="cards__list">
-                    <a class="card aucproduct__card" href="#">
-                        <div class="card__img" style="background-image: url('https://dummyimage.com/600x600/945c94/fff.jpg');">
-                            <span class="badge green card__badge">
-                                <i class="icon"><svg><use xlink:href="#live"></use></svg></i>
-                            Live</span>
+                    <a class="card aucproduct__card"
+                    href="https://propstore-staging32-usm.auctionserver.net/lot-details/index/catalog/282/lot/69854?url=%2Fauctions%2Fcatalog%2Fid%2F282" >
+                        <div class="card__img"
+                            style="background-image: url(https://propstore-staging32-usm.auctionserver.net/images/lot/4531/453178_2.jpg?1633015997);">
+                            
                         </div>
                         <div class="card__info">
                             <div class="card__description">
-                                <div class="card__movie">Lot #5 - 2010: THE YEAR WE MAKE CONTACT (1985) - Hand-Drawn Storyboards: Jupiter Escape</div>
-                                <div class="aucproduct__card-details"><li class="aucproduct__card-details-row"><span class="title aucproduct__card-details-label">Estimates</span><span class="value aucproduct__card-details-value">£
-                                           <span class="est-low exratetip" rev="cur:2" rel="cur:">
-                                            1,000
-                                           </span> - £
-                                           <span class="est-high exratetip" rev="cur:2" rel="cur:">
-                                            1,500
-                                           </span></span></li><li class="aucproduct__card-details-row"><span class="title aucproduct__card-details-label">When:</span><span class="value aucproduct__card-details-value">04 May 9:00am (PMT) – 13 May 2:00pm (PMT) 2021</span></li></div>
+                                <div class="card__movie">Lot
+                                        # 2: Entertainment Memorabilia Live Auction - Ben Wade's (Russell Crowe) Bloodied Costume</div>
+                                <div class="aucproduct__card-details">
+                                    <li class="aucproduct__card-details-row"><span
+                                            class="title aucproduct__card-details-label">Estimates</span><span
+                                            class="value aucproduct__card-details-value">$
+                                            <span class="est-low exratetip" rev="cur:1" rel="cur:">
+                                                12,000
+                                            </span> - $
+                                            <span class="est-high exratetip" rev="cur:1" rel="cur:">
+                                                16,000
+                                            </span></span></li>
+                                </div>
                             </div>
-                            <div class="card__actions"><span id="bViewDet101568" href="https://propstore-staging32.auctionserver.net/lot-details/index/catalog/244/lot/66264?url=%2Fauctions%2Fcatalog%2Fid%2F244%3Fpage%3D1%26view%3Dgrid" class="orng waves-effect waves-light btn aucproduct__card-btn">View item</span></div>
+                            <div class="card__actions"><span class="orng waves-effect waves-light btn aucproduct__card-btn">View item</span></div>
                         </div>
                     </a>
-                    <a class="card aucproduct__card" href="#">
-                        <div class="card__img" style="background-image: url('https://dummyimage.com/600x600/945c94/fff.jpg');">
-                            <span class="badge green card__badge">
-                                <i class="icon"><svg><use xlink:href="#live"></use></svg></i>
-                            Live</span>
+                    <a class="card aucproduct__card" href="https://propstore-staging32-usm.auctionserver.net/lot-details/index/catalog/282/lot/69855?url=%2Fauctions%2Fcatalog%2Fid%2F282">
+                        <div class="card__img"
+                            style="background-image: url(&quot;https://propstore-staging32-usm.auctionserver.net/images/lot/4531/453190_2.jpg?1633015995&quot;);">
+                            
                         </div>
                         <div class="card__info">
                             <div class="card__description">
-                                <div class="card__movie">Lot #5 - 2010: THE YEAR WE MAKE CONTACT (1985) - Hand-Drawn Storyboards: Jupiter Escape</div>
-                                <div class="aucproduct__card-details"><li class="aucproduct__card-details-row"><span class="title aucproduct__card-details-label">Estimates</span><span class="value aucproduct__card-details-value">£
-                                           <span class="est-low exratetip" rev="cur:2" rel="cur:">
-                                            1,000
-                                           </span> - £
-                                           <span class="est-high exratetip" rev="cur:2" rel="cur:">
-                                            1,500
-                                           </span></span></li><li class="aucproduct__card-details-row"><span class="title aucproduct__card-details-label">When:</span><span class="value aucproduct__card-details-value">04 May 9:00am (PMT) – 13 May 2:00pm (PMT) 2021</span></li></div>
+                                <div class="card__movie">Lot
+                                        # 3: Entertainment Memorabilia Live Auction - Dilios' (David Wenham) Stunt Helmet</div>
+                                <div class="aucproduct__card-details">
+                                    <li class="aucproduct__card-details-row"><span
+                                            class="title aucproduct__card-details-label">Estimates</span><span
+                                            class="value aucproduct__card-details-value">$
+                                            <span class="est-low exratetip" rev="cur:1" rel="cur:">
+                                                3,000
+                                            </span> - $
+                                            <span class="est-high exratetip" rev="cur:1" rel="cur:">
+                                                5,000
+                                            </span></span></li>
+                                </div>
                             </div>
-                            <div class="card__actions"><span id="bViewDet101568" href="https://propstore-staging32.auctionserver.net/lot-details/index/catalog/244/lot/66264?url=%2Fauctions%2Fcatalog%2Fid%2F244%3Fpage%3D1%26view%3Dgrid" class="orng waves-effect waves-light btn aucproduct__card-btn">View item</span></div>
+                            <div class="card__actions"><span class="orng waves-effect waves-light btn aucproduct__card-btn">View item</span></div>
                         </div>
                     </a>
-                    <a class="card aucproduct__card" href="#">
-                        <div class="card__img" style="background-image: url('https://dummyimage.com/600x600/945c94/fff.jpg');">
-                            <span class="badge green card__badge">
-                                <i class="icon"><svg><use xlink:href="#live"></use></svg></i>
-                            Live</span>
+                    <a class="card aucproduct__card" href="https://propstore-staging32-usm.auctionserver.net/lot-details/index/catalog/282/lot/69856?url=%2Fauctions%2Fcatalog%2Fid%2F282">
+                        <div class="card__img"
+                            style="background-image: url(&quot;https://propstore-staging32-usm.auctionserver.net/images/lot/4532/453200_2.jpg?1633015996&quot;);">
+                            
                         </div>
                         <div class="card__info">
                             <div class="card__description">
-                                <div class="card__movie">Lot #5 - 2010: THE YEAR WE MAKE CONTACT (1985) - Hand-Drawn Storyboards: Jupiter Escape</div>
-                                <div class="aucproduct__card-details"><li class="aucproduct__card-details-row"><span class="title aucproduct__card-details-label">Estimates</span><span class="value aucproduct__card-details-value">£
-                                           <span class="est-low exratetip" rev="cur:2" rel="cur:">
-                                            1,000
-                                           </span> - £
-                                           <span class="est-high exratetip" rev="cur:2" rel="cur:">
-                                            1,500
-                                           </span></span></li><li class="aucproduct__card-details-row"><span class="title aucproduct__card-details-label">When:</span><span class="value aucproduct__card-details-value">04 May 9:00am (PMT) – 13 May 2:00pm (PMT) 2021</span></li></div>
+                                <div class="card__movie">Lot
+                                        # 4: Entertainment Memorabilia Live Auction - "Foosh" Gun, Drawings, and Prop Master Script
+                                </div>
+                                <div class="aucproduct__card-details">
+                                    <li class="aucproduct__card-details-row"><span
+                                            class="title aucproduct__card-details-label">Estimates</span><span
+                                            class="value aucproduct__card-details-value">$
+                                            <span class="est-low exratetip" rev="cur:1" rel="cur:">
+                                                2,500
+                                            </span> - $
+                                            <span class="est-high exratetip" rev="cur:1" rel="cur:">
+                                                3,500
+                                            </span></span></li>
+                                    
+                                </div>
                             </div>
-                            <div class="card__actions"><span id="bViewDet101568" href="https://propstore-staging32.auctionserver.net/lot-details/index/catalog/244/lot/66264?url=%2Fauctions%2Fcatalog%2Fid%2F244%3Fpage%3D1%26view%3Dgrid" class="orng waves-effect waves-light btn aucproduct__card-btn">View item</span></div>
+                            <div class="card__actions"><span class="orng waves-effect waves-light btn aucproduct__card-btn">View item</span></div>
                         </div>
                     </a>
-                    <a class="card aucproduct__card" href="#">
-                        <div class="card__img" style="background-image: url('https://dummyimage.com/600x600/945c94/fff.jpg');">
-                            <span class="badge green card__badge">
-                                <i class="icon"><svg><use xlink:href="#live"></use></svg></i>
-                            Live</span>
+                    <a class="card aucproduct__card" href="https://propstore-staging32-usm.auctionserver.net/lot-details/index/catalog/282/lot/69857?url=%2Fauctions%2Fcatalog%2Fid%2F282">
+                        <div class="card__img"
+                            style="background-image: url(&quot;https://propstore-staging32-usm.auctionserver.net/images/lot/4532/453219_2.jpg?1633015995&quot;);">
+                            
                         </div>
                         <div class="card__info">
                             <div class="card__description">
-                                <div class="card__movie">Lot #5 - 2010: THE YEAR WE MAKE CONTACT (1985) - Hand-Drawn Storyboards: Jupiter Escape</div>
-                                <div class="aucproduct__card-details"><li class="aucproduct__card-details-row"><span class="title aucproduct__card-details-label">Estimates</span><span class="value aucproduct__card-details-value">£
-                                           <span class="est-low exratetip" rev="cur:2" rel="cur:">
-                                            1,000
-                                           </span> - £
-                                           <span class="est-high exratetip" rev="cur:2" rel="cur:">
-                                            1,500
-                                           </span></span></li><li class="aucproduct__card-details-row"><span class="title aucproduct__card-details-label">When:</span><span class="value aucproduct__card-details-value">04 May 9:00am (PMT) – 13 May 2:00pm (PMT) 2021</span></li></div>
+                                <div class="card__movie">Lot
+                                        # 5: Entertainment Memorabilia Live Auction - Women's USCSS Nostromo Crew Jacket Prototype</div>
+                                <div class="aucproduct__card-details">
+                                    <li class="aucproduct__card-details-row"><span
+                                            class="title aucproduct__card-details-label">Estimates</span><span
+                                            class="value aucproduct__card-details-value">$
+                                            <span class="est-low exratetip" rev="cur:1" rel="cur:">
+                                                3,000
+                                            </span> - $
+                                            <span class="est-high exratetip" rev="cur:1" rel="cur:">
+                                                5,000
+                                            </span></span></li>
+                                    
+                                </div>
                             </div>
-                            <div class="card__actions"><span id="bViewDet101568" href="https://propstore-staging32.auctionserver.net/lot-details/index/catalog/244/lot/66264?url=%2Fauctions%2Fcatalog%2Fid%2F244%3Fpage%3D1%26view%3Dgrid" class="orng waves-effect waves-light btn aucproduct__card-btn">View item</span></div>
+                            <div class="card__actions"><span class="orng waves-effect waves-light btn aucproduct__card-btn">View item</span></div>
                         </div>
                     </a>
-                    <a class="card aucproduct__card" href="#">
-                        <div class="card__img" style="background-image: url('https://dummyimage.com/600x600/945c94/fff.jpg');">
-                            <span class="badge green card__badge">
-                                <i class="icon"><svg><use xlink:href="#live"></use></svg></i>
-                            Live</span>
+                    <a class="card aucproduct__card" href="https://propstore-staging32-usm.auctionserver.net/lot-details/index/catalog/282/lot/69858?url=%2Fauctions%2Fcatalog%2Fid%2F282">
+                        <div class="card__img"
+                            style="background-image: url(&quot;https://propstore-staging32-usm.auctionserver.net/images/lot/4532/453231_2.jpg?1633015997&quot;);">
+                            
                         </div>
                         <div class="card__info">
                             <div class="card__description">
-                                <div class="card__movie">Lot #5 - 2010: THE YEAR WE MAKE CONTACT (1985) - Hand-Drawn Storyboards: Jupiter Escape</div>
-                                <div class="aucproduct__card-details"><li class="aucproduct__card-details-row"><span class="title aucproduct__card-details-label">Estimates</span><span class="value aucproduct__card-details-value">£
-                                           <span class="est-low exratetip" rev="cur:2" rel="cur:">
-                                            1,000
-                                           </span> - £
-                                           <span class="est-high exratetip" rev="cur:2" rel="cur:">
-                                            1,500
-                                           </span></span></li><li class="aucproduct__card-details-row"><span class="title aucproduct__card-details-label">When:</span><span class="value aucproduct__card-details-value">04 May 9:00am (PMT) – 13 May 2:00pm (PMT) 2021</span></li></div>
+                                <div class="card__movie">Lot
+                                        # 6: Entertainment Memorabilia Live Auction - Space Jockey Maquette</div>
+                                <div class="aucproduct__card-details">
+                                    <li class="aucproduct__card-details-row"><span
+                                            class="title aucproduct__card-details-label">Estimates</span><span
+                                            class="value aucproduct__card-details-value">$
+                                            <span class="est-low exratetip" rev="cur:1" rel="cur:">
+                                                7,000
+                                            </span> - $
+                                            <span class="est-high exratetip" rev="cur:1" rel="cur:">
+                                                9,000
+                                            </span></span></li>
+                                    
+                                </div>
                             </div>
-                            <div class="card__actions"><span id="bViewDet101568" href="https://propstore-staging32.auctionserver.net/lot-details/index/catalog/244/lot/66264?url=%2Fauctions%2Fcatalog%2Fid%2F244%3Fpage%3D1%26view%3Dgrid" class="orng waves-effect waves-light btn aucproduct__card-btn">View item</span></div>
+                            <div class="card__actions"><span class="orng waves-effect waves-light btn aucproduct__card-btn">View item</span></div>
+                        </div>
+                    </a>
+                    <a class="card aucproduct__card" href="https://propstore-staging32-usm.auctionserver.net/lot-details/index/catalog/282/lot/69859?url=%2Fauctions%2Fcatalog%2Fid%2F282">
+                        <div class="card__img"
+                            style="background-image: url(&quot;https://propstore-staging32-usm.auctionserver.net/images/lot/4532/453242_2.jpg?1633015996&quot;);">
+                            
+                        </div>
+                        <div class="card__info">
+                            <div class="card__description">
+                                <div class="card__movie">Lot
+                                        # 7: Entertainment Memorabilia Live Auction - Vasquez's (Jeanette Goldstein) Screen-Matched
+                                        Lightweight M-41A Pulse Rifle</div>
+                                <div class="aucproduct__card-details">
+                                    <li class="aucproduct__card-details-row"><span
+                                            class="title aucproduct__card-details-label">Estimates</span><span
+                                            class="value aucproduct__card-details-value">$
+                                            <span class="est-low exratetip" rev="cur:1" rel="cur:">
+                                                30,000
+                                            </span> - $
+                                            <span class="est-high exratetip" rev="cur:1" rel="cur:">
+                                                50,000
+                                            </span></span></li>
+                                    
+                                </div>
+                            </div>
+                            <div class="card__actions"><span class="orng waves-effect waves-light btn aucproduct__card-btn">View item</span></div>
+                        </div>
+                    </a>
+                    <a class="card aucproduct__card" href="https://propstore-staging32-usm.auctionserver.net/lot-details/index/catalog/282/lot/69860?url=%2Fauctions%2Fcatalog%2Fid%2F282">
+                        <div class="card__img"
+                            style="background-image: url(&quot;https://propstore-staging32-usm.auctionserver.net/images/lot/4532/453257_2.jpg?1633015998&quot;);">
+                            
+                        </div>
+                        <div class="card__info">
+                            <div class="card__description">
+                                <div class="card__movie">Lot
+                                        # 8: Entertainment Memorabilia Live Auction - Ellen Ripley's (Sigourney Weaver) Harpoon Gun
+                                </div>
+                                <div class="aucproduct__card-details">
+                                    <li class="aucproduct__card-details-row"><span
+                                            class="title aucproduct__card-details-label">Estimates</span><span
+                                            class="value aucproduct__card-details-value">$
+                                            <span class="est-low exratetip" rev="cur:1" rel="cur:">
+                                                4,000
+                                            </span> - $
+                                            <span class="est-high exratetip" rev="cur:1" rel="cur:">
+                                                6,000
+                                            </span></span></li>
+                                    
+                                </div>
+                            </div>
+                            <div class="card__actions"><span class="orng waves-effect waves-light btn aucproduct__card-btn">View item</span></div>
+                        </div>
+                    </a>
+                    <a class="card aucproduct__card" href="https://propstore-staging32-usm.auctionserver.net/lot-details/index/catalog/282/lot/69861?url=%2Fauctions%2Fcatalog%2Fid%2F282">
+                        <div class="card__img"
+                            style="background-image: url(&quot;https://propstore-staging32-usm.auctionserver.net/images/lot/4532/453269_2.jpg?1633015997&quot;);">
+                            
+                        </div>
+                        <div class="card__info">
+                            <div class="card__description">
+                                <div class="card__movie">Lot
+                                        # 9: Entertainment Memorabilia Live Auction - Xenomorph Warrior Tail</div>
+                                <div class="aucproduct__card-details">
+                                    <li class="aucproduct__card-details-row"><span
+                                            class="title aucproduct__card-details-label">Estimates</span><span
+                                            class="value aucproduct__card-details-value">$
+                                            <span class="est-low exratetip" rev="cur:1" rel="cur:">
+                                                3,000
+                                            </span> - $
+                                            <span class="est-high exratetip" rev="cur:1" rel="cur:">
+                                                5,000
+                                            </span></span></li>
+                                    
+                                </div>
+                            </div>
+                            <div class="card__actions"><span class="orng waves-effect waves-light btn aucproduct__card-btn">View item</span></div>
                         </div>
                     </a>
                 </div>
@@ -550,70 +661,36 @@
         </div>
     </div>
 </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-                    <article class="bodybox">
-                        <section class="auctitle">
-                            <div class="tle">
-                                <section class="auctitle catitle">
-                                    <div class="account-info">
-                                    </div>
-                                    <div class="tle">
-                                        <h3>
-                                            MWS Timed Auction Test <span class="sale-no">(#280)</span>
-                                            <span class="sale-date"><br />09/30/2021 12:00 AM PDT - 10/23/2021 12:00 AM
-                                                PDT</span>
-
-                                        </h3>
-                                    </div>
-                                    <div class="clearfix"></div>
-                                    <a href="https://propstore-staging32-usm.auctionserver.net/auctions/info/id/282"
-                                        class="aucinfo">Auction Info</a>
-                                    <div class="clearfix"></div>
-                                </section>
-                                <div class="unibtn">
-                                    Approved</div>
-                            </div>
-                            <a href="https://propstore-staging32-usm.auctionserver.net/auctions/catalog/id/282"
-                                class="catlg catmdle">View all lots</a>
-                            <div class="clearfix"></div>
-                        </section>
-                        <ul id="nav">
-                            <fieldset class="description-fieldset">
-                                <legend>{AUCTION_DESCRIPTION_LABEL}</legend>
-                                <div class="desc">
-
-                                    <br />
-                                    {AUCTION_DESCRIPTION}<br />
-                                    <br />
-
                                 </div>
                             </fieldset>
                             <fieldset class="shipping-fieldset">
-                                <legend>{AUCTION_SHIPPING_INFO_LABEL}</legend>
                                 <div class="shipping">{AUCTION_SHIPPING_INFO}
                                 </div>
                             </fieldset>
                             <fieldset class="terms">
-                                <legend>{AUCTION_TERMS_AND_CONDITIONS_LABEL}</legend>
                                 <div class="terms">
                                     {AUCTION_TERMS_AND_CONDITIONS}</div>
                             </fieldset>
+
+                            <div style="display: none;">
+                                <div id="name">MWS Timed Auction Test</div>
+                                <div id="status">In progress</div>
+                                <div id="time_left">Sale ends in 12d 11h 42m 23s </div>
+                                <div id="total_lots">49</div>
+                                <div id="type">Timed</div>
+                                <div id="wavebid_auction_guid"></div>
+                            
+                                <div id="catalog_url">https://propstore-staging32-usm.auctionserver.net/auctions/catalog/id/282</div>
+                                <div id="register_to_bid_url">https://propstore-staging32-usm.auctionserver.net/login/redirect-feed/aid/282</div>
+                            
+                                <div id="start_date">2021-11-07 00:00:00</div>
+                                <div id="end_date">2021-11-20 13:00:00</div>
+                                <div id="starts_closing_date"></div>
+                            
+                            
+                                <div id="start_date_tz_code">PDT</div>
+                                <div id="end_date_tz_code">PDT</div>
+                            </div> 
                         </ul>
 
                     </article>
@@ -967,6 +1044,7 @@
             }
         </style>
 
+        <script src="https://content.propstore.com/scripts/moment.js"></script>        
         <script defer src="/dist/js/materialize.min.js"></script>
         <script defer src="/dist/js/propstoreauction.js"></script>
     </footer>
