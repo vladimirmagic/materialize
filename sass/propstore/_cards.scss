@@ -82,7 +82,7 @@
 	}
 }
 
-@media only screen and (max-width: #{$width-4cards-m + 40}) {
+@media only screen and (max-width: #{$width-4cards-m + 110}) {
 	.cards__inner {
 		max-width: $card-width-m * 3 + $card-margin-m * 3;
 	}

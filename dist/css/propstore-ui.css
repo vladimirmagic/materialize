@@ -11067,7 +11067,7 @@ a.modal-bag__item:not(.btn):not(.btn-large):not(.btn-small):not(.btn-extra-small
   background: #764AAF;
 }
 
-@media only screen and (max-width: 1608px) {
+@media only screen and (max-width: 1636px) {
   .pagination {
     padding-top: 0px;
     padding-bottom: 80px;
@@ -11192,7 +11192,7 @@ a.modal-bag__item:not(.btn):not(.btn-large):not(.btn-small):not(.btn-extra-small
   font-size: 24px;
 }
 
-@media only screen and (max-width: 1608px) {
+@media only screen and (max-width: 1636px) {
   .footer-actions:not(.footer-actions--sell) .footer-actions__inner {
     margin-left: 40px;
     margin-right: 40px;
@@ -11571,7 +11571,7 @@ a:not(.btn):not(.btn-large):not(.btn-small):not(.btn-extra-small).footer__terms-
           transform: translateY(-1px);
 }
 
-@media only screen and (max-width: 1608px) {
+@media only screen and (max-width: 1636px) {
   .footer__inner {
     margin: 0;
   }
@@ -12595,7 +12595,7 @@ a.card:not(.btn):not(.btn-large):not(.btn-small):not(.btn-extra-small).card--arc
   margin: -4px 8px -2px 0;
 }
 
-@media only screen and (max-width: 1608px) {
+@media only screen and (max-width: 1636px) {
   .card, .card-blog {
     width: 304px;
     min-width: 304px;
@@ -12744,7 +12744,7 @@ a.card-auction:not(.btn):not(.btn-large):not(.btn-small):not(.btn-extra-small):b
   min-width: 120px;
 }
 
-@media only screen and (max-width: 1608px) {
+@media only screen and (max-width: 1636px) {
   .card-auction {
     width: 624px;
     min-width: 624px;
@@ -12846,7 +12846,7 @@ a.card-auction:not(.btn):not(.btn-large):not(.btn-small):not(.btn-extra-small):b
   font-size: 2.2em;
 }
 
-@media only screen and (max-width: 1608px) {
+@media only screen and (max-width: 1636px) {
   .cards, .cards-blog {
     padding-top: 0;
     padding-bottom: 60px;
@@ -12870,7 +12870,7 @@ a.card-auction:not(.btn):not(.btn-large):not(.btn-small):not(.btn-extra-small):b
   }
 }
 
-@media only screen and (max-width: 1304px) {
+@media only screen and (max-width: 1374px) {
   .cards__inner {
     max-width: 960px;
   }
@@ -14213,7 +14213,7 @@ a.product__certificate:not(.btn):not(.btn-large):not(.btn-small):not(.btn-extra-
   margin-top: 1.5em;
 }
 
-@media only screen and (max-width: 1608px) {
+@media only screen and (max-width: 1636px) {
   .product {
     padding-top: 60px;
     padding-bottom: 60px;
@@ -14997,7 +14997,7 @@ tbody .tr:last-child .td {
   }
 }
 
-@media only screen and (max-width: 1608px) {
+@media only screen and (max-width: 1636px) {
   .whatsnew__cards {
     height: 582px;
   }
@@ -15596,7 +15596,7 @@ tbody .tr:last-child .td {
   }
 }
 
-@media only screen and (max-width: 1608px) {
+@media only screen and (max-width: 1636px) {
   .article {
     padding-top: 60px;
     padding-bottom: 60px;
@@ -16048,7 +16048,7 @@ a.bag__item:not(.btn):not(.btn-large):not(.btn-small):not(.btn-extra-small):befo
   text-transform: none;
 }
 
-@media only screen and (max-width: 1608px) {
+@media only screen and (max-width: 1636px) {
   .bag__item-img {
     -webkit-box-flex: 0;
     -webkit-flex: 0 0 96px;
@@ -17133,7 +17133,7 @@ a.bag__item:not(.btn):not(.btn-large):not(.btn-small):not(.btn-extra-small):befo
 }
 
 /** MEDIA */
-@media only screen and (max-width: 1608px) {
+@media only screen and (max-width: 1636px) {
   .order__summary {
     max-width: 360px;
     margin-left: 60px;
@@ -17515,7 +17515,7 @@ a.account__card:not(.btn):not(.btn-large):not(.btn-small):not(.btn-extra-small):
           transform: rotate(180deg);
 }
 
-@media only screen and (max-width: 1608px) {
+@media only screen and (max-width: 1636px) {
   .account__cards-inner {
     max-width: 1280px;
     -webkit-transform: translateX(8px);
@@ -17533,7 +17533,7 @@ a.account__card:not(.btn):not(.btn-large):not(.btn-small):not(.btn-extra-small):
   }
 }
 
-@media only screen and (max-width: 1344px) {
+@media only screen and (max-width: 1374px) {
   .account__cards-inner {
     max-width: 960px;
   }
@@ -19053,7 +19053,7 @@ a.voucher:not(.btn):not(.btn-large):not(.btn-small):not(.btn-extra-small):before
   background: #19BA5D !important;
 }
 
-@media only screen and (max-width: 1608px) {
+@media only screen and (max-width: 1636px) {
   .vouchers {
     padding-top: 0;
     padding-bottom: 0px;
@@ -19156,7 +19156,7 @@ a.voucher:not(.btn):not(.btn-large):not(.btn-small):not(.btn-extra-small):before
   }
 }
 
-@media only screen and (max-width: 1304px) {
+@media only screen and (max-width: 1374px) {
   .vouchers__inner {
     max-width: 960px;
   }
@@ -20648,7 +20648,7 @@ body.search-index .categories-match {
   font-weight: 300 !important;
 }
 
-@media only screen and (max-width: 1608px) {
+@media only screen and (max-width: 1636px) {
   .auccatalog__nav-inner {
     max-width: 1264px;
   }
@@ -20691,7 +20691,7 @@ body.search-index .categories-match {
   }
 }
 
-@media only screen and (max-width: 1304px) {
+@media only screen and (max-width: 1374px) {
   .auccatalog__nav-inner {
     max-width: 944px;
   }

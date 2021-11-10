@@ -266,7 +266,7 @@ $large-and-down: "only screen and (max-width : #{$large-screen})" !default;
 
 $media-fullhd-up: "only screen and (min-width: 1921px)" !default;
 
-$breakpoint-4cards: "only screen and (max-width: #{$width-4cards + 112})" !default;
+$breakpoint-4cards: "only screen and (max-width: #{$width-4cards + 140})" !default;
 $breakpoint-pre-tablet: "only screen and (min-width : #{$medium-screen-up}) and (max-width : 1023px)" !default;
 $breakpoint-tablet: "only screen and (max-width: 1024px)" !default;
 
