@@ -5288,6 +5288,11 @@ button.btn-floating {
   cursor: default;
 }
 
+.btn--rounded.btn-flat.disabled, .btn--rounded.btn-flat[disabled] {
+  color: #c7c7c7 !important;
+  background-color: #F4F4F4 !important;
+}
+
 .btn--link {
   position: relative;
   height: auto;
@@ -9434,7 +9439,7 @@ main {
           flex: 1 1 100%;
 }
 
-.content, .general, .header__main, .header__menu-level1-inner, .header__menu-level1--sell .header__menu-level1-inner, .footer__inner, .hero, .filters, .showing-results, .related-movies, .how, .whatsnew__text, .section-auctions, .faq, .account__orders, .account__favorites, .account__coa, .payment-plans, .sell__inner, .vouchers, .auccatalog__nav, .auc-info__inner, .auc-info__video, .aucpage__content {
+.content, .general, .header__main, .header__menu-level1-inner, .header__menu-level1--sell .header__menu-level1-inner, .footer__inner, .hero, .filters, .header__filters .filters__body, .showing-results, .related-movies, .how, .whatsnew__text, .section-auctions, .faq, .account__orders, .account__favorites, .account__coa, .payment-plans, .sell__inner, .vouchers, .auccatalog__nav, .auc-info__inner, .auc-info__video, .aucpage__content {
   padding-left: 60px;
   padding-right: 60px;
 }
@@ -9581,21 +9586,21 @@ hr.small {
 }
 
 @media only screen and (min-width: 1921px) {
-  .content, .general, .header__main, .header__menu-level1-inner, .header__menu-level1--sell .header__menu-level1-inner, .footer__inner, .hero, .filters, .showing-results, .related-movies, .how, .whatsnew__text, .section-auctions, .faq, .account__orders, .account__favorites, .account__coa, .payment-plans, .sell__inner, .vouchers, .auccatalog__nav, .auc-info__inner, .auc-info__video, .aucpage__content {
+  .content, .general, .header__main, .header__menu-level1-inner, .header__menu-level1--sell .header__menu-level1-inner, .footer__inner, .hero, .filters, .header__filters .filters__body, .showing-results, .related-movies, .how, .whatsnew__text, .section-auctions, .faq, .account__orders, .account__favorites, .account__coa, .payment-plans, .sell__inner, .vouchers, .auccatalog__nav, .auc-info__inner, .auc-info__video, .aucpage__content {
     padding-left: calc(50% - 900px);
     padding-right: calc(50% - 900px);
   }
 }
 
 @media only screen and (max-width: 1200px) {
-  .content, .general, .header__main, .header__menu-level1-inner, .header__menu-level1--sell .header__menu-level1-inner, .footer__inner, .hero, .filters, .showing-results, .related-movies, .how, .whatsnew__text, .section-auctions, .faq, .account__orders, .account__favorites, .account__coa, .payment-plans, .sell__inner, .vouchers, .auccatalog__nav, .auc-info__inner, .auc-info__video, .aucpage__content {
+  .content, .general, .header__main, .header__menu-level1-inner, .header__menu-level1--sell .header__menu-level1-inner, .footer__inner, .hero, .filters, .header__filters .filters__body, .showing-results, .related-movies, .how, .whatsnew__text, .section-auctions, .faq, .account__orders, .account__favorites, .account__coa, .payment-plans, .sell__inner, .vouchers, .auccatalog__nav, .auc-info__inner, .auc-info__video, .aucpage__content {
     padding-left: 40px;
     padding-right: 40px;
   }
 }
 
 @media only screen and (max-width: 600px) {
-  .content, .general, .header__main, .header__menu-level1-inner, .header__menu-level1--sell .header__menu-level1-inner, .footer__inner, .hero, .filters, .showing-results, .related-movies, .how, .whatsnew__text, .section-auctions, .faq, .account__orders, .account__favorites, .account__coa, .payment-plans, .sell__inner, .vouchers, .auccatalog__nav, .auc-info__inner, .auc-info__video, .aucpage__content {
+  .content, .general, .header__main, .header__menu-level1-inner, .header__menu-level1--sell .header__menu-level1-inner, .footer__inner, .hero, .filters, .header__filters .filters__body, .showing-results, .related-movies, .how, .whatsnew__text, .section-auctions, .faq, .account__orders, .account__favorites, .account__coa, .payment-plans, .sell__inner, .vouchers, .auccatalog__nav, .auc-info__inner, .auc-info__video, .aucpage__content {
     padding-left: 24px;
     padding-right: 24px;
   }
@@ -13052,15 +13057,45 @@ a.card-auction:not(.btn):not(.btn-large):not(.btn-small):not(.btn-extra-small):b
 }
 
 .filters__header {
-  -webkit-flex-basis: 25%;
-      -ms-flex-preferred-size: 25%;
-          flex-basis: 25%;
+  -webkit-flex-basis: 30%;
+      -ms-flex-preferred-size: 30%;
+          flex-basis: 30%;
   padding-bottom: 1em;
 }
 
 .filters__found {
-  margin-bottom: .2em;
-  font-size: 24px;
+  margin-bottom: 1rem;
+  white-space: nowrap;
+}
+
+.filters__found-plus {
+  margin-left: .5rem;
+  color: #8F8F8F;
+  font-size: 1rem;
+}
+
+.filters__found-plus strong {
+  font-weight: 600;
+}
+
+.filters__found-plus a:not(.btn):not(.btn-large):not(.btn-small):not(.btn-extra-small) {
+  color: #764AAF;
+  margin-left: .5rem;
+}
+
+.filters__tabs {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.filters__tabs .btn-flat + .btn-flat {
+  margin-left: .5rem;
 }
 
 .filters__inputs {
@@ -13079,20 +13114,27 @@ a.card-auction:not(.btn):not(.btn-large):not(.btn-small):not(.btn-extra-small):b
   color: #2D2E41;
 }
 
+.filters__inputs .input-field {
+  margin: 0;
+}
+
 .filters__inputs .input-field + .input-field {
   margin-left: 1.5rem;
 }
 
-.filters__body {
+.filters__inputs {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-  -webkit-flex-direction: row;
-      -ms-flex-direction: row;
-          flex-direction: row;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.filters__inputs .input-field {
+  width: 100%;
 }
 
 .filters__menu-categories {
@@ -13132,8 +13174,27 @@ a.card-auction:not(.btn):not(.btn-large):not(.btn-small):not(.btn-extra-small):b
   margin-top: inherit;
 }
 
-.filters__open-button {
+.filters__open-button,
+.filters__open-button-header {
   display: none;
+  -webkit-box-pack: end;
+  -webkit-justify-content: flex-end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+}
+
+.filters__open-button .icon,
+.filters__open-button-header .icon {
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  width: 20px;
+  height: 20px;
+}
+
+.filters__open-button,
+.filters__open-button-header-button {
   -webkit-box-pack: center;
   -webkit-justify-content: center;
       -ms-flex-pack: center;
@@ -13142,17 +13203,12 @@ a.card-auction:not(.btn):not(.btn-large):not(.btn-small):not(.btn-extra-small):b
   -webkit-align-items: center;
       -ms-flex-align: center;
           align-items: center;
-  width: 100%;
   border: 1px solid #764AAF;
 }
 
-.filters__open-button .icon {
-  display: -webkit-inline-box;
-  display: -webkit-inline-flex;
-  display: -ms-inline-flexbox;
-  display: inline-flex;
-  width: 20px;
-  height: 20px;
+.filters__open-button-header-button {
+  width: 100%;
+  max-width: 18rem;
 }
 
 .filters__select-category {
@@ -13182,11 +13238,6 @@ a.card-auction:not(.btn):not(.btn-large):not(.btn-small):not(.btn-extra-small):b
       -ms-flex-pack: start;
           justify-content: flex-start;
   padding-bottom: 0;
-}
-
-.sidenav__filter-title {
-  margin-bottom: 1.5em;
-  font-size: 24px;
 }
 
 .sidenav__filter-inputs {
@@ -13232,14 +13283,80 @@ a.card-auction:not(.btn):not(.btn-large):not(.btn-small):not(.btn-extra-small):b
   margin-left: 24px;
 }
 
-@media only screen and (max-width: 1200px) {
-  .filters__body {
-    -webkit-box-orient: vertical;
-    -webkit-box-direction: normal;
-    -webkit-flex-direction: column;
-        -ms-flex-direction: column;
-            flex-direction: column;
+.filters__search {
+  display: none;
+  margin: 0;
+  padding: 0 2rem;
+}
+
+.filters__search input[type=search] {
+  height: 64px !important;
+  padding: 0 1.5em !important;
+  font-size: 36px;
+  font-weight: 300;
+  text-align: center;
+}
+
+.header__filters .filters {
+  position: relative;
+  padding-top: 1.5em;
+  padding-bottom: 0;
+  border-top: 1px solid #c7c7c7;
+  z-index: 10;
+}
+
+.header__filters .filters__body {
+  position: relative;
+  padding-bottom: 1.5em;
+}
+
+@media only screen and (min-width: 1201px) {
+  .filters__header {
+    min-width: -webkit-min-content;
+    min-width: -moz-min-content;
+    min-width: min-content;
+    padding-right: 2rem;
   }
+  .header__filters .filters {
+    padding-bottom: 1.5em;
+  }
+  .header__filters .filters__search {
+    -webkit-box-flex: 0;
+    -webkit-flex: 0 1 36rem;
+        -ms-flex: 0 1 36rem;
+            flex: 0 1 36rem;
+    display: inline-block;
+  }
+  .header__filters .filters__open-button-header {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-flex-basis: 25%;
+        -ms-flex-preferred-size: 25%;
+            flex-basis: 25%;
+  }
+  .header__filters .filters__body {
+    padding-top: 1.5em;
+    background: white;
+    border-top: 1px solid #c7c7c7;
+    position: absolute;
+    pointer-events: none;
+    margin-top: -8rem;
+    -webkit-transform-origin: 50% 0;
+            transform-origin: 50% 0;
+    -webkit-transition: all .1s ease-in-out;
+    transition: all .1s ease-in-out;
+    z-index: 1;
+  }
+  .header__filters .filters__body.active {
+    position: relative;
+    pointer-events: all;
+    margin-top: 0;
+  }
+}
+
+@media only screen and (max-width: 1200px) {
   .filters {
     display: block;
   }
@@ -13277,12 +13394,23 @@ a.card-auction:not(.btn):not(.btn-large):not(.btn-small):not(.btn-extra-small):b
     display: -webkit-flex;
     display: -ms-flexbox;
     display: flex;
+    width: 100%;
   }
   .filters__select-category {
     display: block;
   }
   .input-field--filters {
     margin-top: 0px;
+  }
+}
+
+@media only screen and (max-width: 992px) {
+  .filters__header {
+    display: block;
+    padding-bottom: 1.5em;
+  }
+  .filters__found {
+    white-space: normal;
   }
 }
 
