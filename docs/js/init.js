@@ -30,10 +30,16 @@ document.addEventListener('DOMContentLoaded', () => {
 			onCycleTo: function(item, dragged) {}
 		});
 	
-		$('.collapsible').collapsible({
+		$('.collapsible:not(.sidenav__collapsible)').collapsible({
 			onOpenEnd: (el) => {
 				const body = el.querySelector('.collapsible-body');
 				if (body) body.scrollIntoView({behavior: 'smooth', block: 'nearest'});
+			}
+		});
+		$('.sidenav__collapsible').collapsible({
+			onOpenEnd: (el) => {
+				const body = el.querySelector('.collapsible-body');
+				if (body) body.scrollIntoView({behavior: 'smooth', block: 'center'});
 			}
 		});
 		$('.collapsible.expandable').collapsible({
