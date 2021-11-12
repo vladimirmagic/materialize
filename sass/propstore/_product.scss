@@ -163,6 +163,10 @@
 .product__number {
 	margin-bottom: 1em;
 	color: $color-font-grey;
+
+	.badge {
+		margin-right: .5rem;
+	}
 }
 
 a.product__title:not(.btn) {
@@ -176,6 +180,13 @@ a.product__title:not(.btn) {
 	}
 }
 
+.product__auction-title {
+	margin-bottom: .1em;
+	font-weight: 600;
+	font-size: 20px;
+	line-height: 1.4;
+}
+
 .product__description {
 	margin-bottom: 1.4em;
 	font-size: 20px;
@@ -186,6 +197,7 @@ a.product__title:not(.btn) {
 	position: relative;
 	margin-bottom: 1.5em;
 	padding-right: 24px;
+	font-weight: 500;
 	font-size: 28px;
 	line-height: 1;
 }
@@ -196,6 +208,30 @@ a.product__title:not(.btn) {
 	height: 24px;
 	margin: -4px 4px -1px 0;
 	font-size: 24px;
+}
+
+.product__price-sold {
+	width: 24px;
+	height: 24px;
+	margin: -4px 4px -1px 0;
+	color: white;
+	font-style: normal;
+	font-size: 1rem;
+	font-weight: 600;
+	line-height: 1;
+	border-radius: 50%;
+	background: $color-red;
+
+	svg {
+		width: 70%;
+		height: 70%;
+	}
+}
+
+.product__price-sold-login {
+	font-size: 1.5rem;
+	font-weight: 300;
+	text-decoration: underline;
 }
 
 .product__price-old {
@@ -263,8 +299,9 @@ a.product__title:not(.btn) {
 }
 
 .product__heart {
+	margin-top: -1rem;
+	margin-bottom: 2rem;
 	flex: 0 0 40px;
-	margin-left: 24px;
 
 	&.active {
 		background: $color-turquoise;
@@ -272,6 +309,12 @@ a.product__title:not(.btn) {
 		&:before {
 			background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cpath d='M10 17.12a14.27 14.27 0 007.04-6.21c1.28-2.41 1.46-4.81.32-6.25a4.44 4.44 0 00-3.73-1.74A5.92 5.92 0 0010 4.38a5.92 5.92 0 00-3.63-1.46 4.44 4.44 0 00-3.73 1.74c-1.14 1.44-.96 3.84.34 6.25A14.13 14.13 0 0010 17.12z' fill='%23ffffff'/%3E%3C/svg%3E");
 		}
+	}
+
+	.btn + & {
+		margin-left: 1.5rem;
+		margin-top: 0;
+		margin-bottom: 0;
 	}
 }
 
