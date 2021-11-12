@@ -12551,6 +12551,13 @@ a.card:not(.btn):not(.btn-large):not(.btn-small):not(.btn-extra-small).card--arc
   font-weight: 300;
 }
 
+.card__title strong {
+  display: block;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
 .card-blog__excerpt {
   display: -webkit-box;
   overflow: hidden;
@@ -12606,6 +12613,29 @@ a.card:not(.btn):not(.btn-large):not(.btn-small):not(.btn-extra-small).card--arc
 .card__price-i .icon {
   width: 16px;
   height: 16px;
+}
+
+.card__price-sold {
+  width: 18px;
+  height: 18px;
+  margin-right: .25rem;
+  font-style: normal;
+  font-size: 1rem;
+  font-weight: 600;
+  line-height: 1;
+  border-radius: 50%;
+  background: #F93838;
+}
+
+.card__price-sold svg {
+  width: 80%;
+  height: 80%;
+}
+
+.card__price-sold-login {
+  font-size: 1rem;
+  font-weight: 300;
+  text-decoration: underline;
 }
 
 .card__date {
