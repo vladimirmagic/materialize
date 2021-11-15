@@ -18549,7 +18549,7 @@ a.account__orders-buy-link:not(.btn):not(.btn-large):not(.btn-small):not(.btn-ex
 }
 
 .sell-cta.sell-cta--guide {
-  margin-top: 5em;
+  margin-top: 8em;
 }
 
 .sell-cta.sell-cta--offer {
@@ -18786,7 +18786,7 @@ a.account__orders-buy-link:not(.btn):not(.btn-large):not(.btn-small):not(.btn-ex
 }
 
 .sell__steps {
-  padding: 6em 1.5em;
+  padding: 6em 1.5em 4em;
   background: #fff;
   border-radius: 6px;
   -webkit-box-shadow: 0px 8px 32px -10px rgba(0, 0, 0, 0.15);
@@ -18801,6 +18801,10 @@ a.account__orders-buy-link:not(.btn):not(.btn-large):not(.btn-small):not(.btn-ex
 .sell-guide__text2 {
   max-width: 36rem;
   margin: 3em auto 0;
+}
+
+.sell-guide__text2-button {
+  margin-bottom: 1.5rem;
 }
 
 .sell__indicators {
@@ -18955,7 +18959,7 @@ a.account__orders-buy-link:not(.btn):not(.btn-large):not(.btn-small):not(.btn-ex
     margin-top: 5em;
   }
   .sell-cta.sell-cta--guide {
-    margin-top: 3.5em;
+    margin-top: 4em;
   }
   .sell-cta.sell-cta--offer {
     margin-top: 3.5em;
@@ -19669,6 +19673,14 @@ a.voucher:not(.btn):not(.btn-large):not(.btn-small):not(.btn-extra-small):before
   height: auto;
 }
 
+.wp img.video-block {
+  margin: 0;
+}
+
+.wp table {
+  table-layout: fixed;
+}
+
 .wp .yarpp-related {
   margin: 0;
 }
@@ -19683,7 +19695,19 @@ a.voucher:not(.btn):not(.btn-large):not(.btn-small):not(.btn-extra-small):before
           flex-wrap: wrap;
 }
 
-.dextercontainer, .voxluxcontainer, .mutecontainer, .la2018container, .emla2019container, .backgroundbg, .everestcontainer, .friendscontainer, .gijoecontainer, .previewgallerycontainer, .hannibalcontainer, .hauntingcontainer, .cos, .mutecontainer, .NiloRodiscontainer {
+.dextercontainer, .voxluxcontainer, .mutecontainer, .la2018container, .emla2019container, .backgroundbg, .everestcontainer, .friendscontainer, .gijoecontainer, .previewgallerycontainer, .hannibalcontainer, .hauntingcontainer, .cos, .mutecontainer, .NiloRodiscontainer, .termgencontainer, .toyauctionpage, .vicecontainer, .harrylangecontainer, .powerrangerscontainer, .oad, .Toy_landingpage_all, .springauctioncontainer, .blueprintcontainer, .t2trainspottingcontainer, .videos, .row2, .videosz, .video-block {
+  max-width: 100%;
+}
+
+.dextercontainer > div, .voxluxcontainer > div, .mutecontainer > div, .la2018container > div, .emla2019container > div, .backgroundbg > div, .everestcontainer > div, .friendscontainer > div, .gijoecontainer > div, .previewgallerycontainer > div, .hannibalcontainer > div, .hauntingcontainer > div, .cos > div, .mutecontainer > div, .NiloRodiscontainer > div, .termgencontainer > div, .toyauctionpage > div, .vicecontainer > div, .harrylangecontainer > div, .powerrangerscontainer > div, .oad > div, .Toy_landingpage_all > div, .springauctioncontainer > div, .blueprintcontainer > div, .t2trainspottingcontainer > div, .videos > div, .row2 > div, .videosz > div, .video-block > div {
+  max-width: 100%;
+}
+
+.dextercontainer .line-separator, .dextercontainer .hannibalcol, .voxluxcontainer .line-separator, .voxluxcontainer .hannibalcol, .mutecontainer .line-separator, .mutecontainer .hannibalcol, .la2018container .line-separator, .la2018container .hannibalcol, .emla2019container .line-separator, .emla2019container .hannibalcol, .backgroundbg .line-separator, .backgroundbg .hannibalcol, .everestcontainer .line-separator, .everestcontainer .hannibalcol, .friendscontainer .line-separator, .friendscontainer .hannibalcol, .gijoecontainer .line-separator, .gijoecontainer .hannibalcol, .previewgallerycontainer .line-separator, .previewgallerycontainer .hannibalcol, .hannibalcontainer .line-separator, .hannibalcontainer .hannibalcol, .hauntingcontainer .line-separator, .hauntingcontainer .hannibalcol, .cos .line-separator, .cos .hannibalcol, .mutecontainer .line-separator, .mutecontainer .hannibalcol, .NiloRodiscontainer .line-separator, .NiloRodiscontainer .hannibalcol, .termgencontainer .line-separator, .termgencontainer .hannibalcol, .toyauctionpage .line-separator, .toyauctionpage .hannibalcol, .vicecontainer .line-separator, .vicecontainer .hannibalcol, .harrylangecontainer .line-separator, .harrylangecontainer .hannibalcol, .powerrangerscontainer .line-separator, .powerrangerscontainer .hannibalcol, .oad .line-separator, .oad .hannibalcol, .Toy_landingpage_all .line-separator, .Toy_landingpage_all .hannibalcol, .springauctioncontainer .line-separator, .springauctioncontainer .hannibalcol, .blueprintcontainer .line-separator, .blueprintcontainer .hannibalcol, .t2trainspottingcontainer .line-separator, .t2trainspottingcontainer .hannibalcol, .videos .line-separator, .videos .hannibalcol, .row2 .line-separator, .row2 .hannibalcol, .videosz .line-separator, .videosz .hannibalcol, .video-block .line-separator, .video-block .hannibalcol {
+  max-width: 100%;
+}
+
+.PG_containerinner-1, .PG_containerinner-2, .PG_containerinner-3 {
   max-width: 100%;
 }
 
