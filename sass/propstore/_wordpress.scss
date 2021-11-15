@@ -108,6 +108,13 @@
     img {
         max-width: 100%;
         height: auto;
+        &.video-block {
+            margin: 0;
+        }
+    }
+    
+    table {
+        table-layout: fixed;
     }
     
     .yarpp-related {
@@ -120,7 +127,17 @@
     flex-wrap: wrap;
 }
 
-.dextercontainer, .voxluxcontainer, .mutecontainer, .la2018container, .emla2019container, .backgroundbg, .everestcontainer, .friendscontainer, .gijoecontainer, .previewgallerycontainer, .hannibalcontainer, .hauntingcontainer, .cos, .mutecontainer, .NiloRodiscontainer {
+.dextercontainer, .voxluxcontainer, .mutecontainer, .la2018container, .emla2019container, .backgroundbg, .everestcontainer, .friendscontainer, .gijoecontainer, .previewgallerycontainer, .hannibalcontainer, .hauntingcontainer, .cos, .mutecontainer, .NiloRodiscontainer, .termgencontainer, .toyauctionpage, .vicecontainer, .harrylangecontainer, .powerrangerscontainer, .oad, .Toy_landingpage_all, .springauctioncontainer, .blueprintcontainer, .t2trainspottingcontainer, .videos, .row2, .videosz, .video-block {
+    max-width: 100%;
+    & > div {
+        max-width: 100%;
+    }
+    .line-separator, .hannibalcol {
+        max-width: 100%;
+    }
+}
+
+.PG_containerinner-1, .PG_containerinner-2, .PG_containerinner-3 {
     max-width: 100%;
 }
 

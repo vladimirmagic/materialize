@@ -371,6 +371,16 @@
 <!-- Live search for FAQs -->
 <script>
     jQuery(document).ready(() => {
+        
+        function scrollToElement(elem) {
+            if (location.hash) {
+                $(elem).parent().parent().addClass('active').click();
+                $(window).scrollTop(elem.offset().top).scrollLeft(elem.offset().left);
+            }
+        }
+
+        scrollToElement($(location.hash));
+
         function changeCategory (category) {
             if (category == 0) {
                 $('.faq__item').show();
