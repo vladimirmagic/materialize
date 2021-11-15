@@ -350,6 +350,12 @@ button.btn-floating {
     background: $color-base;
     cursor: default;
   }
+
+  &.btn-flat.disabled,
+  &.btn-flat[disabled] {
+    color: $color-grey !important;
+    background-color: $color-bg !important;
+  }
 }
 
 .btn--link {

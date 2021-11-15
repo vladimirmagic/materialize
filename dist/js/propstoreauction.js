@@ -28,86 +28,32 @@ document.addEventListener('DOMContentLoaded', () => {
 			$('body').removeClass('touch').addClass('no-touch');
 		}
 
+        $('#headsec').remove();
+        $('body').prepend($('.auc-header'));
+        $('body').append($('.auc-sidenav'));
+        $('<main>').append($('#wrapper')).insertAfter($('.auc-header'));
+        if (!$('.container').length) $('#wrapper').append('<div class="container">');
 
+/**
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * PRODUCT
+ */
 
-		if ($('body').hasClass('lot-details-index')) { // PRODUCT
+		if ($('body').hasClass('lot-details-index')) {
 			$('footer').append(`
-        <header>
-        <div class="header__settings">
-            <div class="header__col header__col--left"></div>
-            <div class="header__col header__col--right">
-                <a class="waves-effect btn-flat header__btn" href="https://propstore.com">
-                    Go to propstore.com
-                    <i class='icon aucheader__settings-icon-blank'><svg><use xlink:href="#target-blank"></use></svg></i>
-                </a>
-            </div>
-        </div>
-    
-        <div class="header__main">
-            <div class="header__col header__col--left">
-                <a data-target="sidenav" class="header__burger sidenav-trigger waves-effect btn-flat btn--icon">
-                    <i class='icon'><svg><use xlink:href="#burger"></use></svg></i>    
-                </a>
-    
-                <nav class="header__menu">
-                    <a class="btn-flat header__menu-link">
-                        <span class="header__menu-link-handle">
-                            All Auctions
-                        </span>
-                    </a>
-                    
-                    <a class="btn-flat header__menu-link">
-                        <span class="header__menu-link-handle">
-                            My Account
-                        </span>
-                    </a>
-                    
-                </nav>
-            </div>
-            <div class="header__col header__col--center">
-                <a class="header__logo" href='/home.html'>
-                    <svg><use xlink:href="#propstore"></use></svg>
-                </a>
-            </div>
-            <div class="header__col header__col--right">
-                <div class="header__search input-field input-field--search">
-                    <input placeholder="Search auctions" type="search">
-                    <a class="waves-effect btn-flat btn--icon input-field__button">
-                        <i class='icon'><svg><use xlink:href="#search"></use></svg></i>
-                    </a>
-                </div>
-            </div>
-        </div>
-    </header>
-
-    <div class="hero hero--static auc__hero">
-        <div class="hero__inner">
-            <div class="hero__image"></div>
-            <div class="hero__info">
-                <div class="hero__info-item">
-                    <div class="hero__info-item-inner">
-                        <span class="badge section-auctions__item-bage" style="display: none;">
-                            <i class='icon'><svg><use xlink:href="#"></use></svg></i>
-                        </span>
-                        <div class="hero__static-title">
-                        </div>
-                        <div class="hero__static-date">
-                            <i class='icon'><svg><use xlink:href="#calendar"></use></svg></i>
-                        </div>
-                        <div class="hero__static-buttons">
-                            <a class="waves-effect waves-light btn hero__btn auc__hero-aucinfo">
-                                Auction info
-                            </a>
-                            <a class="waves-effect waves-light btn hero__btn auc__hero-auccatalog">
-                                All catalogue items
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
     <div class="product aucproduct">
         <div class="product__inner">
             <div class="product__gallery">
@@ -127,31 +73,20 @@ document.addEventListener('DOMContentLoaded', () => {
             </div>
             <div class="product__info">
                 <div class="product__number"></div>
-                <a href="#movie" class="product__title h2"></a>
+                <div class="product__title h2"></div>
 
                 <div class="aucproduct__details">
-                    <div class="aucproduct__details-line">
-                    </div>
+                    <div class="aucproduct__details-line"></div>
                 </div>
 
-                <div class="aucproduct__form" style="display: none;">
-                    <div class="input-field input-field--label aucproduct__form-item">
-                        <input type="text" placeholder="">
-                    </div>
-                    <button class="waves-effect waves-light btn aucproduct__form-item">
-                        <span class='btn__title'>Register to bid</span>
-                        <i class='icon'><svg><use xlink:href="#arrow-right"></use></svg></i>
-                    </button>
-                </div>
+                <div class="aucproduct__button"></div>
+
+                <div class="aucproduct__form" style="display: none;"></div>
                 
                 <div class="product__buttons-grey" style="display: none;">
                     <a class="product__button-grey waves-effect waves-grey btn btn--secondary modal-trigger" href="#modal-shipping-quote">
                         <i class='icon'><svg><use xlink:href="#globe"></use></svg></i>
                         <span class="product__buttons-grey-small">Get</span> Shipping Quote
-                    </a>
-                    <a class="product__button-grey waves-effect waves-grey btn btn--secondary">
-                        <i class='icon'><svg><use xlink:href="#heart-fill"></use></svg></i>
-                        Add to watchlist
                     </a>
                 </div>
 
@@ -177,7 +112,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     </a>
                 </div>
 
-                <a class="product__certificate" href="#certificate" style="display: none;">
+                <a class="product__certificate" href="https://propstore.com/certificate-of-authenticity/" style="display: none;">
                     <div class="product__certificate-icon">
                         <svg class="product__certificate-img"><use xlink:href="#big-authentic"></use></svg>
                     </div>
@@ -211,145 +146,7 @@ document.addEventListener('DOMContentLoaded', () => {
         <div class="also-like__title h3">Other lots in this auction</div>
         <div class="cards">
           <div class="cards__inner">
-            <div class="cards__list">
-                <a class="card card--liked aucproduct__card" href="#card-05">
-                    <div class="card__img" style="background-image: url(https://www.fillmurray.com/400/800);">
-                        <span class="heart card__heart"></span>
-                        <span class="badge red card__badge">
-                            <i class="icon"><svg><use xlink:href="#flag"></use></svg></i>
-                            Sold
-                        </span>
-                    </div>
-                    <div class="card__info">
-                        <div class="card__description">
-                            <div class="card__movie">
-                                Lot # 2: Episode "Lead Balloon" (2008, E96): Episode Blueprint Signed by Eric Haven - Lead Balloon
-                            </div>
-                            <div class="aucproduct__card-details">
-                                <div class="aucproduct__card-details-row">
-                                    <div class="aucproduct__card-details-label">Asking:</div>
-                                    <div class="aucproduct__card-details-value">£450–£650</div>
-                                </div>
-                                <div class="aucproduct__card-details-row">
-                                    <div class="aucproduct__card-details-label">When:</div>
-                                    <div class="aucproduct__card-details-value">04 May 9:00am (PMT) – 13 May 2:00pm (PMT) 2021</div>
-                                </div>
-                                <div class="aucproduct__card-details-row">
-                                    <div class="aucproduct__card-details-label">Time Left:</div>
-                                    <div class="aucproduct__card-details-value aucproduct__card-details-timer">17h 20m 0s</div>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="card__actions">
-                            <button class="waves-effect waves-light btn" tabindex="0">
-                                <span class="btn__title">Register for the auction</span>
-                                <i class="icon"><svg><use xlink:href="#arrow-right"></use></svg></i>
-                            </button>
-                        </div>
-                    </div>
-                </a><a class="card aucproduct__card" href="#card-06">
-    <div class="card__img" style="background-image: url(https://www.fillmurray.com/700/800);">
-        <span class="heart card__heart"></span>
-        <span class="badge card__badge">
-            <i class="icon"><svg><use xlink:href="#auction"></use></svg></i>
-            Unsold
-        </span>
-    </div>
-    <div class="card__info">
-        <div class="card__description">
-            <div class="card__movie" title='Lot # 28: Episode "Dog Myths" and Episode "Voice Flame Extinguisher" (2007, E74/E76): Episode Blueprint Signed by Adam Savage - The Sensitive Flame'>
-Lot # 28: Episode "Dog Myths" and Episode "Voice Flame Extinguisher" (2007, E74/E76): Episode Blueprint Signed by Adam Savage - The Sensitive Flame
-            </div>
-            <div class="aucproduct__card-details">
-                <div class="aucproduct__card-details-row">
-                    <div class="aucproduct__card-details-label">Asking:</div>
-                    <div class="aucproduct__card-details-value">£450–£650</div>
-                </div>
-                <div class="aucproduct__card-details-row">
-                    <div class="aucproduct__card-details-label">When:</div>
-                    <div class="aucproduct__card-details-value">04 May 9:00am (PMT) – 13 May 2:00pm (PMT) 2021</div>
-                </div>
-            </div>
-        </div>
-        
-        <div class="card__actions">
-            <button class="waves-effect waves-light btn" tabindex="0">
-                <span class="btn__title">Bid now</span>
-                <i class="icon"><svg><use xlink:href="#auction"></use></svg></i>
-            </button>
-        </div>
-    </div>
-</a><a class="card card--liked aucproduct__card" href="#card-05">
-    <div class="card__img" style="background-image: url(https://www.fillmurray.com/400/800);">
-        <span class="heart card__heart"></span>
-        <span class="badge red card__badge">
-            <i class="icon"><svg><use xlink:href="#flag"></use></svg></i>
-            Sold
-        </span>
-    </div>
-    <div class="card__info">
-        <div class="card__description">
-            <div class="card__movie">
-                Lot # 2: Episode "Lead Balloon" (2008, E96): Episode Blueprint Signed by Eric Haven - Lead Balloon
-            </div>
-            <div class="aucproduct__card-details">
-                <div class="aucproduct__card-details-row">
-                    <div class="aucproduct__card-details-label">Asking:</div>
-                    <div class="aucproduct__card-details-value">£450–£650</div>
-                </div>
-                <div class="aucproduct__card-details-row">
-                    <div class="aucproduct__card-details-label">When:</div>
-                    <div class="aucproduct__card-details-value">08/20/2021 9:00 AM PDT-09/01/2021 10:33 AM PDT</div>
-                </div>
-                <div class="aucproduct__card-details-row">
-                    <div class="aucproduct__card-details-label">Time Left:</div>
-                    <div class="aucproduct__card-details-value aucproduct__card-details-timer">17h 20m 0s</div>
-                </div>
-            </div>
-        </div>
-        
-        <div class="card__actions">
-            <button class="waves-effect waves-light btn" tabindex="0">
-                <span class="btn__title">Register for the auction</span>
-                <i class="icon"><svg><use xlink:href="#arrow-right"></use></svg></i>
-            </button>
-        </div>
-    </div>
-</a><a class="card aucproduct__card" href="#card-06">
-<div class="card__img" style="background-image: url(https://www.fillmurray.com/700/800);">
-<span class="heart card__heart"></span>
-<span class="badge card__badge">
-<i class="icon"><svg><use xlink:href="#auction"></use></svg></i>
-Unsold
-</span>
-</div>
-<div class="card__info">
-<div class="card__description">
-<div class="card__movie" title='Lot # 28: Episode "Dog Myths" and Episode "Voice Flame Extinguisher" (2007, E74/E76): Episode Blueprint Signed by Adam Savage - The Sensitive Flame'>
-Lot # 28: Episode "Dog Myths" and Episode "Voice Flame Extinguisher" (2007, E74/E76): Episode Blueprint Signed by Adam Savage - The Sensitive Flame
-</div>
-<div class="aucproduct__card-details">
-<div class="aucproduct__card-details-row">
-    <div class="aucproduct__card-details-label">Asking:</div>
-    <div class="aucproduct__card-details-value">£450–£650</div>
-</div>
-<div class="aucproduct__card-details-row">
-    <div class="aucproduct__card-details-label">When:</div>
-    <div class="aucproduct__card-details-value">08/20/2021 9:00 AM PDT-09/01/2021 10:33 AM PDT</div>
-</div>
-</div>
-</div>
-
-<div class="card__actions">
-<button class="waves-effect waves-light btn" tabindex="0">
-<span class="btn__title">Bid now</span>
-<i class="icon"><svg><use xlink:href="#auction"></use></svg></i>
-</button>
-</div>
-</div>
-</a>
-            </div>
+            <div class="cards__list"></div>
             <div class="also-like__arrows">
                 <a href="#left" class="also-like__arrow also-like__arrow--left"></a>    
                 <a href="#right" class="also-like__arrow also-like__arrow--right"></a>    
@@ -378,22 +175,34 @@ Lot # 28: Episode "Dog Myths" and Episode "Voice Flame Extinguisher" (2007, E74/
         </div>
         <div class="modal-content"></div>
     </div>
+
+    <div id="modal-shipping-quote" class="modal modal-ajax modal-shipping-quote">
+        <div class="modal-header modal-header--sticky">
+            <a class="modal-close btn-flat btn--icon"><i class='icon'><svg><use xlink:href="#close"></use></svg></i></a>
+        </div>
+        <div class="modal__loader">
+            <div class="preloader-wrapper active"><div class="spinner-layer"><div class="circle-clipper left"><div class="circle"></div></div><div class="gap-patch"><div class="circle"></div></div><div class="circle-clipper right"><div class="circle"></div></div></div></div>
+        </div>
+        <form class="modal-content modal-form modal-shipping-quote-form" action="action"></form>
+    </div>
         `);
-			$('#headsec').remove();
-			$('body').prepend($('header'));
-			$('<main></main>').append($('#wrapper')).insertAfter($('header'));
 
 			let status;
 			if ($('.sale-closed').length) status = 'closed';
 
-			let aucPoster = window.getComputedStyle(document.querySelector('.bodybox'), ':before');
-			$('.hero__image').css({ backgroundImage: aucPoster.backgroundImage });
-			document.querySelectorAll('style:not([data-v2]), link[rel="stylesheet"]:not([data-v2])').forEach(item => item.remove());
+            requestAnimationFrame(() => {
+                const heroImage = window.getComputedStyle(document.querySelector('.hero__image'));
+                const aucPoster = window.getComputedStyle(document.querySelector('.bodybox'), ':before');
+                const backgroundImage = aucPoster.backgroundImage !== 'none' ? aucPoster.backgroundImage : heroImage.backgroundImage;
+                $('.hero__image').css({ backgroundImage });
+                document.querySelectorAll('style:not([data-v2]), link[rel="stylesheet"]:not([data-v2])').forEach(item => item.remove());
+            });
 
 			$aucTitle = $('.tle-lot h3').clone();
 			$aucTitle.find('span').remove();
 			$('.hero__static-title').html($aucTitle.text());
-			$('.hero__static-date').append($('.sale-date').first());
+            $('.sale-date').find('br').remove();
+			$('.hero__static-date').append($('.sale-date').first()).show();
 			if (status) {
 				$badge = $('.auc__hero .badge');
 				switch (status) {
@@ -408,8 +217,8 @@ Lot # 28: Episode "Dog Myths" and Episode "Voice Flame Extinguisher" (2007, E74/
 			$itemTitleH.find('.lot-name').remove();
 			$('.product__number').html($itemTitleH.text());
 			$('.product__title').html($itemTitle.text());
-			$('.auc__hero-aucinfo').attr('href', $('.aucinfo').attr('href'));
-			$('.auc__hero-auccatalog').attr('href', $('.catlg').attr('href'));
+			$('.auc__hero-aucinfo').attr('href', $('.aucinfo').attr('href')).show();
+			$('.auc__hero-auccatalog').attr('href', $('.catlg').attr('href')).show();
 
 			$carouselItem = $('.product__slider .carousel-item').clone();
 			$slider = $('.product__slider').html('');
@@ -420,7 +229,7 @@ Lot # 28: Episode "Dog Myths" and Episode "Voice Flame Extinguisher" (2007, E74/
 
 			$('.image-thumb-slide').each((i, item) => {
 				const img = { backgroundImage: 'url(' + item.href + ')' };
-				const imgPrev = { backgroundImage: 'url(' + item.dataset.image + ')' };
+                const imgPrev = { backgroundImage: 'url(' + item.dataset.image.replace('_8.', '_9.') + ')' };
 				$carouselItemNew = $carouselItem.clone();
 				$slider.append($carouselItemNew.css(imgPrev));
 				$thumbnailsItemNew = $thumbnailsItem.clone();
@@ -433,13 +242,64 @@ Lot # 28: Episode "Dog Myths" and Episode "Voice Flame Extinguisher" (2007, E74/
 			$details = $('.aucproduct__details');
 			$details.html('');
 
-			$win = $('#lac28');
+            $curBidLabel = $('#bidStatus');
+            if ($curBidLabel.length) {
+                $lineCurBid = $detailsLine.clone();
+				$lineCurBid.append($curBidLabel, ' ', $('#currentBid'), ' ', $('#bidHistory'));
+				$details.append($lineCurBid);
+            }
+
+            $askingLabel = $('.askingbid');
+            if ($askingLabel.length) {
+                $lineAsking = $detailsLine.clone();
+                $lineAsking.append($askingLabel, ' ', $('<strong>').append($('#asking').parent('span')));
+				$details.append($lineAsking);
+            }
+
+            $estimateTimed = $('#estimate-timed');
+            if ($estimateTimed.length) {
+                $lineEstimateTimed = $detailsLine.clone();
+                $estimateTimedLabel = $estimateTimed.find('span:first-child');
+                $estimateTimedLabel.appendTo($lineEstimateTimed);
+                $lineEstimateTimed.append(': ', $('<strong>').append($estimateTimed.html()));
+				$details.append($lineEstimateTimed);
+            }
+
+            $timeLeft = $('.time-left');
+            if ($timeLeft.length) {
+                $lineTimeLeft = $detailsLine.clone();
+                $lineTimeLeft.append($timeLeft);
+				$details.append($lineTimeLeft);
+            }
+
+            $nextBid = $('.bidfrm .next-bid');
+            if ($nextBid.length) {
+                $nextBid.addClass('waves-effect waves-light btn aucproduct__form-item');
+                $('.aucproduct__button').show().append($nextBid);
+            }
+
+            $bidInput = $('.maxbid');
+            if ($bidInput.length) {
+                $bidInput.addClass('aucproduct__form-item');
+                $('.aucproduct__form').show().append($bidInput);
+            }
+
+            $btnPlaceBid = $('.bidfrm .place-bid');
+            if ($btnPlaceBid.length) {
+                $btnPlaceBid.addClass('waves-effect waves-light btn aucproduct__form-item');
+                $('.aucproduct__form').show().append($btnPlaceBid);
+            }
+
+			$win = $('#lac28, #oai21');
 			if ($win.length) {
 				$winVal = $win.find('span');
-				$win.find('span').remove();
-				$winVal.append(' ').append($('.biddingHistoryLink'));
-				$lineWin = $detailsLine.clone();
-				$lineWin.html($win.text() + ' <strong>' + $winVal.html() + '</strong>');
+                $win.find('span').remove();
+                $lineWin = $detailsLine.clone();
+				$lineWin.html($win.text());
+                if ($winVal.length) {
+				    $winVal.append(' ').append($('.biddingHistoryLink'));
+                    $lineWin.html($lineWin.html() + ' <strong>' + $winVal.html() + '</strong>');
+                }
 				$details.append($lineWin);
 			}
 
@@ -451,8 +311,22 @@ Lot # 28: Episode "Dog Myths" and Episode "Voice Flame Extinguisher" (2007, E74/
 				$details.append($lineEstimate);
 			}
 
-			$('.product__detail .collapsible-body').html($('.l1desctextwhite').html());
-			$('#modal-buyers-guide .modal-content').append($('h4:contains("Product Questions")').parent());
+            $shippingQuote = $('#shippingQuote');
+            if ($shippingQuote.length) {
+                $('.product__buttons-grey').show();
+
+            }
+
+            $watchlist = $('#watchlist_button');
+            if ($watchlist.length) {
+                $watchlist.addClass('waves-effect waves-grey btn btn--secondary product__button-grey');
+                $watchlist.find('.remove-watch').html('<i class="icon"><svg><use xlink:href="#heart-fill"></use></svg></i> <span class="product__buttons-grey-small">In</span> Watchlist');
+                $watchlist.find('.add-watch').html('<i class="icon"><svg><use xlink:href="#heart"></use></svg></i> <span class="product__buttons-grey-small">Add to</span> Watchlist');
+                $('.product__buttons-grey').show().append($watchlist);
+            }
+
+			$('.product__detail .collapsible-body').append($('.l1desctextwhite, .l2desctextwhite, .l3desctextwhite'));
+			$('#modal-buyers-guide .modal-content').append($('#buyers-content'));
 			$('body').append($('#modal-buyers-guide'));
 
 			$('#modal-shipping .modal-content').append($('.shipping-info-content'));
@@ -464,7 +338,7 @@ Lot # 28: Episode "Dog Myths" and Episode "Voice Flame Extinguisher" (2007, E74/
 			if ($('.description-info-content :contains("Certificate of Authenticity")').length) {
 				$('.product__certificate').show();
 			}
-			$originalNote = $('.description-info-content p:contains("original asset")');
+			$originalNote = $('.description-info-content p:contains("used in the production")');
 			if ($originalNote.length) {
 				$('.aucproduct__certificate').html($originalNote.html()).show();
 			}
@@ -475,68 +349,228 @@ Lot # 28: Episode "Dog Myths" and Episode "Voice Flame Extinguisher" (2007, E74/
 
 			$('.container').prepend($('.aucproduct__also'));
 			$('.container').prepend($('.aucproduct'));
-			$('.container').prepend($('.auc__hero'));
+			$('.container').prepend($('.auc__hero').show());
 
 			// PRODUCT
-			const productItems = [...document.querySelectorAll('.carousel-item')];
-			const productThumbnails = [...document.querySelectorAll('.product__thumbnail')];
-			if (productItems.length && productThumbnails.length) {
-				const productSlider = $('.product__slider').carousel({
-					onCycleTo: function (item, dragged) {
-						const index = productItems.indexOf(item);
-						const thumbnail = productThumbnails[index];
-						if (thumbnail) {
-							productThumbnails.forEach(thumbnail => thumbnail.classList.remove('active'));
-							thumbnail.classList.add('active');
-							// thumbnail.scrollIntoView({behavior: 'smooth', inline: 'center', block: 'nearest'}); // scrolls on page load(
-						}
-					},
-					onDestroy: function () {
-						productThumbnails.forEach(thumbnail => {
-							thumbnail.removeEventListener('mousemove', onClickProductThumbnail);
-						});
-					},
-				});
-				function onClickProductThumbnail(e) {
-					const index = productThumbnails.indexOf(e.target);
-					productSlider[0].M_Carousel.set(index);
-				}
-				productThumbnails.forEach(thumbnail => {
-					thumbnail.addEventListener('mousemove', onClickProductThumbnail);
-				});
+			const $productItems = $('.product__slider .carousel-item');
+            const $productThumbnails = $('.product__thumbnail');
+			if ($productItems.length && $productThumbnails.length) {
+                let productSlider;
+                function productCarousel () {
+                    if (productSlider && productSlider[0] && productSlider[0].M_Carousel) productSlider[0].M_Carousel.destroy();
+                    productSlider = $('.product__slider').carousel({
+                        onCycleTo: function(item, dragged) {
+                            const index = $productItems.index(item);
+                            const $thumbnail = $productThumbnails.eq(index);
+                            $productThumbnails.removeClass('active');
+                            $thumbnail.addClass('active');
+                        },
+                        onDestroy: function() {
+                            $productThumbnails.off('mousemove', onClickProductThumbnail);
+                        },
+                    });
+                    function onClickProductThumbnail (e) {
+                        const index = $productThumbnails.index(e.target);
+                        productSlider[0].M_Carousel.set(index);
+                    }
+                    $productThumbnails.on('mousemove', onClickProductThumbnail);
+                }
+                productCarousel();
+                $(window).on('resize', productCarousel);
+            }
+            let modalSlider;
+            function modalCarousel () {
+                if (modalSlider && modalSlider[0] && modalSlider[0].M_Carousel) modalSlider[0].M_Carousel.destroy();
+                modalSlider = $('#modal-product-gallery').find('.modal-gallery__carousel').carousel({
+                    fullWidth: true,
+                    indicators: true,
+                    onCycleTo: function(item, dragged) {}
+                });
+            }
+            $('#modal-product-gallery').modal({
+                opacity: .75,
+                onCloseStart: (el) => {
+                    if (modalSlider && modalSlider[0] && modalSlider[0].M_Carousel) modalSlider[0].M_Carousel.destroy();
+                    $(window).off('resize', modalCarousel);
+                },
+                onOpenEnd: (el, trigger) => {
+                    modalCarousel();
+                    $(window).on('resize', modalCarousel);
+                    const $productGallery = $(trigger).closest('.product__gallery');
+                    if ($productGallery.length) {
+                        const timer = document.body.classList.contains('touch') ? 300 : 0; // on touch wait for active
+                        setTimeout(() => {
+                            const $active = $productGallery.find('.carousel-item.active');
+                            const index = $productItems.index($active);
+                            modalSlider[0].M_Carousel.set(index);
+                        }, timer);
+                    }
+                }
+            });
 
-				$('#modal-shipping-quote-country').formSelect({ dropdownOptions: { container: document.body } });
-			}
+            // MODAL SHIPPING QUOTE
+            if ($('#modal-shipping-quote').length) {
+                $('body').append($('#modal-shipping-quote'));
+                $('#modal-shipping-quote').modal({ // load form on modal open
+                    onOpenStart: function (el, trigger) {
+                        el.classList.add('sync');
+                        const $form = $(el).find('.modal-shipping-quote-form');
+                        $.get('#')
+                            .done(data => {
+                                // $form.html(data);
+                                M.updateTextFields();
+                                $('#modal-shipping-quote-country').formSelect({dropdownOptions: {container: document.body}});
+                                // grecaptchaRender('g-recaptcha-quote');
+                            })
+                            .fail(data => {
+                                if (data && data.statusText) $form.html(data.statusText);
+                            })
+                            .always(data => {
+                                setTimeout(() => {
+                                    $form.html(`Need form here`);
+                                    el.classList.remove('sync');
+                                }, 2000);
+                                // el.classList.remove('sync');
+                            });
+                    }
+                });
 
-			$('.modal-gallery').modal({
-				opacity: .75,
-				dismissible: true,
-				onCloseStart: (el) => {
-					const carouselElement = el.querySelector('.modal-gallery__carousel');
-					if (carouselElement) {
-						const carousel = M.Carousel.getInstance(carouselElement);
-						if (carousel) carousel.destroy();
-					}
-				},
-				onOpenEnd: (el, trigger) => {
-					const modalSlider = $(el).find('.modal-gallery__carousel').carousel({
-						fullWidth: true,
-						indicators: true,
-						onCycleTo: function (item, dragged) { }
-					});
-					const productGallery = trigger.closest('.product__gallery');
-					if (productGallery) {
-						const timer = document.body.classList.contains('touch') ? 300 : 0; // on touch wait for active
-						setTimeout(() => {
-							const active = productGallery.querySelector('.carousel-item.active');
-							const index = productItems.indexOf(active);
-							modalSlider[0].M_Carousel.set(index);
-						}, timer);
-					}
-				}
-			});
-		} else if ($('body').hasClass('index-index')) { // INDEX
+                $('.modal-shipping-quote-form').on('submit', function (e) {
+                    e.preventDefault();
+                    this.classList.add('sync');
+                    let data = $(this).serialize();
+                    if (e.originalEvent.submitter && e.originalEvent.submitter.name === 'question') {
+                        data += '&question=1';
+                    }
+                    $.post(
+                        this.action,
+                        data,
+                    )
+                        .done(data => {
+                            this.innerHTML = data;
+                            M.updateTextFields();
+                            $('select').formSelect({dropdownOptions: {container: document.body}});
+                            // grecaptchaRender('g-recaptcha-quote');
+                        })
+                        .fail(data => {
+                            if (data && data.statusText) this.innerHTML = data.statusText;
+                        })
+                        .always(data => {
+                            this.classList.remove('sync');
+                        });
+                });
+            }
+
+            setInterval(() => { // listen ajax updates
+                $others = $('#pnlOtherLots .lot');
+                if ($others.length) {
+                    $list = $('.cards__list');
+                    $list.html('');
+                    $others.each((index, item) => {
+                        $img = $('<div class="card__img">');
+                        $img.css('background-image', 'url(' + $(item).find('.other-lots-image').prop('src').replace('_4.', '_2.') + ')');
+                        $title = $('<div class="card__movie">').html($(item).find('.lot-description-timed').html());
+                        $list.append($(item).addClass('card aucproduct__card').html('').append($img, $('<div class="card__info">').append($('<div class="card__description">').append($title))));
+                    });
+                }
+            }, 1000);
+
+            $('.also-like__arrow--left').on('click', function (e) {
+                e.preventDefault();
+                $('#prev')[0].click();
+            });
+
+            $('.also-like__arrow--right').on('click', function (e) {
+                e.preventDefault();
+                $('#next')[0].click();
+            });
+
+            function giveLotViewCalendarButtonsLinks(){
+                const lotName = $itemTitle.text();
+                const $outlookCalendarBtn = $('#outlookCalendarBtn');
+                $outlookCalendarBtn.html('Outlook');
+                const outlookHref = generateICSFileURL(escape(lotName), window.location.href);
+                $outlookCalendarBtn.on('click', function(e){
+                    e.preventDefault();
+                    window.open(outlookHref, '_blank');
+                });
+
+                const $googleCalendarBtn = $('#googleCalendarBtn');
+                $googleCalendarBtn.html('Google');
+                const googleHref = generateGoogleCalendarURL(lotName, window.location.href);
+                $googleCalendarBtn.on('click', function(e){
+                    e.preventDefault();
+                    window.open(googleHref, '_blank');
+                });
+
+                const $textReminderBtn = $('#textReminderBtn');
+                $textReminderBtn.html('Text');
+
+                $('.calendarBtn').addClass('waves-effect waves-grey btn btn--secondary');
+                $('<div class="aucproduct__calendar">').insertAfter('.product__buttons-grey')
+                    .append('<div class="aucproduct__calendar-title h5">Add reminder</div>')
+                    .append($('#calendarBtnBox'));
+            }
+            giveLotViewCalendarButtonsLinks();
+/**
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * INDEX
+ */
+		} else if ($('body').hasClass('index-index') || $('body').hasClass('auctions-index')) {
+            $('footer').append(`
+        <div class="auccatalog__nav auccatalog__nav--index">
+            <div class="auccatalog__nav-inner">
+                <div class="auccatalog__nav-perpage auccatalog__nav-perpage--header">
+                    <div class="auccatalog__nav-perpage-label c-r">Items per page</div>
+                    <div class="input-field input-field--select"></div>
+                </div>
+                <div class="auccatalog__nav-paginator"></div>
+            </div>
+        </div>
+        `);
 			document.querySelectorAll('style:not([data-v2]), link[rel="stylesheet"]:not([data-v2])').forEach(item => item.remove());
+
+            $itemsPerPage = $('#alf5').attr('style', '').clone();
+            $('#alf5').addClass('browser-default');
+            $itemsPerPage.removeAttr('id').addClass('auccatalog__nav-perpage-select');
+			$('.auccatalog__nav-perpage--header .input-field').append($itemsPerPage);
+			$('.auccatalog__nav-paginator').append($('#c2_ctl'));
+            const $pageselector = $('<div class="input-field input-field--select">');
+			if ($('.pageselector').length > 1) {
+                $('.pageselector:last-child').remove();
+            }
+            $pageselector.append($('.pageselector'));
+            $('.auccatalog__nav-paginator').append($pageselector);
+            $('main').prepend($('.auccatalog__nav'));
+            $('main').append($('.auccatalog__nav').clone().addClass('auccatalog__nav--footer'));
+
+            $('.auccatalog__nav-perpage-select').on('change', function (e) {
+                e.preventDefault();
+                const options = $(e.currentTarget).find('option').toArray();
+                const itemsPerPage = document.querySelector("#alf5");
+                $('#alf5').find('option[selected]').attr('selected', false);
+                options.forEach((option, index) => {
+                    if (option.selected) {
+                        itemsPerPage.value = option.value;
+                        $('#alf5').find('option')[index].selected = true
+                        itemsPerPage.dispatchEvent(new Event("change"));
+                    }
+                })
+            });
+
 			$('.auclting').each((i, item) => {
 				$title = $(item).find('h6');
 				$title.addClass('h2')
@@ -557,7 +591,7 @@ Lot # 28: Episode "Dog Myths" and Episode "Voice Flame Extinguisher" (2007, E74/
 				} else {
 					$badgeNew.addClass('orange').append(`<i class='icon'><svg><use xlink:href="#clockwise"></use></svg></i>Upcoming`);
 				}
-				const $bidder = $(item).find('.bidder-status-closed');
+				const $bidder = $(item).find('.bidder-status, .bidder-status-closed');
 				if ($bidder.length) {
 					const $text = $('<div class="auclting__text">');
 					$text.append($bidder);
@@ -578,91 +612,50 @@ Lot # 28: Episode "Dog Myths" and Episode "Voice Flame Extinguisher" (2007, E74/
 
 				$desc.append($(item).find('.auclink'));
 
-				$(item).find('.reg').addClass('waves-effect waves-light btn');
-				$(item).find('.cat').addClass('waves-effect waves-grey btn btn--secondary');
+                $reg = $(item).find('.reg');
+                if ($reg.length) {
+                    $reg.addClass('waves-effect waves-light btn');
+                    $reg.html($reg.html().replace('Login to bid', 'Sign in to bid'));
+                    $reg.html($reg.html().replace('Register to bid!', 'Register for the auction'));
+                }
+				$cat = $(item).find('.cat');
+                if ($cat.length) {
+                    $cat.html($cat.html().replace('View catalog', 'View catalogue items'));
+                    $cat.addClass('waves-effect waves-grey btn btn--secondary');
+                }
 
 				$('.filters').hide();
+
+                $('.hero__static-text').show();
+                $('main').prepend($('.auc__hero').show());
 			});
-		} else if ($('body').hasClass('auctions-catalog')) { // CATALOG
+/**
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * CATALOG
+ * SEARCH
+ * MY ITEMS
+ */
+		} else if ($('body').hasClass('auctions-catalog') || $('body').hasClass('search-index') || $('body').hasClass('my-items')) {
 			$('footer').append(`
-        <header>
-        <div class="header__settings">
-            <div class="header__col header__col--left"></div>
-            <div class="header__col header__col--right">
-                <a class="waves-effect btn-flat header__btn" href="https://propstore.com">
-                    Go to propstore.com
-                    <i class='icon aucheader__settings-icon-blank'><svg><use xlink:href="#target-blank"></use></svg></i>
-                </a>
-            </div>
-        </div>
-    
-        <div class="header__main">
-            <div class="header__col header__col--left">
-                <a data-target="sidenav" class="header__burger sidenav-trigger waves-effect btn-flat btn--icon">
-                    <i class='icon'><svg><use xlink:href="#burger"></use></svg></i>    
-                </a>
-    
-                <nav class="header__menu">
-                    <a class="btn-flat header__menu-link">
-                        <span class="header__menu-link-handle">
-                            All Auctions
-                        </span>
-                    </a>
-                    
-                    <a class="btn-flat header__menu-link">
-                        <span class="header__menu-link-handle">
-                            My Account
-                        </span>
-                    </a>
-                    
-                </nav>
-            </div>
-            <div class="header__col header__col--center">
-                <a class="header__logo" href='/home.html'>
-                    <svg><use xlink:href="#propstore"></use></svg>
-                </a>
-            </div>
-            <div class="header__col header__col--right">
-                <div class="header__search input-field input-field--search">
-                    <input placeholder="Search auctions" type="search">
-                    <a class="waves-effect btn-flat btn--icon input-field__button">
-                        <i class='icon'><svg><use xlink:href="#search"></use></svg></i>
-                    </a>
-                </div>
-            </div>
-        </div>
-    </header>
-
-    <div class="hero hero--static auc__hero">
-        <div class="hero__inner">
-            <div class="hero__image"></div>
-            <div class="hero__info">
-                <div class="hero__info-item">
-                    <div class="hero__info-item-inner">
-                        <span class="badge section-auctions__item-bage" style="display: none;">
-                            <i class='icon'><svg><use xlink:href="#"></use></svg></i>
-                        </span>
-                        <div class="hero__static-title">
-                        </div>
-                        <div class="hero__static-date">
-                            <i class='icon'><svg><use xlink:href="#calendar"></use></svg></i>
-                        </div>
-                        <div class="hero__static-buttons">
-                            <a class="waves-effect waves-light btn hero__btn auc__hero-aucinfo">
-                                Auction info
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
     <div class="auccatalog">
+        <div class="auccatalog__search h1">Advanced Search</div>
         <div class="auccatalog__nav">
             <div class="auccatalog__nav-inner">
                 <div class="auccatalog__nav-perpage auccatalog__nav-perpage--header">
-                    <div class="auccatalog__nav-perpage-label c-r">Items per page</div>
+                    <div class="auccatalog__nav-perpage-label c-r">Lots per page</div>
                     <div class="input-field input-field--select"></div>
                 </div>
                 <div class="auccatalog__nav-results c-r"></div>
@@ -673,73 +666,11 @@ Lot # 28: Episode "Dog Myths" and Episode "Voice Flame Extinguisher" (2007, E74/
 
         <div class="cards">
           <div class="cards__inner">
-            <div class="auccatalog__search-panel">
-                <li class="collapsible-li" style="display:none;">
-                    <div class="auccatalog__search-panel-title h4 collapsible-header">
-                        Advanced Search
-                        <i class='icon'><svg><use xlink:href="#close"></use></svg></i>
-                    </div>
-                    <div class='collapsible-body'>
-                        <div class="input-field">
-                            <input type="text" placeholder="Search" value="">
-                        </div>
-                        <div class="input-field input-field--label">
-                            <input type="text" placeholder="Any">
-                            <label>Lot number</label>
-                        </div>
-                        <div class="input-field input-field--label input-field--select">
-                            <select>
-                                <option value="0" title="" data-id="order_num" selected="selected">Default</option><option value="1" title="" data-id="time_left">Time Left</option><option value="2" title="" data-id="lot_num">Lot#</option><option value="3" title="" data-id="lot_name">Lot Name</option><option value="4" title="" data-id="newest">Newest</option><option value="5" title="" data-id="highest">Highest Price</option><option value="6" title="" data-id="lowest">Lowest Price</option><option value="7" title="" data-id="bids">Bids</option><option value="8" title="" data-id="views">Views</option></select>
-                            </select>
-                            <label>Sort by</label>
-                        </div>
-                        <div class="auccatalog__search-panel-subtitle c-s">
-                            Auction Items
-                        </div>
-                        <div class="auccatalog__search-panel-checkboxes">
-                            <label class="checkbox__label">
-                                <input type="checkbox" name="checkout-business" class="filled-in" />
-                                <span>Live Auctions</span>
-                            </label>
-                            <label class="checkbox__label">
-                                <input type="checkbox" name="checkout-business" class="filled-in" />
-                                <span>Upcoming Only</span>
-                            </label>
-                            <label class="checkbox__label">
-                                <input type="checkbox" name="checkout-business" class="filled-in" />
-                                <span>Sold Items</span>
-                            </label>
-                            <label class="checkbox__label">
-                                <input type="checkbox" name="checkout-business" class="filled-in" />
-                                <span>Featured</span>
-                            </label>
-                            <label class="checkbox__label">
-                                <input type="checkbox" name="checkout-business" class="filled-in" />
-                                <span>Show Closed Lots</span>
-                            </label>
-                        </div>
-    
-                        <div class="auccatalog__search-panel-row">
-                            <div class="input-field input-field--label">
-                                <input type="text" placeholder="0">
-                                <label>Min price</label>
-                            </div>
-                            <div class="input-field input-field--label">
-                                <input type="text" placeholder="No">
-                                <label>Max price</label>
-                            </div>
-                        </div>
-    
-                        <button class="waves-effect waves-light btn btn--tertiary auccatalog__search-btn">
-                            Search
-                        </button>
-                    </div>
-                </li>
-            </div>
+            <div class="auccatalog__search-panel"></div>
             <div class="cards__list">
                 <div class="card aucproduct__card">
                     <div class="card__img">
-                        <span class="heart card__heart"></span>
+                        <span class="heart card__heart" style="display: none;"></span>
                         <span class="badge card__badge" style="display: none;">
                             <i class="icon"><svg><use xlink:href="#"></use></svg></i>
                         </span>
@@ -750,6 +681,7 @@ Lot # 28: Episode "Dog Myths" and Episode "Voice Flame Extinguisher" (2007, E74/
                             <div class="aucproduct__card-details"></div>
                         </div>
                         <div class="card__actions"></div>
+                        <div class="card__bid"></div>
                     </div>
                 </div>
             </div>
@@ -761,7 +693,7 @@ Lot # 28: Episode "Dog Myths" and Episode "Voice Flame Extinguisher" (2007, E74/
         <div class="auccatalog__nav auccatalog__nav--footer">
             <div class="auccatalog__nav-inner">
                 <div class="auccatalog__nav-perpage auccatalog__nav-perpage--footer">
-                    <div class="auccatalog__nav-perpage-label c-r">Items per page</div>
+                    <div class="auccatalog__nav-perpage-label c-r">Lots per page</div>
                     <div class="input-field input-field--select"></div>
                 </div>
                 
@@ -772,30 +704,16 @@ Lot # 28: Episode "Dog Myths" and Episode "Voice Flame Extinguisher" (2007, E74/
       </div>
         `);
 
-			$('#headsec').remove();
-			$('body').prepend($('header'));
-			$('<main></main>').append($('#wrapper')).insertAfter($('header'));
-
 			let status;
 			if ($('.sale-closed').length) status = 'closed';
 
-			let aucPoster = window.getComputedStyle(document.querySelector('#AdvancedSearch'), ':before');
-			$('.hero__image').css({ backgroundImage: aucPoster.backgroundImage });
-			document.querySelectorAll('style:not([data-v2]), link[rel="stylesheet"]:not([data-v2])').forEach(item => item.remove());
-
-			$aucTitle = $('.tle h3').clone();
-			$aucTitle.find('span').remove();
-			$('.hero__static-title').html($aucTitle.text());
-			$('.hero__static-date').append($('.sale-date').first());
-			if (status) {
-				$badge = $('.auc__hero .badge');
-				switch (status) {
-					case 'closed':
-						$badge.addClass('red').append('Closed').show().find('use').attr('xlink:href', '#flag');
-						break;
-				}
-			}
-			$('.auc__hero-aucinfo').attr('href', $('.aucinfo').attr('href'));
+			requestAnimationFrame(() => {
+                const heroImage = window.getComputedStyle(document.querySelector('.hero__image'));
+                const aucPoster = window.getComputedStyle(document.querySelector('#AdvancedSearch'), ':before');
+                const backgroundImage = aucPoster.backgroundImage !== 'none' ? aucPoster.backgroundImage : heroImage.backgroundImage;
+                $('.hero__image').css({ backgroundImage });
+                document.querySelectorAll('style:not([data-v2]), link[rel="stylesheet"]:not([data-v2])').forEach(item => item.remove());
+            });
 
 			const $searcContent = $('.advSearchAccordionContent');
 			const $searchKey = $('<div class="input-field">');
@@ -808,6 +726,15 @@ Lot # 28: Episode "Dog Myths" and Episode "Voice Flame Extinguisher" (2007, E74/
 			const $searchLi = $('<li class="collapsible-li">').append($searchHeader).append($searchInner);
 			$('#ads01').addClass('collapsible').append($searchLi);
 			$('#advsSearch').addClass('waves-effect waves-light btn btn--tertiary auccatalog__search-btn');
+
+            const $saleSelect = $('#advsSale');
+            if ($saleSelect.length) {
+                const $saleSelectContainer = $saleSelect.closest('section.auctions');
+                const $searchSale = $('<div class="input-field input-field--label input-field--select">');
+                $searchSale.append($saleSelectContainer.find('label').addClass('active')).append($saleSelect);
+                $saleSelectContainer.append($searchSale);
+                $saleSelectContainer.find('.drplist').hide();
+            }
 
 			const $searchSort = $('<div class="input-field input-field--label input-field--select">');
 			$searchSort.append($('section.sort-by label').addClass('active')).append($('#advsSort'));
@@ -823,6 +750,9 @@ Lot # 28: Episode "Dog Myths" and Episode "Voice Flame Extinguisher" (2007, E74/
 			$searchMatch.append($('.categories-match label').addClass('active')).append($('#advsCatMatch'));
 			$('.categories-match').append($searchMatch);
 			$('#advsCatMatch_ctl').hide();
+
+            $('.auction-type').insertBefore('.sort-by');
+            $('.auction-type > label').addClass('h6');
 
 			const $searchPriceMin = $('<div class="input-field input-field--label">');
 			$searchPriceMin.append($('#advsMinPrice')).append($('<label>Min price</label>'));
@@ -841,33 +771,62 @@ Lot # 28: Episode "Dog Myths" and Episode "Voice Flame Extinguisher" (2007, E74/
 
 			$('.auccatalog__search-panel').append($('#ads01'));
 
-			$('#c3, #c4').addClass('browser-default').attr('style', '');
-			$('.auccatalog__nav-perpage--header .input-field').append($('#c3_ctl'));
-			$('.auccatalog__nav-perpage--footer .input-field').append($('#c4_ctl'));
 			const results = $('.page:contains("Results:")').html();
 			$('.auccatalog__nav-results').html(results.replace('<b>Results:</b>&nbsp;Viewing&nbsp;items&nbsp;', 'Results:&nbsp;'));
 			$('.auccatalog__nav-paginator').append($('#c2_ctl'));
 			$('.pageselector').wrap('<div class="input-field input-field--select" />');
-			$('.grid_list .lst').remove();
-			$('.grid_list .com').html('<i class="icon"><svg><use xlink:href="#view-list"></use></svg></i>');
+			$('.grid_list .com').remove();
+			$('.grid_list .lst').html('<i class="icon"><svg><use xlink:href="#view-list"></use></svg></i>');
 			$('.grid_list .sqr').html('<i class="icon"><svg><use xlink:href="#view-grid"></use></svg></i>');
 			$('.auccatalog__nav-view').html($('.grid_list').html());
 
+            $itemsPerPage = $('#c3').attr('style', '').clone();
+            $('#c3').addClass('browser-default');
+            $itemsPerPage.removeAttr('id').addClass('auccatalog__nav-perpage-select');
+			$('.auccatalog__nav-perpage--header .input-field').append($itemsPerPage);
+            $('.auccatalog__nav-perpage--footer .input-field').append($itemsPerPage.clone());
+
+            $('.auccatalog__nav-perpage-select').on('change', function (e) {
+                e.preventDefault();
+                const options = $(e.currentTarget).find('option').toArray();
+                const itemsPerPage = document.querySelector("#c3");
+                $('#c3').find('option[selected]').attr('selected', false);
+                options.forEach((option, index) => {
+                    if (option.selected) {
+                        itemsPerPage.value = +option.value;
+                        $('#c3').find('option').eq(index).attr('selected', true);
+                        itemsPerPage.dispatchEvent(new Event("change"));
+                    }
+                })
+            });
+
 			$('.aucproduct__card-details').html();
 			$card = $('.card').clone();
-			$('.cards__list').html('');
+			$('.cards__list').html('').toggleClass('cards__list--list', $('.compact_container'));
+            $('.cards').addClass(sam &&
+                sam.serverData &&
+                sam.serverData.variables &&
+                sam.serverData.variables.default &&
+                sam.serverData.variables.default.viewMode === 'list' ? 'cards--list' : 'cards--grid');
 
 
 			$('.item-block').each((i, item) => {
 				$cardItem = $card.clone();
-				$cardItem.find('.card__img').css('background-image', 'url(' + $(item).find('figure img').prop('src') + ')');
+                let bg = $(item).find('figure img').prop('src');
+                if (bg) {
+                    bg = bg.replace('_6.', '_2.');
+                    $cardItem.find('.card__img').css('background-image', 'url(' + bg + ')');
+                }
 				$cardItem.find('.card__movie').append($(item).find('.yaaa'));
 				$badge = $cardItem.find('.card__badge')
 				if ($(item).find('.ended.sold').length) {
 					$badge.addClass('red').append('Sold').show().find('use').attr('xlink:href', '#flag');
 				} else if ($(item).find('.ended.unsold').length) {
 					$badge.append('Unsold').show().find('use').attr('xlink:href', '#archive');
+				} else if ($(item).find('.ended').length) {
+					$badge.append('Closed').show().find('use').attr('xlink:href', '#archive');
 				}
+                
 				$(item).find('.item-status').remove();
 				$(item).find('.price-info li').each((k, info) => {
 					const $info = $(info);
@@ -886,31 +845,292 @@ Lot # 28: Episode "Dog Myths" and Episode "Voice Flame Extinguisher" (2007, E74/
 					</div>`);
 					$cardItem.find('.aucproduct__card-details-timer').append($timelft);
 				}
-				const $btn = $(item).find('.auclistbtn .orng');
+				const $btn = $(item).find('.auclistbtn .orng, .auclistbtn .grey');
 				if ($btn.length) {
 					$btn.addClass('waves-effect waves-light btn aucproduct__card-btn');
 					$cardItem.find('.card__actions').append($btn);
 				}
+                const $bid = $(item).find('[id^="blkRegularBid"]');
+                if ($bid.length) {
+                    $curInput = $bid.find('.currency-input');
+                    $curInputSpan = $('<div>');
+                    $curInputSpan.append($curInput.find('span'));
+                    $curInputLabel = $('<div class="currency-input__label">');
+                    $curInputLabel.html($curInput.html());
+                    $curInput.html('')
+                    $curInput.append($curInputLabel);
+                    $curInput.append($curInputSpan.find('span'));
+                    $bid.find('input[type="button"]').addClass('waves-effect waves-light btn btn--tertiary');
+                    $bid.find('input[type="text"]').attr('autocomplete', 'off');
+                    $cardItem.find('.card__bid').append($bid.addClass('blkRegularBid'));
+				}
+                const $heart = $(item).find('.bd-chk');
+                if ($heart.length) {
+                    $cardItem.find('.heart').append($heart).show();
+                    if ($heart.find('input').prop('checked')) $cardItem.addClass('card--liked');
+                    $heart.find('input').on('change', function(e) {
+                        $(e.target).closest('.card').toggleClass('card--liked', $heart.find('input').prop('checked'));
+                    });
+                }
+
+                $cardItem.on('click', function(e) {
+                    if (!$(e.target).is("input") && !$(e.target).is("a") && !$(e.target).closest('a').length) {
+                        window.location.href = $(e.target).closest('.card').find('.yaaa').attr('href');
+                    }
+                });
 
 				$('.cards__list').append($cardItem);
 			});
 
 			$('.container').prepend($('.auccatalog'));
-			$('.container').prepend($('.auc__hero'));
-		}
+            if ($('body').hasClass('auctions-catalog')) {
+                $aucTitle = $('.tle h3').clone();
+                $aucTitle.find('span').remove();
+                $('.hero__static-title').html($aucTitle.text());
+                $('.sale-date').find('br').remove();
+                $('.hero__static-date').append($('.sale-date').first()).show();
+                if (status) {
+                    $badge = $('.auc__hero .badge');
+                    switch (status) {
+                        case 'closed':
+                            $badge.addClass('red').append('Closed').show().find('use').attr('xlink:href', '#flag');
+                            break;
+                    }
+                }
+                $('.auc__hero-aucinfo').attr('href', $('.aucinfo').attr('href')).show();
+                $('.container').prepend($('.auc__hero').show());
+            } else if ($('body').hasClass('my-items')) {
+                $('.auccatalog__search').html('My Items');
+                $('<div class="auccatalog__tabs" />').insertAfter('.auccatalog__search').append($('#tabnav'));
+                $('#tabnav a').addClass('waves-effect btn-flat btn--rounded');
+                $('.tab-my-items-all:not(.selected)').hide();
+                requestAnimationFrame(() => {
+                    function getNodesThatContain(text) {
+                        var textNodes = $('.auccatalog__tabs, .auccatalog__nav').find('*')
+                            .contents().filter(function() {
+                               return this.nodeType == 3 && this.textContent.indexOf(text) > -1;
+                            });
+                        return textNodes.parent();
+                    };
+                    $item = getNodesThatContain('Item').add($('.auccatalog__search'));
+                    $item.each((i, item) => {
+                        item.innerHTML = item.innerHTML.replace('Item', 'Lot');
+                    });
+                    
+                    $('.tabnav-tab.selected')[0].scrollIntoView({inline: 'center'});
+                });
+            }
+            
+/**
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * BIDS
+ */
+ } else if ($('body').hasClass('auctions-bidding-history')) {
+    $('footer').append(`
+<div class="aucpage">
+    <div class="aucpage__h1 h1"></div>
+    <div class="auccatalog__nav">
+        <div class="auccatalog__nav-inner">
+            <div class="auccatalog__nav-perpage auccatalog__nav-perpage--header">
+                <div class="auccatalog__nav-perpage-label c-r">Items per page</div>
+                <div class="input-field input-field--select"></div>
+            </div>
+            <div class="auccatalog__nav-paginator"></div>
+        </div>
+    </div>
+    <div class="aucpage__content"><div class="aucpage__content-inner"></div></div>
+</div>
+`);
+    document.querySelectorAll('style:not([data-v2]), link[rel="stylesheet"]:not([data-v2])').forEach(item => item.remove());
 
+    $itemsPerPage = $('#bhPagesBottom').attr('style', '').clone();
+    $('#bhPagesBottom').addClass('browser-default');
+    $itemsPerPage.removeAttr('id').addClass('auccatalog__nav-perpage-select');
+    $('.auccatalog__nav-perpage--header .input-field').append($itemsPerPage);
+    $('.auccatalog__nav-paginator').append($('#c3_ctl'));
+    const $pageselector = $('<div class="input-field input-field--select">');
+    if ($('.pageselector').length > 1) {
+        $('.pageselector:last-child').remove();
+    }
+    $pageselector.append($('.pageselector'));
+    $('.auccatalog__nav-paginator').append($pageselector);
+    $('.aucpage').append($('.auccatalog__nav').clone().addClass('auccatalog__nav--footer'));
 
+    $('.auccatalog__nav-perpage-select').on('change', function (e) {
+        e.preventDefault();
+        const options = $(e.currentTarget).find('option').toArray();
+        const itemsPerPage = document.querySelector("#bhPagesBottom");
+        $('#bhPagesBottom').find('option[selected]').attr('selected', false);
+        options.forEach((option, index) => {
+            if (option.selected) {
+                itemsPerPage.value = option.value;
+                $('#bhPagesBottom').find('option')[index].selected = true
+                itemsPerPage.dispatchEvent(new Event("change"));
+            }
+        })
+    });
 
+    $('.aucpage__h1').html($('.ltitle h2').html());
+    $('.aucpage__content-inner').append($('.tablesection'));
 
+    $('.container').prepend($('.aucpage'));
+/**
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * INFO
+ */
+		} else if ($('body').hasClass('auctions-info')) {
+            $('footer').append(`
+    <div id="modal-shipping" class="modal">
+        <div class="modal-header modal-header--sticky">
+            <a class="modal-close btn-flat btn--icon"><i class='icon'><svg><use xlink:href="#close"></use></svg></i></a>
+        </div>
+        <div class="modal-content"></div>
+    </div>
 
+    <div id="modal-terms" class="modal">
+        <div class="modal-header modal-header--sticky">
+            <a class="modal-close btn-flat btn--icon"><i class='icon'><svg><use xlink:href="#close"></use></svg></i></a>
+        </div>
+        <div class="modal-content"></div>
+    </div>
+        `);
+            const status = $('#status').text().toLowerCase();
 
+            $badge = $('.section-auctions__item-bage');
+            switch (status) {
+                case 'upcoming': {
+                    $badge.addClass('orange').append('Upcoming').find('use').attr('xlink:href', '#clockwise');
+                    break;
+                }
+                case 'in progress': {
+                    $badge.addClass('green').append('Live').find('use').attr('xlink:href', '#live');
+                    break;
+                }
+                case 'closed': {
+                    $badge.addClass('red').append('Closed').find('use').attr('xlink:href', '#flag');
+                    break;
+                }
+            }
 
+            $('.hero__static-title').append($('#name').text());
 
+            let start_date = $('#start_date').text();
+            if (start_date) {
+                start_date = moment(start_date).format('D MMM h:mma');
+                const start_date_tz_code = $('#start_date_tz_code').text();
+                if (start_date_tz_code) start_date += ` (${start_date_tz_code})`;
+            }
 
+            let end_date = $('#end_date').text();
+            if (end_date) {
+                end_date = moment(end_date).format('D MMM h:mma');
+                const end_date_tz_code = $('#end_date_tz_code').text();
+                if (end_date_tz_code) end_date += ` (${end_date_tz_code})`;
+            }
 
+            if (start_date || end_date) {
+                $('.hero__static-date').show().append([start_date, end_date].join(' &minus; '));
+            }
 
+            const time_left = $('#time_left').text();
+            $timer = $('.hero__timer-panel');
+            if (time_left) {
+                let label = '';
+                let time = '';
+                let remain = 0;
+                const kk = {
+                    'd': 60 * 60 * 24,
+                    'h': 60 * 60,
+                    'm': 60,
+                }
+                for (let i = 0; i<time_left.length; i++) { // run string
+                    if (Number(time_left[i]) > 0 || time_left[i] === '0') {
+                        time += time_left[i];
+                    } else {
+                        if (time) {
+                            const k = kk[time_left[i]] || 0;
+                            remain += time * k;
+                            time = '';
+                        } else if (!remain) {
+                            label += time_left[i];
+                        }
+                    }
+                }
+                $timer.show();
+                // $('.hero__timer-panel-title').html(label);
+                setTimer($timer, remain);
+            }
 
-		// Plugin initialization
+            $('.auc-btn__register').attr('href', $('#register_to_bid_url').text());
+            $('.auc-btn__catalog').attr('href', $('#catalog_url').text());
+
+            $catalogueTimer = $('.sell-cta__catalog-timer');
+            if ($catalogueTimer.length) {
+                setTimer($catalogueTimer, $catalogueTimer.data('sec'));
+            }
+
+            $('.share__item').each((i, item) => {
+                $(item).attr('href', $(item).attr('href') + $('#info_url').text());
+            });
+            
+            if ($('.auc-info').length) { // new template
+                document.querySelectorAll('style:not([data-v2]), link[rel="stylesheet"]:not([data-v2])').forEach(item => item.remove());
+                $('.container').prepend($('.auc-info'));
+
+                $('#modal-shipping .modal-content').append($('div.shipping'));
+                $('body').append($('#modal-shipping'));
+
+                $('#modal-terms .modal-content').append($('div.terms'));
+                $('body').append($('#modal-terms'));
+            } else {
+                $('.container').prepend($('div.terms').removeClass('terms'));
+                $('.container').prepend($('div.shipping').removeClass('shipping'));
+                $('.container').prepend($('.desc').html());
+            }
+        }
+/**
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * Plugin initialization
+ */
 		$('.collapsible').collapsible({
 			onOpenEnd: (el) => {
 				const body = el.querySelector('.collapsible-body');
@@ -928,14 +1148,29 @@ Lot # 28: Episode "Dog Myths" and Episode "Voice Flame Extinguisher" (2007, E74/
 		$('.sidenav').sidenav();
 		$('input[data-length], textarea[data-length]').characterCounter();
 		M.updateTextFields();
-
+/**
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * HEADER
+ */
 		function resize() {
 			headerFloat();
 		}
-		resize();
+		setTimeout(resize, 500);
 		$(window).on('resize', resize);
 
-		// HEADER
 		const HEADER_THRESHOLD = 100; // px
 		let previousScroll = 0;
 		function headerFloat() {
@@ -944,7 +1179,7 @@ Lot # 28: Episode "Dog Myths" and Episode "Voice Flame Extinguisher" (2007, E74/
 			const $header = $('header');
 			if ($header.length) {
 				$header.css('maxWidth', $('main').width() + 'px');
-				const top = $('.header__main').offset().top;
+				const top = 40; // px
 				const bottom = $header.height();
 				$(window).on('scroll', M.throttle((e) => {
 					const currentScroll = document.body.scrollTop || window.scrollY || document.documentElement.scrollTop;
@@ -976,6 +1211,47 @@ Lot # 28: Episode "Dog Myths" and Episode "Voice Flame Extinguisher" (2007, E74/
 				}, 100));
 			}
 		}
+
+		function scrollToWarning () {
+			const warning = document.querySelector('main .warning');
+			if (warning) warning.scrollIntoView({behavior: 'smooth', block: 'center'});
+		}
+        requestAnimationFrame(scrollToWarning);
+
+        function setTimer ($timer, seconds) {
+			let day = 0;
+            let hour = 0;
+            let min = 0;
+            let sec = seconds;
+            if (seconds && seconds > 0) {
+                const interval = setInterval(() => {
+                    sec = --seconds;
+                    if (sec <= 0) {
+                        clearInterval(interval);
+                        window.location.reload();
+                    }
+                    day = Math.floor(sec / 60 / 60 / 24);
+                    sec -= day * 60 * 60 * 24;
+                    hour = Math.floor(sec / 60 / 60);
+                    sec -= hour * 60 * 60;
+                    min = Math.floor(sec / 60 );
+                    sec -= min * 60;
+                    $timer.find('.day').html(day);
+                    $timer.find('.hour').html(hour);
+                    $timer.find('.min').html(min);
+                    $timer.find('.sec').html(sec);
+                }, 1000);
+            }
+		}
+
 		document.body.classList.add('loaded'); // if svg fail
 	}); // end of document ready
 });
+
+if (!generateGoogleCalendarURL) function generateGoogleCalendarURL(lotName, urlLink) {
+    return 'NeedGenerateGoogleCalendarURL';
+}
+
+if (!generateICSFileURL) function generateICSFileURL(lotName, urlLink) {
+    return 'NeedGenerateICSFileURL';
+}

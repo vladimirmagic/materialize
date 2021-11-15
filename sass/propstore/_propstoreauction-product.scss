@@ -10,6 +10,30 @@
 .aucproduct__details {
 	margin-bottom: 2rem;
 	font-size: 1.5em;
+
+	#currentBid,
+	.biddingHistoryLink:not(.btn) {
+		display: inline;
+		font-weight: 500;
+	}
+
+	.time-left {
+		float: none !important;
+
+		.in-progress:last-child {
+			color: $color-red;
+			font-weight: 500;
+		}
+	}
+
+	.bid-status-owner {
+		padding: 0 4px 1px;
+		font-size: 1.25rem;
+		color: white;
+		background: $color-turquoise;
+		border-radius: 4px;
+		white-space: nowrap;
+	}
 }
 
 .aucproduct__details-line {
@@ -20,25 +44,95 @@
 	color: $color-red;
 }
 
+.aucproduct__button {
+	margin-bottom: 2rem;
+
+	.btn {
+		width: 100%;
+	}
+}
+
 .aucproduct__form {
 	display: flex;
 	justify-content: space-between;
 	margin-bottom: 2rem;
+
+	.maxbid {
+		list-style: none;
+
+		.mxbid {
+			display: none;
+		}
+
+		.maxbid-curr {
+			position: absolute;
+			z-index: 100;
+			margin: 15px 0 0 12px;
+			color: $color-font-grey;
+		}
+
+		.txt-max-bid {
+			width: 100% !important;
+		}
+
+		.youre-winning {
+			font-weight: 500;
+			color: $color-turquoise;
+		}
+
+		label {
+			color: $color-font-grey;
+		}
+
+		.warning {
+			display: block;
+			font-weight: 500;
+			color: $color-red;
+		}
+
+		br {
+			display: inline;
+			content: '';
+		  }
+	}
 }
 
 .aucproduct__form-item {
-	flex-basis: 50%;
-	height: 3.5rem;
+	flex-basis: calc(50% - .75rem);
 	margin-top: 0;
 	margin-bottom: 0;
-
-	& + & {
-		margin-left: 1.5rem;
-	}
 
 	input:not(.browser-default) {
 		height: 3.5rem !important;
 		background-color: white;
+	}
+}
+
+.aucproduct .product__buttons-grey {
+	#watchlist_button {
+		position: relative;
+	}
+}
+
+.aucproduct .product__button-grey {
+	flex-basis: calc(50% - .75rem);
+
+	& + & {
+		margin-left: 0;
+	}
+
+	.watch {
+		position: absolute !important;
+		left: 0;
+		right: 0;
+		top: 0;
+		bottom: 0;
+		text-decoration: none !important;
+	}
+
+	.remove-watch:not(.btn) {
+		color: white;
+		background: $color-turquoise;
 	}
 }
 
@@ -81,6 +175,51 @@
 	}
 }
 
+.aucproduct__calendar {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin-bottom: 1.5rem;
+
+	#calendarBtnBox {
+		flex: 1 1 100%;
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+	}
+
+	.calendarBtn {
+		flex: 1 1 33%;
+		padding: 0 .5rem;
+		color: $color-base;
+		border-color: $color-grey;
+	}
+
+	.calendarBtn + .calendarBtn {
+		margin-left: .5rem;
+	}
+}
+
+.aucproduct__calendar-title {
+	margin-right: 1rem;
+	margin-bottom: 0;
+}
+
+.aucproduct .product__detail {
+	b {
+		font-weight: 600;
+	}
+
+	.l2desctextwhite {
+		font-weight: bold;
+		margin: .5em 0 .5em 1.5rem;
+	}
+
+	.l3desctextwhite {
+		margin: 0 0 0 2.5rem;
+	}
+}
+
 @media #{$breakpoint-tablet} {
 	.aucproduct__form-item {
 		& + & {
@@ -92,5 +231,16 @@
 @media #{$medium-and-down} {
 	.aucproduct__also .also-like__arrows {
 		display: none;
+	}
+}
+
+@media #{$small-and-down} {
+	.aucproduct__calendar {
+		display: block;
+	}
+
+	.aucproduct__calendar-title {
+		margin-right: 0;
+		margin-bottom: 1rem;
 	}
 }

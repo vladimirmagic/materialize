@@ -1,3 +1,22 @@
+body.search-index {
+	.auccatalog__search {
+		display: block;
+	}
+
+	#adv_search_categories,
+	#adv_search_auctions,
+	.categories-match {
+		display: none;
+	}
+}
+
+.auccatalog__search {
+	display: none;
+	margin-bottom: 0;
+	margin-top: 1em;
+	text-align: center;
+}
+
 .auccatalog__nav {
 	@extend .content;
 	padding-top: 3.75rem;
@@ -12,6 +31,16 @@
 			box-shadow: none;
 		}
 	}
+
+	.select-wrapper + .select-wrapper {
+		display: none;
+	}
+
+	.input-field--filled:not(:focus-within) input[type=text] {
+		border: $input-border;
+		width: calc(100% - 2px);
+		margin: 0 1px;
+	}
 }
 
 .auccatalog__nav-inner {
@@ -25,6 +54,11 @@
 	background: white;
 	border-radius: 6px;
 	box-shadow: $shadow-base;
+
+	.auccatalog__nav--index & {
+		padding: 0;
+		box-shadow: none;
+	}
 }
 
 .auccatalog__nav-perpage {
@@ -62,14 +96,14 @@
 		align-items: center;
 	}
 
-	.paginator * {
+	.paginator > * {
 		display: inline-block;
-		margin: 0 .25rem;
+		margin: 0 .5rem;
 		font-size: 20px;
 	}
 
-	.paginator a:not(.btn) {
-		font-weight: 300;
+	.paginator .page a:not(.btn) {
+		font-weight: 400;
 		text-decoration: none;
 		color: $color-font-grey;
 
@@ -78,8 +112,18 @@
 		}
 	}
 
+	.paginator .arrow a:not(.btn) {
+		font-weight: 400;
+		text-decoration: none;
+
+		&:hover {
+			color: $color-font-grey;
+		}
+	}
+
 	.break {
 		position: relative;
+		width: 1px;
 		margin: 0 1rem;
 		color: rgba(0,0,0,0);
 
@@ -127,6 +171,26 @@
 
 	.cards__list {
 		flex: 1 1 100%;
+	}
+
+	.cards--list {
+		.cards__inner {
+			max-width: $width-4cards + $card-margin;
+		}
+
+		.card {
+			width: 100%;
+			max-width: 100%;
+			height: auto;
+	
+			.card__info {
+				height: auto;
+			}
+		}
+
+		.card + .card {
+			margin-top: 1.5rem;
+		}
 	}
 }
 
@@ -201,6 +265,8 @@
 
 	.icon {
 		margin: 0;
+		width: 16px;
+		height: 18px;
 
 		.collapsible-li:not(.active) & {
 			transform: rotate(45deg);
@@ -219,10 +285,15 @@
 	}
 }
 
-#adv_search_categories {
+#adv_search_categories,
+.auction-type {
 	label {
 		color: $color-base;
 	}
+}
+
+.auction-type {
+	padding-bottom: 1rem;
 }
 
 .auccatalog__search-panel-row {
@@ -258,6 +329,59 @@
 
 	a:not(.btn) {
 		text-decoration: none;
+	}
+
+	.youre-winning {
+		padding: 0 4px 1px;
+		font-weight: 500;
+		color: white;
+		background: $color-turquoise;
+		border-radius: 4px;
+		white-space: nowrap;
+	}
+
+	.blkRegularBid {
+		position: relative;
+		margin-top: 1rem;
+
+		section {
+			width: 100%;
+			max-width: calc(50% - 4px);
+		}
+
+		.btn {
+			width: 100%;
+			padding: 0 8px;
+		}
+	}
+
+	.currency-input__label {
+		position: absolute;
+		margin: 15px 0 0 12px;
+		color: $color-font-grey;
+	}
+
+	.max-bid-warning.warning {
+		color: $color-red;
+	}
+
+	.lot-item {
+		position: absolute;
+		z-index: 100;
+		left: 0;
+		top: 0;
+		width: 2.5rem;
+		height: 2.5rem;
+		opacity: 0;
+	}
+
+	.card__actions {
+		max-width: 308px;
+	}
+
+	.card__bid {
+		width: 100%;
+		max-width: 624px;
 	}
 }
 
@@ -298,7 +422,7 @@
 		max-width: $width-4cards-m;
 	}
 
-	.auccatalog__search-panel {
+	.cards--grid .auccatalog__search-panel {
 		flex-basis: $card-width-m;
 		margin-right: $card-margin-m;
 	}
@@ -333,9 +457,15 @@
 			display: none;
 		}
 	}
+
+	.aucproduct__card {
+		.card__actions {
+			max-width: 100%;
+		}
+	}
 }
 
-@media only screen and (max-width: #{$width-4cards-m + 40}) {
+@media only screen and (max-width: #{$width-4cards-m + 110}) {
 	.auccatalog__nav-inner {
 		max-width: $card-width-m * 3 + $card-margin-m * 2;
 	}
@@ -368,10 +498,53 @@
 	}
 }
 
+@media #{$medium-and-up} {
+	.auccatalog {
+		.cards--list {
+			.card {
+				display: flex;
+				justify-content: space-between;
+				align-items: center;
+			}
+
+			.card__img {
+				flex: 0 0 $card-width-m;
+				height: 100%;
+				min-height: $card-width-m;
+				border-top-right-radius: 0;
+			}
+
+			.card__info {
+				flex: 1 1 100%;
+				display: block;
+			}
+
+			.card__actions {
+				margin-top: 1.5rem;
+			}
+		}
+	}
+
+	@media #{$extra-large-and-up} {
+		.auccatalog {
+			.cards--list {
+				.card__img {
+					flex: 0 0 $card-width;
+					min-height: $card-width;
+				}
+			}
+		}
+	}
+}
+
 @media #{$medium-and-down} {
 	.auccatalog__nav {
 		padding-top: 3.5rem;
 		padding-bottom: 1rem;
+	}
+
+	.auccatalog__nav-inner {
+		justify-content: center;
 	}
 
 	.auccatalog__nav-perpage,
@@ -381,6 +554,16 @@
 
 	.auccatalog .cards__inner {
 		flex-wrap: wrap;
+	}
+
+	.auccatalog .cards--grid .cards__inner {
+		padding-right: .5rem;
+	}
+
+	.auccatalog .cards--list .cards__inner {
+		.card {
+			margin-right: 1.5rem;
+		}
 	}
 
 	.auccatalog__search-panel {

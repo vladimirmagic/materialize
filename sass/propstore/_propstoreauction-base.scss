@@ -1,18 +1,21 @@
 body.index-index,
+body.auctions-index,
 body.lot-details-index,
-body.auctions-catalog {
+body.auctions-catalog,
+body.auctions-info,
+body.auctions-bidding-history,
+body.search-index,
+body.my-items {
 	#custom-header,
 	#headsec,
 	.mymenu,
 	.auctions-filter,
 	.srch_sec,
 	.bodybox,
-	.smpagination {
+	#toppaginator,
+	.smpagination,
+	form#AdvancedSearch:before,
+	.filters {
 		display: none;
 	}
-}
-
-.header__btn .aucheader__settings-icon-blank {
-	width: 12px;
-	height: 12px;
 }

@@ -571,3 +571,37 @@
     </div>   
   </div>
 </div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+	  $(function() {
+      $('.modal-gallery').modal({
+        opacity: .75,
+            dismissible: true,
+        onCloseStart: (el) => {
+          const carouselElement = el.querySelector('.modal-gallery__carousel');
+          if (carouselElement) {
+            const carousel = M.Carousel.getInstance(carouselElement);
+            if (carousel) carousel.destroy();
+          }
+        },
+        onOpenEnd: (el, trigger) => {
+          const modalSlider = $(el).find('.modal-gallery__carousel').carousel({
+            fullWidth: true,
+            indicators: true,
+            onCycleTo: function(item, dragged) {}
+          });
+          const productGallery = trigger.closest('.product__gallery');
+          if (productGallery) {
+            const timer = document.body.classList.contains('touch') ? 300 : 0; // on touch wait for active
+            setTimeout(() => {
+              const active = productGallery.querySelector('.carousel-item.active');
+              const index = productItems.indexOf(active);
+              modalSlider[0].M_Carousel.set(index);
+            }, timer);
+          }
+        }
+      });
+    });
+  });
+</script>

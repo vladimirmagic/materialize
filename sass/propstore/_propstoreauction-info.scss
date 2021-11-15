@@ -1,0 +1,313 @@
+.auc__hero.hero--auctions {
+	.hero__carousel {
+		height: 100% !important;
+	}
+
+	.hero__static-date {
+		margin-bottom: 2rem;
+	}
+
+	.hero__btn {
+		padding: 0 1rem;
+		margin-top: 1rem;
+		margin-right: 1rem;
+
+		&.btn--secondary {
+			color: white;
+			background-color: rgba(0,0,0,0);
+			border: 1px solid white;
+		}
+	}
+}
+
+.hero__timer-panel {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	min-height: 72px;
+	margin-bottom: 1rem;
+	padding: 0 24px;
+	color: $color-base;
+	font-weight: 500;
+	background: #fff;
+	border-radius: 6px;
+}
+
+.hero__timer-panel-title {
+	font-size: 1rem;
+	line-height: 1.2;
+}
+
+.hero__timer {
+	flex: 0 1 320px;
+	display: flex;
+}
+
+.hero__timer-item {
+	flex: 1 1 80px;
+	text-align: center;
+
+	& + & {
+		border-left: 1px solid $color-grey;
+	}
+}
+
+.hero__timer-label {
+	text-transform: uppercase;
+	font-size: 10px;
+	line-height: 1;
+  	letter-spacing: .12em;
+}
+
+.auc-info__nav {
+	padding-top: 4rem;
+	padding-bottom: 4rem;
+	text-align: center;
+
+	.btn {
+		margin: .5rem;
+	}
+
+	.share {
+		display: inline;
+		margin-left: 1.5rem;
+	}
+}
+
+.auc-info__grey {
+	padding-top: 6em;
+	padding-bottom: 6em;
+	background: $color-bg;
+
+	.how {
+		margin-bottom: 7.5rem;
+	}
+}
+
+.auc-info__inner {
+	@extend .content;
+}
+
+.sell-cta.sell-cta--auction {
+	max-width: $w103;
+	margin: 0 auto;
+
+	.sell-cta__img {
+		max-width: 36em;
+		min-height: 37em;
+		background-position: 50% 50%;
+	}
+
+	.sell-cta__info {
+		padding-right: 4.5rem;
+		justify-content: space-between;
+	}
+
+	.sell-cta__info-inner {
+		max-width: none;
+		margin-right: 5rem;
+	}
+}
+
+.sell-cta__catalog {
+	flex: 0 0 22em;
+	max-width: 22em;
+	margin: 0 auto;
+	text-align: center;
+
+	.btn {
+		width: 100%;
+		margin-top: 1.5rem;
+		padding: 0;
+	}
+}
+
+.sell-cta__catalog-title {
+	margin-bottom: .5em;
+}
+
+.sell-cta__catalog-timer-panel {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	min-height: 72px;
+	padding: 0 24px;
+	color: $color-base;
+	font-weight: 500;
+	background: #fff;
+	border-radius: 6px;
+}
+
+.sell-cta__catalog-timer {
+	flex: 0 1 320px;
+	display: flex;
+}
+
+.sell-cta__catalog-timer-item {
+	flex: 1 1 80px;
+	text-align: center;
+
+	& + & {
+		border-left: 1px solid $color-grey;
+	}
+}
+
+.sell-cta__catalog-timer-label {
+	text-transform: uppercase;
+	font-size: 10px;
+	line-height: 1;
+  	letter-spacing: .12em;
+}
+
+.sell-cta__catalog-note {
+	margin-top: 1.5rem;
+	font-size: 12px;
+}
+
+.auc-info__video {
+	@extend .content;
+	position: relative;
+	max-width: $w103;
+	margin: 100px auto 0;
+	height: 728px;
+
+	div {
+		position: relative;
+		height: 100%;
+	}
+
+	iframe {
+		position: absolute;
+		width: 100%;
+		height: 100%;
+	}
+}
+
+.auc-info__cta {
+	margin-top: 5rem;
+	text-align: center;
+}
+
+.auc-info__lots {
+	background: white;
+
+	.cards {
+		background: white;
+	}
+}
+
+@media only screen and (max-width: 1700px) {
+	.sell-cta.sell-cta--auction {
+		.sell-cta__img {
+			max-width: 36em;
+			min-height: 37em;
+			background-position: 50% 50%;
+		}
+		.sell-cta__info {
+			padding-left: 4rem;
+			padding-right: 2rem;
+		}
+	}
+}
+
+@media only screen and (max-width: 1440px) {
+	.sell-cta.sell-cta--auction {
+		.sell-cta__img {
+			max-width: 26em;
+			min-height: 27em;
+		}
+		.sell-cta__info {
+			padding-left: 3rem;
+			padding-top: 2rem;
+			padding-bottom: 2rem;
+		}
+		.sell-cta__info-inner {
+			margin-right: 3rem;
+		}
+	}
+}
+
+@media #{$large-and-down} {
+	.auc-info__nav {
+		.share {
+			display: block;
+			margin-top: 1rem;
+			margin-left: 0;
+		}
+	}
+
+	.sell-cta.sell-cta--auction {
+		display: block;
+
+		.sell-cta__img {
+			max-width: 100% !important;
+			min-height: 23em;
+			border-bottom-left-radius: 0;
+			border-top-left-radius: 100px;
+		}
+	}
+
+	.auc-info__video {
+		margin-top: 60px;
+		height: 456px;
+	}
+}
+
+@media #{$medium-and-down} {
+	.auc-info__grey {
+		padding-top: 4em;
+		padding-bottom: 4em;
+	
+		.how {
+			margin-bottom: 4rem;
+		}
+	}
+
+	.auc-info__cta {
+		margin-top: 3rem;
+	}
+}
+
+@media only screen and (max-width: 800px) {
+	.sell-cta.sell-cta--auction {
+		.sell-cta__info {
+			display: block;
+			padding: 3rem 2rem 2.5rem;
+			text-align: center;
+		}
+
+		.sell-cta__info-inner {
+			margin: 0;
+		}
+	}
+}
+
+@media #{$small-and-down} {
+	.auc-info__nav {
+		max-width: 400px;
+		margin: 0 auto;
+		padding: 2rem 1.5rem;
+	
+		.btn {
+			display: flex;
+			justify-content: center;
+			margin: 1.5rem 0;
+		}
+	}
+
+	.auc-info__video {
+		height: 180px;
+	}
+}
+
+@media only screen and (max-width: 440px) {
+	.auc__hero.hero--auctions {
+		.hero__btn {
+			display: flex;
+			justify-content: center;
+			width: 100%;
+			margin-top: 1.5rem;
+			margin-right: 0;
+		}
+	}
+}

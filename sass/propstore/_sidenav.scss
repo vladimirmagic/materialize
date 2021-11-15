@@ -66,7 +66,7 @@ $main-link-height: 72px;
 	transform-origin: 0 100%;
 }
 
-.sidenav__menu {
+.sidenav:not(.auc-sidenav) .sidenav__menu {
 	&:focus-within {
 		.sidenav__menu-link,
 		& + .sidenav__settings {
@@ -177,20 +177,29 @@ $main-link-height: 72px;
 	text-transform: none;
 }
 
-.sidenav__menu-block-link,
+.sidenav .sidenav__menu-block-link,
 .sidenav .menu-auction-link {
 	@extend .sidenav__menu-underline;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
 	width: 100%;
-	height: $main-link-height;
-	line-height: $main-link-height;
+    height: min-content;
+	min-height: $main-link-height;
+	padding-left: 84px;
+	padding-top: 12px;
+	padding-bottom: 12px;
+	line-height: 18px;
 	font-size: 16px;
 	letter-spacing: 0;
 	text-transform: none;
 
-	.icon {
+	& > .icon {
+		position: absolute;
+		left: 24px;
+		top: 12px;
 		width: 48px;
 		height: 48px;
-		margin-right: 12px;
 		background-position: 50% 50%;
 		background-size: cover;
 		background-repeat: no-repeat;
@@ -200,6 +209,19 @@ $main-link-height: 72px;
 
 	&:last-of-type::before {
 		display: none;
+	}
+
+	.badge {
+		margin-top: .35rem;
+		padding: 0 8px;
+		font-size: 9px;
+		line-height: 1.2rem;
+		height: 1.2rem;
+
+		.icon {
+			width: 12px !important;
+			height: 20px !important;
+		}
 	}
 }
 

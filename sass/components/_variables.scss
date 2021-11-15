@@ -65,6 +65,7 @@ $color-green: color("green", "base") !default;
 $color-blue: color("blue", "base") !default;
 $color-red: color("red", "base") !default;
 $color-bg-red: color("red", "lighten-5") !default;
+$color-font-grey-blue: #92A4B5;
 
 $primary-color: color("deep-purple", "base") !default;
 $primary-color-light: lighten($primary-color, 15%) !default;
@@ -265,7 +266,7 @@ $large-and-down: "only screen and (max-width : #{$large-screen})" !default;
 
 $media-fullhd-up: "only screen and (min-width: 1921px)" !default;
 
-$breakpoint-4cards: "only screen and (max-width: #{$width-4cards + 112})" !default;
+$breakpoint-4cards: "only screen and (max-width: #{$width-4cards + 140})" !default;
 $breakpoint-pre-tablet: "only screen and (min-width : #{$medium-screen-up}) and (max-width : 1023px)" !default;
 $breakpoint-tablet: "only screen and (max-width: 1024px)" !default;
 

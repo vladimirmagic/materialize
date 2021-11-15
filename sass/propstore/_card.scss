@@ -143,6 +143,7 @@ a.card:not(.btn) { // fix a
 
 .card__description {
 	flex: 1 1 100%;
+	width: 100%;
 }
 
 .card-blog__description {
@@ -202,6 +203,13 @@ a.card:not(.btn) { // fix a
 	margin-bottom: .5em;
 	line-height: 1.5;
 	font-weight: 300;
+
+	strong {
+		display: block;
+		white-space: nowrap;
+		overflow: hidden;
+		text-overflow: ellipsis;
+	}
 }
 
 .card-blog__excerpt {
@@ -256,6 +264,29 @@ a.card:not(.btn) { // fix a
 		width: 16px;
 		height: 16px;
 	}
+}
+
+.card__price-sold {
+	width: 18px;
+	height: 18px;
+	margin-right: .25rem;
+	font-style: normal;
+	font-size: 1rem;
+	font-weight: 600;
+	line-height: 1;
+	border-radius: 50%;
+	background: $color-red;
+
+	svg {
+		width: 80%;
+		height: 80%;
+	}
+}
+
+.card__price-sold-login {
+	font-size: 1rem;
+	font-weight: 300;
+	text-decoration: underline;
 }
 
 .card__date {

@@ -368,6 +368,7 @@
             'buy.html': 'jade/propstore/buy.jade',
             'results.html': 'jade/propstore/results.jade',
             'product.html': 'jade/propstore/product.jade',
+            'product-sold.html': 'jade/propstore/product-sold.jade',
             'auctions.html': 'jade/propstore/auctions.jade',
             'bag.html': 'jade/propstore/bag.jade',
             'checkout.html': 'jade/propstore/checkout.jade',
@@ -392,6 +393,10 @@
             'propstoreauction.html': 'jade/propstore/propstoreauction.jade',
             'propstoreauction-product.html': 'jade/propstore/propstoreauction-product.jade',
             'propstoreauction-catalog.html': 'jade/propstore/propstoreauction-catalog.jade',
+            'propstoreauction-info.html': 'jade/propstore/propstoreauction-info.jade',
+            'propstoreauction-search.html': 'jade/propstore/propstoreauction-search.jade',
+            'propstoreauction-bids.html': 'jade/propstore/propstoreauction-bids.jade',
+            'propstoreauction-my.html': 'jade/propstore/propstoreauction-my.jade',
           }
         }
       },

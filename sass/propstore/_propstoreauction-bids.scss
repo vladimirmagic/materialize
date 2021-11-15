@@ -1,0 +1,29 @@
+.aucpage__h1 {
+	margin-bottom: 0;
+	margin-top: .5em;
+	text-align: center;
+}
+
+.aucpage__content {
+	@extend .content;
+	padding-top: 4rem;
+	padding-bottom: 4rem;
+	background: $color-bg;
+}
+
+.auctions-bidding-history {
+	.tablesection {
+		max-width: $w36;
+		margin: 0 auto;
+
+		th:last-child,
+		td:last-child {
+			text-align: right;
+		}
+
+		th {
+			width: auto !important;
+			text-transform: uppercase;
+		}
+	}
+}

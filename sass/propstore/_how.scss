@@ -16,8 +16,8 @@
 }
 
 .how__title {
+	@extend .h2;
 	margin-bottom: .5em;
-	font-size: 48px;
 }
 
 .how__description {
@@ -71,10 +71,6 @@
 	.how__info {
 		flex: 1 1 30%;
 		padding-right: 32px;
-	}
-
-	.how__title {
-		font-size: 28px;
 	}
 	
 	.how__description {

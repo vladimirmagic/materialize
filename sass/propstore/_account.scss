@@ -99,7 +99,7 @@ a.account__card:not(.btn) { // fix a
     }
 }
 
-@media only screen and (max-width: #{$width-4cards-m + 80}) {
+@media only screen and (max-width: #{$width-4cards-m + 110}) {
 	.account__cards-inner {
 		max-width: $card-width-m * 3 + $card-margin-m * 3;
 	}

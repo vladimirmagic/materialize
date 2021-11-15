@@ -1,22 +1,45 @@
 <div class="filters">
     <div class="filters__header">
-        <div class="filters__found">
-            214 Items
+        <div class="filters__found h4">
+            9214 Results
+            <span class="filters__found-plus">
+                <strong>+1228</strong> in Auction & Buy now 
+                <a href="#all">
+                    View all
+                </a>
+            </span>
         </div>
-        <div class="filters__hide">
-            <label class="checkbox__label">
+        <div class="filters__tabs">
+            <button class="waves-effect btn-flat btn--rounded active">
+                Auction
+            </button>
+            <button class="waves-effect btn-flat btn--rounded" disabled>
+                Buy Now
+            </button>
+            <button class="waves-effect btn-flat btn--rounded">
+                Sold
+            </button>
+            <!-- <label class="checkbox__label">
                 <input type="checkbox" class="filled-in" checked="checked" />
                 <input type="hidden" />
                 <span>Hide archived items</span>
-            </label>
+            </label> -->
         </div>
+    </div>
+    <div class="filters__search input-field input-field--search">
+        <input placeholder="Search" type="search" value="Star Wars">
+    </div>
+    <div class="filters__open-button-header">
+        <button class="waves-effect waves-grey btn btn--secondary filters__open-button-header-button">
+            <span class="btn__title">Filter</span>
+            <i class='icon'><svg><use xlink:href="#filter"></use></svg></i>
+            <span class="filters__enabled">1</span>
+        </button>
     </div>
     <div class="filters__body">
             <button data-target="sidenav-filter" class="sidenav-trigger waves-effect waves-grey btn btn--secondary filters__open-button">
                 <span class="btn__title">Filter</span>
-                <i class="icon">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 21 20"><path d="M2.69 4.69a.94.94 0 01.94-.94h13.75a.94.94 0 010 1.88H3.63a.94.94 0 01-.94-.94zm2.5 5a.94.94 0 01.93-.94h8.75a.94.94 0 010 1.88H6.13a.94.94 0 01-.94-.94zm2.5 5a.94.94 0 01.93-.94h3.76a.94.94 0 010 1.88H8.62a.94.94 0 01-.93-.94z" /></svg>
-                </i>
+                <i class='icon'><svg><use xlink:href="#filter"></use></svg></i>
                 <span class="filters__enabled">1</span>
             </button>
             <div class="filters__inputs">
@@ -29,18 +52,16 @@
                     </select>
                     <label>Category</label>
                 </div>
-                <div class="input-field input-field--label input-field--autocomplete">
-                    <input type="text" class="autocomplete" placeholder="Start Typing..." autocomplete="off">
-                    <label>Movies & series</label>
+                <div id="moviesAutocompleteDiv" class="input-field input-field--label input-field--autocomplete ">
+                    <input type="hidden" id="movieId" name="movieId"/>
+                    <input type="text" id="moviesAutocomplete" placeholder="Start Typing..." autocomplete="off">
+                    <label for="moviesAutocomplete">Movies & Series</label>
                 </div>
-                <!-- <div class="input-field input-field--label">
-                    <select>
-                        <option value="1">All</option>
-                        <option value="2">Option 2</option>
-                        <option value="3">Option 3</option>
-                    </select>
-                    <label>Type of prop</label>
-                </div> -->
+                <div id="auctionsAutocompleteDiv" class="input-field input-field--label input-field--autocomplete ">
+                    <input type="hidden" id="auctionId" name="auctionId"/>
+                    <input type="text" id="auctionsAutocomplete" placeholder="Start Typing..." autocomplete="off">
+                    <label for="auctionsAutocomplete">By Auction</label>
+                </div>
                 <div class="input-field input-field--label">
                     <select>
                         <option value="1">US + UK</option>
