@@ -2,21 +2,24 @@
     <div class="filters__header">
         <div class="filters__found h4">
             9214 Results
-            <span class="filters__found-plus">
-                <strong>+1228</strong> in Auction & Buy now 
+            <span class="filters__found-all">
+                <span class="filters__found-plus">
+                    <strong>+1228</strong> in Buy now
+                    <!-- Auction & -->
+                </span>
                 <a href="#all">
                     View all
                 </a>
             </span>
         </div>
         <div class="filters__tabs">
-            <button class="waves-effect btn-flat btn--rounded active">
+            <button class="waves-effect btn-flat btn--rounded filters__tab active" data-auctionType="1">
                 Auction
             </button>
-            <button class="waves-effect btn-flat btn--rounded" disabled>
+            <button class="waves-effect btn-flat btn--rounded filters__tab" data-auctionType="2">
                 Buy Now
             </button>
-            <button class="waves-effect btn-flat btn--rounded">
+            <button class="waves-effect btn-flat btn--rounded filters__tab active" data-hideArchived="false">
                 Sold
             </button>
             <!-- <label class="checkbox__label">
@@ -43,6 +46,7 @@
                 <span class="filters__enabled">1</span>
             </button>
             <div class="filters__inputs">
+                <input type="hidden" id="hideArchived" name="hideArchived" value="false">
                 <div class="input-field input-field--label">
                     <select>
                         <option value="1">All</option>
