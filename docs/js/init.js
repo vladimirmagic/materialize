@@ -351,6 +351,8 @@ document.addEventListener('DOMContentLoaded', () => {
 		// const out = document.createElement('div');
 		// out.classList.add('out');
 		// document.body.append(out);
+
+		let isMobileFilter = false;
 	
 		function resize () {
 			headerFloat();
@@ -404,6 +406,8 @@ document.addEventListener('DOMContentLoaded', () => {
 		}
 
 		function filtersFloat (currentScroll) {
+			if (isMobileFilter) return;
+
 			$filters = $('main .filters');
 			$filtersPlaceholder = $('.filters-placeholder');
 			if ($filters.length) {
@@ -442,10 +446,12 @@ document.addEventListener('DOMContentLoaded', () => {
 		$('.filters__open-button-header-button').on('click', () => $('.header__filters .filters__body').toggleClass('active'));
 
 		function mobileFilterToggle () {
+			isMobileFilter = false;
 			const button = document.querySelector('.filters__open-button');
 			if (!button) return;
 
 			if (getComputedStyle(button).display !== 'none') { // mobile button shown
+				isMobileFilter = true;
 				$('.sidenav__filter-inputs').append($('.filters__body .filters__inputs'));
 			} else {
 				$('.filters__body').append($('.sidenav__filter-inputs .filters__inputs'));
@@ -781,10 +787,7 @@ document.addEventListener('DOMContentLoaded', () => {
 				if (filterTimeout) clearTimeout(filterTimeout);
 	
 				filterTimeout = setTimeout(function () {
-					const button = document.querySelector('.filters__open-button');
-					const isMobile = button && getComputedStyle(button).display !== 'none';
-	
-					if (!isMobile) {
+					if (!isMobileFilter) {
 						$('#itemsOffset').val('');
 						$('#filterForm').submit();
 					}
@@ -908,6 +911,24 @@ document.addEventListener('DOMContentLoaded', () => {
 					}
 				}, 300);
 			});
+
+			$tabs = $('.filters__tab:not([disabled]):not(.unable)');
+			if ($tabs.length) {
+				if ($tabs.length === 1) {
+					$tabs.addClass('unable');
+				} else {
+					$tabs.on('click', function () {
+						if ($(this).data('hideArchived')) {
+							$('#hideArchived')[0].checked = $(this).data('hideArchived');
+						} else {
+							$(this).toggleClass('active');
+							$active = $('.filters__tab.active[data-auctionType]');
+							$('#auctionType').val($active.length === 1 ? $active.data('auctionType') : 0);
+						}
+						filter();
+					});
+				}
+			}
 		}
 	
 		// PRODUCT

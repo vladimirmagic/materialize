@@ -30,7 +30,7 @@
 	white-space: nowrap;
 }
 
-.filters__found-plus {
+.filters__found-all {
 	margin-left: .5rem;
 	color: $color-font-grey;
 	font-size: 1rem;
@@ -48,8 +48,23 @@
 .filters__tabs {
 	display: flex;
 	align-items: center;
+}
 
-	.btn-flat + .btn-flat {
+.filters__tab {
+	&.active {
+		cursor: pointer;
+	}
+
+	&.active[disabled] {
+		color: rgba(255,255,255,.3) !important;
+		background: #2D2E41 !important;
+	}
+
+	&.unable {
+		cursor: default;
+	}
+
+	& + & {
 		margin-left: .5rem;
 	}
 }
@@ -321,5 +336,11 @@
 
 	.filters__found {
 		white-space: normal;
+	}
+}
+
+@media #{$small-and-down} {
+	.filters__found-plus {
+		display: none;
 	}
 }

@@ -17,7 +17,7 @@
 
 .sell__content {
 	padding-top: 6em;
-	padding-bottom: 10em;
+	padding-bottom: 8em;
 	background: $color-bg;
 }
 
@@ -37,7 +37,7 @@
 	}
 
 	&.sell-cta--guide {
-		margin-top: 5em;
+		margin-top: 8em;
 	}
 
 	&.sell-cta--offer {
@@ -236,7 +236,7 @@
 }
 
 .sell__steps {
-	padding: 6em 1.5em;
+	padding: 6em 1.5em 4em;
 	background: #fff;
 	border-radius: 6px;
 	box-shadow: $shadow-base;
@@ -250,6 +250,10 @@
 .sell-guide__text2 {
 	max-width: $w36;
 	margin: 3em auto 0;
+}
+
+.sell-guide__text2-button {
+	margin-bottom: 1.5rem;
 }
 
 .sell__indicators {
@@ -340,6 +344,10 @@
 	margin-bottom: .66em;
 }
 
+.sell__faq-section {
+	padding-top: 8em;
+}
+
 @media only screen and (min-width: $w84) {
 	.sell__inner {
 		padding-left: 0;
@@ -365,7 +373,7 @@
 @media #{$large-and-down} {
 	.sell__content {
 		padding-top: 4em;
-		padding-bottom: 5em;
+		padding-bottom: 4em;
 	}
 
 	.sell-cta {
@@ -374,7 +382,7 @@
 		}
 
 		&.sell-cta--guide {
-			margin-top: 3.5em;
+			margin-top: 4em;
 		}
 
 		&.sell-cta--offer {
@@ -401,6 +409,10 @@
 			margin-left: 0;
 			margin-top: 1.5em;
 		}
+	}
+
+	.sell__faq-section {
+		padding-top: 3em;
 	}
 }
 

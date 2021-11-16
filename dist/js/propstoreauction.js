@@ -623,12 +623,11 @@ document.addEventListener('DOMContentLoaded', () => {
                     $cat.html($cat.html().replace('View catalog', 'View catalogue items'));
                     $cat.addClass('waves-effect waves-grey btn btn--secondary');
                 }
-
-				$('.filters').hide();
-
-                $('.hero__static-text').show();
-                $('main').prepend($('.auc__hero').show());
 			});
+
+            $('.filters').hide();
+            $('.hero__static-text').show();
+            $('main').prepend($('.auc__hero').show());
 /**
  * 
  * 
