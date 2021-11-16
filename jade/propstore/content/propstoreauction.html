@@ -143,23 +143,27 @@ window.setInterval(function(){$.get('/general/data/sitewidemessage.txt?ts=' + Ma
                     <li class="accimg"><figure></li>
                     <li class="accname"><a href="https://propstore-staging32-usm.auctionserver.net/auctions/info/id/215" class="row-link">usm</a></li>
                     <li class="aucimg">
-                        <figure><a href="https://propstore-staging32-usm.auctionserver.net/auctions/info/id/215" class="row-link" style="font-weight:bold;"><img src="/images/auction/127_6.jpg?1629134537" alt="SteveTest Timed" title="" /></a></figure>
+                        <figure><a href="https://propstore-staging32-usm.auctionserver.net/auctions/info/id/215" class="row-link" style="font-weight:bold;"><img src="/images/EMLA-2021.jpg" alt="SteveTest Timed" title="" /></a></figure>
                     </li>
                     <li class="aucdes">
                         <div>
-                            <h6><a href="https://propstore-staging32-usm.auctionserver.net/auctions/info/id/215"><span class="sale-no">215</span> Test - SteveTest Timed</a></h6>
+                            <h6><a href="https://propstore-staging32-usm.auctionserver.net/auctions/info/id/215"><span class="sale-no">215</span> Entertainment Memorabilia Live Auction</a></h6>
                             <p>
                                 <a id="sale215" href="https://propstore-staging32-usm.auctionserver.net/auctions/info/id/215" class="row-link">Timed</a>,
-                                <a id="aucdate215" href="https://propstore-staging32-usm.auctionserver.net/auctions/info/id/215" class="row-link"><span class='ongoing_date'>Ongoing Event</span></a>,
-                                <span><a id="auc215" href="https://propstore-staging32-usm.auctionserver.net/auctions/info/id/215" class="row-link"><span class='in-progress'>In progress</span></a></span>
+                                <a id="aucdate215" href="https://propstore-staging32-usm.auctionserver.net/auctions/info/id/215" class="row-link"><span class='ongoing_date'>9th Nov 9:00am (PMT) – 11 Nov 2:00pm (PMT) 2021</span></a>,
+                                <span><a id="auc215" href="https://propstore-staging32-usm.auctionserver.net/auctions/info/id/215" class="row-link"><span class='in-progress1'>In progress</span></a></span>
                             </p>
-                            <p>Lots: 15</p>
-                            <p></p>
+                            <p>Lots: 283</p>
+                            
                         </div>
+                        <div class="auclting__text">Example text Vestibulum id ligula porta felis euismod semper. Curabitur blandit tempus porttitor. Donec id elit non mi porta gravida at eget metus. </div>
                             </li>
                     <li class="auclink">
                         <div>
-                <div class="unibtn"><span id="btnR215_ctl" class="qlinkbutton-ctl" ><a href="#" id="btnR215" class="reg" onclick="qc.pA('AuctionList', 'btnR215', 'QClickEvent', '215', ''); onclick=this.href='javascript:void(0)';this.disabled=1; return false;" >Register to bid!</a></span></div><div class="unibtn"><a href="https://propstore-staging32-usm.auctionserver.net/auctions/catalog/id/215" class="cat">View catalog</a></div>        </div>
+                <div class="unibtn"><span id="btnR215_ctl" class="qlinkbutton-ctl"><a class="reg modal-trigger" href="#modal-auction">
+                    Register to bid!</a></span></div>
+                
+                </div>
                     </li>
                 </ul><ul class="auclting">
                     <li class="accimg"><figure></li>
@@ -210,10 +214,9 @@ window.setInterval(function(){$.get('/general/data/sitewidemessage.txt?ts=' + Ma
                 <div class="unibtn"><a href="https://propstore-staging32-usm.auctionserver.net/auctions/catalog/id/274" class="cat">View catalog</a></div>        </div>
                     </li>
                 </ul><ul class="auclting">
-                    <li class="accimg"><figure></li>
                     <li class="accname"><a href="https://propstore-staging32-usm.auctionserver.net/auctions/info/id/267" class="row-link">usm</a></li>
                     <li class="aucimg">
-                        <figure><a href="https://propstore-staging32-usm.auctionserver.net/auctions/info/id/267" class="row-link" style="font-weight:bold;"><img src="/images/auction/121_6.jpg" alt="Entertainment Memorabilia Live Auction - Los Angeles - August 26-27, 2020" title="" /></a></figure>
+                        <figure><a href="https://propstore-staging32-usm.auctionserver.net/auctions/info/id/267" class="row-link" style="font-weight:bold;"><img src="https://propstore-staging32-usm.auctionserver.net/images/auction/130_6.jpg" alt="Entertainment Memorabilia Live Auction - Los Angeles - August 26-27, 2020" title="" /></a></figure>
                     </li>
                     <li class="aucdes">
                         <div>
@@ -1680,5 +1683,132 @@ $(document).ready(function(){qcodoLoaded(10);});</script><script>
 <script defer src="/dist/js/propstoreauction.js"></script>
 
 
-</footer></body>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</footer>
+
+
+
+
+
+
+
+<div id="modal-auction" class="modal modal-auction">
+    <div class="modal-header modal-header--sticky">
+        <div class="modal__title"><strong>Propstore</strong> Auction Registration</div>
+        <a class="modal-close btn-flat btn--icon">
+            <i class='icon'><svg><use xlink:href="#close"></use></svg></i>
+        </a>
+    </div>
+    <div class="modal-content">
+        <div class="modal-auction__img" style="background-image: url(https://dummyimage.com/910x1040/945c94/fff.jpg);"></div>
+        <div class="modal-auction__info">
+            <div class="modal-auction__text">
+                <p>
+                    You must be a logged in member to register for the Entertainment Memorabilia Live Auction, Treasures from Film and Television on 9th-11th November 2021 happening in London and Online.
+                </p><p>
+                    <strong>Please sign up to continue.</strong>
+                </p>
+            </div>
+            <form class="modal-register-form" action="#register">
+                <input type="hidden" name="struts.token.name" value="token" />
+                <input type="hidden" name="token" value="HHFT3DVNTJ8ZNOPO07E1V5IHF4YW8EIZ" />
+
+                <div class="modal__title">Sign Up</div>
+
+                <button id="facebookLoginButtonRegister" class="waves-effect waves-light btn btn--facebook modal-register__facebook modal-close" data-url="https://www.facebook.com/dialog/oauth?client_id=2417639858520111&amp;redirect_uri=https%3A%2F%2Fnew.propstore.com%2Fajax%2FfacebookLoginCallback.action&amp;scope=email" type="button">
+                    <i class='icon'>
+                        <svg>
+                            <use xlink:href="#facebook"></use>
+                        </svg>
+                    </i>
+                    <span class='btn__title'>Sign up with Facebook</span>
+                </button>
+
+                <div class="input-field input-field--label ">
+                    <input type="email" name="email" value="" id="email" placeholder="Please Enter"/>
+                    <label>Email</label>
+                    <div class="input-field__helper"></div>
+                </div>
+
+                <div class="input-field input-field--label ">
+                    <input type="password" name="password" id="password" placeholder="Please Enter"/>
+                    <label>Password</label>
+                    <div class="input-field__helper"></div>
+                </div>
+
+                <div class="input-field input-field--label ">
+                    <input type="password" name="confirmPassword" id="confirmPassword" placeholder="Please Enter"/>
+                    <label>Confirm Password</label>
+                    <div class="input-field__helper"></div>
+                </div>
+
+                <div class="input-field input-field--label">
+                    <input type="text" placeholder="Please Enter" disabled>
+                    <label>TODO: Full name</label>
+                    <div class="input-field__helper"></div>
+                </div>
+
+                <div class="modal-register__terms">
+                    By signing up, you agree to our <a href="/terms-conditions/">Terms of use</a> and <a href="/privacy-policy/">Privacy Policy</a>
+                </div>
+
+                <div class="input-field g-recaptcha-field ">
+                    <div id="g-recaptcha-register" class="g-recaptcha" name="code"></div>
+                    <div class="input-field__helper"></div>
+                </div>
+
+                <button type="submit" class="waves-effect waves-light btn modal-register__submit">
+                    <span class='btn__title'>Sign Up</span>
+                    <i class='icon'>
+                        <svg>
+                            <use xlink:href="#arrow-right"></use>
+                        </svg>
+                    </i>
+                    <div class="preloader-wrapper active">
+                        <div class="spinner-layer spinner-white-only">
+                            <div class="circle-clipper left">
+                                <div class="circle"></div>
+                            </div>
+                            <div class="gap-patch">
+                                <div class="circle"></div>
+                            </div>
+                            <div class="circle-clipper right">
+                                <div class="circle"></div>
+                            </div>
+                        </div>
+                    </div>
+                </button>
+
+                <div class="modal-register__switch">
+                    Already have an account? <a class="modal-trigger modal-close" href="#modal-signin">Sign In</a>
+                </div>
+
+            </form>
+        </div>
+    </div>
+</div>
+
+<style  data-v2>
+    .g-recaptcha {
+        width: 296px;
+        height: 80px;
+        background: #F4F4F4;
+    }
+</style>
+</body>
 </html>

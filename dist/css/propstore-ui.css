@@ -9652,7 +9652,7 @@ hr.small {
   text-transform: uppercase;
 }
 
-.p-l {
+.p-l, .modal-auction .modal-header .modal__title {
   margin-bottom: 1em;
   font-size: 28px;
   font-weight: 300;
@@ -9716,7 +9716,7 @@ hr.small {
   .h3 {
     font-size: 28px;
   }
-  .p-l {
+  .p-l, .modal-auction .modal-header .modal__title {
     font-size: 24px;
   }
   .p-r {
@@ -19713,7 +19713,7 @@ a.voucher:not(.btn):not(.btn-large):not(.btn-small):not(.btn-extra-small):before
   line-height: 1.4;
 }
 
-.wp p.p-l {
+.wp p.p-l, .wp .modal-auction .modal-header p.modal__title, .modal-auction .modal-header .wp p.modal__title {
   margin-bottom: 1em;
   font-size: 28px;
   font-weight: 300;
@@ -19843,7 +19843,7 @@ a.voucher:not(.btn):not(.btn-large):not(.btn-small):not(.btn-extra-small):before
   .wp p {
     font-size: 18px;
   }
-  .wp p.p-l {
+  .wp p.p-l, .wp .modal-auction .modal-header p.modal__title, .modal-auction .modal-header .wp p.modal__title {
     font-size: 24px;
   }
   .wp p.p-r {
@@ -20237,6 +20237,95 @@ body.my-items .filters {
 
 .auccatalog__nav--index .sam_qform_control_paginatorget-ctl {
   margin-right: 1rem;
+}
+
+.modal-auction {
+  position: relative;
+  max-height: 94vh;
+  width: 94vw;
+  max-width: 1800px;
+  overflow-y: hidden;
+}
+
+.modal-auction .modal-header {
+  padding: 12px 24px;
+}
+
+.modal-auction .modal-header .modal__title {
+  position: absolute;
+  left: 2rem;
+  top: 1rem;
+}
+
+.modal-auction .modal-content {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  max-height: calc(94vh - 72px);
+  padding: 0;
+  background: #F4F4F4;
+}
+
+.modal-auction .modal-register-form {
+  max-width: 36rem;
+  margin-top: -1rem;
+  padding: 2rem;
+  text-align: center;
+  background: white;
+  border-radius: 6px;
+}
+
+.modal-auction .modal-register-form .btn, .modal-auction .modal-register-form .btn-large, .modal-auction .modal-register-form .btn-small, .modal-auction .modal-register-form .btn-extra-small {
+  width: 100%;
+}
+
+.modal-auction .modal-register-form .input-field {
+  margin-bottom: 1em;
+}
+
+.modal-auction .modal-register-form .input-field + .input-field {
+  margin-top: 2em;
+}
+
+.modal-auction .modal-register-form .g-recaptcha-field {
+  margin-bottom: 2em;
+}
+
+.modal-auction .modal-register-form .g-recaptcha {
+  display: inline-block;
+}
+
+.modal-auction .modal-register-form .modal__title {
+  display: none;
+}
+
+.modal-auction__img {
+  -webkit-box-flex: 0;
+  -webkit-flex: 0 0 50%;
+      -ms-flex: 0 0 50%;
+          flex: 0 0 50%;
+  background-position: 50% 50%;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.modal-auction__info {
+  -webkit-box-flex: 0;
+  -webkit-flex: 0 0 50%;
+      -ms-flex: 0 0 50%;
+          flex: 0 0 50%;
+  padding: 2.5rem 4rem;
+  overflow-y: auto;
+}
+
+.modal-auction__text {
+  margin-bottom: 2em;
+  font-size: 1.5rem;
+}
+
+.modal-auction__text p:first-child {
+  margin-top: 0;
 }
 
 @media only screen and (max-width: 1496px) {
