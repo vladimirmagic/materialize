@@ -9680,7 +9680,7 @@ hr.small {
   line-height: 1.5;
 }
 
-.c-r {
+.c-r, .faq-section__collapsible-header {
   margin-bottom: 1em;
   font-size: 20px;
   font-weight: 500;
@@ -9725,7 +9725,7 @@ hr.small {
   .p-s {
     font-size: 14px;
   }
-  .c-r {
+  .c-r, .faq-section__collapsible-header {
     font-size: 16px;
   }
 }
@@ -14418,7 +14418,7 @@ a.product__certificate:not(.btn):not(.btn-large):not(.btn-small):not(.btn-extra-
   border-top: 1px solid #c7c7c7;
 }
 
-.modal-shipping-quote__note .c-r {
+.modal-shipping-quote__note .c-r, .modal-shipping-quote__note .faq-section__collapsible-header {
   margin-bottom: .5em;
 }
 
@@ -16142,6 +16142,98 @@ a.faq__search-suggester__item:not(.btn):not(.btn-large):not(.btn-small):not(.btn
 
 a.faq__search-suggester__item:not(.btn):not(.btn-large):not(.btn-small):not(.btn-extra-small):not(.btn-large):not(.btn-small):not(.btn-extra-small):not(.btn-flat):hover {
   background: rgba(0, 0, 0, 0.05);
+}
+
+.faq-section__head {
+  max-width: 36rem;
+  margin: 0 auto 3.5em;
+}
+
+.faq-section__title {
+  margin-bottom: .75em;
+}
+
+.faq-section__list {
+  max-width: 65rem;
+  margin: 0 auto;
+}
+
+.faq-section__collapsible {
+  border: none;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+
+.faq-section__item {
+  border-bottom-left-radius: 6px;
+  border-bottom-right-radius: 6px;
+  overflow: hidden;
+  -webkit-box-shadow: 0px 8px 32px -10px rgba(0, 0, 0, 0.15);
+          box-shadow: 0px 8px 32px -10px rgba(0, 0, 0, 0.15);
+  -webkit-transition: -webkit-box-shadow .2s ease-in;
+  transition: -webkit-box-shadow .2s ease-in;
+  transition: box-shadow .2s ease-in;
+  transition: box-shadow .2s ease-in, -webkit-box-shadow .2s ease-in;
+}
+
+.faq-section__item:last-child {
+  margin-bottom: 0;
+}
+
+.faq-section__item:hover {
+  -webkit-box-shadow: 0px 8px 32px -10px rgba(0, 0, 0, 0.25);
+          box-shadow: 0px 8px 32px -10px rgba(0, 0, 0, 0.25);
+}
+
+.faq-section__item .faq-section__collapsible-header .icon {
+  -webkit-transform: rotate(45deg);
+          transform: rotate(45deg);
+}
+
+.faq-section__item.active .faq-section__collapsible-header .icon {
+  -webkit-transform: rotate(0deg);
+          transform: rotate(0deg);
+}
+
+.faq-section__item + .faq-section__item {
+  margin-top: .75rem;
+}
+
+.faq-section__collapsible-header {
+  position: relative;
+  margin: 0;
+  padding: 1.5rem 5rem 1.5rem 1.5rem;
+  text-align: left;
+  background: white !important;
+  border: none;
+  border-top-left-radius: 6px;
+  border-top-right-radius: 6px;
+}
+
+.faq-section__collapsible-header .icon {
+  position: absolute;
+  right: 1rem;
+  top: 1.75rem;
+  width: 1rem;
+  height: 1.2rem;
+  -webkit-transition: -webkit-transform .2s ease;
+  transition: -webkit-transform .2s ease;
+  transition: transform .2s ease;
+  transition: transform .2s ease, -webkit-transform .2s ease;
+}
+
+.faq-section__collapsible-body {
+  padding: 0 5rem 1.5rem 1.5rem;
+  text-align: left;
+  background: white;
+}
+
+.faq-section__collapsible-body > p:first-child {
+  margin-top: 0;
+}
+
+.faq-section__collapsible-body > p:last-child {
+  margin-bottom: 0;
 }
 
 .bag .order__summary {
@@ -18526,7 +18618,7 @@ a.account__orders-buy-link:not(.btn):not(.btn-large):not(.btn-small):not(.btn-ex
 
 .sell__content {
   padding-top: 6em;
-  padding-bottom: 10em;
+  padding-bottom: 8em;
   background: #F4F4F4;
 }
 
@@ -18930,6 +19022,10 @@ a.account__orders-buy-link:not(.btn):not(.btn-large):not(.btn-small):not(.btn-ex
   margin-bottom: .66em;
 }
 
+.sell__faq-section {
+  padding-top: 8em;
+}
+
 @media only screen and (min-width: 84rem) {
   .sell__inner {
     padding-left: 0;
@@ -18953,7 +19049,7 @@ a.account__orders-buy-link:not(.btn):not(.btn-large):not(.btn-small):not(.btn-ex
 @media only screen and (max-width: 1200px) {
   .sell__content {
     padding-top: 4em;
-    padding-bottom: 5em;
+    padding-bottom: 4em;
   }
   .sell-cta.sell-cta--valuation {
     margin-top: 5em;
@@ -18978,6 +19074,9 @@ a.account__orders-buy-link:not(.btn):not(.btn-large):not(.btn-small):not(.btn-ex
   .sell-offer__expertise + .sell-offer__expertise {
     margin-left: 0;
     margin-top: 1.5em;
+  }
+  .sell__faq-section {
+    padding-top: 3em;
   }
 }
 
@@ -19642,7 +19741,7 @@ a.voucher:not(.btn):not(.btn-large):not(.btn-small):not(.btn-extra-small):before
   line-height: 1.5;
 }
 
-.wp p.c-r {
+.wp p.c-r, .wp p.faq-section__collapsible-header {
   margin-bottom: 1em;
   font-size: 20px;
   font-weight: 500;
@@ -19753,7 +19852,7 @@ a.voucher:not(.btn):not(.btn-large):not(.btn-small):not(.btn-extra-small):before
   .wp p.p-s {
     font-size: 14px;
   }
-  .wp p.c-r {
+  .wp p.c-r, .wp p.faq-section__collapsible-header {
     font-size: 16px;
   }
 }
