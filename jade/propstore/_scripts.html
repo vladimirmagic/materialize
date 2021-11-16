@@ -371,11 +371,19 @@
 <!-- Live search for FAQs -->
 <script>
     jQuery(document).ready(() => {
-        
+
         function scrollToElement(elem) {
-            if (location.hash) {
-                $(elem).parent().parent().addClass('active').click();
-                $(window).scrollTop(elem.offset().top).scrollLeft(elem.offset().left);
+            if (window.location.hash) {
+                setTimeout(function () {
+                    $('html, body').animate({
+                        scrollTop: $(elem).offset().top - 50
+                    }, 2000);
+                }, 1000);
+                setTimeout(function () {
+                    $('.faq__collapsible li.active .collapsible-header').click();
+                    $(elem).parent().click();
+                    $(elem).parent().parent().addClass('active');
+                }, 1300);
             }
         }
 
