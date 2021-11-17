@@ -9680,7 +9680,7 @@ hr.small {
   line-height: 1.5;
 }
 
-.c-r, .faq-section__collapsible-header {
+.c-r, .faq-section__collapsible-header, .form-section__label {
   margin-bottom: 1em;
   font-size: 20px;
   font-weight: 500;
@@ -9725,7 +9725,7 @@ hr.small {
   .p-s {
     font-size: 14px;
   }
-  .c-r, .faq-section__collapsible-header {
+  .c-r, .faq-section__collapsible-header, .form-section__label {
     font-size: 16px;
   }
 }
@@ -14418,7 +14418,7 @@ a.product__certificate:not(.btn):not(.btn-large):not(.btn-small):not(.btn-extra-
   border-top: 1px solid #c7c7c7;
 }
 
-.modal-shipping-quote__note .c-r, .modal-shipping-quote__note .faq-section__collapsible-header {
+.modal-shipping-quote__note .c-r, .modal-shipping-quote__note .faq-section__collapsible-header, .modal-shipping-quote__note .form-section__label {
   margin-bottom: .5em;
 }
 
@@ -19741,7 +19741,7 @@ a.voucher:not(.btn):not(.btn-large):not(.btn-small):not(.btn-extra-small):before
   line-height: 1.5;
 }
 
-.wp p.c-r, .wp p.faq-section__collapsible-header {
+.wp p.c-r, .wp p.faq-section__collapsible-header, .wp p.form-section__label {
   margin-bottom: 1em;
   font-size: 20px;
   font-weight: 500;
@@ -19852,7 +19852,7 @@ a.voucher:not(.btn):not(.btn-large):not(.btn-small):not(.btn-extra-small):before
   .wp p.p-s {
     font-size: 14px;
   }
-  .wp p.c-r, .wp p.faq-section__collapsible-header {
+  .wp p.c-r, .wp p.faq-section__collapsible-header, .wp p.form-section__label {
     font-size: 16px;
   }
 }
@@ -20326,6 +20326,83 @@ body.my-items .filters {
 
 .modal-auction__text p:first-child {
   margin-top: 0;
+}
+
+.form-section {
+  margin-bottom: 2rem;
+}
+
+.form-section__label {
+  margin-bottom: .75rem;
+}
+
+.form-section__body {
+  min-height: 4rem;
+  padding: 1rem;
+  background: white;
+  border-radius: 6px;
+}
+
+.form-section__footer {
+  margin-top: 1rem;
+}
+
+.form-section__row {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: start;
+  -webkit-align-items: flex-start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+}
+
+.form-section__row-body {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  min-height: 2.5rem;
+}
+
+.form-section__row-actions {
+  -webkit-box-flex: 1;
+  -webkit-flex: 1 0 8rem;
+      -ms-flex: 1 0 8rem;
+          flex: 1 0 8rem;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: end;
+  -webkit-justify-content: flex-end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+}
+
+.form-section__row-actions .btn, .form-section__row-actions .btn-large, .form-section__row-actions .btn-small, .form-section__row-actions .btn-extra-small {
+  height: 2.5rem;
+  line-height: 2.5rem;
+  padding: 0 1.2rem;
+}
+
+.form-section__submit {
+  margin-top: 3rem;
+}
+
+@media only screen and (min-height: 1100px) {
+  .modal-auction .modal-content {
+    min-height: 1000px;
+  }
 }
 
 @media only screen and (max-width: 1496px) {

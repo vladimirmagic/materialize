@@ -218,6 +218,62 @@ $imgSizeM: 320px;
 	}
 }
 
+.form-section {
+	margin-bottom: 2rem;
+}
+
+.form-section__label {
+	@extend .c-r;
+	margin-bottom: .75rem;
+}
+
+.form-section__body {
+	min-height: 4rem;
+	padding: 1rem;
+	background: white;
+	border-radius: 6px;
+}
+
+.form-section__footer {
+	margin-top: 1rem;
+}
+
+.form-section__row {
+	display: flex;
+	justify-content: space-between;
+	align-items: flex-start;
+}
+
+.form-section__row-body {
+	display: flex;
+	align-items: center;
+	min-height: 2.5rem;
+}
+
+.form-section__row-actions {
+	flex: 1 0 8rem;
+	display: flex;
+	justify-content: flex-end;
+
+	.btn {
+		height: 2.5rem;
+		line-height: 2.5rem;
+		padding: 0 1.2rem;
+	}
+}
+
+.form-section__submit {
+	margin-top: 3rem;
+}
+
+@media only screen and (min-height: 1100px) {
+	.modal-auction {
+		.modal-content {
+			min-height: 1000px;
+		}
+	}
+}
+
 @media only screen and (max-width: #{$width-4cards}) {
 	.auclist.auchome {
 		padding: 3em 2.5em;
