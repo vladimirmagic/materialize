@@ -912,22 +912,18 @@ document.addEventListener('DOMContentLoaded', () => {
 				}, 300);
 			});
 
-			$tabs = $('.filters__tab:not([disabled]):not(.unable)');
+			$tabs = $('.filters__tab');
 			if ($tabs.length) {
-				if ($tabs.length === 1) {
-					$tabs.addClass('unable');
-				} else {
-					$tabs.on('click', function () {
-						if ($(this).data('hideArchived')) {
-							$('#hideArchived')[0].checked = $(this).data('hideArchived');
-						} else {
-							$(this).toggleClass('active');
-							$active = $('.filters__tab.active[data-auctionType]');
-							$('#auctionType').val($active.length === 1 ? $active.data('auctionType') : 0);
-						}
-						filter();
-					});
-				}
+				$tabs.on('click', function () {
+					if ($(this).data('hideArchived')) {
+						$('#hideArchived')[0].checked = $(this).data('hideArchived');
+					} else {
+						$(this).toggleClass('active');
+						$active = $('.filters__tab.active[data-auctionType]');
+						$('#auctionType').val($active.length === 1 ? $active.data('auctionType') : 0);
+					}
+					filter();
+				});
 			}
 		}
 	

@@ -31,18 +31,18 @@
 }
 
 .filters__found-all {
-	margin-left: .5rem;
+	margin-left: 1rem;
 	color: $color-font-grey;
 	font-size: 1rem;
 
-	strong {
-		font-weight: 600;
-	}
-
 	a:not(.btn) {
 		color: $primary-color;
-		margin-left: .5rem;
 	}
+}
+
+.filters__found-plus {
+	margin-left: .5rem;
+	font-weight: 600;
 }
 
 .filters__tabs {
@@ -51,17 +51,10 @@
 }
 
 .filters__tab {
+	white-space: nowrap;
+
 	&.active {
 		cursor: pointer;
-	}
-
-	&.active[disabled] {
-		color: rgba(255,255,255,.3) !important;
-		background: #2D2E41 !important;
-	}
-
-	&.unable {
-		cursor: default;
 	}
 
 	& + & {
@@ -336,11 +329,5 @@
 
 	.filters__found {
 		white-space: normal;
-	}
-}
-
-@media #{$small-and-down} {
-	.filters__found-plus {
-		display: none;
 	}
 }
