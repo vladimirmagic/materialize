@@ -1261,6 +1261,24 @@ document.addEventListener('DOMContentLoaded', () => {
 	
 		// FAQ
 		if ($('.wp .faq').length) {
+	
+			function scrollToElement(elem) {
+				if (window.location.hash) {
+					setTimeout(function () {
+						$('html, body').animate({
+							scrollTop: $(elem).offset().top - 50
+						}, 2000);
+					}, 1000);
+					setTimeout(function () {
+						$('.faq__collapsible li.active .collapsible-header').click();
+						$(elem).parent().click();
+						$(elem).parent().parent().addClass('active');
+					}, 1300);
+				}
+			}
+	
+			scrollToElement($(location.hash));
+	
 			function changeCategory (category) {
 				if (category == 0) {
 					$('.faq__item').show();
@@ -1288,8 +1306,8 @@ document.addEventListener('DOMContentLoaded', () => {
 	
 					//escape all regex symbols
 					searchValue = searchValue.replace(/[\$\&\+\,\:\:\=\?\@\#\|\/\'\{\}\[\]\>\<\.\^\*\(\)\%\!\-]/g, '\\$&');
-					//search, ignoring src and hrefs
-					searchValue = searchValue.replace(/^[A-Za-z0-9_]+$/gi, '\\$&');
+					//search
+					searchValue = searchValue.replace(/[^a-z0-9_\S]/gi, '\\$&');
 	
 					var customFilter = new RegExp(searchValue, 'gi');
 	
