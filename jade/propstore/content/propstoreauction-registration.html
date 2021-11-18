@@ -1,0 +1,93 @@
+<div class="order-header">
+    <div class="order-header__inner">
+        <div class="order-header__col order-header__col--left">
+            <div class="order-header__secure-checkout h5">
+                <i class='icon'><svg><use xlink:href="#lock"></use></svg></i>
+                <strong>Propstore</strong> Auction Registration
+            </div>
+        </div>
+        <div class="order-header__col order-header__col--center">
+            <a class="order-header__logo" href='/home.html'>
+                <svg><use xlink:href="#propstore"></use></svg>
+            </a>
+        </div>
+        <div class="order-header__col order-header__col--right"></div>
+    </div>
+</div>
+
+<div class="auction-registration">
+    <div class="modal-content">
+        <div class="modal-auction__img" style="background-image: url(https://dummyimage.com/910x1040/945c94/fff.jpg);"></div>
+        <div class="modal-auction__info">
+            <div class="modal-auction__text">
+                <p>
+                    Hi Jon, you’re about to register for the Entertainment Memorabilia Live Auction, Treasures from Film and Television on 9th-11th November 2021 happening in London and Online.  
+                </p><p>
+                    <strong>Please select the correct details from your account below to proceed.</strong>
+                </p>
+            </div>
+            <form class="modal-register-auction-form" action="#register-auction">
+                <div class="form-section">
+                    <div class="form-section__label">
+                        Confirm your shipping address
+                    </div>
+                    <div class="form-section__body">
+                        <div class="form-section__row">
+                            <div class="form-section__row-body">
+                                John Doe, 123 Easy Street, Leeds, West Yorkshire, LS9 8DT, United Kingdom
+                            </div>
+                            <div class="form-section__row-actions">
+                                <button class="waves-effect waves-grey btn btn--secondary">
+                                    <span class='btn__title'>Edit</span>
+                                    <i class='icon'><svg><use xlink:href="#arrow-right"></use></svg></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-section__footer">
+                        <label class="checkbox__label">
+                            <input type="checkbox" class="filled-in" name="billingAsShipping">
+                            <span>My billing address is the same as my shipping address</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="form-section">
+                    <div class="form-section__label">
+                        Confirm your payment method
+                    </div>
+                    <div class="form-section__body">
+                        <div class="form-section__row">
+                            <div class="form-section__row-body">
+                                Mastercard Debit card •••1234
+                            </div>
+                            <div class="form-section__row-actions">
+                                <button class="waves-effect waves-grey btn btn--secondary">
+                                    <span class='btn__title'>Edit</span>
+                                    <i class='icon'><svg><use xlink:href="#arrow-right"></use></svg></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-section__submit">
+                    <span type="submit" class="waves-effect waves-light btn modal-register__submit" onclick="reloadOpener()">
+                        <span class='btn__title'>Register for auction</span>
+                        <i class='icon'><svg><use xlink:href="#arrow-right"></use></svg></i>
+                    </span>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="loader-block" style="display: none;">
+    <div class="preloader-wrapper active"><div class="spinner-layer"><div class="circle-clipper left"><div class="circle"></div></div><div class="gap-patch"><div class="circle"></div></div><div class="circle-clipper right"><div class="circle"></div></div></div>
+</div>
+
+<script>
+    function reloadOpener () {
+        opener.reloadPage();
+        window.close();
+    }
+</script>

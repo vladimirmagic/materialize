@@ -1254,3 +1254,11 @@ if (!generateGoogleCalendarURL) function generateGoogleCalendarURL(lotName, urlL
 if (!generateICSFileURL) function generateICSFileURL(lotName, urlLink) {
     return 'NeedGenerateICSFileURL';
 }
+
+function openAuctionRegistration () {
+    window.open('/propstoreauction-registration.html');
+}
+
+function reloadPage () {
+    window.location.reload();
+}
