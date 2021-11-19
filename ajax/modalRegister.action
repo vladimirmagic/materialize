@@ -1,0 +1,76 @@
+
+
+
+
+<input type="hidden" name="struts.token.name" value="token" />
+<input type="hidden" name="token" value="GSNAWYU06PRXS6XYRBIRF49E5NELU5FP" />
+
+<div class="modal__title">Register</div>
+
+<button id="facebookLoginButtonRegister" class="waves-effect waves-light btn btn--facebook modal-register__facebook modal-close" data-url="https://www.facebook.com/dialog/oauth?client_id=2417639858520111&amp;redirect_uri=https%3A%2F%2Fnew.propstore.com%2Fajax%2FfacebookLoginCallback.action&amp;scope=email" type="button">
+    <i class='icon'>
+        <svg>
+            <use xlink:href="#facebook"></use>
+        </svg>
+    </i>
+    <span class='btn__title'>Register with Facebook</span>
+</button>
+
+<div class="input-field input-field--label ">
+    <input type="email" name="email" value="" id="email" placeholder="Please Enter"/>
+    <label>Email</label>
+    <div class="input-field__helper"></div>
+</div>
+
+<div class="input-field input-field--label ">
+    <input type="password" name="password" id="password" placeholder="Please Enter"/>
+    <label>Password</label>
+    <div class="input-field__helper"></div>
+</div>
+
+<div class="input-field input-field--label ">
+    <input type="password" name="confirmPassword" id="confirmPassword" placeholder="Please Enter"/>
+    <label>Confirm Password</label>
+    <div class="input-field__helper"></div>
+</div>
+
+<div class="input-field input-field--label">
+    <input type="text" placeholder="Please Enter" disabled>
+    <label>TODO: Full name</label>
+    <div class="input-field__helper"></div>
+</div>
+
+<div class="modal-register__terms">
+    By signing up, you agree to our <a href="/terms-conditions/">Terms of use</a> and <a href="/privacy-policy/">Privacy Policy</a>
+</div>
+
+<div class="input-field g-recaptcha-field ">
+    <div id="g-recaptcha-register" class="g-recaptcha" name="code"></div>
+    <div class="input-field__helper"></div>
+</div>
+
+<button type="submit" class="waves-effect waves-light btn modal-register__submit">
+    <span class='btn__title'>Register</span>
+    <i class='icon'>
+        <svg>
+            <use xlink:href="#arrow-right"></use>
+        </svg>
+    </i>
+    <div class="preloader-wrapper active">
+        <div class="spinner-layer spinner-white-only">
+            <div class="circle-clipper left">
+                <div class="circle"></div>
+            </div>
+            <div class="gap-patch">
+                <div class="circle"></div>
+            </div>
+            <div class="circle-clipper right">
+                <div class="circle"></div>
+            </div>
+        </div>
+    </div>
+</button>
+
+<div class="modal-register__switch">
+    Already have an account? <a class="modal-trigger modal-close" href="#modal-signin">Sign In</a>
+</div>

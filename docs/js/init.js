@@ -96,6 +96,18 @@ document.addEventListener('DOMContentLoaded', () => {
         $('.modal-signin-form').submit(function (e) {
             e.preventDefault();
             this.classList.add('sync');
+
+            if ($(this).find('#password').val().includes('sso-token')) { // todo: delete test sso
+                window.open($(this).find('#password').val() + '&autoclose=true', 'Propstore SSO', `scrollbars=no,resizable=no,status=no,location=no,toolbar=no,menubar=no,width=1,height=1,top=2000`);
+                window.addEventListener('message', function(event) {
+                    console.log(event);
+                    if (event.data === 'SSOsuccess') {
+                        window.location.reload();
+                    }
+                });
+                return;
+            }
+
             $.post(
                 this.action,
                 $(this).serialize(),
@@ -1606,7 +1618,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         window.close();
                     }
                 });
-            }            
+            }
         }
 
     }); // end of document ready
