@@ -615,8 +615,17 @@ document.addEventListener('DOMContentLoaded', () => {
                 $reg = $(item).find('.reg');
                 if ($reg.length) {
                     $reg.addClass('waves-effect waves-light btn');
-                    $reg.html($reg.html().replace('Login to bid', 'Sign in to bid'));
-                    $reg.html($reg.html().replace('Register to bid!', 'Register for the auction'));
+                    let html = $reg.html(); 
+                    if (html.includes('Login to bid')) {
+                        $reg.html('Sign in to bid')
+                            .addClass('auc-button--signin')
+                            .on('click', function (e) {
+                                e.preventDefault();
+                                openAuctionRegistration();
+                            });
+                    } else if (html.includes('Register to bid!')) {
+                        $reg.html('Register for the auction').addClass('auc-button--registerauc');
+                    }
                 }
 				$cat = $(item).find('.cat');
                 if ($cat.length) {
@@ -1256,7 +1265,7 @@ if (!generateICSFileURL) function generateICSFileURL(lotName, urlLink) {
 }
 
 function openAuctionRegistration () {
-    window.open('/propstoreauction-registration.html');
+    window.open('http://localhost:8000/propstoreauction-registration.html');
 }
 
 function reloadPage () {
