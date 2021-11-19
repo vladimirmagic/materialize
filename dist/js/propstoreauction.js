@@ -3,10 +3,6 @@ document.addEventListener('DOMContentLoaded', () => {
 		document.querySelectorAll('[data-v2]').forEach(item => item.remove());
 		return;
 	}
-    if (window.opener && window.location.href.includes('autoclose=true')) { // sso
-		window.opener.postMessage('SSOsuccess', '*');
-        window.close();
-	}
 	const svgSprite = document.createElement('div');
 	svgSprite.id = 'svg-sprite';
 	document.body.append(svgSprite);

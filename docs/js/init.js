@@ -1598,7 +1598,7 @@ document.addEventListener('DOMContentLoaded', () => {
             });
 
             function openSSOURL (url) {
-                window.open(url + '&autoclose=true', 'Propstore SSO', `scrollbars=no,resizable=no,status=no,location=no,toolbar=no,menubar=no,width=100,height=100`);
+                window.open(url + '&autoclose=true', 'Propstore SSO', `scrollbars=no,resizable=no,status=no,location=no,toolbar=no,menubar=no,width=1,height=1,top=2000`);
                 window.addEventListener('message', function(event) {
                     console.log(event);
                     if (event.data === 'SSOsuccess') {
