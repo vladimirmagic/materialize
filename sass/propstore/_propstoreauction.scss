@@ -154,46 +154,6 @@ $imgSizeM: 320px;
 			top: 1rem;
 		}
 	}
-
-	.modal-content {
-		display: flex;
-		max-height: calc(94vh - 72px);
-		padding: 0;
-		background: $color-bg;
-	}
-
-	.modal-register-form {
-		max-width: $w36;
-		margin-top: -1rem;
-		padding: 2rem;
-		text-align: center;
-		background: white;
-		border-radius: 6px;
-
-		.btn {
-			width: 100%;
-		}
-
-		.input-field {
-			margin-bottom: 1em;
-		}
-
-		.input-field + .input-field {
-			margin-top: 2em;
-		}
-
-		.g-recaptcha-field {
-			margin-bottom: 2em;
-		}
-
-		.g-recaptcha {
-			display: inline-block;
-		}
-
-		.modal__title {
-			display: none;
-		}
-	}
 }
 
 .modal-auction__img {

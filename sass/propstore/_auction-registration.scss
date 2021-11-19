@@ -1,0 +1,57 @@
+.auction-registration {
+	height: calc(100vh - #{$header-main-height});
+	overflow: hidden;
+	background: $color-bg;
+}
+
+.auction-registration__inner {
+	display: flex;
+	height: 100%;
+	max-width: 1800px;
+	margin: 0 auto;
+	padding: 0;
+	background: $color-bg;
+
+	.modal-auction & {
+		max-height: calc(94vh - 72px);
+	}
+
+	.auction-registration & {
+		max-height: calc(100vh - #{$header-main-height});
+		max-height: 1040px;
+	}
+
+	.modal-register-form {
+		max-width: $w36;
+		margin-top: -1rem;
+		padding: 2rem;
+		text-align: center;
+		background: white;
+		border-radius: 6px;
+	
+		.btn {
+			width: 100%;
+		}
+	
+		.input-field {
+			margin-bottom: 1em;
+		}
+	
+		.input-field + .input-field {
+			margin-top: 2em;
+		}
+	
+		.g-recaptcha-field {
+			margin-bottom: 2em;
+		}
+	
+		.g-recaptcha {
+			display: inline-block;
+		}
+	
+		.modal__title {
+			display: none;
+		}
+	}
+}
+

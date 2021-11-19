@@ -16578,7 +16578,8 @@ a.bag__item:not(.btn):not(.btn-large):not(.btn-small):not(.btn-extra-small):befo
 .order-header {
   padding-left: 40px;
   padding-right: 40px;
-  border-bottom: 1px solid #c7c7c7;
+  -webkit-box-shadow: 0 1px 0 0 #c7c7c7;
+          box-shadow: 0 1px 0 0 #c7c7c7;
 }
 
 .order-header__inner {
@@ -19649,6 +19650,66 @@ a.voucher:not(.btn):not(.btn-large):not(.btn-small):not(.btn-extra-small):before
   }
 }
 
+.auction-registration {
+  height: calc(100vh - 112px);
+  overflow: hidden;
+  background: #F4F4F4;
+}
+
+.auction-registration__inner {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  height: 100%;
+  max-width: 1800px;
+  margin: 0 auto;
+  padding: 0;
+  background: #F4F4F4;
+}
+
+.modal-auction .auction-registration__inner {
+  max-height: calc(94vh - 72px);
+}
+
+.auction-registration .auction-registration__inner {
+  max-height: calc(100vh - 112px);
+  max-height: 1040px;
+}
+
+.auction-registration__inner .modal-register-form {
+  max-width: 36rem;
+  margin-top: -1rem;
+  padding: 2rem;
+  text-align: center;
+  background: white;
+  border-radius: 6px;
+}
+
+.auction-registration__inner .modal-register-form .btn, .auction-registration__inner .modal-register-form .btn-large, .auction-registration__inner .modal-register-form .btn-small, .auction-registration__inner .modal-register-form .btn-extra-small {
+  width: 100%;
+}
+
+.auction-registration__inner .modal-register-form .input-field {
+  margin-bottom: 1em;
+}
+
+.auction-registration__inner .modal-register-form .input-field + .input-field {
+  margin-top: 2em;
+}
+
+.auction-registration__inner .modal-register-form .g-recaptcha-field {
+  margin-bottom: 2em;
+}
+
+.auction-registration__inner .modal-register-form .g-recaptcha {
+  display: inline-block;
+}
+
+.auction-registration__inner .modal-register-form .modal__title {
+  display: none;
+}
+
 .wp h1 {
   margin-bottom: 2em;
   font-size: 52px;
@@ -20244,49 +20305,6 @@ body.my-items .filters {
   position: absolute;
   left: 2rem;
   top: 1rem;
-}
-
-.modal-auction .modal-content {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  max-height: calc(94vh - 72px);
-  padding: 0;
-  background: #F4F4F4;
-}
-
-.modal-auction .modal-register-form {
-  max-width: 36rem;
-  margin-top: -1rem;
-  padding: 2rem;
-  text-align: center;
-  background: white;
-  border-radius: 6px;
-}
-
-.modal-auction .modal-register-form .btn, .modal-auction .modal-register-form .btn-large, .modal-auction .modal-register-form .btn-small, .modal-auction .modal-register-form .btn-extra-small {
-  width: 100%;
-}
-
-.modal-auction .modal-register-form .input-field {
-  margin-bottom: 1em;
-}
-
-.modal-auction .modal-register-form .input-field + .input-field {
-  margin-top: 2em;
-}
-
-.modal-auction .modal-register-form .g-recaptcha-field {
-  margin-bottom: 2em;
-}
-
-.modal-auction .modal-register-form .g-recaptcha {
-  display: inline-block;
-}
-
-.modal-auction .modal-register-form .modal__title {
-  display: none;
 }
 
 .modal-auction__img {
