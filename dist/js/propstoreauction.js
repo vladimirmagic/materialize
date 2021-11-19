@@ -1265,9 +1265,12 @@ if (!generateICSFileURL) function generateICSFileURL(lotName, urlLink) {
 }
 
 function openAuctionRegistration () {
-    window.open('http://localhost:8000/propstoreauction-registration.html');
+    window.open('https://propstore-ui.netlify.app/propstoreauction-registration.html');
     window.addEventListener('message', function(event) {
         console.log(event);
+        if (event.data === 'reloadPage') {
+            reloadPage();
+        }
     });
 }
 
