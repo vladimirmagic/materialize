@@ -1583,6 +1583,32 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         }
 
+        // SSO
+        if ($('#modal-register-auction-form').length) {
+            $('#modal-register-auction-form').submit(function (e) {
+                e.preventDefault();
+                $('.loader-block').show();
+                setTimeout(() => { // fake login
+                    if ($('#test-url').val()) {
+                        openSSOURL($('#test-url').val());
+                    } else {
+                        $('.loader-block').hide();
+                    }
+                }, 1000);
+            });
+
+            function openSSOURL (url) {
+                window.open(url + '&autoclose=true', 'Propstore SSO', `scrollbars=no,resizable=no,status=no,location=no,toolbar=no,menubar=no,width=100,height=100`);
+                window.addEventListener('message', function(event) {
+                    console.log(event);
+                    if (event.data === 'SSOsuccess') {
+                        reloadOpener();
+                        window.close();
+                    }
+                });
+            }            
+        }
+
     }); // end of document ready
 });
 
@@ -1647,4 +1673,8 @@ function initFacebookLoginButton() {
 
         window.open(url, 'facebookLogin', 'width=' + w + ',height=' + h + ',top=' + top + ', left=' + left);
     });
+}
+
+function reloadOpener () {
+    window.opener.postMessage('reloadPage', '*');
 }

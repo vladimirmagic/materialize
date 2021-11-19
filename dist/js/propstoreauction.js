@@ -3,6 +3,10 @@ document.addEventListener('DOMContentLoaded', () => {
 		document.querySelectorAll('[data-v2]').forEach(item => item.remove());
 		return;
 	}
+    if (window.opener && window.location.href.includes('autoclose=true')) { // sso
+		window.opener.postMessage('SSOsuccess', '*');
+        window.close();
+	}
 	const svgSprite = document.createElement('div');
 	svgSprite.id = 'svg-sprite';
 	document.body.append(svgSprite);
@@ -1252,6 +1256,28 @@ document.addEventListener('DOMContentLoaded', () => {
             }
 		}
 
+        function openAuctionRegistration () {
+            let url = '/propstoreauction-registration.html';
+            if (window.location.hostname !== 'localhost') url = 'https://propstore-ui.netlify.app' + url;
+            let param = null;
+            const w = window.screen.width;
+            const h = window.screen.height;
+            if (w > 2024) {
+                param = `width=${w-100},height=${h-100},location=no,toolbar=no,menubar=no`;
+            }
+            window.open(url, 'Propstore Auction Registration', param);
+            window.addEventListener('message', function(event) {
+                console.log(event);
+                if (event.data === 'reloadPage') {
+                    reloadPage();
+                }
+            });
+        }
+        
+        function reloadPage () {
+            window.location.reload();
+        }
+
 		document.body.classList.add('loaded'); // if svg fail
 	}); // end of document ready
 });
@@ -1262,18 +1288,4 @@ if (!generateGoogleCalendarURL) function generateGoogleCalendarURL(lotName, urlL
 
 if (!generateICSFileURL) function generateICSFileURL(lotName, urlLink) {
     return 'NeedGenerateICSFileURL';
-}
-
-function openAuctionRegistration () {
-    window.open('https://propstore-ui.netlify.app/propstoreauction-registration.html');
-    window.addEventListener('message', function(event) {
-        console.log(event);
-        if (event.data === 'reloadPage') {
-            reloadPage();
-        }
-    });
-}
-
-function reloadPage () {
-    window.location.reload();
 }

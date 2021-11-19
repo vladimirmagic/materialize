@@ -26,7 +26,7 @@
                     <strong>Please select the correct details from your account below to proceed.</strong>
                 </p>
             </div>
-            <form class="modal-register-auction-form" action="#register-auction">
+            <form class="modal-register-auction-form" action="#" id="modal-register-auction-form">
                 <div class="form-section">
                     <div class="form-section__label">
                         Confirm your shipping address
@@ -71,10 +71,15 @@
                     </div>
                 </div>
                 <div class="form-section__submit">
-                    <span type="submit" class="waves-effect waves-light btn modal-register__submit" onclick="reloadOpener()">
+                    <div class="input-field input-field--label">
+                        <input type="text" placeholder="Please Enter" id="test-url">
+                        <label>test-url</label>
+                    </div><br>
+
+                    <button type="submit" class="waves-effect waves-light btn modal-register__submit">
                         <span class='btn__title'>Register for auction</span>
                         <i class='icon'><svg><use xlink:href="#arrow-right"></use></svg></i>
-                    </span>
+                    </button>
                 </div>
             </form>
         </div>
@@ -84,10 +89,3 @@
 <div class="loader-block" style="display: none;">
     <div class="preloader-wrapper active"><div class="spinner-layer"><div class="circle-clipper left"><div class="circle"></div></div><div class="gap-patch"><div class="circle"></div></div><div class="circle-clipper right"><div class="circle"></div></div></div>
 </div>
-
-<script>
-    function reloadOpener () {
-        window.opener.postMessage('reloadPage', '*');
-        window.close();
-    }
-</script>
