@@ -87,7 +87,8 @@
 
 <script>
     function reloadOpener () {
-        window.opener.reloadPage();
-        window.close();
+        // window.opener.reloadPage();
+        // window.close();
+        window.opener.postMessage('reloadPage', 'https://propstore-staging32-usm.auctionserver.net/');
     }
 </script>

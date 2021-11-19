@@ -1266,6 +1266,9 @@ if (!generateICSFileURL) function generateICSFileURL(lotName, urlLink) {
 
 function openAuctionRegistration () {
     window.open('http://localhost:8000/propstoreauction-registration.html');
+    window.addEventListener('message', function(event) {
+        console.log(event);
+    });
 }
 
 function reloadPage () {
