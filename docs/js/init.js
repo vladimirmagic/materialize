@@ -1596,23 +1596,21 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         // SSO
-        if ($('#modal-register-auction-form').length) {
-            $('#modal-register-auction-form').submit(function (e) {
+        if ($('#modal-auction-signin-form').length) {
+            $('#modal-auction-signin-form').submit(function (e) {
                 e.preventDefault();
                 $('.loader-block').show();
-                setTimeout(() => { // fake login
-                    if ($('#test-url').val()) {
-                        openSSOURL($('#test-url').val());
-                    } else {
-                        $('.loader-block').hide();
-                    }
-                }, 1000);
+    
+                if ($(this).find('#password').val().includes('sso-token')) { // todo: delete test sso
+                    openSSOURL($(this).find('#password').val());
+                    return;
+                }
             });
 
             function openSSOURL (url) {
                 const SSOwin = window.open(url + '&autoclose=true', 'Propstore SSO', `scrollbars=no,resizable=no,status=no,location=no,toolbar=no,menubar=no,width=1,height=1,top=2000`);
                 const SSOtimer = setTimeout(() => {
-                    SSOwin.close();
+                    // SSOwin.close();
                     M.toast({
                         html: '<span><strong>Somthing went wrong.</strong><br/> Check pop-ups blocking and try again.</span>',
                         displayLength: Infinity,
@@ -1624,7 +1622,31 @@ document.addEventListener('DOMContentLoaded', () => {
                     if (window.opener && event.data === 'SSOsuccess') {
                         clearTimeout(SSOtimer);
                         reloadOpener();
-                        window.close();
+                        const $form = $('.modal-auction__info');
+                        $.get('/ajax/modalAuctionRegister.action')
+                            .done(data => {
+                                $form.html(data);
+                                M.updateTextFields();
+
+                                if ($('#modal-register-auction-form').length) {
+                                    $('#modal-register-auction-form').submit(function (e) {
+                                        e.preventDefault();
+                                        $('.loader-block').show();
+                                        setTimeout(() => { // fake register on auction
+                                            if (window.opener) {
+                                                reloadOpener();
+                                                window.close();
+                                            }
+                                        }, 1000);
+                                    });
+                                }
+                            })
+                            .fail(data => {
+                                if (data && data.statusText) $form.html(data.statusText);
+                            })
+                            .always(data => {
+                                $('.loader-block').hide();
+                            });
                     } else if (event.data === 'SSOerror') {
                         clearTimeout(SSOtimer);
                         window.location.reload();
@@ -1701,5 +1723,4 @@ function initFacebookLoginButton() {
 
 function reloadOpener () {
     window.opener.postMessage('reloadPage', '*');
-    window.opener.focus();
 }
