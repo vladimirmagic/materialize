@@ -1259,7 +1259,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const w = window.screen.width;
             const h = window.screen.height;
             if (w > 1224) {
-                param = `width=${w-200},height=${h-200},left=100,top=100,location=no,toolbar=no,menubar=no`;
+                param = `width=${w-200},height=${h-200},left=100,top=100`;
             }
             window.open(url, 'Propstore Auction Registration', param);
             window.addEventListener('message', function(event) {
