@@ -1610,12 +1610,7 @@ document.addEventListener('DOMContentLoaded', () => {
             });
 
             function openSSOURL (url) {
-                const active = document.activeElement;
                 window.open(url + '&autoclose=true', 'Propstore SSO', `scrollbars=no,resizable=no,status=no,location=no,toolbar=no,menubar=no,width=1,height=1,top=2000`);
-                if (active) {
-                    window.focus();
-                    active.focus();
-                }
                 window.addEventListener('message', function(event) {
                     console.log(event);
                     if (window.opener && event.data === 'SSOsuccess') {
@@ -1696,4 +1691,5 @@ function initFacebookLoginButton() {
 
 function reloadOpener () {
     window.opener.postMessage('reloadPage', '*');
+    window.opener.focus();
 }
