@@ -101,7 +101,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 window.open($(this).find('#password').val() + '&autoclose=true', 'Propstore SSO', `scrollbars=no,resizable=no,status=no,location=no,toolbar=no,menubar=no,width=1,height=1,top=2000`);
                 window.addEventListener('message', function(event) {
                     console.log(event);
-                    if (event.data === 'SSOsuccess') {
+                    if (event.data === 'SSOsuccess' || event.data === 'SSOerror') {
                         window.location.reload();
                     }
                 });
@@ -1610,12 +1610,19 @@ document.addEventListener('DOMContentLoaded', () => {
             });
 
             function openSSOURL (url) {
+                const active = document.activeElement;
                 window.open(url + '&autoclose=true', 'Propstore SSO', `scrollbars=no,resizable=no,status=no,location=no,toolbar=no,menubar=no,width=1,height=1,top=2000`);
+                if (active) {
+                    window.focus();
+                    active.focus();
+                }
                 window.addEventListener('message', function(event) {
                     console.log(event);
                     if (window.opener && event.data === 'SSOsuccess') {
                         reloadOpener();
                         window.close();
+                    } else if (event.data === 'SSOerror') {
+                        window.location.reload();
                     }
                 });
             }

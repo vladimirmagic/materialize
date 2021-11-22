@@ -1274,6 +1274,11 @@ document.addEventListener('DOMContentLoaded', () => {
             window.location.reload();
         }
 
+        if (window.opener && $('#messages').text().includes('SSO token error')) {
+            window.opener.postMessage('SSOerror', '*');
+            window.close();
+        }
+
 		document.body.classList.add('loaded'); // if svg fail
 	}); // end of document ready
 });
