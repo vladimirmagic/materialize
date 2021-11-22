@@ -1610,13 +1610,23 @@ document.addEventListener('DOMContentLoaded', () => {
             });
 
             function openSSOURL (url) {
-                window.open(url + '&autoclose=true', 'Propstore SSO', `scrollbars=no,resizable=no,status=no,location=no,toolbar=no,menubar=no,width=1,height=1,top=2000`);
+                const SSOwin = window.open(url + '&autoclose=true', 'Propstore SSO', `scrollbars=no,resizable=no,status=no,location=no,toolbar=no,menubar=no,width=1,height=1,top=2000`);
+                const SSOtimer = setTimeout(() => {
+                    SSOwin.close();
+                    M.toast({
+                        html: '<span><strong>Somthing went wrong.</strong><br/> Check pop-ups blocking and try again.</span>',
+                        displayLength: Infinity,
+                    });
+                    $('.loader-block').hide();
+                }, 5000);
                 window.addEventListener('message', function(event) {
                     console.log(event);
                     if (window.opener && event.data === 'SSOsuccess') {
+                        clearTimeout(SSOtimer);
                         reloadOpener();
                         window.close();
                     } else if (event.data === 'SSOerror') {
+                        clearTimeout(SSOtimer);
                         window.location.reload();
                     }
                 });
