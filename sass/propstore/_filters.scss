@@ -234,6 +234,10 @@
 	}
 }
 
+.auctionIdDiv .dropdown-content {
+	min-width: 440px;
+}
+
 @media #{$extra-large-and-up} {
 	.filters__header {
 		min-width: min-content;

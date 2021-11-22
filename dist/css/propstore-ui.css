@@ -13444,6 +13444,10 @@ a.card-auction:not(.btn):not(.btn-large):not(.btn-small):not(.btn-extra-small):b
   padding-bottom: 1.5em;
 }
 
+.auctionIdDiv .dropdown-content {
+  min-width: 440px;
+}
+
 @media only screen and (min-width: 1201px) {
   .filters__header {
     min-width: -webkit-min-content;

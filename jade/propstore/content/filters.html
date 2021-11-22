@@ -60,10 +60,14 @@
                     <input type="text" id="moviesAutocomplete" placeholder="Start Typing..." autocomplete="off">
                     <label for="moviesAutocomplete">Movies & Series</label>
                 </div>
-                <div id="auctionsAutocompleteDiv" class="input-field input-field--label input-field--autocomplete ">
-                    <input type="hidden" id="auctionId" name="auctionId"/>
-                    <input type="text" id="auctionsAutocomplete" placeholder="Start Typing..." autocomplete="off">
-                    <label for="auctionsAutocomplete">By Auction</label>
+                <div class="input-field input-field--label auctionIdDiv">
+                    <select name="auctionId" id="auctionId">
+                        <option value="1">All</option>
+                        <option value="2" selected>Movie Props</option>
+                        <option value="3">Option 3</option>
+                        <option value="3">Long category name for testing purposes</option>
+                    </select>
+                    <label>By Auction</label>
                 </div>
                 <div class="input-field input-field--label">
                     <select>
