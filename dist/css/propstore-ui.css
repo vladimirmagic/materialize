@@ -9652,7 +9652,7 @@ hr.small {
   text-transform: uppercase;
 }
 
-.p-l, .modal-auction .modal-header .modal__title {
+.p-l {
   margin-bottom: 1em;
   font-size: 28px;
   font-weight: 300;
@@ -9716,7 +9716,7 @@ hr.small {
   .h3 {
     font-size: 28px;
   }
-  .p-l, .modal-auction .modal-header .modal__title {
+  .p-l {
     font-size: 24px;
   }
   .p-r {
@@ -17677,7 +17677,8 @@ a.bag__item:not(.btn):not(.btn-large):not(.btn-small):not(.btn-extra-small):befo
   .order-header {
     padding: 0;
     text-align: center;
-    border: 0;
+    -webkit-box-shadow: none;
+            box-shadow: none;
   }
   .order-header__inner {
     -webkit-flex-wrap: wrap;
@@ -17703,7 +17704,8 @@ a.bag__item:not(.btn):not(.btn-large):not(.btn-small):not(.btn-extra-small):befo
             order: 1;
     width: 100%;
     padding: 16px 0 8px;
-    border-bottom: 1px solid #c7c7c7;
+    -webkit-box-shadow: 0 1px 0 0 #c7c7c7;
+            box-shadow: 0 1px 0 0 #c7c7c7;
   }
 }
 
@@ -19654,6 +19656,10 @@ a.voucher:not(.btn):not(.btn-large):not(.btn-small):not(.btn-extra-small):before
   }
 }
 
+.auction-registration-page {
+  overflow: hidden;
+}
+
 .auction-registration {
   height: calc(100vh - 112px);
   overflow: hidden;
@@ -19666,19 +19672,9 @@ a.voucher:not(.btn):not(.btn-large):not(.btn-small):not(.btn-extra-small):before
   display: -ms-flexbox;
   display: flex;
   height: 100%;
-  max-width: 1800px;
   margin: 0 auto;
   padding: 0;
   background: #F4F4F4;
-}
-
-.modal-auction .auction-registration__inner {
-  max-height: calc(94vh - 72px);
-}
-
-.auction-registration .auction-registration__inner {
-  max-height: calc(100vh - 112px);
-  max-height: 1040px;
 }
 
 .auction-registration__inner .modal-auction-register-form {
@@ -19710,8 +19706,141 @@ a.voucher:not(.btn):not(.btn-large):not(.btn-small):not(.btn-extra-small):before
   display: inline-block;
 }
 
-.auction-registration__inner .modal-auction-register-form .modal__title {
+#modal-auction-signin-form .modal__title {
   display: none;
+}
+
+.auction-registration__img {
+  -webkit-box-flex: 1;
+  -webkit-flex: 1 1 50%;
+      -ms-flex: 1 1 50%;
+          flex: 1 1 50%;
+  background-position: 50% 50%;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.auction-registration__info {
+  -webkit-box-flex: 1;
+  -webkit-flex: 1 1 50%;
+      -ms-flex: 1 1 50%;
+          flex: 1 1 50%;
+  padding: 2.5rem 4rem;
+  overflow-y: auto;
+}
+
+.auction-registration__text {
+  margin-bottom: 2em;
+  font-size: 1.5rem;
+}
+
+.auction-registration__text p:first-child {
+  margin-top: 0;
+}
+
+.form-section {
+  margin-bottom: 2rem;
+}
+
+.form-section__label {
+  margin-bottom: .75rem;
+}
+
+.form-section__body {
+  min-height: 4rem;
+  padding: 1rem;
+  background: white;
+  border-radius: 6px;
+}
+
+.form-section__footer {
+  margin-top: 1rem;
+}
+
+.form-section__row {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: start;
+  -webkit-align-items: flex-start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+}
+
+.form-section__row-body {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  min-height: 2.5rem;
+}
+
+.form-section__row-actions {
+  -webkit-box-flex: 1;
+  -webkit-flex: 1 0 8rem;
+      -ms-flex: 1 0 8rem;
+          flex: 1 0 8rem;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: end;
+  -webkit-justify-content: flex-end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+}
+
+.form-section__row-actions .btn, .form-section__row-actions .btn-large, .form-section__row-actions .btn-small, .form-section__row-actions .btn-extra-small {
+  height: 2.5rem;
+  line-height: 2.5rem;
+  padding: 0 1.2rem;
+}
+
+.form-section__submit {
+  margin-top: 3rem;
+}
+
+@media only screen and (max-width: 1200px) {
+  .auction-registration-page {
+    overflow: auto;
+  }
+  .auction-registration-page .order-header__col--left {
+    -webkit-box-flex: 1;
+    -webkit-flex: 1 1 100%;
+        -ms-flex: 1 1 100%;
+            flex: 1 1 100%;
+    padding: 1rem 0;
+  }
+  .auction-registration-page .order-header__col--center {
+    display: none;
+  }
+  .auction-registration {
+    height: auto;
+    overflow: visible;
+  }
+  .auction-registration__inner {
+    display: block;
+  }
+  .auction-registration__img {
+    max-width: 100%;
+    height: 50vh;
+    max-height: 60vw;
+  }
+  .auction-registration__info {
+    padding: 1.5rem 1.5rem;
+  }
+  .auction-registration__text {
+    font-size: 1.25rem;
+  }
 }
 
 .wp h1 {
@@ -19767,7 +19896,7 @@ a.voucher:not(.btn):not(.btn-large):not(.btn-small):not(.btn-extra-small):before
   line-height: 1.4;
 }
 
-.wp p.p-l, .wp .modal-auction .modal-header p.modal__title, .modal-auction .modal-header .wp p.modal__title {
+.wp p.p-l {
   margin-bottom: 1em;
   font-size: 28px;
   font-weight: 300;
@@ -19897,7 +20026,7 @@ a.voucher:not(.btn):not(.btn-large):not(.btn-small):not(.btn-extra-small):before
   .wp p {
     font-size: 18px;
   }
-  .wp p.p-l, .wp .modal-auction .modal-header p.modal__title, .modal-auction .modal-header .wp p.modal__title {
+  .wp p.p-l {
     font-size: 24px;
   }
   .wp p.p-r {
@@ -20294,125 +20423,47 @@ body.my-items .filters {
 }
 
 .modal-auction {
-  position: relative;
-  max-height: 94vh;
-  width: 94vw;
   max-width: 1800px;
-  overflow-y: hidden;
 }
 
 .modal-auction .modal-header {
-  padding: 12px 24px;
+  padding: 0.5rem 1rem;
+  background: white;
 }
 
 .modal-auction .modal-header .modal__title {
   position: absolute;
-  left: 2rem;
-  top: 1rem;
+  left: 1rem;
+  top: 1.25rem;
+  font-size: 1rem;
 }
 
-.modal-auction__img {
-  -webkit-box-flex: 0;
-  -webkit-flex: 0 0 50%;
-      -ms-flex: 0 0 50%;
-          flex: 0 0 50%;
-  background-position: 50% 50%;
-  background-repeat: no-repeat;
-  background-size: cover;
+.modal-auction .modal-content {
+  padding: 0;
 }
 
-.modal-auction__info {
-  -webkit-box-flex: 0;
-  -webkit-flex: 0 0 50%;
-      -ms-flex: 0 0 50%;
-          flex: 0 0 50%;
-  padding: 2.5rem 4rem;
-  overflow-y: auto;
+@media only screen and (min-width: 1201px) {
+  .modal-auction {
+    overflow-y: hidden;
+  }
+  .modal-auction .auction-registration__inner {
+    max-height: calc(94vh - 72px);
+  }
+  .modal-auction .modal-header {
+    padding: .75rem 1.5rem;
+  }
+  .modal-auction .modal-header .modal__title {
+    left: 2rem;
+    top: 1rem;
+    font-size: 1.5rem;
+  }
 }
 
-.modal-auction__text {
-  margin-bottom: 2em;
-  font-size: 1.5rem;
-}
-
-.modal-auction__text p:first-child {
-  margin-top: 0;
-}
-
-.form-section {
-  margin-bottom: 2rem;
-}
-
-.form-section__label {
-  margin-bottom: .75rem;
-}
-
-.form-section__body {
-  min-height: 4rem;
-  padding: 1rem;
-  background: white;
-  border-radius: 6px;
-}
-
-.form-section__footer {
-  margin-top: 1rem;
-}
-
-.form-section__row {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: justify;
-  -webkit-justify-content: space-between;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
-  -webkit-box-align: start;
-  -webkit-align-items: flex-start;
-      -ms-flex-align: start;
-          align-items: flex-start;
-}
-
-.form-section__row-body {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-  -webkit-align-items: center;
-      -ms-flex-align: center;
-          align-items: center;
-  min-height: 2.5rem;
-}
-
-.form-section__row-actions {
-  -webkit-box-flex: 1;
-  -webkit-flex: 1 0 8rem;
-      -ms-flex: 1 0 8rem;
-          flex: 1 0 8rem;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: end;
-  -webkit-justify-content: flex-end;
-      -ms-flex-pack: end;
-          justify-content: flex-end;
-}
-
-.form-section__row-actions .btn, .form-section__row-actions .btn-large, .form-section__row-actions .btn-small, .form-section__row-actions .btn-extra-small {
-  height: 2.5rem;
-  line-height: 2.5rem;
-  padding: 0 1.2rem;
-}
-
-.form-section__submit {
-  margin-top: 3rem;
-}
-
-@media only screen and (min-height: 1100px) {
-  .modal-auction .modal-content {
-    min-height: 1000px;
+@media only screen and (min-width: 601px) {
+  .modal-auction {
+    position: relative;
+    height: 94vh;
+    width: 94vw;
   }
 }
 

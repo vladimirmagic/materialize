@@ -955,7 +955,7 @@
 	.order-header {
 		padding: 0;
 		text-align: center;
-		border: 0;
+		box-shadow: none;
 	}
 	
 	.order-header__inner {
@@ -978,7 +978,7 @@
 			order: 1;
 			width: 100%;
 			padding: 16px 0 8px;
-			border-bottom: 1px solid $color-grey;
+			box-shadow: 0 1px 0 0 $color-grey;
 		}
 	}
 }

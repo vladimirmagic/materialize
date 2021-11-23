@@ -17,78 +17,66 @@
 
 <div class="auction-registration">
     <div class="auction-registration__inner">
-        <div class="modal-auction__img" style="background-image: url(https://dummyimage.com/910x1040/945c94/fff.jpg);"></div>
-        <div class="modal-auction__info">
-            <div class="modal-auction__text">
+        <div class="auction-registration__img" style="background-image: url(https://dummyimage.com/910x1040/945c94/fff.jpg);"></div>
+        <div class="auction-registration__info">
+            <div class="auction-registration__text">
                 <p>
-                    You must be a logged in member to register for the Entertainment Memorabilia Live Auction, Treasures from Film and Television on 9th-11th November 2021 happening in London and Online.
+                    Hi Jon, you’re about to register for the Entertainment Memorabilia Live Auction, Treasures from Film and Television on 9th-11th November 2021 happening in London and Online.  
                 </p><p>
-                    <strong>Please sign in to continue.</strong>
+                    <strong>Please select the correct details from your account below to proceed.</strong>
                 </p>
             </div>
-            <form class="modal-auction-register-form" action="#" id="modal-auction-signin-form">
-                <button id="facebookLoginButtonLogin" class="waves-effect waves-light btn btn--facebook modal-register__facebook modal-close" data-url="https://www.facebook.com/dialog/oauth?client_id=2417639858520111&amp;redirect_uri=https%3A%2F%2Fnew.propstore.com%2Fajax%2FfacebookLoginCallback.action&amp;scope=email" type="button">
-                    <i class='icon'>
-                        <svg>
-                            <use xlink:href="#facebook"></use>
-                        </svg>
-                    </i>
-                    <span class='btn__title'>Sign in with Facebook</span>
-                </button>
-            
-                <div class="input-field input-field--label ">
-                    <input type="email" name="email" value="" id="email" placeholder="Please Enter"/>
-                    <label>Email</label>
-                    <div class="input-field__helper"></div>
-                </div>
-            
-                <div class="input-field input-field--label ">
-                    <input type="password" name="password" id="password" placeholder="Please Enter"/>
-                    <label>Password</label>
-                    <div class="input-field__helper"></div>
-                </div>
-            
-                <div class="modal-register__remember">
-                    <label class="checkbox__label">
-                        <input type="checkbox" name="rememberMe" value="true" id="rememberMe" class="filled-in"/><input type="hidden" id="__checkbox_rememberMe" name="__checkbox_rememberMe" value="true" />
-                        <span>Remember me</span>
-                    </label>
-                </div>
-            
-                <div class="modal-register__forgot">
-                    <a class="btn-flat btn--link modal-trigger modal-close" href="#modal-password">Forgot password?</a>
-                </div>
-            
-                <button type="submit" class="waves-effect waves-light btn modal-register__submit">
-                    <span class='btn__title'>Sign in</span>
-                    <i class='icon'>
-                        <svg>
-                            <use xlink:href="#arrow-right"></use>
-                        </svg>
-                    </i>
-                    <div class="preloader-wrapper active">
-                        <div class="spinner-layer spinner-white-only">
-                            <div class="circle-clipper left">
-                                <div class="circle"></div>
+            <form class="modal-register-auction-form" action="#" id="modal-register-auction-form">
+                <div class="form-section">
+                    <div class="form-section__label">
+                        Confirm your shipping address
+                    </div>
+                    <div class="form-section__body">
+                        <div class="form-section__row">
+                            <div class="form-section__row-body">
+                                John Doe, 123 Easy Street, Leeds, West Yorkshire, LS9 8DT, United Kingdom
                             </div>
-                            <div class="gap-patch">
-                                <div class="circle"></div>
-                            </div>
-                            <div class="circle-clipper right">
-                                <div class="circle"></div>
+                            <div class="form-section__row-actions">
+                                <button class="waves-effect waves-grey btn btn--secondary">
+                                    <span class='btn__title'>Edit</span>
+                                    <i class='icon'><svg><use xlink:href="#arrow-right"></use></svg></i>
+                                </button>
                             </div>
                         </div>
                     </div>
-                </button>
+                    <div class="form-section__footer">
+                        <label class="checkbox__label">
+                            <input type="checkbox" class="filled-in" name="billingAsShipping" checked>
+                            <span>My billing address is the same as my shipping address</span>
+                        </label>
+                    </div>
+                </div>
             
-                <div class="modal-register__switch">
-                    Don’t have an account? <a class="modal-trigger modal-close" href="#modal-register">Register</a>
+                <div class="form-section">
+                    <div class="form-section__label">
+                        Confirm your payment method
+                    </div>
+                    <div class="form-section__body">
+                        <div class="form-section__row">
+                            <div class="form-section__row-body">
+                                Mastercard Debit card •••1234
+                            </div>
+                            <div class="form-section__row-actions">
+                                <button class="waves-effect waves-grey btn btn--secondary">
+                                    <span class='btn__title'>Edit</span>
+                                    <i class='icon'><svg><use xlink:href="#arrow-right"></use></svg></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-section__submit">
+                    <button type="submit" class="waves-effect waves-light btn modal-register__submit">
+                        <span class='btn__title'>Register for auction</span>
+                        <i class='icon'><svg><use xlink:href="#arrow-right"></use></svg></i>
+                    </button>
                 </div>
             </form>
         </div>
     </div>
-</div>
-
-<div class="loader-block" style="display: none;">
-    <div class="preloader-wrapper active"><div class="spinner-layer"><div class="circle-clipper left"><div class="circle"></div></div><div class="gap-patch"><div class="circle"></div></div><div class="circle-clipper right"><div class="circle"></div></div></div>
 </div>

@@ -1,3 +1,7 @@
+.auction-registration-page {
+	overflow: hidden;
+}
+
 .auction-registration {
 	height: calc(100vh - #{$header-main-height});
 	overflow: hidden;
@@ -7,19 +11,9 @@
 .auction-registration__inner {
 	display: flex;
 	height: 100%;
-	max-width: 1800px;
 	margin: 0 auto;
 	padding: 0;
 	background: $color-bg;
-
-	.modal-auction & {
-		max-height: calc(94vh - 72px);
-	}
-
-	.auction-registration & {
-		max-height: calc(100vh - #{$header-main-height});
-		max-height: 1040px;
-	}
 
 	.modal-auction-register-form {
 		max-width: $w36;
@@ -48,10 +42,118 @@
 		.g-recaptcha {
 			display: inline-block;
 		}
-	
-		.modal__title {
-			display: none;
-		}
 	}
 }
 
+#modal-auction-signin-form {
+	.modal__title {
+		display: none;
+	}
+}
+
+.auction-registration__img {
+	flex: 1 1 50%;
+	background-position: 50% 50%;
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+
+.auction-registration__info {
+	flex: 1 1 50%;
+	padding: 2.5rem 4rem;
+	overflow-y: auto;
+}
+
+.auction-registration__text {
+	margin-bottom: 2em;
+	font-size: 1.5rem;
+
+	p:first-child {
+		margin-top: 0;
+	}
+}
+
+.form-section {
+	margin-bottom: 2rem;
+}
+
+.form-section__label {
+	@extend .c-r;
+	margin-bottom: .75rem;
+}
+
+.form-section__body {
+	min-height: 4rem;
+	padding: 1rem;
+	background: white;
+	border-radius: 6px;
+}
+
+.form-section__footer {
+	margin-top: 1rem;
+}
+
+.form-section__row {
+	display: flex;
+	justify-content: space-between;
+	align-items: flex-start;
+}
+
+.form-section__row-body {
+	display: flex;
+	align-items: center;
+	min-height: 2.5rem;
+}
+
+.form-section__row-actions {
+	flex: 1 0 8rem;
+	display: flex;
+	justify-content: flex-end;
+
+	.btn {
+		height: 2.5rem;
+		line-height: 2.5rem;
+		padding: 0 1.2rem;
+	}
+}
+
+.form-section__submit {
+	margin-top: 3rem;
+}
+
+@media #{$large-and-down} {
+	.auction-registration-page {
+		overflow: auto;
+
+		.order-header__col--left {
+			flex: 1 1 100%;
+			padding: 1rem 0;
+		}
+		.order-header__col--center {
+			display: none;
+		}
+	}
+
+	.auction-registration {
+		height: auto;
+		overflow: visible;
+	}
+
+	.auction-registration__inner {
+		display: block;
+	}
+
+	.auction-registration__img {
+		max-width: 100%;
+		height: 50vh;
+		max-height: 60vw;
+	}
+
+	.auction-registration__info {
+		padding: 1.5rem 1.5rem;
+	}
+	
+	.auction-registration__text {
+		font-size: 1.25rem;
+	}
+}
