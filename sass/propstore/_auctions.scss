@@ -119,6 +119,10 @@
 	padding: 40px 72px 40px 144px;
 	background: $color-bg;
 	border-bottom-right-radius: 140px;
+
+	.btn {
+		margin: .5rem .5rem 0 0;
+	}
 }
 
 .section-auctions__item-bage {

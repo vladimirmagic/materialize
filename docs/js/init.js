@@ -1599,6 +1599,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if ($('.auction-registration__inner').length) {
             if ($('.auction-registration').length) { // page on propstore.com
                 $('html').addClass('auction-registration-page');
+                setTimeout(() => $('html').scrollTop(0), 100);
             }
             function dontModal () {
                 $('.auction-registration__inner .modal-close').removeClass('modal-close');
@@ -1621,6 +1622,40 @@ document.addEventListener('DOMContentLoaded', () => {
                 });
             }
             dontModal();
+
+            function registerAuctionForm () {
+                if ($('#modal-register-auction-form').length) {
+                    $('#modal-register-auction-form').submit(function (e) {
+                        e.preventDefault();
+                        $('.loader-block').show();
+                        setTimeout(() => { // fake register on auction
+                            if (window.opener) {
+                                reloadOpener();
+                                window.close();
+                            }
+                        }, 1000);
+                    });
+                }
+
+                $('.auction-registration__page-trigger').on('click', function (e) {
+                    e.preventDefault();
+                    $info = $('.auction-registration__info');
+                    $info.hide();
+                    $page = $('<div class="auction-registration__info auction-registration__info--page">');
+                    $page.insertAfter($info).append($('.' + $(this).attr('href')).clone());
+                    $page[0].scrollIntoView();
+    
+                    function goBack (e) {
+                        e.preventDefault();
+                        $('.auction-registration__info--page').remove();
+                        $('.auction-registration__info').show();
+                    };
+                    $('.auction-registration__info .auction-registration__page-back').on('click', goBack);
+                    window.history.pushState(null, 'Back');
+                    window.onpopstate = goBack;
+                });
+            }
+            registerAuctionForm();
 
             // SSO
             if ($('#modal-auction-signin-form').length) {
@@ -1658,19 +1693,7 @@ document.addEventListener('DOMContentLoaded', () => {
                                 .done(data => {
                                     $form.html(data);
                                     M.updateTextFields();
-
-                                    if ($('#modal-register-auction-form').length) {
-                                        $('#modal-register-auction-form').submit(function (e) {
-                                            e.preventDefault();
-                                            $('.loader-block').show();
-                                            setTimeout(() => { // fake register on auction
-                                                if (window.opener) {
-                                                    reloadOpener();
-                                                    window.close();
-                                                }
-                                            }, 1000);
-                                        });
-                                    }
+                                    registerAuctionForm();
                                 })
                                 .fail(data => {
                                     if (data && data.statusText) $form.html(data.statusText);
