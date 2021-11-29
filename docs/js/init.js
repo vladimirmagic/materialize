@@ -845,7 +845,7 @@ document.addEventListener('DOMContentLoaded', () => {
             });
 
             function initializeAuctionsAutocomplete(data) {
-                $('#auctionsAutocomplete').autocomplete({
+                $('#auctionIdAutocomplete').autocomplete({
                     data,
                     onAutocomplete: function (auctionId) {
                         $('#auctionId').val(auctionId);
@@ -858,18 +858,16 @@ document.addEventListener('DOMContentLoaded', () => {
             const auctionId = $('#auctionId').val() || 0;
             const auctionsOptions = {};
 
-            initializeAuctionsAutocomplete(auctionsOptions);
-
-            $.getJSON('/ajax/movies.action', function (json) {
-                if (json && json.movies) {
-                    $(json.movies).each(function (key, movie) {
-                        if (auctionId == movie.id) {
-                            $('#auctionsAutocomplete').val(movie.name);
-                        }
-                        auctionsOptions[movie.name] = movie.id;
-                    });
+            $('#auctionIdSelect option').each(function (key, option) {
+                $auction = $(option);
+                let name = $auction.html();
+                let id = $auction.val();
+                if (auctionId == id) {
+                    $('#auctionIdAutocomplete').val(name);
                 }
+                auctionsOptions[name] = +id;
             });
+            initializeAuctionsAutocomplete(auctionsOptions);
 
             function countEnabledFilters() {
                 setTimeout(function () { // wait inputs
@@ -926,7 +924,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 $('#filterForm').submit();
             });
 
-            $('#auctionId').on('change', function () {
+            $('#auctionIdAutocompleteDiv .input-field__clean').on('click', function () {
+                $('#auctionIdAutocomplete').val('');
+                $('#auctionId').val(null);
                 filter();
             });
 
@@ -951,16 +951,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         $(this).toggleClass('active');
                         $active = $('.filters__tab.active[data-auctiontype]');
                         const val = $active.length === 1 ? $active.data('auctiontype') : 0;
-                        if ($('#auctionType').find('option').length) {
-                            if ($('#auctionType').find('option:selected').length) {
-                                $('#auctionType').find('option:selected')[0].value = val;
-                            } else {
-                                $('#auctionType').find('option')[0].value = val;
-                                $('#auctionType').find('option')[0].selected = true;
-                            }
-                        } else {
-                            $('#auctionType').val(val);
-                        }
+                        $('#auctionType').val(val);
                     }
                     filter();
                 });
