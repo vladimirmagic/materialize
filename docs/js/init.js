@@ -1592,6 +1592,7 @@ document.addEventListener('DOMContentLoaded', () => {
         $('.modal-auction').modal({ // load form on modal open
             onOpenStart: function (el) {
                 el.classList.add('sync');
+                $(el).find('.auction-registration__info--page, .auction-registration__page').remove();
                 const $content = $(el).find('.auction-registration__info');
                 $.get('/ajax/modalAuctionRegister.action')
                     .done(data => {
