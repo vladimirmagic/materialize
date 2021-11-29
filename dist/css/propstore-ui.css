@@ -19738,6 +19738,7 @@ a.voucher:not(.btn):not(.btn-large):not(.btn-small):not(.btn-extra-small):before
   margin-top: 2.5rem;
   margin-bottom: 2em;
   font-size: 1.5rem;
+  line-height: 1.3;
 }
 
 .auction-registration__text p:first-child {
@@ -19745,7 +19746,14 @@ a.voucher:not(.btn):not(.btn-large):not(.btn-small):not(.btn-extra-small):before
 }
 
 .form-section {
+  position: relative;
   margin-bottom: 2rem;
+}
+
+.form-section .order__row {
+  margin: 0;
+  padding: 0;
+  border: 0 none;
 }
 
 .form-section__label {
@@ -19754,6 +19762,7 @@ a.voucher:not(.btn):not(.btn-large):not(.btn-small):not(.btn-extra-small):before
 
 .form-section__body {
   min-height: 4rem;
+  margin-bottom: 1rem;
   padding: 1rem;
   background: white;
   border-radius: 6px;
@@ -19761,6 +19770,10 @@ a.voucher:not(.btn):not(.btn-large):not(.btn-small):not(.btn-extra-small):before
 
 .form-section__footer {
   margin-top: 1rem;
+}
+
+.form-section__actions {
+  margin-top: 2rem;
 }
 
 .form-section__row {
@@ -19791,25 +19804,23 @@ a.voucher:not(.btn):not(.btn-large):not(.btn-small):not(.btn-extra-small):before
   line-height: 1.2;
 }
 
-.form-section__row-actions {
-  -webkit-box-flex: 1;
-  -webkit-flex: 1 0 8rem;
-      -ms-flex: 1 0 8rem;
-          flex: 1 0 8rem;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: end;
-  -webkit-justify-content: flex-end;
-      -ms-flex-pack: end;
-          justify-content: flex-end;
+.form-section__row-body label {
+  color: #2D2E41;
 }
 
-.form-section__row-actions .btn, .form-section__row-actions .btn-large, .form-section__row-actions .btn-small, .form-section__row-actions .btn-extra-small {
+.form-section__radio[type="radio"] + span {
+  line-height: 1.3;
+}
+
+.form-section__row-actions {
+  padding-left: 1rem;
+}
+
+.form-section__row-action {
   height: 2.5rem;
   line-height: 2.5rem;
   padding: 0 1.2rem;
+  white-space: nowrap;
 }
 
 .form-section__submit {
@@ -19820,7 +19831,8 @@ a.voucher:not(.btn):not(.btn-large):not(.btn-small):not(.btn-extra-small):before
   margin-top: 1rem;
   padding-top: 2rem;
   padding-bottom: 2.5rem;
-  background: #F4F4F4;
+  background: -webkit-gradient(linear, left top, left bottom, from(rgba(255, 255, 255, 0)), color-stop(1.5rem, #F4F4F4), to(#F4F4F4));
+  background: linear-gradient(rgba(255, 255, 255, 0), #F4F4F4 1.5rem, #F4F4F4);
 }
 
 .auction-registration__page {
@@ -19834,7 +19846,7 @@ a.voucher:not(.btn):not(.btn-large):not(.btn-small):not(.btn-extra-small):before
 .auction-registration__page-header {
   position: -webkit-sticky;
   position: sticky;
-  z-index: 100;
+  z-index: 110;
   top: 0;
   padding-top: 1.5rem;
   margin-bottom: 1rem;
@@ -19878,6 +19890,15 @@ a.voucher:not(.btn):not(.btn-large):not(.btn-small):not(.btn-extra-small):before
   .auction-registration__text {
     margin-top: 1.5rem;
     font-size: 1.25rem;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .form-section__row {
+    display: block;
+  }
+  .form-section__row-actions {
+    padding: 1rem 0 0;
   }
 }
 

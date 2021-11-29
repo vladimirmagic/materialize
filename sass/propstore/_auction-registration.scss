@@ -69,6 +69,7 @@
 	margin-top: 2.5rem;
 	margin-bottom: 2em;
 	font-size: 1.5rem;
+	line-height: 1.3;
 
 	p:first-child {
 		margin-top: 0;
@@ -76,7 +77,14 @@
 }
 
 .form-section {
+	position: relative;
 	margin-bottom: 2rem;
+
+	.order__row {
+		margin: 0;
+		padding: 0;
+		border: 0 none;
+	}
 }
 
 .form-section__label {
@@ -86,6 +94,7 @@
 
 .form-section__body {
 	min-height: 4rem;
+	margin-bottom: 1rem;
 	padding: 1rem;
 	background: white;
 	border-radius: 6px;
@@ -93,6 +102,10 @@
 
 .form-section__footer {
 	margin-top: 1rem;
+}
+
+.form-section__actions {
+	margin-top: 2rem;
 }
 
 .form-section__row {
@@ -106,18 +119,27 @@
 	align-items: center;
 	min-height: 2.5rem;
 	line-height: 1.2;
+
+	label {
+		color: $color-base;
+	}
+}
+
+.form-section__radio[type="radio"] {
+	& + span {
+		line-height: 1.3;
+	}
 }
 
 .form-section__row-actions {
-	flex: 1 0 8rem;
-	display: flex;
-	justify-content: flex-end;
+	padding-left: 1rem;
+}
 
-	.btn {
-		height: 2.5rem;
-		line-height: 2.5rem;
-		padding: 0 1.2rem;
-	}
+.form-section__row-action {
+	height: 2.5rem;
+	line-height: 2.5rem;
+	padding: 0 1.2rem;
+	white-space: nowrap;
 }
 
 .form-section__submit {
@@ -127,7 +149,7 @@
 	margin-top: 1rem;
 	padding-top: 2rem;
 	padding-bottom: 2.5rem;
-	background: $color-bg;
+	background: linear-gradient(rgba(255,255,255,0), $color-bg 1.5rem, $color-bg);
 }
 
 .auction-registration__page {
@@ -140,7 +162,7 @@
 
 .auction-registration__page-header {
 	position: sticky;
-	z-index: 100;
+	z-index: 110;
 	top: 0;
 	padding-top: 1.5rem;
 	margin-bottom: 1rem;
@@ -188,5 +210,16 @@
 	.auction-registration__text {
 		margin-top: 1.5rem;
 		font-size: 1.25rem;
+	}
+}
+
+
+@media #{$small-and-down} {
+	.form-section__row {
+		display: block;
+	}
+
+	.form-section__row-actions {
+		padding: 1rem 0 0;
 	}
 }

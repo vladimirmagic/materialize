@@ -1624,36 +1624,157 @@ document.addEventListener('DOMContentLoaded', () => {
             dontModal();
 
             function registerAuctionForm () {
+                function registerAuctionFormSubmit () {
+                    $('.loader-block').show();
+                    $('.auction-registration__info--page, .auction-registration__page').remove();
+                    $form = $('#modal-register-auction-form')
+                    $formHtml = $('.auction-registration__info');
+                    $formHtml.show();
+                    return $.get( // todo: post
+                        $form[0].action,
+                        $form.serialize(),
+                    )
+                        .done(data => {
+                            $formHtml.html(data).scrollTop(0);
+                            M.updateTextFields();
+                            registerAuctionForm();
+                        })
+                        .fail(data => {
+                            if (data && data.statusText) $formHtml.html(data.statusText);
+                        })
+                        .always(data => {
+                            $('.loader-block').hide();
+                        });
+                }
+
                 if ($('#modal-register-auction-form').length) {
                     $('#modal-register-auction-form').submit(function (e) {
                         e.preventDefault();
-                        $('.loader-block').show();
-                        setTimeout(() => { // fake register on auction
-                            if (window.opener) {
-                                reloadOpener();
-                                window.close();
-                            }
-                        }, 1000);
+                        registerAuctionFormSubmit()
+                            .done(data => {
+                                if (window.opener) {
+                                    reloadOpener();
+                                    window.close();
+                                }
+                            });
                     });
+
+                    if ($('.modal-auction-address-form').length) {
+                        $('.modal-auction-address-form').submit(function (e) {
+                            e.preventDefault();
+                            $('.loader-block').show();
+                            const id = $(this).find('input[name=shippingAddressId]').val();
+                            if (id) $('#shippingAddressId').val(id);
+
+                            setTimeout(() => { // fake submit
+                                $form = $('#modal-register-auction-form');
+                                $form.attr('action', $form.attr('action') + '?reload=true');
+                                registerAuctionFormSubmit(true);
+                            }, 1000);
+                        });
+                    }
                 }
+
+                // open second page
+                function goBack (e) {
+                    e.preventDefault();
+                    $('.auction-registration__info--page .auction-registration__page').appendTo($('.auction-registration__inner'));
+                    $('.auction-registration__info').show();
+                    $('.auction-registration__info--page').remove();
+                };
 
                 $('.auction-registration__page-trigger').on('click', function (e) {
                     e.preventDefault();
-                    $info = $('.auction-registration__info');
-                    $info.hide();
+                    $('.auction-registration__info').hide();
                     $page = $('<div class="auction-registration__info auction-registration__info--page">');
-                    $page.insertAfter($info).append($('.' + $(this).attr('href')).clone());
+                    $page.appendTo($('.auction-registration__inner')).append($('.auction-registration__page[data-page="' + $(this).data('page') + '"]'));
                     $page[0].scrollIntoView();
     
-                    function goBack (e) {
-                        e.preventDefault();
-                        $('.auction-registration__info--page').remove();
-                        $('.auction-registration__info').show();
-                    };
-                    $('.auction-registration__info .auction-registration__page-back').on('click', goBack);
                     window.history.pushState(null, 'Back');
                     window.onpopstate = goBack;
                 });
+
+                $('.auction-registration__page-back').on('click', goBack);
+
+                $('.auction-registration__page[data-page="address"] .auction-registration__page-submit').on('click', goBack);
+
+                $('.auction-registration__page[data-page="terms"] .auction-registration__page-submit').on('click', function (e) {
+                    goBack(e);
+                    $('#termsConfirm')[0].checked = true;
+                });
+
+                // pages
+                $('input[name="shippingAddress"]').on('change', function () {
+                    $('#shippingAddressId').val($(this).val());
+                    $('#shippingAddressLabel').html($(this).next('span').html());
+                });
+
+                $('input[name="billingAddress"]').on('change', function () {
+                    $('#billingAddressId').val($(this).val());
+                    $('#billingAddressLabel').html($(this).next('span').html());
+                });
+
+                //billingAsShipping
+                const $shippingAddressCheckbox = $('#modal-register-auction-form input[name="billingAsShipping"]');
+                if ($shippingAddressCheckbox.length) {
+                    function registerAuctionBillingAddress() {
+                        const $section = $('.form-section--billing');
+                        $shippingAddressCheckbox[0].checked ? $section.hide() : $section.show();
+                    }
+
+                    $shippingAddressCheckbox.on('change', registerAuctionBillingAddress);
+                    registerAuctionBillingAddress();
+                }
+
+                // BILLING ADDRESS STATE
+                const $billingCountry = $('select[name="billingAddress.countryId"]');
+                if ($billingCountry.length) {
+                    const $billingStateInput = $('.billing-address-state__input input');
+                    const $billingStateInputDiv = $('.billing-address-state__input');
+                    const $billingStateSelect = $('.billing-address-state__select select');
+                    const $billingStateSelectDiv = $('.billing-address-state__select');
+
+                    function isBillingStateSelect() {
+                        if ($billingCountry.val() == 2) { // USA
+                            $billingStateSelectDiv.show();
+                            $billingStateSelect.attr('name', 'billingAddress.state');
+                            $billingStateInputDiv.hide();
+                            $billingStateInput.attr('name', 'billingAddress.state.tmp');
+                        } else {
+                            $billingStateSelectDiv.hide();
+                            $billingStateSelect.attr('name', 'billingAddress.state.tmp');
+                            $billingStateInputDiv.show();
+                            $billingStateInput.attr('name', 'billingAddress.state');
+                        }
+                    }
+                    $billingCountry.on('change', isBillingStateSelect);
+                    isBillingStateSelect();
+                }
+
+                // SHIPPING ADDRESS STATE
+                const $shippingCountry = $('.modal-auction-address-form select[name="shippingAddress.countryId"]');
+                if ($shippingCountry.length) {
+                    const $shippingStateInput = $('.shipping-address-state__input input');
+                    const $shippingStateInputDiv = $('.shipping-address-state__input');
+                    const $shippingStateSelect = $('.shipping-address-state__select select');
+                    const $shippingStateSelectDiv = $('.shipping-address-state__select');
+
+                    function isShippingStateSelect() {
+                        if ($shippingCountry.val() == 2) { // USA
+                            $shippingStateSelectDiv.show();
+                            $shippingStateSelect.attr('name', 'shippingAddress.state');
+                            $shippingStateInputDiv.hide();
+                            $shippingStateInput.attr('name', 'shippingAddress.state.tmp');
+                        } else {
+                            $shippingStateSelectDiv.hide();
+                            $shippingStateSelect.attr('name', 'shippingAddress.state.tmp');
+                            $shippingStateInputDiv.show();
+                            $shippingStateInput.attr('name', 'shippingAddress.state');
+                        }
+                    }
+                    $shippingCountry.on('change', isShippingStateSelect);
+                    isShippingStateSelect();
+                }
             }
             registerAuctionForm();
 
@@ -1691,7 +1812,7 @@ document.addEventListener('DOMContentLoaded', () => {
                             const $form = $('.auction-registration__info');
                             $.get('/ajax/modalAuctionRegister.action')
                                 .done(data => {
-                                    $form.html(data);
+                                    $form.html(data).scrollTop(0);
                                     M.updateTextFields();
                                     registerAuctionForm();
                                 })
