@@ -9620,14 +9620,14 @@ hr.small {
   line-height: 1.2;
 }
 
-.h3 {
+.h3, .auction-registration__h {
   margin-bottom: 1em;
   font-size: 36px;
   font-weight: 500;
   line-height: 1.2;
 }
 
-.h4 {
+.h4, .auction-card__title {
   margin-bottom: 1em;
   font-size: 24px;
   font-weight: 500;
@@ -9659,7 +9659,7 @@ hr.small {
   line-height: 1.3;
 }
 
-.p-r {
+.p-r, .auction-registration__text1 {
   margin-bottom: 1em;
   font-size: 20px;
   font-weight: 300;
@@ -9680,7 +9680,7 @@ hr.small {
   line-height: 1.5;
 }
 
-.c-r, .faq-section__collapsible-header, .form-section__label {
+.c-r, .faq-section__collapsible-header, .auction-registration__more-h, .form-section__label {
   margin-bottom: 1em;
   font-size: 20px;
   font-weight: 500;
@@ -9701,7 +9701,7 @@ hr.small {
   .h2, .how__title, .section-auctions__item-title {
     font-size: 36px;
   }
-  .h3 {
+  .h3, .auction-registration__h {
     font-size: 32px;
   }
 }
@@ -9713,19 +9713,19 @@ hr.small {
   .h2, .how__title, .section-auctions__item-title {
     font-size: 28px;
   }
-  .h3 {
+  .h3, .auction-registration__h {
     font-size: 28px;
   }
   .p-l {
     font-size: 24px;
   }
-  .p-r {
+  .p-r, .auction-registration__text1 {
     font-size: 18px;
   }
   .p-s {
     font-size: 14px;
   }
-  .c-r, .faq-section__collapsible-header, .form-section__label {
+  .c-r, .faq-section__collapsible-header, .auction-registration__more-h, .form-section__label {
     font-size: 16px;
   }
 }
@@ -14411,7 +14411,7 @@ a.product__certificate:not(.btn):not(.btn-large):not(.btn-small):not(.btn-extra-
   border-top: 1px solid #c7c7c7;
 }
 
-.modal-shipping-quote__note .c-r, .modal-shipping-quote__note .faq-section__collapsible-header, .modal-shipping-quote__note .form-section__label {
+.modal-shipping-quote__note .c-r, .modal-shipping-quote__note .faq-section__collapsible-header, .modal-shipping-quote__note .auction-registration__more-h, .modal-shipping-quote__note .form-section__label {
   margin-bottom: .5em;
 }
 
@@ -19734,6 +19734,24 @@ a.voucher:not(.btn):not(.btn-large):not(.btn-small):not(.btn-extra-small):before
   overflow-y: auto;
 }
 
+.auction-registration__h {
+  margin-top: 2.5rem;
+}
+
+.auction-registration__h-i {
+  width: 3.5rem;
+  height: 3.5rem;
+  margin-right: 1rem;
+  color: white;
+  border-radius: 50%;
+  background: #11BFC5;
+}
+
+.auction-registration__h-i svg {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
 .auction-registration__text {
   margin-top: 2.5rem;
   margin-bottom: 2em;
@@ -19743,6 +19761,74 @@ a.voucher:not(.btn):not(.btn-large):not(.btn-small):not(.btn-extra-small):before
 
 .auction-registration__text p:first-child {
   margin-top: 0;
+}
+
+.auction-registration__more {
+  margin-top: 2.5rem;
+}
+
+.auction-card {
+  position: relative;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  min-height: 204px;
+  margin-bottom: 2rem;
+  background: #ffffff;
+  -webkit-box-shadow: 0px 8px 32px -10px rgba(0, 0, 0, 0.15);
+          box-shadow: 0px 8px 32px -10px rgba(0, 0, 0, 0.15);
+  border-radius: 6px;
+}
+
+.auction-card__img {
+  width: 204px;
+  min-width: 204px;
+  background-position: 50% 50%;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-color: #212121;
+  border-top-left-radius: 6px;
+  border-bottom-left-radius: 6px;
+}
+
+.auction-card__info {
+  -webkit-box-flex: 1;
+  -webkit-flex: 1 1 100%;
+      -ms-flex: 1 1 100%;
+          flex: 1 1 100%;
+  padding: 1.5rem 1.5rem .5rem 2rem;
+}
+
+.auction-card__title {
+  display: -webkit-box;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  max-height: 3em;
+  margin-bottom: .5em;
+  line-height: 1.5;
+}
+
+.auction-card__description {
+  margin-bottom: 1.5em;
+}
+
+.auction-card__description .icon {
+  margin-top: -.25rem;
+  margin-right: .25rem;
+}
+
+.auction-card__actions {
+  margin-right: -1rem;
+}
+
+.auction-card__actions .btn, .auction-card__actions .btn-large, .auction-card__actions .btn-small, .auction-card__actions .btn-extra-small {
+  height: 3rem;
+  margin: 0 1rem 1rem 0;
+  line-height: 3rem;
+  padding: 0 1rem;
 }
 
 .form-section {
@@ -19894,6 +19980,27 @@ a.voucher:not(.btn):not(.btn-large):not(.btn-small):not(.btn-extra-small):before
 }
 
 @media only screen and (max-width: 600px) {
+  .auction-registration__h-i {
+    width: 2.5rem;
+    height: 2.5rem;
+    margin-right: .5rem;
+  }
+  .auction-registration__h-i svg {
+    width: 1rem;
+    height: 1rem;
+  }
+  .auction-card {
+    display: block;
+  }
+  .auction-card__img {
+    width: 100%;
+    height: 204px;
+    border-top-right-radius: 6px;
+    border-bottom-left-radius: 0;
+  }
+  .auction-card__info {
+    padding: 1.5rem 1.5rem .5rem 1.5rem;
+  }
   .form-section__row {
     display: block;
   }
@@ -19962,7 +20069,7 @@ a.voucher:not(.btn):not(.btn-large):not(.btn-small):not(.btn-extra-small):before
   line-height: 1.3;
 }
 
-.wp p.p-r {
+.wp p.p-r, .wp p.auction-registration__text1 {
   margin-bottom: 1em;
   font-size: 20px;
   font-weight: 300;
@@ -19983,7 +20090,7 @@ a.voucher:not(.btn):not(.btn-large):not(.btn-small):not(.btn-extra-small):before
   line-height: 1.5;
 }
 
-.wp p.c-r, .wp p.faq-section__collapsible-header, .wp p.form-section__label {
+.wp p.c-r, .wp p.faq-section__collapsible-header, .wp p.auction-registration__more-h, .wp p.form-section__label {
   margin-bottom: 1em;
   font-size: 20px;
   font-weight: 500;
@@ -20088,13 +20195,13 @@ a.voucher:not(.btn):not(.btn-large):not(.btn-small):not(.btn-extra-small):before
   .wp p.p-l {
     font-size: 24px;
   }
-  .wp p.p-r {
+  .wp p.p-r, .wp p.auction-registration__text1 {
     font-size: 18px;
   }
   .wp p.p-s {
     font-size: 14px;
   }
-  .wp p.c-r, .wp p.faq-section__collapsible-header, .wp p.form-section__label {
+  .wp p.c-r, .wp p.faq-section__collapsible-header, .wp p.auction-registration__more-h, .wp p.form-section__label {
     font-size: 16px;
   }
 }
@@ -21210,7 +21317,7 @@ body.search-index .categories-match {
           align-items: center;
 }
 
-.auccatalog__search-panel-title .h4 {
+.auccatalog__search-panel-title .h4, .auccatalog__search-panel-title .auction-card__title {
   margin: 0;
 }
 
