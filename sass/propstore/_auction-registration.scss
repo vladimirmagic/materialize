@@ -173,6 +173,10 @@
 		padding: 0;
 		border: 0 none;
 	}
+
+	&.form-section--trash {
+		padding-right: 2.5rem;
+	}
 }
 
 .form-section__label {
@@ -181,11 +185,18 @@
 }
 
 .form-section__body {
+	position: relative;
 	min-height: 4rem;
 	margin-bottom: 1rem;
 	padding: 1rem;
 	background: white;
 	border-radius: 6px;
+}
+
+.auction-registration__trash {
+	position: absolute;
+	right: -3.25rem;
+	top: .5rem;
 }
 
 .form-section__footer {
