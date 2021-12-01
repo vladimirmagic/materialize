@@ -380,6 +380,110 @@ document.addEventListener('DOMContentLoaded', () => {
                     }
                 }
             });
+
+            $('.credit-cards__add-button, .credit-cards__cancel-button').on('click', function (e) {
+                $stripe = $(this).closest('.credit-cards__stripe');
+                if ($stripe.length) $stripe.toggleClass('new');
+            });
+        }
+
+        // STRIPE
+        if ($('.stripeElements').length) {
+            const stripe = Stripe($('#stripePublicKey').val());
+            const elements = stripe.elements();
+
+            const elementStyles = {
+                base: {
+                    color: '#2D2E41',
+                    fontSize: '16px',
+                    fontSmoothing: 'antialiased',
+                },
+                invalid: {
+                    color: '#F93838',
+                    ':focus': {
+                        color: '#2D2E41',
+                    },
+                },
+            };
+
+            const elementClasses = {
+                focus: 'focus',
+                empty: 'empty',
+                invalid: 'invalid',
+            };
+
+            cardNumber = elements.create('cardNumber', {
+                style: elementStyles,
+                classes: elementClasses,
+            });
+            cardNumber.mount('#stipeCardNumber');
+
+            const cardExpiry = elements.create('cardExpiry', {
+                style: elementStyles,
+                classes: elementClasses,
+            });
+            cardExpiry.mount('#stipeCardExpiry');
+
+            const cardCvc = elements.create('cardCvc', {
+                style: elementStyles,
+                classes: elementClasses,
+            });
+            cardCvc.mount('#stipeCardCvc');
+
+            $('.__PrivateStripeElement').attr('style', '');
+
+            const stripeErrors = [];
+            $stripeErrors = $('.stripeElements .input-field__helper');
+
+            [cardNumber, cardExpiry, cardCvc].forEach(function(element, key) {
+                element.on('focus', function(event) {
+                    $(element._component).addClass('focus');
+                });
+                element.on('blur', function(event) {
+                    $(element._component).removeClass('focus');
+                });
+                element.on('change', function(event) {
+                    if (event.error) {
+                        stripeErrors[key] = event.error.message;
+                    } else {
+                        stripeErrors[key] = null;
+                    }
+                    const stripeErrorsExist = stripeErrors.filter(e => !!e);
+                    if (stripeErrorsExist.length) {
+                        $stripeErrors.addClass('error').html(stripeErrorsExist.join('<br>'));
+                    } else {
+                        $stripeErrors.removeClass('error').html('');
+                    }
+                });
+            });
+
+            cardData = {
+                address_zip: $('stipeCardZip').val()
+            };
+
+            $('.stripeElements').closest('form').submit(function (e) {
+                e.preventDefault();
+                $('.loader-block').show();
+                $form = $(this);
+    
+                stripe.createToken(cardNumber, cardData).then(function (result) {
+                    if (result.error) {
+                        $('#stripeError').val(result.error.message);
+                        $('.stripeElements .input-field__helper').text(result.error.message).addClass('error');
+                        $('#stripeToken').val('');
+                        $form.removeClass('sync');
+                        $('.loader-block').hide();
+                        $('body').removeClass('blocked');
+                        scrollToError();
+                    } else {
+                        $('#stripeError').val('');
+                        $('.stripeElements .input-field__helper').text('').removeClass('error');
+                        $('#stripeToken').val(result.token.id);
+                        $('#stripeTitle').val("***" + result.token.card.last4 + " " + result.token.card.exp_month + "/" + result.token.card.exp_year);
+                        $form.submit();
+                    }
+                });
+            });
         }
 
         // const out = document.createElement('div');

@@ -755,24 +755,6 @@
 	background: #fff;
 }
 
-.__PrivateStripeElement {
-	position: relative;
-	width: calc(100% - 2px);
-	height: $input-height + 8;
-	margin: 0 1px;
-	padding: 1.5em 0 1em 1.5em;
-	font-size: $input-font-size;
-	color: $color-base;
-	border: $input-border;
-
-	&.focus,
-	&:focus-within {
-		width: 100%;
-		margin: 0;
-		border: 2px solid $input-focus-color;
-	  }
-}
-
 .checkout-step-tab {
 	width: 100%;
 }

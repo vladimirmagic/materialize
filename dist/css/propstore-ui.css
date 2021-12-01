@@ -17510,23 +17510,6 @@ a.bag__item:not(.btn):not(.btn-large):not(.btn-small):not(.btn-extra-small):befo
   background: #fff;
 }
 
-.__PrivateStripeElement {
-  position: relative;
-  width: calc(100% - 2px);
-  height: 64px;
-  margin: 0 1px;
-  padding: 1.5em 0 1em 1.5em;
-  font-size: 16px;
-  color: #2D2E41;
-  border: 1px solid #c7c7c7;
-}
-
-.__PrivateStripeElement.focus, .__PrivateStripeElement:focus-within {
-  width: 100%;
-  margin: 0;
-  border: 2px solid #11BFC5;
-}
-
 .checkout-step-tab {
   width: 100%;
 }
@@ -18493,8 +18476,81 @@ a.account__orders-buy-link:not(.btn):not(.btn-large):not(.btn-small):not(.btn-ex
   margin-right: -.5rem;
 }
 
-.credit-cards__add-button {
+.credit-cards__stripe {
   margin-top: 2rem;
+}
+
+.credit-cards__stripe .stripeElements {
+  display: none;
+}
+
+.credit-cards__stripe.new .stripeElements {
+  display: block;
+}
+
+.credit-cards__stripe.new .credit-cards__add-button {
+  display: none;
+}
+
+.credit-cards__stripe.new .credit-cards__cancel-button {
+  display: inline-block;
+}
+
+.credit-cards__cancel-button {
+  display: none;
+  margin-top: 2rem;
+}
+
+.credit-cards__cancel-button .icon {
+  -webkit-transform: rotate(180deg);
+          transform: rotate(180deg);
+}
+
+.stripeElement {
+  margin-bottom: 1rem;
+}
+
+.stripeElement .__PrivateStripeElement {
+  position: relative;
+  width: calc(100% - 2px);
+  height: 56px;
+  margin: 0 1px;
+  padding: 1.1em 0 1em 1.4em;
+  font-size: 16px;
+  color: #2D2E41;
+  border: 1px solid #c7c7c7;
+}
+
+.stripeElement .__PrivateStripeElement.focus, .stripeElement .__PrivateStripeElement:focus-within {
+  width: 100%;
+  margin: 0;
+  border: 2px solid #11BFC5;
+}
+
+.stripeElement .__PrivateStripeElement .ElementsApp {
+  font-size: 16px !important;
+}
+
+.stripeElements__row {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.stripeElements__row .stripeElement {
+  -webkit-box-flex: 1;
+  -webkit-flex: 1 1 100%;
+      -ms-flex: 1 1 100%;
+          flex: 1 1 100%;
+}
+
+.stripeElements__row .stripeElement + .stripeElement {
+  margin-left: 1rem;
 }
 
 @media only screen and (max-width: 1200px) {

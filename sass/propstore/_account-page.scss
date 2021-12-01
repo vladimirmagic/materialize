@@ -468,8 +468,74 @@ a.account__orders-buy-link:not(.btn) {
 	margin-right: -.5rem;
 }
 
-.credit-cards__add-button {
+.credit-cards__stripe {
 	margin-top: 2rem;
+
+	.stripeElements {
+		display: none;
+	}
+
+	&.new {
+		.stripeElements {
+			display: block;
+		}
+
+		.credit-cards__add-button {
+			display: none;
+		}
+
+		.credit-cards__cancel-button {
+			display: inline-block;
+		}
+	}
+}
+
+.credit-cards__cancel-button {
+	display: none;
+	margin-top: 2rem;
+
+	.icon {
+		transform: rotate(180deg);
+	}
+}
+
+.stripeElement {
+	margin-bottom: 1rem;
+
+	.__PrivateStripeElement {
+		position: relative;
+		width: calc(100% - 2px);
+		height: $input-height;
+		margin: 0 1px;
+		padding: 1.1em 0 1em 1.4em;
+		font-size: $input-font-size;
+		color: $color-base;
+		border: $input-border;
+	
+		&.focus,
+		&:focus-within {
+			width: 100%;
+			margin: 0;
+			border: 2px solid $input-focus-color;
+		}
+
+		.ElementsApp {
+			font-size: $input-font-size !important;
+		}
+	}
+}
+
+.stripeElements__row {
+	display: flex;
+	justify-content: space-between;
+
+	.stripeElement {
+		flex: 1 1 100%;
+	}
+
+	.stripeElement + .stripeElement {
+		margin-left: 1rem;
+	}
 }
 
 @media #{$large-and-down} {
