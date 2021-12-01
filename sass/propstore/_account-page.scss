@@ -27,9 +27,20 @@ a.account-page__suptitle:not(.btn) {
 	border-bottom: 1px solid $color-grey;
 
 	&:last-child {
-		padding-bottom: 0;
 		margin-bottom: 0;
 		border-bottom: 0;
+	}
+
+	&.account-page__section--footer {
+		position: sticky;
+		bottom: 0;
+		z-index: 200;
+		padding-top: 2em;
+		background: linear-gradient(rgba(255,255,255,0), white 1.5em, white);
+
+		.btn {
+			width: 100%;
+		}
 	}
 }
 
@@ -371,6 +382,94 @@ a.account__orders-buy-link:not(.btn) {
 .account__coa-btn {
 	margin-top: 1rem;
 	width: 100%;
+}
+
+
+.credit-cards {
+	&.credit-cards--white {
+		.credit-cards__item {
+			height: 2rem;
+		}
+
+		.credit-cards__item-label {
+			height: 2rem;
+			padding: 0;
+
+			label:before {
+				display: none;
+			}
+		}
+	}
+}
+
+.credit-cards__item {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+
+	& + & {
+		margin-top: 1rem;
+	}
+
+	&.remove {
+		.credit-cards__item-label {
+			opacity: .5;
+
+			* {
+				cursor: default;
+			}
+		}
+
+		.credit-cards__item-helper {
+			display: block;
+		}
+
+		.credit-cards__item-remove {
+			color: $color-red;
+		}
+	}
+}
+
+.credit-cards__item-label {
+	position: relative;
+	flex: 1 1 100%;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	height: 4rem;
+	padding: 0 1rem;
+	background: white;
+	border-radius: 6px;
+	white-space: nowrap;
+
+	label {
+		font-size: 1em;
+		color: $color-base;
+		cursor: pointer;
+
+		&:before {
+			content: '';
+			position: absolute;
+			left: 0;
+			right: 0;
+			top: 0;
+			bottom: 0;
+		}
+	}
+}
+
+.credit-cards__item-helper {
+	display: none;
+	padding: 0 1rem;
+	font-weight: 400;
+}
+
+.credit-cards__item-actions {
+	margin-right: -.5rem;
+}
+
+.credit-cards__add-button {
+	margin-top: 2rem;
 }
 
 @media #{$large-and-down} {

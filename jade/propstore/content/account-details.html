@@ -1,4 +1,9 @@
 <form class="account-page">
+    <input type="hidden" name="token" value="DLJA67D26UW52OJC5HF8H04RWYRJEEJM">
+    <input type="hidden" name="stripePublicKey" value="pk_test_t7pWDgTuBFkuwSnJ8BOgBGwk" id="stripePublicKey">
+    <input type="hidden" name="stripeToken" value="" id="stripeToken">
+    <input type="hidden" name="stripeError" value="" id="stripeError">
+
     <a href="/account.html" class="account-page__suptitle h6">
         My Account
     </a>
@@ -192,6 +197,69 @@
 
     <div class="account-page__section">
         <div class="account-page__form">
+            <p class="account-page__section-title c-r">Credit Cards</p>
+
+            <select name="removedCards" id="accountDetailsSubmit_removedCards" multiple="multiple" tabindex="-1" class="browser-default" style="display: none;">
+                <option value="card_1JDpmIEhQM2IjXLsVYy8HJ3s">***4242 4/2024</option>
+                <option value="card_1JFdiGEhQM2IjXLsyNfo8ypB">***4242 1/2031</option>
+            
+            
+            </select>
+
+            <div class="credit-cards credit-cards--white">
+                <div class="credit-cards__item">
+                    <div class="credit-cards__item-label">
+                        <label>
+                            <input name="defaultCreditCard" type="radio" checked />
+                            <span>***4242 4/2024</span>
+                        </label>
+                    </div>
+                    <div class="credit-cards__item-actions">
+                        <span class="waves-effect btn-flat btn--icon credit-cards__item-remove" data-value="card_1JDpmIEhQM2IjXLsVYy8HJ3s">
+                            <i class="icon"><svg><use xlink:href="#trash"></use></svg></i>
+                        </span>
+                    </div>
+                </div>
+
+                <div class="credit-cards__item">
+                    <div class="credit-cards__item-label">
+                        <label>
+                            <input name="defaultCreditCard" type="radio" />
+                            <span>***4242 1/2031</span>
+                        </label>
+                        <div class="credit-cards__item-helper">
+                            Will be removed
+                        </div>
+                    </div>
+                    <div class="credit-cards__item-actions">
+                        <span class="waves-effect btn-flat btn--icon credit-cards__item-remove" data-value="card_1JFdiGEhQM2IjXLsyNfo8ypB">
+                            <i class="icon"><svg><use xlink:href="#trash"></use></svg></i>
+                        </span>
+                    </div>
+                </div>
+
+                <span class="waves-effect waves-grey btn btn--secondary credit-cards__add-button">
+                    <i class='icon'><svg><use xlink:href="#plus"></use></svg></i>
+                    <span class='btn__title'>Add New Card</span>
+                </span>
+
+                <div class="stripeElements credit-cards__stripe" style="display: none;">
+                    <div id="stipeCardNumber" class="stripeElement StripeElement empty"><div class="__PrivateStripeElement" style=""><iframe name="__privateStripeFrame3305" frameborder="0" allowtransparency="true" scrolling="no" allow="payment *" src="https://js.stripe.com/v3/elements-inner-card-443812a4bac53fa8cfbf4492575b01bb.html#wait=false&amp;mids[guid]=NA&amp;mids[muid]=d580fc71-b50a-40f4-8ed2-9e22ea0bfe9832dbf7&amp;mids[sid]=121e35d4-642b-42b8-b5a2-2365b48578f12ec53f&amp;rtl=false&amp;componentName=cardNumber&amp;keyMode=test&amp;apiKey=pk_test_t7pWDgTuBFkuwSnJ8BOgBGwk&amp;referrer=http%3A%2F%2Fpropstore.loc%2FaccountDetails.action&amp;controllerId=__privateStripeController3301" title="Защищенное окно для ввода номера карты" style="border: none !important; margin: 0px !important; padding: 0px !important; width: 1px !important; min-width: 100% !important; overflow: hidden !important; display: block !important; user-select: none !important; transform: translate(0px) !important; height: 16.7969px;"></iframe><input class="__PrivateStripeElement-input" aria-hidden="true" aria-label=" " autocomplete="false" maxlength="1" style="border: none !important; display: block !important; position: absolute !important; height: 1px !important; top: -1px !important; left: 0px !important; padding: 0px !important; margin: 0px !important; width: 100% !important; opacity: 0 !important; background: transparent !important; pointer-events: none !important; font-size: 16px !important;"></div></div>
+                    <div class="stripeElements__row">
+                        <div id="stipeCardExpiry" class="stripeElement StripeElement empty"><div class="__PrivateStripeElement" style=""><iframe name="__privateStripeFrame3306" frameborder="0" allowtransparency="true" scrolling="no" allow="payment *" src="https://js.stripe.com/v3/elements-inner-card-443812a4bac53fa8cfbf4492575b01bb.html#wait=false&amp;mids[guid]=NA&amp;mids[muid]=d580fc71-b50a-40f4-8ed2-9e22ea0bfe9832dbf7&amp;mids[sid]=121e35d4-642b-42b8-b5a2-2365b48578f12ec53f&amp;rtl=false&amp;componentName=cardExpiry&amp;keyMode=test&amp;apiKey=pk_test_t7pWDgTuBFkuwSnJ8BOgBGwk&amp;referrer=http%3A%2F%2Fpropstore.loc%2FaccountDetails.action&amp;controllerId=__privateStripeController3301" title="Защищенное окно для ввода даты истечения срока" style="border: none !important; margin: 0px !important; padding: 0px !important; width: 1px !important; min-width: 100% !important; overflow: hidden !important; display: block !important; user-select: none !important; transform: translate(0px) !important; height: 16.7969px;"></iframe><input class="__PrivateStripeElement-input" aria-hidden="true" aria-label=" " autocomplete="false" maxlength="1" style="border: none !important; display: block !important; position: absolute !important; height: 1px !important; top: -1px !important; left: 0px !important; padding: 0px !important; margin: 0px !important; width: 100% !important; opacity: 0 !important; background: transparent !important; pointer-events: none !important; font-size: 16px !important;"></div></div>
+                        <div id="stipeCardCvc" class="stripeElement StripeElement empty"><div class="__PrivateStripeElement" style=""><iframe name="__privateStripeFrame3307" frameborder="0" allowtransparency="true" scrolling="no" allow="payment *" src="https://js.stripe.com/v3/elements-inner-card-443812a4bac53fa8cfbf4492575b01bb.html#wait=false&amp;mids[guid]=NA&amp;mids[muid]=d580fc71-b50a-40f4-8ed2-9e22ea0bfe9832dbf7&amp;mids[sid]=121e35d4-642b-42b8-b5a2-2365b48578f12ec53f&amp;rtl=false&amp;componentName=cardCvc&amp;keyMode=test&amp;apiKey=pk_test_t7pWDgTuBFkuwSnJ8BOgBGwk&amp;referrer=http%3A%2F%2Fpropstore.loc%2FaccountDetails.action&amp;controllerId=__privateStripeController3301" title="Защищенное окно для ввода CVC-кода" style="border: none !important; margin: 0px !important; padding: 0px !important; width: 1px !important; min-width: 100% !important; overflow: hidden !important; display: block !important; user-select: none !important; transform: translate(0px) !important; height: 16.7969px;"></iframe><input class="__PrivateStripeElement-input" aria-hidden="true" aria-label=" " autocomplete="false" maxlength="1" style="border: none !important; display: block !important; position: absolute !important; height: 1px !important; top: -1px !important; left: 0px !important; padding: 0px !important; margin: 0px !important; width: 100% !important; opacity: 0 !important; background: transparent !important; pointer-events: none !important; font-size: 16px !important;"></div></div>
+                        <div class="stripeElement">
+                            <input type="text" id="stipeCardZip" placeholder="ZIP / POSTCODE">
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="account-page__section">
+        <div class="account-page__form">
             <p class="account-page__section-title c-r">
                 Email Preferences
             </p>
@@ -215,7 +283,7 @@
         </div>
     </div>
 
-    <div class="account-page__section">
+    <div class="account-page__section account-page__section--footer">
         <div class="account-page__form">
             <button type="submit" class="waves-effect waves-light btn">
                 Save

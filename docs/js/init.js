@@ -360,6 +360,28 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
 
+        
+        // CREDIT CARDS
+        $creditCards = $('.credit-cards');
+        if ($creditCards.length) {
+            $('.credit-cards__item-remove').on('click', function (e) {
+                $option = $('select[name="removedCards"] option[value="' + $(this).data('value') + '"]');
+                if ($option.length) {
+                    const val = !$option[0].selected;
+                    $option[0].selected = val;
+                    $creditCard = $(this).closest('.credit-cards__item');
+                    if ($creditCard.length) {
+                        $creditCard.toggleClass('remove');
+                        $input = $creditCard.find('input');
+                        if ($input.length) {
+                            if (val) $input[0].checked = false;
+                            $input[0].disabled = val;
+                        }
+                    }
+                }
+            });
+        }
+
         // const out = document.createElement('div');
         // out.classList.add('out');
         // document.body.append(out);

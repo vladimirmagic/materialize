@@ -18395,10 +18395,6 @@ a.account__orders-buy-link:not(.btn):not(.btn-large):not(.btn-small):not(.btn-ex
   width: 100%;
 }
 
-.credit-cards {
-  background: #F4F4F4;
-}
-
 .credit-cards.credit-cards--white .credit-cards__item {
   height: 2rem;
 }
@@ -18431,6 +18427,22 @@ a.account__orders-buy-link:not(.btn):not(.btn-large):not(.btn-small):not(.btn-ex
   margin-top: 1rem;
 }
 
+.credit-cards__item.remove .credit-cards__item-label {
+  opacity: .5;
+}
+
+.credit-cards__item.remove .credit-cards__item-label * {
+  cursor: default;
+}
+
+.credit-cards__item.remove .credit-cards__item-helper {
+  display: block;
+}
+
+.credit-cards__item.remove .credit-cards__item-remove {
+  color: #F93838;
+}
+
 .credit-cards__item-label {
   position: relative;
   -webkit-box-flex: 1;
@@ -18441,6 +18453,10 @@ a.account__orders-buy-link:not(.btn):not(.btn-large):not(.btn-small):not(.btn-ex
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
   -webkit-box-align: center;
   -webkit-align-items: center;
       -ms-flex-align: center;
@@ -18449,6 +18465,7 @@ a.account__orders-buy-link:not(.btn):not(.btn-large):not(.btn-small):not(.btn-ex
   padding: 0 1rem;
   background: white;
   border-radius: 6px;
+  white-space: nowrap;
 }
 
 .credit-cards__item-label label {
@@ -18464,6 +18481,12 @@ a.account__orders-buy-link:not(.btn):not(.btn-large):not(.btn-small):not(.btn-ex
   right: 0;
   top: 0;
   bottom: 0;
+}
+
+.credit-cards__item-helper {
+  display: none;
+  padding: 0 1rem;
+  font-weight: 400;
 }
 
 .credit-cards__item-actions {
