@@ -18015,6 +18015,11 @@ a.account-page__suptitle:not(.btn):not(.btn-large):not(.btn-small):not(.btn-extr
   margin-bottom: 2em;
 }
 
+.account-page__section-text {
+  margin-top: -.5em;
+  margin-bottom: 1.5em;
+}
+
 .account-page__form {
   max-width: 432px;
   margin: 0 auto;
