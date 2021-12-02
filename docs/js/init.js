@@ -360,7 +360,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
 
-        
+
         // CREDIT CARDS
         $creditCards = $('.credit-cards');
         if ($creditCards.length) {
@@ -383,7 +383,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
             $('.credit-cards__add-button, .credit-cards__cancel-button').on('click', function (e) {
                 $stripe = $(this).closest('.credit-cards__stripe');
-                if ($stripe.length) $stripe.toggleClass('new');
+                if ($stripe.length) {
+                    const show = $(this).hasClass('credit-cards__add-button');
+                    $stripe.toggleClass('new', show);
+                    $stripeElements = $stripe.find('.stripeElements');
+                    if ($stripeElements.length) $stripeElements[0].style.display = show ? 'block' : 'none';
+                }
             });
         }
 
@@ -457,15 +462,18 @@ document.addEventListener('DOMContentLoaded', () => {
                 });
             });
 
-            cardData = {
+            const cardData = {
                 address_zip: $('stipeCardZip').val()
             };
 
             $('.stripeElements').closest('form').submit(function (e) {
+                $stripeElements = $(this).find('.stripeElements');
+                if (!$stripeElements.length || $stripeElements[0].style.display == 'none') return;
+
                 e.preventDefault();
                 $('.loader-block').show();
                 $form = $(this);
-    
+
                 stripe.createToken(cardNumber, cardData).then(function (result) {
                     if (result.error) {
                         $('#stripeError').val(result.error.message);
@@ -480,6 +488,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         $('.stripeElements .input-field__helper').text('').removeClass('error');
                         $('#stripeToken').val(result.token.id);
                         $('#stripeTitle').val("***" + result.token.card.last4 + " " + result.token.card.exp_month + "/" + result.token.card.exp_year);
+                        $stripeElements[0].style.display = 'none';
                         $form.submit();
                     }
                 });
@@ -1743,7 +1752,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 function dontModal () {
                     $('.auction-registration__inner .modal-close').removeClass('modal-close');
                     $('.auction-registration__inner .modal-trigger').removeClass('modal-trigger').addClass('modal-trigger-auction-registration');
-    
+
                     $('.modal-trigger-auction-registration[href="#modal-register"]').on('click', function (e) {
                         e.preventDefault();
                         $('.modal-auction-register-form').hide();
@@ -1761,11 +1770,11 @@ document.addEventListener('DOMContentLoaded', () => {
                     });
                 }
                 dontModal();
-    
+
                 function registerAuctionForm () {
                     M.updateTextFields();
                     $('select').not('.disabled').formSelect();
-    
+
                     function registerAuctionFormSubmit () {
                         $('.loader-block').show();
                         $('.auction-registration__info--page, .auction-registration__page').remove();
@@ -1787,7 +1796,7 @@ document.addEventListener('DOMContentLoaded', () => {
                                 $('.loader-block').hide();
                             });
                     }
-    
+
                     if ($('#modal-register-auction-form').length) {
                         $('#modal-register-auction-form').submit(function (e) {
                             e.preventDefault();
@@ -1799,14 +1808,14 @@ document.addEventListener('DOMContentLoaded', () => {
                                     }
                                 });
                         });
-    
+
                         if ($('.modal-auction-address-form').length) {
                             $('.modal-auction-address-form').submit(function (e) {
                                 e.preventDefault();
                                 $('.loader-block').show();
                                 const id = $(this).find('input[name=shippingAddressId]').val();
                                 if (id) $('#shippingAddressId').val(id);
-    
+
                                 setTimeout(() => { // fake submit
                                     $form = $('#modal-register-auction-form');
                                     $form.attr('action', $form.attr('action') + '?reload=true');
@@ -1815,7 +1824,7 @@ document.addEventListener('DOMContentLoaded', () => {
                             });
                         }
                     }
-    
+
                     // open second page
                     function goBack (e) {
                         e.preventDefault();
@@ -1823,38 +1832,38 @@ document.addEventListener('DOMContentLoaded', () => {
                         $('.auction-registration__info').show();
                         $('.auction-registration__info--page').remove();
                     };
-    
+
                     $('.auction-registration__page-trigger').on('click', function (e) {
                         e.preventDefault();
                         $('.auction-registration__info').hide();
                         $page = $('<div class="auction-registration__info auction-registration__info--page">');
                         $page.appendTo($('.auction-registration__inner')).append($('.auction-registration__page[data-page="' + $(this).data('page') + '"]'));
                         $page[0].scrollIntoView();
-        
+
                         window.history.pushState(null, 'Back');
                         window.onpopstate = goBack;
                     });
-    
+
                     $('.auction-registration__page-back').on('click', goBack);
-    
+
                     $('.auction-registration__page[data-page="address"] .auction-registration__page-submit').on('click', goBack);
-    
+
                     $('.auction-registration__page[data-page="terms"] .auction-registration__page-submit').on('click', function (e) {
                         goBack(e);
                         $('#termsConfirm')[0].checked = true;
                     });
-    
+
                     // pages
                     $('input[name="shippingAddress"]').on('change', function () {
                         $('#shippingAddressId').val($(this).val());
                         $('#shippingAddressLabel').html($(this).next('span').html());
                     });
-    
+
                     $('input[name="billingAddress"]').on('change', function () {
                         $('#billingAddressId').val($(this).val());
                         $('#billingAddressLabel').html($(this).next('span').html());
                     });
-    
+
                     //billingAsShipping
                     const $shippingAddressCheckbox = $('#modal-register-auction-form input[name="billingAsShipping"]');
                     if ($shippingAddressCheckbox.length) {
@@ -1862,11 +1871,11 @@ document.addEventListener('DOMContentLoaded', () => {
                             const $section = $('.form-section--billing');
                             $shippingAddressCheckbox[0].checked ? $section.hide() : $section.show();
                         }
-    
+
                         $shippingAddressCheckbox.on('change', registerAuctionBillingAddress);
                         registerAuctionBillingAddress();
                     }
-    
+
                     // BILLING ADDRESS STATE
                     const $billingCountry = $('select[name="billingAddress.countryId"]');
                     if ($billingCountry.length) {
@@ -1874,7 +1883,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         const $billingStateInputDiv = $('.billing-address-state__input');
                         const $billingStateSelect = $('.billing-address-state__select select');
                         const $billingStateSelectDiv = $('.billing-address-state__select');
-    
+
                         function isBillingStateSelect() {
                             if ($billingCountry.val() == 2) { // USA
                                 $billingStateSelectDiv.show();
@@ -1891,7 +1900,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         $billingCountry.on('change', isBillingStateSelect);
                         isBillingStateSelect();
                     }
-    
+
                     // SHIPPING ADDRESS STATE
                     const $shippingCountry = $('.modal-auction-address-form select[name="shippingAddress.countryId"]');
                     if ($shippingCountry.length) {
@@ -1899,7 +1908,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         const $shippingStateInputDiv = $('.shipping-address-state__input');
                         const $shippingStateSelect = $('.shipping-address-state__select select');
                         const $shippingStateSelectDiv = $('.shipping-address-state__select');
-    
+
                         function isShippingStateSelect() {
                             if ($shippingCountry.val() == 2) { // USA
                                 $shippingStateSelectDiv.show();
@@ -1918,13 +1927,13 @@ document.addEventListener('DOMContentLoaded', () => {
                     }
                 }
                 registerAuctionForm();
-    
+
                 // SSO
                 if ($('#modal-auction-signin-form').length) {
                     $('#modal-auction-signin-form').submit(function (e) {
                         e.preventDefault();
                         $('.loader-block').show();
-            
+
                         if ($(this).find('#password').val().includes('sso-token')) { // todo: delete test sso
                             M.Toast.dismissAll();
                             setTimeout(() => { // fake sign in
@@ -1933,7 +1942,7 @@ document.addEventListener('DOMContentLoaded', () => {
                             return;
                         }
                     });
-    
+
                     function openSSOURL (url) {
                         const SSOwin = window.open(url + '&autoclose=true', 'Propstore SSO', `scrollbars=no,resizable=no,status=no,location=no,toolbar=no,menubar=no,width=1,height=1,top=2000`);
                         const SSOtimer = setTimeout(() => {
