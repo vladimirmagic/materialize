@@ -17500,14 +17500,9 @@ a.bag__item:not(.btn):not(.btn-large):not(.btn-small):not(.btn-extra-small):befo
 }
 
 .checkout-payment-card-new__label {
-  position: absolute;
-  left: 1rem;
-  z-index: 100;
   -webkit-transform: translateY(-0.5rem);
           transform: translateY(-0.5rem);
-  padding: 0 .5rem;
   white-space: nowrap;
-  background: #fff;
 }
 
 .checkout-step-tab {

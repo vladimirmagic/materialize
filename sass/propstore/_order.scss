@@ -746,13 +746,8 @@
 
 .checkout-payment-card-new__label {
 	@extend .h6;
-	position: absolute;
-	left: 1rem;
-	z-index: 100;
 	transform: translateY(-.5rem);
-	padding: 0 .5rem;
 	white-space: nowrap;
-	background: #fff;
 }
 
 .checkout-step-tab {
