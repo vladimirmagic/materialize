@@ -471,9 +471,12 @@ a.account__orders-buy-link:not(.btn) {
 }
 
 .credit-cards__item-helper {
+	position: absolute;
+    right: 0;
 	display: none;
 	padding: 0 1rem;
 	font-weight: 400;
+    background: white;
 }
 
 .credit-cards__item-actions {
