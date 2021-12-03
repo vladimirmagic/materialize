@@ -108,7 +108,7 @@
 
   &.modal-header--sticky {
     position: sticky;
-    z-index: 100;
+    z-index: 200;
     top: 0;
     pointer-events: none; // dont hover content
 
