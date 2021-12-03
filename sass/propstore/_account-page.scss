@@ -404,6 +404,13 @@ a.account__orders-buy-link:not(.btn) {
 				display: none;
 			}
 		}
+
+		.credit-cards__stripe {
+			.stripeElements {
+				margin-right: 0;
+				padding: 0;
+			}
+		}
 	}
 }
 
@@ -478,6 +485,10 @@ a.account__orders-buy-link:not(.btn) {
 
 	.stripeElements {
 		display: none;
+		margin-right: 2.5rem; // trash
+		padding: 1rem 1rem 0;
+		background: white;
+		border-radius: 6px;
 	}
 
 	&.new {
@@ -492,6 +503,11 @@ a.account__orders-buy-link:not(.btn) {
 		.credit-cards__cancel-button {
 			display: inline-block;
 		}
+	}
+
+	.input-field__helper {
+		margin: 0;
+		padding-bottom: 1em;
 	}
 }
 
