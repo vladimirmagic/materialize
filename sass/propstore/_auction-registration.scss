@@ -274,6 +274,14 @@
 	}
 }
 
+.auction-registration__page-trigger {
+	&.disabled {
+		color: $primary-color !important;
+		background: none !important;
+		opacity: .3;
+	}
+}
+
 @media #{$large-and-down} {
 	.auction-registration-page {
 		overflow: auto;

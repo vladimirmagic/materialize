@@ -5733,7 +5733,7 @@ body.keyboard-focused .dropdown-content li:focus {
 .modal-header.modal-header--sticky {
   position: -webkit-sticky;
   position: sticky;
-  z-index: 100;
+  z-index: 200;
   top: 0;
   pointer-events: none;
 }
@@ -18391,6 +18391,11 @@ a.account__orders-buy-link:not(.btn):not(.btn-large):not(.btn-small):not(.btn-ex
   display: none;
 }
 
+.credit-cards.credit-cards--white .credit-cards__stripe .stripeElements {
+  margin-right: 0;
+  padding: 0;
+}
+
 .credit-cards__item {
   display: -webkit-box;
   display: -webkit-flex;
@@ -18467,9 +18472,12 @@ a.account__orders-buy-link:not(.btn):not(.btn-large):not(.btn-small):not(.btn-ex
 }
 
 .credit-cards__item-helper {
+  position: absolute;
+  right: 0;
   display: none;
   padding: 0 1rem;
   font-weight: 400;
+  background: white;
 }
 
 .credit-cards__item-actions {
@@ -18482,6 +18490,10 @@ a.account__orders-buy-link:not(.btn):not(.btn-large):not(.btn-small):not(.btn-ex
 
 .credit-cards__stripe .stripeElements {
   display: none;
+  margin-right: 2.5rem;
+  padding: 1rem 1rem 0;
+  background: white;
+  border-radius: 6px;
 }
 
 .credit-cards__stripe.new .stripeElements {
@@ -18494,6 +18506,11 @@ a.account__orders-buy-link:not(.btn):not(.btn-large):not(.btn-small):not(.btn-ex
 
 .credit-cards__stripe.new .credit-cards__cancel-button {
   display: inline-block;
+}
+
+.credit-cards__stripe .input-field__helper {
+  margin: 0;
+  padding-bottom: 1em;
 }
 
 .credit-cards__cancel-button {
@@ -20126,6 +20143,12 @@ a.voucher:not(.btn):not(.btn-large):not(.btn-small):not(.btn-extra-small):before
           transform: rotate(180deg);
 }
 
+.auction-registration__page-trigger.disabled {
+  color: #764AAF !important;
+  background: none !important;
+  opacity: .3;
+}
+
 @media only screen and (max-width: 1200px) {
   .auction-registration-page {
     overflow: auto;
@@ -20146,6 +20169,7 @@ a.voucher:not(.btn):not(.btn-large):not(.btn-small):not(.btn-extra-small):before
   }
   .auction-registration__inner {
     display: block;
+    height: auto;
   }
   .auction-registration__img {
     max-width: 100%;
