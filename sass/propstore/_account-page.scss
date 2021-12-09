@@ -514,6 +514,14 @@ a.account__orders-buy-link:not(.btn) {
 	}
 }
 
+.credit-cards__add-button {
+	&.disabled {
+		color: $primary-color !important;
+		background: none !important;
+		opacity: .3;
+	}
+}
+
 .credit-cards__cancel-button {
 	display: none;
 	margin-top: 2rem;

@@ -18513,6 +18513,12 @@ a.account__orders-buy-link:not(.btn):not(.btn-large):not(.btn-small):not(.btn-ex
   padding-bottom: 1em;
 }
 
+.credit-cards__add-button.disabled {
+  color: #764AAF !important;
+  background: none !important;
+  opacity: .3;
+}
+
 .credit-cards__cancel-button {
   display: none;
   margin-top: 2rem;
