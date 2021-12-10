@@ -12597,10 +12597,14 @@ a.card:not(.btn):not(.btn-large):not(.btn-small):not(.btn-extra-small).card--arc
   color: #F93838;
 }
 
-.card__price-approx {
+.card__price-approx, .card__price-soldon {
   display: inline-block;
   font-size: 14px;
   color: #8F8F8F;
+}
+
+.card__price-soldon {
+  white-space: nowrap;
 }
 
 .card__price-i {
@@ -13094,7 +13098,9 @@ a.card-auction:not(.btn):not(.btn-large):not(.btn-small):not(.btn-extra-small):b
   .cards .card__price, .cards-blog .card__price {
     font-size: 16px;
   }
-  .cards .card__price-approx, .cards-blog .card__price-approx {
+  .cards .card__price-approx, .cards-blog .card__price-approx, .cards .card__price-soldon, .cards-blog .card__price-soldon,
+  .cards .card__price-soldon,
+  .cards-blog .card__price-soldon {
     font-size: 12px;
   }
   .cards .card__date, .cards-blog .card__date {
@@ -13962,6 +13968,10 @@ a.related-movies__item:not(.btn):not(.btn-large):not(.btn-small):not(.btn-extra-
 
 .product__number .badge {
   margin-right: .5rem;
+}
+
+.product__number span {
+  white-space: nowrap;
 }
 
 a.product__title:not(.btn):not(.btn-large):not(.btn-small):not(.btn-extra-small) {

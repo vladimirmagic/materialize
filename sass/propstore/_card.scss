@@ -254,6 +254,11 @@ a.card:not(.btn) { // fix a
 	color: $color-font-grey;
 }
 
+.card__price-soldon {
+	@extend .card__price-approx;
+	white-space: nowrap;
+}
+
 .card__price-i {
 	position: absolute;
 	top: -14px;

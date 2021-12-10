@@ -167,6 +167,10 @@
 	.badge {
 		margin-right: .5rem;
 	}
+
+	span {
+		white-space: nowrap;
+	}
 }
 
 a.product__title:not(.btn) {
