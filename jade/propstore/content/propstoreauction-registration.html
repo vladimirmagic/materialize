@@ -108,7 +108,7 @@
                                 John Doe, 123 Easy Street, Leeds, West Yorkshire, LS9 8DT, United Kingdom
                             </div>
                             <div class="form-section__row-actions">
-                                <a class="waves-effect waves-grey btn btn--secondary form-section__row-action auction-registration__page-trigger"  data-page="address">
+                                <a class="waves-effect waves-grey btn btn--secondary form-section__row-action auction-registration__page-trigger disabled"  data-page="address">
                                     <span class='btn__title'>Edit</span>
                                     <i class='icon'><svg><use xlink:href="#arrow-right"></use></svg></i>
                                 </a>
@@ -436,9 +436,89 @@
             </div>
             
             <div class="auction-registration__page" data-page="payment">
-                <a class="waves-effect btn-flat auction-registration__page-back" href="#">
-                    <i class='icon'><svg><use xlink:href="#arrow-right"></use></svg></i> Go Back
-                </a>
+                <div class="auction-registration__page-header">
+                    <a class="waves-effect btn-flat auction-registration__page-back" href="#">
+                        <i class='icon'><svg><use xlink:href="#arrow-right"></use></svg></i> Go Back
+                    </a>
+                </div>
+                <div class="credit-cards credit-cards--white1">
+                                
+                    <div class="credit-cards__item">
+                        <div class="credit-cards__item-label">
+                            <label>
+                                <input name="defaultCreditCard" type="radio" value="card_1K2UwWCaWn2fRg7wukeEY1pu">
+                                <span>***4242 2/2031</span>
+                            </label>
+                            <div class="credit-cards__item-helper">
+                                Will be removed
+                            </div>
+                        </div>
+                        <div class="credit-cards__item-actions">
+                        <span class="waves-effect btn-flat btn--icon credit-cards__item-remove" data-value="card_1K2UwWCaWn2fRg7wukeEY1pu">
+                            <i class="icon"><svg><use xlink:href="#trash"></use></svg></i>
+                        </span>
+                        </div>
+                    </div>
+                
+                    <div class="credit-cards__item">
+                        <div class="credit-cards__item-label">
+                            <label>
+                                <input name="defaultCreditCard" type="radio" value="card_1K2UydCaWn2fRg7wZdBYu466">
+                                <span>***4242 4/2031</span>
+                            </label>
+                            <div class="credit-cards__item-helper">
+                                Will be removed
+                            </div>
+                        </div>
+                        <div class="credit-cards__item-actions">
+                        <span class="waves-effect btn-flat btn--icon credit-cards__item-remove" data-value="card_1K2UydCaWn2fRg7wZdBYu466">
+                            <i class="icon"><svg><use xlink:href="#trash"></use></svg></i>
+                        </span>
+                        </div>
+                    </div>
+                
+                    <div class="credit-cards__item">
+                        <div class="credit-cards__item-label">
+                            <label>
+                                <input name="defaultCreditCard" type="radio" checked="" value="card_1K2UytCaWn2fRg7wC9foSKBN">
+                                <span>***4242 5/2031</span>
+                            </label>
+                            <div class="credit-cards__item-helper">
+                                Will be removed
+                            </div>
+                        </div>
+                        <div class="credit-cards__item-actions">
+                        <span class="waves-effect btn-flat btn--icon credit-cards__item-remove" data-value="card_1K2UytCaWn2fRg7wC9foSKBN">
+                            <i class="icon"><svg><use xlink:href="#trash"></use></svg></i>
+                        </span>
+                        </div>
+                    </div>
+                
+
+                <div class="credit-cards__stripe new">
+                    <div class="stripeElements" style="display: block;">
+                        <div id="stipeCardNumber" class="stripeElement StripeElement empty"><div class="__PrivateStripeElement" style=""><iframe name="__privateStripeFrame51243" frameborder="0" allowtransparency="true" scrolling="no" allow="payment *" src="https://js.stripe.com/v3/elements-inner-card-b9c3ce35876d17a6d7669827e19cd695.html#wait=false&amp;mids[guid]=5e83f4c3-8879-4f33-aaa7-705d28015146e15da1&amp;mids[muid]=d580fc71-b50a-40f4-8ed2-9e22ea0bfe9832dbf7&amp;mids[sid]=f96e51f7-3f0c-43fd-85e4-67815c489f8eaaaf78&amp;style[base][color]=%232D2E41&amp;style[base][fontSize]=16px&amp;style[base][fontSmoothing]=antialiased&amp;style[invalid][color]=%23F93838&amp;style[invalid][:focus][color]=%232D2E41&amp;rtl=false&amp;componentName=cardNumber&amp;keyMode=test&amp;apiKey=pk_test_t7pWDgTuBFkuwSnJ8BOgBGwk&amp;referrer=http%3A%2F%2Fpropstore.loc%2Fauctions.action&amp;controllerId=__privateStripeController51239" title="Защищенное окно для ввода номера карты" style="border: none !important; margin: 0px !important; padding: 0px !important; width: 1px !important; min-width: 100% !important; overflow: hidden !important; display: block !important; user-select: none !important; transform: translate(0px) !important; height: 19.2px;"></iframe><input class="__PrivateStripeElement-input" aria-hidden="true" aria-label=" " autocomplete="false" maxlength="1" style="border: none !important; display: block !important; position: absolute !important; height: 1px !important; top: -1px !important; left: 0px !important; padding: 0px !important; margin: 0px !important; width: 100% !important; opacity: 0 !important; background: transparent !important; pointer-events: none !important; font-size: 16px !important;"></div></div>
+                        <div class="stripeElements__row">
+                            <div id="stipeCardExpiry" class="stripeElement StripeElement empty"><div class="__PrivateStripeElement" style=""><iframe name="__privateStripeFrame51244" frameborder="0" allowtransparency="true" scrolling="no" allow="payment *" src="https://js.stripe.com/v3/elements-inner-card-b9c3ce35876d17a6d7669827e19cd695.html#wait=false&amp;mids[guid]=5e83f4c3-8879-4f33-aaa7-705d28015146e15da1&amp;mids[muid]=d580fc71-b50a-40f4-8ed2-9e22ea0bfe9832dbf7&amp;mids[sid]=f96e51f7-3f0c-43fd-85e4-67815c489f8eaaaf78&amp;style[base][color]=%232D2E41&amp;style[base][fontSize]=16px&amp;style[base][fontSmoothing]=antialiased&amp;style[invalid][color]=%23F93838&amp;style[invalid][:focus][color]=%232D2E41&amp;rtl=false&amp;componentName=cardExpiry&amp;keyMode=test&amp;apiKey=pk_test_t7pWDgTuBFkuwSnJ8BOgBGwk&amp;referrer=http%3A%2F%2Fpropstore.loc%2Fauctions.action&amp;controllerId=__privateStripeController51239" title="Защищенное окно для ввода даты истечения срока" style="border: none !important; margin: 0px !important; padding: 0px !important; width: 1px !important; min-width: 100% !important; overflow: hidden !important; display: block !important; user-select: none !important; transform: translate(0px) !important; height: 19.2px;"></iframe><input class="__PrivateStripeElement-input" aria-hidden="true" aria-label=" " autocomplete="false" maxlength="1" style="border: none !important; display: block !important; position: absolute !important; height: 1px !important; top: -1px !important; left: 0px !important; padding: 0px !important; margin: 0px !important; width: 100% !important; opacity: 0 !important; background: transparent !important; pointer-events: none !important; font-size: 16px !important;"></div></div>
+                            <div id="stipeCardCvc" class="stripeElement StripeElement empty"><div class="__PrivateStripeElement" style=""><iframe name="__privateStripeFrame51245" frameborder="0" allowtransparency="true" scrolling="no" allow="payment *" src="https://js.stripe.com/v3/elements-inner-card-b9c3ce35876d17a6d7669827e19cd695.html#wait=false&amp;mids[guid]=5e83f4c3-8879-4f33-aaa7-705d28015146e15da1&amp;mids[muid]=d580fc71-b50a-40f4-8ed2-9e22ea0bfe9832dbf7&amp;mids[sid]=f96e51f7-3f0c-43fd-85e4-67815c489f8eaaaf78&amp;style[base][color]=%232D2E41&amp;style[base][fontSize]=16px&amp;style[base][fontSmoothing]=antialiased&amp;style[invalid][color]=%23F93838&amp;style[invalid][:focus][color]=%232D2E41&amp;rtl=false&amp;componentName=cardCvc&amp;keyMode=test&amp;apiKey=pk_test_t7pWDgTuBFkuwSnJ8BOgBGwk&amp;referrer=http%3A%2F%2Fpropstore.loc%2Fauctions.action&amp;controllerId=__privateStripeController51239" title="Защищенное окно для ввода CVC-кода" style="border: none !important; margin: 0px !important; padding: 0px !important; width: 1px !important; min-width: 100% !important; overflow: hidden !important; display: block !important; user-select: none !important; transform: translate(0px) !important; height: 19.2px;"></iframe><input class="__PrivateStripeElement-input" aria-hidden="true" aria-label=" " autocomplete="false" maxlength="1" style="border: none !important; display: block !important; position: absolute !important; height: 1px !important; top: -1px !important; left: 0px !important; padding: 0px !important; margin: 0px !important; width: 100% !important; opacity: 0 !important; background: transparent !important; pointer-events: none !important; font-size: 16px !important;"></div></div>
+                            <div class="stripeElement">
+                                <input type="text" id="stipeCardZip" placeholder="ZIP" style="background-image: url(&quot;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAfBJREFUWAntVk1OwkAUZkoDKza4Utm61iP0AqyIDXahN2BjwiHYGU+gizap4QDuegWN7lyCbMSlCQjU7yO0TOlAi6GwgJc0fT/fzPfmzet0crmD7HsFBAvQbrcrw+Gw5fu+AfOYvgylJ4TwCoVCs1ardYTruqfj8fgV5OUMSVVT93VdP9dAzpVvm5wJHZFbg2LQ2pEYOlZ/oiDvwNcsFoseY4PBwMCrhaeCJyKWZU37KOJcYdi27QdhcuuBIb073BvTNL8ln4NeeR6NRi/wxZKQcGurQs5oNhqLshzVTMBewW/LMU3TTNlO0ieTiStjYhUIyi6DAp0xbEdgTt+LE0aCKQw24U4llsCs4ZRJrYopB6RwqnpA1YQ5NGFZ1YQ41Z5S8IQQdP5laEBRJcD4Vj5DEsW2gE6s6g3d/YP/g+BDnT7GNi2qCjTwGd6riBzHaaCEd3Js01vwCPIbmWBRx1nwAN/1ov+/drgFWIlfKpVukyYihtgkXNp4mABK+1GtVr+SBhJDbBIubVw+Cd/TDgKO2DPiN3YUo6y/nDCNEIsqTKH1en2tcwA9FKEItyDi3aIh8Gl1sRrVnSDzNFDJT1bAy5xpOYGn5fP5JuL95ZjMIn1ya7j5dPGfv0A5eAnpZUY3n5jXcoec5J67D9q+VuAPM47D3XaSeL4AAAAASUVORK5CYII=&quot;); background-repeat: no-repeat; background-attachment: scroll; background-size: 16px 18px; background-position: 98% 50%;">
+                            </div>
+                        </div>
+                        <div class="input-field__helper error">Error</div>
+                    </div>
+
+                    <span class="waves-effect waves-grey btn btn--secondary credit-cards__add-button">
+                    <i class="icon"><svg><use xlink:href="#plus"></use></svg></i>
+                    <span class="btn__title">Add New Card</span>
+                </span>
+                    <span class="waves-effect waves-grey btn btn--secondary credit-cards__cancel-button">
+                    <i class="icon"><svg><use xlink:href="#arrow-right"></use></svg></i>
+                    <span class="btn__title">Cancel</span>
+                </span>
+                </div>
+
+            </div>
                 
             </div>
             
