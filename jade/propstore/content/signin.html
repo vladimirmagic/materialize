@@ -1,0 +1,224 @@
+<div class="order-header">
+    <div class="order-header__inner">
+        <div class="order-header__col order-header__col--left">
+            <div class="order-header__secure-checkout h5">
+                <i class='icon'><svg><use xlink:href="#lock"></use></svg></i>
+                Propstore Sign In
+            </div>
+        </div>
+        <div class="order-header__col order-header__col--center">
+            <a class="order-header__logo" href='/'>
+                <svg><use xlink:href="#propstore"></use></svg>
+            </a>
+        </div>
+        <div class="order-header__col order-header__col--right"></div>
+    </div>
+</div>
+
+<div class="general">
+    <div class="general__inner">
+        
+        <form id="modal-auction-signin-form" name="modal-auction-signin-form" action="/ajax//ajax/modalSignInSubmit.action" method="post" class="modal-auction-register-form">
+                
+            <input type="hidden" name="struts.token.name" value="token" />
+            <input type="hidden" name="token" value="H7QVC2J2M13O4UVEG993B11557FM495A" />
+            
+                <div class="modal__title">Sign In</div>
+            
+                <button id="facebookLoginButtonLogin" class="waves-effect waves-light btn btn--facebook modal-register__facebook modal-close" data-url="https://www.facebook.com/dialog/oauth?client_id=324344248125107&amp;redirect_uri=https%3A%2F%2Fpropstore.loc%2Ffacebook%2Flogin&amp;scope=email" type="button">
+                    <i class='icon'>
+                        <svg>
+                            <use xlink:href="#facebook"></use>
+                        </svg>
+                    </i>
+                    <span class='btn__title'>Sign in with Facebook</span>
+                </button>
+            
+                <div class="input-field input-field--label ">
+                    <input type="email" name="email" value="" id="modal-auction-signin-form_email" placeholder="Please Enter"/>
+                    <label>Email</label>
+                    <div class="input-field__helper"></div>
+                </div>
+            
+                <div class="input-field input-field--label ">
+                    <input type="password" name="password" id="modal-auction-signin-form_password" placeholder="Please Enter"/>
+                    <label>Password</label>
+                    <div class="input-field__helper"></div>
+                </div>
+            
+                <div class="modal-register__remember">
+                    <label class="checkbox__label">
+                        <input type="checkbox" name="rememberMe" value="true" id="modal-auction-signin-form_rememberMe" class="filled-in"/><input type="hidden" id="__checkbox_modal-auction-signin-form_rememberMe" name="__checkbox_rememberMe" value="true" />
+                        <span>Remember me</span>
+                    </label>
+                </div>
+            
+                <div class="modal-register__forgot">
+                    <a class="btn-flat btn--link modal-trigger modal-close" href="#modal-password">Forgot password?</a>
+                </div>
+            
+                <button type="submit" class="waves-effect waves-light btn modal-register__submit">
+                    <span class='btn__title'>Sign in</span>
+                    <i class='icon'>
+                        <svg>
+                            <use xlink:href="#arrow-right"></use>
+                        </svg>
+                    </i>
+                    <div class="preloader-wrapper active">
+                        <div class="spinner-layer spinner-white-only">
+                            <div class="circle-clipper left">
+                                <div class="circle"></div>
+                            </div>
+                            <div class="gap-patch">
+                                <div class="circle"></div>
+                            </div>
+                            <div class="circle-clipper right">
+                                <div class="circle"></div>
+                            </div>
+                        </div>
+                    </div>
+                </button>
+            
+                <div class="modal-register__switch">
+                    Don’t have an account? <a class="modal-trigger modal-close" href="#modal-register">Register</a>
+                </div>
+            
+            
+                            </form>
+            
+            
+            
+                            <form id="modal-auction-register-form" name="modal-auction-register-form" action="/ajax//ajax/modalRegisterSubmit.action" method="post" class="modal-auction-register-form" style="display: none;">
+                                
+            
+            
+            
+            <input type="hidden" name="struts.token.name" value="token" />
+            <input type="hidden" name="token" value="H7QVC2J2M13O4UVEG993B11557FM495A" />
+            
+            <div class="modal__title">Register</div>
+            
+            <button id="facebookLoginButtonRegister" class="waves-effect waves-light btn btn--facebook modal-register__facebook modal-close" data-url="https://www.facebook.com/dialog/oauth?client_id=324344248125107&amp;redirect_uri=https%3A%2F%2Fpropstore.loc%2Ffacebook%2Flogin&amp;scope=email" type="button">
+                <i class='icon'>
+                    <svg>
+                        <use xlink:href="#facebook"></use>
+                    </svg>
+                </i>
+                <span class='btn__title'>Register with Facebook</span>
+            </button>
+            
+            <div class="input-field input-field--label ">
+                <input type="email" name="email" value="" id="modal-auction-register-form_email" placeholder="Please Enter"/>
+                <label>Email</label>
+                <div class="input-field__helper"></div>
+            </div>
+            
+            <div class="input-field input-field--label ">
+                <input type="password" name="password" id="modal-auction-register-form_password" placeholder="Please Enter"/>
+                <label>Password</label>
+                <div class="input-field__helper"></div>
+            </div>
+            
+            <div class="input-field input-field--label ">
+                <input type="password" name="confirmPassword" id="modal-auction-register-form_confirmPassword" placeholder="Please Enter"/>
+                <label>Confirm Password</label>
+                <div class="input-field__helper"></div>
+            </div>
+            
+            <div class="input-field input-field--label">
+                <input type="text" placeholder="Please Enter" disabled>
+                <label>TODO: Full name</label>
+                <div class="input-field__helper"></div>
+            </div>
+            
+            <div class="modal-register__terms">
+                By signing up, you agree to our <a href="/terms-conditions/">Terms of use</a> and <a href="/privacy-policy/">Privacy Policy</a>
+            </div>
+            
+            <div class="input-field g-recaptcha-field ">
+                <div id="g-recaptcha-register" class="g-recaptcha" name="code"></div>
+                <div class="input-field__helper"></div>
+            </div>
+            
+            <button type="submit" class="waves-effect waves-light btn modal-register__submit">
+                <span class='btn__title'>Register</span>
+                <i class='icon'>
+                    <svg>
+                        <use xlink:href="#arrow-right"></use>
+                    </svg>
+                </i>
+                <div class="preloader-wrapper active">
+                    <div class="spinner-layer spinner-white-only">
+                        <div class="circle-clipper left">
+                            <div class="circle"></div>
+                        </div>
+                        <div class="gap-patch">
+                            <div class="circle"></div>
+                        </div>
+                        <div class="circle-clipper right">
+                            <div class="circle"></div>
+                        </div>
+                    </div>
+                </div>
+            </button>
+            
+            <div class="modal-register__switch">
+                Already have an account? <a class="modal-trigger modal-close" href="#modal-signin">Sign In</a>
+            </div>
+                            </form>
+            
+            
+            
+                            <form id="modal-auction-password-form" name="modal-auction-password-form" action="/ajax//ajax/modalPasswordAssistanceSubmit.action" method="post" class="modal-auction-register-form" style="display: none;">
+                                
+            
+            
+            
+            <input type="hidden" name="struts.token.name" value="token" />
+            <input type="hidden" name="token" value="H7QVC2J2M13O4UVEG993B11557FM495A" />
+            
+            <div class="modal__title">Password Assistance</div>
+            <p>
+                Please enter the email address you use to sign into your account.
+            </p>
+            
+            <div class="input-field input-field--label ">
+                <input type="email" name="email" value="" id="modal-auction-password-form_email" placeholder="Please Enter"/>
+                <label>Email</label>
+                <div class="input-field__helper"></div>
+            </div>
+            
+            <div class="input-field g-recaptcha-field ">
+                <div id="g-recaptcha-password" class="g-recaptcha" name="code"></div>
+                <div class="input-field__helper"></div>
+            </div>
+            
+            <button type="submit" class="waves-effect waves-light btn modal-register__submit">
+                <span class='btn__title'>Submit</span>
+                <i class='icon'>
+                    <svg>
+                        <use xlink:href="#arrow-right"></use>
+                    </svg>
+                </i>
+                <div class="preloader-wrapper active">
+                    <div class="spinner-layer spinner-white-only">
+                        <div class="circle-clipper left">
+                            <div class="circle"></div>
+                        </div>
+                        <div class="gap-patch">
+                            <div class="circle"></div>
+                        </div>
+                        <div class="circle-clipper right">
+                            <div class="circle"></div>
+                        </div>
+                    </div>
+                </div>
+            </button>
+            
+            <div class="modal-register__switch">
+                Back to <a class="modal-trigger modal-close" href="#modal-signin">Sign In</a>
+            </div>
+                            </form>
+
+    </div>
+</div>

@@ -97,15 +97,17 @@ document.addEventListener('DOMContentLoaded', () => {
             e.preventDefault();
             this.classList.add('sync');
 
-            if ($(this).find('#password').val().includes('sso-token')) { // todo: delete test sso
-                window.open($(this).find('#password').val() + '&autoclose=true', 'Propstore SSO', `scrollbars=no,resizable=no,status=no,location=no,toolbar=no,menubar=no,width=1,height=1,top=2000`);
+            function openSSO () {
+                const SSOwin = window.open('/ajax/sso.action', 'Propstore SSO', `scrollbars=no,resizable=no,status=no,location=no,toolbar=no,menubar=no,width=1,height=1,top=2000`);
+                const SSOtimer = setTimeout(() => {
+                    SSOwin.close();
+                }, 5000);
                 window.addEventListener('message', function(event) {
                     console.log(event);
                     if (event.data === 'SSOsuccess' || event.data === 'SSOerror') {
                         window.location.reload();
                     }
                 });
-                return;
             }
 
             $.post(
@@ -114,6 +116,7 @@ document.addEventListener('DOMContentLoaded', () => {
             )
                 .done(data => {
                     if (data && data.trim() === 'success') {
+                        openSSO();
                         const $redirect = $('[data-after-signin]');
                         if ($redirect.length) {
                             window.location.href = $redirect.data('after-signin');
@@ -362,138 +365,152 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
         // CREDIT CARDS
-        $creditCards = $('.credit-cards');
-        if ($creditCards.length) {
-            $('.credit-cards__item-remove').on('click', function (e) {
-                $option = $('select[name="removedCards"] option[value="' + $(this).data('value') + '"]');
-                if ($option.length) {
-                    const val = !$option[0].selected;
-                    $option[0].selected = val;
-                    $creditCard = $(this).closest('.credit-cards__item');
-                    if ($creditCard.length) {
-                        $creditCard.toggleClass('remove');
-                        $input = $creditCard.find('input');
-                        if ($input.length) {
-                            if (val) $input[0].checked = false;
-                            $input[0].disabled = val;
+        function creditCards () {
+            $creditCards = $('.credit-cards');
+            if ($creditCards.length) {
+                const $removedCards = $('select[name="removedCards"] option:selected');
+                if ($removedCards.length) {
+                    $removedCards.each((i, option) => {
+                        $('.credit-cards__item[data-value="' + option.value + '"]').addClass('remove');
+                    });
+                }
+                $('.credit-cards__item-remove').on('click', function (e) {
+                    $option = $('select[name="removedCards"] option[value="' + $(this).data('value') + '"]');
+                    if ($option.length) {
+                        const val = !$option[0].selected;
+                        $option[0].selected = val;
+                        $creditCard = $(this).closest('.credit-cards__item');
+                        if ($creditCard.length) {
+                            $creditCard.toggleClass('remove');
+                            $input = $creditCard.find('input');
+                            if ($input.length) {
+                                if (val) $input[0].checked = false;
+                                $input[0].disabled = val;
+                            }
                         }
                     }
-                }
-            });
+                });
 
-            $('.credit-cards__add-button, .credit-cards__cancel-button').on('click', function (e) {
-                $stripe = $(this).closest('.credit-cards__stripe');
-                if ($stripe.length) {
-                    const show = $(this).hasClass('credit-cards__add-button');
-                    $stripe.toggleClass('new', show);
-                    $stripeElements = $stripe.find('.stripeElements');
-                    if ($stripeElements.length) $stripeElements[0].style.display = show ? 'block' : 'none';
-                }
-            });
+                $('.credit-cards__add-button, .credit-cards__cancel-button').on('click', function (e) {
+                    $stripe = $(this).closest('.credit-cards__stripe');
+                    if ($stripe.length) {
+                        const show = $(this).hasClass('credit-cards__add-button');
+                        $stripe.toggleClass('new', show);
+                        $stripeElements = $stripe.find('.stripeElements');
+                        if ($stripeElements.length) $stripeElements[0].style.display = show ? 'block' : 'none';
+                    }
+                });
+            }
         }
+        creditCards();
 
         // STRIPE
-        if ($('.stripeElements').length) {
-            const stripe = Stripe($('#stripePublicKey').val());
-            const elements = stripe.elements();
+        function stripeElements () {
+            try { if ($('.stripeElements').length && !$('#checkoutStep').length) { // checkoutStep in checkout.js
+                const stripe = Stripe($('#stripePublicKey').val());
+                const elements = stripe.elements();
 
-            const elementStyles = {
-                base: {
-                    color: '#2D2E41',
-                    fontSize: '16px',
-                    fontSmoothing: 'antialiased',
-                },
-                invalid: {
-                    color: '#F93838',
-                    ':focus': {
+                const elementStyles = {
+                    base: {
                         color: '#2D2E41',
+                        fontSize: '16px',
+                        fontSmoothing: 'antialiased',
                     },
-                },
-            };
+                    invalid: {
+                        color: '#F93838',
+                        ':focus': {
+                            color: '#2D2E41',
+                        },
+                    },
+                };
 
-            const elementClasses = {
-                focus: 'focus',
-                empty: 'empty',
-                invalid: 'invalid',
-            };
+                const elementClasses = {
+                    focus: 'focus',
+                    empty: 'empty',
+                    invalid: 'invalid',
+                };
 
-            cardNumber = elements.create('cardNumber', {
-                style: elementStyles,
-                classes: elementClasses,
-            });
-            cardNumber.mount('#stipeCardNumber');
-
-            const cardExpiry = elements.create('cardExpiry', {
-                style: elementStyles,
-                classes: elementClasses,
-            });
-            cardExpiry.mount('#stipeCardExpiry');
-
-            const cardCvc = elements.create('cardCvc', {
-                style: elementStyles,
-                classes: elementClasses,
-            });
-            cardCvc.mount('#stipeCardCvc');
-
-            $('.__PrivateStripeElement').attr('style', '');
-
-            const stripeErrors = [];
-            $stripeErrors = $('.stripeElements .input-field__helper');
-
-            [cardNumber, cardExpiry, cardCvc].forEach(function(element, key) {
-                element.on('focus', function(event) {
-                    $(element._component).addClass('focus');
+                cardNumber = elements.create('cardNumber', {
+                    style: elementStyles,
+                    classes: elementClasses,
                 });
-                element.on('blur', function(event) {
-                    $(element._component).removeClass('focus');
+                cardNumber.mount('#stipeCardNumber');
+
+                const cardExpiry = elements.create('cardExpiry', {
+                    style: elementStyles,
+                    classes: elementClasses,
                 });
-                element.on('change', function(event) {
-                    if (event.error) {
-                        stripeErrors[key] = event.error.message;
-                    } else {
-                        stripeErrors[key] = null;
-                    }
-                    const stripeErrorsExist = stripeErrors.filter(e => !!e);
-                    if (stripeErrorsExist.length) {
-                        $stripeErrors.addClass('error').html(stripeErrorsExist.join('<br>'));
-                    } else {
-                        $stripeErrors.removeClass('error').html('');
-                    }
+                cardExpiry.mount('#stipeCardExpiry');
+
+                const cardCvc = elements.create('cardCvc', {
+                    style: elementStyles,
+                    classes: elementClasses,
                 });
-            });
+                cardCvc.mount('#stipeCardCvc');
 
-            const cardData = {
-                address_zip: $('stipeCardZip').val()
-            };
+                $('.__PrivateStripeElement').attr('style', '');
 
-            $('.stripeElements').closest('form').submit(function (e) {
-                $stripeElements = $(this).find('.stripeElements');
-                if (!$stripeElements.length || $stripeElements[0].style.display == 'none') return;
+                const stripeErrors = [];
+                $stripeErrors = $('.stripeElements .input-field__helper');
 
-                e.preventDefault();
-                $('.loader-block').show();
-                $form = $(this);
-
-                stripe.createToken(cardNumber, cardData).then(function (result) {
-                    if (result.error) {
-                        $('#stripeError').val(result.error.message);
-                        $('.stripeElements .input-field__helper').text(result.error.message).addClass('error');
-                        $('#stripeToken').val('');
-                        $form.removeClass('sync');
-                        $('.loader-block').hide();
-                        $('body').removeClass('blocked');
-                        scrollToError();
-                    } else {
-                        $('#stripeError').val('');
-                        $('.stripeElements .input-field__helper').text('').removeClass('error');
-                        $('#stripeToken').val(result.token.id);
-                        $('#stripeTitle').val("***" + result.token.card.last4 + " " + result.token.card.exp_month + "/" + result.token.card.exp_year);
-                        $stripeElements[0].style.display = 'none';
-                        $form.submit();
-                    }
+                [cardNumber, cardExpiry, cardCvc].forEach(function (element, key) {
+                    element.on('focus', function (event) {
+                        $(element._component).addClass('focus');
+                    });
+                    element.on('blur', function (event) {
+                        $(element._component).removeClass('focus');
+                    });
+                    element.on('change', function (event) {
+                        if (event.error) {
+                            stripeErrors[key] = event.error.message;
+                        } else {
+                            stripeErrors[key] = null;
+                        }
+                        const stripeErrorsExist = stripeErrors.filter(e => !!e);
+                        if (stripeErrorsExist.length) {
+                            $stripeErrors.addClass('error').html(stripeErrorsExist.join('<br>'));
+                        } else {
+                            $stripeErrors.removeClass('error').html('');
+                        }
+                    });
                 });
-            });
+
+                const cardData = {
+                    address_zip: $('stipeCardZip').val()
+                };
+
+                $('.stripeElements').closest('form').submit(function (e) {
+                    $stripeElements = $(this).find('.stripeElements');
+                    if (this.classList.contains('sync') ||
+                        !$stripeElements.length ||
+                        $stripeElements[0].style.display == 'none') return;
+
+                    e.preventDefault();
+                    $('.loader-block').show();
+                    $form = $(this);
+                    $form.addClass('sync');
+                    stripe.createToken(cardNumber, cardData).then(function (result) {
+                        if (result.error) {
+                            $('#stripeError').val(result.error.message);
+                            $('.stripeElements .input-field__helper').text(result.error.message).addClass('error');
+                            $('#stripeToken').val('');
+                            $form.removeClass('sync');
+                            $('.loader-block').hide();
+                            $('body').removeClass('blocked');
+                            scrollToError();
+                        } else {
+                            $('#stripeError').val('');
+                            $('.stripeElements .input-field__helper').text('').removeClass('error');
+                            $('#stripeToken').val(result.token.id);
+                            $('#stripeTitle').val("***" + result.token.card.last4 + " " + result.token.card.exp_month + "/" + result.token.card.exp_year);
+                            if ($stripeElements.length) $stripeElements[0].style.display = 'none';
+                            $form.submit();
+                        }
+                    });
+                });
+            }} catch {}
         }
+        stripeElements();
 
         // const out = document.createElement('div');
         // out.classList.add('out');
@@ -1726,28 +1743,40 @@ document.addEventListener('DOMContentLoaded', () => {
 
         $('.modal-auction').modal({ // load form on modal open
             onOpenStart: function (el) {
-                el.classList.add('sync');
-                $(el).find('.auction-registration__info--page, .auction-registration__page').remove();
-                const $content = $(el).find('.auction-registration__info');
-                $.get('/ajax/modalAuctionRegister.action')
-                    .done(data => {
-                        $content.html(data);
-                        auctionRegistration();
-                    })
-                    .fail(data => {
-                        if (data && data.statusText) $content.html(data.statusText);
-                    })
-                    .always(data => {
-                        el.classList.remove('sync');
-                    });
+                loadModalAuctionRegistration(el);
             }
         });
 
+        function loadModalAuctionRegistration (modal) {
+            modal.classList.add('sync');
+            const $content = $(modal).find('.auction-registration__inner');
+            $.get('/ajax/modalAuctionRegistration.action')
+                .done(data => {
+                    $content.html(data);
+                    auctionRegistration();
+                    creditCards();
+                    stripeElements();
+                })
+                .fail(data => {
+                    if (data && data.statusText) $content.html(data.statusText);
+                })
+                .always(data => {
+                    modal.classList.remove('sync');
+                    $('.loader-block').hide();
+                });
+        }
+
         function auctionRegistration () {
             if ($('.auction-registration__inner').length) {
+                M.updateTextFields();
+                $('select').not('.disabled').formSelect();
+                initFacebookLoginButton();
+
                 if ($('.auction-registration').length) { // page on propstore.com
                     $('html').addClass('auction-registration-page');
                     setTimeout(() => $('html').scrollTop(0), 100);
+                    const $reloadURL = $('#modal-register-auction-form_reloadURL');
+                    if ($reloadURL.length && !$reloadURL.val()) $reloadURL.val(window.location.href);
                 }
                 function dontModal () {
                     $('.auction-registration__inner .modal-close').removeClass('modal-close');
@@ -1757,6 +1786,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         e.preventDefault();
                         $('.modal-auction-register-form').hide();
                         $('#modal-auction-register-form').show();
+                        grecaptchaRender('g-recaptcha-register');
                     });
                     $('.modal-trigger-auction-registration[href="#modal-signin"]').on('click', function (e) {
                         e.preventDefault();
@@ -1767,27 +1797,38 @@ document.addEventListener('DOMContentLoaded', () => {
                         e.preventDefault();
                         $('.modal-auction-register-form').hide();
                         $('#modal-auction-password-form').show();
+                        grecaptchaRender('g-recaptcha-password');
                     });
                 }
                 dontModal();
 
-                function registerAuctionForm () {
-                    M.updateTextFields();
-                    $('select').not('.disabled').formSelect();
+                if ($('#modal-register-auction-form').length) {
+                    $('#modal-register-auction-form').submit(function (e) {
+                        if (!$('.auction-registration__inner.modal-content #modal-register-auction-form').length) return; // not modal
 
-                    function registerAuctionFormSubmit () {
+                        $stripeElements = $(this).find('.stripeElements');
+                        if ($('#modal-register-auction-form_step').val() == 'payment' &&
+                            $stripeElements.length &&
+                            $stripeElements[0].style.display != 'none') return; // stripeElements submit
+
+                        e.preventDefault();
                         $('.loader-block').show();
-                        $('.auction-registration__info--page, .auction-registration__page').remove();
-                        $form = $('#modal-register-auction-form')
-                        $formHtml = $('.auction-registration__info');
-                        $formHtml.show();
-                        return $.get( // todo: post
+                        $form = $('#modal-register-auction-form');
+                        $formHtml = $('.auction-registration__inner');
+                        $.post(
                             $form[0].action,
                             $form.serialize(),
                         )
                             .done(data => {
-                                $formHtml.html(data).scrollTop(0);
-                                registerAuctionForm();
+                                $formHtml.html(data);
+                                auctionRegistration();
+                                creditCards();
+                                stripeElements();
+
+                                if (window.opener) { // success
+                                    reloadOpener();
+                                    window.close();
+                                }
                             })
                             .fail(data => {
                                 if (data && data.statusText) $formHtml.html(data.statusText);
@@ -1795,50 +1836,33 @@ document.addEventListener('DOMContentLoaded', () => {
                             .always(data => {
                                 $('.loader-block').hide();
                             });
-                    }
-
-                    if ($('#modal-register-auction-form').length) {
-                        $('#modal-register-auction-form').submit(function (e) {
-                            e.preventDefault();
-                            registerAuctionFormSubmit()
-                                .done(data => {
-                                    if (window.opener) {
-                                        reloadOpener();
-                                        window.close();
-                                    }
-                                });
-                        });
-
-                        if ($('.modal-auction-address-form').length) {
-                            $('.modal-auction-address-form').submit(function (e) {
-                                e.preventDefault();
-                                $('.loader-block').show();
-                                const id = $(this).find('input[name=shippingAddressId]').val();
-                                if (id) $('#shippingAddressId').val(id);
-
-                                setTimeout(() => { // fake submit
-                                    $form = $('#modal-register-auction-form');
-                                    $form.attr('action', $form.attr('action') + '?reload=true');
-                                    registerAuctionFormSubmit(true);
-                                }, 1000);
-                            });
-                        }
-                    }
+                    });
 
                     // open second page
                     function goBack (e) {
                         e.preventDefault();
-                        $('.auction-registration__info--page .auction-registration__page').appendTo($('.auction-registration__inner'));
-                        $('.auction-registration__info').show();
-                        $('.auction-registration__info--page').remove();
+                        if ($('.auction-registration').length) { // page on propstore.com
+                            $('.loader-block').show();
+                            const reloadURL = $('#modal-register-auction-form_reloadURL').val();
+                            if (reloadURL) {
+                                window.location.href = reloadURL;
+                            } else {
+                                window.location.reload();
+                            }
+                        } else { // modal
+                          loadModalAuctionRegistration(e.target.closest('.modal-auction'));
+                        }
+                    };
+
+                    function setStep (step) {
+                        $('#modal-register-auction-form_step').val(step);
+                        $('.auction-registration__step').hide();
+                        $('.auction-registration__step[data-page="' + step + '"]').show();
                     };
 
                     $('.auction-registration__page-trigger').on('click', function (e) {
-                        e.preventDefault();
-                        $('.auction-registration__info').hide();
-                        $page = $('<div class="auction-registration__info auction-registration__info--page">');
-                        $page.appendTo($('.auction-registration__inner')).append($('.auction-registration__page[data-page="' + $(this).data('page') + '"]'));
-                        $page[0].scrollIntoView();
+                        setStep($(this).data('page'));
+                        $('.auction-registration__info').scrollTop(0);
 
                         window.history.pushState(null, 'Back');
                         window.onpopstate = goBack;
@@ -1846,30 +1870,20 @@ document.addEventListener('DOMContentLoaded', () => {
 
                     $('.auction-registration__page-back').on('click', goBack);
 
-                    $('.auction-registration__page[data-page="address"] .auction-registration__page-submit').on('click', goBack);
+                    $('.auction-registration__step[data-page="shipping"] .auction-registration__page-submit').on('click', goBack);
 
-                    $('.auction-registration__page[data-page="terms"] .auction-registration__page-submit').on('click', function (e) {
-                        goBack(e);
-                        $('#termsConfirm')[0].checked = true;
-                    });
-
-                    // pages
-                    $('input[name="shippingAddress"]').on('change', function () {
-                        $('#shippingAddressId').val($(this).val());
-                        $('#shippingAddressLabel').html($(this).next('span').html());
-                    });
-
-                    $('input[name="billingAddress"]').on('change', function () {
-                        $('#billingAddressId').val($(this).val());
-                        $('#billingAddressLabel').html($(this).next('span').html());
+                    $('.auction-registration__step[data-page="terms"] .modal-register__submit').on('click', function (e) {
+                        $('#modal-register-auction-form_terms')[0].checked = true;
+                        $('#modal-register-auction-form_step').val('general');
                     });
 
                     //billingAsShipping
-                    const $shippingAddressCheckbox = $('#modal-register-auction-form input[name="billingAsShipping"]');
+                    const $shippingAddressCheckbox = $('#modal-register-auction-form_billingAsShipping');
                     if ($shippingAddressCheckbox.length) {
                         function registerAuctionBillingAddress() {
-                            const $section = $('.form-section--billing');
-                            $shippingAddressCheckbox[0].checked ? $section.hide() : $section.show();
+                            const shippingAsBilling = $shippingAddressCheckbox[0].checked;
+                            $('.form-section--billing').toggle(!shippingAsBilling);
+                            $('#auction-registration-page-trigger_payment').toggleClass('disabled', !shippingAsBilling && $('#auction-registration-page-trigger_billing').data('empty') == 1);
                         }
 
                         $shippingAddressCheckbox.on('change', registerAuctionBillingAddress);
@@ -1877,7 +1891,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     }
 
                     // BILLING ADDRESS STATE
-                    const $billingCountry = $('select[name="billingAddress.countryId"]');
+                    const $billingCountry = $('#modal-register-auction-form select[name="billingAddress.countryId"]');
                     if ($billingCountry.length) {
                         const $billingStateInput = $('.billing-address-state__input input');
                         const $billingStateInputDiv = $('.billing-address-state__input');
@@ -1902,7 +1916,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     }
 
                     // SHIPPING ADDRESS STATE
-                    const $shippingCountry = $('.modal-auction-address-form select[name="shippingAddress.countryId"]');
+                    const $shippingCountry = $('#modal-register-auction-form select[name="shippingAddress.countryId"]');
                     if ($shippingCountry.length) {
                         const $shippingStateInput = $('.shipping-address-state__input input');
                         const $shippingStateInputDiv = $('.shipping-address-state__input');
@@ -1926,7 +1940,6 @@ document.addEventListener('DOMContentLoaded', () => {
                         isShippingStateSelect();
                     }
                 }
-                registerAuctionForm();
 
                 // SSO
                 if ($('#modal-auction-signin-form').length) {
@@ -1934,17 +1947,33 @@ document.addEventListener('DOMContentLoaded', () => {
                         e.preventDefault();
                         $('.loader-block').show();
 
-                        if ($(this).find('#password').val().includes('sso-token')) { // todo: delete test sso
-                            M.Toast.dismissAll();
-                            setTimeout(() => { // fake sign in
-                                openSSOURL($(this).find('#password').val());
-                            }, 1000);
-                            return;
-                        }
+                        $.post(
+                            this.action,
+                            $(this).serialize(),
+                        )
+                            .done(data => {
+                                if (data && data.trim() === 'success') {
+                                    openSSO();
+                                    if ($('.auction-registration').length) { // page on propstore.com
+                                        window.location.reload(); // signed in reload to show auction registration
+                                    } else { // modal
+                                        loadModalAuctionRegistration($('.modal-auction.open')[0]);
+                                    }
+                                } else {
+                                    this.innerHTML = data;
+                                    auctionRegistration();
+                                }
+                            })
+                            .fail(data => {
+                                if (data && data.statusText) this.innerHTML = data.statusText;
+                            })
+                            .always(() => {
+                                $('.loader-block').hide();
+                            });
                     });
 
-                    function openSSOURL (url) {
-                        const SSOwin = window.open(url + '&autoclose=true', 'Propstore SSO', `scrollbars=no,resizable=no,status=no,location=no,toolbar=no,menubar=no,width=1,height=1,top=2000`);
+                    function openSSO () {
+                        const SSOwin = window.open('/ajax/sso.action', 'Propstore SSO', `scrollbars=no,resizable=no,status=no,location=no,toolbar=no,menubar=no,width=1,height=1,top=2000`);
                         const SSOtimer = setTimeout(() => {
                             SSOwin.close();
                             M.Toast.dismissAll();
@@ -1952,31 +1981,38 @@ document.addEventListener('DOMContentLoaded', () => {
                                 html: '<span><strong>Somthing went wrong.</strong><br/> Check pop-ups blocking and try again.</span>',
                                 displayLength: Infinity,
                             });
-                            $('.loader-block').hide();
                         }, 5000);
                         window.addEventListener('message', function(event) {
                             console.log(event);
+                            clearTimeout(SSOtimer);
                             if (event.data === 'SSOsuccess') {
-                                clearTimeout(SSOtimer);
                                 if (window.opener) reloadOpener();
-                                const $form = $('.auction-registration__info');
-                                $.get('/ajax/modalAuctionRegister.action')
-                                    .done(data => {
-                                        $form.html(data).scrollTop(0);
-                                        registerAuctionForm();
-                                    })
-                                    .fail(data => {
-                                        if (data && data.statusText) $form.html(data.statusText);
-                                    })
-                                    .always(data => {
-                                        $('.loader-block').hide();
-                                    });
-                            } else if (event.data === 'SSOerror') {
-                                clearTimeout(SSOtimer);
-                                window.location.reload();
-                            }
+                            } else if (event.data === 'SSOerror') {}
                         });
                     }
+                }
+
+                if ($('#modal-auction-register-form').length) {
+                    $('#modal-auction-register-form').submit(function (e) {
+                        e.preventDefault();
+                        $('.loader-block').show();
+
+                        $.post(
+                            this.action,
+                            $(this).serialize(),
+                        )
+                            .done(data => {
+                                this.innerHTML = data;
+                                auctionRegistration();
+                                grecaptchaRender('g-recaptcha-register');
+                            })
+                            .fail(data => {
+                                if (data && data.statusText) this.innerHTML = data.statusText;
+                            })
+                            .always(() => {
+                                $('.loader-block').hide();
+                            }) ;
+                    });
                 }
             }
         }

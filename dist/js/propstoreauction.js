@@ -288,6 +288,16 @@ document.addEventListener('DOMContentLoaded', () => {
             if ($btnPlaceBid.length) {
                 $btnPlaceBid.addClass('waves-effect waves-light btn aucproduct__form-item');
                 $('.aucproduct__form').show().append($btnPlaceBid);
+
+                let val = $btnPlaceBid.val(); 
+                if (val.includes('Login to bid')) {
+                    $btnPlaceBid[0].onclick = null;
+                    $btnPlaceBid.val('Sign in to bid')
+                        .on('click', function (e) {
+                            e.preventDefault();
+                            
+                        });
+                }
             }
 
 			$win = $('#lac28, #oai21');
@@ -1251,6 +1261,24 @@ document.addEventListener('DOMContentLoaded', () => {
                 }, 1000);
             }
 		}
+
+        function openSSO () {
+            let url = '/signin.html';
+            if (window.location.hostname !== 'localhost') url = 'https://propstore-ui.netlify.app' + url;
+            let param = null;
+            const w = window.screen.width;
+            const h = window.screen.height;
+            if (w > 1224) {
+                param = `width=${w-200},height=${h-200},left=100,top=100,menubar=1,toolbar=1,location=1,status=1`;
+            }
+            window.open(url, 'Propstore Sign In', param);
+            window.addEventListener('message', function(event) {
+                console.log(event);
+                if (event.data === 'reloadPage') {
+                    reloadPage();
+                }
+            });
+        }
 
         function openAuctionRegistration () {
             let url = '/propstoreauction-registration.html';
