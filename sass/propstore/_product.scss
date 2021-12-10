@@ -559,7 +559,8 @@ a.product__certificate:not(.btn) { // fix a
 	}
 }
 
-.modal-shipping-quote-form {
+.modal-shipping-quote-form,
+.modal-shipping-quote-page {
 	.input-field {
 		margin-top: 2em;
 		text-align: left;
@@ -648,6 +649,19 @@ a.product__certificate:not(.btn) { // fix a
 
 .modal-shipping-quote__submit {
 	margin-top: 1.5em;
+}
+
+.modal-shipping-quote-page {
+	main {
+		@extend .content;
+		max-width: $w55;
+		margin: 2rem auto;
+		text-align: center;
+	}
+
+	.modal-close {
+		display: none;
+	}
 }
 
 @media #{$breakpoint-4cards} {
@@ -748,6 +762,16 @@ a.product__certificate:not(.btn) { // fix a
 	
 		.input-field {
 			flex-basis: 100%;
+		}
+	}
+
+	.modal-shipping-quote-page {
+		.order-header__col--left {
+			flex: 1 1 100%;
+			padding: 1rem 0;
+		}
+		.order-header__col--center {
+			display: none;
 		}
 	}
 }

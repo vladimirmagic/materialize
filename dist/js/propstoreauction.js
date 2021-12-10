@@ -84,10 +84,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 <div class="aucproduct__form" style="display: none;"></div>
                 
                 <div class="product__buttons-grey" style="display: none;">
-                    <a class="product__button-grey waves-effect waves-grey btn btn--secondary modal-trigger" href="#modal-shipping-quote">
+                    <span class="product__button-grey waves-effect waves-grey btn btn--secondary">
                         <i class='icon'><svg><use xlink:href="#globe"></use></svg></i>
                         <span class="product__buttons-grey-small">Get</span> Shipping Quote
-                    </a>
+                    </span>
                 </div>
 
                 <ul class="product__details collapsible expandable">
@@ -174,16 +174,6 @@ document.addEventListener('DOMContentLoaded', () => {
             <a class="modal-close btn-flat btn--icon"><i class='icon'><svg><use xlink:href="#close"></use></svg></i></a>
         </div>
         <div class="modal-content"></div>
-    </div>
-
-    <div id="modal-shipping-quote" class="modal modal-ajax modal-shipping-quote">
-        <div class="modal-header modal-header--sticky">
-            <a class="modal-close btn-flat btn--icon"><i class='icon'><svg><use xlink:href="#close"></use></svg></i></a>
-        </div>
-        <div class="modal__loader">
-            <div class="preloader-wrapper active"><div class="spinner-layer"><div class="circle-clipper left"><div class="circle"></div></div><div class="gap-patch"><div class="circle"></div></div><div class="circle-clipper right"><div class="circle"></div></div></div></div>
-        </div>
-        <form class="modal-content modal-form modal-shipping-quote-form" action="action"></form>
     </div>
         `);
 
@@ -321,8 +311,8 @@ document.addEventListener('DOMContentLoaded', () => {
 				$details.append($lineEstimate);
 			}
 
-            $shippingQuote = $('#shippingQuote');
-            if ($shippingQuote.length) {
+            $barcode = $('#barcode');
+            if ($('#shippingQuote').length && $barcode.length) {
                 $('.product__buttons-grey').show();
 
             }
