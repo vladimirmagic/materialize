@@ -14111,8 +14111,7 @@ a.product__title:not(.btn):not(.btn-large):not(.btn-small):not(.btn-extra-small)
   margin-bottom: 48px;
 }
 
-.product__add,
-.product__added {
+.product__buttons .btn, .product__buttons .btn-large, .product__buttons .btn-small, .product__buttons .btn-extra-small {
   -webkit-flex-basis: 100%;
       -ms-flex-preferred-size: 100%;
           flex-basis: 100%;

@@ -290,11 +290,10 @@ a.product__title:not(.btn) {
 	justify-content: space-between;
 	align-items: center;
 	margin-bottom: 48px;
-}
 
-.product__add,
-.product__added {
-	flex-basis: 100%;
+	.btn {
+		flex-basis: 100%;
+	}
 }
 
 .product__added {
