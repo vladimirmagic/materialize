@@ -84,7 +84,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 <div class="aucproduct__form" style="display: none;"></div>
                 
                 <div class="product__buttons-grey" style="display: none;">
-                    <span class="product__button-grey waves-effect waves-grey btn btn--secondary">
+                    <span class="product__button-grey waves-effect waves-grey btn btn--secondary" id="modal-shipping-quote-button">
                         <i class='icon'><svg><use xlink:href="#globe"></use></svg></i>
                         <span class="product__buttons-grey-small">Get</span> Shipping Quote
                     </span>
@@ -314,7 +314,18 @@ document.addEventListener('DOMContentLoaded', () => {
             $barcode = $('#barcode');
             if ($('#shippingQuote').length && $barcode.length) {
                 $('.product__buttons-grey').show();
+                $('#modal-shipping-quote-button').on('click', openModalShippingQuote);
 
+                function openModalShippingQuote () {
+                    const url = 'https://new.propstore.com/modalShippingQuote.action?product=' + $barcode.val(); // todo remove new.
+                    let param = null;
+                    const w = window.screen.width;
+                    const h = window.screen.height;
+                    if (w > 1224) {
+                        param = `width=${w-200},height=${h-200},left=100,top=100,menubar=1,toolbar=1,location=1,status=1`;
+                    }
+                    window.open(url, 'Propstore Shipping Quote', param);
+                }
             }
 
             $watchlist = $('#watchlist_button');
@@ -407,59 +418,6 @@ document.addEventListener('DOMContentLoaded', () => {
                     }
                 }
             });
-
-            // MODAL SHIPPING QUOTE
-            if ($('#modal-shipping-quote').length) {
-                $('body').append($('#modal-shipping-quote'));
-                $('#modal-shipping-quote').modal({ // load form on modal open
-                    onOpenStart: function (el, trigger) {
-                        el.classList.add('sync');
-                        const $form = $(el).find('.modal-shipping-quote-form');
-                        $.get('#')
-                            .done(data => {
-                                // $form.html(data);
-                                M.updateTextFields();
-                                $('#modal-shipping-quote-country').formSelect({dropdownOptions: {container: document.body}});
-                                // grecaptchaRender('g-recaptcha-quote');
-                            })
-                            .fail(data => {
-                                if (data && data.statusText) $form.html(data.statusText);
-                            })
-                            .always(data => {
-                                setTimeout(() => {
-                                    $form.html(`Need form here`);
-                                    el.classList.remove('sync');
-                                }, 2000);
-                                // el.classList.remove('sync');
-                            });
-                    }
-                });
-
-                $('.modal-shipping-quote-form').on('submit', function (e) {
-                    e.preventDefault();
-                    this.classList.add('sync');
-                    let data = $(this).serialize();
-                    if (e.originalEvent.submitter && e.originalEvent.submitter.name === 'question') {
-                        data += '&question=1';
-                    }
-                    $.post(
-                        this.action,
-                        data,
-                    )
-                        .done(data => {
-                            this.innerHTML = data;
-                            M.updateTextFields();
-                            $('select').formSelect({dropdownOptions: {container: document.body}});
-                            // grecaptchaRender('g-recaptcha-quote');
-                        })
-                        .fail(data => {
-                            if (data && data.statusText) this.innerHTML = data.statusText;
-                        })
-                        .always(data => {
-                            this.classList.remove('sync');
-                        });
-                });
-            }
 
             setInterval(() => { // listen ajax updates
                 $others = $('#pnlOtherLots .lot');
