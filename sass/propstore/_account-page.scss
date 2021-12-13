@@ -91,10 +91,6 @@ a.account-page__suptitle:not(.btn) {
 	}
 }
 
-.account__watchlist-title {
-	margin-bottom: 0;
-}
-
 .cards--account {
 	padding-top: 0;
 	padding-bottom: 0;
@@ -570,6 +566,40 @@ a.account__orders-buy-link:not(.btn) {
 	}
 }
 
+.account-watchlist__tabs {
+	display: block;
+
+	.indicator {
+		display: none;
+	}
+}
+
+.account-watchlist__tab {
+	& + & {
+		margin-left: 12px;
+	}
+}
+
+.account-watchlist__auctions {
+	max-width: $w55;
+	margin: 5em auto;
+	padding: 5em 0;
+	color: white;
+	background: $color-base;
+	border-bottom-right-radius: 140px;
+}
+
+.account-watchlist__auctions {
+	max-width: $w55;
+	margin: 5em auto;
+	padding: 5em 0;
+}
+
+.account-watchlist__auctions-inner {
+	max-width: $w36;
+	margin: 0 auto;
+}
+
 @media #{$large-and-down} {
 	.account__orders-note {
 		max-width: 100%;
@@ -582,6 +612,11 @@ a.account__orders-buy-link:not(.btn) {
 	.account__orders-auction-note,
 	.account__orders-auction-plan {
 		flex-basis: 100%;
+	}
+
+	.account-watchlist__auctions {
+		margin-top: 2.5em;
+		border-bottom-right-radius: 80px;
 	}
 }
 
