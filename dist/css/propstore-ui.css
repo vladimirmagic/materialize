@@ -13201,6 +13201,8 @@ a.card-auction:not(.btn):not(.btn-large):not(.btn-small):not(.btn-extra-small):b
 }
 
 .filters__found-all {
+  display: inline-block;
+  min-width: 220px;
   margin-left: 1rem;
   color: #8F8F8F;
   font-size: 1rem;
@@ -13208,10 +13210,10 @@ a.card-auction:not(.btn):not(.btn-large):not(.btn-small):not(.btn-extra-small):b
 
 .filters__found-all a:not(.btn):not(.btn-large):not(.btn-small):not(.btn-extra-small) {
   color: #764AAF;
+  font-weight: 300;
 }
 
 .filters__found-plus {
-  margin-left: .5rem;
   font-weight: 600;
 }
 
@@ -13454,6 +13456,15 @@ a.card-auction:not(.btn):not(.btn-large):not(.btn-small):not(.btn-extra-small):b
   min-width: 440px;
 }
 
+@media only screen and (min-width: 1200px) and (max-width: 1400px) {
+  .filters__found-all {
+    min-width: auto;
+  }
+  .filters__found-in {
+    display: none;
+  }
+}
+
 @media only screen and (min-width: 1201px) {
   .filters__header {
     min-width: -webkit-min-content;
@@ -13553,8 +13564,18 @@ a.card-auction:not(.btn):not(.btn-large):not(.btn-small):not(.btn-extra-small):b
     display: block;
     padding-bottom: 1.5em;
   }
+}
+
+@media only screen and (max-width: 600px) {
   .filters__found {
     white-space: normal;
+  }
+  .filters__found-all {
+    min-width: auto;
+  }
+  .filters__found-plus,
+  .filters__found-in {
+    display: none;
   }
 }
 
@@ -15679,6 +15700,11 @@ tbody .tr:last-child .td {
 
 .section-auctions__all-completed-link {
   margin-top: 100px;
+  text-align: center;
+}
+
+.sell__content--auctions {
+  margin-top: 10rem;
   text-align: center;
 }
 

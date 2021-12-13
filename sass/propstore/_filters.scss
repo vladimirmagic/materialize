@@ -31,17 +31,19 @@
 }
 
 .filters__found-all {
+	display: inline-block;
+	min-width: 220px;
 	margin-left: 1rem;
 	color: $color-font-grey;
 	font-size: 1rem;
 
 	a:not(.btn) {
 		color: $primary-color;
+		font-weight: 300;
 	}
 }
 
 .filters__found-plus {
-	margin-left: .5rem;
 	font-weight: 600;
 }
 
@@ -238,6 +240,16 @@
 	min-width: 440px;
 }
 
+@media only screen and (min-width: 1200px) and (max-width: 1400px) {
+	.filters__found-all {
+		min-width: auto;
+	}
+
+	.filters__found-in {
+		display: none;
+	}
+}
+
 @media #{$extra-large-and-up} {
 	.filters__header {
 		min-width: min-content;
@@ -330,8 +342,19 @@
 		display: block;
 		padding-bottom: 1.5em;
 	}
+}
 
+@media #{$small-and-down} {
 	.filters__found {
 		white-space: normal;
+	}
+
+	.filters__found-all {
+		min-width: auto;
+	}
+
+	.filters__found-plus,
+	.filters__found-in {
+		display: none;
 	}
 }
