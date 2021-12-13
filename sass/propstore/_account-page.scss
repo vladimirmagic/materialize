@@ -600,6 +600,21 @@ a.account__orders-buy-link:not(.btn) {
 	margin: 0 auto;
 }
 
+.account-orders__tabs {
+	display: block;
+	margin-bottom: 3rem;
+
+	.indicator {
+		display: none;
+	}
+}
+
+.account-orders__tab {
+	& + & {
+		margin-left: 12px;
+	}
+}
+
 @media #{$large-and-down} {
 	.account__orders-note {
 		max-width: 100%;

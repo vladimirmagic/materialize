@@ -18661,6 +18661,19 @@ a.account__orders-buy-link:not(.btn):not(.btn-large):not(.btn-small):not(.btn-ex
   margin: 0 auto;
 }
 
+.account-orders__tabs {
+  display: block;
+  margin-bottom: 3rem;
+}
+
+.account-orders__tabs .indicator {
+  display: none;
+}
+
+.account-orders__tab + .account-orders__tab {
+  margin-left: 12px;
+}
+
 @media only screen and (max-width: 1200px) {
   .account__orders-note {
     max-width: 100%;
