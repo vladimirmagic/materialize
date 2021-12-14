@@ -1,4 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
+    const URL_PROPSTORE = 'https://new.propstore.com/';
+
 	if (window.location.href.includes('#nomaterialize')) { // don't materialize
 		document.querySelectorAll('[data-v2]').forEach(item => item.remove());
 		return;
@@ -1095,6 +1097,31 @@ document.addEventListener('DOMContentLoaded', () => {
  * 
  * 
  * 
+ * SIGN IN, SIGN UP, FORGOT
+ */
+ if ($('.loginfrm').length) {
+    $('main').append(`
+    <div class="loader-section loader-section--nooverlay">
+        <div class="preloader-wrapper active"><div class="spinner-layer"><div class="circle-clipper left"><div class="circle"></div></div><div class="gap-patch"><div class="circle"></div></div><div class="circle-clipper right"><div class="circle"></div></div></div></div>
+    </div>
+`);
+    document.querySelectorAll('style:not([data-v2]), link[rel="stylesheet"]:not([data-v2])').forEach(item => item.remove());
+}
+/**
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
  * Plugin initialization
  */
 		$('.collapsible').collapsible({
@@ -1211,8 +1238,8 @@ document.addEventListener('DOMContentLoaded', () => {
 		}
 
         function openSSO () {
-            let url = '/signin.html';
-            if (window.location.hostname !== 'localhost') url = 'https://propstore-ui.netlify.app' + url;
+            let url = URL_PROPSTORE + '/ajax/signIn.action';
+            if (window.location.hostname == 'localhost') url = 'https://propstore-ui.netlify.app/signin.html';
             let param = null;
             const w = window.screen.width;
             const h = window.screen.height;
@@ -1229,8 +1256,8 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         function openAuctionRegistration () {
-            let url = '/propstoreauction-registration.html';
-            if (window.location.hostname !== 'localhost') url = 'https://propstore-ui.netlify.app' + url;
+            let url = URL_PROPSTORE + '/ajax/auctionRegistration.action';
+            if (window.location.hostname == 'localhost') url = 'https://propstore-ui.netlify.app/propstoreauction-registration.html';
             let param = null;
             const w = window.screen.width;
             const h = window.screen.height;

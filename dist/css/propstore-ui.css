@@ -9524,6 +9524,32 @@ fieldset {
   background: rgba(255, 255, 255, 0.8);
 }
 
+.loader-section {
+  position: absolute;
+  z-index: 1000;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  background: rgba(255, 255, 255, 0.8);
+}
+
+.loader-section.loader-section--nooverlay {
+  background: none;
+}
+
 hr {
   display: block;
   margin: 1em 0;
@@ -20670,6 +20696,12 @@ body.forgot-password .smpagination,
 body.forgot-password form#AdvancedSearch:before,
 body.forgot-password .filters {
   display: none;
+}
+
+body.login main,
+body.signup main,
+body.forgot-password main {
+  position: relative;
 }
 
 .auc-header .header__col.header__col--left, .auc-header .header__col.header__col--right {

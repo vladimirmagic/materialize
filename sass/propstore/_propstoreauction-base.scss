@@ -22,3 +22,11 @@ body.forgot-password {
 		display: none;
 	}
 }
+
+body.login,
+body.signup,
+body.forgot-password {
+	main {
+		position: relative;
+	}
+}
