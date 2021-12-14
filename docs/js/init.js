@@ -249,16 +249,19 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (!$card.length) return;
 
                 const productId = $card[0].getAttribute('data-id');
+                const lotUrl = this.getAttribute('data-url');
                 if ($card.hasClass('card--liked')) {
                     $.get('/ajax/removeFromFavorites.action?product=' + productId)
                         .done(data => {
                             $card.removeClass('card--liked');
                         });
+                    if (lotUrl) openSamAndClose('https://propstoreauction.com/m/watchlist/remove?' + lotUrl);
                 } else {
                     $.get('/ajax/addToFavorites.action?product=' + productId)
                         .done(data => {
                             $card.addClass('card--liked');
                         });
+                    if (lotUrl) openSamAndClose('https://propstoreauction.com/m/watchlist/add?' + lotUrl);
                 }
             });
         }
@@ -818,36 +821,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             }
 
-            const $sellStepButtons = $('.sell__step-button');
-            const $sellSteps = $('.sell__step');
-            if ($sellStepButtons.length && $sellSteps.length) {
-                function sellStepButtonClick () {
-                    if (this.dataset && this.dataset.step) {
-                        const step = this.dataset.step;
-                        $sellSteps.hide();
-                        const $stepActive = $('#sell__step-' + step);
-                        if ($stepActive.length) {
-                            $stepActive.show();
-                            if (this.classList.contains('sell__step-button--next')) { // bottom buttons -> scroll up to the step top
-                                $('body').addClass('autoscroll');
-                                $stepActive[0].scrollIntoView ({behavior: 'smooth', block: 'nearest'});
-                                setTimeout(() => {
-                                    $('body').removeClass('autoscroll');
-                                }, 500);
-                            }
-                        }
-                        $sellStepButtons.each((index, button) => {
-                            if (button.dataset && button.dataset.step && button.dataset.step <= step) {
-                                $(button).addClass('filled');
-                            } else {
-                                $(button).removeClass('filled');
-                            }
-                        });
-                    }
-                }
-                $sellStepButtons.on('click', sellStepButtonClick);
-            }
-
             const $valuationFormNext = $('.sell__valuation-form-next-button');
             if ($valuationFormNext.length) {
                 function valuationFormNextClick () {
@@ -948,6 +921,38 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         }
 
+        // GUIDE STEPS
+
+        const $sellStepButtons = $('.sell__step-button');
+        const $sellSteps = $('.sell__step');
+        if ($sellStepButtons.length && $sellSteps.length) {
+            function sellStepButtonClick () {
+                if (this.dataset && this.dataset.step) {
+                    const step = this.dataset.step;
+                    $sellSteps.hide();
+                    const $stepActive = $('#sell__step-' + step);
+                    if ($stepActive.length) {
+                        $stepActive.show();
+                        if (this.classList.contains('sell__step-button--next')) { // bottom buttons -> scroll up to the step top
+                            $('body').addClass('autoscroll');
+                            $stepActive[0].scrollIntoView ({behavior: 'smooth', block: 'nearest'});
+                            setTimeout(() => {
+                                $('body').removeClass('autoscroll');
+                            }, 500);
+                        }
+                    }
+                    $sellStepButtons.each((index, button) => {
+                        if (button.dataset && button.dataset.step && button.dataset.step <= step) {
+                            $(button).addClass('filled');
+                        } else {
+                            $(button).removeClass('filled');
+                        }
+                    });
+                }
+            }
+            $sellStepButtons.on('click', sellStepButtonClick);
+        }
+
         // PRODUCTS
         if ($('.filters__inputs').length) {
             function clearFilters() {
@@ -1003,7 +1008,6 @@ document.addEventListener('DOMContentLoaded', () => {
                         $('#auctionId').val(auctionId);
                         filter();
                     },
-                    sortFunction: compareString
                 });
             }
 
@@ -1096,9 +1100,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 $tabs.on('click', function (e) {
                     e.preventDefault();
                     if ($(this).attr('data-hidearchived')) {
-                        console.log($('#hideArchived').val());
                         $('#hideArchived').val($(this).data('hidearchived'));
-                        console.log($('#hideArchived').val());
                     } else {
                         $(this).toggleClass('active');
                         $active = $('.filters__tab.active[data-auctiontype]');
@@ -1112,6 +1114,39 @@ document.addEventListener('DOMContentLoaded', () => {
             $('#sidenav-filters-search-input').on('change', function (e) {
                 $('main input[name="keyword"]').val(e.target.value);
             });
+
+            if ($('.filters__found-plus').length) {
+                setTimeout(() => { // wait header ajax
+                    const $formClone = $('#filterForm').clone();
+                    const $formCloneAuctionType = $formClone.find('#auctionType');
+                    const $formCloneHideArchived = $formClone.find('#hideArchived');
+                    if ($formCloneAuctionType.val() != 0) {
+                        $formCloneAuctionType.val(0);
+                        const $notActive = $('.filters__tab[data-auctiontype]:not(.active)');
+                        if ($notActive.length) {
+                            $('.filters__found-in').text('in ' + $notActive.text());
+                        }
+                    } else if ($formCloneHideArchived.val() != 'false') {
+                        $formCloneHideArchived.val(0);
+                        $('.filters__found-in').text('in Sold');
+                    } else {
+                        return; // all showed
+                    }
+
+                    $.get('/ajax/count.action?' + $formClone.serialize(), function (data) {
+                        data = Number(data.trim());
+                        if (data > 0) {
+                            data -= $('#productsCount').val();
+                            $('.filters__found-plus').text('+' + data);
+                            $('.filters__found-all-inner').show();
+
+                            $('.filters__found-all a').on('click', function () {
+                                window.location.href = $formClone[0].action + '?' + $formClone.serialize();
+                            });
+                        }
+                    });
+                }, 100);
+            }
         }
 
         // PRODUCT
@@ -1230,16 +1265,19 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (!$product.length) return;
 
                 const productId = $product[0].getAttribute('data-id');
+                const lotUrl = this.getAttribute('data-url');
                 if ($heart.hasClass('active')) {
                     $.get('/ajax/removeFromFavorites.action?product=' + productId)
                         .done(data => {
                             $heart.removeClass('active');
                         });
+                    if (lotUrl) openSamAndClose('https://propstoreauction.com/m/watchlist/remove?' + lotUrl);
                 } else {
                     $.get('/ajax/addToFavorites.action?product=' + productId)
                         .done(data => {
                             $heart.addClass('active');
                         });
+                    if (lotUrl) openSamAndClose('https://propstoreauction.com/m/watchlist/add?' + lotUrl);
                 }
             });
         }
@@ -2015,6 +2053,22 @@ document.addEventListener('DOMContentLoaded', () => {
                     });
                 }
             }
+        }
+
+        // SHIPPING QUOTE PAGE FOR SAM
+        if ($('.modal-shipping-quote-page').length) {
+            grecaptchaRender('g-recaptcha-quote');
+
+            $('form').submit(function (e) {
+                if (e.originalEvent.submitter && e.originalEvent.submitter.name === 'question') {
+                    $('[name="question"]').val(1);
+                }
+            });
+        }
+
+        function openSamAndClose (url) {
+            const SSOwin = window.open(url, 'Propstore SSO', `scrollbars=no,resizable=no,status=no,location=no,toolbar=no,menubar=no,width=1,height=1,top=2000`);
+            setTimeout(() => SSOwin.close(), 1000);
         }
 
     }); // end of document ready
