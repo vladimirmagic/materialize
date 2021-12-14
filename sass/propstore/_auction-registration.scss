@@ -1,3 +1,27 @@
+.modal-signin-page,
+.modal-register-page,
+.modal-password-page {
+	.modal-auction-register-form {
+		display: none;
+	}
+}
+
+.modal-signin-page {
+	#modal-auction-signin-form {
+		display: block;
+	}
+}
+.modal-register-page {
+	#modal-auction-register-form {
+		display: block;
+	}
+}
+.modal-password-page {
+	#modal-auction-password-form {
+		display: block;
+	}
+}
+
 .auction-registration-page {
 	overflow: hidden;
 }
