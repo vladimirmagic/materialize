@@ -18918,6 +18918,17 @@ a.account__orders-buy-link:not(.btn):not(.btn-large):not(.btn-small):not(.btn-ex
   background: #F4F4F4;
 }
 
+.record-sell__list {
+  margin-top: 6em;
+  padding-top: 6em;
+  padding-bottom: 8em;
+  background: #F4F4F4;
+}
+
+.record-sell__cta {
+  padding-top: 6em;
+}
+
 .sell__inner {
   max-width: 84rem;
   margin: 0 auto;
@@ -18928,6 +18939,7 @@ a.account__orders-buy-link:not(.btn):not(.btn-large):not(.btn-small):not(.btn-ex
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
+  width: 100%;
   color: #fff;
   text-align: left;
 }
@@ -19024,6 +19036,19 @@ a.account__orders-buy-link:not(.btn):not(.btn-large):not(.btn-small):not(.btn-ex
 
 .sell-cta__title {
   margin-bottom: .5em;
+}
+
+.sell-cta__title .icon {
+  width: 60px;
+  height: 60px;
+  margin-right: 16px;
+  border-radius: 60px;
+  background: #11BFC5;
+}
+
+.sell-cta__title .icon svg {
+  width: 32px;
+  height: 32px;
 }
 
 .sell-cta__text {
@@ -19347,6 +19372,11 @@ a.account__orders-buy-link:not(.btn):not(.btn-large):not(.btn-small):not(.btn-ex
     padding-top: 4em;
     padding-bottom: 4em;
   }
+  .record-sell__list {
+    margin-top: 4em;
+    padding-top: 4em;
+    padding-bottom: 4em;
+  }
   .sell-cta.sell-cta--valuation {
     margin-top: 5em;
   }
@@ -19420,6 +19450,15 @@ a.account__orders-buy-link:not(.btn):not(.btn-large):not(.btn-small):not(.btn-ex
   .sell-cta__info-inner {
     max-width: 32em;
     margin: 0 auto;
+  }
+  .sell-cta__title .icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 40px;
+  }
+  .sell-cta__title .icon svg {
+    width: 20px;
+    height: 20px;
   }
   .sell-form {
     padding: 3.5em 1.5em;
