@@ -1247,11 +1247,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 param = `width=${w-200},height=${h-200},left=100,top=100,menubar=1,toolbar=1,location=1,status=1`;
             }
             if (document.referrer) url = url + '?url=' + document.referrer;
-            window.open(url, 'Propstore Sign In', param);
+            const win = window.open(url, 'Propstore Sign In', param);
             window.addEventListener('message', function(event) {
                 console.log(event);
                 if (event.data === 'reloadPage') {
                     reloadPage();
+                    win.close();
                 }
             });
         }
