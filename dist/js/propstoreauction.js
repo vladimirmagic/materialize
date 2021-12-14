@@ -1105,7 +1105,7 @@ document.addEventListener('DOMContentLoaded', () => {
         </div>
     `);
     document.querySelectorAll('style:not([data-v2]), link[rel="stylesheet"]:not([data-v2])').forEach(item => item.remove());
-
+    openSSO();
 }
 /**
  * 
@@ -1246,6 +1246,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (w > 1224) {
                 param = `width=${w-200},height=${h-200},left=100,top=100,menubar=1,toolbar=1,location=1,status=1`;
             }
+            if (document.referrer) url = url + '?url=' + document.referrer;
             window.open(url, 'Propstore Sign In', param);
             window.addEventListener('message', function(event) {
                 console.log(event);
