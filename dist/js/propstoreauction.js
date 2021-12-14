@@ -1081,7 +1081,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 $('.container').prepend($('div.shipping').removeClass('shipping'));
                 $('.container').prepend($('.desc').html());
             }
-        }
 /**
  * 
  * 
@@ -1099,13 +1098,14 @@ document.addEventListener('DOMContentLoaded', () => {
  * 
  * SIGN IN, SIGN UP, FORGOT
  */
- if ($('.loginfrm').length) {
+} else if ($('body').hasClass('login') || $('body').hasClass('signup') || $('body').hasClass('forgot-password')) {
     $('main').append(`
-    <div class="loader-section loader-section--nooverlay">
-        <div class="preloader-wrapper active"><div class="spinner-layer"><div class="circle-clipper left"><div class="circle"></div></div><div class="gap-patch"><div class="circle"></div></div><div class="circle-clipper right"><div class="circle"></div></div></div></div>
-    </div>
-`);
+        <div class="loader-section loader-section--nooverlay">
+            <div class="preloader-wrapper active"><div class="spinner-layer"><div class="circle-clipper left"><div class="circle"></div></div><div class="gap-patch"><div class="circle"></div></div><div class="circle-clipper right"><div class="circle"></div></div></div></div>
+        </div>
+    `);
     document.querySelectorAll('style:not([data-v2]), link[rel="stylesheet"]:not([data-v2])').forEach(item => item.remove());
+
 }
 /**
  * 
