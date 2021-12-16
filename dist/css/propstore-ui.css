@@ -15671,7 +15671,7 @@ tbody .tr:last-child .td {
   -webkit-align-items: center;
       -ms-flex-align: center;
           align-items: center;
-  padding: 40px 72px 40px 144px;
+  padding: 40px 72px 40px;
   background: #F4F4F4;
   border-bottom-right-radius: 140px;
 }
@@ -15739,7 +15739,10 @@ tbody .tr:last-child .td {
     -webkit-flex-basis: 440px;
         -ms-flex-preferred-size: 440px;
             flex-basis: 440px;
-    padding: 40px 40px 40px 80px;
+    padding: 40px 40px 40px;
+  }
+  .section-auctions__item-info .btn, .section-auctions__item-info .btn-large, .section-auctions__item-info .btn-small, .section-auctions__item-info .btn-extra-small {
+    width: 100%;
   }
   .section-auctions__item-bage {
     display: block !important;
@@ -15794,6 +15797,9 @@ tbody .tr:last-child .td {
   .section-auctions__item-info {
     border-bottom-right-radius: 100px;
   }
+  .section-auctions__item-info .btn, .section-auctions__item-info .btn-large, .section-auctions__item-info .btn-small, .section-auctions__item-info .btn-extra-small {
+    width: 100%;
+  }
   .section-auctions__item-description {
     font-size: 18px;
   }
@@ -15826,11 +15832,20 @@ tbody .tr:last-child .td {
     padding: 48px 24px;
     border-bottom-right-radius: 0;
   }
+  .section-auctions__item-info .btn, .section-auctions__item-info .btn-large, .section-auctions__item-info .btn-small, .section-auctions__item-info .btn-extra-small {
+    width: auto;
+  }
   .section-auctions__all-completed-link {
     margin-top: 60px;
   }
   .section-auctions__all-completed-link .btn, .section-auctions__all-completed-link .btn-large, .section-auctions__all-completed-link .btn-small, .section-auctions__all-completed-link .btn-extra-small {
     padding: 0 16px;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .section-auctions__item-info .btn, .section-auctions__item-info .btn-large, .section-auctions__item-info .btn-small, .section-auctions__item-info .btn-extra-small {
+    width: 100%;
   }
 }
 
