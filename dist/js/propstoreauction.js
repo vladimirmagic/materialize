@@ -30,7 +30,7 @@ document.addEventListener('DOMContentLoaded', () => {
 			$('body').removeClass('touch').addClass('no-touch');
 		}
 
-        $('#headsec').remove();
+        // $('#headsec').remove();
         $('body').prepend($('.auc-header'));
         $('body').append($('.auc-sidenav'));
         $('<main>').append($('#wrapper')).insertAfter($('.auc-header'));
@@ -1105,8 +1105,58 @@ document.addEventListener('DOMContentLoaded', () => {
         </div>
     `);
     document.querySelectorAll('style:not([data-v2]), link[rel="stylesheet"]:not([data-v2])').forEach(item => item.remove());
-    openSSO();
+    $('.sso-trigger').first().click();
 }
+
+/**
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * NOT LOGGED IN
+ */
+if ($('#headsec a:contains("Auction Login")').length) {
+    $('.header__settings .header__col--right').append(`
+        <a href="/login" class="waves-effect btn-flat header__btn sso-trigger" data-url="/ajax/signIn.action">
+            Sign In
+        </a>
+        <span class="header__settings-divider2 header__settings-divider2--unregistered">/</span>
+        <a href="/signup" class="waves-effect btn-flat header__btn sso-trigger" data-url="/ajax/register.action">
+            Register
+        </a>
+    `);
+    $('.menu-link-login').addClass('sso-trigger');
+    $('.sso-trigger').on('click', function (e) {
+        e.preventDefault();
+        openSSO($(this).data('url'));
+    });
+
+} else {
+    $('.header__settings .header__col--right').append(`
+        <a href="/logout" class="waves-effect btn-flat header__btn signout-trigger">
+            Sign Out
+        </a>
+    `);
+    $('.signout-trigger').on('click', function (e) {
+        e.preventDefault();
+        const SSOwin = window.open('/logout', 'Propstore SSO', `scrollbars=no,resizable=no,status=no,location=no,toolbar=no,menubar=no,width=1,height=1,top=2000`);
+        const SSOtimer = setTimeout(() => {
+            SSOwin.close();
+            window.location.reload();
+        }, 100);
+    });
+}
+
 /**
  * 
  * 
@@ -1237,8 +1287,8 @@ document.addEventListener('DOMContentLoaded', () => {
             }
 		}
 
-        function openSSO () {
-            let url = URL_PROPSTORE + '/ajax/signIn.action';
+        function openSSO (action = '/ajax/signIn.action') {
+            let url = URL_PROPSTORE + action;
             if (window.location.hostname == 'localhost') url = 'https://propstore-ui.netlify.app/signin.html';
             let param = null;
             const w = window.screen.width;
