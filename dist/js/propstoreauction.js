@@ -1303,7 +1303,11 @@ if ($('#headsec a:contains("Auction Login")').length) {
                     const queryString = window.location.search;
                     const params = new URLSearchParams(queryString);
                     const url = params.get('url');
-                    if (url) window.location.href = url;
+                    if (url) {
+                        window.location.href = url;
+                    } else {
+                        window.location.reload();
+                    }
                     win.close();
                 }
             });
