@@ -1123,6 +1123,7 @@ if ($('#headsec a:contains("Auction Login")').length) {
     `);
     $('.signout-trigger').on('click', function (e) {
         e.preventDefault();
+        $('.loader-block').show();
         $.get('/logout')
             .always(data => {
                 window.location.reload();
