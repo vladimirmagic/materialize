@@ -1142,6 +1142,7 @@ if ($('#headsec a:contains("Auction Login")').length) {
         $('.loader-block').show();
         $.get('/logout')
             .always(data => {
+                openPropstoreAndClose(URL_PROPSTORE + 'submitLogout.action?autoclose=true');
                 window.location.reload();
             });
     });
@@ -1301,6 +1302,11 @@ if ($('#headsec a:contains("Auction Login")').length) {
                 }, 1000);
             }
 		}
+
+        function openPropstoreAndClose (url) {
+            const SSOwin = window.open(url, 'Propstore SSO', `scrollbars=no,resizable=no,status=no,location=no,toolbar=no,menubar=no,width=1,height=1,top=2000`);
+            setTimeout(() => SSOwin.close(), 1000);
+        }
 
         function openSSO (action = '/ajax/signIn.action') {
             let url = URL_PROPSTORE + action;
