@@ -318,8 +318,24 @@ document.addEventListener('DOMContentLoaded', () => {
                 $('.product__buttons-grey').show();
                 $('#modal-shipping-quote-button').on('click', openModalShippingQuote);
 
+                function getBarcodeFromJS() {
+                    let barcode = '';
+                    $('.description-info-content').find('*')
+                        .contents().each((i, element) => {
+                           if (element.nodeType == 3) {
+                                const arr = element.textContent.split('/proxy/shipping-quote/');
+                                if (arr.length > 1) {
+                                    barcode = parseInt(arr[1], 10);
+                                }
+                           }
+                        });
+                    return barcode;
+                };
+
                 function openModalShippingQuote () {
-                    const url = 'https://new.propstore.com/modalShippingQuote.action?product=' + $barcode.val(); // todo remove new.
+                    let barcode = $barcode.val();
+                    if (!barcode) barcode = getBarcodeFromJS(); // its for staging only, i guess
+                    const url = URL_PROPSTORE + 'modalShippingQuote.action?product=' + barcode;
                     let param = null;
                     const w = window.screen.width;
                     const h = window.screen.height;
