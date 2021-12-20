@@ -12431,6 +12431,10 @@ a.card:not(.btn):not(.btn-large):not(.btn-small):not(.btn-extra-small).card--arc
           transform: rotate(-30deg);
 }
 
+.card__featured.card__featured--topselling {
+  background: #FFAA00;
+}
+
 .card__heart {
   position: absolute;
   right: 16px;
@@ -14001,6 +14005,10 @@ a.related-movies__item:not(.btn):not(.btn-large):not(.btn-small):not(.btn-extra-
           transform-origin: 45px 50%;
   -webkit-transform: rotate(-30deg);
           transform: rotate(-30deg);
+}
+
+.product__featured.product__featured--topselling {
+  background: #FFAA00;
 }
 
 .product__info {

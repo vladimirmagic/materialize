@@ -153,6 +153,10 @@
 	background: $color-turquoise;
 	transform-origin: 45px 50%;
 	transform: rotate(-30deg);
+
+	&.product__featured--topselling {
+		background: $color-orange; 
+	}
 }
 
 .product__info {

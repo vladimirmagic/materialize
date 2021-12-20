@@ -86,6 +86,10 @@ a.card:not(.btn) { // fix a
 	background: $color-turquoise;
 	transform-origin: 30px 50%;
 	transform: rotate(-30deg);
+
+	&.card__featured--topselling {
+		background: $color-orange; 
+	}
 }
 
 .card__heart {
