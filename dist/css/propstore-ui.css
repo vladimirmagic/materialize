@@ -15712,6 +15712,7 @@ tbody .tr:last-child .td {
   -webkit-align-items: center;
       -ms-flex-align: center;
           align-items: center;
+  font-weight: 500;
 }
 
 .section-auctions__item-details-item .icon {
