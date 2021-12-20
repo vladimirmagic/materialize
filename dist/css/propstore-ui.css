@@ -14727,6 +14727,7 @@ a.product__certificate:not(.btn):not(.btn-large):not(.btn-small):not(.btn-extra-
   margin-right: .5em;
   -webkit-transform: translateY(2px);
           transform: translateY(2px);
+  font-weight: 500;
 }
 
 .share__item .icon {
