@@ -1113,6 +1113,42 @@ document.addEventListener('DOMContentLoaded', () => {
  * 
  * 
  * 
+ * SIGN IN, SIGN UP, FORGOT
+ */
+ if ($('body').hasClass('login') || $('body').hasClass('signup') || $('body').hasClass('forgot-password')) {
+    $('main').append(`
+    <div class="general"><div class="general__inner">
+        <h1 class="h1">
+            Please Sign In
+        </h1>
+        <p class="p-r">
+            Aenean lacinia bibendum nulla sed consectetur contact us.
+        </p>
+        <br/>
+        <button type="submit" class="waves-effect waves-light btn sso-trigger">
+            <span class='btn__title'>Propstore Auth</span>
+            <i class='icon'><svg><use xlink:href="#arrow-right"></use></svg></i>
+        </button>
+    </div></div>
+    `);
+    document.querySelectorAll('style:not([data-v2]), link[rel="stylesheet"]:not([data-v2])').forEach(item => item.remove());
+    $('.sso-trigger').first().click();
+}
+/**
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
  * NOT LOGGED IN
  */
 if ($('#headsec a:contains("Auction Login")').length) {
@@ -1146,32 +1182,6 @@ if ($('#headsec a:contains("Auction Login")').length) {
                 window.location.reload();
             });
     });
-}
-/**
- * 
- * 
- * 
- * 
- * 
- * 
- * 
- * 
- * 
- * 
- * 
- * 
- * 
- * 
- * SIGN IN, SIGN UP, FORGOT
- */
- if ($('body').hasClass('login') || $('body').hasClass('signup') || $('body').hasClass('forgot-password')) {
-    $('main').append(`
-        <div class="loader-section loader-section--nooverlay">
-            <div class="preloader-wrapper active"><div class="spinner-layer"><div class="circle-clipper left"><div class="circle"></div></div><div class="gap-patch"><div class="circle"></div></div><div class="circle-clipper right"><div class="circle"></div></div></div></div>
-        </div>
-    `);
-    document.querySelectorAll('style:not([data-v2]), link[rel="stylesheet"]:not([data-v2])').forEach(item => item.remove());
-    $('.sso-trigger').first().click();
 }
 /**
  * 
@@ -1319,7 +1329,6 @@ if ($('#headsec a:contains("Auction Login")').length) {
             }
             const win = window.open(url, 'Propstore Sign In', param);
             window.addEventListener('message', function(event) {
-                console.log(event);
                 if (event.data === 'reloadPage') {
                     const queryString = window.location.search;
                     const params = new URLSearchParams(queryString);
@@ -1345,7 +1354,6 @@ if ($('#headsec a:contains("Auction Login")').length) {
             }
             window.open(url, 'Propstore Auction Registration', param);
             window.addEventListener('message', function(event) {
-                console.log(event);
                 if (event.data === 'reloadPage') {
                     reloadPage();
                 }

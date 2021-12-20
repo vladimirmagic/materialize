@@ -30,4 +30,8 @@ body.forgot-password {
 	main {
 		position: relative;
 	}
+
+	#wrapper { // hide login forms
+		display: none;
+	}
 }

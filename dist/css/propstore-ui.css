@@ -20748,6 +20748,12 @@ body.forgot-password main {
   position: relative;
 }
 
+body.login #wrapper,
+body.signup #wrapper,
+body.forgot-password #wrapper {
+  display: none;
+}
+
 .auc-header .header__col.header__col--left, .auc-header .header__col.header__col--right {
   -webkit-box-flex: 0;
   -webkit-flex: 0 0 360px;
