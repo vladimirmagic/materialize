@@ -16686,6 +16686,7 @@ a.bag__item:not(.btn):not(.btn-large):not(.btn-small):not(.btn-extra-small):befo
   padding-right: 40px;
   -webkit-box-shadow: 0 1px 0 0 #c7c7c7;
           box-shadow: 0 1px 0 0 #c7c7c7;
+  z-index: 100;
 }
 
 .order-header__inner {
