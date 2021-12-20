@@ -22158,6 +22158,10 @@ body.search-index .categories-match {
   margin: -.25em .25em 0 0;
 }
 
+.auc__hero-badge {
+  margin-bottom: 1rem;
+}
+
 @media only screen and (max-width: 1200px) {
   .auc__hero.hero--static .hero__info {
     text-align: center;

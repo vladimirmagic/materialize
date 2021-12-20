@@ -1006,7 +1006,7 @@ document.addEventListener('DOMContentLoaded', () => {
         `);
             const status = $('#status').text().toLowerCase();
 
-            $badge = $('.section-auctions__item-bage');
+            $badge = $('.auc__hero-badge');
             switch (status) {
                 case 'upcoming': {
                     $badge.addClass('orange').append('Upcoming').find('use').attr('xlink:href', '#clockwise');
