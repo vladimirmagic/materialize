@@ -1132,7 +1132,6 @@ document.addEventListener('DOMContentLoaded', () => {
     </div></div>
     `);
     document.querySelectorAll('style:not([data-v2]), link[rel="stylesheet"]:not([data-v2])').forEach(item => item.remove());
-    $('.sso-trigger').first().click();
 }
 /**
  * 
@@ -1179,7 +1178,11 @@ if ($('#headsec a:contains("Auction Login")').length) {
         $.get('/logout')
             .always(data => {
                 openPropstoreAndClose(URL_PROPSTORE + 'submitLogout.action?autoclose=true');
-                window.location.reload();
+                if (window.location.pathname.includes('/my-items/')) {
+                    window.location.href = '/';
+                } else {
+                    window.location.reload();
+                }
             });
     });
 }
