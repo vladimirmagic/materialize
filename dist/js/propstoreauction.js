@@ -590,6 +590,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 $reg = $(item).find('.reg');
                 if ($reg.length) {
+                    $reg[0].onclick = null;
                     $reg.addClass('waves-effect waves-light btn')
                         .on('click', function (e) {
                             e.preventDefault();
