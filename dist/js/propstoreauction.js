@@ -590,15 +590,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 $reg = $(item).find('.reg');
                 if ($reg.length) {
-                    $reg.addClass('waves-effect waves-light btn');
+                    $reg.addClass('waves-effect waves-light btn')
+                        .on('click', function (e) {
+                            e.preventDefault();
+                            openAuctionRegistration(id);
+                        });
                     let html = $reg.html(); 
                     if (html.includes('Login to bid')) {
-                        $reg.html('Sign in to bid')
-                            .addClass('auc-button--signin')
-                            .on('click', function (e) {
-                                e.preventDefault();
-                                openAuctionRegistration(id);
-                            });
+                        $reg.html('Sign in to bid').addClass('auc-button--signin');
                     } else if (html.includes('Register to bid!')) {
                         $reg.html('Register for the auction').addClass('auc-button--registerauc');
                     }
