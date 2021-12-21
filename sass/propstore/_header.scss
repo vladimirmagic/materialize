@@ -502,6 +502,15 @@ a:not(.btn).header__menu-target-blank {
 	}
 }
 
+.menu-level-link-target-blank {
+	.icon {
+		width: .75rem;
+    	height: .75rem;
+		margin: -.1em 0 0 .25em;
+		opacity: .3;
+	}
+}
+
 .header__logo {
     svg {
         width: 200px;

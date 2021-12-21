@@ -10343,6 +10343,13 @@ a:not(.btn):not(.btn-large):not(.btn-small):not(.btn-extra-small).header__menu-t
   display: none;
 }
 
+.menu-level-link-target-blank .icon {
+  width: .75rem;
+  height: .75rem;
+  margin: -.1em 0 0 .25em;
+  opacity: .3;
+}
+
 .header__logo svg, .order-header__logo svg {
   width: 200px;
   height: 48px;
