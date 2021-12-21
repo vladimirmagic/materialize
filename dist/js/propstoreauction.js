@@ -597,7 +597,7 @@ document.addEventListener('DOMContentLoaded', () => {
                             .addClass('auc-button--signin')
                             .on('click', function (e) {
                                 e.preventDefault();
-                                openAuctionRegistration();
+                                openAuctionRegistration(id);
                             });
                     } else if (html.includes('Register to bid!')) {
                         $reg.html('Register for the auction').addClass('auc-button--registerauc');
@@ -1346,9 +1346,9 @@ if ($('#headsec a:contains("Auction Login")').length) {
             });
         }
 
-        function openAuctionRegistration () {
-            let url = URL_PROPSTORE + '/ajax/auctionRegistration.action';
-            if (window.location.hostname == 'localhost') url = 'https://propstore-ui.netlify.app/propstoreauction-registration.html';
+        function openAuctionRegistration (id) {
+            let url = URL_PROPSTORE + '/ajax/auctionRegistration.action?auctionId=' + id;
+            if (window.location.hostname == 'localhost') url = 'https://propstore-ui.netlify.app/propstoreauction-registration.html?auctionId=' + id;
             let param = null;
             const w = window.screen.width;
             const h = window.screen.height;
