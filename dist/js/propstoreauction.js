@@ -287,7 +287,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     $btnPlaceBid.val('Sign in to bid')
                         .on('click', function (e) {
                             e.preventDefault();
-                            
+                            openSSO();
                         });
                 }
             }
