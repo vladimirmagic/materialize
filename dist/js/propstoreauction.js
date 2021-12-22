@@ -1164,6 +1164,13 @@ if ($('#headsec a:contains("Auction Login")').length) {
             Register
         </a>
     `);
+    $('.sidenav__settings').append(`
+        <div class="sidenav__settings-sign-register">
+            <a href="/login" class="waves-effect btn-flat modal-trigger sidenav__settings-sign sso-trigger" data-url="/ajax/signIn.action">Sign In</a>
+            <span class="sidenav__settings-divider">/</span>
+            <a href="/signup" class="waves-effect btn-flat modal-trigger sidenav__settings-register sso-trigger" data-url="/ajax/register.action">Register</a>
+        </div>
+    `);
     $('.menu-link-login').addClass('sso-trigger');
     $('.sso-trigger').on('click', function (e) {
         e.preventDefault();
@@ -1175,6 +1182,13 @@ if ($('#headsec a:contains("Auction Login")').length) {
         <a href="/logout" class="waves-effect btn-flat header__btn signout-trigger">
             Sign Out
         </a>
+    `);
+    $('.sidenav__settings').append(`
+        <div class="sidenav__settings-sign-register">
+            <a href="/logout" class="waves-effect btn-flat signout-trigger">
+                Sign Out
+            </a>
+        </div>
     `);
     $('.signout-trigger').on('click', function (e) {
         e.preventDefault();
