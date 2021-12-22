@@ -1196,13 +1196,13 @@ if ($('#headsec a:contains("Auction Login")').length) {
         $('.loader-block').show();
         $.get('/logout')
             .always(data => {
-                openPropstoreAndClose(URL_PROPSTORE + 'submitLogout.action?autoclose=true');
                 if (window.location.pathname.includes('/my-items/')) {
                     window.location.href = '/';
                 } else {
                     window.location.reload();
                 }
             });
+        openPropstoreAndClose(URL_PROPSTORE + 'submitLogout.action?autoclose=true');
     });
 }
 /**
