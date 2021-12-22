@@ -1,5 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const URL_PROPSTORE = 'https://new.propstore.com/';
+    let URL_PROPSTORE = 'https://new.propstore.com/';
+    if (window.location.href.includes('localhost')) URL_PROPSTORE = 'http://propstore.loc/';
 
 	if (window.location.href.includes('#nomaterialize')) { // don't materialize
 		document.querySelectorAll('[data-v2]').forEach(item => item.remove());
@@ -1341,7 +1342,6 @@ if ($('#headsec a:contains("Auction Login")').length) {
 
         function openSSO (action = '/ajax/signIn.action') {
             let url = URL_PROPSTORE + action;
-            if (window.location.hostname == 'localhost') url = 'https://propstore-ui.netlify.app/signin.html';
             let param = null;
             const w = window.screen.width;
             const h = window.screen.height;
@@ -1366,7 +1366,6 @@ if ($('#headsec a:contains("Auction Login")').length) {
 
         function openAuctionRegistration (id) {
             let url = URL_PROPSTORE + '/ajax/auctionRegistration.action?auctionId=' + id;
-            if (window.location.hostname == 'localhost') url = 'https://propstore-ui.netlify.app/propstoreauction-registration.html?auctionId=' + id;
             let param = null;
             const w = window.screen.width;
             const h = window.screen.height;
