@@ -1116,6 +1116,10 @@ document.addEventListener('DOMContentLoaded', () => {
  * SIGN IN, SIGN UP, FORGOT
  */
  if ($('body').hasClass('login') || $('body').hasClass('signup') || $('body').hasClass('forgot-password')) {
+    if (window.opener) { // close modal window, becouse it is redirected from modal /logout
+        window.opener.postMessage('SSOsuccess', '*');
+        window.close();
+    }
     $('main').append(`
     <div class="general"><div class="general__inner">
         <h1 class="h1">
