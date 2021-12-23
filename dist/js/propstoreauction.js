@@ -1351,6 +1351,7 @@ if ($('#headsec a:contains("Auction Login")').length) {
             const win = window.open(url, 'Propstore Sign In', param);
             window.addEventListener('message', function(event) {
                 if (event.data === 'reloadPage') {
+                    $('.loader-block').show();
                     const queryString = window.location.search;
                     const params = new URLSearchParams(queryString);
                     const url = params.get('url');
@@ -1381,6 +1382,7 @@ if ($('#headsec a:contains("Auction Login")').length) {
         }
         
         function reloadPage () {
+            $('.loader-block').show();
             window.location.reload();
         }
 
