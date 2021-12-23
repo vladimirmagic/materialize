@@ -13269,8 +13269,10 @@ a.card-auction:not(.btn):not(.btn-large):not(.btn-small):not(.btn-extra-small):b
   white-space: nowrap;
 }
 
-.filters__tab.active {
+.filters__tab.active.btn--rounded.btn-flat {
   cursor: pointer;
+  color: white !important;
+  background: #2D2E41 !important;
 }
 
 .filters__tab + .filters__tab {

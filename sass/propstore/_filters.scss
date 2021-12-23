@@ -55,8 +55,10 @@
 .filters__tab {
 	white-space: nowrap;
 
-	&.active {
+	&.active.btn--rounded.btn-flat {
 		cursor: pointer;
+		color: white !important;
+    	background: $color-base !important;
 	}
 
 	& + & {
