@@ -860,7 +860,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 $cardItem.on('click', function(e) {
                     if (!$(e.target).is("input") && !$(e.target).is("a") && !$(e.target).closest('a').length) {
-                        window.location.href = $(e.target).closest('.card').find('.yaaa').attr('href');
+                        redirectPage($(e.target).closest('.card').find('.yaaa').attr('href'));
                     }
                 });
 
@@ -1197,9 +1197,9 @@ if ($('#headsec a:contains("Auction Login")').length) {
         $.get('/logout')
             .always(data => {
                 if (window.location.pathname.includes('/my-items/')) {
-                    window.location.href = '/';
+                    redirectPage('/');
                 } else {
-                    window.location.reload();
+                    reloadPage();
                 }
             });
         openPropstoreAndClose(URL_PROPSTORE + 'submitLogout.action?autoclose=true');
@@ -1319,7 +1319,7 @@ if ($('#headsec a:contains("Auction Login")').length) {
                     sec = --seconds;
                     if (sec <= 0) {
                         clearInterval(interval);
-                        window.location.reload();
+                        reloadPage();
                     }
                     day = Math.floor(sec / 60 / 60 / 24);
                     sec -= day * 60 * 60 * 24;
@@ -1350,15 +1350,15 @@ if ($('#headsec a:contains("Auction Login")').length) {
             }
             const win = window.open(url, 'Propstore Sign In', param);
             window.addEventListener('message', function(event) {
+                console.log('ssoEvent', event);
                 if (event.data === 'reloadPage') {
-                    $('.loader-block').show();
                     const queryString = window.location.search;
                     const params = new URLSearchParams(queryString);
                     const url = params.get('url');
                     if (url) {
-                        window.location.href = url;
+                        redirectPage(url);
                     } else {
-                        window.location.reload();
+                        reloadPage();
                     }
                     win.close();
                 }
@@ -1384,6 +1384,11 @@ if ($('#headsec a:contains("Auction Login")').length) {
         function reloadPage () {
             $('.loader-block').show();
             window.location.reload();
+        }
+
+        function redirectPage (url) {
+            $('.loader-block').show();
+            window.location.href = url;
         }
 
         if (window.opener && $('#messages').text().includes('SSO token error')) {
