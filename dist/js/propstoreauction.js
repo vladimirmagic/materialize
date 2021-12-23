@@ -1365,16 +1365,19 @@ if ($('#headsec a:contains("Auction Login")').length) {
         }
 
         function openAuctionRegistration (id) {
-            let url = URL_PROPSTORE + '/ajax/auctionRegistration.action?auctionId=' + id;
+            const url = URL_PROPSTORE + '/ajax/auctionRegistration.action?auctionId=' + id;
             let param = null;
             const w = window.screen.width;
             const h = window.screen.height;
             if (w > 1224) {
                 param = `width=${w-200},height=${h-200},left=100,top=100,menubar=1,toolbar=1,location=1,status=1`;
             }
-            window.open(url, 'Propstore Auction Registration', param);
+            const ssoWin = window.open(url, 'Propstore Auction Registration', param);
             window.addEventListener('message', function(event) {
-                if (event.data === 'reloadPage') {
+                if (event.data === 'SSOsuccess') {
+                    ssoWin.location.href = url;
+                    reloadPage();
+                } else if (event.data === 'reloadPage') {
                     reloadPage();
                 }
             });
