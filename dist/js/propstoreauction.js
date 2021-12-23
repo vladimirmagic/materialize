@@ -1350,8 +1350,7 @@ if ($('#headsec a:contains("Auction Login")').length) {
             }
             const win = window.open(url, 'Propstore Sign In', param);
             window.addEventListener('message', function(event) {
-                console.log('ssoEvent', event);
-                if (event.data === 'reloadPage') {
+                if (event.data === 'reloadPage' || event.data === 'SSOerror') {
                     const queryString = window.location.search;
                     const params = new URLSearchParams(queryString);
                     const url = params.get('url');
