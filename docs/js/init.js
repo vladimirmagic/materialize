@@ -1,4 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
+    const URL_SAM = 'https://propstore-staging32-usm.auctionserver.net/';
+
     $(function() {
         // Detect touch screen and enable scrollbar if necessary
         function is_touch_device() {
@@ -72,6 +74,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if ($('#whatsnew-auctions').length) getWhatsNews();
 
+        // SIGN OUT SSO
+        if ($('.signout-trigger').length) {
+            $('.signout-trigger').on('click', function () {
+                $('.loader-block').show();
+                openSamAndClose(URL_SAM + '/logout?autoclose=true');
+            });
+        }
+
         // MODAL SIGNIN
 
         $('#modal-signin').modal({ // load form on modal open
@@ -90,7 +100,13 @@ document.addEventListener('DOMContentLoaded', () => {
                     .always(data => {
                         el.classList.remove('sync');
                     });
-            }
+            },
+            onCloseStart: function (el) {
+                const $ssoTrigger = $(el).find('.modal-register__sso-trigger');
+                if ($ssoTrigger.length) {
+                    reloadPage();
+                }
+            },
         });
 
         $('.modal-signin-form').submit(function (e) {
@@ -98,14 +114,20 @@ document.addEventListener('DOMContentLoaded', () => {
             this.classList.add('sync');
 
             function openSSO () {
-                const SSOwin = window.open('/ajax/sso.action', 'Propstore SSO', `scrollbars=no,resizable=no,status=no,location=no,toolbar=no,menubar=no,width=1,height=1,top=2000`);
+                $('.loader-block').show();
+                const SSOwin = window.open('/ajax/sso.action?autoclose=true&reloadopener=true', 'Propstore SSO', `scrollbars=no,resizable=no,status=no,location=no,toolbar=no,menubar=no,width=1,height=1,top=2000`);
                 const SSOtimer = setTimeout(() => {
-                    SSOwin.close();
+                    $('.loader-block').hide();
+                    if (SSOwin) SSOwin.close();
+                    M.Toast.dismissAll();
+                    M.toast({
+                        html: '<span><strong>Somthing went wrong.</strong><br/> Check pop-ups blocking and try again.</span>',
+                        displayLength: Infinity,
+                    });
                 }, 5000);
                 window.addEventListener('message', function(event) {
-                    console.log(event);
                     if (event.data === 'SSOsuccess' || event.data === 'SSOerror') {
-                        window.location.reload();
+                        reloadPage();
                     }
                 });
             }
@@ -115,17 +137,16 @@ document.addEventListener('DOMContentLoaded', () => {
                 $(this).serialize(),
             )
                 .done(data => {
-                    if (data && data.trim() === 'success') {
-                        openSSO();
+                    this.innerHTML = data;
+                    M.updateTextFields();
+
+                    const $ssoTrigger = $(this).find('.modal-register__sso-trigger');
+                    if ($ssoTrigger.length) {
+                        $ssoTrigger.on('click', openSSO).trigger('click');
                         const $redirect = $('[data-after-signin]');
                         if ($redirect.length) {
-                            window.location.href = $redirect.data('after-signin');
-                        } else {
-                            window.location.reload();
+                            redirectPage($redirect.data('after-signin'));
                         }
-                    } else {
-                        this.innerHTML = data;
-                        M.updateTextFields();
                     }
                 })
                 .fail(data => {
@@ -232,7 +253,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 $.get(url)
                     .done(data => {
                         if ($('.bag__items').length) { // bag page
-                            window.location.reload();
+                            reloadPage();
                         } else {
                             $card.addClass('card--added');
                             bagCountUpdate();
@@ -255,13 +276,13 @@ document.addEventListener('DOMContentLoaded', () => {
                         .done(data => {
                             $card.removeClass('card--liked');
                         });
-                    if (lotUrl) openSamAndClose('https://propstoreauction.com/m/watchlist/remove?' + lotUrl);
+                    if (lotUrl) openSamAndClose(URL_SAM + '/watchlist/remove?autoclose=true&' + lotUrl);
                 } else {
                     $.get('/ajax/addToFavorites.action?product=' + productId)
                         .done(data => {
                             $card.addClass('card--liked');
                         });
-                    if (lotUrl) openSamAndClose('https://propstoreauction.com/m/watchlist/add?' + lotUrl);
+                    if (lotUrl) openSamAndClose(URL_SAM + '/watchlist/add?autoclose=true&' + lotUrl);
                 }
             });
         }
@@ -286,7 +307,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
                     $('.footer, .footer-signup').hide();
 
-                    $.get('/ajax/products.action?' + $('#filterForm').serialize(), function (data) {
+                    $.get('/ajax/products.action?' + $('#filterForm').serialize() + '&' + $('.header__filters').serialize(), function (data) {
                         const trim = $.trim(data);
                         if (trim === 'no results') {
                             $(window).off('scroll', loadProducts);
@@ -642,10 +663,15 @@ document.addEventListener('DOMContentLoaded', () => {
         if (account) M.Dropdown.init(account, { alignment: 'right' });
 
         // MENU
-        const MENU_THRESHOLD = 100; // ms
+        const MENU_THRESHOLD_OPEN = 100; // ms
+        const MENU_THRESHOLD_CHANGE = 300; // ms
         const $menu = $('.header__menu');
         const $menuItems = $('.header__menu-link');
         let menuOpenTimer;
+        function clearTimer () {
+            if (menuOpenTimer) clearTimeout(menuOpenTimer);
+            menuOpenTimer = null;
+        }
         function menuClickOutside (e) {
             const $inside = $(e.target).closest('.header__menu');
             if (!$inside.length) menuClose();
@@ -658,14 +684,16 @@ document.addEventListener('DOMContentLoaded', () => {
             $('body').on('click', menuClickOutside);
         }
         function menuClose () {
-            if (menuOpenTimer) clearTimeout(menuOpenTimer);
-            $menu.removeClass('active');
-            $menuItems.removeClass('active');
-            $('body').off('click', menuClickOutside);
+            clearTimer();
+            menuOpenTimer = setTimeout(() => {
+                $menu.removeClass('active');
+                $menuItems.removeClass('active');
+                $('body').off('click', menuClickOutside);
+            }, MENU_THRESHOLD_OPEN);
         }
         if ($menu.length && $menuItems.length) {
             function click (e) {
-                if (menuOpenTimer) clearTimeout(menuOpenTimer);
+                clearTimer();
                 if (e.target.classList.contains('active')) {
                     menuClose();
                 } else {
@@ -673,21 +701,18 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             }
             function move (e) {
-                if (menuOpenTimer) clearTimeout(menuOpenTimer);
-                menuOpenTimer = setTimeout(() => menuOpen(e), MENU_THRESHOLD);
+                clearTimer();
+                menuOpenTimer = setTimeout(() => menuOpen(e), menuOpenTimer ? MENU_THRESHOLD_CHANGE : MENU_THRESHOLD_OPEN);
             }
             $menuItems.on('click', click);
             $('.header__menu-link-handle').on('mousemove', move);
             $menu.on('mouseleave', menuClose);
+            $('.header__menu-level1').on('mousemove', clearTimer);
         }
 
         // SIDENAV
-        function onBack () {
+        $('.sidenav__menu-back').on('click', function () {
             $('.sidenav__links').focus();
-        }
-        const back = document.querySelectorAll('.sidenav__menu-back');
-        if (back) back.forEach(btn => {
-            btn.addEventListener('click', onBack);
         });
 
         if (!$('.order').length) { // own errors in checkout
@@ -953,6 +978,48 @@ document.addEventListener('DOMContentLoaded', () => {
             $sellStepButtons.on('click', sellStepButtonClick);
         }
 
+        // RELATED
+        const $relatedMoviesScroll = $('.related-movies__scroll');
+        if ($relatedMoviesScroll.length) {
+            let relatedScrolling;
+            let relatedScrollingTimer;
+
+            function onScroll() {
+                if (relatedScrollingTimer) clearTimeout(relatedScrollingTimer);
+                relatedScrollingTimer = setTimeout(() => { // debounce while scrolling
+                    relatedScrolling = null;
+
+                    $(this).toggleClass('arrow-left', (
+                        this.scrollWidth > this.clientWidth &&
+                        this.scrollLeft > 0
+                    ));
+                    $(this).toggleClass('arrow-right', (
+                        this.scrollWidth > this.clientWidth + this.scrollLeft + 1
+                    ));
+                }, 100);
+            }
+            $relatedMoviesScroll.on('scroll', onScroll);
+            onScroll.call($relatedMoviesScroll[0]);
+
+            function move (forward = true) {
+                if (relatedScrolling) return;
+                const scroll = $relatedMoviesScroll[0];
+                const width = scroll.clientWidth;
+                const sign = forward ? 1 : -1;
+                relatedScrolling = scroll;
+                let x = sign * width * .8;
+                if (forward && scroll.scrollWidth - width - scroll.scrollLeft - x < width * .2) { // if close to end, scroll to end
+                    x = width;
+                } else if (!forward && scroll.scrollLeft + x < width * .2) {
+                    x = - width;
+                }
+                scroll.scrollLeft += x;
+            }
+
+            $('.related-movies__arrow--left').on('click', function () { move(false); });
+            $('.related-movies__arrow--right').on('click', move);
+        }
+
         // PRODUCTS
         if ($('.filters__inputs').length) {
             function clearFilters() {
@@ -962,14 +1029,18 @@ document.addEventListener('DOMContentLoaded', () => {
 
             let filterTimeout;
 
+            function filterNow() {
+                filtersFloat(0);
+                $('#itemsOffset').val('');
+                $('#filterForm').submit();
+            }
+
             function filter() {
                 if (filterTimeout) clearTimeout(filterTimeout);
 
                 filterTimeout = setTimeout(function () {
                     if (!isMobileFilter) {
-                        filtersFloat(0);
-                        $('#itemsOffset').val('');
-                        $('#filterForm').submit();
+                        filterNow();
                     }
                 }, 100);
             }
@@ -1040,10 +1111,6 @@ document.addEventListener('DOMContentLoaded', () => {
             }
             countEnabledFilters();
 
-            $('#hideArchived').on('change', function () {
-                filter();
-            });
-
             $('#categoryId').on('change', function () {
                 filter();
             });
@@ -1099,15 +1166,15 @@ document.addEventListener('DOMContentLoaded', () => {
             if ($tabs.length) {
                 $tabs.on('click', function (e) {
                     e.preventDefault();
-                    if ($(this).attr('data-hidearchived')) {
-                        $('#hideArchived').val($(this).data('hidearchived'));
+                    if ($(this).attr('data-showsold')) {
+                        $('#showSold').val($(this).data('showsold'));
                     } else {
                         $(this).toggleClass('active');
                         $active = $('.filters__tab.active[data-auctiontype]');
                         const val = $active.length === 1 ? $active.data('auctiontype') : 0;
                         $('#auctionType').val(val);
                     }
-                    filter();
+                    filterNow();
                 });
             }
 
@@ -1119,34 +1186,34 @@ document.addEventListener('DOMContentLoaded', () => {
                 setTimeout(() => { // wait header ajax
                     const $formClone = $('#filterForm').clone();
                     const $formCloneAuctionType = $formClone.find('#auctionType');
-                    const $formCloneHideArchived = $formClone.find('#hideArchived');
-                    if ($formCloneAuctionType.val() != 0) {
+                    const $formCloneShowSold = $formClone.find('#showSold');
+                    const $formCloneCategoryId = $formClone.find('#categoryId');
+                    if ($formCloneAuctionType.val() != 0 || $formCloneShowSold.val() == 0 || $formCloneCategoryId.val() == -2) {
                         $formCloneAuctionType.val(0);
-                        const $notActive = $('.filters__tab[data-auctiontype]:not(.active)');
-                        if ($notActive.length) {
-                            $('.filters__found-in').text('in ' + $notActive.text());
-                        }
-                    } else if ($formCloneHideArchived.val() != 'false') {
-                        $formCloneHideArchived.val(0);
-                        $('.filters__found-in').text('in Sold');
+                        $formCloneShowSold.val(1);
+                        if ($formCloneCategoryId.val() == -2) $formCloneCategoryId.val(0)
                     } else {
                         return; // all showed
                     }
 
                     $.get('/ajax/count.action?' + $formClone.serialize(), function (data) {
                         data = Number(data.trim());
+                        if (data > 0) data -= $('#productsCount').val();
                         if (data > 0) {
-                            data -= $('#productsCount').val();
                             $('.filters__found-plus').text('+' + data);
                             $('.filters__found-all-inner').show();
 
                             $('.filters__found-all a').on('click', function () {
-                                window.location.href = $formClone[0].action + '?' + $formClone.serialize();
+                                redirectPage($formClone[0].action + '?' + $formClone.serialize());
                             });
                         }
                     });
                 }, 100);
             }
+
+            $('#filterForm').submit(function () {
+                $('.loader-block').show();
+            });
         }
 
         // PRODUCT
@@ -1211,7 +1278,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 e.preventDefault();
                 $.get(this.href)
                     .done(data => {
-                        window.location.reload();
+                        reloadPage();
                     });
             });
 
@@ -1237,7 +1304,7 @@ document.addEventListener('DOMContentLoaded', () => {
                                     '/ajax/addProduct.action?' + $(this).serialize(),
                                 )
                                     .done(data => {
-                                        window.location.reload(); // change added button, update bag count
+                                        reloadPage(); // change added button, update bag count
                                     })
                                     .fail(data => {
                                         if (data && data.statusText) this.innerHTML = data.statusText;
@@ -1271,13 +1338,13 @@ document.addEventListener('DOMContentLoaded', () => {
                         .done(data => {
                             $heart.removeClass('active');
                         });
-                    if (lotUrl) openSamAndClose('https://propstoreauction.com/m/watchlist/remove?' + lotUrl);
+                    if (lotUrl) openSamAndClose(URL_SAM + '/watchlist/remove?autoclose=true&' + lotUrl);
                 } else {
                     $.get('/ajax/addToFavorites.action?product=' + productId)
                         .done(data => {
                             $heart.addClass('active');
                         });
-                    if (lotUrl) openSamAndClose('https://propstoreauction.com/m/watchlist/add?' + lotUrl);
+                    if (lotUrl) openSamAndClose(URL_SAM + '/watchlist/add?autoclose=true&' + lotUrl);
                 }
             });
         }
@@ -1398,6 +1465,23 @@ document.addEventListener('DOMContentLoaded', () => {
                 $shippingCountry.on('change', isShippingStateSelect);
                 isShippingStateSelect();
             }
+
+            // REGISTERED BUSINESS
+            const $businessCheckbox = $('#accountDetailsSubmit_business');
+            if ($businessCheckbox.length) {
+                function isRegisteredBusiness() {
+                    const $form = $('.business-form');
+                    if ($businessCheckbox[0].checked) {
+                        $form.show();
+                    } else {
+                        $form.hide();
+                        $('#accountDetailsSubmit_businessNumber').val('');
+                    }
+                }
+
+                $businessCheckbox.on('change', isRegisteredBusiness);
+                isRegisteredBusiness();
+            }
         }
 
         // FAVORITES
@@ -1475,12 +1559,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 const fakeUrl = $(event.target).data('href');
                 if (fakeUrl) {
                     event.preventDefault();
-                    window.location.href = fakeUrl;
+                    redirectPage(fakeUrl);
                 }
             });
 
             $('.filters__select-category select').on('change', function(event) {
-                window.location.href = event.target.value;
+                redirectPage(event.target.value);
             });
         }
 
@@ -1776,22 +1860,127 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         }
 
+        // SIGN IN FORMS FOR MODAL PAGE
+        if ($('.modal-auction-register-form').length) {
+            modalLoginForms();
+        }
+
+        if ($('.modal-signin-page').length || $('.modal-register-page').length || $('.modal-password-page').length) {
+            $('#modal-auction-signin-form').submit(function (e) {
+                e.preventDefault();
+                $('.loader-block').show();
+
+                $.post(
+                    this.action,
+                    $(this).serialize(),
+                )
+                    .done(data => {
+                        if (data.includes('modal-success')) {
+                            openSSO();
+                        } else {
+                            this.innerHTML = data;
+                            modalLoginForms();
+                            $('.loader-block').hide();
+                        }
+                    })
+                    .fail(data => {
+                        if (data && data.statusText) this.innerHTML = data.statusText;
+                        $('.loader-block').hide();
+                    });
+            });
+
+            function openSSO () {
+                redirectPage('/ajax/sso.action?autoclose=true&reloadopener=true');
+            }
+
+            $('#modal-auction-register-form').submit(function (e) {
+                e.preventDefault();
+                $('.loader-block').show();
+
+                $.post(
+                    this.action,
+                    $(this).serialize(),
+                )
+                    .done(data => {
+                        this.innerHTML = data;
+                        modalLoginForms();
+                        grecaptchaRender('g-recaptcha-register');
+                    })
+                    .fail(data => {
+                        if (data && data.statusText) this.innerHTML = data.statusText;
+                    })
+                    .always(() => {
+                        $('.loader-block').hide();
+                    }) ;
+            });
+
+            $('#modal-auction-password-form').submit(function (e) {
+                e.preventDefault();
+                $('.loader-block').show();
+
+                $.post(
+                    this.action,
+                    $(this).serialize(),
+                )
+                    .done(data => {
+                        this.innerHTML = data;
+                        modalLoginForms();
+                        grecaptchaRender('g-recaptcha-password');
+                    })
+                    .fail(data => {
+                        if (data && data.statusText) this.innerHTML = data.statusText;
+                    })
+                    .always(() => {
+                        $('.loader-block').hide();
+                    }) ;
+            });
+        }
+
+        function modalLoginForms () {
+            $('.modal-auction-register-form .modal-close').removeClass('modal-close');
+            $('.modal-auction-register-form .modal-trigger').removeClass('modal-trigger').addClass('modal-trigger-auction-registration');
+
+            $('.modal-trigger-auction-registration[href="#modal-register"]').on('click', function (e) {
+                e.preventDefault();
+                $('.modal-auction-register-form').hide();
+                $('#modal-auction-register-form').show();
+                grecaptchaRender('g-recaptcha-register');
+            });
+            $('.modal-trigger-auction-registration[href="#modal-signin"]').on('click', function (e) {
+                e.preventDefault();
+                $('.modal-auction-register-form').hide();
+                $('#modal-auction-signin-form').show();
+            });
+            $('.modal-trigger-auction-registration[href="#modal-password"]').on('click', function (e) {
+                e.preventDefault();
+                $('.modal-auction-register-form').hide();
+                $('#modal-auction-password-form').show();
+                grecaptchaRender('g-recaptcha-password');
+            });
+            initFacebookLoginButton();
+            M.updateTextFields();
+        }
+
         // AUCTION REGISTRATION
         auctionRegistration();
 
         $('.modal-auction').modal({ // load form on modal open
             onOpenStart: function (el) {
                 loadModalAuctionRegistration(el);
-            }
+            },
+            onCloseStart: function (el) {
+                $(el).find('.auction-registration__inner > *').remove();
+            },
         });
 
         function loadModalAuctionRegistration (modal) {
+            $('.loader-block').show();
             modal.classList.add('sync');
             const $content = $(modal).find('.auction-registration__inner');
-            $.get('/ajax/modalAuctionRegistration.action')
+            $.get('/ajax/modalAuctionRegistration.action?auctionId=' + $(modal).data('id'))
                 .done(data => {
                     $content.html(data);
-                    auctionRegistration();
+                    auctionRegistration($content);
                     creditCards();
                     stripeElements();
                 })
@@ -1804,11 +1993,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 });
         }
 
-        function auctionRegistration () {
-            if ($('.auction-registration__inner').length) {
-                M.updateTextFields();
+        function auctionRegistration ($inner = null) {
+            if (!$inner) $inner = $('.auction-registration .auction-registration__inner');
+            if (!$inner.length) $inner = $('.modal-auction.open .auction-registration__inner');
+            if ($inner.length) {
                 $('select').not('.disabled').formSelect();
-                initFacebookLoginButton();
+                modalLoginForms();
 
                 if ($('.auction-registration').length) { // page on propstore.com
                     $('html').addClass('auction-registration-page');
@@ -1816,33 +2006,11 @@ document.addEventListener('DOMContentLoaded', () => {
                     const $reloadURL = $('#modal-register-auction-form_reloadURL');
                     if ($reloadURL.length && !$reloadURL.val()) $reloadURL.val(window.location.href);
                 }
-                function dontModal () {
-                    $('.auction-registration__inner .modal-close').removeClass('modal-close');
-                    $('.auction-registration__inner .modal-trigger').removeClass('modal-trigger').addClass('modal-trigger-auction-registration');
 
-                    $('.modal-trigger-auction-registration[href="#modal-register"]').on('click', function (e) {
-                        e.preventDefault();
-                        $('.modal-auction-register-form').hide();
-                        $('#modal-auction-register-form').show();
-                        grecaptchaRender('g-recaptcha-register');
-                    });
-                    $('.modal-trigger-auction-registration[href="#modal-signin"]').on('click', function (e) {
-                        e.preventDefault();
-                        $('.modal-auction-register-form').hide();
-                        $('#modal-auction-signin-form').show();
-                    });
-                    $('.modal-trigger-auction-registration[href="#modal-password"]').on('click', function (e) {
-                        e.preventDefault();
-                        $('.modal-auction-register-form').hide();
-                        $('#modal-auction-password-form').show();
-                        grecaptchaRender('g-recaptcha-password');
-                    });
-                }
-                dontModal();
-
-                if ($('#modal-register-auction-form').length) {
-                    $('#modal-register-auction-form').submit(function (e) {
-                        if (!$('.auction-registration__inner.modal-content #modal-register-auction-form').length) return; // not modal
+                if ($inner.find('#modal-register-auction-form').length) {
+                    $inner.find('#modal-register-auction-form').submit(function (e) { // todo: no modal
+                        $('.loader-block').show();
+                        if (!$inner.closest('.modal-auction.open').length) return; // not modal
 
                         $stripeElements = $(this).find('.stripeElements');
                         if ($('#modal-register-auction-form_step').val() == 'payment' &&
@@ -1850,16 +2018,14 @@ document.addEventListener('DOMContentLoaded', () => {
                             $stripeElements[0].style.display != 'none') return; // stripeElements submit
 
                         e.preventDefault();
-                        $('.loader-block').show();
-                        $form = $('#modal-register-auction-form');
-                        $formHtml = $('.auction-registration__inner');
+                        $form = $inner.find('#modal-register-auction-form');
                         $.post(
                             $form[0].action,
                             $form.serialize(),
                         )
                             .done(data => {
-                                $formHtml.html(data);
-                                auctionRegistration();
+                                $inner.html(data);
+                                auctionRegistration($inner);
                                 creditCards();
                                 stripeElements();
 
@@ -1869,7 +2035,7 @@ document.addEventListener('DOMContentLoaded', () => {
                                 }
                             })
                             .fail(data => {
-                                if (data && data.statusText) $formHtml.html(data.statusText);
+                                if (data && data.statusText) $inner.html(data.statusText);
                             })
                             .always(data => {
                                 $('.loader-block').hide();
@@ -1880,15 +2046,14 @@ document.addEventListener('DOMContentLoaded', () => {
                     function goBack (e) {
                         e.preventDefault();
                         if ($('.auction-registration').length) { // page on propstore.com
-                            $('.loader-block').show();
                             const reloadURL = $('#modal-register-auction-form_reloadURL').val();
                             if (reloadURL) {
-                                window.location.href = reloadURL;
+                                redirectPage(reloadURL);
                             } else {
-                                window.location.reload();
+                                reloadPage();
                             }
                         } else { // modal
-                          loadModalAuctionRegistration(e.target.closest('.modal-auction'));
+                            loadModalAuctionRegistration(e.target.closest('.modal-auction'));
                         }
                     };
 
@@ -1920,10 +2085,8 @@ document.addEventListener('DOMContentLoaded', () => {
                     if ($shippingAddressCheckbox.length) {
                         function registerAuctionBillingAddress() {
                             const shippingAsBilling = $shippingAddressCheckbox[0].checked;
-                            $('.form-section--billing').toggle(!shippingAsBilling);
-                            $('#auction-registration-page-trigger_payment').toggleClass('disabled', !shippingAsBilling && $('#auction-registration-page-trigger_billing').data('empty') == 1);
+                            $('.form-section--shipping').toggle(!shippingAsBilling);
                         }
-
                         $shippingAddressCheckbox.on('change', registerAuctionBillingAddress);
                         registerAuctionBillingAddress();
                     }
@@ -1979,6 +2142,10 @@ document.addEventListener('DOMContentLoaded', () => {
                     }
                 }
 
+                if ($('.modal-success').length) {
+                    reloadOpener();
+                }
+
                 // SSO
                 if ($('#modal-auction-signin-form').length) {
                     $('#modal-auction-signin-form').submit(function (e) {
@@ -1990,43 +2157,22 @@ document.addEventListener('DOMContentLoaded', () => {
                             $(this).serialize(),
                         )
                             .done(data => {
-                                if (data && data.trim() === 'success') {
+                                if (data.includes('modal-success')) {
                                     openSSO();
-                                    if ($('.auction-registration').length) { // page on propstore.com
-                                        window.location.reload(); // signed in reload to show auction registration
-                                    } else { // modal
-                                        loadModalAuctionRegistration($('.modal-auction.open')[0]);
-                                    }
                                 } else {
                                     this.innerHTML = data;
                                     auctionRegistration();
+                                    $('.loader-block').hide();
                                 }
                             })
                             .fail(data => {
                                 if (data && data.statusText) this.innerHTML = data.statusText;
-                            })
-                            .always(() => {
                                 $('.loader-block').hide();
                             });
                     });
 
                     function openSSO () {
-                        const SSOwin = window.open('/ajax/sso.action', 'Propstore SSO', `scrollbars=no,resizable=no,status=no,location=no,toolbar=no,menubar=no,width=1,height=1,top=2000`);
-                        const SSOtimer = setTimeout(() => {
-                            SSOwin.close();
-                            M.Toast.dismissAll();
-                            M.toast({
-                                html: '<span><strong>Somthing went wrong.</strong><br/> Check pop-ups blocking and try again.</span>',
-                                displayLength: Infinity,
-                            });
-                        }, 5000);
-                        window.addEventListener('message', function(event) {
-                            console.log(event);
-                            clearTimeout(SSOtimer);
-                            if (event.data === 'SSOsuccess') {
-                                if (window.opener) reloadOpener();
-                            } else if (event.data === 'SSOerror') {}
-                        });
+                        redirectPage('/ajax/sso.action');
                     }
                 }
 
@@ -2052,7 +2198,50 @@ document.addEventListener('DOMContentLoaded', () => {
                             }) ;
                     });
                 }
+
+                if ($('#modal-auction-password-form').length) {
+                    $('#modal-auction-password-form').submit(function (e) {
+                        e.preventDefault();
+                        $('.loader-block').show();
+
+                        $.post(
+                            this.action,
+                            $(this).serialize(),
+                        )
+                            .done(data => {
+                                this.innerHTML = data;
+                                auctionRegistration();
+                                grecaptchaRender('g-recaptcha-password');
+                            })
+                            .fail(data => {
+                                if (data && data.statusText) this.innerHTML = data.statusText;
+                            })
+                            .always(() => {
+                                $('.loader-block').hide();
+                            }) ;
+                    });
+                }
             }
+        }
+
+        // AUCTIONS
+        const $modalAuctions = $('.modal-auction');
+        if ($modalAuctions.length) {
+            function openModalAuction (e) {
+                if (e) e.preventDefault();
+                const modal = M.Modal.getInstance($modalAuctions.last());
+                modal.open();
+            }
+
+            const hashes = window.location.href.split('#'); // find hash in url
+            if (hashes && hashes.length && hashes.length > 1) {
+                let hash = hashes[1];
+                const query = hash.search(/[^\w]/g);
+                if (query > -1) hash = hash.substr(0, query);
+                if (hash == 'register') openModalAuction();
+            }
+
+            $('.modal-auction-trigger').on('click', openModalAuction);
         }
 
         // SHIPPING QUOTE PAGE FOR SAM
@@ -2138,5 +2327,15 @@ function initFacebookLoginButton() {
 }
 
 function reloadOpener () {
-    window.opener.postMessage('reloadPage', '*');
+    if (window.opener) window.opener.postMessage('reloadPage', '*');
+}
+
+function reloadPage () {
+    $('.loader-block').show();
+    window.location.reload();
+}
+
+function redirectPage (url) {
+    $('.loader-block').show();
+    window.location.href = url;
 }
