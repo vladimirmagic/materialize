@@ -10580,7 +10580,7 @@ a.modal-bag__item:not(.btn):not(.btn-large):not(.btn-small):not(.btn-extra-small
 }
 
 #dropdown-account {
-  min-width: 9em;
+  min-width: 13em;
 }
 
 @-webkit-keyframes animation-header-sticky-in {
