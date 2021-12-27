@@ -12135,6 +12135,10 @@ a:not(.btn):not(.btn-large):not(.btn-small):not(.btn-extra-small).footer__terms-
   .hero.hero--static:not(.hero--blog) .hero__image {
     min-height: 500px;
   }
+  .hero__static-title .icon {
+    float: left;
+    margin-bottom: .5em;
+  }
 }
 
 @media only screen and (max-width: 1200px) {
