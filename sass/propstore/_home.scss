@@ -182,15 +182,9 @@
 	.buy-auctions__img {
 		order: 1;
 	}
-
-	.buy-auctions__title {
-		.icon {
-			background: $color-blue;
-		}
-	}
 }
 
-.buy-auctions__row--buy {
+.buy-auctions__row--auctions {
 	.buy-auctions__title {
 		.icon {
 			background: $color-blue;

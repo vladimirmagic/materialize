@@ -15355,11 +15355,7 @@ tbody .tr:last-child .td {
           order: 1;
 }
 
-.buy-auctions__row:nth-child(even) .buy-auctions__title .icon {
-  background: #0077E2;
-}
-
-.buy-auctions__row--buy .buy-auctions__title .icon {
+.buy-auctions__row--auctions .buy-auctions__title .icon {
   background: #0077E2;
 }
 
