@@ -1023,7 +1023,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             }
 
-            $('.hero__static-title').append($('#name').text());
+            $('.hero__static-title').html($('#name').text());
 
             let start_date = $('#start_date').text();
             if (start_date) {
