@@ -170,7 +170,7 @@
 	font-weight: 200;
 }
 
-.buy-auctions__row--auctions {
+.buy-auctions__row:nth-child(even) {
 	.buy-auctions__info {
 		order: 0;
 		margin-left: 0;
@@ -309,7 +309,7 @@
 	.buy-auctions__info-inner {
 		margin: 0 auto 0 240px;
 
-		.buy-auctions__row--auctions & {
+		.buy-auctions__row:nth-child(even) & {
 			margin: 0 240px 0 auto;
 		}
 	}

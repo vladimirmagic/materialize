@@ -15337,7 +15337,7 @@ tbody .tr:last-child .td {
   font-weight: 200;
 }
 
-.buy-auctions__row--auctions .buy-auctions__info {
+.buy-auctions__row:nth-child(even) .buy-auctions__info {
   -webkit-box-ordinal-group: 1;
   -webkit-order: 0;
       -ms-flex-order: 0;
@@ -15348,14 +15348,14 @@ tbody .tr:last-child .td {
   border-bottom-right-radius: 140px;
 }
 
-.buy-auctions__row--auctions .buy-auctions__img {
+.buy-auctions__row:nth-child(even) .buy-auctions__img {
   -webkit-box-ordinal-group: 2;
   -webkit-order: 1;
       -ms-flex-order: 1;
           order: 1;
 }
 
-.buy-auctions__row--auctions .buy-auctions__title .icon {
+.buy-auctions__row:nth-child(even) .buy-auctions__title .icon {
   background: #0077E2;
 }
 
@@ -15487,7 +15487,7 @@ tbody .tr:last-child .td {
   .buy-auctions__info-inner {
     margin: 0 auto 0 240px;
   }
-  .buy-auctions__row--auctions .buy-auctions__info-inner {
+  .buy-auctions__row:nth-child(even) .buy-auctions__info-inner {
     margin: 0 240px 0 auto;
   }
 }
