@@ -59,6 +59,7 @@ a.card:not(.btn) { // fix a
 }
 
 .card__img {
+	display: block;
 	position: relative;
 	height: $card-width;
 	background-position: 50% 50%;

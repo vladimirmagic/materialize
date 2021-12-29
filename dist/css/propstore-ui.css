@@ -12412,6 +12412,7 @@ a.card:not(.btn):not(.btn-large):not(.btn-small):not(.btn-extra-small).card--arc
 }
 
 .card__img, .card-blog__img {
+  display: block;
   position: relative;
   height: 356px;
   background-position: 50% 50%;
@@ -22023,6 +22024,7 @@ body.search-index .categories-match {
 }
 
 .aucproduct__card-details {
+  display: block;
   margin: 1em 0;
 }
 
