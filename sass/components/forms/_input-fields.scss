@@ -498,6 +498,12 @@ textarea {
   }
 }
 
+.input-field--select.input-field--wide {
+  .dropdown-content {
+    min-width: 440px;
+  }
+}
+
 .input-field__helper {
   display: none;
   margin-top: .5em;
@@ -558,5 +564,11 @@ textarea {
 @media #{$medium-and-down} {
   .autocomplete-content {
     min-width: 0;
+  }
+
+  .input-field--select.input-field--wide {
+    .dropdown-content {
+      min-width: 0;
+    }
   }
 }

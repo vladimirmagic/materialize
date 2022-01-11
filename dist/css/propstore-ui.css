@@ -6803,6 +6803,10 @@ textarea.materialize-textarea:focus-within {
   color: #8F8F8F;
 }
 
+.input-field--select.input-field--wide .dropdown-content {
+  min-width: 440px;
+}
+
 .input-field__helper {
   display: none;
   margin-top: .5em;
@@ -6869,6 +6873,9 @@ textarea.materialize-textarea:focus-within {
 
 @media only screen and (max-width: 992px) {
   .autocomplete-content {
+    min-width: 0;
+  }
+  .input-field--select.input-field--wide .dropdown-content {
     min-width: 0;
   }
 }
