@@ -285,6 +285,9 @@ document.addEventListener('DOMContentLoaded', () => {
                     if (lotUrl) openSamAndClose(URL_SAM + '/watchlist/add?autoclose=true&' + lotUrl);
                 }
             });
+
+            const currency = document.querySelectorAll('.card__price-i, .product__price-i');
+            if (currency) M.Dropdown.init(currency, { container: document.body });
         }
         cardsHandlers();
 
@@ -1171,8 +1174,13 @@ document.addEventListener('DOMContentLoaded', () => {
                     } else {
                         $(this).toggleClass('active');
                         $active = $('.filters__tab.active[data-auctiontype]');
-                        const val = $active.length === 1 ? $active.data('auctiontype') : 0;
-                        $('#auctionType').val(val);
+                        if ($active.length) {
+                            const val = $active.length === 1 ? $active.data('auctiontype') : 0;
+                            $('#auctionType').val(val);
+                        } else {
+                            $('#auctionType').val(0);
+                            $('#categoryId').val(-2);
+                        }
                     }
                     filterNow();
                 });
@@ -1192,6 +1200,13 @@ document.addEventListener('DOMContentLoaded', () => {
                         $formCloneAuctionType.val(0);
                         $formCloneShowSold.val(1);
                         if ($formCloneCategoryId.val() == -2) $formCloneCategoryId.val(0)
+                        const more = [];
+                        $('.filters__tab:not(.active)').each(function() {
+                            more.push($(this).text());
+                        });
+                        if (more.length) {
+                            $('.filters__found-in').text('in ' + more.join(' & '));
+                        }
                     } else {
                         return; // all showed
                     }
@@ -1200,7 +1215,8 @@ document.addEventListener('DOMContentLoaded', () => {
                         data = Number(data.trim());
                         if (data > 0) data -= $('#productsCount').val();
                         if (data > 0) {
-                            $('.filters__found-plus').text('+' + data);
+                            const dataCommas = data.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+                            $('.filters__found-plus').text('+' + dataCommas);
                             $('.filters__found-all-inner').show();
 
                             $('.filters__found-all a').on('click', function () {
@@ -1586,7 +1602,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             }
 
-            scrollToElement($(location.hash));
+            if (!location.hash.includes('/')) {
+                scrollToElement($(location.hash));
+            }
 
             function changeCategory (category) {
                 if (category == 0) {
@@ -1814,6 +1832,20 @@ document.addEventListener('DOMContentLoaded', () => {
                         $('.faq__search-suggester').addClass('faq__search-suggester--init');
                     }, 300);
                 });
+                    
+                if (Location && location) {
+                    function setCatByPath(cat) {
+                        changeCategory(cat);
+                        $('.filters__menu-categories').find('button[data-category=' + cat + ']').click();
+                    }
+                    
+                    const $hash = location.hash;
+                    if($hash.includes('#cat/')) {
+                        const [_, cat] = $hash.split('#cat/');
+                        setCatByPath(cat);
+                        location.hash = '';
+                    }
+                }
             } catch (e) {
                 console.error(e);
             }
@@ -2225,23 +2257,37 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         // AUCTIONS
-        const $modalAuctions = $('.modal-auction');
-        if ($modalAuctions.length) {
-            function openModalAuction (e) {
-                if (e) e.preventDefault();
-                const modal = M.Modal.getInstance($modalAuctions.last());
-                modal.open();
+        const $auctionRegistrationTrigger = $('.auction-registration-trigger');
+        if ($auctionRegistrationTrigger.length) {
+            window.addEventListener('message', function(event) { // if auctions page reloaded after signIn while auction registration
+                if (event.data === 'reloadPage') {
+                    reloadPage();
+                }
+            });
+
+            function openAuctionRegistration (e) {
+                e.preventDefault();
+                const url = this.href;
+                let param = null;
+                const w = window.screen.width;
+                const h = window.screen.height;
+                if (w > 1224) {
+                    param = `width=${w-200},height=${h-200},left=100,top=100,menubar=1,toolbar=1,location=1,status=1`;
+                }
+                const ssoWin = window.open(url, 'Propstore Auction Registration', param);
+                window.addEventListener('message', function(event) {
+                    if (event.data === 'SSOsuccess') {
+                        ssoWin.location.href = url;
+                        reloadPage();
+                    }
+                });
             }
 
-            const hashes = window.location.href.split('#'); // find hash in url
-            if (hashes && hashes.length && hashes.length > 1) {
-                let hash = hashes[1];
-                const query = hash.search(/[^\w]/g);
-                if (query > -1) hash = hash.substr(0, query);
-                if (hash == 'register') openModalAuction();
-            }
+            $auctionRegistrationTrigger.on('click', openAuctionRegistration);
 
-            $('.modal-auction-trigger').on('click', openModalAuction);
+            if (window.location.href.includes('#register')) {
+                $auctionRegistrationTrigger[$auctionRegistrationTrigger.length - 1].scrollIntoView({behavior: 'smooth', block: 'center'});
+            }
         }
 
         // SHIPPING QUOTE PAGE FOR SAM
