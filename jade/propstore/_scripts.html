@@ -387,7 +387,9 @@
             }
         }
 
-        scrollToElement($(location.hash));
+        if (!location.hash.includes('/')) {
+            scrollToElement($(location.hash));
+        }
 
         function changeCategory (category) {
             if (category == 0) {
@@ -397,7 +399,7 @@
                 $('.category-' + category).show();
             }
         }
-
+        
         $('.filters__menu-category').on('click', function(event) {
             $('.filters__menu-category').removeClass('active');
             $(this).addClass('active');
@@ -625,6 +627,21 @@
                     $('.faq__search-suggester').addClass('faq__search-suggester--init');
                 }, 300);
             });
+
+            if (Location && location) {
+                function setCatByPath(cat) {
+                    changeCategory(cat);
+                    $('.filters__menu-categories').find('button[data-category=' + cat + ']').click();
+                }
+                
+                const $hash = location.hash;
+                if($hash.includes('#cat/')) {
+                    const [_, cat] = $hash.split('#cat/');
+                    setCatByPath(cat);
+                    location.hash = '';
+                }
+            }
+
         } catch (e) {
             console.error(e);
         }

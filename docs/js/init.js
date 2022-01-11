@@ -1265,6 +1265,25 @@ document.addEventListener('DOMContentLoaded', () => {
 	
 		// FAQ
 		if ($('.wp .faq').length) {
+            function scrollToElement(elem) {
+                if (window.location.hash) {
+                    setTimeout(function () {
+                        $('html, body').animate({
+                            scrollTop: $(elem).offset().top - 50
+                        }, 2000);
+                    }, 1000);
+                    setTimeout(function () {
+                        $('.faq__collapsible li.active .collapsible-header').click();
+                        $(elem).parent().click();
+                        $(elem).parent().parent().addClass('active');
+                    }, 1300);
+                }
+            }
+
+            if (!location.hash.includes('/')) {
+                scrollToElement($(location.hash));
+            }
+
 			function changeCategory (category) {
 				if (category == 0) {
 					$('.faq__item').show();
@@ -1491,6 +1510,20 @@ document.addEventListener('DOMContentLoaded', () => {
 						$('.faq__search-suggester').addClass('faq__search-suggester--init');
 					}, 300);
 				});
+
+                if (Location && location) {
+                    function setCatByPath(cat) {
+                        changeCategory(cat);
+                        $('.filters__menu-categories').find('button[data-category=' + cat + ']').click();
+                    }
+                    
+                    const $hash = location.hash;
+                    if($hash.includes('#cat/')) {
+                        const [_, cat] = $hash.split('#cat/');
+                        setCatByPath(cat);
+                        location.hash = '';
+                    }
+                }
 			} catch (e) {
 				console.error(e);
 			}

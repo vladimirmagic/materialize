@@ -127,9 +127,12 @@
     flex-wrap: wrap;
 }
 
-.dextercontainer, .voxluxcontainer, .mutecontainer, .la2018container, .emla2019container, .backgroundbg, .everestcontainer, .friendscontainer, .gijoecontainer, .previewgallerycontainer, .hannibalcontainer, .hauntingcontainer, .cos, .mutecontainer, .NiloRodiscontainer, .termgencontainer, .toyauctionpage, .vicecontainer, .harrylangecontainer, .powerrangerscontainer, .oad, .Toy_landingpage_all, .springauctioncontainer, .blueprintcontainer, .t2trainspottingcontainer, .videos, .row2, .videosz, .video-block {
-    max-width: 100%;
-    & > div {
+.dextercontainer, .voxluxcontainer, .mutecontainer, .la2018container, .emla2019container, .backgroundbg, .everestcontainer, .friendscontainer, .gijoecontainer, .previewgallerycontainer, .hannibalcontainer, .hannibalcol, .line-separator, .hauntingcontainer, .cos, .mutecontainer, .NiloRodiscontainer, .rancho_customcontent, .termgencontainer, .toyauctionpage, .vicecontainer, .harrylangecontainer, .powerrangerscontainer, .oad, .Toy_landingpage_all, .springauctioncontainer, .blueprintcontainer, .t2trainspottingcontainer, .videos, .row2, .videosz, .video-block, .termgencontainer, .toyauctionpage, .spittingimagecontainer, .Toy_landingpage_all, .oad, .video-block, .videos {
+    max-width: 100% !important;
+    table {
+        table-layout: fixed;
+    }
+    & > div, iframe {
         max-width: 100%;
     }
     .line-separator, .hannibalcol {
