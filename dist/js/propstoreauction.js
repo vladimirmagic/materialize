@@ -1,4 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
+    let URL_PROPSTORE = 'https://new.propstore.com/';
+    if (window.location.href.includes('localhost')) URL_PROPSTORE = 'http://propstore.loc/';
+
 	if (window.location.href.includes('#nomaterialize')) { // don't materialize
 		document.querySelectorAll('[data-v2]').forEach(item => item.remove());
 		return;
@@ -28,7 +31,7 @@ document.addEventListener('DOMContentLoaded', () => {
 			$('body').removeClass('touch').addClass('no-touch');
 		}
 
-        $('#headsec').remove();
+        // $('#headsec').remove();
         $('body').prepend($('.auc-header'));
         $('body').append($('.auc-sidenav'));
         $('<main>').append($('#wrapper')).insertAfter($('.auc-header'));
@@ -84,10 +87,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 <div class="aucproduct__form" style="display: none;"></div>
                 
                 <div class="product__buttons-grey" style="display: none;">
-                    <a class="product__button-grey waves-effect waves-grey btn btn--secondary modal-trigger" href="#modal-shipping-quote">
+                    <span class="product__button-grey waves-effect waves-grey btn btn--secondary" id="modal-shipping-quote-button">
                         <i class='icon'><svg><use xlink:href="#globe"></use></svg></i>
                         <span class="product__buttons-grey-small">Get</span> Shipping Quote
-                    </a>
+                    </span>
                 </div>
 
                 <ul class="product__details collapsible expandable">
@@ -174,16 +177,6 @@ document.addEventListener('DOMContentLoaded', () => {
             <a class="modal-close btn-flat btn--icon"><i class='icon'><svg><use xlink:href="#close"></use></svg></i></a>
         </div>
         <div class="modal-content"></div>
-    </div>
-
-    <div id="modal-shipping-quote" class="modal modal-ajax modal-shipping-quote">
-        <div class="modal-header modal-header--sticky">
-            <a class="modal-close btn-flat btn--icon"><i class='icon'><svg><use xlink:href="#close"></use></svg></i></a>
-        </div>
-        <div class="modal__loader">
-            <div class="preloader-wrapper active"><div class="spinner-layer"><div class="circle-clipper left"><div class="circle"></div></div><div class="gap-patch"><div class="circle"></div></div><div class="circle-clipper right"><div class="circle"></div></div></div></div>
-        </div>
-        <form class="modal-content modal-form modal-shipping-quote-form" action="action"></form>
     </div>
         `);
 
@@ -288,6 +281,16 @@ document.addEventListener('DOMContentLoaded', () => {
             if ($btnPlaceBid.length) {
                 $btnPlaceBid.addClass('waves-effect waves-light btn aucproduct__form-item');
                 $('.aucproduct__form').show().append($btnPlaceBid);
+
+                let val = $btnPlaceBid.val(); 
+                if (val.includes('Login to bid')) {
+                    $btnPlaceBid[0].onclick = null;
+                    $btnPlaceBid.val('Sign in to bid')
+                        .on('click', function (e) {
+                            e.preventDefault();
+                            openSSO();
+                        });
+                }
             }
 
 			$win = $('#lac28, #oai21');
@@ -311,10 +314,37 @@ document.addEventListener('DOMContentLoaded', () => {
 				$details.append($lineEstimate);
 			}
 
-            $shippingQuote = $('#shippingQuote');
-            if ($shippingQuote.length) {
+            $barcode = $('#barcode');
+            if ($('#shippingQuote').length && $barcode.length) {
                 $('.product__buttons-grey').show();
+                $('#modal-shipping-quote-button').on('click', openModalShippingQuote);
 
+                function getBarcodeFromJS() {
+                    let barcode = '';
+                    $('.description-info-content').find('*')
+                        .contents().each((i, element) => {
+                           if (element.nodeType == 3) {
+                                const arr = element.textContent.split('/proxy/shipping-quote/');
+                                if (arr.length > 1) {
+                                    barcode = parseInt(arr[1], 10);
+                                }
+                           }
+                        });
+                    return barcode;
+                };
+
+                function openModalShippingQuote () {
+                    let barcode = $barcode.val();
+                    if (!barcode) barcode = getBarcodeFromJS(); // its for staging only, i guess
+                    const url = URL_PROPSTORE + 'modalShippingQuote.action?product=' + barcode;
+                    let param = null;
+                    const w = window.screen.width;
+                    const h = window.screen.height;
+                    if (w > 1224) {
+                        param = `width=${w-200},height=${h-200},left=100,top=100,menubar=1,toolbar=1,location=1,status=1`;
+                    }
+                    window.open(url, 'Propstore Shipping Quote', param);
+                }
             }
 
             $watchlist = $('#watchlist_button');
@@ -407,59 +437,6 @@ document.addEventListener('DOMContentLoaded', () => {
                     }
                 }
             });
-
-            // MODAL SHIPPING QUOTE
-            if ($('#modal-shipping-quote').length) {
-                $('body').append($('#modal-shipping-quote'));
-                $('#modal-shipping-quote').modal({ // load form on modal open
-                    onOpenStart: function (el, trigger) {
-                        el.classList.add('sync');
-                        const $form = $(el).find('.modal-shipping-quote-form');
-                        $.get('#')
-                            .done(data => {
-                                // $form.html(data);
-                                M.updateTextFields();
-                                $('#modal-shipping-quote-country').formSelect({dropdownOptions: {container: document.body}});
-                                // grecaptchaRender('g-recaptcha-quote');
-                            })
-                            .fail(data => {
-                                if (data && data.statusText) $form.html(data.statusText);
-                            })
-                            .always(data => {
-                                setTimeout(() => {
-                                    $form.html(`Need form here`);
-                                    el.classList.remove('sync');
-                                }, 2000);
-                                // el.classList.remove('sync');
-                            });
-                    }
-                });
-
-                $('.modal-shipping-quote-form').on('submit', function (e) {
-                    e.preventDefault();
-                    this.classList.add('sync');
-                    let data = $(this).serialize();
-                    if (e.originalEvent.submitter && e.originalEvent.submitter.name === 'question') {
-                        data += '&question=1';
-                    }
-                    $.post(
-                        this.action,
-                        data,
-                    )
-                        .done(data => {
-                            this.innerHTML = data;
-                            M.updateTextFields();
-                            $('select').formSelect({dropdownOptions: {container: document.body}});
-                            // grecaptchaRender('g-recaptcha-quote');
-                        })
-                        .fail(data => {
-                            if (data && data.statusText) this.innerHTML = data.statusText;
-                        })
-                        .always(data => {
-                            this.classList.remove('sync');
-                        });
-                });
-            }
 
             setInterval(() => { // listen ajax updates
                 $others = $('#pnlOtherLots .lot');
@@ -614,9 +591,18 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 $reg = $(item).find('.reg');
                 if ($reg.length) {
-                    $reg.addClass('waves-effect waves-light btn');
-                    $reg.html($reg.html().replace('Login to bid', 'Sign in to bid'));
-                    $reg.html($reg.html().replace('Register to bid!', 'Register for the auction'));
+                    $reg[0].onclick = null;
+                    $reg.addClass('waves-effect waves-light btn')
+                        .on('click', function (e) {
+                            e.preventDefault();
+                            openAuctionRegistration(id);
+                        });
+                    let html = $reg.html(); 
+                    if (html.includes('Login to bid')) {
+                        $reg.html('Sign in to bid').addClass('auc-button--signin');
+                    } else if (html.includes('Register to bid!')) {
+                        $reg.html('Register for the auction').addClass('auc-button--registerauc');
+                    }
                 }
 				$cat = $(item).find('.cat');
                 if ($cat.length) {
@@ -874,7 +860,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 $cardItem.on('click', function(e) {
                     if (!$(e.target).is("input") && !$(e.target).is("a") && !$(e.target).closest('a').length) {
-                        window.location.href = $(e.target).closest('.card').find('.yaaa').attr('href');
+                        redirectPage($(e.target).closest('.card').find('.yaaa').attr('href'));
                     }
                 });
 
@@ -1021,7 +1007,7 @@ document.addEventListener('DOMContentLoaded', () => {
         `);
             const status = $('#status').text().toLowerCase();
 
-            $badge = $('.section-auctions__item-bage');
+            $badge = $('.auc__hero-badge');
             switch (status) {
                 case 'upcoming': {
                     $badge.addClass('orange').append('Upcoming').find('use').attr('xlink:href', '#clockwise');
@@ -1037,7 +1023,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             }
 
-            $('.hero__static-title').append($('#name').text());
+            $('.hero__static-title').html($('#name').text());
 
             let start_date = $('#start_date').text();
             if (start_date) {
@@ -1113,6 +1099,112 @@ document.addEventListener('DOMContentLoaded', () => {
                 $('.container').prepend($('.desc').html());
             }
         }
+/**
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * SIGN IN, SIGN UP, FORGOT
+ */
+ if ($('body').hasClass('login') || $('body').hasClass('signup') || $('body').hasClass('forgot-password')) {
+    if (window.opener) { // close modal window, becouse it is redirected from modal /logout
+        window.opener.postMessage('SSOsuccess', '*');
+        window.close();
+    }
+    $('main').append(`
+    <div class="general"><div class="general__inner">
+        <h1 class="h1">
+            Please Sign In
+        </h1>
+        <p class="p-r">
+            Aenean lacinia bibendum nulla sed consectetur contact us.
+        </p>
+        <br/>
+        <button type="submit" class="waves-effect waves-light btn sso-trigger">
+            <span class='btn__title'>Propstore Auth</span>
+            <i class='icon'><svg><use xlink:href="#arrow-right"></use></svg></i>
+        </button>
+    </div></div>
+    `);
+    document.querySelectorAll('style:not([data-v2]), link[rel="stylesheet"]:not([data-v2])').forEach(item => item.remove());
+}
+/**
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * NOT LOGGED IN
+ */
+if ($('#headsec a:contains("Auction Login")').length) {
+    $('.header__settings .header__col--right').append(`
+        <a href="/login" class="waves-effect btn-flat header__btn sso-trigger" data-url="/ajax/signIn.action">
+            Sign In
+        </a>
+        <span class="header__settings-divider2 header__settings-divider2--unregistered">/</span>
+        <a href="/signup" class="waves-effect btn-flat header__btn sso-trigger" data-url="/ajax/register.action">
+            Register
+        </a>
+    `);
+    $('.sidenav__settings').append(`
+        <div class="sidenav__settings-sign-register">
+            <a href="/login" class="waves-effect btn-flat modal-trigger sidenav__settings-sign sso-trigger" data-url="/ajax/signIn.action">Sign In</a>
+            <span class="sidenav__settings-divider">/</span>
+            <a href="/signup" class="waves-effect btn-flat modal-trigger sidenav__settings-register sso-trigger" data-url="/ajax/register.action">Register</a>
+        </div>
+    `);
+    $('.menu-link-login').addClass('sso-trigger');
+    $('.sso-trigger').on('click', function (e) {
+        e.preventDefault();
+        openSSO($(this).data('url'));
+    });
+
+} else {
+    $('.header__settings .header__col--right').append(`
+        <a href="/logout" class="waves-effect btn-flat header__btn signout-trigger">
+            Sign Out
+        </a>
+    `);
+    $('.sidenav__settings').append(`
+        <div class="sidenav__settings-sign-register">
+            <a href="/logout" class="waves-effect btn-flat signout-trigger">
+                Sign Out
+            </a>
+        </div>
+    `);
+    $('.signout-trigger').on('click', function (e) {
+        e.preventDefault();
+        $('.loader-block').show();
+        $.get('/logout')
+            .always(data => {
+                if (window.location.pathname.includes('/my-items/')) {
+                    redirectPage('/');
+                } else {
+                    reloadPage();
+                }
+            });
+        openPropstoreAndClose(URL_PROPSTORE + 'submitLogout.action?autoclose=true');
+    });
+}
 /**
  * 
  * 
@@ -1227,7 +1319,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     sec = --seconds;
                     if (sec <= 0) {
                         clearInterval(interval);
-                        window.location.reload();
+                        reloadPage();
                     }
                     day = Math.floor(sec / 60 / 60 / 24);
                     sec -= day * 60 * 60 * 24;
@@ -1242,6 +1334,69 @@ document.addEventListener('DOMContentLoaded', () => {
                 }, 1000);
             }
 		}
+
+        function openPropstoreAndClose (url) {
+            const SSOwin = window.open(url, 'Propstore SSO', `scrollbars=no,resizable=no,status=no,location=no,toolbar=no,menubar=no,width=1,height=1,top=2000`);
+            setTimeout(() => SSOwin.close(), 1000);
+        }
+
+        function openSSO (action = '/ajax/signIn.action') {
+            let url = URL_PROPSTORE + action;
+            let param = null;
+            const w = window.screen.width;
+            const h = window.screen.height;
+            if (w > 1224) {
+                param = `width=${w-200},height=${h-200},left=100,top=100,menubar=1,toolbar=1,location=1,status=1`;
+            }
+            const win = window.open(url, 'Propstore Sign In', param);
+            window.addEventListener('message', function(event) {
+                if (event.data === 'reloadPage' || event.data === 'SSOerror') {
+                    const queryString = window.location.search;
+                    const params = new URLSearchParams(queryString);
+                    const url = params.get('url');
+                    if (url) {
+                        redirectPage(url);
+                    } else {
+                        reloadPage();
+                    }
+                    win.close();
+                }
+            });
+        }
+
+        function openAuctionRegistration (id) {
+            const url = URL_PROPSTORE + '/ajax/auctionRegistration.action?auctionId=' + id;
+            let param = null;
+            const w = window.screen.width;
+            const h = window.screen.height;
+            if (w > 1224) {
+                param = `width=${w-200},height=${h-200},left=100,top=100,menubar=1,toolbar=1,location=1,status=1`;
+            }
+            const ssoWin = window.open(url, 'Propstore Auction Registration', param);
+            window.addEventListener('message', function(event) {
+                if (event.data === 'SSOsuccess') {
+                    ssoWin.location.href = url;
+                    reloadPage();
+                } else if (event.data === 'reloadPage') {
+                    reloadPage();
+                }
+            });
+        }
+        
+        function reloadPage () {
+            $('.loader-block').show();
+            window.location.reload();
+        }
+
+        function redirectPage (url) {
+            $('.loader-block').show();
+            window.location.href = url;
+        }
+
+        if (window.opener && $('#messages').text().includes('SSO token error')) {
+            window.opener.postMessage('SSOerror', '*');
+            window.close();
+        }
 
 		document.body.classList.add('loaded'); // if svg fail
 	}); // end of document ready

@@ -27,14 +27,30 @@ a.account-page__suptitle:not(.btn) {
 	border-bottom: 1px solid $color-grey;
 
 	&:last-child {
-		padding-bottom: 0;
 		margin-bottom: 0;
 		border-bottom: 0;
+	}
+
+	&.account-page__section--footer {
+		position: sticky;
+		bottom: 0;
+		z-index: 200;
+		padding-top: 2em;
+		background: linear-gradient(rgba(255,255,255,0), white 1.5em, white);
+
+		.btn {
+			width: 100%;
+		}
 	}
 }
 
 .account-page__section-title {
 	margin-bottom: 2em;
+}
+
+.account-page__section-text {
+	margin-top: -.5em;
+	margin-bottom: 1.5em;
 }
 
 .account-page__form {
@@ -73,10 +89,6 @@ a.account-page__suptitle:not(.btn) {
 		color: $color-base;
 		cursor: pointer;
 	}
-}
-
-.account__watchlist-title {
-	margin-bottom: 0;
 }
 
 .cards--account {
@@ -373,6 +385,236 @@ a.account__orders-buy-link:not(.btn) {
 	width: 100%;
 }
 
+
+.credit-cards {
+	&.credit-cards--white {
+		.credit-cards__item {
+			height: 2rem;
+		}
+
+		.credit-cards__item-label {
+			height: 2rem;
+			padding: 0;
+
+			label:before {
+				display: none;
+			}
+		}
+
+		.credit-cards__stripe {
+			.stripeElements {
+				margin-right: 0;
+				padding: 0;
+			}
+		}
+	}
+}
+
+.credit-cards__item {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+
+	& + & {
+		margin-top: 1rem;
+	}
+
+	&.remove {
+		.credit-cards__item-label {
+			opacity: .5;
+
+			* {
+				cursor: default;
+			}
+		}
+
+		.credit-cards__item-helper {
+			display: block;
+		}
+
+		.credit-cards__item-remove {
+			color: $color-red;
+		}
+	}
+}
+
+.credit-cards__item-label {
+	position: relative;
+	flex: 1 1 100%;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	height: 4rem;
+	padding: 0 1rem;
+	background: white;
+	border-radius: 6px;
+	white-space: nowrap;
+
+	label {
+		font-size: 1em;
+		color: $color-base;
+		cursor: pointer;
+
+		&:before {
+			content: '';
+			position: absolute;
+			left: 0;
+			right: 0;
+			top: 0;
+			bottom: 0;
+		}
+	}
+}
+
+.credit-cards__item-helper {
+	position: absolute;
+    right: 0;
+	display: none;
+	padding: 0 1rem;
+	font-weight: 400;
+    background: white;
+}
+
+.credit-cards__item-actions {
+	margin-right: -.5rem;
+}
+
+.credit-cards__stripe {
+	margin-top: 2rem;
+
+	.stripeElements {
+		display: none;
+		margin-right: 2.5rem; // trash
+		padding: 1rem 1rem 0;
+		background: white;
+		border-radius: 6px;
+	}
+
+	&.new {
+		.stripeElements {
+			display: block;
+		}
+
+		.credit-cards__add-button {
+			display: none;
+		}
+
+		.credit-cards__cancel-button {
+			display: inline-block;
+		}
+	}
+
+	.input-field__helper {
+		margin: 0;
+		padding-bottom: 1em;
+	}
+}
+
+.credit-cards__add-button {
+	&.disabled {
+		color: $primary-color !important;
+		background: none !important;
+		opacity: .3;
+	}
+}
+
+.credit-cards__cancel-button {
+	display: none;
+	margin-top: 2rem;
+
+	.icon {
+		transform: rotate(180deg);
+	}
+}
+
+.stripeElement {
+	margin-bottom: 1rem;
+
+	.__PrivateStripeElement {
+		position: relative;
+		width: calc(100% - 2px);
+		height: $input-height;
+		margin: 0 1px;
+		padding: 1.1em 0 1em 1.4em;
+		font-size: $input-font-size;
+		color: $color-base;
+		border: $input-border;
+	
+		&.focus,
+		&:focus-within {
+			width: 100%;
+			margin: 0;
+			border: 2px solid $input-focus-color;
+		}
+
+		.ElementsApp {
+			font-size: $input-font-size !important;
+		}
+	}
+}
+
+.stripeElements__row {
+	display: flex;
+	justify-content: space-between;
+
+	.stripeElement {
+		flex: 1 1 100%;
+	}
+
+	.stripeElement + .stripeElement {
+		margin-left: 1rem;
+	}
+}
+
+.account-watchlist__tabs {
+	display: block;
+
+	.indicator {
+		display: none;
+	}
+}
+
+.account-watchlist__tab {
+	& + & {
+		margin-left: 12px;
+	}
+}
+
+.account-watchlist__auctions {
+	max-width: $w55;
+	margin: 5em auto;
+	padding: 5em 0;
+	color: white;
+	background: $color-base;
+	border-bottom-right-radius: 140px;
+}
+
+.account-watchlist__auctions {
+	max-width: $w55;
+	margin: 5em auto;
+	padding: 5em 0;
+}
+
+.account-watchlist__auctions-inner {
+	max-width: $w36;
+	margin: 0 auto;
+}
+
+.account-orders__tabs {
+	display: block;
+	margin-bottom: 3rem;
+
+	.indicator {
+		display: none;
+	}
+}
+
+.account-orders__tab {
+	& + & {
+		margin-left: 12px;
+	}
+}
+
 @media #{$large-and-down} {
 	.account__orders-note {
 		max-width: 100%;
@@ -385,6 +627,11 @@ a.account__orders-buy-link:not(.btn) {
 	.account__orders-auction-note,
 	.account__orders-auction-plan {
 		flex-basis: 100%;
+	}
+
+	.account-watchlist__auctions {
+		margin-top: 2.5em;
+		border-bottom-right-radius: 80px;
 	}
 }
 

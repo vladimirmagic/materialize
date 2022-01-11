@@ -72,7 +72,11 @@
                     <div class="section-auctions__item-description">
                         Vestibulum id ligula porta felis euismod semper. Curabitur blandit tempus porttitor. Donec id elit non mi porta gravida at eget metus.
                     </div>
-                    <a class="waves-effect waves-light btn">
+                    <a class="waves-effect waves-light btn modal-trigger" href="#modal-auction-id1">
+                        <span class='btn__title'>Register for auction</span>
+                        <i class='icon'><svg><use xlink:href="#target-blank"></use></svg></i>
+                    </a>
+                    <a class="waves-effect waves-grey btn btn--secondary">
                         <span class='btn__title'>View details</span>
                         <i class='icon'><svg><use xlink:href="#target-blank"></use></svg></i>
                     </a>
@@ -299,6 +303,20 @@
     </div>
 </div>
 
+<div id="modal-auction-id1" class="modal modal-ajax modal-auction">
+    <div class="modal-header modal-header--sticky">
+        <div class="modal__title"><strong>Propstore</strong> Auction Registration</div>
+        <a class="modal-close btn-flat btn--icon">
+            <i class='icon'><svg><use xlink:href="#close"></use></svg></i>
+        </a>
+    </div>
+    <div class="modal-content auction-registration__inner">
+        <div class="auction-registration__img" style="background-image: url(https://dummyimage.com/910x1040/945c94/fff.jpg);"></div>
+        <div class="auction-registration__info"></div>
+    </div>
+</div>
+
+
 <script>
     var clientId = '831875635243-3p9d37o2fc36un4mlvc1sr0p8oi4itvh.apps.googleusercontent.com';
     var scopes = 'https://www.googleapis.com/auth/calendar.events';
@@ -340,3 +358,43 @@
     }
 </script>
 <script src="https://apis.google.com/js/client.js"></script>
+
+<div class="record-sell__cta">
+    <div class="section-sell__inner">
+        <div class="sell-cta">
+            <div class="sell-cta__img">
+                <img class="sell-cta__img-image" src="/public/img/sell-top-record-1.png">
+                <div class="sell-cta__img-info">
+                    <div class="sell-cta__img-title">
+                        Sold for
+                    </div>
+                    <div class="sell-cta__img-price h4">
+                        £393,600
+                    </div>
+                    <div class="sell-cta__img-price1 p-t">
+                        Approx. $522k
+                    </div>
+                </div>
+            </div>
+            <div class="sell-cta__info">
+                <div class="sell-cta__info-inner">
+                    <div class="sell-cta__title h1">
+                        <i class="icon">
+                            <svg><use xlink:href="#ticket"></use></svg>
+                        </i>
+                        <span>Consign or Sell</span>
+                    </div>
+                    <div class="sell-cta__text p-r">
+                        Cras mattis consectetur purus sit amet fermentum. Integer posuere erat a ante venenatis dapibus posuere velit aliquet. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum.
+                    </div>
+                    <a href="/sellOrConsign.action" class="waves-effect waves-light btn" tabindex="0">
+                        <span class="btn__title">Start selling</span>
+                        <i class="icon">
+                            <svg><use xlink:href="#arrow-right"></use></svg>
+                        </i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

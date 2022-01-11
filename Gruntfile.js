@@ -390,6 +390,7 @@
             'sell.html': 'jade/propstore/sell.jade',
             'gift-vouchers.html': 'jade/propstore/gift-vouchers.jade',
             'voucher.html': 'jade/propstore/voucher.jade',
+            'signin.html': 'jade/propstore/signin.jade',
             'propstoreauction.html': 'jade/propstore/propstoreauction.jade',
             'propstoreauction-product.html': 'jade/propstore/propstoreauction-product.jade',
             'propstoreauction-catalog.html': 'jade/propstore/propstoreauction-catalog.jade',
@@ -397,6 +398,7 @@
             'propstoreauction-search.html': 'jade/propstore/propstoreauction-search.jade',
             'propstoreauction-bids.html': 'jade/propstore/propstoreauction-bids.jade',
             'propstoreauction-my.html': 'jade/propstore/propstoreauction-my.jade',
+            'propstoreauction-registration.html': 'jade/propstore/propstoreauction-registration.jade',
           }
         }
       },

@@ -5,7 +5,19 @@
     <div class="account-page__title h1">
         Orders
     </div>
-    <div class="account__orders">
+    <ul class="account-orders__tabs tabs">
+        <li class="account-orders__tab tab">
+            <a href="#account-orders-auctions" class="waves-effect btn-flat btn--rounded active">Auctions</a>
+        </li>
+        <li class="account-orders__tab tab">
+            <a href="#account-orders-buy" class="waves-effect btn-flat btn--rounded">Buy now</a>
+        </li>
+        <li class="account-orders__tab tab">
+            <a href="#account-orders-invoices" class="waves-effect btn-flat btn--rounded">Invoices (Pending)</a>
+        </li>
+    </ul>
+
+    <div class="account__orders" id="account-orders-auctions">
         <div class="account__orders-inner">
 
             <p class="h5">Hardcoded:</p>
@@ -687,6 +699,19 @@
                     </tr>
                 </tbody>
             </table>
+        </div>
+    </div>
+
+    <div class="account__orders" id="account-orders-buy" style="display: none;">
+        <div class="account__orders-inner">
+        </div>
+    </div>
+
+    <div class="account__orders" id="account-orders-invoices" style="display: none;">
+        <div class="account__orders-inner">
+            <div class="p-l center">
+                You don't have any invoices.
+            </div>
         </div>
     </div>
 </div>

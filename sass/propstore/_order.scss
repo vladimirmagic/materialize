@@ -1,7 +1,8 @@
 .order-header {
 	padding-left: 40px;
 	padding-right: 40px;
-	border-bottom: 1px solid $color-grey;
+	box-shadow: 0 1px 0 0 $color-grey;
+	z-index: 100;
 }
 
 .order-header__inner {
@@ -746,31 +747,8 @@
 
 .checkout-payment-card-new__label {
 	@extend .h6;
-	position: absolute;
-	left: 1rem;
-	z-index: 100;
 	transform: translateY(-.5rem);
-	padding: 0 .5rem;
 	white-space: nowrap;
-	background: #fff;
-}
-
-.__PrivateStripeElement {
-	position: relative;
-	width: calc(100% - 2px);
-	height: $input-height + 8;
-	margin: 0 1px;
-	padding: 1.5em 0 1em 1.5em;
-	font-size: $input-font-size;
-	color: $color-base;
-	border: $input-border;
-
-	&.focus,
-	&:focus-within {
-		width: 100%;
-		margin: 0;
-		border: 2px solid $input-focus-color;
-	  }
 }
 
 .checkout-step-tab {
@@ -955,7 +933,7 @@
 	.order-header {
 		padding: 0;
 		text-align: center;
-		border: 0;
+		box-shadow: none;
 	}
 	
 	.order-header__inner {
@@ -978,7 +956,7 @@
 			order: 1;
 			width: 100%;
 			padding: 16px 0 8px;
-			border-bottom: 1px solid $color-grey;
+			box-shadow: 0 1px 0 0 $color-grey;
 		}
 	}
 }

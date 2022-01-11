@@ -115,6 +115,23 @@ fieldset {
 	background: rgba(255, 255, 255, .8);
 }
 
+.loader-section {
+	position: absolute;
+	z-index: 100;
+	left: 0;
+	right: 0;
+	top: 0;
+	bottom: 0;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background: rgba(255, 255, 255, .8);
+
+	&.loader-section--nooverlay {
+		background: none;
+	}
+}
+
 hr {
 	display: block;
     margin: 1em 0;

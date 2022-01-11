@@ -5,7 +5,10 @@ body.auctions-catalog,
 body.auctions-info,
 body.auctions-bidding-history,
 body.search-index,
-body.my-items {
+body.my-items,
+body.login,
+body.signup,
+body.forgot-password {
 	#custom-header,
 	#headsec,
 	.mymenu,
@@ -15,7 +18,20 @@ body.my-items {
 	#toppaginator,
 	.smpagination,
 	form#AdvancedSearch:before,
-	.filters {
+	.filters,
+	.scrolltop {
+		display: none;
+	}
+}
+
+body.login,
+body.signup,
+body.forgot-password {
+	main {
+		position: relative;
+	}
+
+	#wrapper { // hide login forms
 		display: none;
 	}
 }

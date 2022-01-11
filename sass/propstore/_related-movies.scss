@@ -13,6 +13,9 @@ $movie-list-padding: 24px;
 }
 
 .related-movies__inner {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
 	padding: 80px 0;
 	color: #fff;
 	background: $color-base;
@@ -24,13 +27,14 @@ $movie-list-padding: 24px;
 }
 
 .related-movies__list {
+	position: relative;
+	max-width: 100%;
 	height: $movie-height + $movie-list-padding;
 	overflow: hidden;
 }
 
 .related-movies__scroll {
 	display: flex;
-	justify-content: center;
 	overflow-y: hidden;
 	overflow-x: auto;
 	padding: 0 0 $movie-list-padding 24px;
@@ -40,6 +44,70 @@ $movie-list-padding: 24px;
 		content: '';
 		display: block;
 		min-width: 24px;
+	}
+
+	&.arrow-left {
+		.related-movies__arrow--left {
+			display: block;
+		}
+	}
+	&.arrow-right {
+		.related-movies__arrow--right {
+			display: block;
+		}
+	}
+}
+
+.related-movies__arrow {
+	display: none;
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	width: 10rem;
+	pointer-events: none;
+
+	.icon {
+		position: absolute;
+		top: 40%;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		width: 2.5rem;
+		height: 2.5rem;
+		color: $color-base;
+		border-radius: 50%;
+		background: white;
+		cursor: pointer;
+		pointer-events: all;
+
+		svg {
+			width: 1rem;
+			height: 1rem;
+		}
+
+		.touch & {
+			display: none;
+		}
+	}
+
+	&.related-movies__arrow--left {
+		left: 0;
+		background: linear-gradient(to right, $color-base, $color-base 1rem, rgba(0,0,0,0));
+
+		.icon {
+			left: 2rem;
+			transform: rotate(90deg);
+		}
+	}
+
+	&.related-movies__arrow--right {
+		right: 0;
+		background: linear-gradient(to left, $color-base, $color-base 1rem, rgba(0,0,0,0));
+
+		.icon {
+			right: 2rem;
+			transform: rotate(-90deg);
+		}
 	}
 }
 
@@ -145,5 +213,9 @@ a.related-movies__item:not(.btn) { // fix a
 
 	.related-movies__scroll {
 		justify-content: flex-start;
+	}
+
+	.related-movies__arrow {
+		width: 4rem;
 	}
 }

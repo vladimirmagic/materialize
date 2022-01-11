@@ -1,0 +1,563 @@
+<div class="order-header">
+    <div class="order-header__inner">
+        <div class="order-header__col order-header__col--left">
+            <div class="order-header__secure-checkout h5">
+                <i class='icon'><svg><use xlink:href="#lock"></use></svg></i>
+                Propstore Auction Registration
+            </div>
+        </div>
+        <div class="order-header__col order-header__col--center">
+            <a class="order-header__logo" href='/home.html'>
+                <svg><use xlink:href="#propstore"></use></svg>
+            </a>
+        </div>
+        <div class="order-header__col order-header__col--right"></div>
+    </div>
+</div>
+
+<div class="auction-registration">
+    <div class="auction-registration__inner">
+        <div class="auction-registration__img" style="background-image: url(https://dummyimage.com/910x1040/945c94/fff.jpg);"></div>
+        <div class="auction-registration__info-take-this-html-for-success" style="display: none;">
+            <div class="auction-registration__h">
+                <i class='icon auction-registration__h-i'><svg><use xlink:href="#ok"></use></svg></i>
+                Application recieved
+            </div>
+            <div class="auction-registration__text">
+                <p>
+                    Thanks for your interest in this sale Jon. We are reviewing your registration and you will receive an email upon approval. 
+                </p><p>
+                    <strong>Entertainment Memorabilia Live Auction, Treasures from Film and Television on 9th-11th November 2021 happening in London and Online. </strong>
+                </p>
+            </div>
+            <div class="auction-registration__text1">
+                Your bidder status is
+                &nbsp;<span class="badge orange">
+                    <i class='icon'><svg><use xlink:href="#clockwise"></use></svg></i>
+                    Pending
+                </span>
+            </div>
+
+            <div class="auction-registration__more">
+                <div class="auction-registration__more-h">
+                    More upcoming Auctions you may be interested in
+                </div>
+
+                <div class="auction-card">
+                    <div class="auction-card__img" style="background-image: url(https://www.fillmurray.com/400/400);"></div>
+                    <div class="auction-card__info">
+                        <div class="auction-card__title">
+                            Zoolander 2 Auction
+                        </div>
+                        <div class="auction-card__description">
+                            <i class='icon'><svg><use xlink:href="#calendar"></use></svg></i>
+                            30 April 9:00am (PMT) – 13 May 2:00pm (PMT) 2021
+                        </div>
+                        <div class="auction-card__actions">
+                            <a href="#details" class="waves-effect waves-grey btn btn--secondary">
+                                Details
+                            </a>
+                            <a href="#register" class="waves-effect waves-light btn">
+                                <span class='btn__title'>Register for auction</span>
+                                <i class='icon'><svg><use xlink:href="#arrow-right"></use></svg></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="auction-card">
+                    <div class="auction-card__img" style="background-image: url(https://www.fillmurray.com/500/500);"></div>
+                    <div class="auction-card__info">
+                        <div class="auction-card__title">
+                            Entertainment Memorabilia Live Auction, Treasures from Film and Television
+                        </div>
+                        <div class="auction-card__description">
+                            <i class='icon'><svg><use xlink:href="#calendar"></use></svg></i>
+                            30 April 9:00am (PMT) – 13 May 2:00pm (PMT) 2021
+                        </div>
+                        <div class="auction-card__actions">
+                            <a href="#details" class="waves-effect waves-grey btn btn--secondary">
+                                Details
+                            </a>
+                            <a href="#register" class="waves-effect waves-light btn">
+                                <span class='btn__title'>Register for auction</span>
+                                <i class='icon'><svg><use xlink:href="#arrow-right"></use></svg></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="auction-registration__info">
+            <div class="auction-registration__text">
+                <p>
+                    Hi Jon, you’re about to register for the Entertainment Memorabilia Live Auction, Treasures from Film and Television on 9th-11th November 2021 happening in London and Online.  
+                </p><p>
+                    <strong>Please select the correct details from your account below to proceed.</strong>
+                </p>
+            </div>
+            <form action="/ajax/modalAuctionRegister.action" id="modal-register-auction-form">
+                <div class="form-section">
+                    <input type="hidden" value="1" name="shippingAddressId" id="shippingAddressId">
+                    <div class="form-section__label">
+                        Confirm your shipping address
+                    </div>
+                    <div class="form-section__body">
+                        <div class="form-section__row">
+                            <div class="form-section__row-body" id="shippingAddressLabel">
+                                John Doe, 123 Easy Street, Leeds, West Yorkshire, LS9 8DT, United Kingdom
+                            </div>
+                            <div class="form-section__row-actions">
+                                <a class="waves-effect waves-grey btn btn--secondary form-section__row-action auction-registration__page-trigger disabled"  data-page="address">
+                                    <span class='btn__title'>Edit</span>
+                                    <i class='icon'><svg><use xlink:href="#arrow-right"></use></svg></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-section__footer">
+                        <label class="checkbox__label">
+                            <input type="checkbox" class="filled-in" name="billingAsShipping" checked>
+                            <span>My billing address is the same as my shipping address</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="form-section form-section--billing" style="display: none;">
+                    <input type="hidden" value="1" name="billingAddressId" id="billingAddressId">
+                    <div class="form-section__label">
+                        Confirm your billing address
+                    </div>
+                    <div class="form-section__body">
+                        <div class="form-section__row">
+                            <div class="form-section__row-body" id="billingAddressLabel">
+                                John Doe, 123 Easy Street, Leeds, West Yorkshire, LS9 8DT, United Kingdom
+                            </div>
+                            <div class="form-section__row-actions">
+                                <a class="waves-effect waves-grey btn btn--secondary form-section__row-action auction-registration__page-trigger"  data-page="billing">
+                                    <span class='btn__title'>Edit</span>
+                                    <i class='icon'><svg><use xlink:href="#arrow-right"></use></svg></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            
+                <div class="form-section">
+                    <div class="form-section__label">
+                        Confirm your payment method
+                    </div>
+                    <div class="form-section__body">
+                        <div class="form-section__row">
+                            <div class="form-section__row-body">
+                                Mastercard Debit card •••1234
+                            </div>
+                            <div class="form-section__row-actions">
+                                <a class="waves-effect waves-grey btn btn--secondary form-section__row-action auction-registration__page-trigger" data-page="payment">
+                                    <span class='btn__title'>Edit</span>
+                                    <i class='icon'><svg><use xlink:href="#arrow-right"></use></svg></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-section">
+                    <div class="form-section__label">
+                        Review auction terms and conditions
+                    </div>
+                    <div class="form-section__body">
+                        <div class="form-section__row">
+                            <div class="form-section__row-body">
+                                Terms and conditions for Entertainment Memorabilia Live Auction, Treasures from Film and Television on 9th-11th November 2021 
+                            </div>
+                            <div class="form-section__row-actions">
+                                <a class="waves-effect waves-grey btn btn--secondary form-section__row-action auction-registration__page-trigger" data-page="terms">
+                                    <span class='btn__title'>Read</span>
+                                    <i class='icon'><svg><use xlink:href="#arrow-right"></use></svg></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-section__footer">
+                        <label class="checkbox__label">
+                            <input type="checkbox" class="filled-in" id="termsConfirm">
+                            <span>I have read and understood the terms and conditions and can confirm I am over 18 years of age</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="form-section__submit">
+                    <button type="submit" class="waves-effect waves-light btn modal-register__submit">
+                        <span class='btn__title'>Register for auction</span>
+                        <i class='icon'><svg><use xlink:href="#arrow-right"></use></svg></i>
+                    </button>
+                </div>
+            </form>
+
+            <div class="auction-registration__page" data-page="address">
+                <div class="auction-registration__page-header">
+                    <a class="waves-effect btn-flat auction-registration__page-back" href="#">
+                        <i class='icon'><svg><use xlink:href="#arrow-right"></use></svg></i> Go Back
+                    </a>
+                </div>
+            
+                <div class="form-section form-section--trash">
+                    <div class="form-section__body">
+                        <div class="form-section__row">
+                            <div class="form-section__row-body">
+                                <label>
+                                    <input name="shippingAddress" class="form-section__radio" type="radio" value="1" checked />
+                                    <span>John Doe, 123 Easy Street, Leeds, West Yorkshire, LS9 8DT, United Kingdom</span>
+                                </label>
+                            </div>
+                            <div class="form-section__row-actions">
+                                <a class="waves-effect waves-grey btn btn--secondary form-section__row-action auction-registration__page-trigger" data-page="address-edit-1">
+                                    <span class='btn__title'>Edit</span>
+                                    <i class='icon'><svg><use xlink:href="#arrow-right"></use></svg></i>
+                                </a>
+
+                                <a class="waves-effect btn-flat btn--icon auction-registration__trash" data-id="1">
+                                    <i class="icon"><svg><use xlink:href="#trash"></use></svg></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+            
+                    <div class="form-section__body">
+                        <div class="form-section__row">
+                            <div class="form-section__row-body">
+                                <label>
+                                    <input name="shippingAddress" class="form-section__radio" type="radio" value="2" />
+                                    <span>John Doe, 123 Easy Street, Leeds, West Yorkshire, LS9 8DT, United Kingdom John Doe, 123 Easy Street, Leeds, West Yorkshire, LS9 8DT, United Kingdom</span>
+                                </label>
+                            </div>
+                            <div class="form-section__row-actions">
+                                <a class="waves-effect waves-grey btn btn--secondary form-section__row-action auction-registration__page-trigger" data-page="address-edit-1"><!--address id-->
+                                    <span class='btn__title'>Edit</span>
+                                    <i class='icon'><svg><use xlink:href="#arrow-right"></use></svg></i>
+                                </a>
+
+                                <a class="waves-effect btn-flat btn--icon auction-registration__trash" data-id="2">
+                                    <i class="icon"><svg><use xlink:href="#trash"></use></svg></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+            
+                    <div class="form-section__actions">
+                        <a class="waves-effect waves-grey btn btn--secondary auction-registration__page-trigger" data-page="address-add">
+                            <i class='icon'><svg><use xlink:href="#plus"></use></svg></i>
+                            <span class='btn__title'>Add a new address</span>
+                        </a>            
+                    </div>
+            
+                    <div class="form-section__submit">
+                        <a class="waves-effect waves-light btn auction-registration__page-submit">
+                            <span class='btn__title'>Confirm shipping address</span>
+                            <i class='icon'><svg><use xlink:href="#arrow-right"></use></svg></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="auction-registration__page" data-page="address-add">
+                <div class="auction-registration__page-header">
+                    <a class="waves-effect btn-flat auction-registration__page-back" href="#">
+                        <i class='icon'><svg><use xlink:href="#arrow-right"></use></svg></i> Go Back
+                    </a>
+                </div>
+            
+                <form class="modal-auction-address-form" action="#">
+            
+                    <div class="form-section">
+                        <div class="form-section__label">
+                            Shipping address
+                        </div>
+                        <div class="order__row">
+                            <div class="order__step-radio">
+                                <div class="order__form">
+                                    <div class="order__address-type">
+                                        <label>
+                                            <input name="order-shipping-address-type" type="radio" />
+                                            <span>Residential Address</span>
+                                        </label>
+                                        <label>
+                                            <input name="order-shipping-address-type" type="radio" />
+                                            <span>Business Address</span>
+                                        </label>
+                                    </div>
+                                    <div class="order__form-row">
+                                        <div class="input-field input-field--label">
+                                            <input type="text" placeholder="Please Enter">
+                                            <label>First Name</label>
+                                        </div>
+                                        <div class="input-field input-field--label">
+                                            <input type="text" placeholder="Please Enter">
+                                            <label>Surname</label>
+                                        </div>
+                                    </div>
+                                    <div class="order__form-row">
+                                        <div class="input-field input-field--label">
+                                            <input type="text" placeholder="Please Enter">
+                                            <label>Contact Number</label>
+                                        </div>
+                                        <div class="input-field input-field--label input-field--select">
+                                            <select name="shippingAddress.countryId">
+                                                <option value="0" disabled selected>Please Choose</option>
+                                                <option value="1">United Kingdom</option>
+                                                <option value="2">USA</option>
+                                                <option value="3">Option 3</option>
+                                            </select>
+                                            <label>Country</label>
+                                        </div>
+                                    </div>
+                                    <div class="order__form-row order__form-row--full">
+                                        <div class="input-field input-field--label">
+                                            <textarea class="materialize-textarea" placeholder="Please Enter"></textarea>
+                                            <label>Address</label>
+                                        </div>
+                                    </div>
+                                    <div class="order__form-row">
+                                        <div class="input-field input-field--label">
+                                            <input type="text" placeholder="Please Enter">
+                                            <label>State</label>
+                                        </div>
+                                        <div class="input-field input-field--label">
+                                            <input type="text" placeholder="Please Enter">
+                                            <label>City</label>
+                                        </div>
+                                    </div>
+                                    <div class="order__form-row">
+                                        <div class="input-field input-field--label">
+                                            <input type="text" placeholder="Please Enter">
+                                            <label>ZIP / Postcode</label>
+                                        </div>
+                                    </div> 
+                                </div>
+                            </div>
+                        </div>
+            
+                        <div class="form-section__submit">
+                            <button type="submit" class="waves-effect waves-light btn auction-registration__page-submit">
+                                <span class='btn__title'>Add shipping address</span>
+                                <i class='icon'><svg><use xlink:href="#arrow-right"></use></svg></i>
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            
+            <div class="auction-registration__page" data-page="address-edit-1">
+                <div class="auction-registration__page-header">
+                    <a class="waves-effect btn-flat auction-registration__page-back" href="#">
+                        <i class='icon'><svg><use xlink:href="#arrow-right"></use></svg></i> Go Back
+                    </a>
+                </div>
+            
+                <form class="modal-auction-address-form" action="#">
+                    <input type="hidden" value="1" name="shippingAddressId">
+                    <div class="form-section">
+                        <div class="form-section__label">
+                            Shipping address
+                        </div>
+                        <div class="order__row">
+                            <div class="order__step-radio">
+                                <div class="order__form">
+                                    <div class="order__address-type">
+                                        <label>
+                                            <input name="order-shipping-address-type" type="radio" checked />
+                                            <span>Residential Address</span>
+                                        </label>
+                                        <label>
+                                            <input name="order-shipping-address-type" type="radio" />
+                                            <span>Business Address</span>
+                                        </label>
+                                    </div>
+                                    <div class="order__form-row">
+                                        <div class="input-field input-field--label">
+                                            <input type="text" placeholder="Please Enter" value="a">
+                                            <label>First Name</label>
+                                        </div>
+                                        <div class="input-field input-field--label">
+                                            <input type="text" placeholder="Please Enter" value="b">
+                                            <label>Surname</label>
+                                        </div>
+                                    </div>
+                                    <div class="order__form-row">
+                                        <div class="input-field input-field--label">
+                                            <input type="text" placeholder="Please Enter" value="c">
+                                            <label>Contact Number</label>
+                                        </div>
+                                        <div class="input-field input-field--label input-field--select">
+                                            <select>
+                                                <option value="0" disabled selected>Please Choose</option>
+                                                <option value="1" selected>United Kingdom</option>
+                                                <option value="2">Option 2</option>
+                                                <option value="3">Option 3</option>
+                                            </select>
+                                            <label>Country</label>
+                                        </div>
+                                    </div>
+                                    <div class="order__form-row order__form-row--full">
+                                        <div class="input-field input-field--label">
+                                            <textarea class="materialize-textarea" placeholder="Please Enter" value="d"></textarea>
+                                            <label>Address</label>
+                                        </div>
+                                    </div>
+                                    <div class="order__form-row">
+                                        <div class="input-field input-field--label">
+                                            <input type="text" placeholder="Please Enter" value="e">
+                                            <label>State</label>
+                                        </div>
+                                        <div class="input-field input-field--label">
+                                            <input type="text" placeholder="Please Enter" value="f">
+                                            <label>City</label>
+                                        </div>
+                                    </div>
+                                    <div class="order__form-row">
+                                        <div class="input-field input-field--label">
+                                            <input type="text" placeholder="Please Enter" value="g">
+                                            <label>ZIP / Postcode</label>
+                                        </div>
+                                    </div> 
+                                </div>
+                            </div>
+                        </div>
+            
+                        <div class="form-section__submit">
+                            <button type="submit" class="waves-effect waves-light btn auction-registration__page-submit">
+                                <span class='btn__title'>Save shipping address</span>
+                                <i class='icon'><svg><use xlink:href="#arrow-right"></use></svg></i>
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            
+            <div class="auction-registration__page" data-page="payment">
+                <div class="auction-registration__page-header">
+                    <a class="waves-effect btn-flat auction-registration__page-back" href="#">
+                        <i class='icon'><svg><use xlink:href="#arrow-right"></use></svg></i> Go Back
+                    </a>
+                </div>
+                <div class="credit-cards credit-cards--white1">
+                                
+                    <div class="credit-cards__item">
+                        <div class="credit-cards__item-label">
+                            <label>
+                                <input name="defaultCreditCard" type="radio" value="card_1K2UwWCaWn2fRg7wukeEY1pu">
+                                <span>***4242 2/2031</span>
+                            </label>
+                            <div class="credit-cards__item-helper">
+                                Will be removed
+                            </div>
+                        </div>
+                        <div class="credit-cards__item-actions">
+                        <span class="waves-effect btn-flat btn--icon credit-cards__item-remove" data-value="card_1K2UwWCaWn2fRg7wukeEY1pu">
+                            <i class="icon"><svg><use xlink:href="#trash"></use></svg></i>
+                        </span>
+                        </div>
+                    </div>
+                
+                    <div class="credit-cards__item">
+                        <div class="credit-cards__item-label">
+                            <label>
+                                <input name="defaultCreditCard" type="radio" value="card_1K2UydCaWn2fRg7wZdBYu466">
+                                <span>***4242 4/2031</span>
+                            </label>
+                            <div class="credit-cards__item-helper">
+                                Will be removed
+                            </div>
+                        </div>
+                        <div class="credit-cards__item-actions">
+                        <span class="waves-effect btn-flat btn--icon credit-cards__item-remove" data-value="card_1K2UydCaWn2fRg7wZdBYu466">
+                            <i class="icon"><svg><use xlink:href="#trash"></use></svg></i>
+                        </span>
+                        </div>
+                    </div>
+                
+                    <div class="credit-cards__item">
+                        <div class="credit-cards__item-label">
+                            <label>
+                                <input name="defaultCreditCard" type="radio" checked="" value="card_1K2UytCaWn2fRg7wC9foSKBN">
+                                <span>***4242 5/2031</span>
+                            </label>
+                            <div class="credit-cards__item-helper">
+                                Will be removed
+                            </div>
+                        </div>
+                        <div class="credit-cards__item-actions">
+                        <span class="waves-effect btn-flat btn--icon credit-cards__item-remove" data-value="card_1K2UytCaWn2fRg7wC9foSKBN">
+                            <i class="icon"><svg><use xlink:href="#trash"></use></svg></i>
+                        </span>
+                        </div>
+                    </div>
+                
+
+                <div class="credit-cards__stripe new">
+                    <div class="stripeElements" style="display: block;">
+                        <div id="stipeCardNumber" class="stripeElement StripeElement empty"><div class="__PrivateStripeElement" style=""><iframe name="__privateStripeFrame51243" frameborder="0" allowtransparency="true" scrolling="no" allow="payment *" src="https://js.stripe.com/v3/elements-inner-card-b9c3ce35876d17a6d7669827e19cd695.html#wait=false&amp;mids[guid]=5e83f4c3-8879-4f33-aaa7-705d28015146e15da1&amp;mids[muid]=d580fc71-b50a-40f4-8ed2-9e22ea0bfe9832dbf7&amp;mids[sid]=f96e51f7-3f0c-43fd-85e4-67815c489f8eaaaf78&amp;style[base][color]=%232D2E41&amp;style[base][fontSize]=16px&amp;style[base][fontSmoothing]=antialiased&amp;style[invalid][color]=%23F93838&amp;style[invalid][:focus][color]=%232D2E41&amp;rtl=false&amp;componentName=cardNumber&amp;keyMode=test&amp;apiKey=pk_test_t7pWDgTuBFkuwSnJ8BOgBGwk&amp;referrer=http%3A%2F%2Fpropstore.loc%2Fauctions.action&amp;controllerId=__privateStripeController51239" title="Защищенное окно для ввода номера карты" style="border: none !important; margin: 0px !important; padding: 0px !important; width: 1px !important; min-width: 100% !important; overflow: hidden !important; display: block !important; user-select: none !important; transform: translate(0px) !important; height: 19.2px;"></iframe><input class="__PrivateStripeElement-input" aria-hidden="true" aria-label=" " autocomplete="false" maxlength="1" style="border: none !important; display: block !important; position: absolute !important; height: 1px !important; top: -1px !important; left: 0px !important; padding: 0px !important; margin: 0px !important; width: 100% !important; opacity: 0 !important; background: transparent !important; pointer-events: none !important; font-size: 16px !important;"></div></div>
+                        <div class="stripeElements__row">
+                            <div id="stipeCardExpiry" class="stripeElement StripeElement empty"><div class="__PrivateStripeElement" style=""><iframe name="__privateStripeFrame51244" frameborder="0" allowtransparency="true" scrolling="no" allow="payment *" src="https://js.stripe.com/v3/elements-inner-card-b9c3ce35876d17a6d7669827e19cd695.html#wait=false&amp;mids[guid]=5e83f4c3-8879-4f33-aaa7-705d28015146e15da1&amp;mids[muid]=d580fc71-b50a-40f4-8ed2-9e22ea0bfe9832dbf7&amp;mids[sid]=f96e51f7-3f0c-43fd-85e4-67815c489f8eaaaf78&amp;style[base][color]=%232D2E41&amp;style[base][fontSize]=16px&amp;style[base][fontSmoothing]=antialiased&amp;style[invalid][color]=%23F93838&amp;style[invalid][:focus][color]=%232D2E41&amp;rtl=false&amp;componentName=cardExpiry&amp;keyMode=test&amp;apiKey=pk_test_t7pWDgTuBFkuwSnJ8BOgBGwk&amp;referrer=http%3A%2F%2Fpropstore.loc%2Fauctions.action&amp;controllerId=__privateStripeController51239" title="Защищенное окно для ввода даты истечения срока" style="border: none !important; margin: 0px !important; padding: 0px !important; width: 1px !important; min-width: 100% !important; overflow: hidden !important; display: block !important; user-select: none !important; transform: translate(0px) !important; height: 19.2px;"></iframe><input class="__PrivateStripeElement-input" aria-hidden="true" aria-label=" " autocomplete="false" maxlength="1" style="border: none !important; display: block !important; position: absolute !important; height: 1px !important; top: -1px !important; left: 0px !important; padding: 0px !important; margin: 0px !important; width: 100% !important; opacity: 0 !important; background: transparent !important; pointer-events: none !important; font-size: 16px !important;"></div></div>
+                            <div id="stipeCardCvc" class="stripeElement StripeElement empty"><div class="__PrivateStripeElement" style=""><iframe name="__privateStripeFrame51245" frameborder="0" allowtransparency="true" scrolling="no" allow="payment *" src="https://js.stripe.com/v3/elements-inner-card-b9c3ce35876d17a6d7669827e19cd695.html#wait=false&amp;mids[guid]=5e83f4c3-8879-4f33-aaa7-705d28015146e15da1&amp;mids[muid]=d580fc71-b50a-40f4-8ed2-9e22ea0bfe9832dbf7&amp;mids[sid]=f96e51f7-3f0c-43fd-85e4-67815c489f8eaaaf78&amp;style[base][color]=%232D2E41&amp;style[base][fontSize]=16px&amp;style[base][fontSmoothing]=antialiased&amp;style[invalid][color]=%23F93838&amp;style[invalid][:focus][color]=%232D2E41&amp;rtl=false&amp;componentName=cardCvc&amp;keyMode=test&amp;apiKey=pk_test_t7pWDgTuBFkuwSnJ8BOgBGwk&amp;referrer=http%3A%2F%2Fpropstore.loc%2Fauctions.action&amp;controllerId=__privateStripeController51239" title="Защищенное окно для ввода CVC-кода" style="border: none !important; margin: 0px !important; padding: 0px !important; width: 1px !important; min-width: 100% !important; overflow: hidden !important; display: block !important; user-select: none !important; transform: translate(0px) !important; height: 19.2px;"></iframe><input class="__PrivateStripeElement-input" aria-hidden="true" aria-label=" " autocomplete="false" maxlength="1" style="border: none !important; display: block !important; position: absolute !important; height: 1px !important; top: -1px !important; left: 0px !important; padding: 0px !important; margin: 0px !important; width: 100% !important; opacity: 0 !important; background: transparent !important; pointer-events: none !important; font-size: 16px !important;"></div></div>
+                            <div class="stripeElement">
+                                <input type="text" id="stipeCardZip" placeholder="ZIP" style="background-image: url(&quot;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAfBJREFUWAntVk1OwkAUZkoDKza4Utm61iP0AqyIDXahN2BjwiHYGU+gizap4QDuegWN7lyCbMSlCQjU7yO0TOlAi6GwgJc0fT/fzPfmzet0crmD7HsFBAvQbrcrw+Gw5fu+AfOYvgylJ4TwCoVCs1ardYTruqfj8fgV5OUMSVVT93VdP9dAzpVvm5wJHZFbg2LQ2pEYOlZ/oiDvwNcsFoseY4PBwMCrhaeCJyKWZU37KOJcYdi27QdhcuuBIb073BvTNL8ln4NeeR6NRi/wxZKQcGurQs5oNhqLshzVTMBewW/LMU3TTNlO0ieTiStjYhUIyi6DAp0xbEdgTt+LE0aCKQw24U4llsCs4ZRJrYopB6RwqnpA1YQ5NGFZ1YQ41Z5S8IQQdP5laEBRJcD4Vj5DEsW2gE6s6g3d/YP/g+BDnT7GNi2qCjTwGd6riBzHaaCEd3Js01vwCPIbmWBRx1nwAN/1ov+/drgFWIlfKpVukyYihtgkXNp4mABK+1GtVr+SBhJDbBIubVw+Cd/TDgKO2DPiN3YUo6y/nDCNEIsqTKH1en2tcwA9FKEItyDi3aIh8Gl1sRrVnSDzNFDJT1bAy5xpOYGn5fP5JuL95ZjMIn1ya7j5dPGfv0A5eAnpZUY3n5jXcoec5J67D9q+VuAPM47D3XaSeL4AAAAASUVORK5CYII=&quot;); background-repeat: no-repeat; background-attachment: scroll; background-size: 16px 18px; background-position: 98% 50%;">
+                            </div>
+                        </div>
+                        <div class="input-field__helper error">Error</div>
+                    </div>
+
+                    <span class="waves-effect waves-grey btn btn--secondary credit-cards__add-button">
+                    <i class="icon"><svg><use xlink:href="#plus"></use></svg></i>
+                    <span class="btn__title">Add New Card</span>
+                </span>
+                    <span class="waves-effect waves-grey btn btn--secondary credit-cards__cancel-button">
+                    <i class="icon"><svg><use xlink:href="#arrow-right"></use></svg></i>
+                    <span class="btn__title">Cancel</span>
+                </span>
+                </div>
+
+            </div>
+                
+            </div>
+            
+            <div class="auction-registration__page" data-page="terms">
+                <div class="auction-registration__page-header">
+                    <a class="waves-effect btn-flat auction-registration__page-back" href="#">
+                        <i class='icon'><svg><use xlink:href="#arrow-right"></use></svg></i> Go Back
+                    </a>
+                </div>
+            
+                <div class="form-section">
+                    <div class="form-section__body">
+                        <div class="form-section__row">
+                            <div class="form-section__row-body">
+                                <p><strong>Condition of Sale</strong>
+                                <br/>1.  When making a bid, every bidder acknowledges that such bid is a binding offer to buy the lot at that price (plus the Buyer’s Premium, all applicable taxes and any and all shipping charges). All sales are final.
+                                <br/>2.  A Buyer’s Premium at a rate of 25% (the “Buyer’s Premium”) will be applied to all winning bids.  The purchase price shall consist of your winning bid on the lot plus the Buyer’s Premium (the “Purchase Price”).
+                                <br/>3.  Unless bidder has been extended a payment plan by Prop Store, as set forth in paragraph 4 herein, bidder shall pay the Purchase Price in full within 7 calendar days of being invoiced.
+                                <br/>4.  For orders with a total hammer price above $1000, payment plans may be available in increments of Netus cursus orci in est imperdiet habitasse eu eget nulla. Nulla id et tellus ut ante. Massa, nulla non nunc aenean elementum, quam est, elit. Morbi aenean malesuada dignissim neque nibh. Tempor, lobortis aliquet ut sem ac et a. Enim condimentum pulvinar in sollicitudin vel rutrum vel suspendisse nunc. Lacus faucibus nunc et posuere malesuada elit nunc venenatis aliquet. Rhoncus, habitasse odio massa augue ut cursus. Adipiscing eget facilisi amet, sit sit iaculis. Pharetra, odio blandit habitant vulputate in nunc turpis ut. Vel tellus eu vitae nulla tortor proin mi hendrerit ultrices. Vestibulum integer et ipsum quis enim sed. Placerat viverra nulla sem ornare arcu, lorem interdum.
+                                <br/>Arcu ullamcorper viverra odio id duis interdum. Enim a, imperdiet morbi enim praesent. Urna vel aliquam enim sed massa turpis condimentum hac odio. Cras volutpat ante interdum consectetur libero ut tincidunt dui. Ut odio egestas dignissim at. Enim pellentesque volutpat pretium ultricies in. Consequat ultrices aliquet neque consequat, non molestie. Sapien accumsan vel amet, eu massa dui arcu. In duis euismod vulputate lectus. Dolor dui, sed orci turpis augue lacus, aliquet. Facilisis egestas hac varius urna luctus. Egestas et iaculis eleifend et nisi urna. Maecenas velit ac euismod dolor in. Non dolor mattis vel viverra.
+                                <br/>Volutpat mi pellentesque dui enim et. Eu eget molestie morbi orci nunc, mattis. Gravida nunc diam sem velit sit arcu tempor. Eu vulputate in duis non. Enim eu eu quisque enim porttitor tincidunt etiam erat. Enim egestas enim nisi nibh eget malesuada eu. Habitant et venenatis quis commodo proin a nunc diam. Rhoncus sapien lectus vel aliquam nunc. Nunc pulvinar mauris metus, parturient. Vitae ornare augue a, laoreet. Aenean tristique vestibulum lectus aliquam, id accumsan nullam urna. Proin consequat sed tellus morbi varius ipsum, at non. Ultrices ipsum amet pellentesque aliquam nunc, varius varius.
+                                <br/>Sem aliquam non pulvinar nisl, laoreet viverra. In turpis rhoncus odio ut libero, vulputate quam sed. 
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            
+                <div class="form-section__submit">
+                    <a class="waves-effect waves-light btn auction-registration__page-submit">
+                        <span class='btn__title'>Accept</span>
+                        <i class='icon'><svg><use xlink:href="#arrow-right"></use></svg></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="loader-block" style="display: none;">
+    <div class="preloader-wrapper active"><div class="spinner-layer"><div class="circle-clipper left"><div class="circle"></div></div><div class="gap-patch"><div class="circle"></div></div><div class="circle-clipper right"><div class="circle"></div></div></div></div>
+</div>

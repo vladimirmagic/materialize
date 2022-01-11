@@ -2,10 +2,31 @@
     <a href="/account.html" class="account-page__suptitle h6">
         My Account
     </a>
-    <div class="account-page__title h1 account__watchlist-title">
+    <div class="account-page__title h1">
         Watchlist
     </div>
-    <div class="cards cards--account account__watchlist">
+    <ul class="account-watchlist__tabs tabs">
+        <li class="account-watchlist__tab tab">
+            <a href="#account-watchlist-auctions" class="waves-effect btn-flat btn--rounded">Auctions</a>
+        </li>
+        <li class="account-watchlist__tab tab">
+            <a href="#account-watchlist-buy" class="waves-effect btn-flat btn--rounded active">Buy now</a>
+        </li>
+    </ul>
+    <div class="account-watchlist__body" id="account-watchlist-auctions" style="display: none;">
+        <div class="account-watchlist__auctions">
+            <div class="account-watchlist__auctions-inner content">
+                <div class="account-watchlist__auctions-text p-l">
+                    If you have lots saved to your Auction Watchlist, they can be viewed on the auction platform.
+                </div>
+                <a href="https://propstoreauction.com/m/my-items/watchlist" target="_blank" class="waves-effect waves-light btn">
+                    <span class='btn__title'><span class="hide-on-small-and-down">View now on</span> Propstore auction</span>
+                    <i class='icon'><svg><use xlink:href="#target-blank"></use></svg></i>
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="cards cards--account account__watchlist account-watchlist__body" id="account-watchlist-buy">
         <div class="cards__inner">
             <div class="cards__list">
                 <a class="card card--liked" href="#card-01">

@@ -31,18 +31,20 @@
 }
 
 .filters__found-all {
-	margin-left: .5rem;
+	display: inline-block;
+	min-width: 220px;
+	margin-left: 1rem;
 	color: $color-font-grey;
 	font-size: 1rem;
 
-	strong {
-		font-weight: 600;
-	}
-
 	a:not(.btn) {
 		color: $primary-color;
-		margin-left: .5rem;
+		font-weight: 300;
 	}
+}
+
+.filters__found-plus {
+	font-weight: 600;
 }
 
 .filters__tabs {
@@ -51,17 +53,12 @@
 }
 
 .filters__tab {
-	&.active {
+	white-space: nowrap;
+
+	&.active.btn--rounded.btn-flat {
 		cursor: pointer;
-	}
-
-	&.active[disabled] {
-		color: rgba(255,255,255,.3) !important;
-		background: #2D2E41 !important;
-	}
-
-	&.unable {
-		cursor: default;
+		color: white !important;
+    	background: $color-base !important;
 	}
 
 	& + & {
@@ -241,6 +238,20 @@
 	}
 }
 
+.auctionIdDiv .dropdown-content {
+	min-width: 440px;
+}
+
+@media only screen and (min-width: 1200px) and (max-width: 1400px) {
+	.filters__found-all {
+		min-width: auto;
+	}
+
+	.filters__found-in {
+		display: none;
+	}
+}
+
 @media #{$extra-large-and-up} {
 	.filters__header {
 		min-width: min-content;
@@ -333,14 +344,19 @@
 		display: block;
 		padding-bottom: 1.5em;
 	}
-
-	.filters__found {
-		white-space: normal;
-	}
 }
 
 @media #{$small-and-down} {
-	.filters__found-plus {
+	.filters__found {
+		white-space: normal;
+	}
+
+	.filters__found-all {
+		min-width: auto;
+	}
+
+	.filters__found-plus,
+	.filters__found-in {
 		display: none;
 	}
 }

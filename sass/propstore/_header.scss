@@ -502,6 +502,15 @@ a:not(.btn).header__menu-target-blank {
 	}
 }
 
+.menu-level-link-target-blank {
+	.icon {
+		width: .75rem;
+    	height: .75rem;
+		margin: -.1em 0 0 .25em;
+		opacity: .3;
+	}
+}
+
 .header__logo {
     svg {
         width: 200px;
@@ -694,7 +703,7 @@ a.modal-bag__item:not(.btn) { // fix a
 }
 
 #dropdown-account {
-    min-width: 9em;
+    min-width: 13em;
 }
 
 @keyframes animation-header-sticky-in {

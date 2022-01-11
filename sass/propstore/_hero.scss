@@ -222,7 +222,13 @@
 			min-height: 500px;
 		}
 	}
-	
+
+	.hero__static-title {
+		.icon {
+			float: left;
+			margin-bottom: .5em;
+		}
+	}
 }
 
 @media #{$large-and-down} {

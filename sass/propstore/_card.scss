@@ -59,6 +59,7 @@ a.card:not(.btn) { // fix a
 }
 
 .card__img {
+	display: block;
 	position: relative;
 	height: $card-width;
 	background-position: 50% 50%;
@@ -86,6 +87,10 @@ a.card:not(.btn) { // fix a
 	background: $color-turquoise;
 	transform-origin: 30px 50%;
 	transform: rotate(-30deg);
+
+	&.card__featured--topselling {
+		background: $color-orange; 
+	}
 }
 
 .card__heart {
@@ -252,6 +257,11 @@ a.card:not(.btn) { // fix a
 	display: inline-block;
 	font-size: 14px;
 	color: $color-font-grey;
+}
+
+.card__price-soldon {
+	@extend .card__price-approx;
+	white-space: nowrap;
 }
 
 .card__price-i {

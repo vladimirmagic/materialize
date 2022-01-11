@@ -1,4 +1,9 @@
 <form class="account-page">
+    <input type="hidden" name="token" value="DLJA67D26UW52OJC5HF8H04RWYRJEEJM">
+    <input type="hidden" name="stripePublicKey" value="pk_test_t7pWDgTuBFkuwSnJ8BOgBGwk" id="stripePublicKey">
+    <input type="hidden" name="stripeToken" value="" id="stripeToken">
+    <input type="hidden" name="stripeError" value="" id="stripeError">
+
     <a href="/account.html" class="account-page__suptitle h6">
         My Account
     </a>
@@ -192,6 +197,77 @@
 
     <div class="account-page__section">
         <div class="account-page__form">
+            <p class="c-r">Credit Cards</p>
+            <p class="account-page__section-text">Choose default card</p>
+
+            <select name="removedCards" id="accountDetailsSubmit_removedCards" multiple="multiple" tabindex="-1" class="browser-default" style="display: none;">
+                <option value="card_1JDpmIEhQM2IjXLsVYy8HJ3s">***4242 4/2024</option>
+                <option value="card_1JFdiGEhQM2IjXLsyNfo8ypB">***4242 1/2031</option>
+            
+            
+            </select>
+
+            <div class="credit-cards credit-cards--white">
+                <div class="credit-cards__item">
+                    <div class="credit-cards__item-label">
+                        <label>
+                            <input name="defaultCreditCard" type="radio" checked />
+                            <span>***4242 4/2024</span>
+                        </label>
+                    </div>
+                    <div class="credit-cards__item-actions">
+                        <span class="waves-effect btn-flat btn--icon credit-cards__item-remove" data-value="card_1JDpmIEhQM2IjXLsVYy8HJ3s">
+                            <i class="icon"><svg><use xlink:href="#trash"></use></svg></i>
+                        </span>
+                    </div>
+                </div>
+
+                <div class="credit-cards__item">
+                    <div class="credit-cards__item-label">
+                        <label>
+                            <input name="defaultCreditCard" type="radio" />
+                            <span>***4242 1/2031</span>
+                        </label>
+                        <div class="credit-cards__item-helper">
+                            Will be removed
+                        </div>
+                    </div>
+                    <div class="credit-cards__item-actions">
+                        <span class="waves-effect btn-flat btn--icon credit-cards__item-remove" data-value="card_1JFdiGEhQM2IjXLsyNfo8ypB">
+                            <i class="icon"><svg><use xlink:href="#trash"></use></svg></i>
+                        </span>
+                    </div>
+                </div>
+
+                <div class="credit-cards__stripe">
+                    <div class="stripeElements">
+                        <div id="stipeCardNumber" class="stripeElement"></div>
+                        <div class="stripeElements__row">
+                            <div id="stipeCardExpiry" class="stripeElement"></div>
+                            <div id="stipeCardCvc" class="stripeElement"></div>
+                            <div class="stripeElement">
+                                <input type="text" id="stipeCardZip" placeholder="ZIP">
+                            </div>
+                        </div>
+                        <div class="input-field__helper"></div>
+                    </div>
+
+                    <span class="waves-effect waves-grey btn btn--secondary credit-cards__add-button">
+                        <i class='icon'><svg><use xlink:href="#plus"></use></svg></i>
+                        <span class='btn__title'>Add New Card</span>
+                    </span>
+                    <span class="waves-effect waves-grey btn btn--secondary credit-cards__cancel-button">
+                        <i class='icon'><svg><use xlink:href="#arrow-right"></use></svg></i>
+                        <span class='btn__title'>Cancel</span>
+                    </span>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="account-page__section">
+        <div class="account-page__form">
             <p class="account-page__section-title c-r">
                 Email Preferences
             </p>
@@ -215,7 +291,7 @@
         </div>
     </div>
 
-    <div class="account-page__section">
+    <div class="account-page__section account-page__section--footer">
         <div class="account-page__form">
             <button type="submit" class="waves-effect waves-light btn">
                 Save
@@ -223,3 +299,9 @@
         </div>
     </div>
 </form>
+
+<div class="loader-block" style="display: none;">
+    <div class="preloader-wrapper active"><div class="spinner-layer"><div class="circle-clipper left"><div class="circle"></div></div><div class="gap-patch"><div class="circle"></div></div><div class="circle-clipper right"><div class="circle"></div></div></div></div>
+</div>
+
+<script defer type='text/javascript' src='https://js.stripe.com/v3/'></script>

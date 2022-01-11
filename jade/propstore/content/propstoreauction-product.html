@@ -297,7 +297,17 @@
                                         </fieldset>
                                         <!-- //NEXT BID BLOCK -->
                                         <!-- MAIN BIDDING BLOCK -->
-                                        <fieldset class="bidding-fieldset placebid">
+ <fieldset class="bidding-fieldset placebid">
+    <ul>
+    <li>
+    <div class="unibtn">
+   <span id="bPbid104487_ctl" class="qbutton-ctl" ><input type="button" name="bPbid104487" id="bPbid104487" value="Login to bid" class="orng place-bid" onclick="console.log('onclick'); return false;" /></span> </div>
+    </li>
+    </ul>
+    </fieldset>
+    <!-- //MAIN BIDDING BLOCK -->
+                                        <!-- MAIN BIDDING BLOCK -->
+                                        <!-- <fieldset class="bidding-fieldset placebid">
                                             <ul>
                                                 <li class="maxbid">
                                                     <label class="mxbid">My max bid</label>
@@ -329,7 +339,7 @@
                                                     </div>
                                                 </li>
                                             </ul>
-                                        </fieldset>
+                                        </fieldset> -->
                                         <!-- //MAIN BIDDING BLOCK -->
 
 
@@ -666,6 +676,35 @@
                                         });
                                     </script>
                                     <input type="hidden" id="barcode" name="barcode" value="" />
+
+                                    {description}
+<input type="hidden" id="barcode" name="barcode" value="{lcf_barcode}"/>
+
+<div style="display: none;">
+    <div id="status">{status}</div>
+    <div id="status_lang">{status_lang}</div>
+    <div id="auction_end_date">{auction_end_date}</div>
+    <div id="auction_end_date_gmt">{auction_end_date_gmt}</div>
+    <div id="auction_start_date">{auction_start_date}</div>
+    <div id="auction_start_date_gmt">{auction_start_date_gmt}</div>
+    <div id="date_sold">{date_sold}</div>
+    <div id="date_sold_gmt">{date_sold_gmt}</div>
+    <div id="lot_end_date">{lot_end_date}</div>
+    <div id="lot_end_date_gmt">{lot_end_date_gmt}</div>
+    <div id="lot_start_date">{lot_start_date}</div>
+    <div id="lot_start_date_gmt">{lot_start_date_gmt}</div>
+    <div id="auction_end_date_tz_code">{auction_end_date_tz_code}</div>
+    <div id="auction_end_date_tz_offset">{auction_end_date_tz_offset}</div>
+    <div id="auction_start_date_tz_code">{auction_start_date_tz_code}</div>
+    <div id="auction_start_date_tz_offset">{auction_start_date_tz_offset}</div>
+    <div id="date_sold_tz_code">{date_sold_tz_code}</div>
+    <div id="date_sold_tz_offset">{date_sold_tz_offset}</div>
+    <div id="lot_end_date_tz_code">{lot_end_date_tz_code}</div>
+    <div id="lot_end_date_tz_offset">{lot_end_date_tz_offset}</div>
+    <div id="lot_start_date_tz_code">{lot_start_date_tz_code}</div>
+    <div id="lot_start_date_tz_offset">{lot_start_date_tz_offset}</div>
+</div>
+
 
                                 </div>
                             </section>
