@@ -19117,11 +19117,10 @@ a.account__orders-buy-link:not(.btn):not(.btn-large):not(.btn-small):not(.btn-ex
 
 .sell-cta__img-image {
   width: 105%;
+  max-height: 400px;
+  -o-object-fit: contain;
+     object-fit: contain;
   margin: 2.5em 0 0 -4em;
-}
-
-.sell-cta__img-image.sell-cta__img-image--hat {
-  margin-top: 4em;
 }
 
 .sell-cta__img-info {
@@ -19663,6 +19662,7 @@ a.account__orders-buy-link:not(.btn):not(.btn-large):not(.btn-small):not(.btn-ex
     padding-bottom: 2.5em;
   }
   .sell-cta__img-image {
+    max-height: 200px;
     margin-left: -1em;
   }
 }
