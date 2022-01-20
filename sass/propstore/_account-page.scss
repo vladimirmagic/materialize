@@ -260,7 +260,7 @@ a.account__orders-buy-link:not(.btn) {
 }
 
 .account__favorites {
-	@extend .content;
+	margin-top: 3em;
 	text-align: left;
 
 	.transfer {
@@ -566,7 +566,7 @@ a.account__orders-buy-link:not(.btn) {
 	}
 }
 
-.account-watchlist__tabs {
+.account-page__tabs {
 	display: block;
 
 	.indicator {
@@ -574,7 +574,7 @@ a.account__orders-buy-link:not(.btn) {
 	}
 }
 
-.account-watchlist__tab {
+.account-page__tab {
 	& + & {
 		margin-left: 12px;
 	}
@@ -613,6 +613,10 @@ a.account__orders-buy-link:not(.btn) {
 	& + & {
 		margin-left: 12px;
 	}
+}
+
+.account-page__body-inner {
+	margin-top: 3em;
 }
 
 @media #{$large-and-down} {

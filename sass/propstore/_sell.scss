@@ -77,11 +77,9 @@
 
 .sell-cta__img-image {
 	width: 105%;
+	max-height: 400px;
+	object-fit: contain;
 	margin: 2.5em 0 0 -4em;
-
-	&.sell-cta__img-image--hat {
-		margin-top: 4em;
-	}
 }
 
 .sell-cta__img-info {
@@ -589,6 +587,7 @@
 	}
 
 	.sell-cta__img-image {
+		max-height: 200px;
 		margin-left: -1em;
 	}
 }
