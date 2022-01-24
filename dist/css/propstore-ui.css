@@ -13658,6 +13658,11 @@ a.card-auction:not(.btn):not(.btn-large):not(.btn-small):not(.btn-extra-small):b
   text-align: center;
 }
 
+.showing-results__search button {
+  opacity: 0;
+  pointer-events: none;
+}
+
 .cards__no-results {
   padding: 5em 0 2.5em;
   text-align: center;
