@@ -257,6 +257,13 @@ $main-link-height: 72px;
 			text-transform: none;
 			color: $color-base;
 		}
+
+		.icon {
+			width: 1rem;
+			height: 1rem;
+			margin: -.2rem 0 0 .2rem;
+			opacity: .3;
+		}
 	}
 }
 

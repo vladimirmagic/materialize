@@ -11026,6 +11026,13 @@ a.modal-bag__item:not(.btn):not(.btn-large):not(.btn-small):not(.btn-extra-small
   color: #2D2E41;
 }
 
+.sidenav__settings .collapsible-body .icon {
+  width: 1rem;
+  height: 1rem;
+  margin: -.2rem 0 0 .2rem;
+  opacity: .3;
+}
+
 .collapsible > li.active .icon--dropdown {
   -webkit-transform: rotate(180deg);
           transform: rotate(180deg);
