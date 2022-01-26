@@ -18088,6 +18088,11 @@ a.account__card:not(.btn):not(.btn-large):not(.btn-small):not(.btn-extra-small):
   margin-bottom: .6em;
 }
 
+.account__card-title .icon {
+  margin-left: .25rem;
+  opacity: .5;
+}
+
 .account__buttons {
   margin-top: 100px;
   text-align: center;

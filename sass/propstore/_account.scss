@@ -66,6 +66,11 @@ a.account__card:not(.btn) { // fix a
 
 .account__card-title {
 	margin-bottom: .6em;
+
+	.icon {
+		margin-left: .25rem;
+		opacity: .5;
+	}
 }
 
 .account__buttons {
