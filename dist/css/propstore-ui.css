@@ -20910,7 +20910,7 @@ body.forgot-password #wrapper {
           transform: none;
 }
 
-@media only screen and (max-width: 1600px) {
+@media only screen and (max-width: 1700px) {
   .auc-header .header__col.header__col--left, .auc-header .header__col.header__col--right {
     -webkit-flex-basis: 240px;
         -ms-flex-preferred-size: 240px;
@@ -20927,9 +20927,15 @@ body.forgot-password #wrapper {
   }
 }
 
-@media only screen and (max-width: 1300px) {
+@media only screen and (max-width: 1460px) {
   .auc-header__link-hide {
     display: none;
+  }
+  .header__col--center .header__burger {
+    display: inline-block;
+  }
+  .sidenav.auc-sidenav {
+    display: block;
   }
 }
 

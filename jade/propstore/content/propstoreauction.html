@@ -1597,9 +1597,18 @@ $(document).ready(function(){qcodoLoaded(10);});</script><script>
             </div>
             <div class="header__col header__col--center">
                 <nav class="header__menu">
+                    <a data-target="sidenav" class="header__burger sidenav-trigger waves-effect btn-flat btn--icon">
+                        <i class='icon'><svg><use xlink:href="#burger"></use></svg></i>    
+                    </a>
+                    
                     <a class="btn-flat header__menu-link" href="/auctions">
                         <span class="header__menu-link-handle">
                             All Auctions
+                        </span>
+                    </a>
+                    <a class="btn-flat header__menu-link" href="/my-items/bidding">
+                        <span class="header__menu-link-handle">
+                            My Lots
                         </span>
                     </a>
                     <a class="btn-flat header__menu-link auc-header__link-blank" href="https://new.propstore.com/account.action" target="_blank">
@@ -1608,13 +1617,13 @@ $(document).ready(function(){qcodoLoaded(10);});</script><script>
                             <i class='icon auc-header__icon-blank'><svg><use xlink:href="#target-blank"></use></svg></i>
                         </span>
                     </a>
-                    <a class="btn-flat header__menu-link auc-header__link-blank" href="https://new.propstore.com/auctions.action" target="_blank">
+                    <a class="btn-flat header__menu-link auc-header__link-blank auc-header__link-hide" href="https://new.propstore.com/auctions.action" target="_blank">
                         <span class="header__menu-link-handle">
                             About Auctions
                             <i class='icon auc-header__icon-blank'><svg><use xlink:href="#target-blank"></use></svg></i>
                         </span>
                     </a>
-                    <a class="btn-flat header__menu-link auc-header__link-blank auc-header__link-hide" href="https://new.propstore.com/products/?auctionType=-1&showSold=0" target="_blank">
+                    <a class="btn-flat header__menu-link auc-header__link-blank auc-header__link-hide" href="https://new.propstore.com/search.action?buyNow=2" target="_blank">
                         <span class="header__menu-link-handle">
                             Buy Now
                             <i class='icon auc-header__icon-blank'><svg><use xlink:href="#target-blank"></use></svg></i>
@@ -1647,6 +1656,8 @@ $(document).ready(function(){qcodoLoaded(10);});</script><script>
                 <div class="sidenav__links" tabindex="0">
                     <nav class="sidenav__menu">
                         <a class="waves-effect btn-flat sidenav__menu-link" href="/auctions">All Auctions</a>
+                        <a class="waves-effect btn-flat sidenav__menu-link" href="/my-items/bidding">My Lots</a>
+
                         <a class="waves-effect btn-flat sidenav__menu-link auc-header__link-blank" href="https://new.propstore.com/account.action" target="_blank">
                             My Account
                             <i class='icon auc-header__icon-blank'><svg><use xlink:href="#target-blank"></use></svg></i>
@@ -1655,7 +1666,7 @@ $(document).ready(function(){qcodoLoaded(10);});</script><script>
                             About Auctions
                             <i class='icon auc-header__icon-blank'><svg><use xlink:href="#target-blank"></use></svg></i>
                         </a>
-                        <a class="waves-effect btn-flat sidenav__menu-link auc-header__link-blank" href="https://new.propstore.com/products/?auctionType=-1&showSold=0" target="_blank">
+                        <a class="waves-effect btn-flat sidenav__menu-link auc-header__link-blank" href="https://new.propstore.com/search.action?buyNow=2" target="_blank">
                             Buy Now
                             <i class='icon auc-header__icon-blank'><svg><use xlink:href="#target-blank"></use></svg></i>
                         </a>
