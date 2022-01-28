@@ -10587,7 +10587,13 @@ a.modal-bag__item:not(.btn):not(.btn-large):not(.btn-small):not(.btn-extra-small
 }
 
 #dropdown-account {
-  min-width: 13em;
+  min-width: 14em;
+}
+
+#dropdown-account .icon {
+  float: none;
+  margin: -.2rem 0 0 .2rem;
+  opacity: .3;
 }
 
 @-webkit-keyframes animation-header-sticky-in {
@@ -11018,6 +11024,13 @@ a.modal-bag__item:not(.btn):not(.btn-large):not(.btn-small):not(.btn-extra-small
   font-weight: 400;
   text-transform: none;
   color: #2D2E41;
+}
+
+.sidenav__settings .collapsible-body .icon {
+  width: 1rem;
+  height: 1rem;
+  margin: -.2rem 0 0 .2rem;
+  opacity: .3;
 }
 
 .collapsible > li.active .icon--dropdown {
@@ -13658,6 +13671,11 @@ a.card-auction:not(.btn):not(.btn-large):not(.btn-small):not(.btn-extra-small):b
   text-align: center;
 }
 
+.showing-results__search button {
+  opacity: 0;
+  pointer-events: none;
+}
+
 .cards__no-results {
   padding: 5em 0 2.5em;
   text-align: center;
@@ -16189,6 +16207,11 @@ tbody .tr:last-child .td {
           box-shadow: 0px 8px 32px -10px rgba(0, 0, 0, 0.25);
 }
 
+.faq__collapsible li.faq__item--title {
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+
 .faq__collapsible li .faq__collapsible-header .icon {
   -webkit-transform: rotate(45deg);
           transform: rotate(45deg);
@@ -18076,6 +18099,11 @@ a.account__card:not(.btn):not(.btn-large):not(.btn-small):not(.btn-extra-small):
 
 .account__card-title {
   margin-bottom: .6em;
+}
+
+.account__card-title .icon {
+  margin-left: .25rem;
+  opacity: .5;
 }
 
 .account__buttons {
@@ -20905,7 +20933,7 @@ body.forgot-password #wrapper {
           transform: none;
 }
 
-@media only screen and (max-width: 1600px) {
+@media only screen and (max-width: 1700px) {
   .auc-header .header__col.header__col--left, .auc-header .header__col.header__col--right {
     -webkit-flex-basis: 240px;
         -ms-flex-preferred-size: 240px;
@@ -20922,9 +20950,15 @@ body.forgot-password #wrapper {
   }
 }
 
-@media only screen and (max-width: 1300px) {
+@media only screen and (max-width: 1460px) {
   .auc-header__link-hide {
     display: none;
+  }
+  .header__col--center .header__burger {
+    display: inline-block;
+  }
+  .sidenav.auc-sidenav {
+    display: block;
   }
 }
 

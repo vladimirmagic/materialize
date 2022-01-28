@@ -703,7 +703,13 @@ a.modal-bag__item:not(.btn) { // fix a
 }
 
 #dropdown-account {
-    min-width: 13em;
+    min-width: 14em;
+
+	.icon {
+		float: none;
+		margin: -.2rem 0 0 .2rem;
+		opacity: .3;
+	}
 }
 
 @keyframes animation-header-sticky-in {

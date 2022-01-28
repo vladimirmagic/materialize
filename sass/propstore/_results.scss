@@ -25,6 +25,11 @@
 		font-weight: 300;
 		text-align: center;
 	}
+
+	button {
+		opacity: 0;
+		pointer-events: none;
+	}
 }
 
 .cards__no-results {

@@ -52,7 +52,7 @@
 	}
 }
 
-@media only screen and (max-width: 1600px) {
+@media only screen and (max-width: 1700px) {
 	.auc-header {
 		.header__col {
 			&.header__col--left,
@@ -77,9 +77,17 @@
 	}
 }
 
-@media only screen and (max-width: 1300px) {
+@media only screen and (max-width: 1460px) {
 	.auc-header__link-hide {
 		display: none;
+	}
+
+	.header__col--center .header__burger {
+        display: inline-block;
+    }
+
+	.sidenav.auc-sidenav {
+		display: block;
 	}
 }
 
