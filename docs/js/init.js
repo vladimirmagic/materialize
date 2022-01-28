@@ -2320,7 +2320,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     if (style.includes('cutbottom')) $(el).addClass('cutbottom');
                     if (style.includes('fullheight')) $(el).addClass('fullheight');
                 });
-            }, 500);
+            }, 100);
         }
 
     }); // end of document ready
