@@ -152,6 +152,11 @@
     max-width: 100%;
 }
 
+.page-template-template-experts .footer-actions {
+    padding-top: 0;
+    background: linear-gradient(to bottom, $color-bg 0%, $color-bg 66%, #fff 66%);
+}
+
 @media #{$large-and-down} {
     .wp {
         h1 {

@@ -21,6 +21,7 @@
 }
 
 .experts__inner--paragraph {
+    @extend .c-r;
     font-weight: 300;
 }
 
