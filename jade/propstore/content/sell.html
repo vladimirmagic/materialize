@@ -241,9 +241,9 @@ Once your item sells through either Auction or Buy-Now, we will provide you with
                 <div class="sell-offer__title h2">
                     Industry Leading Sale Prices
                 </div>
-                <div class="sell-cta sell-cta--offer">
+                <div class="sell-cta sell-cta--offer" id="sell-template">
                     <div class="sell-cta__img">
-                        <img class="sell-cta__img-image" src="https://s3-eu-west-1.amazonaws.com/content-test.propstore.com/record-selling/71709.png">
+                        <div class="sell-cta__img-image"></div>
                         <div class="sell-cta__img-info">
                             <div class="sell-cta__img-title">
                                 Sold for
@@ -252,37 +252,8 @@ Once your item sells through either Auction or Buy-Now, we will provide you with
                                 £393,600
                             </div>
                             <div class="sell-cta__img-price1 p-t">
-                                Approx. $522k
-                            </div>
-                        </div>
-                    </div>
-                    <div class="sell-cta__info">
-                        <div class="sell-cta__info-inner">
-                            <div class="sell-cta__title h2">
-                                Marty McFly's (Michael J. Fox) Hoverboard
-                            </div>
-                            <div class="sell-cta__text p-r">
-                                Entertainment Memorabilia Live Auction: London 2018
-                            </div>
-                            <a class="waves-effect waves-light btn">
-                                <span class='btn__title'>Learn more</span>
-                                <i class='icon'><svg><use xlink:href="#arrow-right"></use></svg></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="sell-cta sell-cta--offer">
-                    <div class="sell-cta__img">
-                        <img class="sell-cta__img-image" src="images/indie-hat.png">
-                        <div class="sell-cta__img-info">
-                            <div class="sell-cta__img-title">
-                                Sold for
-                            </div>
-                            <div class="sell-cta__img-price h4">
-                                £393,600
-                            </div>
-                            <div class="sell-cta__img-price1 p-t">
-                                Approx. $522k
+                                Approx. $522k<br/>
+                                Incl. Buyer&rsquo;s Premium
                             </div>
                         </div>
                     </div>
@@ -580,3 +551,122 @@ Once your item sells through either Auction or Buy-Now, we will provide you with
         </div>
     </div>
 </div>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    $(function() {
+        const images = [
+            'images/topselling/100176_Holy-Hand-Grenade-of-Antioch_5_reflection.png',
+            'images/topselling/101660_Light-up_Remote_Control_R2-BHD_Droid_21_copy.png',
+            'images/topselling/101661_Light-up_Remote_Control_R2-X2_Droid_2.png',
+            'images/topselling/101669_Jack_Torrance_s_Jack_Nicholson_Hero_Axe_1-2-reflection.png',
+            'images/topselling/101823_Mace_Windu_Samuel_L._Jackson_Lightsaber_1_copy.png',
+            'images/topselling/103275_Lot_%23_148_-___Matt_Murdock_s_Red_Daredevil_Costume_1cutbottom.png',
+            'images/topselling/104718_Rick_Baker_SFX__change-o__Werewolf_Transformation_Head.png',
+            'images/topselling/106321_Ralph-McQuarrie--Painting-of-Vader-Arriving-on-Death-Star_1.png',
+            'images/topselling/106677_Batman_s_Michael_Keaton_Complete_Batsuit_1_copycutbottom.png',
+            'images/topselling/108191_Giger-Chairfullheight.png',
+            'images/topselling/110742_Radio-Controlled_Hero_Ghost_Trap_and_Pedal_1.png',
+            'images/topselling/112244_R2-S8_Remote_Control_Droid_1.png',
+            'images/topselling/112693_Marty_McFly_s_Light-Up_2015_Nike_MAGs_1.png',
+            'images/topselling/114694_Maximus__Russell_Crowe_Screen-Matched_Roman_General_Armor_2_copycutbottom.png',
+            'images/topselling/116387_Obi_Wan_Ewan_McGregor_Fighting_Lightsaber_1.png',
+            'images/topselling/116791_Conan_s_Arnold_Schwarzenegger_Atlantean_Sword_and_4_Behind_the_Scenes_Photos_1.png',
+            'images/topselling/123307_Rocket_Firing_Boba_Fett_1.png',
+            'images/topselling/124353_Top_Gun_Maverick_Pilot_Helmet_1fullheight.png',
+            'images/topselling/124357_Screen-Matched_Blank-Firing_Colt_Walker_Revolver_1.png',
+            'images/topselling/125358_Staff_of_Ra_Headpiece_1.png',
+            'images/topselling/125427_StarTrekTheWrathOfKhan-USSReliantModelMiniature.png',
+            'images/topselling/125687_Obi-Wan_Kenobi_Ewan_McGregor_Lightsaber_16.png',
+            'images/topselling/125689_AlienHead1.png',
+            'images/topselling/126507_Jumanji_Board_with_Four_Play_Pieces_2.png',
+            'images/topselling/126943_V_s_Stunt_Costume_1cutbottom.png',
+            'images/topselling/126944_Sergeant_Apones_Colonial_Marine_Armor_Costume_1cutbottom.png',
+            'images/topselling/126945_14-scale_Queen_Model_Miniature_Puppet_3.png',
+            'images/topselling/127029_1977_Darth_Vader_Promotional_Touring_Costume_1cutbottom.png',
+            'images/topselling/127237_Blue_Karman_Ghia_2.png',
+            'images/topselling/127274_Duros_Mask_1.png',
+            'images/topselling/127528_Practical_Flamethrower_Unit_2.png',
+            'images/topselling/127782_Hero_Book_of_the_Dead_1.png',
+            'images/topselling/128908_Hero_Dagger_of_Megiddo.png',
+            'images/topselling/128934_Han_s_Shih_Kien_Knife_Hand_3.png',
+            'images/topselling/131121_Stormtrooper_Blaster_ROTJ.png',
+            'images/topselling/131217_John_Rambo_s_Sylvester_Stallone_Knife_Made_by_Jimmy_Lile_1.png',
+            'images/topselling/131249_Jean-Luc_Picard_s_Patrick_Stewart_Ressikan_Flute.png',
+            'images/topselling/132087_WillyWonka&The_ChocolateFactory-GoldenTicket.png',
+            'images/topselling/133204_Amanda_Young_s_Shawnee_Smith_Reverse_Bear_Trap_1.png',
+            'images/topselling/133548_Jeannie_Bottle_1fullheight.png',
+            'images/topselling/133559_Jason_Voorhees__Kane_Hodder_Hockey_Mask_1.png',
+            'images/topselling/134137_Eddie_Valiant_Case_and_Toon_Pistol_1.png',
+            'images/topselling/134227_Statler_and_Waldorf_puppets_1.png',
+            'images/topselling/134709_M-41A_Pulse_Rifle_1.png',
+            'images/topselling/134767_Gray_s_Sports_Almanac_2.png',
+            'images/topselling/134967_Harry_Potter_s_Daniel_Radcliffe_Wand_1.png',
+            'images/topselling/134968_Harry_Potter_s_Eyeglasses_1.png',
+            'images/topselling/135806_Indiana_Jones__Harrison_Ford_Signature_Fedora_27.png',
+            'images/topselling/43253_LastSamurai-KatsumotoArmourcutbottom.png',
+            'images/topselling/46274_StarWars-TieFighterHelmet.png',
+            'images/topselling/49449_Star_Wars_ESB_Storm_Trooper_Helmet.png',
+            'images/topselling/54811_Star_Wars_ESB_X_Wing_Model.png',
+            'images/topselling/55354_Terminator_3-_TX_Endo_Skeleton_1cutbottom.png',
+            'images/topselling/59055_Jaws-Clapperboard1.png',
+            'images/topselling/61554_Star_Wars_NH_Technorama_Camera_1fullheight.png',
+            'images/topselling/66942_DarkKnightRises-BaneCostume_-_med_qualitycutbottom.png',
+            'images/topselling/66943_Batman_s_Christian_Bale_Batsuit_and_Cowlcutbottom.png',
+            'images/topselling/66944_Batman-_DKR-_Batpod_Vehicle2.png',
+            'images/topselling/66950_EdgeOfTomorrow-EmilyBluntSword.png',
+            'images/topselling/68081_Maximus__Russell_Crowe_Hero_Cavalry_Sword.png',
+            'images/topselling/69188_Star-Lord-Chris-Pratt-Hero-Helmet_1.png',
+            'images/topselling/69330_jacket.png',
+            'images/topselling/70705_-_ILM_Y-Wing.png',
+            'images/topselling/71695_alien_creaturecutbottom.png',
+            'images/topselling/71709_predator_full_costumecutbottom.png',
+            'images/topselling/72337_Merlin_s_Nicol_Williamson_Costume_and_Helmet_2cutbottom.png',
+            'images/topselling/72721_Darth-Vader-Promotional-Tour-Helmet_1-.png',
+            'images/topselling/73460_Indiana_Jones__Harrison_Ford_Bullwhip_1.png',
+            'images/topselling/73930_Sark_s_David_Warner_Grid_Costumecutbottom.png',
+            'images/topselling/73933_Back_to_the_Future_Police_Car_1.png',
+            'images/topselling/73963_Mjolnir---The-Hammer-of-Thor_1.png',
+            'images/topselling/74481_The-Joker-Jack-Nicholson-Costume-%232_1cutbottom.png',
+            'images/topselling/79239_Aliens-_Apone_Armourcutbottom.png',
+            'images/topselling/79633_Dredd-CompleteCostumeDisplaycutbottom.png',
+            'images/topselling/79820_Anakin-Skywalker_s-Hayden-Christensen-Hero-Lightsaber_1.png',
+            'images/topselling/79821_Supreme_Chancellor_Palpatine_s_Ian_McDiarmid_Hero_Lightsaber_1_copy.png',
+            'images/topselling/81039_Spock_s-Leonard-Nimoy-Science-Officer-Costume_4cutbottom.png',
+            'images/topselling/83024_Gladiator-JoaquinCostumecutbottom.png',
+            'images/topselling/83154_Gladiator-RussellCroweShield.png',
+            'images/topselling/84950_Neo_Keanu_Reeves_Complete_Costumecutbottom.png',
+            'images/topselling/86923_StarTrekFirstContact-WarfSpacesuitcutbottom.png',
+            'images/topselling/87375_King_Llane_Battle_Armour_03_1fullheight.png',
+            'images/topselling/90516_Edward-Scissorhands_-Johnny-Depp-Costume-Display_1--copycutbottom.png',
+            'images/topselling/90526_Indiana-Jones_-Harrison-Ford-Fedora_3-copy.png',
+            'images/topselling/90533_Superman_Christopher_Reeve_Costumecutbottom.png',
+            'images/topselling/90536_T-800_Endoskeleton_1cutbottom.png',
+            'images/topselling/90967_Gladiator-TigrisOfGaulGaulHelmet1.png',
+            'images/topselling/91110_Steve_Ditko_Hand-Drawn_Page_15_Artwork_1.png',
+            'images/topselling/91952_Wolverine_Costume_1cutbottom.png',
+            'images/topselling/92630_Mark_Watney_s_Matt_Damon_EVA_Space_Suitcutbottom.png',
+            'images/topselling/93577_Klingon_Disruptor_1.png',
+            'images/topselling/93687_First_Order_Stormtrooper_Helmet.png',
+            'images/topselling/94510_Jack_Sparrow_s_Johnny_Depp_Complete_Pirate_Costume_Displaycutbottom.png',
+            'images/topselling/99302_John_Hammond_s_Richard_Attenborough_Prototype_Cane_1fullheight.png',
+            'images/topselling/99340_Tantive_IV_Stormtrooper_Helmet_1.png',
+            'images/topselling/99828_Luke_Skywalker_s_Mark_Hamill_Lightsaber_1.png',
+            'images/topselling/Orange_Cloud_Ship-Web.png',
+        ];
+
+        const $template = $('#sell-template');
+        $template.removeAttr('id');
+        const $inner = $('.sell__inner');
+
+        images.forEach(img => {
+            for (let i = 0; i < 2; i++) {
+                const $item = $template.clone();
+                $item.find('.sell-cta__img-image').attr('style', 'background-image:url(' + img + ')');
+                $inner.append($item);
+            }
+        });
+        $template.hide();
+    });
+});
+</script>

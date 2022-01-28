@@ -2311,6 +2311,18 @@ document.addEventListener('DOMContentLoaded', () => {
             setTimeout(() => SSOwin.close(), 1000);
         }
 
+        // SELL-CTA
+        if ($('.sell-cta').length) {
+            setTimeout(() => {
+                $('.sell-cta').each((i, el) => {
+                    const $image = $(el).find('.sell-cta__img-image');
+                    const style = $image.attr('style') || '';
+                    if (style.includes('cutbottom')) $(el).addClass('cutbottom');
+                    if (style.includes('fullheight')) $(el).addClass('fullheight');
+                });
+            }, 500);
+        }
+
     }); // end of document ready
 });
 

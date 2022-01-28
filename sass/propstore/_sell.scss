@@ -62,6 +62,7 @@
 }
 
 .sell-cta__img {
+	position: relative;
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
@@ -73,19 +74,52 @@
 	background-size: cover;
 	background-repeat: no-repeat;
 	border-bottom-left-radius: 140px;
+
+	.cutbottom &,
+	.fullheight & {
+		justify-content: flex-end;
+	}
 }
 
 .sell-cta__img-image {
 	width: 105%;
+	height: 100%;
 	max-height: 400px;
-	object-fit: contain;
-	margin: 2.5em 0 0 -4em;
+	margin-top: -2em;
+	margin-left: -4em;
+	background-size: contain;
+	background-position-x: 50%;
+	background-position-y: 70%;
+	background-repeat: no-repeat;
+
+	.cutbottom & {
+		position: absolute;
+		margin-top: 1em;
+		max-height: calc(100% - 1em);
+		background-position-x: 100%;
+		background-position-y: 100%;
+		
+	}
+
+	.fullheight & {
+		position: absolute;
+		margin-top: 1em;
+		margin-bottom: 1em;
+		max-height: calc(100% - 2em);
+		background-position-y: 100%;
+	}
 }
 
 .sell-cta__img-info {
+	position: relative;
 	padding: 1em 2.5em 2em 0;
 	text-align: right;
 	line-height: 1;
+
+	.cutbottom & {
+		border-bottom-left-radius: 140px;
+		background: linear-gradient(to top, $primary-color, rgba(0,0,0,0));
+	}
 }
 
 .sell-cta__img-title {
@@ -457,12 +491,23 @@
 				border-bottom-right-radius: 140px;
 			}
 			.sell-cta__img-image {
-				margin: 4em 0 2em 2em;
+				margin-left: 4em;
 			}
 			
 			.sell-cta__img-info {
 				padding: 1em 0 2em 2.5em;
 				text-align: left;
+			}
+		}
+
+		&.cutbottom:nth-child(odd) {
+			.sell-cta__img-image {
+				margin-left: 4em;
+				background-position-x: 0%;	
+			}
+			.sell-cta__img-info {
+				border-bottom-left-radius: 0;
+				border-bottom-right-radius: 140px;
 			}
 		}
 	}
@@ -483,6 +528,11 @@
 	.sell-cta__img-info {
 		padding-right: 2em;
 		padding-bottom: 1em;
+
+		.cutbottom & {
+			border-bottom-left-radius: 0;
+			border-top-left-radius: 100px;
+		}
 	}
 
 	.sell-cta__info {
@@ -548,6 +598,13 @@
 			margin: 1.5rem 0 0 0;
 		}
 	}
+
+	.sell-cta__img-image {
+		min-height: 200px;
+		max-height: 200px;
+		margin-top: -1em;
+		margin-left: -1em;
+	}
 }
 
 @media #{$small-and-down} {
@@ -584,10 +641,5 @@
 
 	.sell-cta__info {
 		padding-bottom: 2.5em;
-	}
-
-	.sell-cta__img-image {
-		max-height: 200px;
-		margin-left: -1em;
 	}
 }
