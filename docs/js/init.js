@@ -1126,10 +1126,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 filter();
             });
 
-            $('#auctionType').on('change', function () {
-                filter();
-            });
-
             $('#sortTypeList').on('change', function () {
                 filter();
             });
@@ -1169,17 +1165,22 @@ document.addEventListener('DOMContentLoaded', () => {
             if ($tabs.length) {
                 $tabs.on('click', function (e) {
                     e.preventDefault();
-                    if ($(this).attr('data-showsold')) {
-                        $('#showSold').val($(this).data('showsold'));
+                    if ($(this).attr('data-archive')) {
+                        $('#filterForm').find('#archive').val($(this).data('archive'));
                     } else {
-                        $(this).toggleClass('active');
-                        $active = $('.filters__tab.active[data-auctiontype]');
-                        if ($active.length) {
-                            const val = $active.length === 1 ? $active.data('auctiontype') : 0;
-                            $('#auctionType').val(val);
-                        } else {
-                            $('#auctionType').val(0);
-                            $('#categoryId').val(-2);
+                        if ($(this).attr('data-auction')) {
+                            $('#filterForm').find('#auction').val($(this).data('auction'));
+                        } else if ($(this).attr('data-buynow')) {
+                            $('#filterForm').find('#buyNow').val($(this).data('buynow'));
+                        }
+                        if ($('#filterForm').find('#auction').val() < 1 && $('#filterForm').find('#buyNow').val() < 1) {
+                            if ($('#filterForm').find('#archive').val() < 1) {
+                                $('#filterForm').find('#auction').val(1);
+                                $('#filterForm').find('#buyNow').val(1);
+                                $('#filterForm').find('#archive').val(1);
+                            } else {
+                                $('#filterForm').find('#archive').val(2);
+                            }
                         }
                     }
                     filterNow();
@@ -1193,13 +1194,17 @@ document.addEventListener('DOMContentLoaded', () => {
             if ($('.filters__found-plus').length) {
                 setTimeout(() => { // wait header ajax
                     const $formClone = $('#filterForm').clone();
-                    const $formCloneAuctionType = $formClone.find('#auctionType');
-                    const $formCloneShowSold = $formClone.find('#showSold');
-                    const $formCloneCategoryId = $formClone.find('#categoryId');
-                    if ($formCloneAuctionType.val() != 0 || $formCloneShowSold.val() == 0 || $formCloneCategoryId.val() == -2) {
-                        $formCloneAuctionType.val(0);
-                        $formCloneShowSold.val(1);
-                        if ($formCloneCategoryId.val() == -2) $formCloneCategoryId.val(0)
+                    const $formCloneAuction = $formClone.find('#auction');
+                    const $formCloneBuyNow = $formClone.find('#buyNow');
+                    const $formCloneArchive = $formClone.find('#archive');
+                    const $formCloneRecordSelling = $formClone.find('#recordSelling');
+                    if ($formCloneRecordSelling.val() > 1) {
+                        $formCloneRecordSelling.val(0);
+                        $('.filters__found-in').text('in ' + $('.filters__tab[data-archive]').text());
+                    } else if ($formCloneAuction.val() < 1 || $formCloneBuyNow.val() < 1 || $formCloneArchive.val() < 1) {
+                        $formCloneAuction.val(1);
+                        $formCloneBuyNow.val(1);
+                        $formCloneArchive.val(1);
                         const more = [];
                         $('.filters__tab:not(.active)').each(function() {
                             more.push($(this).text());
