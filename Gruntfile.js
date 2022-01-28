@@ -391,6 +391,7 @@
             'gift-vouchers.html': 'jade/propstore/gift-vouchers.jade',
             'voucher.html': 'jade/propstore/voucher.jade',
             'signin.html': 'jade/propstore/signin.jade',
+            'our-experts.html': 'jade/propstore/our-experts.jade',
             'propstoreauction.html': 'jade/propstore/propstoreauction.jade',
             'propstoreauction-product.html': 'jade/propstore/propstoreauction-product.jade',
             'propstoreauction-catalog.html': 'jade/propstore/propstoreauction-catalog.jade',

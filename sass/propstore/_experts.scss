@@ -1,0 +1,136 @@
+.experts {
+	@extend .content;
+    padding: 0;
+	text-align: center;
+    &.experts--grey {
+        background: $color-bg;
+    }
+
+	.h1 {
+		margin-bottom: .7em;
+	}
+}
+
+.experts__inner {
+    position: relative;
+	max-width: $w65;
+	margin: 0 auto;
+    &.experts__inner--narrow {
+        max-width: 36em;
+    }
+}
+
+.experts__inner--paragraph {
+    font-weight: 300;
+}
+
+.experts__cards {
+    padding: 100px 0 72px 0;
+}
+
+.expert {
+	position: relative;
+	display: flex;
+	width: 100%;
+	min-width: 100%;
+	min-height: $card-height-xxs -  $card-margin-m * 3;
+    margin-bottom: 2em;
+	text-align: left;
+    background: #ffffff;
+	box-shadow: $shadow-base;
+	border-radius: 6px;
+}
+
+.expert__img {
+	position: relative;
+    width: $card-height-xxxs;
+    min-width: $card-height-xxxs;
+	height: $card-height-xxxs;
+	background-position: 50% 50%;
+	background-size: contain;
+	background-repeat: no-repeat;
+	background-color: color("grey", "lighten-1");
+	border-top-left-radius: 6px;
+}
+
+.expert__description {
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+	align-items: flex-start;
+    width: calc(100% - #{$card-height-xxxs});
+	min-height: $card-height-xxs -  $card-margin-m * 3;
+    padding: 1.5em;
+}
+
+.expert__title {
+	font-size: 28px;
+    font-weight: 400;
+	line-height: 1.4;
+}
+
+@media #{$breakpoint-4cards} {
+	.experts {
+		padding-top: 0;
+		padding-bottom: 0px;
+	}
+
+    .expert__img {
+        width: $card-width-s;
+        min-width: $card-width-s;
+        height: $card-width-s;
+        min-height: $card-width-s;
+    }
+
+    .expert__description {
+        width: calc(100% - #{$card-width-s});
+        min-height: $card-height-xxs - $card-width-s;
+        flex-direction: column;
+        padding: 20px;
+    }
+
+    .expert__title {
+        font-size: 18px;
+    }
+}
+
+@media #{$large-and-down} {
+
+    .experts__inner {
+		padding-left: 24px;
+		padding-right: 24px;
+    }
+
+}
+
+@media #{$medium-and-down} {
+    .experts__inner {
+		padding-left: 24px;
+		padding-right: 24px;
+        &.experts__inner--extra-gaps {
+            margin: 4em auto;
+        }
+    }
+	.experts {
+		.experts__cards {
+            padding-top: 32px;
+		}
+	}
+}
+
+@media #{$small-and-down} {
+    .expert {
+        flex-direction: column;
+        .expert__img {
+            width: 100%;
+            min-width: 100%;
+            height: $card-width-s;
+            min-height: $card-width-s;
+        }
+
+        .expert__description {
+            width: 100%;
+            padding: 16px;
+        }
+    }
+}
