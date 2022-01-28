@@ -9446,7 +9446,7 @@ main {
           flex: 1 1 100%;
 }
 
-.content, .general, .header__main, .header__menu-level1-inner, .header__menu-level1--sell .header__menu-level1-inner, .footer__inner, .hero, .filters, .header__filters .filters__body, .showing-results, .related-movies, .modal-shipping-quote-page main, .how, .whatsnew__text, .section-auctions, .faq, .account__orders, .account__coa, .payment-plans, .sell__inner, .vouchers, .auccatalog__nav, .auc-info__inner, .auc-info__video, .aucpage__content {
+.content, .general, .header__main, .header__menu-level1-inner, .header__menu-level1--sell .header__menu-level1-inner, .footer__inner, .hero, .filters, .header__filters .filters__body, .showing-results, .related-movies, .modal-shipping-quote-page main, .how, .whatsnew__text, .section-auctions, .faq, .account__orders, .account__coa, .payment-plans, .sell__inner, .vouchers, .experts, .auccatalog__nav, .auc-info__inner, .auc-info__video, .aucpage__content {
   padding-left: 60px;
   padding-right: 60px;
 }
@@ -9619,21 +9619,21 @@ hr.small {
 }
 
 @media only screen and (min-width: 1921px) {
-  .content, .general, .header__main, .header__menu-level1-inner, .header__menu-level1--sell .header__menu-level1-inner, .footer__inner, .hero, .filters, .header__filters .filters__body, .showing-results, .related-movies, .modal-shipping-quote-page main, .how, .whatsnew__text, .section-auctions, .faq, .account__orders, .account__coa, .payment-plans, .sell__inner, .vouchers, .auccatalog__nav, .auc-info__inner, .auc-info__video, .aucpage__content {
+  .content, .general, .header__main, .header__menu-level1-inner, .header__menu-level1--sell .header__menu-level1-inner, .footer__inner, .hero, .filters, .header__filters .filters__body, .showing-results, .related-movies, .modal-shipping-quote-page main, .how, .whatsnew__text, .section-auctions, .faq, .account__orders, .account__coa, .payment-plans, .sell__inner, .vouchers, .experts, .auccatalog__nav, .auc-info__inner, .auc-info__video, .aucpage__content {
     padding-left: calc(50% - 900px);
     padding-right: calc(50% - 900px);
   }
 }
 
 @media only screen and (max-width: 1200px) {
-  .content, .general, .header__main, .header__menu-level1-inner, .header__menu-level1--sell .header__menu-level1-inner, .footer__inner, .hero, .filters, .header__filters .filters__body, .showing-results, .related-movies, .modal-shipping-quote-page main, .how, .whatsnew__text, .section-auctions, .faq, .account__orders, .account__coa, .payment-plans, .sell__inner, .vouchers, .auccatalog__nav, .auc-info__inner, .auc-info__video, .aucpage__content {
+  .content, .general, .header__main, .header__menu-level1-inner, .header__menu-level1--sell .header__menu-level1-inner, .footer__inner, .hero, .filters, .header__filters .filters__body, .showing-results, .related-movies, .modal-shipping-quote-page main, .how, .whatsnew__text, .section-auctions, .faq, .account__orders, .account__coa, .payment-plans, .sell__inner, .vouchers, .experts, .auccatalog__nav, .auc-info__inner, .auc-info__video, .aucpage__content {
     padding-left: 40px;
     padding-right: 40px;
   }
 }
 
 @media only screen and (max-width: 600px) {
-  .content, .general, .header__main, .header__menu-level1-inner, .header__menu-level1--sell .header__menu-level1-inner, .footer__inner, .hero, .filters, .header__filters .filters__body, .showing-results, .related-movies, .modal-shipping-quote-page main, .how, .whatsnew__text, .section-auctions, .faq, .account__orders, .account__coa, .payment-plans, .sell__inner, .vouchers, .auccatalog__nav, .auc-info__inner, .auc-info__video, .aucpage__content {
+  .content, .general, .header__main, .header__menu-level1-inner, .header__menu-level1--sell .header__menu-level1-inner, .footer__inner, .hero, .filters, .header__filters .filters__body, .showing-results, .related-movies, .modal-shipping-quote-page main, .how, .whatsnew__text, .section-auctions, .faq, .account__orders, .account__coa, .payment-plans, .sell__inner, .vouchers, .experts, .auccatalog__nav, .auc-info__inner, .auc-info__video, .aucpage__content {
     padding-left: 24px;
     padding-right: 24px;
   }
@@ -9713,7 +9713,7 @@ hr.small {
   line-height: 1.5;
 }
 
-.c-r, .faq-section__collapsible-header, .auction-registration__more-h, .form-section__label {
+.c-r, .faq-section__collapsible-header, .experts__inner--paragraph, .auction-registration__more-h, .form-section__label {
   margin-bottom: 1em;
   font-size: 20px;
   font-weight: 500;
@@ -9758,7 +9758,7 @@ hr.small {
   .p-s {
     font-size: 14px;
   }
-  .c-r, .faq-section__collapsible-header, .auction-registration__more-h, .form-section__label {
+  .c-r, .faq-section__collapsible-header, .experts__inner--paragraph, .auction-registration__more-h, .form-section__label {
     font-size: 16px;
   }
 }
@@ -11257,7 +11257,8 @@ a.modal-bag__item:not(.btn):not(.btn-large):not(.btn-small):not(.btn-extra-small
 }
 
 .auctions .footer-actions,
-.home .footer-actions {
+.home .footer-actions,
+.experts .footer-actions {
   padding-top: 0;
   background: -webkit-gradient(linear, left top, left bottom, from(#F4F4F4), color-stop(66%, #F4F4F4), color-stop(66%, #fff));
   background: linear-gradient(to bottom, #F4F4F4 0%, #F4F4F4 66%, #fff 66%);
@@ -14602,7 +14603,7 @@ a.product__certificate:not(.btn):not(.btn-large):not(.btn-small):not(.btn-extra-
   border-top: 1px solid #c7c7c7;
 }
 
-.modal-shipping-quote__note .c-r, .modal-shipping-quote__note .faq-section__collapsible-header, .modal-shipping-quote__note .auction-registration__more-h, .modal-shipping-quote__note .form-section__label {
+.modal-shipping-quote__note .c-r, .modal-shipping-quote__note .faq-section__collapsible-header, .modal-shipping-quote__note .experts__inner--paragraph, .modal-shipping-quote__note .auction-registration__more-h, .modal-shipping-quote__note .form-section__label {
   margin-bottom: .5em;
 }
 
@@ -20159,6 +20160,161 @@ a.voucher:not(.btn):not(.btn-large):not(.btn-small):not(.btn-extra-small):before
   }
 }
 
+.experts {
+  padding: 0;
+  text-align: center;
+}
+
+.experts.experts--grey {
+  background: #F4F4F4;
+}
+
+.experts .h1 {
+  margin-bottom: .7em;
+}
+
+.experts__inner {
+  position: relative;
+  max-width: 65rem;
+  margin: 0 auto;
+}
+
+.experts__inner.experts__inner--narrow {
+  max-width: 36em;
+}
+
+.experts__inner--paragraph {
+  font-weight: 300;
+}
+
+.experts__cards {
+  padding: 100px 0 72px 0;
+}
+
+.expert {
+  position: relative;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  width: 100%;
+  min-width: 100%;
+  min-height: 336px;
+  margin-bottom: 2em;
+  text-align: left;
+  background: #ffffff;
+  -webkit-box-shadow: 0px 8px 32px -10px rgba(0, 0, 0, 0.15);
+          box-shadow: 0px 8px 32px -10px rgba(0, 0, 0, 0.15);
+  border-radius: 6px;
+}
+
+.expert__img {
+  position: relative;
+  width: 204px;
+  min-width: 204px;
+  height: 204px;
+  background-position: 50% 50%;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-color: #bdbdbd;
+  border-top-left-radius: 6px;
+}
+
+.expert__description {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: start;
+  -webkit-justify-content: flex-start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  -webkit-box-align: start;
+  -webkit-align-items: flex-start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  width: calc(100% - 204px);
+  min-height: 336px;
+  padding: 1.5em;
+}
+
+.expert__title {
+  font-size: 28px;
+  font-weight: 400;
+  line-height: 1.4;
+}
+
+@media only screen and (max-width: 1636px) {
+  .experts {
+    padding-top: 0;
+    padding-bottom: 0px;
+  }
+  .expert__img {
+    width: 176px;
+    min-width: 176px;
+    height: 176px;
+    min-height: 176px;
+  }
+  .expert__description {
+    width: calc(100% - 176px);
+    min-height: 224px;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: column;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    padding: 20px;
+  }
+  .expert__title {
+    font-size: 18px;
+  }
+}
+
+@media only screen and (max-width: 1200px) {
+  .experts__inner {
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+}
+
+@media only screen and (max-width: 992px) {
+  .experts__inner {
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+  .experts__inner.experts__inner--extra-gaps {
+    margin: 4em auto;
+  }
+  .experts .experts__cards {
+    padding-top: 32px;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .expert {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: column;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+  .expert .expert__img {
+    width: 100%;
+    min-width: 100%;
+    height: 176px;
+    min-height: 176px;
+  }
+  .expert .expert__description {
+    width: 100%;
+    padding: 16px;
+  }
+}
+
 .modal-signin-page .modal-auction-register-form,
 .modal-register-page .modal-auction-register-form,
 .modal-password-page .modal-auction-register-form {
@@ -20625,7 +20781,7 @@ a.voucher:not(.btn):not(.btn-large):not(.btn-small):not(.btn-extra-small):before
   line-height: 1.5;
 }
 
-.wp p.c-r, .wp p.faq-section__collapsible-header, .wp p.auction-registration__more-h, .wp p.form-section__label {
+.wp p.c-r, .wp p.faq-section__collapsible-header, .wp p.experts__inner--paragraph, .wp p.auction-registration__more-h, .wp p.form-section__label {
   margin-bottom: 1em;
   font-size: 20px;
   font-weight: 500;
@@ -20706,6 +20862,12 @@ a.voucher:not(.btn):not(.btn-large):not(.btn-small):not(.btn-extra-small):before
   max-width: 100%;
 }
 
+.page-template-template-experts .footer-actions {
+  padding-top: 0;
+  background: -webkit-gradient(linear, left top, left bottom, from(#F4F4F4), color-stop(66%, #F4F4F4), color-stop(66%, #fff));
+  background: linear-gradient(to bottom, #F4F4F4 0%, #F4F4F4 66%, #fff 66%);
+}
+
 @media only screen and (max-width: 1200px) {
   .wp h1 {
     font-size: 44px;
@@ -20740,7 +20902,7 @@ a.voucher:not(.btn):not(.btn-large):not(.btn-small):not(.btn-extra-small):before
   .wp p.p-s {
     font-size: 14px;
   }
-  .wp p.c-r, .wp p.faq-section__collapsible-header, .wp p.auction-registration__more-h, .wp p.form-section__label {
+  .wp p.c-r, .wp p.faq-section__collapsible-header, .wp p.experts__inner--paragraph, .wp p.auction-registration__more-h, .wp p.form-section__label {
     font-size: 16px;
   }
 }

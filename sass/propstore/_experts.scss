@@ -34,7 +34,7 @@
 	display: flex;
 	width: 100%;
 	min-width: 100%;
-	min-height: $card-height-xxs -  $card-margin-m * 3;
+	min-height: $card-height-xxs -  $card-margin-m * 4;
     margin-bottom: 2em;
 	text-align: left;
     background: #ffffff;
@@ -60,7 +60,7 @@
 	justify-content: flex-start;
 	align-items: flex-start;
     width: calc(100% - #{$card-height-xxxs});
-	min-height: $card-height-xxs -  $card-margin-m * 3;
+	min-height: $card-height-xxs -  $card-margin-m * 4;
     padding: 1.5em;
 }
 
