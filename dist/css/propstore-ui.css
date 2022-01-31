@@ -19150,6 +19150,10 @@ a.account__orders-buy-link:not(.btn):not(.btn-large):not(.btn-small):not(.btn-ex
   border-bottom-left-radius: 140px;
 }
 
+.sell-cta__img .cutbottom:not(.cutbottomwide) {
+  overflow: hidden;
+}
+
 .sell-cta__img-image {
   position: absolute;
   width: 520px;
@@ -19162,8 +19166,7 @@ a.account__orders-buy-link:not(.btn):not(.btn-large):not(.btn-small):not(.btn-ex
   background-repeat: no-repeat;
 }
 
-.cutbottom .sell-cta__img-image,
-.fullheight .sell-cta__img-image {
+.cutbottom .sell-cta__img-image {
   bottom: 0;
 }
 

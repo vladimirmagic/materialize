@@ -74,6 +74,10 @@
 	background-size: cover;
 	background-repeat: no-repeat;
 	border-bottom-left-radius: 140px;
+
+	.cutbottom:not(.cutbottomwide) {
+		overflow: hidden;
+	}
 }
 
 .sell-cta__img-image {
@@ -87,8 +91,7 @@
 	background-position-y: 100%;
 	background-repeat: no-repeat;
 
-	.cutbottom &,
-	.fullheight & {
+	.cutbottom & {
 		bottom: 0;
 	}
 }

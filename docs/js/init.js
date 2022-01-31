@@ -2318,7 +2318,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     const $image = $(el).find('.sell-cta__img-image');
                     const style = $image.attr('style') || '';
                     if (style.includes('cutbottom')) $(el).addClass('cutbottom');
-                    if (style.includes('fullheight')) $(el).addClass('fullheight');
+                    if (style.includes('cutbottomwide')) $(el).addClass('cutbottomwide');
                 });
             }, 200);
         }
