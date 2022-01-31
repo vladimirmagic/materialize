@@ -1222,7 +1222,7 @@ if ($('#headsec a:contains("Auction Login")').length) {
  * 
  * Redirect auction register
  */
-const id = window.location.href.pathname.split('/register/confirm-shipping/id/');
+const id = window.location.pathname.split('/register/confirm-shipping/id/');
 if (id.length && id.length > 1) {
     window.location.href = URL_PROPSTORE + '/ajax/auctionRegistration.action?auctionId=' + id[1];
 }
