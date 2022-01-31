@@ -19150,7 +19150,7 @@ a.account__orders-buy-link:not(.btn):not(.btn-large):not(.btn-small):not(.btn-ex
   border-bottom-left-radius: 140px;
 }
 
-.sell-cta__img .cutbottom:not(.cutbottomwide) {
+.cutbottom:not(.cutbottomwide) .sell-cta__img {
   overflow: hidden;
 }
 

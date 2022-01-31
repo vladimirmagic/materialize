@@ -75,7 +75,7 @@
 	background-repeat: no-repeat;
 	border-bottom-left-radius: 140px;
 
-	.cutbottom:not(.cutbottomwide) {
+	.cutbottom:not(.cutbottomwide) & {
 		overflow: hidden;
 	}
 }
