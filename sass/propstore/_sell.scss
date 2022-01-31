@@ -503,7 +503,7 @@
 
 	.sell-cta__img {
 		max-width: 100% !important;
-		min-height: 0;
+		min-height: 200px;
 		border-bottom-left-radius: 0;
 		border-top-left-radius: 100px;
 	}
@@ -584,6 +584,8 @@
 
 	.sell-cta__img-image {
 		height: 230px;
+		right: 4em;
+		bottom: 0;
 	}
 }
 
