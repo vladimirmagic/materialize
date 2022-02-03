@@ -19126,6 +19126,7 @@ a.account__orders-buy-link:not(.btn):not(.btn-large):not(.btn-small):not(.btn-ex
 }
 
 .sell-cta__img {
+  position: relative;
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -19135,13 +19136,13 @@ a.account__orders-buy-link:not(.btn):not(.btn-large):not(.btn-small):not(.btn-ex
   -webkit-flex-direction: column;
       -ms-flex-direction: column;
           flex-direction: column;
-  -webkit-box-pack: justify;
-  -webkit-justify-content: space-between;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
+  -webkit-box-pack: end;
+  -webkit-justify-content: flex-end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
   width: 100%;
   max-width: 27em;
-  min-height: 28em;
+  min-height: 460px;
   background: #764AAF;
   background-position: 50% 0;
   background-size: cover;
@@ -19149,18 +19150,37 @@ a.account__orders-buy-link:not(.btn):not(.btn-large):not(.btn-small):not(.btn-ex
   border-bottom-left-radius: 140px;
 }
 
+.cutbottom:not(.cutbottomwide) .sell-cta__img {
+  overflow: hidden;
+}
+
 .sell-cta__img-image {
-  width: 105%;
-  max-height: 400px;
-  -o-object-fit: contain;
-     object-fit: contain;
-  margin: 2.5em 0 0 -4em;
+  position: absolute;
+  width: 520px;
+  height: 460px;
+  bottom: 60px;
+  right: 0;
+  background-size: contain;
+  background-position-x: 50%;
+  background-position-y: 100%;
+  background-repeat: no-repeat;
+}
+
+.cutbottom .sell-cta__img-image {
+  bottom: 0;
 }
 
 .sell-cta__img-info {
+  position: relative;
   padding: 1em 2.5em 2em 0;
   text-align: right;
   line-height: 1;
+}
+
+.cutbottom .sell-cta__img-info {
+  border-bottom-left-radius: 140px;
+  background: -webkit-gradient(linear, left bottom, left top, from(#764AAF), to(rgba(0, 0, 0, 0)));
+  background: linear-gradient(to top, #764AAF, rgba(0, 0, 0, 0));
 }
 
 .sell-cta__img-title {
@@ -19460,6 +19480,10 @@ a.account__orders-buy-link:not(.btn):not(.btn-large):not(.btn-small):not(.btn-ex
   margin-left: 1.5rem;
 }
 
+.sell-offer {
+  overflow: hidden;
+}
+
 .sell-offer__title {
   text-align: center;
 }
@@ -19521,7 +19545,6 @@ a.account__orders-buy-link:not(.btn):not(.btn-large):not(.btn-small):not(.btn-ex
 @media only screen and (max-width: 84rem) {
   .sell-cta__img-image {
     width: 100%;
-    margin-left: -2em;
   }
   .sell-cta__info {
     padding: 4.5em 2.5em 5em 3em;
@@ -19586,11 +19609,16 @@ a.account__orders-buy-link:not(.btn):not(.btn-large):not(.btn-small):not(.btn-ex
     border-bottom-right-radius: 140px;
   }
   .sell-cta--offer:nth-child(odd) .sell-cta__img-image {
-    margin: 4em 0 2em 2em;
+    right: unset;
+    left: 0;
   }
   .sell-cta--offer:nth-child(odd) .sell-cta__img-info {
     padding: 1em 0 2em 2.5em;
     text-align: left;
+  }
+  .sell-cta--offer.cutbottom:nth-child(odd) .sell-cta__img-info {
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 140px;
   }
 }
 
@@ -19600,13 +19628,17 @@ a.account__orders-buy-link:not(.btn):not(.btn-large):not(.btn-small):not(.btn-ex
   }
   .sell-cta__img {
     max-width: 100% !important;
-    min-height: 0;
+    min-height: 200px;
     border-bottom-left-radius: 0;
     border-top-left-radius: 100px;
   }
   .sell-cta__img-info {
     padding-right: 2em;
     padding-bottom: 1em;
+  }
+  .cutbottom .sell-cta__img-info {
+    border-bottom-left-radius: 0;
+    border-top-left-radius: 100px;
   }
   .sell-cta__info {
     padding: 3em 2em 4em;
@@ -19664,6 +19696,11 @@ a.account__orders-buy-link:not(.btn):not(.btn-large):not(.btn-small):not(.btn-ex
   .sell__step-buttons .btn + .btn, .sell__step-buttons .btn-large + .btn, .sell__step-buttons .btn-small + .btn, .sell__step-buttons .btn-extra-small + .btn, .sell__step-buttons .btn + .btn-large, .sell__step-buttons .btn-large + .btn-large, .sell__step-buttons .btn-small + .btn-large, .sell__step-buttons .btn-extra-small + .btn-large, .sell__step-buttons .btn + .btn-small, .sell__step-buttons .btn-large + .btn-small, .sell__step-buttons .btn-small + .btn-small, .sell__step-buttons .btn-extra-small + .btn-small, .sell__step-buttons .btn + .btn-extra-small, .sell__step-buttons .btn-large + .btn-extra-small, .sell__step-buttons .btn-small + .btn-extra-small, .sell__step-buttons .btn-extra-small + .btn-extra-small {
     margin: 1.5rem 0 0 0;
   }
+  .sell-cta__img-image {
+    height: 230px;
+    right: 4em;
+    bottom: 0;
+  }
 }
 
 @media only screen and (max-width: 600px) {
@@ -19694,10 +19731,6 @@ a.account__orders-buy-link:not(.btn):not(.btn-large):not(.btn-small):not(.btn-ex
   }
   .sell-cta__info {
     padding-bottom: 2.5em;
-  }
-  .sell-cta__img-image {
-    max-height: 200px;
-    margin-left: -1em;
   }
 }
 

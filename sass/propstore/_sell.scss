@@ -62,30 +62,50 @@
 }
 
 .sell-cta__img {
+	position: relative;
 	display: flex;
 	flex-direction: column;
-	justify-content: space-between;
+	justify-content: flex-end;
 	width: 100%;
 	max-width: 27em;
-	min-height: 28em;
+	min-height: 460px;
 	background: $primary-color;
 	background-position: 50% 0;
 	background-size: cover;
 	background-repeat: no-repeat;
 	border-bottom-left-radius: 140px;
+
+	.cutbottom:not(.cutbottomwide) & {
+		overflow: hidden;
+	}
 }
 
 .sell-cta__img-image {
-	width: 105%;
-	max-height: 400px;
-	object-fit: contain;
-	margin: 2.5em 0 0 -4em;
+	position: absolute;
+	width: 520px;
+	height: 460px;
+	bottom: 60px;
+	right: 0;
+	background-size: contain;
+	background-position-x: 50%;
+	background-position-y: 100%;
+	background-repeat: no-repeat;
+
+	.cutbottom & {
+		bottom: 0;
+	}
 }
 
 .sell-cta__img-info {
+	position: relative;
 	padding: 1em 2.5em 2em 0;
 	text-align: right;
 	line-height: 1;
+
+	.cutbottom & {
+		border-bottom-left-radius: 140px;
+		background: linear-gradient(to top, $primary-color, rgba(0,0,0,0));
+	}
 }
 
 .sell-cta__img-title {
@@ -333,6 +353,10 @@
 	}
 }
 
+.sell-offer {
+	overflow: hidden;
+}
+
 .sell-offer__title {
 	text-align: center;
 }
@@ -381,7 +405,6 @@
 @media only screen and (max-width: $w84) {
 	.sell-cta__img-image {
 		width: 100%;
-		margin-left: -2em;
 	}
 
 	.sell-cta__info {
@@ -457,12 +480,20 @@
 				border-bottom-right-radius: 140px;
 			}
 			.sell-cta__img-image {
-				margin: 4em 0 2em 2em;
+				right: unset;
+				left: 0;
 			}
 			
 			.sell-cta__img-info {
 				padding: 1em 0 2em 2.5em;
 				text-align: left;
+			}
+		}
+
+		&.cutbottom:nth-child(odd) {
+			.sell-cta__img-info {
+				border-bottom-left-radius: 0;
+				border-bottom-right-radius: 140px;
 			}
 		}
 	}
@@ -475,7 +506,7 @@
 
 	.sell-cta__img {
 		max-width: 100% !important;
-		min-height: 0;
+		min-height: 200px;
 		border-bottom-left-radius: 0;
 		border-top-left-radius: 100px;
 	}
@@ -483,6 +514,11 @@
 	.sell-cta__img-info {
 		padding-right: 2em;
 		padding-bottom: 1em;
+
+		.cutbottom & {
+			border-bottom-left-radius: 0;
+			border-top-left-radius: 100px;
+		}
 	}
 
 	.sell-cta__info {
@@ -548,6 +584,12 @@
 			margin: 1.5rem 0 0 0;
 		}
 	}
+
+	.sell-cta__img-image {
+		height: 230px;
+		right: 4em;
+		bottom: 0;
+	}
 }
 
 @media #{$small-and-down} {
@@ -584,10 +626,5 @@
 
 	.sell-cta__info {
 		padding-bottom: 2.5em;
-	}
-
-	.sell-cta__img-image {
-		max-height: 200px;
-		margin-left: -1em;
 	}
 }
