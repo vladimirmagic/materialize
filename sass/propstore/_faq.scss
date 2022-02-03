@@ -59,6 +59,12 @@
         &.faq__item--title {
             box-shadow: none;
         }
+        &.faq__item--main-title {
+            margin-bottom: 0;
+        }
+        .faq__item--no-bottom-gap {
+            margin-bottom: 0;
+        }
         .faq__collapsible-header .icon {
             transform: rotate(45deg);
         }
