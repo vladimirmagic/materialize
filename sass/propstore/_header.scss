@@ -532,15 +532,15 @@ a:not(.btn).header__menu-target-blank {
 	margin-left: 24px;
 
 	.icon {
-		width: 22px;
-		height: 27px;
+		width: 2rem;
+		height: 2rem;
 	}
 }
 
 .header__bag-number {
 	position: absolute;
-	top: 4px;
-	right: -2px;
+	top: 0px;
+	right: -6px;
 	display: flex;
 	justify-content: center;
 	align-items: center;

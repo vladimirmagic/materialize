@@ -10377,14 +10377,14 @@ a:not(.btn):not(.btn-large):not(.btn-small):not(.btn-extra-small).header__menu-t
 }
 
 .header__bag .icon {
-  width: 22px;
-  height: 27px;
+  width: 2rem;
+  height: 2rem;
 }
 
 .header__bag-number {
   position: absolute;
-  top: 4px;
-  right: -2px;
+  top: 0px;
+  right: -6px;
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
