@@ -15737,6 +15737,10 @@ tbody .tr:last-child .td {
 }
 
 .section-auctions__item-alert {
+  -webkit-box-flex: 0;
+  -webkit-flex: 0 0 180px;
+      -ms-flex: 0 0 180px;
+          flex: 0 0 180px;
   height: 40px;
   line-height: 40px;
   padding: 0 20px;
