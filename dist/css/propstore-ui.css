@@ -14334,6 +14334,10 @@ a.product__title:not(.btn):not(.btn-large):not(.btn-small):not(.btn-extra-small)
   border-top: 1px solid #c7c7c7;
 }
 
+.product__interested-title {
+  margin-bottom: 1.75em;
+}
+
 .product__interested-link {
   margin-bottom: 1em;
   text-decoration: underline;
@@ -16288,6 +16292,10 @@ tbody .tr:last-child .td {
   transition: -webkit-transform .2s ease-out;
   transition: transform .2s ease-out;
   transition: transform .2s ease-out, -webkit-transform .2s ease-out;
+}
+
+.keyboard-focused .faq__collapsible-header:focus {
+  background-color: inherit;
 }
 
 .faq__collapsible-body {

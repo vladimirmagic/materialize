@@ -331,6 +331,10 @@ a.product__title:not(.btn) {
 	border-top: 1px solid $color-grey;
 }
 
+.product__interested-title {
+	margin-bottom: 1.75em;
+}
+
 .product__interested-link {
 	margin-bottom: 1em;
 	text-decoration: underline;
