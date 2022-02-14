@@ -14328,6 +14328,27 @@ a.product__title:not(.btn):not(.btn-large):not(.btn-small):not(.btn-extra-small)
   margin-bottom: 0;
 }
 
+.product__interested {
+  padding-top: 2em;
+  margin-bottom: 2em;
+  border-top: 1px solid #c7c7c7;
+}
+
+.product__interested-link {
+  margin-bottom: 1em;
+  text-decoration: underline;
+}
+
+.product__interested-link:after {
+  display: none;
+}
+
+#modal-private-sales .modal__title {
+  margin-bottom: 4rem;
+  font-size: 1.5rem;
+  line-height: 2rem;
+}
+
 .product__details {
   margin: 0;
 }
