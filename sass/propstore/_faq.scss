@@ -97,6 +97,10 @@
     }
 }
 
+.keyboard-focused .faq__collapsible-header:focus {
+    background-color: inherit;
+}
+
 .faq__collapsible-body {
   padding: 0 1.625rem 1.625rem 1.625rem;
   text-align: left;
