@@ -2,10 +2,6 @@ document.addEventListener('DOMContentLoaded', () => {
     let URL_PROPSTORE = 'https://new.propstore.com/';
     if (window.location.href.includes('localhost')) URL_PROPSTORE = 'http://propstore.loc/';
 
-    const params = new URLSearchParams(window.location.search);
-    const paramsUrl = params.get('url');
-    if (paramsUrl) redirectPage(paramsUrl);
-
 	if (window.location.href.includes('#nomaterialize')) { // don't materialize
 		document.querySelectorAll('[data-v2]').forEach(item => item.remove());
 		return;
@@ -1409,6 +1405,10 @@ if (id.length && id.length > 1) {
             window.opener.postMessage('SSOerror', '*');
             window.close();
         }
+
+        const params = new URLSearchParams(window.location.search);
+        const paramsUrl = params.get('url');
+        if (paramsUrl) redirectPage(paramsUrl);
 
 		document.body.classList.add('loaded'); // if svg fail
 	}); // end of document ready
