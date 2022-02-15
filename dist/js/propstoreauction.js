@@ -1121,21 +1121,7 @@ document.addEventListener('DOMContentLoaded', () => {
         window.opener.postMessage('SSOsuccess', '*');
         window.close();
     }
-    $('main').append(`
-    <div class="general"><div class="general__inner">
-        <h1 class="h1">
-            Please Sign In
-        </h1>
-        <p class="p-r">
-            Aenean lacinia bibendum nulla sed consectetur contact us.
-        </p>
-        <br/>
-        <button type="submit" class="waves-effect waves-light btn sso-trigger">
-            <span class='btn__title'>Propstore Auth</span>
-            <i class='icon'><svg><use xlink:href="#arrow-right"></use></svg></i>
-        </button>
-    </div></div>
-    `);
+    redirectPage(URL_PROPSTORE + '/ajax/signIn.action' + window.location.search);
     document.querySelectorAll('style:not([data-v2]), link[rel="stylesheet"]:not([data-v2])').forEach(item => item.remove());
 }
 /**
