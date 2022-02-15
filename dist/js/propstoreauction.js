@@ -2,6 +2,10 @@ document.addEventListener('DOMContentLoaded', () => {
     let URL_PROPSTORE = 'https://new.propstore.com/';
     if (window.location.href.includes('localhost')) URL_PROPSTORE = 'http://propstore.loc/';
 
+    const params = new URLSearchParams(window.location.search);
+    const paramsUrl = params.get('url');
+    if (paramsUrl) redirectPage(paramsUrl);
+
 	if (window.location.href.includes('#nomaterialize')) { // don't materialize
 		document.querySelectorAll('[data-v2]').forEach(item => item.remove());
 		return;
