@@ -1,6 +1,4 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const URL_SAM = 'https://propstore-staging32-usm.auctionserver.net/';
-
     $(function() {
         // Detect touch screen and enable scrollbar if necessary
         function is_touch_device() {
@@ -78,7 +76,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if ($('.signout-trigger').length) {
             $('.signout-trigger').on('click', function () {
                 $('.loader-block').show();
-                openSamAndClose(URL_SAM + '/logout?autoclose=true');
+                openSamAndClose(AUCTION_URL + '/logout?autoclose=true');
             });
         }
 
@@ -276,13 +274,13 @@ document.addEventListener('DOMContentLoaded', () => {
                         .done(data => {
                             $card.removeClass('card--liked');
                         });
-                    if (lotUrl) openSamAndClose(URL_SAM + '/watchlist/remove?autoclose=true&' + lotUrl);
+                    if (lotUrl) openSamAndClose(AUCTION_URL + '/watchlist/remove?autoclose=true&' + lotUrl);
                 } else {
                     $.get('/ajax/addToFavorites.action?product=' + productId)
                         .done(data => {
                             $card.addClass('card--liked');
                         });
-                    if (lotUrl) openSamAndClose(URL_SAM + '/watchlist/add?autoclose=true&' + lotUrl);
+                    if (lotUrl) openSamAndClose(AUCTION_URL + '/watchlist/add?autoclose=true&' + lotUrl);
                 }
             });
 
@@ -599,7 +597,7 @@ document.addEventListener('DOMContentLoaded', () => {
         function filtersFloat (currentScroll) {
             if (isMobileFilter) return;
 
-            $filters = $('main .filters');
+            $filters = $('#filterForm .filters');
             $filtersPlaceholder = $('.filters-placeholder');
             if ($filters.length) {
                 const bottom = $filters[0].offsetTop + $filters[0].offsetHeight;
@@ -1025,6 +1023,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // PRODUCTS
         if ($('.filters__inputs').length) {
+            let params = new URLSearchParams(window.location.search);
+            let scroll = parseInt(params.get('scroll'));
+            if (scroll) $('html').scrollTop(scroll);
+
             function clearFilters() {
                 $('.input-field__clean').click();
                 $('input[type="search"]').val('');
@@ -1033,6 +1035,12 @@ document.addEventListener('DOMContentLoaded', () => {
             let filterTimeout;
 
             function filterNow() {
+                let $filters = $('#filterForm .filters');
+                if (!$filters.length) $filters = $('.filters-placeholder');
+                let scroll = $filters.offset().top;
+                if ($(window).scrollTop() < scroll) scroll = $(window).scrollTop();
+                if (scroll) $('#filterForm').find('#scroll').val(Math.round(scroll));
+                
                 filtersFloat(0);
                 $('#itemsOffset').val('');
                 $('#filterForm').submit();
@@ -1173,15 +1181,6 @@ document.addEventListener('DOMContentLoaded', () => {
                         } else if ($(this).attr('data-buynow')) {
                             $('#filterForm').find('#buyNow').val($(this).data('buynow'));
                         }
-                        if ($('#filterForm').find('#auction').val() < 1 && $('#filterForm').find('#buyNow').val() < 1) {
-                            if ($('#filterForm').find('#archive').val() < 1) {
-                                $('#filterForm').find('#auction').val(1);
-                                $('#filterForm').find('#buyNow').val(1);
-                                $('#filterForm').find('#archive').val(1);
-                            } else {
-                                $('#filterForm').find('#archive').val(2);
-                            }
-                        }
                     }
                     filterNow();
                 });
@@ -1197,11 +1196,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     const $formCloneAuction = $formClone.find('#auction');
                     const $formCloneBuyNow = $formClone.find('#buyNow');
                     const $formCloneArchive = $formClone.find('#archive');
-                    const $formCloneRecordSelling = $formClone.find('#recordSelling');
-                    if ($formCloneRecordSelling.val() > 1) {
-                        $formCloneRecordSelling.val(0);
-                        $('.filters__found-in').text('in ' + $('.filters__tab[data-archive]').text());
-                    } else if ($formCloneAuction.val() < 1 || $formCloneBuyNow.val() < 1 || $formCloneArchive.val() < 1) {
+                    if ($formCloneAuction.val() < 1 || $formCloneBuyNow.val() < 1 || $formCloneArchive.val() < 1) {
                         $formCloneAuction.val(1);
                         $formCloneBuyNow.val(1);
                         $formCloneArchive.val(1);
@@ -1359,14 +1354,39 @@ document.addEventListener('DOMContentLoaded', () => {
                         .done(data => {
                             $heart.removeClass('active');
                         });
-                    if (lotUrl) openSamAndClose(URL_SAM + '/watchlist/remove?autoclose=true&' + lotUrl);
+                    if (lotUrl) openSamAndClose(AUCTION_URL + '/watchlist/remove?autoclose=true&' + lotUrl);
                 } else {
                     $.get('/ajax/addToFavorites.action?product=' + productId)
                         .done(data => {
                             $heart.addClass('active');
                         });
-                    if (lotUrl) openSamAndClose(URL_SAM + '/watchlist/add?autoclose=true&' + lotUrl);
+                    if (lotUrl) openSamAndClose(AUCTION_URL + '/watchlist/add?autoclose=true&' + lotUrl);
                 }
+            });
+        }
+
+        //MODAL ASK PRIVATE SALE
+        if ($('#modal-private-sales-form').length) {
+            grecaptchaRender('g-recaptcha-private-sales');
+
+            $('#modal-private-sales-form').submit(function (e) {
+                e.preventDefault();
+                $('.loader-block').show();
+
+                $.post(
+                    this.action,
+                    $(this).serialize(),
+                )
+                    .done(data => {
+                        // this.innerHTML = data;
+                        grecaptchaRender('g-recaptcha-private-sales');
+                    })
+                    .fail(data => {
+                        if (data && data.statusText) this.innerHTML = data.statusText;
+                    })
+                    .always(() => {
+                        $('.loader-block').hide();
+                    }) ;
             });
         }
 
@@ -1927,7 +1947,8 @@ document.addEventListener('DOMContentLoaded', () => {
             });
 
             function openSSO () {
-                redirectPage('/ajax/sso.action?autoclose=true&reloadopener=true');
+                let search = window.location.search;
+                redirectPage('/ajax/sso.action?autoclose=true&reloadopener=true' + search.replaceAll('?', '&'));
             }
 
             $('#modal-auction-register-form').submit(function (e) {
@@ -2311,17 +2332,17 @@ document.addEventListener('DOMContentLoaded', () => {
             setTimeout(() => SSOwin.close(), 1000);
         }
 
-        // SELL-CTA
-        if ($('.sell-cta').length) {
-            setTimeout(() => {
-                $('.sell-cta').each((i, el) => {
-                    const $image = $(el).find('.sell-cta__img-image');
-                    const style = $image.attr('style') || '';
-                    if (style.includes('cutbottom')) $(el).addClass('cutbottom');
-                    if (style.includes('cutbottomwide')) $(el).addClass('cutbottomwide');
-                });
-            }, 200);
-        }
+        // COOKIES
+        M.toast({
+            html: `<span><strong>This website uses cookies</strong>
+We use cookies to personalise content and ads, to provide social media features and to analyse our traffic.
+We also share information about your use of our site with our social media, advertising and analytics partners who may combine it with other information that you’ve provided to them or that they’ve collected from your use of their services.
+<span class="btn cookies-toast__close">OK</span></span>`,
+            displayLength: Infinity,
+        });
+        $('.cookies-toast__close').on('click', function () {
+            M.Toast.dismissAll();
+        });
 
     }); // end of document ready
 });
@@ -2395,7 +2416,9 @@ function reloadOpener () {
 
 function reloadPage () {
     $('.loader-block').show();
-    window.location.reload();
+    setTimeout(()=>{
+        window.location.reload(true);
+    });
 }
 
 function redirectPage (url) {
