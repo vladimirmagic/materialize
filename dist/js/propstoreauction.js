@@ -1121,7 +1121,8 @@ document.addEventListener('DOMContentLoaded', () => {
         window.opener.postMessage('SSOsuccess', '*');
         window.close();
     }
-    redirectPage(URL_PROPSTORE + '/ajax/signIn.action' + window.location.search);
+    let search = window.location.search;
+    redirectPage(URL_PROPSTORE + '/ajax/signIn.action' + search.replace('?url=', '?redirecturl='));
     document.querySelectorAll('style:not([data-v2]), link[rel="stylesheet"]:not([data-v2])').forEach(item => item.remove());
 }
 /**
@@ -1407,8 +1408,8 @@ if (id.length && id.length > 1) {
         }
 
         const params = new URLSearchParams(window.location.search);
-        const paramsUrl = params.get('url');
-        if (paramsUrl) redirectPage(paramsUrl);
+        const redirectUrl = params.get('redirecturl');
+        if (redirectUrl) redirectPage(redirectUrl);
 
 		document.body.classList.add('loaded'); // if svg fail
 	}); // end of document ready
