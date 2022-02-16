@@ -9618,6 +9618,30 @@ hr.small {
   background: white;
 }
 
+.cookies-toast {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.cookies-toast__body {
+  margin-right: 2em;
+}
+
+.cookies-toast__close {
+  color: #11BFC5;
+  background-color: white;
+}
+
+.cookies-toast__close:hover {
+  background-color: #F4F4F4;
+}
+
 @media only screen and (min-width: 1921px) {
   .content, .general, .header__main, .header__menu-level1-inner, .header__menu-level1--sell .header__menu-level1-inner, .footer__inner, .hero, .filters, .header__filters .filters__body, .showing-results, .related-movies, .modal-shipping-quote-page main, .how, .whatsnew__text, .section-auctions, .faq, .account__orders, .account__coa, .payment-plans, .sell__inner, .vouchers, .experts, .auccatalog__nav, .auc-info__inner, .auc-info__video, .aucpage__content {
     padding-left: calc(50% - 900px);

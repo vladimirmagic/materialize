@@ -2332,18 +2332,6 @@ document.addEventListener('DOMContentLoaded', () => {
             setTimeout(() => SSOwin.close(), 1000);
         }
 
-        // COOKIES
-        M.toast({
-            html: `<span><strong>This website uses cookies</strong>
-We use cookies to personalise content and ads, to provide social media features and to analyse our traffic.
-We also share information about your use of our site with our social media, advertising and analytics partners who may combine it with other information that you’ve provided to them or that they’ve collected from your use of their services.
-<span class="btn cookies-toast__close">OK</span></span>`,
-            displayLength: Infinity,
-        });
-        $('.cookies-toast__close').on('click', function () {
-            M.Toast.dismissAll();
-        });
-
     }); // end of document ready
 });
 

@@ -186,6 +186,24 @@ hr {
 
 }
 
+.cookies-toast {
+	display: flex;
+	align-items: center;
+}
+
+.cookies-toast__body {
+	margin-right: 2em;
+}
+
+.cookies-toast__close {
+	color: $color-turquoise;
+	background-color: white;
+
+	&:hover {
+		background-color: $color-bg;
+	  }
+}
+
 @media #{$media-fullhd-up} {
 	$content-padding: calc(50% - 900px);
     .content {
