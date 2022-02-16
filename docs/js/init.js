@@ -1075,8 +1075,14 @@ document.addEventListener('DOMContentLoaded', () => {
             const client = algoliasearch('AO1RTK5XJU', '14182a31775c2455fd536e0b34e6767d');
             const index = client.initIndex('products_releasedate_desc');
 
-            index.searchForFacetValues('movieName', '').then((data) => {
+            index.searchForFacetValues('movieName', '')
+            .then((data) => {
+                $('<div>' + JSON.stringify(data.facetHits) + '</div>').insertAfter('.filters');
                 console.log(data.facetHits);
+            })
+            .error(() => {
+                $('<div>algoliasearch error</div>').insertAfter('.filters');
+                console.log('algoliasearch error');
             });
             
             $.getJSON('/ajax/movies.action', function (json) {
