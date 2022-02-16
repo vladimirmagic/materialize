@@ -189,6 +189,12 @@ hr {
 .cookies-toast {
 	display: flex;
 	align-items: center;
+	max-width: 1400px;
+}
+
+.toast-cookies {
+	width: 100vw;
+	justify-content: center;
 }
 
 .cookies-toast__body {

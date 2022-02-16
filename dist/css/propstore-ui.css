@@ -9627,6 +9627,15 @@ hr.small {
   -webkit-align-items: center;
       -ms-flex-align: center;
           align-items: center;
+  max-width: 1400px;
+}
+
+.toast-cookies {
+  width: 100vw;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+      -ms-flex-pack: center;
+          justify-content: center;
 }
 
 .cookies-toast__body {
