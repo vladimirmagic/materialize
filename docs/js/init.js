@@ -1072,6 +1072,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
             initializeAutocomplete(moviesOptions);
 
+            const client = algoliasearch('AO1RTK5XJU', '14182a31775c2455fd536e0b34e6767d');
+            const index = client.initIndex('products_releasedate_desc');
+
+            index.searchForFacetValues('movieName', '').then((data) => {
+                alert(JSON.stringify(data.facetHits));
+            });
+            
             $.getJSON('/ajax/movies.action', function (json) {
                 if (json && json.movies) {
                     $(json.movies).each(function (key, movie) {
