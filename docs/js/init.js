@@ -1076,7 +1076,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const index = client.initIndex('products_releasedate_desc');
 
             index.searchForFacetValues('movieName', '').then((data) => {
-                alert(JSON.stringify(data.facetHits));
+                console.log(data.facetHits);
             });
             
             $.getJSON('/ajax/movies.action', function (json) {
