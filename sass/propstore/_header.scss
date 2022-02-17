@@ -61,6 +61,14 @@ header {
 	background: $color-bg;
 }
 
+.header__account {
+	.icon--warning {
+		width: 1.5rem;
+		height: 1.5rem;
+		margin-top: -4px;
+	}
+}
+
 .header__btn {
 	height: 40px;
 	line-height: 40px;
@@ -709,6 +717,13 @@ a.modal-bag__item:not(.btn) { // fix a
 		float: none;
 		margin: -.2rem 0 0 .2rem;
 		opacity: .3;
+	}
+
+	.icon--warning {
+		width: 1.5rem;
+		height: 1.5rem;
+		margin-top: -4px;
+		opacity: 1;
 	}
 }
 
