@@ -11064,6 +11064,12 @@ a.modal-bag__item:not(.btn):not(.btn-large):not(.btn-small):not(.btn-extra-small
   margin: 0 0 0 4px;
 }
 
+.sidenav__settings .collapsible-header .icon.icon--warning {
+  width: 1.5rem;
+  height: 1.5rem;
+  margin-top: -4px;
+}
+
 .sidenav__settings .collapsible-body .btn-flat {
   font-size: 16px;
   letter-spacing: 0;
@@ -11077,6 +11083,13 @@ a.modal-bag__item:not(.btn):not(.btn-large):not(.btn-small):not(.btn-extra-small
   height: 1rem;
   margin: -.2rem 0 0 .2rem;
   opacity: .3;
+}
+
+.sidenav__settings .collapsible-body .icon--warning {
+  width: 1.5rem;
+  height: 1.5rem;
+  margin-top: -4px;
+  opacity: 1;
 }
 
 .collapsible > li.active .icon--dropdown {
