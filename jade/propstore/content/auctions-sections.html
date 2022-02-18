@@ -139,23 +139,27 @@
                             </div>
                         </div>
                     </div>
-                    <a href="#" target="_blank" class="waves-effect waves-light btn btn--tertiary section-auctions__item-alert" onclick='handleAlertClick(this, {
-                        "summary": "Entertainment Memorabilia Live Auction",
-                        "location": "Los Angeles",
-                        "description": "Prop Store proudly presents over 1,300 exciting lots of original props, costumes and entertainment memorabilia.",
-                        "start": {
-                          "dateTime": "2021-08-01T09:00:00-07:00",
-                          "timeZone": "America/Los_Angeles"
-                        },
-                        "end": {
-                          "dateTime": "2021-08-15T17:00:00-07:00",
-                          "timeZone": "America/Los_Angeles"
-                        }
-                      })'>
+                    <a class="waves-effect waves-light btn btn--tertiary section-auctions__item-alert dropdown-trigger setalert-dropdown" data-target="dropdown-setalert-1" data-id="#auction.id">
                         <i class='icon'><svg><use xlink:href="#bell-line"></use></svg></i>
                         <span class="section-auctions__item-alert-add">Set an alert</span>
                         <span class="section-auctions__item-alert-added">Added to&nbsp;calendar</span>
                     </a>
+
+                    <ul id='dropdown-setalert-1' class='dropdown-content dropdown-setalert'>
+                        <li>
+                            <a href="http://www.google.com/calendar/render?action=TEMPLATE&text=Propstore%20%27Terminator:%20Dark%20Fate%27&dates=20220302T170000Z/20220316T170000Z&location=Los%20Angeles"
+                                target="_blank" rel="nofollow">
+                                Add to Google calendar
+                            </a>
+                        </li>
+                        <li>
+                            <a href="data:text/calendar;charset=utf8,BEGIN:VCALENDAR%0AVERSION:2.0%0ABEGIN:VEVENT%0ADTSTART:20220302T170000Z%0ADTEND:20220316T170000Z%0ASUMMARY:Propstore%20%27Terminator:%20Dark%20Fate%0ADESCRIPTION:https://propstore-staging32.auctionserver.net/auctions/info/id/295%0AEND:VEVENT%0AEND:VCALENDAR%0A"
+                            download="Terminator:%20Dark%20Fate%27.ics">
+                                Add to Outlook calendar
+                            </a>
+                        </li>
+                    </ul>
+
                 </div>
             </div>
             <div class="section-auctions__item-info">

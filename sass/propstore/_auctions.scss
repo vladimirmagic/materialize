@@ -175,6 +175,10 @@
 	text-align: center;
 }
 
+.dropdown-setalert {
+	min-width: 14rem;
+}
+
 @media only screen and (max-width: 1456px) {
 	.section-auctions__item-info {
 		flex-basis: 440px;

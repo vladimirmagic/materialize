@@ -9446,7 +9446,7 @@ main {
           flex: 1 1 100%;
 }
 
-.content, .general, .header__main, .header__menu-level1-inner, .header__menu-level1--sell .header__menu-level1-inner, .footer__inner, .hero, .filters, .header__filters .filters__body, .showing-results, .related-movies, .modal-shipping-quote-page main, .how, .whatsnew__text, .section-auctions, .faq, .account__orders, .account__coa, .account-filter, .payment-plans, .sell__inner, .vouchers, .experts, .auccatalog__nav, .auc-info__inner, .auc-info__video, .aucpage__content {
+.content, .general, .header__main, .header__menu-level1-inner, .header__menu-level1--sell .header__menu-level1-inner, .footer__inner, .hero, .filters, .header__filters .filters__body, .showing-results, .related-movies, .modal-shipping-quote-page main, .how, .whatsnew__text, .section-auctions, .faq, .account-page__text, .account__orders, .account__coa, .account-filter, .payment-plans, .sell__inner, .vouchers, .experts, .auccatalog__nav, .auc-info__inner, .auc-info__video, .aucpage__content {
   padding-left: 60px;
   padding-right: 60px;
 }
@@ -9652,21 +9652,21 @@ hr.small {
 }
 
 @media only screen and (min-width: 1921px) {
-  .content, .general, .header__main, .header__menu-level1-inner, .header__menu-level1--sell .header__menu-level1-inner, .footer__inner, .hero, .filters, .header__filters .filters__body, .showing-results, .related-movies, .modal-shipping-quote-page main, .how, .whatsnew__text, .section-auctions, .faq, .account__orders, .account__coa, .account-filter, .payment-plans, .sell__inner, .vouchers, .experts, .auccatalog__nav, .auc-info__inner, .auc-info__video, .aucpage__content {
+  .content, .general, .header__main, .header__menu-level1-inner, .header__menu-level1--sell .header__menu-level1-inner, .footer__inner, .hero, .filters, .header__filters .filters__body, .showing-results, .related-movies, .modal-shipping-quote-page main, .how, .whatsnew__text, .section-auctions, .faq, .account-page__text, .account__orders, .account__coa, .account-filter, .payment-plans, .sell__inner, .vouchers, .experts, .auccatalog__nav, .auc-info__inner, .auc-info__video, .aucpage__content {
     padding-left: calc(50% - 900px);
     padding-right: calc(50% - 900px);
   }
 }
 
 @media only screen and (max-width: 1200px) {
-  .content, .general, .header__main, .header__menu-level1-inner, .header__menu-level1--sell .header__menu-level1-inner, .footer__inner, .hero, .filters, .header__filters .filters__body, .showing-results, .related-movies, .modal-shipping-quote-page main, .how, .whatsnew__text, .section-auctions, .faq, .account__orders, .account__coa, .account-filter, .payment-plans, .sell__inner, .vouchers, .experts, .auccatalog__nav, .auc-info__inner, .auc-info__video, .aucpage__content {
+  .content, .general, .header__main, .header__menu-level1-inner, .header__menu-level1--sell .header__menu-level1-inner, .footer__inner, .hero, .filters, .header__filters .filters__body, .showing-results, .related-movies, .modal-shipping-quote-page main, .how, .whatsnew__text, .section-auctions, .faq, .account-page__text, .account__orders, .account__coa, .account-filter, .payment-plans, .sell__inner, .vouchers, .experts, .auccatalog__nav, .auc-info__inner, .auc-info__video, .aucpage__content {
     padding-left: 40px;
     padding-right: 40px;
   }
 }
 
 @media only screen and (max-width: 600px) {
-  .content, .general, .header__main, .header__menu-level1-inner, .header__menu-level1--sell .header__menu-level1-inner, .footer__inner, .hero, .filters, .header__filters .filters__body, .showing-results, .related-movies, .modal-shipping-quote-page main, .how, .whatsnew__text, .section-auctions, .faq, .account__orders, .account__coa, .account-filter, .payment-plans, .sell__inner, .vouchers, .experts, .auccatalog__nav, .auc-info__inner, .auc-info__video, .aucpage__content {
+  .content, .general, .header__main, .header__menu-level1-inner, .header__menu-level1--sell .header__menu-level1-inner, .footer__inner, .hero, .filters, .header__filters .filters__body, .showing-results, .related-movies, .modal-shipping-quote-page main, .how, .whatsnew__text, .section-auctions, .faq, .account-page__text, .account__orders, .account__coa, .account-filter, .payment-plans, .sell__inner, .vouchers, .experts, .auccatalog__nav, .auc-info__inner, .auc-info__video, .aucpage__content {
     padding-left: 24px;
     padding-right: 24px;
   }
@@ -15937,6 +15937,10 @@ tbody .tr:last-child .td {
   text-align: center;
 }
 
+.dropdown-setalert {
+  min-width: 14rem;
+}
+
 @media only screen and (max-width: 1456px) {
   .section-auctions__item-info {
     -webkit-flex-basis: 440px;
@@ -18312,6 +18316,11 @@ a.account-page__suptitle:not(.btn):not(.btn-large):not(.btn-small):not(.btn-extr
   margin-bottom: 1em;
 }
 
+.account-page__text {
+  max-width: 65rem;
+  margin: -1em auto 3em;
+}
+
 .account-page__section {
   padding: 0 2.5em 2em;
   margin-bottom: 2em;
@@ -18623,6 +18632,27 @@ a.account__orders-buy-link:not(.btn):not(.btn-large):not(.btn-small):not(.btn-ex
   line-height: 3rem;
 }
 
+.account__email-preferences {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  max-width: 65rem;
+  margin: -1em auto 0;
+  text-align: left;
+}
+
+.account__email-preferences .checkbox__label {
+  -webkit-box-flex: 1;
+  -webkit-flex: 1 1 33%;
+      -ms-flex: 1 1 33%;
+          flex: 1 1 33%;
+}
+
 .account__favorites {
   margin-top: 3em;
   text-align: left;
@@ -18651,17 +18681,17 @@ a.account__orders-buy-link:not(.btn):not(.btn-large):not(.btn-small):not(.btn-ex
 }
 
 .account__favorites-list {
-  margin-top: 2em;
+  margin-top: 3em;
 }
 
-.account__favorites-list.collapsible {
+.account__favorites-list .collapsible {
   border: 0;
   -webkit-box-shadow: none;
           box-shadow: none;
   list-style: none;
 }
 
-.account__favorites-list.collapsible > li.active .icon--dropdown {
+.account__favorites-list .collapsible > li.active .icon--dropdown {
   -webkit-transform: rotate(180deg);
           transform: rotate(180deg);
 }
@@ -18732,6 +18762,19 @@ a.account__orders-buy-link:not(.btn):not(.btn-large):not(.btn-small):not(.btn-ex
 
 .account__favorites-item-body li + li {
   margin-top: .5em;
+}
+
+.account__favorites-warning {
+  margin-top: -1.5em;
+}
+
+.account__favorites-warning .badge {
+  padding-right: 4px;
+  border-radius: 2rem;
+}
+
+#form-genre .input-field:not(.input-field--filled) input {
+  color: #979797;
 }
 
 .account__coa .g-recaptcha-field {
@@ -19083,6 +19126,13 @@ a.account__orders-buy-link:not(.btn):not(.btn-large):not(.btn-small):not(.btn-ex
   }
   .account-filter__inner .input-field + .input-field {
     margin-left: 0;
+  }
+  .account__email-preferences {
+    display: block;
+  }
+  .account__email-preferences .checkbox__label + .checkbox__label {
+    display: block;
+    margin-top: 1em;
   }
 }
 

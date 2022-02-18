@@ -21,6 +21,12 @@ a.account-page__suptitle:not(.btn) {
 	margin-bottom: 1em;
 }
 
+.account-page__text {
+	@extend .content;
+	max-width: $w65;
+	margin: -1em auto 3em;
+}
+
 .account-page__section {
 	padding: 0 2.5em 2em;
 	margin-bottom: 2em;
@@ -300,6 +306,18 @@ a.account__orders-buy-link:not(.btn) {
 	line-height: 3rem;
 }
 
+.account__email-preferences {
+	display: flex;
+	justify-content: space-between;
+	max-width: $w65;
+	margin: -1em auto 0;
+	text-align: left;
+
+	.checkbox__label {
+		flex: 1 1 33%;
+	}
+}
+
 .account__favorites {
 	margin-top: 3em;
 	text-align: left;
@@ -322,9 +340,9 @@ a.account__orders-buy-link:not(.btn) {
 }
 
 .account__favorites-list {
-	margin-top: 2em;
+	margin-top: 3em;
 
-	&.collapsible {
+	.collapsible {
 		border: 0;
 		box-shadow: none;
 		list-style: none;
@@ -387,6 +405,21 @@ a.account__orders-buy-link:not(.btn) {
 
 	li + li {
 		margin-top: .5em;
+	}
+}
+
+.account__favorites-warning {
+	margin-top: -1.5em;
+
+	.badge {
+		padding-right: 4px;
+		border-radius: 2rem;
+	}
+}
+
+#form-genre {
+	.input-field:not(.input-field--filled) input {
+		color: $placeholder-text-color;
 	}
 }
 
@@ -752,6 +785,15 @@ a.account__orders-buy-link:not(.btn) {
 
 		.input-field + .input-field {
 			margin-left: 0;
+		}
+	}
+
+	.account__email-preferences {
+		display: block;
+	
+		.checkbox__label + .checkbox__label {
+			display: block;
+			margin-top: 1em;
 		}
 	}
 }

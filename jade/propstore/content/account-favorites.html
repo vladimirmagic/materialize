@@ -3,24 +3,56 @@
         My Account
     </a>
     <div class="account-page__title h1">
-        Favorites
+        Email Notifications
     </div>
 
-    <ul class="account-page__tabs tabs">
-        <li class="account-page__tab tab">
-            <a href="#account-notifications-email" class="waves-effect btn-flat btn--rounded active">Email Preferences</a>
-        </li>
-        <li class="account-page__tab tab">
-            <a href="#account-notifications-lot" class="waves-effect btn-flat btn--rounded">Lot Notifications</a>
-        </li>
-    </ul>
+    <div class="account-page__text p-r">
+Use the tools below to select your favourite Movies & Series and Genres. These choices will personalise the email notifications you receive, keeping you in the loop with all your favourites.
+    </div>
+
 
     <div class="account-page__body" id="account-notifications-email">
+
         <div class="account-page__section">
+            <p class="account-page__section-title c-r center">
+                Set Your Email Preferences
+            </p>
+            <div class="account__email-preferences">
+                <label class="checkbox__label">
+                    <input type="checkbox" class="filled-in" checked />
+                    <input type="hidden" />
+                    <span>
+                        Sign me up for upcoming news, offers and competition updates
+                    </span>
+                </label>
+                <label class="checkbox__label">
+                    <input type="checkbox" class="filled-in" />
+                    <input type="hidden" />
+                    <span>
+                        Sign me up for upcoming auction updates
+                    </span>
+                </label>
+                <label class="checkbox__label">
+                    <input type="checkbox" class="filled-in" checked />
+                    <input type="hidden" />
+                    <span>
+                        Sign me up for new product updates from my saved favourites
+                    </span>
+                </label>
+            </div>
+        </div>
+
+        <div class="account-page__section">
+            <p class="account-page__section-title c-r center">
+                Select Your Favourites
+            </p>
+            <div class="account__favorites-warning center">
+                <span class="badge orange">
+                    You are not currently signed up for updates
+                    <i class='icon'><svg><use xlink:href="#warning"></use></svg></i>
+                </span>
+            </div>
             <div class="account__favorites">
-                <p class="account-page__section-title c-r">
-                    Favorites
-                </p>
                 <div class="account__favorites-inner">
                     <div class="account__favorites-col account__favorites-col--movies">
                         <form action="#movie" id="form-movie">
@@ -28,81 +60,87 @@
                             <input type="hidden" name="movieName">
                             <div class="input-field input-field--label input-field--autocomplete">
                                 <input type="text" id="autocomplete-movie" class="autocomplete" placeholder="Start Typing..." autocomplete="off">
-                                <label>Movies & series</label>
+                                <label>Add movies & series to your list</label>
                             </div>
                         </form>
-        
-                        <ul class="account__favorites-list collapsible expandable">
-                            <li class="account__favorites-item">
-                                <div class="account__favorites-item-header collapsible-header">
-                                    <div class="account__favorites-item-title c-r">
-                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua
+
+                        <div class="account__favorites-list">
+                            <div class="h6">
+                                My favourite movies & series
+                            </div>
+            
+                            <ul class="collapsible expandable">
+                                <li class="account__favorites-item">
+                                    <div class="account__favorites-item-header collapsible-header">
+                                        <div class="account__favorites-item-title c-r">
+                                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua
+                                        </div>
+                                        <div class="account__favorites-item-categories-button">
+                                            <button class="btn-flat btn--link">
+                                                Categories
+                                            </button>
+                                        </div>
                                     </div>
-                                    <div class="account__favorites-item-categories-button">
-                                        <button class="btn-flat btn--link">
-                                            Categories
-                                        </button>
+                                    <div class="account__favorites-item-delete">
+                                        <a href="#delete" class="btn-flat btn--icon">
+                                            <span class='icon'><svg><use xlink:href="#close"></use></svg></span>
+                                        </a>
                                     </div>
-                                </div>
-                                <div class="account__favorites-item-delete">
-                                    <a href="#delete" class="btn-flat btn--icon">
-                                        <span class='icon'><svg><use xlink:href="#close"></use></svg></span>
-                                    </a>
-                                </div>
-                                <ul class="account__favorites-item-body collapsible-body">
-                                    <li>
-                                        <label class="checkbox__label">
-                                            <input type="checkbox" class="filled-in" name="toggleCategory">
-                                            <span>Movie Props</span>
-                                        </label>
-                                    </li>
-                                    <li>
-                                        <label class="checkbox__label">
-                                            <input type="checkbox" class="filled-in" name="toggleCategory">
-                                            <span>Movie Wardrobe</span>
-                                        </label>
-                                    </li>
-                                    <li>
-                                        <label class="checkbox__label">
-                                            <input type="checkbox" class="filled-in" name="toggleCategory">
-                                            <span>Artwork</span>
-                                        </label>
-                                    </li>
-                                    <li>
-                                        <label class="checkbox__label">
-                                            <input type="checkbox" class="filled-in" name="toggleCategory">
-                                            <span>Film Production</span>
-                                        </label>
-                                    </li>
-                                    <li>
-                                        <label class="checkbox__label">
-                                            <input type="checkbox" class="filled-in" name="toggleCategory">
-                                            <span>Crew / Promo</span>
-                                        </label>
-                                    </li>
-                                    <li>
-                                        <label class="checkbox__label">
-                                            <input type="checkbox" class="filled-in" name="toggleCategory">
-                                            <span>Prop Replicas</span>
-                                        </label>
-                                    </li>
-                                    <li>
-                                        <label class="checkbox__label">
-                                            <input type="checkbox" class="filled-in" name="toggleCategory">
-                                            <span>Autographs</span>
-                                        </label>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li class="account__favorites-item">
-                                <div class="account__favorites-item-header collapsible-header">
-                                    Header 2
-                                </div>
-                                <div class="account__favorites-item-body collapsible-body">
-                                    Body 2
-                                </div>
-                            </li>
-                        </ul>
+                                    <ul class="account__favorites-item-body collapsible-body">
+                                        <li>
+                                            <label class="checkbox__label">
+                                                <input type="checkbox" class="filled-in" name="toggleCategory">
+                                                <span>Movie Props</span>
+                                            </label>
+                                        </li>
+                                        <li>
+                                            <label class="checkbox__label">
+                                                <input type="checkbox" class="filled-in" name="toggleCategory">
+                                                <span>Movie Wardrobe</span>
+                                            </label>
+                                        </li>
+                                        <li>
+                                            <label class="checkbox__label">
+                                                <input type="checkbox" class="filled-in" name="toggleCategory">
+                                                <span>Artwork</span>
+                                            </label>
+                                        </li>
+                                        <li>
+                                            <label class="checkbox__label">
+                                                <input type="checkbox" class="filled-in" name="toggleCategory">
+                                                <span>Film Production</span>
+                                            </label>
+                                        </li>
+                                        <li>
+                                            <label class="checkbox__label">
+                                                <input type="checkbox" class="filled-in" name="toggleCategory">
+                                                <span>Crew / Promo</span>
+                                            </label>
+                                        </li>
+                                        <li>
+                                            <label class="checkbox__label">
+                                                <input type="checkbox" class="filled-in" name="toggleCategory">
+                                                <span>Prop Replicas</span>
+                                            </label>
+                                        </li>
+                                        <li>
+                                            <label class="checkbox__label">
+                                                <input type="checkbox" class="filled-in" name="toggleCategory">
+                                                <span>Autographs</span>
+                                            </label>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li class="account__favorites-item">
+                                    <div class="account__favorites-item-header collapsible-header">
+                                        Header 2
+                                    </div>
+                                    <div class="account__favorites-item-body collapsible-body">
+                                        Body 2
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
                     </div>
                     <div class="account__favorites-col account__favorites-col--genres">
                         <form action="#genre" id="form-genre">
@@ -112,7 +150,7 @@
                                     <option value="genre01">genre 01</option>
                                     <option value="genre02">genre 2</option>
                                 </select>
-                                <label>Genres</label>
+                                <label>Add Genres to your list</label>
                             </div>
                         </form>
         
@@ -147,62 +185,9 @@
             </div>
         </div>
 
-        <div class="account-page__section">
-            <div class="account-page__form">
-                <p class="account-page__section-title c-r">
-                    Email Preferences
-                </p>
-                <div class="account-page__checkboxes">
-                    <label class="checkbox__label">
-                        <input type="checkbox" class="filled-in" checked />
-                        <input type="hidden" />
-                        <span>Sign me up for upcoming new, offers and competition updates</span>
-                    </label>
-                    <label class="checkbox__label">
-                        <input type="checkbox" class="filled-in" />
-                        <input type="hidden" />
-                        <span>Sign me up for upcoming auction updates</span>
-                    </label>
-                    <label class="checkbox__label">
-                        <input type="checkbox" class="filled-in" checked />
-                        <input type="hidden" />
-                        <span>Sign me up to be automatically informed about new products in my favourite movies/genres</span>
-                    </label>
-                </div>
-            </div>
-        </div>
-
-        <div class="account-page__section account-page__section--footer">
-            <div class="account-page__form">
-                <button type="submit" class="waves-effect waves-light btn">
-                    Save
-                </button>
-            </div>
-        </div>
-
     </div>
 
-    <div class="account-page__body" id="account-notifications-lot" style="display: none;">
-        <div class="account-page__body-inner">
-            <div class="account-page__section">
-                <div class="account-page__form">
-                    <p class="account-page__section-title c-r">
-                        Calendar Notifications
-                    </p>
-                    todo
-                </div>
-            </div>
-
-            <div class="account-page__section">
-                <div class="account-page__form">
-                    <p class="account-page__section-title c-r">
-                        Watchlist
-                    </p>
-                    todo
-                </div>
-            </div>
-        </div>
-    </div>
+    
 </div>
 
 <div class="loader-block" style="display: none;">

@@ -800,6 +800,10 @@ document.addEventListener('DOMContentLoaded', () => {
         const margin = document.querySelectorAll('.margin-dropdown');
         if (margin) M.Dropdown.init(margin, { container: document.body });
 
+        // SET ALERT DROPDOWN
+        const setalert = document.querySelectorAll('.setalert-dropdown');
+        if (setalert) M.Dropdown.init(setalert, { container: document.body });
+
         // SELL
         const $sellTabsA = $('.sell__tab a');
         const $sellTabs = $('.sell__tab-content');
