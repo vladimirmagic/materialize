@@ -232,6 +232,7 @@ document.addEventListener('DOMContentLoaded', () => {
 				$galleryItemNew = $galleryItem.clone();
                 $gallery.append($galleryItemNew);
                 setTimeout(()=>$gallery.find('.carousel-item').eq(i).css(img), 2000 + i * 100); // to defer full img load
+                item.remove();
 			});
 
 			$detailsLine = $('.aucproduct__details-line').clone();
