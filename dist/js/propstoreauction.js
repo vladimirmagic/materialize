@@ -222,8 +222,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
 			$('.image-thumb-slide').each((i, item) => {
 				const img = { backgroundImage: 'url(' + item.href + ')' };
-                const imgPrev = { backgroundImage: 'url(' + item.dataset.image.replace('_8.', '_2.') + ')' };
-                const imgThumbnail = { backgroundImage: 'url(' + item.dataset.image.replace('_8.', '_5.') + ')' };
+                const image = !i ? item.dataset.image.replace('_8.', '_0.') : item.dataset.image;
+                const imgPrev = { backgroundImage: 'url(' + image + ')' };
+                const imgThumbnail = { backgroundImage: 'url(' + item.dataset.image.replace('_8.', '_4.') + ')' };
 				$carouselItemNew = $carouselItem.clone();
                 $slider.append($carouselItemNew);
 				setTimeout(()=>$slider.find('.carousel-item').eq(i).css(imgPrev), 100 * i); // to defer preview load
@@ -449,7 +450,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     $list.html('');
                     $others.each((index, item) => {
                         $img = $('<div class="card__img">');
-                        $img.css('background-image', 'url(' + $(item).find('.other-lots-image').prop('src').replace('_4.', '_2.') + ')');
+                        $img.css('background-image', 'url(' + $(item).find('.other-lots-image').prop('src') + ')');
                         $title = $('<div class="card__movie">').html($(item).find('.lot-description-timed').html());
                         $list.append($(item).addClass('card aucproduct__card').html('').append($img, $('<div class="card__info">').append($('<div class="card__description">').append($title))));
                     });
