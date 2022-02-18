@@ -222,11 +222,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
 			$('.image-thumb-slide').each((i, item) => {
 				const img = { backgroundImage: 'url(' + item.href + ')' };
-                const imgPrev = { backgroundImage: 'url(' + item.dataset.image.replace('_8.', '_9.') + ')' };
+                const imgPrev = { backgroundImage: 'url(' + item.dataset.image.replace('_8.', '_2.') + ')' };
+                const imgThumbnail = { backgroundImage: 'url(' + item.dataset.image.replace('_8.', '_5.') + ')' };
 				$carouselItemNew = $carouselItem.clone();
 				$slider.append($carouselItemNew.css(imgPrev));
 				$thumbnailsItemNew = $thumbnailsItem.clone();
-				$thumbnails.append($thumbnailsItemNew.css(imgPrev));
+				$thumbnails.append($thumbnailsItemNew.css(imgThumbnail));
 				$galleryItemNew = $galleryItem.clone();
 				$gallery.append($galleryItemNew.css(img));
 			});
