@@ -225,11 +225,13 @@ document.addEventListener('DOMContentLoaded', () => {
                 const imgPrev = { backgroundImage: 'url(' + item.dataset.image.replace('_8.', '_2.') + ')' };
                 const imgThumbnail = { backgroundImage: 'url(' + item.dataset.image.replace('_8.', '_5.') + ')' };
 				$carouselItemNew = $carouselItem.clone();
-				$slider.append($carouselItemNew.css(imgPrev));
+                $slider.append($carouselItemNew);
+				setTimeout(()=>$slider.find('.carousel-item').eq(i).css(imgPrev), 100 * i); // to defer preview load
 				$thumbnailsItemNew = $thumbnailsItem.clone();
 				$thumbnails.append($thumbnailsItemNew.css(imgThumbnail));
 				$galleryItemNew = $galleryItem.clone();
-				$gallery.append($galleryItemNew.css(img));
+                $gallery.append($galleryItemNew);
+                setTimeout(()=>$gallery.find('.carousel-item').eq(i).css(img), 2000 + i * 100); // to defer full img load
 			});
 
 			$detailsLine = $('.aucproduct__details-line').clone();
