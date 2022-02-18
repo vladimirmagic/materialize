@@ -450,7 +450,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     $list.html('');
                     $others.each((index, item) => {
                         $img = $('<div class="card__img">');
-                        $img.css('background-image', 'url(' + $(item).find('.other-lots-image').prop('src') + ')');
+                        $img.css('background-image', 'url(' + $(item).find('.other-lots-image').prop('src').replace('_4.', '_6.') + ')');
                         $title = $('<div class="card__movie">').html($(item).find('.lot-description-timed').html());
                         $list.append($(item).addClass('card aucproduct__card').html('').append($img, $('<div class="card__info">').append($('<div class="card__description">').append($title))));
                     });
