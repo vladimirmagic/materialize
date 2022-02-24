@@ -22,7 +22,27 @@
 
 <body class="index index-index" >
 <a href="#" class="back-to-top"></a>
-<div id="custom-header"><!-- ADM Smart Pixel - Props Store - smart pixel - DO NOT MODIFY -->
+<div id="custom-header">
+<script>
+    let URL_PROPSTORE = 'https://new.propstore.com/';
+    if (window.location.href.includes('localhost')) URL_PROPSTORE = 'http://propstore.loc/';
+    const params = new URLSearchParams(window.location.search);
+    if (params.get('rid')) {
+        const rid = params.get('rid');
+        params.delete('rid');
+        window.location.href = URL_PROPSTORE + '/ajax/auctionRegistration.action?auctionId=' + rid + '&' + params.toString();
+    } else if (params.get('ru')) {
+        const ru = params.get('ru');
+        params.delete('ru');
+        const d = params.get('d');
+        params.delete('d');
+        let domain = '';
+        if (d && d === '1') domain = URL_PROPSTORE;
+        const paramsSymbol = ru.includes('?') ? '&' : '?';
+        window.location.href = domain + ru + paramsSymbol + params.toString();
+    }
+</script>
+    <!-- ADM Smart Pixel - Props Store - smart pixel - DO NOT MODIFY -->
 <script type="text/javascript">!function(a,e,d,m,t){a.adm={};a.adm.pixid=147441;var o=e.getElementsByTagName("head")[0],c=e.createElement("script");a.adm.json="https://ps.l.admedo.com/8bfdd2a5-b62a-40aa-9b68-8f2a7e269016.json",a.adm.pixurl="https://pool.admedo.com",c.src="https://pj.l.admedo.com/admtracker.lib.min.js",c.async=!0,o.appendChild(c)}(window,document);</script>
 <noscript><img height="1" width="1" style="display:none" src="https://pool.admedo.com/pixel?id=147441&t=img" /></noscript>
 <!-- End of ADM Smart Pixel -->
@@ -71,7 +91,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 	        <li><a href="https://propstoreauction.com/m/search/" class="srch"><img src="https://propstoreauction.com/m/images/srch.png" alt="Search"></a></li>
 	        <li><a href="https://propstoreauction.com/m/login/" class="prof"><img src="https://propstoreauction.com/m/images/profile.png" alt="Profile"></a></li>
       	</ul>
-        <ul class="listnav not-logged-in"><li class="auctions current mx-menu-main" title="" ><a href="http://propstoreauction.com/m">All Auctions</a></li><li class="search mx-menu-main" title="" ><a href="https://propstoreauction.com/m/search/">Auction Search</a></li><li class="signup mx-menu-main" title="" ><a href="https://propstoreauction.com/m/signup/?url=https%3A%2F%2Fpropstoreauction.com%2Fm%2F">Create Account</a></li><li class="login mx-menu-main" title="" ><a href="https://propstoreauction.com/m/login/?url=https%3A%2F%2Fpropstoreauction.com%2Fm%2F">Auction 1Login</a></li></ul>
+        <ul class="listnav not-logged-in"><li class="auctions current mx-menu-main" title="" ><a href="http://propstoreauction.com/m">All Auctions</a></li><li class="search mx-menu-main" title="" ><a href="https://propstoreauction.com/m/search/">Auction Search</a></li><li class="signup mx-menu-main" title="" ><a href="https://propstoreauction.com/m/signup/?url=https%3A%2F%2Fpropstoreauction.com%2Fm%2F">Create Account</a></li><li class="login mx-menu-main" title="" ><a href="https://propstoreauction.com/m/login/?url=https%3A%2F%2Fpropstoreauction.com%2Fm%2F">Auction Login</a></li></ul>
 </nav>    <div class="clear"></div>
 </header>
 

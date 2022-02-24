@@ -1,7 +1,4 @@
 document.addEventListener('DOMContentLoaded', () => {
-    let URL_PROPSTORE = 'https://new.propstore.com/';
-    if (window.location.href.includes('localhost')) URL_PROPSTORE = 'http://propstore.loc/';
-
 	if (window.location.href.includes('#nomaterialize')) { // don't materialize
 		document.querySelectorAll('[data-v2]').forEach(item => item.remove());
 		return;
@@ -1354,27 +1351,18 @@ if (id.length && id.length > 1) {
         }
 
         function openSSO (action = '/ajax/signIn.action') {
-            let url = URL_PROPSTORE + action;
-            let param = null;
-            const w = window.screen.width;
-            const h = window.screen.height;
-            if (w > 1224) {
-                param = `width=${w-200},height=${h-200},left=100,top=100,menubar=1,toolbar=1,location=1,status=1`;
+            const urlParams = new URLSearchParams(window.location.search);
+            const url = urlParams.get('url');
+            
+            const params = new URLSearchParams('d=2');
+            if (url) { // redirect to another page after ps login
+                params.append('ru', encodeURI(url));
+            } else { // redirect to this page after ps login
+                params.append('ru', encodeURI(window.location.pathname + window.location.search));
+                const scroll = $(window).scrollTop();
+                if (scroll > 100) params.append('sc', String(Math.round(scroll)));
             }
-            const win = window.open(url, 'Propstore Sign In', param);
-            window.addEventListener('message', function(event) {
-                if (event.data === 'reloadPage' || event.data === 'SSOerror') {
-                    const queryString = window.location.search;
-                    const params = new URLSearchParams(queryString);
-                    const url = params.get('url');
-                    if (url) {
-                        redirectPage(url);
-                    } else {
-                        reloadPage();
-                    }
-                    win.close();
-                }
-            });
+            window.location.href = URL_PROPSTORE + action + '?' + params.toString();
         }
 
         function openAuctionRegistration (id) {
