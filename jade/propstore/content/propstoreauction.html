@@ -40,6 +40,8 @@
         if (d && d === '1') domain = URL_PROPSTORE;
         const paramsSymbol = ru.includes('?') ? '&' : '?';
         window.location.href = domain + ru + paramsSymbol + params.toString();
+    } else if (params.get('sc')) {
+        $('html').scrollTop(params.get('sc'));
     }
 </script>
     <!-- ADM Smart Pixel - Props Store - smart pixel - DO NOT MODIFY -->
