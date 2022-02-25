@@ -19,6 +19,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 $.get('/logout')
                     .always(data => {
                         if (params.get('ru')) {
+                            params.delete('action');
                             const ru = decodeURIComponent(params.get('ru'));
                             params.delete('ru');
                             const d = params.get('d');
