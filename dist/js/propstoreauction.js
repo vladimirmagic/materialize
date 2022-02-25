@@ -1192,8 +1192,7 @@ if ($('#headsec a:contains("Auction Login")').length) {
                     const scroll = $(window).scrollTop();
                     if (scroll > 100) params.append('sc', String(Math.round(scroll)));
                 }
-                //redirectPage(URL_PROPSTORE + 'submitLogout.action?' + params.toString());
-                console.log(params.toString())
+                redirectPage(URL_PROPSTORE + 'submitLogout.action?' + params.toString());
             });
     });
 }
