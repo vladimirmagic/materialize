@@ -27,12 +27,15 @@
     let URL_PROPSTORE = 'https://new.propstore.com/';
     if (window.location.href.includes('localhost')) URL_PROPSTORE = 'http://propstore.loc/';
     const params = new URLSearchParams(window.location.search);
-    if (params.get('rid')) {
+    if (params.get('action')) {
+        const loader = document.querySelector('.loader-block');
+        if (loader) loader.style.display = 'block';
+    } else if (params.get('rid')) {
         const rid = params.get('rid');
         params.delete('rid');
         window.location.href = URL_PROPSTORE + '/ajax/auctionRegistration.action?auctionId=' + rid + '&' + params.toString();
     } else if (params.get('ru')) {
-        const ru = params.get('ru');
+        const ru = decodeURIComponent(params.get('ru'));
         params.delete('ru');
         const d = params.get('d');
         params.delete('d');
@@ -40,6 +43,8 @@
         if (d && d === '1') domain = URL_PROPSTORE;
         const paramsSymbol = ru.includes('?') ? '&' : '?';
         window.location.href = domain + ru + paramsSymbol + params.toString();
+    } else if (params.get('sc')) {
+        $('html').scrollTop(params.get('sc'));
     }
 </script>
     <!-- ADM Smart Pixel - Props Store - smart pixel - DO NOT MODIFY -->

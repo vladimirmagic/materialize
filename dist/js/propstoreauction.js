@@ -13,6 +13,26 @@ document.addEventListener('DOMContentLoaded', () => {
 		.catch(loaded);
 
 	$(function () {
+        const params = new URLSearchParams(window.location.search);
+        if (params.get('action')) {
+            if (params.get('action') == 'signout') {
+                $.get('/logout')
+                    .always(data => {
+                        if (params.get('ru')) {
+                            const ru = decodeURIComponent(params.get('ru'));
+                            params.delete('ru');
+                            const d = params.get('d');
+                            params.delete('d');
+                            let domain = '';
+                            if (d && d === '1') domain = URL_PROPSTORE;
+                            const paramsSymbol = ru.includes('?') ? '&' : '?';
+                            redirectPage(domain + ru + paramsSymbol + params.toString());
+                        }
+                    });
+            }
+            redirectPage(paramsUrl);
+        }
+
 		function is_touch_device() {
 			try {
 				document.createEvent('TouchEvent');
@@ -1401,10 +1421,6 @@ if (id.length && id.length > 1) {
             window.opener.postMessage('SSOerror', '*');
             window.close();
         }
-
-        const params = new URLSearchParams(window.location.search);
-        const paramsUrl = params.get('url');
-        if (params.get('reloadopener') && paramsUrl) redirectPage(paramsUrl);
 
 		document.body.classList.add('loaded'); // if svg fail
 	}); // end of document ready
