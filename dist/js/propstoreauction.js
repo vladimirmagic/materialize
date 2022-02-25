@@ -30,7 +30,6 @@ document.addEventListener('DOMContentLoaded', () => {
                         }
                     });
             }
-            redirectPage(paramsUrl);
         }
 
 		function is_touch_device() {
