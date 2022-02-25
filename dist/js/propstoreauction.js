@@ -1184,13 +1184,16 @@ if ($('#headsec a:contains("Auction Login")').length) {
         $('.loader-block').show();
         $.get('/logout')
             .always(data => {
-                if (window.location.pathname.includes('/my-items/')) {
-                    redirectPage('/');
-                } else {
-                    reloadPage();
+                const params = new URLSearchParams('d=2');
+                if (window.location.pathname.includes('/my-items/')) { // redirect to home page after ps logout
+                    params.append('ru', '/');
+                } else { // redirect to this page after ps login
+                    params.append('ru', encodeURI(window.location.pathname + window.location.search));
+                    const scroll = $(window).scrollTop();
+                    if (scroll > 100) params.append('sc', String(Math.round(scroll)));
                 }
+                redirectPage(URL_PROPSTORE + 'submitLogout.action?' + params.toString());
             });
-        openPropstoreAndClose(URL_PROPSTORE + 'submitLogout.action?autoclose=true');
     });
 }
 /**
