@@ -1139,11 +1139,7 @@ document.addEventListener('DOMContentLoaded', () => {
  * SIGN IN, SIGN UP, FORGOT
  */
  if ($('body').hasClass('login') || $('body').hasClass('signup') || $('body').hasClass('forgot-password')) {
-    if (window.opener) { // close modal window, becouse it is redirected from modal /logout
-        window.opener.postMessage('SSOsuccess', '*');
-        window.close();
-    }
-    redirectPage(URL_PROPSTORE + '/ajax/signIn.action' + window.location.search);
+    openSSO();
     document.querySelectorAll('style:not([data-v2]), link[rel="stylesheet"]:not([data-v2])').forEach(item => item.remove());
 }
 /**
@@ -1235,7 +1231,7 @@ if ($('#headsec a:contains("Auction Login")').length) {
  */
 const id = window.location.pathname.split('/register/confirm-shipping/id/');
 if (id.length && id.length > 1) {
-    window.location.href = URL_PROPSTORE + '/ajax/auctionRegistration.action?auctionId=' + id[1];
+    redirectPage(URL_PROPSTORE + '/ajax/auctionRegistration.action?auctionId=' + id[1]);
 }
 
 /**
@@ -1368,11 +1364,6 @@ if (id.length && id.length > 1) {
             }
 		}
 
-        function openPropstoreAndClose (url) {
-            const SSOwin = window.open(url, 'Propstore SSO', `scrollbars=no,resizable=no,status=no,location=no,toolbar=no,menubar=no,width=1,height=1,top=2000`);
-            setTimeout(() => SSOwin.close(), 1000);
-        }
-
         function openSSO (action = '/ajax/signIn.action') {
             const urlParams = new URLSearchParams(window.location.search);
             const url = urlParams.get('url');
@@ -1385,7 +1376,7 @@ if (id.length && id.length > 1) {
                 const scroll = $(window).scrollTop();
                 if (scroll > 100) params.append('sc', String(Math.round(scroll)));
             }
-            window.location.href = URL_PROPSTORE + action + '?' + params.toString();
+            redirectPage(URL_PROPSTORE + action + '?' + params.toString());
         }
 
         function openAuctionRegistration (id) {
