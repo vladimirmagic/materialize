@@ -604,7 +604,7 @@ document.addEventListener('DOMContentLoaded', () => {
 				$date = $('<div class="auclting__date"><i class="icon"><svg><use xlink:href="#calendar"></use></svg></i></div>');
 				$date.append($desc.find('#aucdate' + id));
 				$lots = $('<div class="auclting__lots"><i class="icon"><svg><use xlink:href="#ticket"></use></svg></i></div>');
-				$lots.append($desc.find('p+p').text());
+				$lots.append($desc.find('p').eq(1).text());
 				$details = $('<div class="auclting__details">');
 				$details.append($type).append($date).append($lots);
 				$details.insertAfter($title);
