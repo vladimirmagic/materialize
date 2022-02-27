@@ -23097,16 +23097,8 @@ body.search-index .categories-match {
   }
 }
 
-@media only screen and (max-width: 440px) {
+@media only screen and (max-width: 480px) {
   .auc__hero.hero--auctions .hero__btn {
-    display: -webkit-box;
-    display: -webkit-flex;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-pack: center;
-    -webkit-justify-content: center;
-        -ms-flex-pack: center;
-            justify-content: center;
     width: 100%;
     margin-top: 1.5rem;
     margin-right: 0;
