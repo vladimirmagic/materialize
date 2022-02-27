@@ -1380,22 +1380,10 @@ if (id.length && id.length > 1) {
         }
 
         function openAuctionRegistration (id) {
-            const url = URL_PROPSTORE + '/ajax/auctionRegistration.action?auctionId=' + id;
-            let param = null;
-            const w = window.screen.width;
-            const h = window.screen.height;
-            if (w > 1224) {
-                param = `width=${w-200},height=${h-200},left=100,top=100,menubar=1,toolbar=1,location=1,status=1`;
-            }
-            const ssoWin = window.open(url, 'Propstore Auction Registration', param);
-            window.addEventListener('message', function(event) {
-                if (event.data === 'SSOsuccess') {
-                    ssoWin.location.href = url;
-                    reloadPage();
-                } else if (event.data === 'reloadPage') {
-                    reloadPage();
-                }
-            });
+            let params = '&d=2&ru=' + encodeURIComponent(window.location.pathname + window.location.search);
+            const scroll = $(window).scrollTop();
+            if (scroll > 100) params += '&sc=' + String(Math.round(scroll));
+            redirectPage(URL_PROPSTORE + '/ajax/auctionRegistration.action?auctionId=' + id + params);
         }
         
         function reloadPage () {
@@ -1408,12 +1396,7 @@ if (id.length && id.length > 1) {
             window.location.href = url;
         }
 
-        if (window.opener && $('#messages').text().includes('SSO token error')) {
-            window.opener.postMessage('SSOerror', '*');
-            window.close();
-        }
-
-		document.body.classList.add('loaded'); // if svg fail
+        document.body.classList.add('loaded'); // if svg fail
 	}); // end of document ready
 });
 
