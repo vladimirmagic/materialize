@@ -33,7 +33,7 @@
     } else if (params.get('rid')) {
         const rid = params.get('rid');
         params.delete('rid');
-        window.location.href = URL_PROPSTORE + '/ajax/auctionRegistration.action?auctionId=' + rid + '&' + params.toString();
+        window.location.href = URL_PROPSTORE + '/auctionRegistration.action?auctionId=' + rid + '&' + params.toString();
     } else if (params.get('ru')) {
         const ru = decodeURIComponent(params.get('ru'));
         params.delete('ru');

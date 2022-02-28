@@ -9651,6 +9651,15 @@ hr.small {
   background-color: #F4F4F4;
 }
 
+.btn-back .icon {
+  margin-right: 8px !important;
+}
+
+.btn-back .icon svg {
+  -webkit-transform: rotate(180deg);
+          transform: rotate(180deg);
+}
+
 @media only screen and (min-width: 1921px) {
   .content, .general, .header__main, .header__menu-level1-inner, .header__menu-level1--sell .header__menu-level1-inner, .footer__inner, .hero, .filters, .header__filters .filters__body, .showing-results, .related-movies, .modal-shipping-quote-page main, .how, .whatsnew__text, .section-auctions, .faq, .account-page__text, .account__orders, .account__coa, .account-filter, .payment-plans, .sell__inner, .vouchers, .experts, .auccatalog__nav, .auc-info__inner, .auc-info__video, .aucpage__content {
     padding-left: calc(50% - 900px);
@@ -18228,15 +18237,6 @@ a.account__card:not(.btn):not(.btn-large):not(.btn-small):not(.btn-extra-small):
 .account__buttons {
   margin-top: 100px;
   text-align: center;
-}
-
-.account__button-sign-out {
-  margin-right: 8px !important;
-}
-
-.account__button-sign-out svg {
-  -webkit-transform: rotate(180deg);
-          transform: rotate(180deg);
 }
 
 @media only screen and (max-width: 1636px) {

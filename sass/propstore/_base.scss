@@ -210,6 +210,14 @@ hr {
 	  }
 }
 
+.btn-back .icon {
+	margin-right: 8px !important;
+
+	svg {
+		transform: rotate(180deg);
+	}
+}
+
 @media #{$media-fullhd-up} {
 	$content-padding: calc(50% - 900px);
     .content {
