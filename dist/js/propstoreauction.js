@@ -819,10 +819,21 @@ document.addEventListener('DOMContentLoaded', () => {
 
 			$('.item-block').each((i, item) => {
 				$cardItem = $card.clone();
-                let bg = $(item).find('figure img').prop('src');
-                if (bg) {
-                    bg = bg.replace('_6.', '_2.');
+                const $img = $(item).find('figure img');
+                if ($img.length) {
+                    let bg = $img.prop('src');
                     $cardItem.find('.card__img').css('background-image', 'url(' + bg + ')');
+                    $img.on('load', () => {
+                        setTimeout(() => {
+                            const $img = $('.item-block').eq(i).find('figure img');
+                            let bg = $img.prop('src');
+                            bg = bg.replace('_6.', '_2.');
+                            $img.prop('src', bg);
+                            $img.on('load', () => {
+                                $('.card__img').eq(i).css('background-image', 'url(' + bg + ')');
+                            });
+                        }, 1000);
+                    });
                 }
 				$cardItem.find('.card__movie').append($(item).find('.yaaa'));
 				$badge = $cardItem.find('.card__badge')
