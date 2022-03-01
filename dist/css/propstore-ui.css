@@ -14414,8 +14414,8 @@ a.product__title:not(.btn):not(.btn-large):not(.btn-small):not(.btn-extra-small)
 }
 
 .product__interested-link {
+  width: 100%;
   margin-bottom: 1em;
-  text-decoration: underline;
 }
 
 .product__interested-link:after {

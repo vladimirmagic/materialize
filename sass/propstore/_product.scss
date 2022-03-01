@@ -336,8 +336,8 @@ a.product__title:not(.btn) {
 }
 
 .product__interested-link {
+	width: 100%;
 	margin-bottom: 1em;
-	text-decoration: underline;
 
 	&:after {
 		display: none;
