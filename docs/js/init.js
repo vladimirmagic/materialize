@@ -1,3 +1,9 @@
+const params = new URLSearchParams(window.location.search);
+const sc = params.get('sc');
+if (sc && !params.get('ru')) {
+    $('html').scrollTop(sc);
+}
+
 document.addEventListener('DOMContentLoaded', () => {
     $(function() {
         // Detect touch screen and enable scrollbar if necessary
@@ -52,16 +58,6 @@ document.addEventListener('DOMContentLoaded', () => {
         $('select').not('.disabled').formSelect();
         $('.sidenav').sidenav();
         $('input[data-length], textarea[data-length]').characterCounter();
-        // $('.datepicker').datepicker();
-        // $('.timepicker').timepicker();
-        // $('.tooltipped').tooltip();
-        // $('.slider').slider();
-        // $('.carousel').carousel();
-        // $('.carousel.carousel-slider').carousel({
-        //     fullWidth: true,
-        //     indicators: true,
-        //     onCycleTo: function(item, dragged) {}
-        // });
 
         // AJAX
         if (
@@ -74,18 +70,34 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // SIGN OUT SSO
         if ($('.signout-trigger').length) {
-            $('.signout-trigger').on('click', function () {
+            $('.signout-trigger').on('click', function (e) {
+                e.preventDefault();
                 $('.loader-block').show();
-                openSamAndClose(AUCTION_URL + '/logout?autoclose=true');
+                $.get(this.href)
+                    .always(() => {
+                        let params = '?action=signout&d=1&ru=' + encodeURIComponent(window.location.pathname + window.location.search);
+                        const scroll = $(window).scrollTop();
+                        if (scroll > 100) params += '&sc=' + String(Math.round(scroll));
+                        redirectPage(AUCTION_URL + params + (window.location.href.includes('propstore.loc') ? '#localhost' : ''));
+                    });
             });
         }
 
         // MODAL SIGNIN
 
         $('#modal-signin').modal({ // load form on modal open
-            onOpenStart: function (el) {
+            onOpenStart: function (el, trigger) {
                 el.classList.add('sync');
                 const $form = $(el).find('.modal-signin-form');
+                const params = new URLSearchParams('d=1');
+                if ($(trigger).data('ru')) { // redirect to another page after sam login
+                    params.append('ru', encodeURIComponent($(trigger).data('ru')));
+                } else { // redirect to this page after sam login
+                    params.append('ru', encodeURIComponent(window.location.pathname + window.location.search));
+                    const scroll = $(window).scrollTop();
+                    if (scroll > 100) params.append('sc', String(Math.round(scroll)));
+                }
+                $form.data('params', params.toString() + (window.location.href.includes('propstore.loc') ? '#localhost' : ''));
                 $.get('/ajax/modalSignIn.action')
                     .done(data => {
                         $form.html(data);
@@ -110,41 +122,19 @@ document.addEventListener('DOMContentLoaded', () => {
         $('.modal-signin-form').submit(function (e) {
             e.preventDefault();
             this.classList.add('sync');
-
-            function openSSO () {
-                $('.loader-block').show();
-                const SSOwin = window.open('/ajax/sso.action?autoclose=true&reloadopener=true', 'Propstore SSO', `scrollbars=no,resizable=no,status=no,location=no,toolbar=no,menubar=no,width=1,height=1,top=2000`);
-                const SSOtimer = setTimeout(() => {
-                    $('.loader-block').hide();
-                    if (SSOwin) SSOwin.close();
-                    M.Toast.dismissAll();
-                    M.toast({
-                        html: '<span><strong>Somthing went wrong.</strong><br/> Check pop-ups blocking and try again.</span>',
-                        displayLength: Infinity,
-                    });
-                }, 5000);
-                window.addEventListener('message', function(event) {
-                    if (event.data === 'SSOsuccess' || event.data === 'SSOerror') {
-                        reloadPage();
-                    }
-                });
-            }
+            $form = $(this);
 
             $.post(
                 this.action,
                 $(this).serialize(),
             )
                 .done(data => {
-                    this.innerHTML = data;
-                    M.updateTextFields();
-
-                    const $ssoTrigger = $(this).find('.modal-register__sso-trigger');
-                    if ($ssoTrigger.length) {
-                        $ssoTrigger.on('click', openSSO).trigger('click');
-                        const $redirect = $('[data-after-signin]');
-                        if ($redirect.length) {
-                            redirectPage($redirect.data('after-signin'));
-                        }
+                    if (data && data.trim() === 'success') {
+                        $('.loader-block').show();
+                        redirectPage('/sso.action?' + $form.data('params'));
+                    } else {
+                        this.innerHTML = data;
+                        M.updateTextFields();
                     }
                 })
                 .fail(data => {
@@ -274,14 +264,23 @@ document.addEventListener('DOMContentLoaded', () => {
                         .done(data => {
                             $card.removeClass('card--liked');
                         });
-                    if (lotUrl) openSamAndClose(AUCTION_URL + '/watchlist/remove?autoclose=true&' + lotUrl);
+                    // if (lotUrl) $.get(AUCTION_URL + '/watchlist/remove?autoclose=true&' + lotUrl); // todo: cors
                 } else {
                     $.get('/ajax/addToFavorites.action?product=' + productId)
                         .done(data => {
                             $card.addClass('card--liked');
                         });
-                    if (lotUrl) openSamAndClose(AUCTION_URL + '/watchlist/add?autoclose=true&' + lotUrl);
+                    // if (lotUrl) $.get(AUCTION_URL + '/watchlist/add?autoclose=true&' + lotUrl); // todo: cors
                 }
+            });
+
+            $('.card__action-sell').on('click', function (e) {
+                e.preventDefault();
+                const $card = $(this).closest('.card');
+                if (!$card.length) return;
+
+                const productId = $card[0].getAttribute('data-id');
+                redirectPage('/sellRequest.action?productId=' + productId);
             });
 
             const currency = document.querySelectorAll('.card__price-i, .product__price-i');
@@ -823,9 +822,13 @@ document.addEventListener('DOMContentLoaded', () => {
                         if (query > -1) hash = hash.substr(0, query);
                         active = '#' + hash;
                         setTimeout(() => $('.hero__btn.sell__button-valuation')[0].scrollIntoView({block: 'start'}));
-                    } else { // if no hash in url - take first tab
-                        const tabActive = document.querySelector('.sell__tab:first-of-type a');
-                        if (tabActive) active = tabActive.getAttribute('href');
+                    } else { // if no hash in url
+                        if (window.location.href.includes('sellRequestSubmit') || window.location.href.includes('requestSent')) { // form submit
+                            active = '#valuation';
+                        } else { // take first tab
+                            const tabActive = document.querySelector('.sell__tab:first-of-type a');
+                            if (tabActive) active = tabActive.getAttribute('href');
+                        }
                     }
                 }
                 if (active) {
@@ -833,6 +836,15 @@ document.addEventListener('DOMContentLoaded', () => {
                     $(active).show();
                     $('.sell__tab a.active').removeClass('active');
                     $('.sell__tab a[href="' + active + '"]').addClass('active');
+                    if (active === '#valuation' &&
+                        (window.location.search.includes('productId') ||
+                        window.location.href.includes('requestSent'))
+                    ) { // scroll to form
+                        setTimeout(() => {
+                            const $valuationForm = $('.sell__valuation-form-title');
+                            if ($valuationForm.length) $valuationForm[0].scrollIntoView({block: 'start'});
+                        }, 100);
+                    }
                 }
             }
             $sellTabsA.on('click', showSellTab);
@@ -946,7 +958,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             });
 
-            $('#sellOrConsignSubmit').submit(function (e) {
+            $('#sellRequestSubmit').submit(function (e) {
                 $('.loader-block').show();
             });
         }
@@ -1076,19 +1088,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
             initializeAutocomplete(moviesOptions);
 
-            const client = algoliasearch('AO1RTK5XJU', '14182a31775c2455fd536e0b34e6767d');
-            const index = client.initIndex('products_releasedate_desc');
-
-            index.searchForFacetValues('movieName', '')
-            .then((data) => {
-                $('<div>' + JSON.stringify(data.facetHits) + '</div>').insertAfter('.filters');
-                console.log(data.facetHits);
-            })
-            .error(() => {
-                $('<div>algoliasearch error</div>').insertAfter('.filters');
-                console.log('algoliasearch error');
-            });
-            
             $.getJSON('/ajax/movies.action', function (json) {
                 if (json && json.movies) {
                     $(json.movies).each(function (key, movie) {
@@ -1371,13 +1370,13 @@ document.addEventListener('DOMContentLoaded', () => {
                         .done(data => {
                             $heart.removeClass('active');
                         });
-                    if (lotUrl) openSamAndClose(AUCTION_URL + '/watchlist/remove?autoclose=true&' + lotUrl);
+                    // if (lotUrl) openSamAndClose(AUCTION_URL + '/watchlist/remove?autoclose=true&' + lotUrl);
                 } else {
                     $.get('/ajax/addToFavorites.action?product=' + productId)
                         .done(data => {
                             $heart.addClass('active');
                         });
-                    if (lotUrl) openSamAndClose(AUCTION_URL + '/watchlist/add?autoclose=true&' + lotUrl);
+                    // if (lotUrl) openSamAndClose(AUCTION_URL + '/watchlist/add?autoclose=true&' + lotUrl);
                 }
             });
         }
@@ -1607,6 +1606,32 @@ document.addEventListener('DOMContentLoaded', () => {
             });
 
             $('.account__favorites-item-delete a').on('click', function () {
+                $('.loader-block').show();
+            });
+        }
+
+        // ACCOUNT PURCHASED
+        if ($('#purchasedFilterForm').length) {
+            function filter() {
+                $('#purchasedFilterForm').submit();
+            }
+            $('#type').on('change', filter);
+            $('#categoryId').on('change', filter);
+            $('#movieId').on('change', filter);
+            $('#sortTypeList').on('change', filter);
+
+            $('#purchasedFilterForm').submit(function () {
+                $('.loader-block').show();
+            });
+        }
+
+        // ACCOUNT EMAIL PREFERENCES
+        if ($('#form-email-preferences').length) {
+            $('#form-email-preferences input').on('change', function () {
+                $('#form-email-preferences').submit();
+            });
+
+            $('#form-email-preferences').submit(function () {
                 $('.loader-block').show();
             });
         }
@@ -1949,8 +1974,8 @@ document.addEventListener('DOMContentLoaded', () => {
                     $(this).serialize(),
                 )
                     .done(data => {
-                        if (data.includes('modal-success')) {
-                            openSSO();
+                        if (data && data.trim() === 'success') {
+                            redirectPage('/sso.action' + window.location.search);
                         } else {
                             this.innerHTML = data;
                             modalLoginForms();
@@ -1962,11 +1987,6 @@ document.addEventListener('DOMContentLoaded', () => {
                         $('.loader-block').hide();
                     });
             });
-
-            function openSSO () {
-                let search = window.location.search;
-                redirectPage('/ajax/sso.action?autoclose=true&reloadopener=true' + search.replaceAll('?', '&'));
-            }
 
             $('#modal-auction-register-form').submit(function (e) {
                 e.preventDefault();
@@ -2039,298 +2059,197 @@ document.addEventListener('DOMContentLoaded', () => {
         // AUCTION REGISTRATION
         auctionRegistration();
 
-        $('.modal-auction').modal({ // load form on modal open
-            onOpenStart: function (el) {
-                loadModalAuctionRegistration(el);
-            },
-            onCloseStart: function (el) {
-                $(el).find('.auction-registration__inner > *').remove();
-            },
-        });
+        function auctionRegistration () {
+            const $inner = $('.auction-registration .auction-registration__inner');
+            if (!$inner.length) return;
 
-        function loadModalAuctionRegistration (modal) {
-            $('.loader-block').show();
-            modal.classList.add('sync');
-            const $content = $(modal).find('.auction-registration__inner');
-            $.get('/ajax/modalAuctionRegistration.action?auctionId=' + $(modal).data('id'))
-                .done(data => {
-                    $content.html(data);
-                    auctionRegistration($content);
-                    creditCards();
-                    stripeElements();
-                })
-                .fail(data => {
-                    if (data && data.statusText) $content.html(data.statusText);
-                })
-                .always(data => {
-                    modal.classList.remove('sync');
-                    $('.loader-block').hide();
+            $('select').not('.disabled').formSelect();
+            modalLoginForms();
+
+            if ($inner.find('#modal-register-auction-form').length && !$inner.find('#modal-register-auction-form').data('submit')) {
+                $inner.find('#modal-register-auction-form').data('submit', true); // added submit handler
+                $inner.find('#modal-register-auction-form').submit(function (e) {
+                    $('.loader-block').show();
+
                 });
-        }
 
-        function auctionRegistration ($inner = null) {
-            if (!$inner) $inner = $('.auction-registration .auction-registration__inner');
-            if (!$inner.length) $inner = $('.modal-auction.open .auction-registration__inner');
-            if ($inner.length) {
-                $('select').not('.disabled').formSelect();
-                modalLoginForms();
+                // open second page
+                function goBack (e) {
+                    e.preventDefault();
+                    reloadPage();
+                };
 
-                if ($('.auction-registration').length) { // page on propstore.com
-                    $('html').addClass('auction-registration-page');
-                    setTimeout(() => $('html').scrollTop(0), 100);
-                    const $reloadURL = $('#modal-register-auction-form_reloadURL');
-                    if ($reloadURL.length && !$reloadURL.val()) $reloadURL.val(window.location.href);
+                function setStep (step) {
+                    $('#modal-register-auction-form_step').val(step);
+                    $('.auction-registration__step').hide();
+                    $('.auction-registration__step[data-page="' + step + '"]').show();
+                };
+
+                $('.auction-registration__page-trigger').on('click', function (e) {
+                    setStep($(this).data('page'));
+                    $('.auction-registration__info').scrollTop(0);
+
+                    window.history.pushState(null, 'Back');
+                    window.onpopstate = goBack;
+                });
+
+                $('.auction-registration__page-back').on('click', goBack);
+
+                $('.auction-registration__step[data-page="shipping"] .auction-registration__page-submit').on('click', goBack);
+
+                $('.auction-registration__step[data-page="terms"] .modal-register__submit').on('click', function (e) {
+                    $('#modal-register-auction-form_terms')[0].checked = true;
+                    $('#modal-register-auction-form_step').val('general');
+                });
+
+                //billingAsShipping
+                const $shippingAddressCheckbox = $('#modal-register-auction-form_billingAsShipping');
+                if ($shippingAddressCheckbox.length) {
+                    function registerAuctionBillingAddress() {
+                        const shippingAsBilling = $shippingAddressCheckbox[0].checked;
+                        $('.form-section--shipping').toggle(!shippingAsBilling);
+                    }
+                    $shippingAddressCheckbox.on('change', registerAuctionBillingAddress);
+                    registerAuctionBillingAddress();
                 }
 
-                if ($inner.find('#modal-register-auction-form').length) {
-                    $inner.find('#modal-register-auction-form').submit(function (e) { // todo: no modal
-                        $('.loader-block').show();
-                        if (!$inner.closest('.modal-auction.open').length) return; // not modal
+                // BILLING ADDRESS STATE
+                const $billingCountry = $('#modal-register-auction-form select[name="billingAddress.countryId"]');
+                if ($billingCountry.length) {
+                    const $billingStateInput = $('.billing-address-state__input input');
+                    const $billingStateInputDiv = $('.billing-address-state__input');
+                    const $billingStateSelect = $('.billing-address-state__select select');
+                    const $billingStateSelectDiv = $('.billing-address-state__select');
 
-                        $stripeElements = $(this).find('.stripeElements');
-                        if ($('#modal-register-auction-form_step').val() == 'payment' &&
-                            $stripeElements.length &&
-                            $stripeElements[0].style.display != 'none') return; // stripeElements submit
+                    function isBillingStateSelect() {
+                        if ($billingCountry.val() == 2) { // USA
+                            $billingStateSelectDiv.show();
+                            $billingStateSelect.attr('name', 'billingAddress.state');
+                            $billingStateInputDiv.hide();
+                            $billingStateInput.attr('name', 'billingAddress.state.tmp');
+                        } else {
+                            $billingStateSelectDiv.hide();
+                            $billingStateSelect.attr('name', 'billingAddress.state.tmp');
+                            $billingStateInputDiv.show();
+                            $billingStateInput.attr('name', 'billingAddress.state');
+                        }
+                    }
+                    $billingCountry.on('change', isBillingStateSelect);
+                    isBillingStateSelect();
+                }
 
-                        e.preventDefault();
-                        $form = $inner.find('#modal-register-auction-form');
-                        $.post(
-                            $form[0].action,
-                            $form.serialize(),
-                        )
-                            .done(data => {
-                                $inner.html(data);
-                                auctionRegistration($inner);
-                                creditCards();
-                                stripeElements();
+                // SHIPPING ADDRESS STATE
+                const $shippingCountry = $('#modal-register-auction-form select[name="shippingAddress.countryId"]');
+                if ($shippingCountry.length) {
+                    const $shippingStateInput = $('.shipping-address-state__input input');
+                    const $shippingStateInputDiv = $('.shipping-address-state__input');
+                    const $shippingStateSelect = $('.shipping-address-state__select select');
+                    const $shippingStateSelectDiv = $('.shipping-address-state__select');
 
-                                if (window.opener) { // success
-                                    reloadOpener();
-                                    window.close();
-                                }
-                            })
-                            .fail(data => {
-                                if (data && data.statusText) $inner.html(data.statusText);
-                            })
-                            .always(data => {
-                                $('.loader-block').hide();
-                            });
-                    });
+                    function isShippingStateSelect() {
+                        if ($shippingCountry.val() == 2) { // USA
+                            $shippingStateSelectDiv.show();
+                            $shippingStateSelect.attr('name', 'shippingAddress.state');
+                            $shippingStateInputDiv.hide();
+                            $shippingStateInput.attr('name', 'shippingAddress.state.tmp');
+                        } else {
+                            $shippingStateSelectDiv.hide();
+                            $shippingStateSelect.attr('name', 'shippingAddress.state.tmp');
+                            $shippingStateInputDiv.show();
+                            $shippingStateInput.attr('name', 'shippingAddress.state');
+                        }
+                    }
+                    $shippingCountry.on('change', isShippingStateSelect);
+                    isShippingStateSelect();
+                }
+            }
 
-                    // open second page
-                    function goBack (e) {
-                        e.preventDefault();
-                        if ($('.auction-registration').length) { // page on propstore.com
-                            const reloadURL = $('#modal-register-auction-form_reloadURL').val();
-                            if (reloadURL) {
-                                redirectPage(reloadURL);
+            // SSO
+            if ($('#modal-auction-signin-form').length && !$('#modal-auction-signin-form').data('submit')) {
+                $('#modal-auction-signin-form').data('submit', true); // added submit handler
+                $('#modal-auction-signin-form').submit(function (e) {
+                    e.preventDefault();
+                    $('.loader-block').show();
+
+                    $.post(
+                        this.action,
+                        $(this).serialize(),
+                    )
+                        .done(data => {
+                            if (data && data.trim() === 'success') {
+                                redirectPage('/sso.action' + window.location.search);
                             } else {
-                                reloadPage();
-                            }
-                        } else { // modal
-                            loadModalAuctionRegistration(e.target.closest('.modal-auction'));
-                        }
-                    };
-
-                    function setStep (step) {
-                        $('#modal-register-auction-form_step').val(step);
-                        $('.auction-registration__step').hide();
-                        $('.auction-registration__step[data-page="' + step + '"]').show();
-                    };
-
-                    $('.auction-registration__page-trigger').on('click', function (e) {
-                        setStep($(this).data('page'));
-                        $('.auction-registration__info').scrollTop(0);
-
-                        window.history.pushState(null, 'Back');
-                        window.onpopstate = goBack;
-                    });
-
-                    $('.auction-registration__page-back').on('click', goBack);
-
-                    $('.auction-registration__step[data-page="shipping"] .auction-registration__page-submit').on('click', goBack);
-
-                    $('.auction-registration__step[data-page="terms"] .modal-register__submit').on('click', function (e) {
-                        $('#modal-register-auction-form_terms')[0].checked = true;
-                        $('#modal-register-auction-form_step').val('general');
-                    });
-
-                    //billingAsShipping
-                    const $shippingAddressCheckbox = $('#modal-register-auction-form_billingAsShipping');
-                    if ($shippingAddressCheckbox.length) {
-                        function registerAuctionBillingAddress() {
-                            const shippingAsBilling = $shippingAddressCheckbox[0].checked;
-                            $('.form-section--shipping').toggle(!shippingAsBilling);
-                        }
-                        $shippingAddressCheckbox.on('change', registerAuctionBillingAddress);
-                        registerAuctionBillingAddress();
-                    }
-
-                    // BILLING ADDRESS STATE
-                    const $billingCountry = $('#modal-register-auction-form select[name="billingAddress.countryId"]');
-                    if ($billingCountry.length) {
-                        const $billingStateInput = $('.billing-address-state__input input');
-                        const $billingStateInputDiv = $('.billing-address-state__input');
-                        const $billingStateSelect = $('.billing-address-state__select select');
-                        const $billingStateSelectDiv = $('.billing-address-state__select');
-
-                        function isBillingStateSelect() {
-                            if ($billingCountry.val() == 2) { // USA
-                                $billingStateSelectDiv.show();
-                                $billingStateSelect.attr('name', 'billingAddress.state');
-                                $billingStateInputDiv.hide();
-                                $billingStateInput.attr('name', 'billingAddress.state.tmp');
-                            } else {
-                                $billingStateSelectDiv.hide();
-                                $billingStateSelect.attr('name', 'billingAddress.state.tmp');
-                                $billingStateInputDiv.show();
-                                $billingStateInput.attr('name', 'billingAddress.state');
-                            }
-                        }
-                        $billingCountry.on('change', isBillingStateSelect);
-                        isBillingStateSelect();
-                    }
-
-                    // SHIPPING ADDRESS STATE
-                    const $shippingCountry = $('#modal-register-auction-form select[name="shippingAddress.countryId"]');
-                    if ($shippingCountry.length) {
-                        const $shippingStateInput = $('.shipping-address-state__input input');
-                        const $shippingStateInputDiv = $('.shipping-address-state__input');
-                        const $shippingStateSelect = $('.shipping-address-state__select select');
-                        const $shippingStateSelectDiv = $('.shipping-address-state__select');
-
-                        function isShippingStateSelect() {
-                            if ($shippingCountry.val() == 2) { // USA
-                                $shippingStateSelectDiv.show();
-                                $shippingStateSelect.attr('name', 'shippingAddress.state');
-                                $shippingStateInputDiv.hide();
-                                $shippingStateInput.attr('name', 'shippingAddress.state.tmp');
-                            } else {
-                                $shippingStateSelectDiv.hide();
-                                $shippingStateSelect.attr('name', 'shippingAddress.state.tmp');
-                                $shippingStateInputDiv.show();
-                                $shippingStateInput.attr('name', 'shippingAddress.state');
-                            }
-                        }
-                        $shippingCountry.on('change', isShippingStateSelect);
-                        isShippingStateSelect();
-                    }
-                }
-
-                if ($('.modal-success').length) {
-                    reloadOpener();
-                }
-
-                // SSO
-                if ($('#modal-auction-signin-form').length) {
-                    $('#modal-auction-signin-form').submit(function (e) {
-                        e.preventDefault();
-                        $('.loader-block').show();
-
-                        $.post(
-                            this.action,
-                            $(this).serialize(),
-                        )
-                            .done(data => {
-                                if (data.includes('modal-success')) {
-                                    openSSO();
-                                } else {
-                                    this.innerHTML = data;
-                                    auctionRegistration();
-                                    $('.loader-block').hide();
-                                }
-                            })
-                            .fail(data => {
-                                if (data && data.statusText) this.innerHTML = data.statusText;
-                                $('.loader-block').hide();
-                            });
-                    });
-
-                    function openSSO () {
-                        redirectPage('/ajax/sso.action');
-                    }
-                }
-
-                if ($('#modal-auction-register-form').length) {
-                    $('#modal-auction-register-form').submit(function (e) {
-                        e.preventDefault();
-                        $('.loader-block').show();
-
-                        $.post(
-                            this.action,
-                            $(this).serialize(),
-                        )
-                            .done(data => {
                                 this.innerHTML = data;
-                                auctionRegistration();
-                                grecaptchaRender('g-recaptcha-register');
-                            })
-                            .fail(data => {
-                                if (data && data.statusText) this.innerHTML = data.statusText;
-                            })
-                            .always(() => {
-                                $('.loader-block').hide();
-                            }) ;
-                    });
-                }
+                                M.updateTextFields();
+                            }
+                        })
+                        .fail(data => {
+                            if (data && data.statusText) this.innerHTML = data.statusText;
+                        })
+                        .always(data => {
+                            $('.loader-block').hide();
+                        });
+                });
+            }
+            if ($('#modal-auction-register-form').length && !$('#modal-auction-register-form').data('submit')) {
+                $('#modal-auction-register-form').data('submit', true); // added submit handler
+                $('#modal-auction-register-form').submit(function (e) {
+                    e.preventDefault();
+                    $('.loader-block').show();
 
-                if ($('#modal-auction-password-form').length) {
-                    $('#modal-auction-password-form').submit(function (e) {
-                        e.preventDefault();
-                        $('.loader-block').show();
+                    $.post(
+                        this.action,
+                        $(this).serialize(),
+                    )
+                        .done(data => {
+                            this.innerHTML = data;
+                            auctionRegistration();
+                            grecaptchaRender('g-recaptcha-register');
+                        })
+                        .fail(data => {
+                            if (data && data.statusText) this.innerHTML = data.statusText;
+                        })
+                        .always(() => {
+                            $('.loader-block').hide();
+                        }) ;
+                });
+            }
+            if ($('#modal-auction-password-form').length && !$('#modal-auction-password-form').data('submit')) {
+                $('#modal-auction-password-form').data('submit', true); // added submit handler
+                $('#modal-auction-password-form').submit(function (e) {
+                    e.preventDefault();
+                    $('.loader-block').show();
 
-                        $.post(
-                            this.action,
-                            $(this).serialize(),
-                        )
-                            .done(data => {
-                                this.innerHTML = data;
-                                auctionRegistration();
-                                grecaptchaRender('g-recaptcha-password');
-                            })
-                            .fail(data => {
-                                if (data && data.statusText) this.innerHTML = data.statusText;
-                            })
-                            .always(() => {
-                                $('.loader-block').hide();
-                            }) ;
-                    });
-                }
+                    $.post(
+                        this.action,
+                        $(this).serialize(),
+                    )
+                        .done(data => {
+                            this.innerHTML = data;
+                            auctionRegistration();
+                            grecaptchaRender('g-recaptcha-password');
+                        })
+                        .fail(data => {
+                            if (data && data.statusText) this.innerHTML = data.statusText;
+                        })
+                        .always(() => {
+                            $('.loader-block').hide();
+                        }) ;
+                });
             }
         }
 
         // AUCTIONS
         const $auctionRegistrationTrigger = $('.auction-registration-trigger');
         if ($auctionRegistrationTrigger.length) {
-            window.addEventListener('message', function(event) { // if auctions page reloaded after signIn while auction registration
-                if (event.data === 'reloadPage') {
-                    reloadPage();
-                }
-            });
-
-            function openAuctionRegistration (e) {
+            $auctionRegistrationTrigger.on('click', function (e) {
                 e.preventDefault();
-                const url = this.href;
-                let param = null;
-                const w = window.screen.width;
-                const h = window.screen.height;
-                if (w > 1224) {
-                    param = `width=${w-200},height=${h-200},left=100,top=100,menubar=1,toolbar=1,location=1,status=1`;
-                }
-                const ssoWin = window.open(url, 'Propstore Auction Registration', param);
-                window.addEventListener('message', function(event) {
-                    if (event.data === 'SSOsuccess') {
-                        ssoWin.location.href = url;
-                        reloadPage();
-                    }
-                });
-            }
-
-            $auctionRegistrationTrigger.on('click', openAuctionRegistration);
-
-            if (window.location.href.includes('#register')) {
-                $auctionRegistrationTrigger[$auctionRegistrationTrigger.length - 1].scrollIntoView({behavior: 'smooth', block: 'center'});
-            }
+                let params = 'd=1&ru=' + encodeURIComponent(window.location.pathname + window.location.search);
+                const scroll = $(window).scrollTop();
+                if (scroll > 100) params += '&sc=' + String(Math.round(scroll));
+                const paramsSymbol = this.href.includes('?') ? '&' : '?';
+                redirectPage(this.href + paramsSymbol + params);
+            });
         }
 
         // SHIPPING QUOTE PAGE FOR SAM
@@ -2344,9 +2263,21 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         }
 
-        function openSamAndClose (url) {
-            const SSOwin = window.open(url, 'Propstore SSO', `scrollbars=no,resizable=no,status=no,location=no,toolbar=no,menubar=no,width=1,height=1,top=2000`);
-            setTimeout(() => SSOwin.close(), 1000);
+        // COOKIES
+        const isCookiesAccepted = $.cookie('cookies_accepted');
+        if (!isCookiesAccepted) {
+            M.toast({
+                html: `<span class="cookies-toast"><span class="cookies-toast__body"><strong class="c-r">This website uses cookies</strong><br/>
+We use cookies to personalise content and ads, to provide social media features and to analyse our traffic.
+We also share information about your use of our site with our social media, advertising and analytics partners who may combine it with other information that you’ve provided to them or that they’ve collected from your use of their services.
+</span><span class="btn cookies-toast__close">Accept</span></span>`,
+                classes: 'toast-cookies',
+                displayLength: Infinity,
+            });
+            $('.cookies-toast__close').on('click', function () {
+                $.cookie('cookies_accepted', new Date().toISOString().replaceAll(':', '-'), { expires: new Date(2147483647 * 1000), path: '/' });
+                M.Toast.dismissAll();
+            });
         }
 
     }); // end of document ready
@@ -2413,10 +2344,6 @@ function initFacebookLoginButton() {
 
         window.open(url, 'facebookLogin', 'width=' + w + ',height=' + h + ',top=' + top + ', left=' + left);
     });
-}
-
-function reloadOpener () {
-    if (window.opener) window.opener.postMessage('reloadPage', '*');
 }
 
 function reloadPage () {
