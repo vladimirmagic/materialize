@@ -1161,19 +1161,19 @@ document.addEventListener('DOMContentLoaded', () => {
  */
 if ($('#headsec a:contains("Auction Login")').length) {
     $('.header__settings .header__col--right').append(`
-        <a href="/login" class="waves-effect btn-flat header__btn sso-trigger" data-url="/ajax/signIn.action">
+        <a href="/login" class="waves-effect btn-flat header__btn sso-trigger" data-url="/signIn.action">
             Sign In
         </a>
         <span class="header__settings-divider2 header__settings-divider2--unregistered">/</span>
-        <a href="/signup" class="waves-effect btn-flat header__btn sso-trigger" data-url="/ajax/register.action">
+        <a href="/signup" class="waves-effect btn-flat header__btn sso-trigger" data-url="/register.action">
             Register
         </a>
     `);
     $('.sidenav__settings').append(`
         <div class="sidenav__settings-sign-register">
-            <a href="/login" class="waves-effect btn-flat modal-trigger sidenav__settings-sign sso-trigger" data-url="/ajax/signIn.action">Sign In</a>
+            <a href="/login" class="waves-effect btn-flat modal-trigger sidenav__settings-sign sso-trigger" data-url="/signIn.action">Sign In</a>
             <span class="sidenav__settings-divider">/</span>
-            <a href="/signup" class="waves-effect btn-flat modal-trigger sidenav__settings-register sso-trigger" data-url="/ajax/register.action">Register</a>
+            <a href="/signup" class="waves-effect btn-flat modal-trigger sidenav__settings-register sso-trigger" data-url="/register.action">Register</a>
         </div>
     `);
     $('.menu-link-login').addClass('sso-trigger');
@@ -1231,7 +1231,7 @@ if ($('#headsec a:contains("Auction Login")').length) {
  */
 const id = window.location.pathname.split('/register/confirm-shipping/id/');
 if (id.length && id.length > 1) {
-    redirectPage(URL_PROPSTORE + '/ajax/auctionRegistration.action?auctionId=' + id[1]);
+    redirectPage(URL_PROPSTORE + '/auctionRegistration.action?auctionId=' + id[1]);
 }
 
 /**
@@ -1364,7 +1364,7 @@ if (id.length && id.length > 1) {
             }
 		}
 
-        function openSSO (action = '/ajax/signIn.action') {
+        function openSSO (action = '/signIn.action') {
             const urlParams = new URLSearchParams(window.location.search);
             const url = urlParams.get('url');
             
@@ -1383,7 +1383,7 @@ if (id.length && id.length > 1) {
             let params = '&d=2&ru=' + encodeURIComponent(window.location.pathname + window.location.search);
             const scroll = $(window).scrollTop();
             if (scroll > 100) params += '&sc=' + String(Math.round(scroll));
-            redirectPage(URL_PROPSTORE + '/ajax/auctionRegistration.action?auctionId=' + id + params);
+            redirectPage(URL_PROPSTORE + '/auctionRegistration.action?auctionId=' + id + params);
         }
         
         function reloadPage () {
