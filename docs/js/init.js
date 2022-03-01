@@ -2264,7 +2264,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         // COOKIES
-        const isCookiesAccepted = $.cookie('cookies_accepted');
+        const isCookiesAccepted = true//$.cookie('cookies_accepted');
         if (!isCookiesAccepted) {
             M.toast({
                 html: `<span class="cookies-toast"><span class="cookies-toast__body"><strong class="c-r">This website uses cookies</strong><br/>
@@ -2278,6 +2278,18 @@ We also share information about your use of our site with our social media, adve
                 $.cookie('cookies_accepted', new Date().toISOString().replaceAll(':', '-'), { expires: new Date(2147483647 * 1000), path: '/' });
                 M.Toast.dismissAll();
             });
+        }
+
+        // SELL-CTA
+        if ($('.sell-cta').length) {
+            setTimeout(() => {
+                $('.sell-cta').each((i, el) => {
+                    const $image = $(el).find('.sell-cta__img-image');
+                    const style = $image.attr('style') || '';
+                    if (style.includes('cutbottom')) $(el).addClass('cutbottom');
+                    if (style.includes('cutbottomwide')) $(el).addClass('cutbottomwide');
+                });
+            }, 200);
         }
 
     }); // end of document ready
