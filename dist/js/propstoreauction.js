@@ -15,21 +15,23 @@ document.addEventListener('DOMContentLoaded', () => {
 	$(function () {
         const params = new URLSearchParams(window.location.search);
         if (params.get('action')) {
+            const callback = () => {
+                if (params.get('ru')) {
+                    params.delete('action');
+                    const ru = decodeURIComponent(params.get('ru'));
+                    params.delete('ru');
+                    const d = params.get('d');
+                    params.delete('d');
+                    let domain = '';
+                    if (d && d === '1') domain = URL_PROPSTORE;
+                    const paramsSymbol = ru.includes('?') ? '&' : '?';
+                    redirectPage(domain + ru + paramsSymbol + params.toString());
+                }
+            }
             if (params.get('action') == 'signout') {
-                $.get('/logout')
-                    .always(data => {
-                        if (params.get('ru')) {
-                            params.delete('action');
-                            const ru = decodeURIComponent(params.get('ru'));
-                            params.delete('ru');
-                            const d = params.get('d');
-                            params.delete('d');
-                            let domain = '';
-                            if (d && d === '1') domain = URL_PROPSTORE;
-                            const paramsSymbol = ru.includes('?') ? '&' : '?';
-                            redirectPage(domain + ru + paramsSymbol + params.toString());
-                        }
-                    });
+                $.get('/logout').always(callback);
+            } else {
+                $.get(params.get('action')).always(callback);
             }
         }
 
