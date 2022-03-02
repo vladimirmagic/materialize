@@ -12204,6 +12204,10 @@ a:not(.btn):not(.btn-large):not(.btn-small):not(.btn-extra-small).footer__terms-
   margin: .3em 0 .2em;
 }
 
+.hero--sell .hero__carousel-info-description {
+  max-width: 540px;
+}
+
 @media only screen and (min-width: 1201px) {
   .hero.hero--auctions .hero__info {
     -webkit-box-ordinal-group: 2;
