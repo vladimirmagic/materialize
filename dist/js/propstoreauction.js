@@ -17,7 +17,6 @@ document.addEventListener('DOMContentLoaded', () => {
         const action = params.get('action');
         if (action) {
             const callback = (params) => {
-                console.log(params.get('ru'));
                 if (params.get('ru')) {
                     params.delete('action');
                     const ru = decodeURIComponent(params.get('ru'));
