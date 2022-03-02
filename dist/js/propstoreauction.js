@@ -16,7 +16,8 @@ document.addEventListener('DOMContentLoaded', () => {
         const params = new URLSearchParams(window.location.search);
         const action = params.get('action');
         if (action) {
-            const callback = () => {
+            const callback = (params) => {
+                console.log(params.get('ru'));
                 if (params.get('ru')) {
                     params.delete('action');
                     const ru = decodeURIComponent(params.get('ru'));
@@ -30,10 +31,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             }
             if (action == 'signout') {
-                $.get('/logout').always(callback);
+                $.get('/logout').always(() => callback(params));
             } else {
-                const params = new URLSearchParams(action);
-                $.get(action).always(callback);
+                $.get(action).always(() => callback(new URLSearchParams(action)));
             }
         }
 
