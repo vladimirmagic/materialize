@@ -14,7 +14,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
 	$(function () {
         const params = new URLSearchParams(window.location.search);
-        if (params.get('action')) {
+        const action = params.get('action');
+        if (action) {
             const callback = () => {
                 if (params.get('ru')) {
                     params.delete('action');
@@ -28,10 +29,9 @@ document.addEventListener('DOMContentLoaded', () => {
                     redirectPage(domain + ru + paramsSymbol + params.toString());
                 }
             }
-            if (params.get('action') == 'signout') {
+            if (action == 'signout') {
                 $.get('/logout').always(callback);
             } else {
-                const action = params.get('action');
                 const params = new URLSearchParams(action);
                 $.get(action).always(callback);
             }
