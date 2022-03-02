@@ -31,8 +31,9 @@ document.addEventListener('DOMContentLoaded', () => {
             if (params.get('action') == 'signout') {
                 $.get('/logout').always(callback);
             } else {
-                console.log(params.get('action'));
-                $.get(decodeURIComponent(params.get('action'))).always(callback);
+                const action = params.get('action');
+                const params = new URLSearchParams(action);
+                $.get(action).always(callback);
             }
         }
 
