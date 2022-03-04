@@ -867,7 +867,7 @@ document.addEventListener('DOMContentLoaded', () => {
 				if ($btn.length) {
 					$btn.addClass('waves-effect waves-light btn aucproduct__card-btn');
 					$cardItem.find('.card__actions').append($btn);
-                    if ($btn[0].href && $btn[0].href.includes('/regisrter/')) {
+                    if ($btn[0].href && $btn[0].href.includes('/register/')) {
                         $btn.on('click', function (e) {
                             e.preventDefault();
                             openAuctionRegistration(id);
