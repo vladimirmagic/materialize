@@ -21161,12 +21161,12 @@ a.voucher:not(.btn):not(.btn-large):not(.btn-small):not(.btn-extra-small):before
   max-width: 100%;
 }
 
-.wp img {
+.wp img:not(.sell-cta__img-image) {
   max-width: 100%;
   height: auto;
 }
 
-.wp img.video-block {
+.wp img:not(.sell-cta__img-image).video-block {
   margin: 0;
 }
 

@@ -105,7 +105,7 @@
         max-width: 100%;
     }
     
-    img {
+    img:not(.sell-cta__img-image) {
         max-width: 100%;
         height: auto;
         &.video-block {

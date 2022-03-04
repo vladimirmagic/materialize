@@ -827,6 +827,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 			$('.item-block').each((i, item) => {
+                const $aid = $(item).find('section[data-aid]');
+                let id = $aid.length ? $aid.data('aid') : 0;
 				$cardItem = $card.clone();
                 const $img = $(item).find('figure img');
                 if ($img.length) {
@@ -865,6 +867,12 @@ document.addEventListener('DOMContentLoaded', () => {
 				if ($btn.length) {
 					$btn.addClass('waves-effect waves-light btn aucproduct__card-btn');
 					$cardItem.find('.card__actions').append($btn);
+                    if ($btn[0].href && $btn[0].href.includes('/regisrter/')) {
+                        $btn.on('click', function (e) {
+                            e.preventDefault();
+                            openAuctionRegistration(id);
+                        });
+                    }
 				}
                 const $bid = $(item).find('[id^="blkRegularBid"]');
                 if ($bid.length) {
