@@ -7,11 +7,6 @@
 		padding-top: 0;
 		background: linear-gradient(to bottom, $color-bg 0%, $color-bg 66%, #fff 66%);
 	}
-
-	.sell & {
-		padding-top: 0;
-		background: linear-gradient(to bottom, $color-bg 0%, $color-bg 75%, #fff 75%);
-	}
 }
 
 .footer-actions__inner {

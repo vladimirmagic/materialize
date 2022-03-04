@@ -238,4 +238,12 @@ hr {
 		padding-left: 24px;
 		padding-right: 24px;
 	}
+
+	.cookies-toast, .cookies-toast__body {
+		display: block;
+	}
+
+	.cookies-toast__body {
+		margin-bottom: 1em;
+	}
 }

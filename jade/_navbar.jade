@@ -122,7 +122,7 @@ header(style='z-index: 999;')
 
     li.no-padding
       ul.collapsible.collapsible-accordion
-        li.bold(class=(page == "Propstore UI" || page == "Home" || page == "Buy now" || page == "Results" || page == "Product" || page == "Product sold" || page == "Auctions" || page == "Bag" || page == "Checkout" || page == "Checkout (split order)" || page == "Order confirmed" || page == "Blog" || page == "Account" || page == "Account Details" || page == "Account Watchlist" || page == "Account Orders" || page == "Account Favorites" || page == "Account COA" || page == "General" || page == "Error" || page == "Password" || page == "Sell" || page == "Sign In" ? "active" : ""))
+        li.bold(class=(page == "Propstore UI" || page == "Home" || page == "Buy now" || page == "Results" || page == "Product" || page == "Product sold" || page == "Auctions" || page == "Bag" || page == "Checkout" || page == "Checkout (split order)" || page == "Order confirmed" || page == "Blog" || page == "Account" || page == "Account Details" || page == "Account Watchlist" || page == "Account Orders" || page == "Account Favorites" || page == "Account COA" || page == "General" || page == "Error" || page == "Password" || page == "Sell" || page == "Sell Form" || page == "Sign In" ? "active" : ""))
               a.collapsible-header(class="waves-effect waves-grey")
                 | Propstore
               .collapsible-body
@@ -177,6 +177,8 @@ header(style='z-index: 999;')
                     a(href='payment-plans.html' target='_blank') Payment plans
                   li(class=(page == "Sell" ? "active" : ""))
                     a(href='sell.html' target='_blank') Sell
+                  li(class=(page == "Sell Form" ? "active" : ""))
+                    a(href='sell-form.html' target='_blank') Sell Form
                   li(class=(page == "Gift vouchers" ? "active" : ""))
                     a(href='gift-vouchers.html' target='_blank') Gift vouchers
                   li(class=(page == "Gift voucher" ? "active" : ""))

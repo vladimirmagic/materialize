@@ -5348,6 +5348,14 @@ button.btn-floating {
   background: #764AAF;
 }
 
+.btn--link-border {
+  text-decoration: underline;
+}
+
+.btn--link-border:after {
+  display: none;
+}
+
 .btn-large {
   height: 84px;
   line-height: 84px;
@@ -9446,7 +9454,7 @@ main {
           flex: 1 1 100%;
 }
 
-.content, .general, .header__main, .header__menu-level1-inner, .header__menu-level1--sell .header__menu-level1-inner, .footer__inner, .hero, .filters, .header__filters .filters__body, .showing-results, .related-movies, .modal-shipping-quote-page main, .how, .whatsnew__text, .section-auctions, .faq, .account-page__text, .account__orders, .account__coa, .account-filter, .payment-plans, .sell__inner, .vouchers, .experts, .auccatalog__nav, .auc-info__inner, .auc-info__video, .aucpage__content {
+.content, .general, .header__main, .header__menu-level1-inner, .header__menu-level1--sell .header__menu-level1-inner, .footer__inner, .hero, .filters, .header__filters .filters__body, .showing-results, .related-movies, .modal-shipping-quote-page main, .how, .whatsnew__text, .section-auctions, .faq, .account-page__text, .account__orders, .account__coa, .account-filter, .payment-plans, .sell__inner, .sell__faq-section, .vouchers, .experts, .auccatalog__nav, .auc-info__inner, .auc-info__video, .aucpage__content {
   padding-left: 60px;
   padding-right: 60px;
 }
@@ -9661,23 +9669,29 @@ hr.small {
 }
 
 @media only screen and (min-width: 1921px) {
-  .content, .general, .header__main, .header__menu-level1-inner, .header__menu-level1--sell .header__menu-level1-inner, .footer__inner, .hero, .filters, .header__filters .filters__body, .showing-results, .related-movies, .modal-shipping-quote-page main, .how, .whatsnew__text, .section-auctions, .faq, .account-page__text, .account__orders, .account__coa, .account-filter, .payment-plans, .sell__inner, .vouchers, .experts, .auccatalog__nav, .auc-info__inner, .auc-info__video, .aucpage__content {
+  .content, .general, .header__main, .header__menu-level1-inner, .header__menu-level1--sell .header__menu-level1-inner, .footer__inner, .hero, .filters, .header__filters .filters__body, .showing-results, .related-movies, .modal-shipping-quote-page main, .how, .whatsnew__text, .section-auctions, .faq, .account-page__text, .account__orders, .account__coa, .account-filter, .payment-plans, .sell__inner, .sell__faq-section, .vouchers, .experts, .auccatalog__nav, .auc-info__inner, .auc-info__video, .aucpage__content {
     padding-left: calc(50% - 900px);
     padding-right: calc(50% - 900px);
   }
 }
 
 @media only screen and (max-width: 1200px) {
-  .content, .general, .header__main, .header__menu-level1-inner, .header__menu-level1--sell .header__menu-level1-inner, .footer__inner, .hero, .filters, .header__filters .filters__body, .showing-results, .related-movies, .modal-shipping-quote-page main, .how, .whatsnew__text, .section-auctions, .faq, .account-page__text, .account__orders, .account__coa, .account-filter, .payment-plans, .sell__inner, .vouchers, .experts, .auccatalog__nav, .auc-info__inner, .auc-info__video, .aucpage__content {
+  .content, .general, .header__main, .header__menu-level1-inner, .header__menu-level1--sell .header__menu-level1-inner, .footer__inner, .hero, .filters, .header__filters .filters__body, .showing-results, .related-movies, .modal-shipping-quote-page main, .how, .whatsnew__text, .section-auctions, .faq, .account-page__text, .account__orders, .account__coa, .account-filter, .payment-plans, .sell__inner, .sell__faq-section, .vouchers, .experts, .auccatalog__nav, .auc-info__inner, .auc-info__video, .aucpage__content {
     padding-left: 40px;
     padding-right: 40px;
   }
 }
 
 @media only screen and (max-width: 600px) {
-  .content, .general, .header__main, .header__menu-level1-inner, .header__menu-level1--sell .header__menu-level1-inner, .footer__inner, .hero, .filters, .header__filters .filters__body, .showing-results, .related-movies, .modal-shipping-quote-page main, .how, .whatsnew__text, .section-auctions, .faq, .account-page__text, .account__orders, .account__coa, .account-filter, .payment-plans, .sell__inner, .vouchers, .experts, .auccatalog__nav, .auc-info__inner, .auc-info__video, .aucpage__content {
+  .content, .general, .header__main, .header__menu-level1-inner, .header__menu-level1--sell .header__menu-level1-inner, .footer__inner, .hero, .filters, .header__filters .filters__body, .showing-results, .related-movies, .modal-shipping-quote-page main, .how, .whatsnew__text, .section-auctions, .faq, .account-page__text, .account__orders, .account__coa, .account-filter, .payment-plans, .sell__inner, .sell__faq-section, .vouchers, .experts, .auccatalog__nav, .auc-info__inner, .auc-info__video, .aucpage__content {
     padding-left: 24px;
     padding-right: 24px;
+  }
+  .cookies-toast, .cookies-toast__body {
+    display: block;
+  }
+  .cookies-toast__body {
+    margin-bottom: 1em;
   }
 }
 
@@ -11330,12 +11344,6 @@ a.modal-bag__item:not(.btn):not(.btn-large):not(.btn-small):not(.btn-extra-small
   padding-top: 0;
   background: -webkit-gradient(linear, left top, left bottom, from(#F4F4F4), color-stop(66%, #F4F4F4), color-stop(66%, #fff));
   background: linear-gradient(to bottom, #F4F4F4 0%, #F4F4F4 66%, #fff 66%);
-}
-
-.sell .footer-actions {
-  padding-top: 0;
-  background: -webkit-gradient(linear, left top, left bottom, from(#F4F4F4), color-stop(75%, #F4F4F4), color-stop(75%, #fff));
-  background: linear-gradient(to bottom, #F4F4F4 0%, #F4F4F4 75%, #fff 75%);
 }
 
 .footer-actions__inner {
@@ -19329,8 +19337,9 @@ a.account__orders-buy-link:not(.btn):not(.btn-large):not(.btn-small):not(.btn-ex
 }
 
 .sell__content {
+  margin-top: 6em;
   padding-top: 6em;
-  padding-bottom: 8em;
+  text-align: center;
   background: #F4F4F4;
 }
 
@@ -19350,6 +19359,10 @@ a.account__orders-buy-link:not(.btn):not(.btn-large):not(.btn-small):not(.btn-ex
   margin: 0 auto;
 }
 
+.sell__cta {
+  margin-top: 8em;
+}
+
 .sell-cta {
   display: -webkit-box;
   display: -webkit-flex;
@@ -19358,10 +19371,6 @@ a.account__orders-buy-link:not(.btn):not(.btn-large):not(.btn-small):not(.btn-ex
   width: 100%;
   color: #fff;
   text-align: left;
-}
-
-.sell-cta.sell-cta--valuation {
-  margin-top: 7.5em;
 }
 
 .sell-cta.sell-cta--guide {
@@ -19469,6 +19478,10 @@ a.account__orders-buy-link:not(.btn):not(.btn-large):not(.btn-small):not(.btn-ex
   max-width: 36rem;
 }
 
+.sell-cta__info-bage {
+  margin-bottom: 2rem;
+}
+
 .sell-cta__title {
   margin-bottom: .5em;
 }
@@ -19491,7 +19504,7 @@ a.account__orders-buy-link:not(.btn):not(.btn-large):not(.btn-small):not(.btn-ex
 }
 
 .sell__valuation-form-title {
-  margin: 3em 0 2em;
+  margin: 2em 1em 1.5em;
   text-align: center;
 }
 
@@ -19500,11 +19513,25 @@ a.account__orders-buy-link:not(.btn):not(.btn-large):not(.btn-small):not(.btn-ex
 }
 
 .sell-form {
-  padding: 7.5em 15em;
-  background: #fff;
+  max-width: 65rem;
+  margin: 0 auto;
+  padding: 4em;
+  text-align: left;
+  background: #F4F4F4;
   border-radius: 6px;
-  -webkit-box-shadow: 0px 8px 32px -10px rgba(0, 0, 0, 0.15);
-          box-shadow: 0px 8px 32px -10px rgba(0, 0, 0, 0.15);
+}
+
+.sell-form .input-field input, .sell-form .input-field textarea {
+  background: #fff;
+}
+
+.sell-form .input-field > label {
+  background: -webkit-gradient(linear, left top, left bottom, from(#F4F4F4), color-stop(50%, #F4F4F4), color-stop(50%, #fff)) !important;
+  background: linear-gradient(to bottom, #F4F4F4 0%, #F4F4F4 50%, #fff 50%) !important;
+}
+
+.sell-form .droppable {
+  background: #fff;
 }
 
 .sell-form__section + .sell-form__section {
@@ -19782,8 +19809,39 @@ a.account__orders-buy-link:not(.btn):not(.btn-large):not(.btn-small):not(.btn-ex
   margin-bottom: .66em;
 }
 
-.sell__faq-section {
-  padding-top: 8em;
+.sell__speak {
+  padding-top: 5.5em;
+  background: -webkit-gradient(linear, left top, left bottom, from(#F4F4F4), color-stop(40%, #F4F4F4), color-stop(40%, #fff));
+  background: linear-gradient(to bottom, #F4F4F4 0%, #F4F4F4 40%, #fff 40%);
+}
+
+.sell-from {
+  display: block;
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.how--sell {
+  margin-top: 3em;
+}
+
+.how--sell .how__inner {
+  display: block;
+  max-width: 84rem;
+  padding-bottom: 3em;
+  background: #F4F4F4;
+  border-radius: 6px;
+}
+
+.how--sell .how__steps {
+  background: #F4F4F4;
+  border-radius: 0;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+
+.sell__reach {
+  margin-top: 4em;
 }
 
 @media only screen and (min-width: 84rem) {
@@ -19800,29 +19858,29 @@ a.account__orders-buy-link:not(.btn):not(.btn-large):not(.btn-small):not(.btn-ex
   .sell-cta__info {
     padding: 4.5em 2.5em 5em 3em;
   }
-  .sell-form {
-    padding: 7.5em 7.5em;
-  }
 }
 
 @media only screen and (max-width: 1200px) {
   .sell__content {
+    margin-top: 4em;
     padding-top: 4em;
-    padding-bottom: 4em;
   }
   .record-sell__list {
     margin-top: 4em;
     padding-top: 4em;
     padding-bottom: 4em;
   }
-  .sell-cta.sell-cta--valuation {
-    margin-top: 5em;
+  .sell__cta {
+    margin-top: 4em;
   }
   .sell-cta.sell-cta--guide {
     margin-top: 4em;
   }
   .sell-cta.sell-cta--offer {
     margin-top: 3.5em;
+  }
+  .sell-cta__info-bage {
+    margin-bottom: 1rem;
   }
   .sell-guide__text1 {
     padding-bottom: 2.5em;
@@ -19839,19 +19897,19 @@ a.account__orders-buy-link:not(.btn):not(.btn-large):not(.btn-small):not(.btn-ex
     margin-left: 0;
     margin-top: 1.5em;
   }
-  .sell__faq-section {
-    padding-top: 3em;
+  .sell__speak {
+    padding-top: 4em;
   }
 }
 
 @media only screen and (min-width: 993px) {
-  .sell-cta--offer:nth-child(odd) .sell-cta__info {
+  .sell-cta--offer:nth-child(even) .sell-cta__info {
     -webkit-box-ordinal-group: 2;
     -webkit-order: 1;
         -ms-flex-order: 1;
             order: 1;
   }
-  .sell-cta--offer:nth-child(odd) .sell-cta__img {
+  .sell-cta--offer:nth-child(even) .sell-cta__img {
     -webkit-box-ordinal-group: 3;
     -webkit-order: 2;
         -ms-flex-order: 2;
@@ -19859,15 +19917,15 @@ a.account__orders-buy-link:not(.btn):not(.btn-large):not(.btn-small):not(.btn-ex
     border-bottom-left-radius: 0;
     border-bottom-right-radius: 140px;
   }
-  .sell-cta--offer:nth-child(odd) .sell-cta__img-image {
+  .sell-cta--offer:nth-child(even) .sell-cta__img-image {
     right: unset;
     left: 0;
   }
-  .sell-cta--offer:nth-child(odd) .sell-cta__img-info {
+  .sell-cta--offer:nth-child(even) .sell-cta__img-info {
     padding: 1em 0 2em 2.5em;
     text-align: left;
   }
-  .sell-cta--offer.cutbottom:nth-child(odd) .sell-cta__img-info {
+  .sell-cta--offer.cutbottom:nth-child(even) .sell-cta__img-info {
     border-bottom-left-radius: 0;
     border-bottom-right-radius: 140px;
   }
@@ -19982,6 +20040,18 @@ a.account__orders-buy-link:not(.btn):not(.btn-large):not(.btn-small):not(.btn-ex
   }
   .sell-cta__info {
     padding-bottom: 2.5em;
+  }
+  .how__sell-learn {
+    text-decoration: underline;
+  }
+  .how__sell-learn:after {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 440px) {
+  .sell-cta__info-bage-small {
+    display: none;
   }
 }
 
