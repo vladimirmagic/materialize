@@ -79,6 +79,21 @@ document.addEventListener('DOMContentLoaded', () => {
 			$('footer').append(`
     <div class="product aucproduct">
         <div class="product__inner">
+            <div class="product__gallery">
+                <div class="product__slider">
+                    <div class="carousel-item modal-trigger" href="#modal-product-gallery"></div>
+                </div>
+                <div class="product__thumbnails">
+                    <div class="product__thumbnails-scroll">
+                        <div class="product__thumbnail modal-trigger" href="#modal-product-gallery"></div>
+                    </div>
+                </div>
+                <div id="modal-product-gallery" class="modal-gallery">
+                    <div class="modal-gallery__carousel">
+                        <div class="carousel-item"></div>
+                    </div>
+                </div>
+            </div>
             <div class="product__info">
                 <div class="product__number"></div>
                 <div class="product__title h2"></div>
@@ -218,7 +233,34 @@ document.addEventListener('DOMContentLoaded', () => {
 			$('.auc__hero-aucinfo').attr('href', $('.aucinfo').attr('href')).show();
 			$('.auc__hero-auccatalog').attr('href', $('.catlg').attr('href')).show();
 
-			$('.product__gallery').prependTo('.product__inner');
+			
+            if ($('.description-info-content .product__gallery').length) {
+                $('.product__inner .product__gallery').remove();
+                $('.product__gallery').prependTo('.product__inner');
+            } else {
+                $carouselItem = $('.product__slider .carousel-item').clone();
+                $slider = $('.product__slider').html('');
+                $thumbnailsItem = $('.product__thumbnail').clone();
+                $thumbnails = $('.product__thumbnails-scroll').html('');
+                $galleryItem = $('.modal-gallery__carousel .carousel-item').clone();
+                $gallery = $('.modal-gallery__carousel').html('');
+
+                $('.image-thumb-slide').each((i, item) => {
+                    const img = { backgroundImage: 'url(' + item.href + ')' };
+                    const image = !i ? item.dataset.image.replace('_8.', '_0.') : item.dataset.image;
+                    const imgPrev = { backgroundImage: 'url(' + image + ')' };
+                    const imgThumbnail = { backgroundImage: 'url(' + item.dataset.image.replace('_8.', '_4.') + ')' };
+                    $carouselItemNew = $carouselItem.clone();
+                    $slider.append($carouselItemNew);
+                    setTimeout(()=>$slider.find('.carousel-item').eq(i).css(imgPrev), 100 * i); // to defer preview load
+                    $thumbnailsItemNew = $thumbnailsItem.clone();
+                    $thumbnails.append($thumbnailsItemNew.css(imgThumbnail));
+                    $galleryItemNew = $galleryItem.clone();
+                    $gallery.append($galleryItemNew);
+                    setTimeout(()=>$gallery.find('.carousel-item').eq(i).css(img), 2000 + i * 100); // to defer full img load
+                    item.remove();
+                });
+            }
 
 			$detailsLine = $('.aucproduct__details-line').clone();
 			$details = $('.aucproduct__details');
