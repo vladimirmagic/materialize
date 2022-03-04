@@ -1379,7 +1379,8 @@ if (id.length && id.length > 1) {
             
             const params = new URLSearchParams('d=2');
             if (url) { // redirect to another page after ps login
-                params.append('ru', encodeURI(url));
+                const urlObj = new URL(url);
+                params.append('ru', encodeURI(urlObj.href.slice(urlObj.origin.length))); // delete domain
             } else { // redirect to this page after ps login
                 params.append('ru', encodeURI(window.location.pathname + window.location.search));
                 const scroll = $(window).scrollTop();
