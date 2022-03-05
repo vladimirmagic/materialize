@@ -1221,7 +1221,7 @@ if ($('#headsec a:contains("Auction Login")').length) {
                 if (window.location.pathname.includes('/my-items/')) { // redirect to home page after ps logout
                     params.append('ru', '/');
                 } else { // redirect to this page after ps login
-                    params.append('ru', encodeURI(window.location.href.slice(window.location.origin.length)));
+                    params.append('ru', encodeURI(window.location.pathname + window.location.search));
                     const scroll = $(window).scrollTop();
                     if (scroll > 100) params.append('sc', String(Math.round(scroll)));
                 }
@@ -1388,9 +1388,9 @@ if (id.length && id.length > 1) {
             const params = new URLSearchParams('d=2');
             if (url) { // redirect to another page after ps login
                 const urlObj = new URL(url);
-                params.append('ru', encodeURI(urlObj.href.slice(urlObj.origin.length))); // delete domain
+                params.append('ru', encodeURI(urlObj.pathname + urlObj.search)); // delete domain
             } else { // redirect to this page after ps login
-                params.append('ru', encodeURI(window.location.href.slice(window.location.origin.length)));
+                params.append('ru', encodeURI(window.location.pathname + window.location.search));
                 const scroll = $(window).scrollTop();
                 if (scroll > 100) params.append('sc', String(Math.round(scroll)));
             }
@@ -1398,7 +1398,7 @@ if (id.length && id.length > 1) {
         }
 
         function openAuctionRegistration (id) {
-            let params = '&d=2&ru=' + encodeURIComponent(window.location.href.slice(window.location.origin.length));
+            let params = '&d=2&ru=' + encodeURIComponent(window.location.pathname + window.location.search);
             const scroll = $(window).scrollTop();
             if (scroll > 100) params += '&sc=' + String(Math.round(scroll));
             redirectPage(URL_PROPSTORE + '/auctionRegistration.action?auctionId=' + id + params);
