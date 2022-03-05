@@ -199,7 +199,13 @@ document.addEventListener('DOMContentLoaded', () => {
         <div class="modal-content"></div>
     </div>
         `);
-
+            const auctionId = (
+                sam &&
+                sam.serverData &&
+                sam.serverData.variables &&
+                sam.serverData.variables.default &&
+                sam.serverData.variables.default.auctionId
+            ) || 0;
 			let status;
 			if ($('.sale-closed').length) status = 'closed';
 
@@ -319,7 +325,14 @@ document.addEventListener('DOMContentLoaded', () => {
                     $btnPlaceBid.val('Sign in to bid')
                         .on('click', function (e) {
                             e.preventDefault();
-                            openSSO();
+                            openAuctionRegistration(auctionId);
+                        });
+                } else if (val.includes('Register to bid')) {
+                    $btnPlaceBid[0].onclick = null;
+                    $btnPlaceBid.val('Register for auction')
+                        .on('click', function (e) {
+                            e.preventDefault();
+                            openAuctionRegistration(auctionId);
                         });
                 }
             }
@@ -867,11 +880,18 @@ document.addEventListener('DOMContentLoaded', () => {
 				if ($btn.length) {
 					$btn.addClass('waves-effect waves-light btn aucproduct__card-btn');
 					$cardItem.find('.card__actions').append($btn);
-                    if ($btn[0].href && $btn[0].href.includes('/register/')) {
-                        $btn.on('click', function (e) {
-                            e.preventDefault();
-                            openAuctionRegistration(id);
-                        });
+                    if ($btn[0].href && $btn[0].href.includes('/login/')) {
+                        $btn.text('Sign in to bid')
+                            .on('click', function (e) {
+                                e.preventDefault();
+                                openAuctionRegistration(id);
+                            });
+                    } else if ($btn[0].href && $btn[0].href.includes('/register/')) {
+                        $btn.text('Register for auction')
+                            .on('click', function (e) {
+                                e.preventDefault();
+                                openAuctionRegistration(id);
+                            });
                     }
 				}
                 const $bid = $(item).find('[id^="blkRegularBid"]');
