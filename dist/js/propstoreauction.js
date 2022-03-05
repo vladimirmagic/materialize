@@ -34,6 +34,8 @@ document.addEventListener('DOMContentLoaded', () => {
             } else {
                 $.get(action).always(() => callback(new URLSearchParams(action)));
             }
+        } else if (params.get('sc') && !params.get('ru')) {
+            $('html').scrollTop(params.get('sc'));
         }
 
 		function is_touch_device() {
