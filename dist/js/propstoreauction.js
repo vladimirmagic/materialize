@@ -270,9 +270,8 @@ document.addEventListener('DOMContentLoaded', () => {
                         $img.on('load', () => {
                             $thumbnails.find('.product__thumbnail').eq(i).css(imgPrev);
                             imgsLoaded++;
-                            let interval = setInterval(()=>{ // start load big images after 90% default images loaded
-                                console.log(imgsLoaded, imgsLength, imgsLength * .9);
-                                if (imgsLoaded > imgsLength * .9) {
+                            let interval = setInterval(()=>{ // start load big images after 80% default images loaded
+                                if (imgsLoaded > imgsLength * .8) {
                                     clearInterval(interval);
                                     image = image.replace('_8.', '_0.');
                                     const $img = $('<img src="' + image + '">');
