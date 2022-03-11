@@ -863,7 +863,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 const $aid = $(item).find('section[data-aid]');
                 let id = $aid.length ? $aid.data('aid') : 0;
 				$cardItem = $card.clone();
-                const $img = $(item).find('.figure-col img');
+                const $img = $(item).find('figure').length > 1 ? $(item).find('.figure-col img') : $(item).find('figure img'); // 2 figure in list view
                 if ($img.length) {
                     let bg = $img.prop('src');
                     $cardItem.find('.card__img').css('background-image', 'url(' + bg + ')');
