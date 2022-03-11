@@ -425,7 +425,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 $('.product__buttons-grey').show().append($watchlist);
             }
 
-			$('.product__detail .collapsible-body').append($('.l1desctextwhite, .l2desctextwhite, .l3desctextwhite'));
+			if ($('.product-description-content').length) {
+                $('.product__detail .collapsible-body').append($('.product-description-content'));
+            } else {
+                $('.product__detail .collapsible-body').append($('.l1desctextwhite, .l2desctextwhite, .l3desctextwhite'));
+            }
 			$('#modal-buyers-guide .modal-content').append($('#buyers-content'));
 			$('body').append($('#modal-buyers-guide'));
 
@@ -435,10 +439,10 @@ document.addEventListener('DOMContentLoaded', () => {
 			$('#modal-terms .modal-content').append($('.terms-content'));
 			$('body').append($('#modal-terms'));
 
-			if ($('.description-info-content :contains("Certificate of Authenticity")').length) {
+			if ($('.description-info-content-coa, .description-info-content :contains("Certificate of Authenticity")').length) {
 				$('.product__certificate').show();
 			}
-			$originalNote = $('.description-info-content p:contains("used in the production")');
+			$originalNote = $('.description-info-content-coa-note, .description-info-content p:contains("used in the production")');
 			if ($originalNote.length) {
 				$('.aucproduct__certificate').html($originalNote.html()).show();
 			}
@@ -553,7 +557,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 const $textReminderBtn = $('#textReminderBtn');
                 $textReminderBtn.html('Text');
 
-                $('.calendarBtn, .calendarBtnLg').addClass('waves-effect waves-grey btn btn--secondary');
+                $('.calendarBtn').addClass('waves-effect waves-grey btn btn--secondary');
                 $('<div class="aucproduct__calendar">').insertAfter('.product__buttons-grey')
                     .append('<div class="aucproduct__calendar-title h5">Add reminder</div>')
                     .append($('#calendarBtnBox'));
