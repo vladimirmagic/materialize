@@ -250,20 +250,40 @@ document.addEventListener('DOMContentLoaded', () => {
                 $thumbnails = $('.product__thumbnails-scroll').html('');
                 $galleryItem = $('.modal-gallery__carousel .carousel-item').clone();
                 $gallery = $('.modal-gallery__carousel').html('');
-
+                
+                $('body').append('<div id="div-hidden" style="display:none;">');
                 $('.image-thumb-slide').each((i, item) => {
                     const img = { backgroundImage: 'url(' + item.href + ')' };
-                    const image = !i ? item.dataset.image.replace('_8.', '_0.') : item.dataset.image;
+                    let image = !i ? item.dataset.image.replace('_8.', '_0.') : item.dataset.image; // replace first image with _0
                     const imgPrev = { backgroundImage: 'url(' + image + ')' };
                     const imgThumbnail = { backgroundImage: 'url(' + item.dataset.image.replace('_8.', '_4.') + ')' };
                     $carouselItemNew = $carouselItem.clone();
                     $slider.append($carouselItemNew);
-                    setTimeout(()=>$slider.find('.carousel-item').eq(i).css(imgPrev), 100 * i); // to defer preview load
+                    setTimeout(() => {
+                        $slider.find('.carousel-item').eq(i).css(imgPrev);
+                        if (!i) return; // first is already _0
+
+                        const $img = $('<img src="' + image + '">');
+                        $('#div-hidden').append($img);
+                        $img.on('load', () => {
+                            $thumbnails.find('.product__thumbnail').eq(i).css(imgPrev);
+                            setTimeout(() => {
+                                image = image.replace('_8.', '_0.');
+                                const $img = $('<img src="' + image + '">');
+                                $('#div-hidden').append($img);
+                                $img.on('load', () => {
+                                    $slider.find('.carousel-item').eq(i).css({ backgroundImage: 'url(' + image + ')' });
+                                });
+                            }, 100);
+                        });
+                    }, 100 * i); // to defer preview load
                     $thumbnailsItemNew = $thumbnailsItem.clone();
                     $thumbnails.append($thumbnailsItemNew.css(imgThumbnail));
                     $galleryItemNew = $galleryItem.clone();
                     $gallery.append($galleryItemNew);
-                    setTimeout(()=>$gallery.find('.carousel-item').eq(i).css(img), 2000 + i * 100); // to defer full img load
+                    setTimeout(() => {
+                        $gallery.find('.carousel-item').eq(i).css(img);
+                    }, 2000 + i * 100); // to defer full img load
                     item.remove();
                 });
             }
