@@ -56,6 +56,7 @@ document.addEventListener('DOMContentLoaded', () => {
         $('body').append($('.auc-sidenav'));
         $('<main>').append($('#wrapper')).insertAfter($('.auc-header'));
         if (!$('.container').length) $('#wrapper').append('<div class="container">');
+        $('body').append('<div id="div-hidden" style="display:none;">');
 
 /**
  * 
@@ -251,7 +252,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 $galleryItem = $('.modal-gallery__carousel .carousel-item').clone();
                 $gallery = $('.modal-gallery__carousel').html('');
                 
-                $('body').append('<div id="div-hidden" style="display:none;">');
                 $('.image-thumb-slide').each((i, item) => {
                     const img = { backgroundImage: 'url(' + item.href + ')' };
                     let image = !i ? item.dataset.image.replace('_8.', '_0.') : item.dataset.image; // replace first image with _0
@@ -863,10 +863,20 @@ document.addEventListener('DOMContentLoaded', () => {
                 const $aid = $(item).find('section[data-aid]');
                 let id = $aid.length ? $aid.data('aid') : 0;
 				$cardItem = $card.clone();
-                const $img = $(item).find('figure img');
+                const $img = $(item).find('.figure-col img');
                 if ($img.length) {
                     let bg = $img.prop('src');
                     $cardItem.find('.card__img').css('background-image', 'url(' + bg + ')');
+                    $img.on('load', () => {
+                        setTimeout(() => {
+                            bg = bg.replace('_6.', '_2.');
+                            const $img = $('<img src="' + bg + '">');
+                            $('#div-hidden').append($img);
+                            $img.on('load', () => {
+                                $('.card__img').eq(i).css('background-image', 'url(' + bg + ')');
+                            });
+                        }, 1000);
+                    });
                 }
 				$cardItem.find('.card__movie').append($(item).find('.yaaa'));
 				$badge = $cardItem.find('.card__badge')
