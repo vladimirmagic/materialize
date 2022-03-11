@@ -858,7 +858,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 sam.serverData.variables.default &&
                 sam.serverData.variables.default.viewMode === 'list' ? 'cards--list' : 'cards--grid');
 
-
+            const cardsLength = $('.item-block').length;
+            let cardsLoaded = 0;
 			$('.item-block').each((i, item) => {
                 const $aid = $(item).find('section[data-aid]');
                 let id = $aid.length ? $aid.data('aid') : 0;
@@ -868,13 +869,17 @@ document.addEventListener('DOMContentLoaded', () => {
                     let bg = $img.prop('src');
                     $cardItem.find('.card__img').css('background-image', 'url(' + bg + ')');
                     $img.on('load', () => {
-                        setTimeout(() => {
-                            bg = bg.replace('_6.', '_2.');
-                            const $img = $('<img src="' + bg + '">');
-                            $('#div-hidden').append($img);
-                            $img.on('load', () => {
-                                $('.card__img').eq(i).css('background-image', 'url(' + bg + ')');
-                            });
+                        cardsLoaded++;
+                        let interval = setInterval(()=>{ // start load big images after 80% default images loaded
+                            if (cardsLoaded > cardsLength * .8) {
+                                clearInterval(interval);
+                                bg = bg.replace('_6.', '_2.');
+                                const $img = $('<img src="' + bg + '">');
+                                $('#div-hidden').append($img);
+                                $img.on('load', () => {
+                                    $('.card__img').eq(i).css('background-image', 'url(' + bg + ')');
+                                });
+                            }
                         }, 1000);
                     });
                 }
