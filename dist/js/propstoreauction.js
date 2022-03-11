@@ -385,7 +385,7 @@ document.addEventListener('DOMContentLoaded', () => {
 			}
 
             $barcode = $('#barcode');
-            if ($('#shippingQuote').length && $barcode.length) {
+            if ($barcode.length) {
                 $('.product__buttons-grey').show();
                 $('#modal-shipping-quote-button').on('click', openModalShippingQuote);
 
