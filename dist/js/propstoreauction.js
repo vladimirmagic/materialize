@@ -557,7 +557,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 const $textReminderBtn = $('#textReminderBtn');
                 $textReminderBtn.html('Text');
 
-                $('.calendarBtn').addClass('waves-effect waves-grey btn btn--secondary');
+                $('.calendarBtn, .calendarBtnLg').addClass('waves-effect waves-grey btn btn--secondary');
                 $('<div class="aucproduct__calendar">').insertAfter('.product__buttons-grey')
                     .append('<div class="aucproduct__calendar-title h5">Add reminder</div>')
                     .append($('#calendarBtnBox'));

@@ -22133,7 +22133,7 @@ body.forgot-password #wrapper {
           align-items: center;
 }
 
-.aucproduct__calendar .calendarBtn {
+.aucproduct__calendar .calendarBtn, .aucproduct__calendar .calendarBtnLg {
   -webkit-box-flex: 1;
   -webkit-flex: 1 1 33%;
       -ms-flex: 1 1 33%;
@@ -22143,7 +22143,7 @@ body.forgot-password #wrapper {
   border-color: #c7c7c7;
 }
 
-.aucproduct__calendar .calendarBtn + .calendarBtn {
+.aucproduct__calendar .calendarBtn + .calendarBtn, .aucproduct__calendar .calendarBtnLg + .calendarBtnLg {
   margin-left: .5rem;
 }
 
