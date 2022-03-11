@@ -252,6 +252,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 $galleryItem = $('.modal-gallery__carousel .carousel-item').clone();
                 $gallery = $('.modal-gallery__carousel').html('');
                 
+                const imgsLength = $('.image-thumb-slide').length;
+                let imgsLoaded = 0;
                 $('.image-thumb-slide').each((i, item) => {
                     const img = { backgroundImage: 'url(' + item.href + ')' };
                     let image = !i ? item.dataset.image.replace('_8.', '_0.') : item.dataset.image; // replace first image with _0
@@ -267,14 +269,18 @@ document.addEventListener('DOMContentLoaded', () => {
                         $('#div-hidden').append($img);
                         $img.on('load', () => {
                             $thumbnails.find('.product__thumbnail').eq(i).css(imgPrev);
-                            setTimeout(() => {
-                                image = image.replace('_8.', '_0.');
-                                const $img = $('<img src="' + image + '">');
-                                $('#div-hidden').append($img);
-                                $img.on('load', () => {
-                                    $slider.find('.carousel-item').eq(i).css({ backgroundImage: 'url(' + image + ')' });
-                                });
-                            }, 100);
+                            imgsLoaded++;
+                            let interval = setInterval(()=>{ // start load big images after 90% default images loaded
+                                if (imgsLoaded > imgsLength * .9) {
+                                    clearInterval(interval);
+                                    image = image.replace('_8.', '_0.');
+                                    const $img = $('<img src="' + image + '">');
+                                    $('#div-hidden').append($img);
+                                    $img.on('load', () => {
+                                        $slider.find('.carousel-item').eq(i).css({ backgroundImage: 'url(' + image + ')' });
+                                    });
+                                }
+                            }, 1000);
                         });
                     }, 100 * i); // to defer preview load
                     $thumbnailsItemNew = $thumbnailsItem.clone();
@@ -873,7 +879,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         let interval = setInterval(()=>{ // start load big images after 80% default images loaded
                             if (cardsLoaded > cardsLength * .8) {
                                 clearInterval(interval);
-                                bg = bg.replace('_6.', '_2.');
+                                bg = bg.replace('_6.', '_0.');
                                 const $img = $('<img src="' + bg + '">');
                                 $('#div-hidden').append($img);
                                 $img.on('load', () => {
