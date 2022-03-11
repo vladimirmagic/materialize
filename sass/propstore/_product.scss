@@ -336,8 +336,12 @@ a.product__title:not(.btn) {
 }
 
 .product__interested-link {
+	display: flex;
+	justify-content: center;
+	align-items: center;
 	width: 100%;
 	margin-bottom: 1em;
+	line-height: 1.2;
 
 	&:after {
 		display: none;

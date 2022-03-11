@@ -4682,6 +4682,12 @@ small {
   }
 }
 
+@media only screen and (max-width: 600px) {
+  #toast-container {
+    width: 100%;
+  }
+}
+
 .toast {
   position: relative;
   top: 35px;
@@ -4722,6 +4728,10 @@ small {
 
 .toast.rounded {
   border-radius: 24px;
+}
+
+.toast a:not(.btn):not(.btn-large):not(.btn-small):not(.btn-extra-small), .toast a:not(.btn):not(.btn-large):not(.btn-small):not(.btn-extra-small):active {
+  color: white;
 }
 
 @media only screen and (max-width: 600px) {
@@ -9646,6 +9656,10 @@ hr.small {
           justify-content: center;
 }
 
+.toast__overlay {
+  display: none;
+}
+
 .cookies-toast__body {
   margin-right: 2em;
 }
@@ -9668,6 +9682,19 @@ hr.small {
           transform: rotate(180deg);
 }
 
+.icon-ok {
+  width: 3.5rem;
+  height: 3.5rem;
+  color: white;
+  border-radius: 50%;
+  background: #11BFC5;
+}
+
+.icon-ok svg {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
 @media only screen and (min-width: 1921px) {
   .content, .general, .header__main, .header__menu-level1-inner, .header__menu-level1--sell .header__menu-level1-inner, .footer__inner, .hero, .filters, .header__filters .filters__body, .showing-results, .related-movies, .modal-shipping-quote-page main, .how, .whatsnew__text, .section-auctions, .faq, .account-page__text, .account__orders, .account__coa, .account-filter, .payment-plans, .sell__inner, .sell__faq-section, .vouchers, .experts, .auccatalog__nav, .auc-info__inner, .auc-info__video, .aucpage__content {
     padding-left: calc(50% - 900px);
@@ -9686,6 +9713,24 @@ hr.small {
   .content, .general, .header__main, .header__menu-level1-inner, .header__menu-level1--sell .header__menu-level1-inner, .footer__inner, .hero, .filters, .header__filters .filters__body, .showing-results, .related-movies, .modal-shipping-quote-page main, .how, .whatsnew__text, .section-auctions, .faq, .account-page__text, .account__orders, .account__coa, .account-filter, .payment-plans, .sell__inner, .sell__faq-section, .vouchers, .experts, .auccatalog__nav, .auc-info__inner, .auc-info__video, .aucpage__content {
     padding-left: 24px;
     padding-right: 24px;
+  }
+  .toast-cookies {
+    position: fixed;
+    z-index: 1010;
+    bottom: 0 !important;
+    margin-top: 30vh !important;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+  }
+  .toast__overlay {
+    display: block;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
   }
   .cookies-toast, .cookies-toast__body {
     display: block;
@@ -11338,7 +11383,6 @@ a.modal-bag__item:not(.btn):not(.btn-large):not(.btn-small):not(.btn-extra-small
   padding-top: 160px;
 }
 
-.auctions .footer-actions,
 .home .footer-actions,
 .experts .footer-actions {
   padding-top: 0;
@@ -14426,8 +14470,21 @@ a.product__title:not(.btn):not(.btn-large):not(.btn-small):not(.btn-extra-small)
 }
 
 .product__interested-link {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
   width: 100%;
   margin-bottom: 1em;
+  line-height: 1.2;
 }
 
 .product__interested-link:after {
@@ -20788,6 +20845,10 @@ a.voucher:not(.btn):not(.btn-large):not(.btn-small):not(.btn-extra-small):before
 
 .auction-registration__text p:first-child {
   margin-top: 0;
+}
+
+span.badge.auction-registration__badge-approved {
+  color: white;
 }
 
 .auction-registration__more {

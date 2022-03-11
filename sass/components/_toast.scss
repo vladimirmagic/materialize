@@ -13,6 +13,9 @@
     left: 2.5rem;
     max-width: calc(100% - 5rem);
   }
+  @media #{$small-and-down} {
+    width: 100%;
+  }
 }
 
 .toast {
@@ -44,6 +47,12 @@
 
   &.rounded{
     border-radius: 24px;
+  }
+
+  a:not(.btn) {
+    &, &:active {
+      color: white;
+    }
   }
 
   @media #{$small-and-down} {

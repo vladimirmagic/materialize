@@ -197,6 +197,10 @@ hr {
 	justify-content: center;
 }
 
+.toast__overlay {
+	display: none;
+}
+
 .cookies-toast__body {
 	margin-right: 2em;
 }
@@ -215,6 +219,19 @@ hr {
 
 	svg {
 		transform: rotate(180deg);
+	}
+}
+
+.icon-ok {
+	width: 3.5rem;
+	height: 3.5rem;
+	color: white;
+	border-radius: 50%;
+	background: $color-turquoise;
+
+	svg {
+		width: 1.5rem;
+		height: 1.5rem;
 	}
 }
 
@@ -237,6 +254,26 @@ hr {
     .content {
 		padding-left: 24px;
 		padding-right: 24px;
+	}
+
+	.toast-cookies {
+		position: fixed;
+		z-index: 1010;
+		bottom: 0 !important;
+    	margin-top: 30vh !important;
+		border-bottom-left-radius: 0;
+		border-bottom-right-radius: 0;
+	}
+
+	.toast__overlay {
+		display: block;
+		position: fixed;
+		z-index: 1000;
+		left: 0;
+		right: 0;
+		top: 0;
+		bottom: 0;
+		background: rgba(0,0,0,.5);
 	}
 
 	.cookies-toast, .cookies-toast__body {
