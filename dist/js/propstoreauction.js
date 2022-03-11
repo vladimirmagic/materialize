@@ -271,7 +271,7 @@ document.addEventListener('DOMContentLoaded', () => {
                             $thumbnails.find('.product__thumbnail').eq(i).css(imgPrev);
                             imgsLoaded++;
                             let interval = setInterval(()=>{ // start load big images after 80% default images loaded
-                                if (imgsLoaded > imgsLength * .8) {
+                                if (imgsLoaded >= imgsLength * .8) {
                                     clearInterval(interval);
                                     image = image.replace('_8.', '_0.');
                                     const $img = $('<img src="' + image + '">');
@@ -877,7 +877,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     $img.on('load', () => {
                         cardsLoaded++;
                         let interval = setInterval(()=>{ // start load big images after 80% default images loaded
-                            if (cardsLoaded > cardsLength * .8) {
+                            if (cardsLoaded >= cardsLength * .8) {
                                 clearInterval(interval);
                                 bg = bg.replace('_6.', '_0.');
                                 const $img = $('<img src="' + bg + '">');
