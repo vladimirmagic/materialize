@@ -300,11 +300,9 @@
 	}
 }
 
-@media only screen and (max-width: 440px) {
+@media only screen and (max-width: 480px) {
 	.auc__hero.hero--auctions {
 		.hero__btn {
-			display: flex;
-			justify-content: center;
 			width: 100%;
 			margin-top: 1.5rem;
 			margin-right: 0;

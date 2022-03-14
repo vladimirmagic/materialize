@@ -186,6 +186,55 @@ hr {
 
 }
 
+.cookies-toast {
+	display: flex;
+	align-items: center;
+	max-width: 1400px;
+}
+
+.toast-cookies {
+	width: 100vw;
+	justify-content: center;
+}
+
+.toast__overlay {
+	display: none;
+}
+
+.cookies-toast__body {
+	margin-right: 2em;
+}
+
+.cookies-toast__close {
+	color: $color-turquoise;
+	background-color: white;
+
+	&:hover {
+		background-color: $color-bg;
+	  }
+}
+
+.btn-back .icon {
+	margin-right: 8px !important;
+
+	svg {
+		transform: rotate(180deg);
+	}
+}
+
+.icon-ok {
+	width: 3.5rem;
+	height: 3.5rem;
+	color: white;
+	border-radius: 50%;
+	background: $color-turquoise;
+
+	svg {
+		width: 1.5rem;
+		height: 1.5rem;
+	}
+}
+
 @media #{$media-fullhd-up} {
 	$content-padding: calc(50% - 900px);
     .content {
@@ -205,5 +254,33 @@ hr {
     .content {
 		padding-left: 24px;
 		padding-right: 24px;
+	}
+
+	.toast-cookies {
+		position: fixed;
+		z-index: 1010;
+		bottom: 0 !important;
+    	margin-top: 30vh !important;
+		border-bottom-left-radius: 0;
+		border-bottom-right-radius: 0;
+	}
+
+	.toast__overlay {
+		display: block;
+		position: fixed;
+		z-index: 1000;
+		left: 0;
+		right: 0;
+		top: 0;
+		bottom: 0;
+		background: rgba(0,0,0,.5);
+	}
+
+	.cookies-toast, .cookies-toast__body {
+		display: block;
+	}
+
+	.cookies-toast__body {
+		margin-bottom: 1em;
 	}
 }

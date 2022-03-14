@@ -1,7 +1,4 @@
 document.addEventListener('DOMContentLoaded', () => {
-    let URL_PROPSTORE = 'https://new.propstore.com/';
-    if (window.location.href.includes('localhost')) URL_PROPSTORE = 'http://propstore.loc/';
-
 	if (window.location.href.includes('#nomaterialize')) { // don't materialize
 		document.querySelectorAll('[data-v2]').forEach(item => item.remove());
 		return;
@@ -16,6 +13,29 @@ document.addEventListener('DOMContentLoaded', () => {
 		.catch(loaded);
 
 	$(function () {
+        const params = new URLSearchParams(window.location.search);
+        const action = params.get('action');
+        if (action) {
+            const callback = (params) => {
+                if (params.get('ru')) {
+                    params.delete('action');
+                    const ru = decodeURIComponent(params.get('ru'));
+                    params.delete('ru');
+                    const d = params.get('d');
+                    params.delete('d');
+                    let domain = '';
+                    if (d && d === '1') domain = URL_PROPSTORE;
+                    const paramsSymbol = ru.includes('?') ? '&' : '?';
+                    redirectPage(domain + ru + paramsSymbol + params.toString());
+                }
+            }
+            if (action == 'signout') {
+                $.get('/logout').always(() => callback(params));
+            } else {
+                $.get(action).always(() => callback(new URLSearchParams(action)));
+            }
+        }
+
 		function is_touch_device() {
 			try {
 				document.createEvent('TouchEvent');
@@ -36,6 +56,7 @@ document.addEventListener('DOMContentLoaded', () => {
         $('body').append($('.auc-sidenav'));
         $('<main>').append($('#wrapper')).insertAfter($('.auc-header'));
         if (!$('.container').length) $('#wrapper').append('<div class="container">');
+        $('body').append('<div id="div-hidden" style="display:none;">');
 
 /**
  * 
@@ -179,7 +200,13 @@ document.addEventListener('DOMContentLoaded', () => {
         <div class="modal-content"></div>
     </div>
         `);
-
+            const auctionId = (
+                sam &&
+                sam.serverData &&
+                sam.serverData.variables &&
+                sam.serverData.variables.default &&
+                sam.serverData.variables.default.auctionId
+            ) || 0;
 			let status;
 			if ($('.sale-closed').length) status = 'closed';
 
@@ -213,23 +240,59 @@ document.addEventListener('DOMContentLoaded', () => {
 			$('.auc__hero-aucinfo').attr('href', $('.aucinfo').attr('href')).show();
 			$('.auc__hero-auccatalog').attr('href', $('.catlg').attr('href')).show();
 
-			$carouselItem = $('.product__slider .carousel-item').clone();
-			$slider = $('.product__slider').html('');
-			$thumbnailsItem = $('.product__thumbnail').clone();
-			$thumbnails = $('.product__thumbnails-scroll').html('');
-			$galleryItem = $('.modal-gallery__carousel .carousel-item').clone();
-			$gallery = $('.modal-gallery__carousel').html('');
+			
+            if ($('.description-info-content .product__gallery').length) {
+                $('.product__inner .product__gallery').remove();
+                $('.product__gallery').prependTo('.product__inner');
+            } else {
+                $carouselItem = $('.product__slider .carousel-item').clone();
+                $slider = $('.product__slider').html('');
+                $thumbnailsItem = $('.product__thumbnail').clone();
+                $thumbnails = $('.product__thumbnails-scroll').html('');
+                $galleryItem = $('.modal-gallery__carousel .carousel-item').clone();
+                $gallery = $('.modal-gallery__carousel').html('');
+                
+                const imgsLength = $('.image-thumb-slide').length;
+                let imgsLoaded = 0;
+                $('.image-thumb-slide').each((i, item) => {
+                    const img = { backgroundImage: 'url(' + item.href + ')' };
+                    let image = !i ? item.dataset.image.replace('_8.', '_0.') : item.dataset.image; // replace first image with _0
+                    const imgPrev = { backgroundImage: 'url(' + image + ')' };
+                    const imgThumbnail = { backgroundImage: 'url(' + !i ? item.dataset.image : item.dataset.image.replace('_8.', '_4.') + ')' };
+                    $carouselItemNew = $carouselItem.clone();
+                    $slider.append($carouselItemNew);
+                    setTimeout(() => {
+                        $slider.find('.carousel-item').eq(i).css(imgPrev);
+                        if (!i) return; // first is already _0
 
-			$('.image-thumb-slide').each((i, item) => {
-				const img = { backgroundImage: 'url(' + item.href + ')' };
-                const imgPrev = { backgroundImage: 'url(' + item.dataset.image.replace('_8.', '_9.') + ')' };
-				$carouselItemNew = $carouselItem.clone();
-				$slider.append($carouselItemNew.css(imgPrev));
-				$thumbnailsItemNew = $thumbnailsItem.clone();
-				$thumbnails.append($thumbnailsItemNew.css(imgPrev));
-				$galleryItemNew = $galleryItem.clone();
-				$gallery.append($galleryItemNew.css(img));
-			});
+                        const $img = $('<img src="' + image + '">');
+                        $('#div-hidden').append($img);
+                        $img.on('load', () => {
+                            $thumbnails.find('.product__thumbnail').eq(i).css(imgPrev);
+                            imgsLoaded++;
+                            let interval = setInterval(()=>{ // start load big images after 80% default images loaded
+                                if (imgsLoaded >= imgsLength * .8) {
+                                    clearInterval(interval);
+                                    image = image.replace('_8.', '_0.');
+                                    const $img = $('<img src="' + image + '">');
+                                    $('#div-hidden').append($img);
+                                    $img.on('load', () => {
+                                        $slider.find('.carousel-item').eq(i).css({ backgroundImage: 'url(' + image + ')' });
+                                    });
+                                }
+                            }, 1000);
+                        });
+                    }, 100 * i); // to defer preview load
+                    $thumbnailsItemNew = $thumbnailsItem.clone();
+                    $thumbnails.append($thumbnailsItemNew.css(imgThumbnail));
+                    $galleryItemNew = $galleryItem.clone();
+                    $gallery.append($galleryItemNew);
+                    setTimeout(() => {
+                        $gallery.find('.carousel-item').eq(i).css(img);
+                    }, 2000 + i * 100); // to defer full img load
+                    item.remove();
+                });
+            }
 
 			$detailsLine = $('.aucproduct__details-line').clone();
 			$details = $('.aucproduct__details');
@@ -288,7 +351,14 @@ document.addEventListener('DOMContentLoaded', () => {
                     $btnPlaceBid.val('Sign in to bid')
                         .on('click', function (e) {
                             e.preventDefault();
-                            openSSO();
+                            openAuctionRegistration(auctionId);
+                        });
+                } else if (val.includes('Register to bid')) {
+                    $btnPlaceBid[0].onclick = null;
+                    $btnPlaceBid.val('Register for auction')
+                        .on('click', function (e) {
+                            e.preventDefault();
+                            openAuctionRegistration(auctionId);
                         });
                 }
             }
@@ -315,7 +385,7 @@ document.addEventListener('DOMContentLoaded', () => {
 			}
 
             $barcode = $('#barcode');
-            if ($('#shippingQuote').length && $barcode.length) {
+            if ($barcode.length) {
                 $('.product__buttons-grey').show();
                 $('#modal-shipping-quote-button').on('click', openModalShippingQuote);
 
@@ -355,7 +425,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 $('.product__buttons-grey').show().append($watchlist);
             }
 
-			$('.product__detail .collapsible-body').append($('.l1desctextwhite, .l2desctextwhite, .l3desctextwhite'));
+			if ($('.product-description-content').length) {
+                $('.product__detail .collapsible-body').append($('.product-description-content'));
+            } else {
+                $('.product__detail .collapsible-body').append($('.l1desctextwhite, .l2desctextwhite, .l3desctextwhite'));
+            }
 			$('#modal-buyers-guide .modal-content').append($('#buyers-content'));
 			$('body').append($('#modal-buyers-guide'));
 
@@ -365,10 +439,10 @@ document.addEventListener('DOMContentLoaded', () => {
 			$('#modal-terms .modal-content').append($('.terms-content'));
 			$('body').append($('#modal-terms'));
 
-			if ($('.description-info-content :contains("Certificate of Authenticity")').length) {
+			if ($('.description-info-content-coa, .description-info-content :contains("Certificate of Authenticity")').length) {
 				$('.product__certificate').show();
 			}
-			$originalNote = $('.description-info-content p:contains("used in the production")');
+			$originalNote = $('.description-info-content-coa-note, .description-info-content p:contains("used in the production")');
 			if ($originalNote.length) {
 				$('.aucproduct__certificate').html($originalNote.html()).show();
 			}
@@ -445,7 +519,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     $list.html('');
                     $others.each((index, item) => {
                         $img = $('<div class="card__img">');
-                        $img.css('background-image', 'url(' + $(item).find('.other-lots-image').prop('src').replace('_4.', '_2.') + ')');
+                        $img.css('background-image', 'url(' + $(item).find('.other-lots-image').prop('src').replace('_4.', '_6.') + ')');
                         $title = $('<div class="card__movie">').html($(item).find('.lot-description-timed').html());
                         $list.append($(item).addClass('card aucproduct__card').html('').append($img, $('<div class="card__info">').append($('<div class="card__description">').append($title))));
                     });
@@ -483,7 +557,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 const $textReminderBtn = $('#textReminderBtn');
                 $textReminderBtn.html('Text');
 
-                $('.calendarBtn').addClass('waves-effect waves-grey btn btn--secondary');
+                $('.calendarBtn, .calendarBtnLg').addClass('waves-effect waves-grey btn btn--secondary');
                 $('<div class="aucproduct__calendar">').insertAfter('.product__buttons-grey')
                     .append('<div class="aucproduct__calendar-title h5">Add reminder</div>')
                     .append($('#calendarBtnBox'));
@@ -582,7 +656,7 @@ document.addEventListener('DOMContentLoaded', () => {
 				$date = $('<div class="auclting__date"><i class="icon"><svg><use xlink:href="#calendar"></use></svg></i></div>');
 				$date.append($desc.find('#aucdate' + id));
 				$lots = $('<div class="auclting__lots"><i class="icon"><svg><use xlink:href="#ticket"></use></svg></i></div>');
-				$lots.append($desc.find('p+p').text());
+				$lots.append($desc.find('p').eq(1).text());
 				$details = $('<div class="auclting__details">');
 				$details.append($type).append($date).append($lots);
 				$details.insertAfter($title);
@@ -794,13 +868,30 @@ document.addEventListener('DOMContentLoaded', () => {
                 sam.serverData.variables.default &&
                 sam.serverData.variables.default.viewMode === 'list' ? 'cards--list' : 'cards--grid');
 
-
+            const cardsLength = $('.item-block').length;
+            let cardsLoaded = 0;
 			$('.item-block').each((i, item) => {
+                const $aid = $(item).find('section[data-aid]');
+                let id = $aid.length ? $aid.data('aid') : 0;
 				$cardItem = $card.clone();
-                let bg = $(item).find('figure img').prop('src');
-                if (bg) {
-                    bg = bg.replace('_6.', '_2.');
+                const $img = $(item).find('figure').length > 1 ? $(item).find('.figure-col img') : $(item).find('figure img'); // 2 figure in list view
+                if ($img.length) {
+                    let bg = $img.prop('src');
                     $cardItem.find('.card__img').css('background-image', 'url(' + bg + ')');
+                    $img.on('load', () => {
+                        cardsLoaded++;
+                        let interval = setInterval(()=>{ // start load big images after 80% default images loaded
+                            if (cardsLoaded >= cardsLength * .8) {
+                                clearInterval(interval);
+                                bg = bg.replace('_6.', '_0.');
+                                const $img = $('<img src="' + bg + '">');
+                                $('#div-hidden').append($img);
+                                $img.on('load', () => {
+                                    $('.card__img').eq(i).css('background-image', 'url(' + bg + ')');
+                                });
+                            }
+                        }, 1000);
+                    });
                 }
 				$cardItem.find('.card__movie').append($(item).find('.yaaa'));
 				$badge = $cardItem.find('.card__badge')
@@ -834,6 +925,19 @@ document.addEventListener('DOMContentLoaded', () => {
 				if ($btn.length) {
 					$btn.addClass('waves-effect waves-light btn aucproduct__card-btn');
 					$cardItem.find('.card__actions').append($btn);
+                    if ($btn[0].href && $btn[0].href.includes('/login/')) {
+                        $btn.text('Sign in to bid')
+                            .on('click', function (e) {
+                                e.preventDefault();
+                                openAuctionRegistration(id);
+                            });
+                    } else if ($btn[0].href && $btn[0].href.includes('/register/')) {
+                        $btn.text('Register for auction')
+                            .on('click', function (e) {
+                                e.preventDefault();
+                                openAuctionRegistration(id);
+                            });
+                    }
 				}
                 const $bid = $(item).find('[id^="blkRegularBid"]');
                 if ($bid.length) {
@@ -1117,25 +1221,7 @@ document.addEventListener('DOMContentLoaded', () => {
  * SIGN IN, SIGN UP, FORGOT
  */
  if ($('body').hasClass('login') || $('body').hasClass('signup') || $('body').hasClass('forgot-password')) {
-    if (window.opener) { // close modal window, becouse it is redirected from modal /logout
-        window.opener.postMessage('SSOsuccess', '*');
-        window.close();
-    }
-    $('main').append(`
-    <div class="general"><div class="general__inner">
-        <h1 class="h1">
-            Please Sign In
-        </h1>
-        <p class="p-r">
-            Aenean lacinia bibendum nulla sed consectetur contact us.
-        </p>
-        <br/>
-        <button type="submit" class="waves-effect waves-light btn sso-trigger">
-            <span class='btn__title'>Propstore Auth</span>
-            <i class='icon'><svg><use xlink:href="#arrow-right"></use></svg></i>
-        </button>
-    </div></div>
-    `);
+    openSSO();
     document.querySelectorAll('style:not([data-v2]), link[rel="stylesheet"]:not([data-v2])').forEach(item => item.remove());
 }
 /**
@@ -1157,19 +1243,19 @@ document.addEventListener('DOMContentLoaded', () => {
  */
 if ($('#headsec a:contains("Auction Login")').length) {
     $('.header__settings .header__col--right').append(`
-        <a href="/login" class="waves-effect btn-flat header__btn sso-trigger" data-url="/ajax/signIn.action">
+        <a href="/login" class="waves-effect btn-flat header__btn sso-trigger" data-url="/signIn.action">
             Sign In
         </a>
         <span class="header__settings-divider2 header__settings-divider2--unregistered">/</span>
-        <a href="/signup" class="waves-effect btn-flat header__btn sso-trigger" data-url="/ajax/register.action">
+        <a href="/signup" class="waves-effect btn-flat header__btn sso-trigger" data-url="/register.action">
             Register
         </a>
     `);
     $('.sidenav__settings').append(`
         <div class="sidenav__settings-sign-register">
-            <a href="/login" class="waves-effect btn-flat modal-trigger sidenav__settings-sign sso-trigger" data-url="/ajax/signIn.action">Sign In</a>
+            <a href="/login" class="waves-effect btn-flat modal-trigger sidenav__settings-sign sso-trigger" data-url="/signIn.action">Sign In</a>
             <span class="sidenav__settings-divider">/</span>
-            <a href="/signup" class="waves-effect btn-flat modal-trigger sidenav__settings-register sso-trigger" data-url="/ajax/register.action">Register</a>
+            <a href="/signup" class="waves-effect btn-flat modal-trigger sidenav__settings-register sso-trigger" data-url="/register.action">Register</a>
         </div>
     `);
     $('.menu-link-login').addClass('sso-trigger');
@@ -1196,15 +1282,40 @@ if ($('#headsec a:contains("Auction Login")').length) {
         $('.loader-block').show();
         $.get('/logout')
             .always(data => {
-                if (window.location.pathname.includes('/my-items/')) {
-                    redirectPage('/');
-                } else {
-                    reloadPage();
+                const params = new URLSearchParams('d=2');
+                if (window.location.pathname.includes('/my-items/')) { // redirect to home page after ps logout
+                    params.append('ru', '/');
+                } else { // redirect to this page after ps login
+                    params.append('ru', encodeURI(window.location.pathname + window.location.search));
+                    const scroll = $(window).scrollTop();
+                    if (scroll > 100) params.append('sc', String(Math.round(scroll)));
                 }
+                redirectPage(URL_PROPSTORE + 'submitLogout.action?' + params.toString());
             });
-        openPropstoreAndClose(URL_PROPSTORE + 'submitLogout.action?autoclose=true');
     });
 }
+/**
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * Redirect auction register
+ */
+const id = window.location.pathname.split('/register/confirm-shipping/id/');
+if (id.length && id.length > 1) {
+    redirectPage(URL_PROPSTORE + '/auctionRegistration.action?auctionId=' + id[1]);
+}
+
 /**
  * 
  * 
@@ -1335,52 +1446,27 @@ if ($('#headsec a:contains("Auction Login")').length) {
             }
 		}
 
-        function openPropstoreAndClose (url) {
-            const SSOwin = window.open(url, 'Propstore SSO', `scrollbars=no,resizable=no,status=no,location=no,toolbar=no,menubar=no,width=1,height=1,top=2000`);
-            setTimeout(() => SSOwin.close(), 1000);
-        }
-
-        function openSSO (action = '/ajax/signIn.action') {
-            let url = URL_PROPSTORE + action;
-            let param = null;
-            const w = window.screen.width;
-            const h = window.screen.height;
-            if (w > 1224) {
-                param = `width=${w-200},height=${h-200},left=100,top=100,menubar=1,toolbar=1,location=1,status=1`;
+        function openSSO (action = '/signIn.action') {
+            const urlParams = new URLSearchParams(window.location.search);
+            const url = urlParams.get('url');
+            
+            const params = new URLSearchParams('d=2');
+            if (url) { // redirect to another page after ps login
+                const urlObj = new URL(url);
+                params.append('ru', encodeURI(urlObj.pathname + urlObj.search)); // delete domain
+            } else { // redirect to this page after ps login
+                params.append('ru', encodeURI(window.location.pathname + window.location.search));
+                const scroll = $(window).scrollTop();
+                if (scroll > 100) params.append('sc', String(Math.round(scroll)));
             }
-            const win = window.open(url, 'Propstore Sign In', param);
-            window.addEventListener('message', function(event) {
-                if (event.data === 'reloadPage' || event.data === 'SSOerror') {
-                    const queryString = window.location.search;
-                    const params = new URLSearchParams(queryString);
-                    const url = params.get('url');
-                    if (url) {
-                        redirectPage(url);
-                    } else {
-                        reloadPage();
-                    }
-                    win.close();
-                }
-            });
+            redirectPage(URL_PROPSTORE + action + '?' + params.toString());
         }
 
         function openAuctionRegistration (id) {
-            const url = URL_PROPSTORE + '/ajax/auctionRegistration.action?auctionId=' + id;
-            let param = null;
-            const w = window.screen.width;
-            const h = window.screen.height;
-            if (w > 1224) {
-                param = `width=${w-200},height=${h-200},left=100,top=100,menubar=1,toolbar=1,location=1,status=1`;
-            }
-            const ssoWin = window.open(url, 'Propstore Auction Registration', param);
-            window.addEventListener('message', function(event) {
-                if (event.data === 'SSOsuccess') {
-                    ssoWin.location.href = url;
-                    reloadPage();
-                } else if (event.data === 'reloadPage') {
-                    reloadPage();
-                }
-            });
+            let params = '&d=2&ru=' + encodeURIComponent(window.location.pathname + window.location.search);
+            const scroll = $(window).scrollTop();
+            if (scroll > 100) params += '&sc=' + String(Math.round(scroll));
+            redirectPage(URL_PROPSTORE + '/auctionRegistration.action?auctionId=' + id + params);
         }
         
         function reloadPage () {
@@ -1393,12 +1479,11 @@ if ($('#headsec a:contains("Auction Login")').length) {
             window.location.href = url;
         }
 
-        if (window.opener && $('#messages').text().includes('SSO token error')) {
-            window.opener.postMessage('SSOerror', '*');
-            window.close();
+        if (params && params.get('sc') && !params.get('ru')) {
+            $('html').scrollTop(params.get('sc'));
         }
 
-		document.body.classList.add('loaded'); // if svg fail
+        document.body.classList.add('loaded'); // if svg fail
 	}); // end of document ready
 });
 

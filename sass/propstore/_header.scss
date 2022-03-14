@@ -61,6 +61,14 @@ header {
 	background: $color-bg;
 }
 
+.header__account {
+	.icon--warning {
+		width: 1.5rem;
+		height: 1.5rem;
+		margin-top: -4px;
+	}
+}
+
 .header__btn {
 	height: 40px;
 	line-height: 40px;
@@ -532,15 +540,15 @@ a:not(.btn).header__menu-target-blank {
 	margin-left: 24px;
 
 	.icon {
-		width: 22px;
-		height: 27px;
+		width: 2rem;
+		height: 2rem;
 	}
 }
 
 .header__bag-number {
 	position: absolute;
-	top: 4px;
-	right: -2px;
+	top: 0px;
+	right: -6px;
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -709,6 +717,13 @@ a.modal-bag__item:not(.btn) { // fix a
 		float: none;
 		margin: -.2rem 0 0 .2rem;
 		opacity: .3;
+	}
+
+	.icon--warning {
+		width: 1.5rem;
+		height: 1.5rem;
+		margin-top: -4px;
+		opacity: 1;
 	}
 }
 

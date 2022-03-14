@@ -325,6 +325,37 @@ a.product__title:not(.btn) {
 	}
 }
 
+.product__interested {
+	padding-top: 2em;
+	margin-bottom: 2em;
+	border-top: 1px solid $color-grey;
+}
+
+.product__interested-title {
+	margin-bottom: 1.75em;
+}
+
+.product__interested-link {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 100%;
+	margin-bottom: 1em;
+	line-height: 1.2;
+
+	&:after {
+		display: none;
+	}
+}
+
+#modal-private-sales {
+	.modal__title {
+		margin-bottom: 4rem;
+		font-size: 1.5rem;
+		line-height: 2rem;
+	}
+}
+
 .product__details {
 	margin: 0;
 

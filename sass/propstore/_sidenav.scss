@@ -247,6 +247,12 @@ $main-link-height: 72px;
 			height: 7px;
 			margin: 0 0 0 4px;
 		}
+
+		&.icon--warning {
+			width: 1.5rem;
+			height: 1.5rem;
+			margin-top: -4px;
+		}
 	}
 
 	.collapsible-body {
@@ -263,6 +269,13 @@ $main-link-height: 72px;
 			height: 1rem;
 			margin: -.2rem 0 0 .2rem;
 			opacity: .3;
+		}
+
+		.icon--warning {
+			width: 1.5rem;
+			height: 1.5rem;
+			margin-top: -4px;
+			opacity: 1;
 		}
 	}
 }

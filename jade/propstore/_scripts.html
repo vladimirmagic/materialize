@@ -11,6 +11,7 @@
 	window.checkES6 = checkES6();
 	if (!window.checkES6) document.body.className += ' unsupported';
 </script>
+<script src="https://cdn.jsdelivr.net/npm/algoliasearch@4.5.1/dist/algoliasearch-lite.umd.js"></script>
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 <script defer src="bin/materialize.js"></script>
 <script defer src="docs/js/init.js"></script>
@@ -19,7 +20,7 @@
 	svgSprite.id = 'svg-sprite';
 	document.body.append(svgSprite);
 	const loaded = function() {document.body.classList.add('loaded')};
-	if (typeof fetch != "undefined") fetch('dist/defs/svg/sprite.defs.svg?v=20211111', { cache: 'force-cache' })
+	if (typeof fetch != "undefined") fetch('dist/defs/svg/sprite.defs.svg?v=20220204', { cache: 'force-cache' })
 		.then(response => response.text())
 		.then(html => { svgSprite.innerHTML = html; loaded(); })
 		.catch(loaded);

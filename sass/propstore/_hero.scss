@@ -202,6 +202,9 @@
 }
 
 .hero__carousel-info-description {
+	.hero--sell & {
+		max-width: 540px;
+	}
 }
 
 @media #{$extra-large-and-up} {

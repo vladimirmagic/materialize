@@ -340,6 +340,10 @@ a.card:not(.btn) { // fix a
 		margin-left: 8px;
 		margin-top: -5px;
 	}
+
+	.card__action-sell {
+		flex: 1 1 60%;
+	}
 }
 
 

@@ -5,14 +5,16 @@
     <div class="account-page__title h1">
         Orders
     </div>
-    <ul class="account-orders__tabs tabs">
-        <li class="account-orders__tab tab">
-            <a href="#account-orders-auctions" class="waves-effect btn-flat btn--rounded active">Auctions</a>
+    <ul class="account-page__tabs tabs">
+        <li class="account-page__tab tab">
+            <a href="#account-orders-auctions" class="waves-effect btn-flat btn--rounded active">Auctions
+                <i class='icon account-page__tab-warning'><svg><use xlink:href="#warning"></use></svg></i>
+            </a>
         </li>
-        <li class="account-orders__tab tab">
+        <li class="account-page__tab tab">
             <a href="#account-orders-buy" class="waves-effect btn-flat btn--rounded">Buy now</a>
         </li>
-        <li class="account-orders__tab tab">
+        <li class="account-page__tab tab">
             <a href="#account-orders-invoices" class="waves-effect btn-flat btn--rounded">Invoices (Pending)</a>
         </li>
     </ul>
@@ -22,6 +24,34 @@
 
             <p class="h5">Hardcoded:</p>
 
+            <div class="account__orders-header">
+                <div class="account__orders-header-left">
+                    <span class="badge green">
+                        <i class='icon'><svg><use xlink:href="#bag"></use></svg></i>
+                        Buy now
+                    </span>
+                    <div class="account__orders-header-item">
+                        <strong>Order #:</strong> PLS0202029
+                    </div>
+                    <div class="account__orders-header-item">
+                        <strong>Date:</strong> 25 May 2021
+                    </div>
+                    <div class="account__orders-header-item">
+                        <span class="badge orange account__orders-warning">
+                            Overdue
+                            <i class='icon'><svg><use xlink:href="#warning"></use></svg></i>
+                        </span>
+                    </div>
+                </div>
+                <div class="account__orders-header-right">
+                    <a href="#" class="btn-flat btn--link">
+                        Print invoice
+                    </a>
+                    <a href="#" class="waves-effect waves-light btn account__orders-button">
+                        <span class='btn__title'>Pay now</span>
+                    </a>
+                </div>
+            </div>
             <table class="account__orders-buy table">
                 <thead>
                     <tr class="tr">

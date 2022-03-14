@@ -82,9 +82,24 @@
 		display: none;
 	}
 
-	.header__col--center .header__burger {
-        display: inline-block;
-    }
+	.auc-header {
+		.header__col {
+			&.header__col--left {
+				display: flex;
+				align-items: center;
+			}	
+		}
+
+		.header__burger {
+			display: inline-block;
+			margin-top: -6px;
+			margin-right: 1rem;
+		}
+
+		.header__logo {
+			margin-left: 1rem;
+		}
+	}
 
 	.sidenav.auc-sidenav {
 		display: block;
@@ -93,6 +108,8 @@
 
 @media #{$large-and-down} {
 	.auc-header .header__logo {
+		margin-top: 5px;
+
 		svg {
 			width: 190px;
 		}
@@ -104,9 +121,7 @@
 		.header__col {
 			&.header__col--left {
 				flex: 1 1 100%;
-				display: flex;
 				justify-content: space-between;
-				align-items: center;
 			}
 
 			&.header__col--right {
@@ -114,12 +129,14 @@
 			}
 		}
 
+		.header__burger {
+			margin: 0;
+		}	
+
 		.header__logo {
 			flex: 1 1 100%;
 			display: flex;
 			justify-content: center;
-			margin-top: 6px;
-			margin-left: 1rem;
 			margin-right: 4rem;
 		}
 

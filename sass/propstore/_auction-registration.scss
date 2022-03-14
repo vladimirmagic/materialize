@@ -123,6 +123,10 @@
 	@extend .p-r;
 }
 
+span.badge.auction-registration__badge-approved {
+	color: white;
+}
+
 .auction-registration__more {
 	margin-top: 2.5rem;
 }

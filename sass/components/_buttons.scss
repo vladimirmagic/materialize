@@ -412,6 +412,14 @@ button.btn-floating {
   }
 }
 
+.btn--link-border {
+  text-decoration: underline;
+
+  &:after {
+    display: none;
+  }
+}
+
 // Large button
 .btn-large {
   @extend .btn;
