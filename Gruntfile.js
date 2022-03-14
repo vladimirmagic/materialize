@@ -34,7 +34,8 @@
             sourcemap: false
           },
           files: {
-            'dist/css/propstore-ui.css': 'sass/propstore-ui.scss'
+            'dist/css/propstore-ui.css': 'sass/propstore-ui.scss',
+            'lp/css/propstore-lp.css': 'sass/propstore-lp.scss'
           }
         },
   
@@ -44,7 +45,8 @@
             sourcemap: false
           },
           files: {
-            'dist/css/propstore-ui.min.css': 'sass/propstore-ui.scss'
+            'dist/css/propstore-ui.min.css': 'sass/propstore-ui.scss',
+            'lp/css/propstore-lp.min.css': 'sass/propstore-lp.scss'
           }
         },
   
@@ -393,6 +395,7 @@
             'voucher.html': 'jade/propstore/voucher.jade',
             'signin.html': 'jade/propstore/signin.jade',
             'our-experts.html': 'jade/propstore/our-experts.jade',
+            'landing.html': 'jade/propstore/landing.jade',
             'propstoreauction.html': 'jade/propstore/propstoreauction.jade',
             'propstoreauction-product.html': 'jade/propstore/propstoreauction-product.jade',
             'propstoreauction-catalog.html': 'jade/propstore/propstoreauction-catalog.jade',
