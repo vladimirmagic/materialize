@@ -258,7 +258,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     const img = { backgroundImage: 'url(' + item.href + ')' };
                     let image = !i ? item.dataset.image.replace('_8.', '_0.') : item.dataset.image; // replace first image with _0
                     const imgPrev = { backgroundImage: 'url(' + image + ')' };
-                    const imgThumbnail = { backgroundImage: 'url(' + item.dataset.image.replace('_8.', !i ? '_0.' : '_4.') + ')' };
+                    const imgThumbnail = { backgroundImage: 'url(' + !i ? item.dataset.image : item.dataset.image.replace('_8.', '_4.') + ')' };
                     $carouselItemNew = $carouselItem.clone();
                     $slider.append($carouselItemNew);
                     setTimeout(() => {
