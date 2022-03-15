@@ -35,7 +35,7 @@ html {
 		position: absolute;
 		left: 0;
 		right: 0;
-		top: -20vh;
+		top: -32vh;
 		bottom: 0;
 		background-position: 50% 0;
 		background-image: url(/images/lp/lp-hero-bg.jpg);
@@ -43,7 +43,7 @@ html {
 		background-size: contain;
 		background-color: $color-base;
 		transform-origin: 0 0;
-		transform: translateZ(-3px) scale(1.4);
+		transform: translateZ(-5px) scale(1.65);
 	}
 }
 
