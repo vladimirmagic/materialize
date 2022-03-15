@@ -9,6 +9,11 @@ $border-corner: 80px;
 	@return "data:image/svg+xml,%3Csvg fill='none' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 #{$w} #{$w}'%3E%3Cpath d='M#{$size} #{$w}A#{$size} #{$size} 0 0 0 0 2' stroke='#{$url-friendly-color}' stroke-width='#{$width}'/%3E%3C/svg%3E";
 }
 
+html {
+	overflow: hidden;
+	height: 100%;
+}
+
 .lp {
 	position: relative;
 	height: 100%;
@@ -19,11 +24,32 @@ $border-corner: 80px;
 	font-style: normal;
 	letter-spacing: -0.02em;
 	color: white;
-	background-position: 50% 0;
-	background-image: url(/images/lp/lp-hero-bg.jpg);
-	background-repeat: no-repeat;
-	background-size: contain;
+	perspective: 8px;
+  	perspective-origin: 0%;
+	overflow-x: hidden;
+  	overflow-y: scroll;
 	background-color: $color-base;
+
+	&:before {
+		content: '';
+		position: absolute;
+		left: 0;
+		right: 0;
+		top: -20vh;
+		bottom: 0;
+		background-position: 50% 0;
+		background-image: url(/images/lp/lp-hero-bg.jpg);
+		background-repeat: repeat-x;
+		background-size: contain;
+		background-color: $color-base;
+		transform-origin: 0 0;
+		transform: translateZ(-3px) scale(1.4);
+	}
+}
+
+main {
+	padding-top: 225px;
+  	transform: translateZ(0);
 }
 
 .content {
@@ -118,8 +144,6 @@ $border-corner: 80px;
 }
 
 .lp__section--1 {
-	margin-top: 225px;
-
 	.lp__top {
 		left: 45%;
 	}
@@ -363,6 +387,10 @@ $border-corner: 80px;
 }
 
 @media only screen and (max-width: 1660px) {
+	main {
+		padding-top: 125px;
+	}
+
 	.h1 {
 		margin-left: -6px;
 		font-size: 72px;
@@ -377,8 +405,6 @@ $border-corner: 80px;
 	}
 
 	.lp__section--1 {
-		margin-top: 125px;
-
 		.lp__top {
 			left: 50%;
 		}
@@ -416,6 +442,10 @@ $border-corner: 80px;
 @media only screen and (max-width: 1020px) {
 	$border: 2px;
 	$border-corner: 40px;
+
+	main {
+		padding-top: 60px;
+	}
 
 	.content {
 		padding-left: 40px;
@@ -464,8 +494,6 @@ $border-corner: 80px;
 	}
 
 	.lp__section--1 {
-		margin-top: 60px;
-
 		.lp__top {
 			left: 55%;
 		}
@@ -503,7 +531,7 @@ $border-corner: 80px;
 }
 
 @media only screen and (max-width: 680px) {
-	.lp {
+	.lp:before {
 		background-size: 200vw;
 	}
 

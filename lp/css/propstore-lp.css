@@ -2804,6 +2804,11 @@ template {
   }
 }
 
+html {
+  overflow: hidden;
+  height: 100%;
+}
+
 .lp {
   position: relative;
   height: 100%;
@@ -2814,11 +2819,32 @@ template {
   font-style: normal;
   letter-spacing: -0.02em;
   color: white;
+  perspective: 8px;
+  perspective-origin: 0%;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  background-color: #2D2E41;
+}
+
+.lp:before {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: -20vh;
+  bottom: 0;
   background-position: 50% 0;
   background-image: url(/images/lp/lp-hero-bg.jpg);
-  background-repeat: no-repeat;
+  background-repeat: repeat-x;
   background-size: contain;
   background-color: #2D2E41;
+  transform-origin: 0 0;
+  transform: translateZ(-3px) scale(1.4);
+}
+
+main {
+  padding-top: 225px;
+  transform: translateZ(0);
 }
 
 .content {
@@ -2908,10 +2934,6 @@ template {
 .lp__section--1 .lp__lines,
 .lp__section--left .lp__lines {
   transform: scaleX(-1);
-}
-
-.lp__section--1 {
-  margin-top: 225px;
 }
 
 .lp__section--1 .lp__top {
@@ -3146,6 +3168,9 @@ template {
 }
 
 @media only screen and (max-width: 1660px) {
+  main {
+    padding-top: 125px;
+  }
   .h1 {
     margin-left: -6px;
     font-size: 72px;
@@ -3155,9 +3180,6 @@ template {
   }
   .lp__section {
     border-radius: 3rem;
-  }
-  .lp__section--1 {
-    margin-top: 125px;
   }
   .lp__section--1 .lp__top {
     left: 50%;
@@ -3188,6 +3210,9 @@ template {
 }
 
 @media only screen and (max-width: 1020px) {
+  main {
+    padding-top: 60px;
+  }
   .content {
     padding-left: 40px;
     padding-right: 40px;
@@ -3225,9 +3250,6 @@ template {
     bottom: -40px;
     transform: scale(0.5) rotate(90deg);
   }
-  .lp__section--1 {
-    margin-top: 60px;
-  }
   .lp__section--1 .lp__top {
     left: 55%;
   }
@@ -3258,7 +3280,7 @@ template {
 }
 
 @media only screen and (max-width: 680px) {
-  .lp {
+  .lp:before {
     background-size: 200vw;
   }
   .h1 {
