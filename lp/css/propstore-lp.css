@@ -3206,6 +3206,7 @@ main {
 
 .lp__footer-cta {
   margin: 8rem 0 10rem;
+  text-align: center;
 }
 
 .lp__footer-logo {
@@ -3342,6 +3343,33 @@ main {
   font-size: 24px;
 }
 
+.lp__sell {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  max-width: 1920px;
+  min-height: 1020px;
+  margin: 12rem auto 5rem;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: 50% 40%;
+  background-image: url(/images/lp/lp-sell-bg.jpg);
+  border-top-left-radius: 140px;
+}
+
+.lp__sell-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  max-width: 1654px;
+}
+
+.lp__sell-inner .lp__section-image {
+  background-image: url(/images/lp/lp-sell-item.png);
+}
+
 @media only screen and (max-width: 1660px) {
   main {
     padding-top: 125px;
@@ -3413,6 +3441,11 @@ main {
   }
   .lp__collectible-name {
     font-size: 16px;
+  }
+  .lp__sell {
+    margin: 6rem auto 4rem;
+    min-height: 640px;
+    border-top-left-radius: 80px;
   }
 }
 
@@ -3553,6 +3586,12 @@ main {
     flex: 1 1 100%;
     padding-left: 2rem;
     padding-right: 2rem;
+  }
+  .lp__sell {
+    text-align: center;
+  }
+  .lp__sell .lp__section-info {
+    margin-top: 2rem;
   }
 }
 
