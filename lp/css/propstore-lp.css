@@ -2843,6 +2843,8 @@ html {
   overflow-x: hidden;
   overflow-y: scroll;
   background-color: #2D2E41;
+  opacity: 1;
+  transition: opacity 1s ease-in-out;
 }
 
 .lp:before {
@@ -3198,11 +3200,6 @@ main {
   line-height: 1;
 }
 
-.lp__collectibles {
-  height: 200px;
-  background: rgba(0, 0, 0, 0.1);
-}
-
 .lp__footer {
   text-align: center;
 }
@@ -3257,6 +3254,94 @@ main {
   transform: translateY(-1px);
 }
 
+.lp__collectibles {
+  height: 420px;
+  overflow: hidden;
+}
+
+.lp__collectibles + .lp__collectibles {
+  margin-top: -16px;
+}
+
+.lp__collectibles-scroll {
+  display: flex;
+  height: 450px;
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+
+.lp__collectibles-list {
+  display: flex;
+  justify-content: center;
+  width: 4180px;
+  padding: 20px 0;
+}
+
+.lp__collectible {
+  position: relative;
+  display: flex;
+  box-sizing: border-box;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  width: 356px;
+  height: 380px;
+  margin-left: 1.5rem;
+  padding: 2.5rem 1.5rem;
+  color: white;
+  font-weight: 400;
+  text-decoration: none;
+  text-align: center;
+  border-radius: 8px;
+  background: #1B1C2A;
+  overflow: hidden;
+  transition: all .3s ease;
+}
+
+.lp__collectible:before {
+  content: '';
+  position: absolute;
+  z-index: 0;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: 8px;
+  background: #11BFC5;
+  transform: translateY(101%);
+  transition: all .2s ease-in-out;
+}
+
+.lp__collectible:hover {
+  color: #2D2E41;
+  box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.15);
+}
+
+.lp__collectible:hover:before {
+  transform: translateY(0);
+}
+
+.lp__collectible--joker .lp__collectible-img {
+  height: 234px;
+  margin-top: -20px;
+}
+
+.lp__collectible-img {
+  position: relative;
+  z-index: 10;
+  width: 308px;
+  height: 214px;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: 50% 50%;
+}
+
+.lp__collectible-name {
+  position: relative;
+  z-index: 10;
+  font-size: 24px;
+}
+
 @media only screen and (max-width: 1660px) {
   main {
     padding-top: 125px;
@@ -3293,6 +3378,41 @@ main {
   .lp__section-info {
     padding-left: 5rem;
     padding-right: 2.5rem;
+  }
+  .lp__collectibles {
+    height: 280px;
+    overflow: hidden;
+  }
+  .lp__collectibles + .lp__collectibles {
+    margin-top: -13px;
+  }
+  .lp__collectibles-scroll {
+    height: 310px;
+  }
+  .lp__collectibles-list {
+    width: 2585px;
+    padding: 15px 0;
+  }
+  .lp__collectible {
+    width: 235px;
+    height: 250px;
+    margin-left: 1rem;
+    padding: 1.5rem 1rem;
+    border-radius: 6px;
+  }
+  .lp__collectible:before {
+    border-radius: 6px;
+  }
+  .lp__collectible--joker .lp__collectible-img {
+    height: 150px;
+    margin-top: -10px;
+  }
+  .lp__collectible-img {
+    width: 203px;
+    height: 140px;
+  }
+  .lp__collectible-name {
+    font-size: 16px;
   }
 }
 
