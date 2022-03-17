@@ -9695,6 +9695,10 @@ hr.small {
   height: 1.5rem;
 }
 
+.sso-trigger {
+  cursor: pointer;
+}
+
 @media only screen and (min-width: 1921px) {
   .content, .general, .header__main, .header__menu-level1-inner, .header__menu-level1--sell .header__menu-level1-inner, .footer__inner, .hero, .filters, .header__filters .filters__body, .showing-results, .related-movies, .modal-shipping-quote-page main, .how, .whatsnew__text, .section-auctions, .faq, .account-page__text, .account__orders, .account__coa, .account-filter, .payment-plans, .sell__inner, .sell__faq-section, .vouchers, .experts, .auccatalog__nav, .auc-info__inner, .auc-info__video, .aucpage__content {
     padding-left: calc(50% - 900px);
@@ -12810,6 +12814,7 @@ a.card:not(.btn):not(.btn-large):not(.btn-small):not(.btn-extra-small).card--arc
   width: 18px;
   height: 18px;
   margin-right: .25rem;
+  color: white;
   font-style: normal;
   font-size: 1rem;
   font-weight: 600;

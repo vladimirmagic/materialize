@@ -235,6 +235,10 @@ hr {
 	}
 }
 
+.sso-trigger {
+	cursor: pointer;
+}
+
 @media #{$media-fullhd-up} {
 	$content-padding: calc(50% - 900px);
     .content {

@@ -368,11 +368,22 @@ document.addEventListener('DOMContentLoaded', () => {
 				$winVal = $win.find('span');
                 $win.find('span').remove();
                 $lineWin = $detailsLine.clone();
-				$lineWin.html($win.text());
-                if ($winVal.length) {
-				    $winVal.append(' ').append($('.biddingHistoryLink'));
-                    $lineWin.html($lineWin.html() + ' <strong>' + $winVal.html() + '</strong>');
+
+                const isSignedIn = !$('#headsec a:contains("Auction Login")').length;
+                if (isSignedIn) {
+                    $lineWin.html($win.text());
+                    if ($winVal.length) {
+                        $winVal.append(' ').append($('.biddingHistoryLink'));
+                        $lineWin.html($lineWin.html() + ' <strong>' + $winVal.html() + '</strong>');
+                    }
+                } else {
+                    $lineWin.html(`<div class="product__price sso-trigger">
+                        <i class='icon product__price-sold'>?</i>
+                        <span class="product__price-sold-login">
+                        Login to See Winning Bid
+                    </span></div>`);
                 }
+				
 				$details.append($lineWin);
 			}
 
@@ -904,15 +915,25 @@ document.addEventListener('DOMContentLoaded', () => {
 				}
                 
 				$(item).find('.item-status').remove();
-				$(item).find('.price-info li').each((k, info) => {
-					const $info = $(info);
-					if ($info.text()) {
-						$info.find('.title').addClass('aucproduct__card-details-label');
-						$info.find('.value').addClass('aucproduct__card-details-value');
-						$info.addClass('aucproduct__card-details-row');
-						$cardItem.find('.aucproduct__card-details').append($info);
-					}
-				});
+                const isSignedIn = !$('#headsec a:contains("Auction Login")').length;
+                if (isSignedIn) {
+                    $(item).find('.price-info li').each((k, info) => {
+                        const $info = $(info);
+                        if ($info.text()) {
+                            $info.find('.title').addClass('aucproduct__card-details-label');
+                            $info.find('.value').addClass('aucproduct__card-details-value');
+                            $info.addClass('aucproduct__card-details-row');
+                            $cardItem.find('.aucproduct__card-details').append($info);
+                        }
+                    });
+                } else {
+                    $cardItem.find('.aucproduct__card-details').append(`<div class="card__price card__price--login sso-trigger">
+                        <i class="icon card__price-sold">?</i>
+                        <span class="card__price-sold-login">
+                            Login to See Winning Bid
+                    </span></div>`);
+                }
+
 				const $timelft = $(item).find('.timelft');
 				if ($timelft.length && $timelft.text()) {
 					$cardItem.find('.aucproduct__card-details').append(`<div class="aucproduct__card-details-row">
@@ -1259,10 +1280,6 @@ if ($('#headsec a:contains("Auction Login")').length) {
         </div>
     `);
     $('.menu-link-login').addClass('sso-trigger');
-    $('.sso-trigger').on('click', function (e) {
-        e.preventDefault();
-        openSSO($(this).data('url'));
-    });
 
 } else {
     $('.header__settings .header__col--right').append(`
@@ -1445,6 +1462,11 @@ if (id.length && id.length > 1) {
                 }, 1000);
             }
 		}
+
+        $('.sso-trigger').on('click', function (e) {
+            e.preventDefault();
+            openSSO($(this).data('url'));
+        });
 
         function openSSO (action = '/signIn.action', parseUrlFromSearch) {
             let url = '';
