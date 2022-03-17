@@ -562,7 +562,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     .append('<div class="aucproduct__calendar-title h5">Add reminder</div>')
                     .append($('#calendarBtnBox'));
             }
-            giveLotViewCalendarButtonsLinks();
+            // giveLotViewCalendarButtonsLinks();
 /**
  * 
  * 
