@@ -1463,7 +1463,9 @@ if (id.length && id.length > 1) {
         }
 
         function openAuctionRegistration (id) {
-            let params = '&d=2&ru=' + encodeURIComponent(window.location.pathname + window.location.search);
+            const ruParams = new URLSearchParams(window.location.search);
+            if (ruParams.get('sc')) ruParams.delete('sc'); // delete old sc
+            let params = '&d=2&ru=' + encodeURIComponent(window.location.pathname + '?' + ruParams.toString());
             const scroll = $(window).scrollTop();
             if (scroll > 100) params += '&sc=' + String(Math.round(scroll));
             redirectPage(URL_PROPSTORE + '/auctionRegistration.action?auctionId=' + id + params);
