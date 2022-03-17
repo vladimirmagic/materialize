@@ -200,7 +200,8 @@ document.addEventListener('DOMContentLoaded', () => {
         <div class="modal-content"></div>
     </div>
         `);
-            const auctionId = (
+        document.querySelectorAll('style:not([data-v2]), link[rel="stylesheet"]:not([data-v2])').forEach(item => item.remove());    
+        const auctionId = (
                 sam &&
                 sam.serverData &&
                 sam.serverData.variables &&
@@ -215,7 +216,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 const aucPoster = window.getComputedStyle(document.querySelector('.bodybox'), ':before');
                 const backgroundImage = aucPoster.backgroundImage !== 'none' ? aucPoster.backgroundImage : heroImage.backgroundImage;
                 $('.hero__image').css({ backgroundImage });
-                document.querySelectorAll('style:not([data-v2]), link[rel="stylesheet"]:not([data-v2])').forEach(item => item.remove());
             });
 
 			$aucTitle = $('.tle-lot h3').clone();
@@ -773,7 +773,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
       </div>
         `);
-
+            document.querySelectorAll('style:not([data-v2]), link[rel="stylesheet"]:not([data-v2])').forEach(item => item.remove());
 			let status;
 			if ($('.sale-closed').length) status = 'closed';
 
@@ -782,7 +782,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 const aucPoster = window.getComputedStyle(document.querySelector('#AdvancedSearch'), ':before');
                 const backgroundImage = aucPoster.backgroundImage !== 'none' ? aucPoster.backgroundImage : heroImage.backgroundImage;
                 $('.hero__image').css({ backgroundImage });
-                document.querySelectorAll('style:not([data-v2]), link[rel="stylesheet"]:not([data-v2])').forEach(item => item.remove());
             });
 
 			const $searcContent = $('.advSearchAccordionContent');
