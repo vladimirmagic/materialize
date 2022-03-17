@@ -405,7 +405,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 function openModalShippingQuote () {
                     let barcode = $barcode.val();
-                    if (!barcode) barcode = getBarcodeFromJS(); // its for staging only, i guess
+                    if (!barcode || barcode == 'Not Available') barcode = getBarcodeFromJS(); // its for staging only, i guess
                     const url = URL_PROPSTORE + 'modalShippingQuote.action?product=' + barcode;
                     let param = null;
                     const w = window.screen.width;
