@@ -1221,7 +1221,7 @@ document.addEventListener('DOMContentLoaded', () => {
  * SIGN IN, SIGN UP, FORGOT
  */
  if ($('body').hasClass('login') || $('body').hasClass('signup') || $('body').hasClass('forgot-password')) {
-    openSSO();
+    openSSO('/signIn.action', true);
     document.querySelectorAll('style:not([data-v2]), link[rel="stylesheet"]:not([data-v2])').forEach(item => item.remove());
 }
 /**
@@ -1446,10 +1446,12 @@ if (id.length && id.length > 1) {
             }
 		}
 
-        function openSSO (action = '/signIn.action') {
-            const urlParams = new URLSearchParams(window.location.search);
-            const url = urlParams.get('url');
-            
+        function openSSO (action = '/signIn.action', parseUrlFromSearch) {
+            let url = '';
+            if (parseUrlFromSearch) {
+                const urlParams = new URLSearchParams(window.location.search);
+                url = urlParams.get('url');
+            }            
             const params = new URLSearchParams('d=2');
             if (url) { // redirect to another page after ps login
                 const urlObj = new URL(url);
