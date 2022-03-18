@@ -270,17 +270,17 @@ document.addEventListener('DOMContentLoaded', () => {
                         $img.on('load', () => {
                             $thumbnails.find('.product__thumbnail').eq(i).css(imgPrev);
                             imgsLoaded++;
-                            let interval = setInterval(()=>{ // start load big images after 80% default images loaded
-                                if (imgsLoaded >= imgsLength * .8) {
-                                    clearInterval(interval);
-                                    image = image.replace('_8.', '_0.');
-                                    const $img = $('<img src="' + image + '">');
-                                    $('#div-hidden').append($img);
-                                    $img.on('load', () => {
-                                        $slider.find('.carousel-item').eq(i).css({ backgroundImage: 'url(' + image + ')' });
-                                    });
-                                }
-                            }, 1000);
+                            // let interval = setInterval(()=>{ // start load big images after 80% default images loaded
+                            //     if (imgsLoaded >= imgsLength * .8) {
+                            //         clearInterval(interval);
+                            //         image = image.replace('_8.', '_0.');
+                            //         const $img = $('<img src="' + image + '">');
+                            //         $('#div-hidden').append($img);
+                            //         $img.on('load', () => {
+                            //             $slider.find('.carousel-item').eq(i).css({ backgroundImage: 'url(' + image + ')' });
+                            //         });
+                            //     }
+                            // }, 1000);
                         });
                     }, 100 * i); // to defer preview load
                     $thumbnailsItemNew = $thumbnailsItem.clone();
