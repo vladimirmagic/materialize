@@ -89,7 +89,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         <div class="product__thumbnail modal-trigger" href="#modal-product-gallery"></div>
                     </div>
                 </div>
-                <div id="modal-product-gallery" class="modal-gallery">
+                <div id="modal-product-gallery" class="modal-gallery" style="display: none;">
                     <div class="modal-gallery__carousel">
                         <div class="carousel-item"></div>
                     </div>
@@ -270,26 +270,27 @@ document.addEventListener('DOMContentLoaded', () => {
                         $img.on('load', () => {
                             $thumbnails.find('.product__thumbnail').eq(i).css(imgPrev);
                             imgsLoaded++;
-                            // let interval = setInterval(()=>{ // start load big images after 80% default images loaded
-                            //     if (imgsLoaded >= imgsLength * .8) {
-                            //         clearInterval(interval);
-                            //         image = image.replace('_8.', '_0.');
-                            //         const $img = $('<img src="' + image + '">');
-                            //         $('#div-hidden').append($img);
-                            //         $img.on('load', () => {
-                            //             $slider.find('.carousel-item').eq(i).css({ backgroundImage: 'url(' + image + ')' });
-                            //         });
-                            //     }
-                            // }, 1000);
+                            let interval = setInterval(()=>{ // start load big images after 80% default images loaded
+                                if (imgsLoaded >= imgsLength * .8 &&
+                                    document.body.classList.contains('loaded')) {
+                                    clearInterval(interval);
+                                    setTimeout(() => {
+                                        image = image.replace('_8.', '_0.');
+                                        const $img = $('<img src="' + image + '">');
+                                        $('#div-hidden').append($img);
+                                        $img.on('load', () => {
+                                            $slider.find('.carousel-item').eq(i).css({ backgroundImage: 'url(' + image + ')' });
+                                        });
+                                    }, 2000 + i * 100); // to defer full img load
+                                }
+                            }, 1000);
                         });
                     }, 100 * i); // to defer preview load
                     $thumbnailsItemNew = $thumbnailsItem.clone();
                     $thumbnails.append($thumbnailsItemNew.css(imgThumbnail));
                     $galleryItemNew = $galleryItem.clone();
                     $gallery.append($galleryItemNew);
-                    setTimeout(() => {
-                        $gallery.find('.carousel-item').eq(i).css(img);
-                    }, 2000 + i * 100); // to defer full img load
+                    $gallery.find('.carousel-item').eq(i).css(img);
                     item.remove();
                 });
             }
@@ -470,6 +471,7 @@ document.addEventListener('DOMContentLoaded', () => {
 			const $productItems = $('.product__slider .carousel-item');
             const $productThumbnails = $('.product__thumbnail');
 			if ($productItems.length && $productThumbnails.length) {
+                $('.modal-gallery__carousel').append('<div class="preloader-wrapper active"><div class="spinner-layer spinner-white-only"><div class="circle-clipper left"><div class="circle"></div></div><div class="gap-patch"><div class="circle"></div></div><div class="circle-clipper right"><div class="circle"></div></div></div></div>');
                 let productSlider;
                 function productCarousel () {
                     if (productSlider && productSlider[0] && productSlider[0].M_Carousel) productSlider[0].M_Carousel.destroy();

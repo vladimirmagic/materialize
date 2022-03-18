@@ -8771,6 +8771,23 @@ input[type=range]::-ms-thumb {
 .modal-gallery__carousel {
   width: 100%;
   height: 100% !important;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.modal-gallery__carousel .preloader-wrapper {
+  position: relative;
+  z-index: -1;
 }
 
 .modal-gallery__carousel .arrow.arrow--prev {
@@ -21327,7 +21344,6 @@ span.badge.auction-registration__badge-approved {
   }
 }
 
-body.index-index #custom-header,
 body.index-index #headsec,
 body.index-index .mymenu,
 body.index-index .auctions-filter,
@@ -21338,7 +21354,6 @@ body.index-index .smpagination,
 body.index-index form#AdvancedSearch:before,
 body.index-index .filters,
 body.index-index .scrolltop,
-body.auctions-index #custom-header,
 body.auctions-index #headsec,
 body.auctions-index .mymenu,
 body.auctions-index .auctions-filter,
@@ -21349,7 +21364,6 @@ body.auctions-index .smpagination,
 body.auctions-index form#AdvancedSearch:before,
 body.auctions-index .filters,
 body.auctions-index .scrolltop,
-body.lot-details-index #custom-header,
 body.lot-details-index #headsec,
 body.lot-details-index .mymenu,
 body.lot-details-index .auctions-filter,
@@ -21360,7 +21374,6 @@ body.lot-details-index .smpagination,
 body.lot-details-index form#AdvancedSearch:before,
 body.lot-details-index .filters,
 body.lot-details-index .scrolltop,
-body.auctions-catalog #custom-header,
 body.auctions-catalog #headsec,
 body.auctions-catalog .mymenu,
 body.auctions-catalog .auctions-filter,
@@ -21371,7 +21384,6 @@ body.auctions-catalog .smpagination,
 body.auctions-catalog form#AdvancedSearch:before,
 body.auctions-catalog .filters,
 body.auctions-catalog .scrolltop,
-body.auctions-info #custom-header,
 body.auctions-info #headsec,
 body.auctions-info .mymenu,
 body.auctions-info .auctions-filter,
@@ -21382,7 +21394,6 @@ body.auctions-info .smpagination,
 body.auctions-info form#AdvancedSearch:before,
 body.auctions-info .filters,
 body.auctions-info .scrolltop,
-body.auctions-bidding-history #custom-header,
 body.auctions-bidding-history #headsec,
 body.auctions-bidding-history .mymenu,
 body.auctions-bidding-history .auctions-filter,
@@ -21393,7 +21404,6 @@ body.auctions-bidding-history .smpagination,
 body.auctions-bidding-history form#AdvancedSearch:before,
 body.auctions-bidding-history .filters,
 body.auctions-bidding-history .scrolltop,
-body.search-index #custom-header,
 body.search-index #headsec,
 body.search-index .mymenu,
 body.search-index .auctions-filter,
@@ -21404,7 +21414,6 @@ body.search-index .smpagination,
 body.search-index form#AdvancedSearch:before,
 body.search-index .filters,
 body.search-index .scrolltop,
-body.my-items #custom-header,
 body.my-items #headsec,
 body.my-items .mymenu,
 body.my-items .auctions-filter,
@@ -21415,7 +21424,6 @@ body.my-items .smpagination,
 body.my-items form#AdvancedSearch:before,
 body.my-items .filters,
 body.my-items .scrolltop,
-body.login #custom-header,
 body.login #headsec,
 body.login .mymenu,
 body.login .auctions-filter,
@@ -21426,7 +21434,6 @@ body.login .smpagination,
 body.login form#AdvancedSearch:before,
 body.login .filters,
 body.login .scrolltop,
-body.signup #custom-header,
 body.signup #headsec,
 body.signup .mymenu,
 body.signup .auctions-filter,
@@ -21437,7 +21444,6 @@ body.signup .smpagination,
 body.signup form#AdvancedSearch:before,
 body.signup .filters,
 body.signup .scrolltop,
-body.forgot-password #custom-header,
 body.forgot-password #headsec,
 body.forgot-password .mymenu,
 body.forgot-password .auctions-filter,
