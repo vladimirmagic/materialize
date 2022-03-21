@@ -1209,6 +1209,31 @@ document.addEventListener('DOMContentLoaded', () => {
             $('.share__item').each((i, item) => {
                 $(item).attr('href', $(item).attr('href') + $('#info_url').text());
             });
+
+            $('.modal-gallery').each((i, gallery) => {
+                let modalSlider;
+                function modalCarousel () {
+                    if (modalSlider && modalSlider[0] && modalSlider[0].M_Carousel) modalSlider[0].M_Carousel.destroy();
+                    modalSlider = $(gallery).find('.modal-gallery__carousel').carousel({
+                        fullWidth: true,
+                        indicators: true,
+                        onCycleTo: function(item, dragged) {}
+                    });
+                }
+                $(gallery).appendTo('body');
+                $(gallery).find('.modal-gallery__carousel').append('<div class="preloader-wrapper active"><div class="spinner-layer spinner-white-only"><div class="circle-clipper left"><div class="circle"></div></div><div class="gap-patch"><div class="circle"></div></div><div class="circle-clipper right"><div class="circle"></div></div></div></div>');
+                $(gallery).modal({
+                    opacity: .75,
+                    onCloseStart: (el) => {
+                        if (modalSlider && modalSlider[0] && modalSlider[0].M_Carousel) modalSlider[0].M_Carousel.destroy();
+                        $(window).off('resize', modalCarousel);
+                    },
+                    onOpenEnd: (el, trigger) => {
+                        modalCarousel();
+                        $(window).on('resize', modalCarousel);
+                    }
+                });
+            });
             
             if ($('.auc-info').length) { // new template
                 document.querySelectorAll('style:not([data-v2]), link[rel="stylesheet"]:not([data-v2])').forEach(item => item.remove());
@@ -1243,7 +1268,7 @@ document.addEventListener('DOMContentLoaded', () => {
  * SIGN IN, SIGN UP, FORGOT
  */
  if ($('body').hasClass('login') || $('body').hasClass('signup') || $('body').hasClass('forgot-password')) {
-    openSSO('/signIn.action', true);
+    openSSO(null, '/signIn.action', true);
     document.querySelectorAll('style:not([data-v2]), link[rel="stylesheet"]:not([data-v2])').forEach(item => item.remove());
 }
 /**
@@ -1466,10 +1491,11 @@ if (id.length && id.length > 1) {
 
         $('.sso-trigger').on('click', function (e) {
             e.preventDefault();
-            openSSO($(this).data('url'));
+            openSSO(e, $(this).data('url'));
         });
 
-        function openSSO (action = '/signIn.action', parseUrlFromSearch) {
+        function openSSO (e, action = '/signIn.action', parseUrlFromSearch) {
+            if (e) e.preventDefault();
             let url = '';
             if (parseUrlFromSearch) {
                 const urlParams = new URLSearchParams(window.location.search);
