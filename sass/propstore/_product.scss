@@ -689,9 +689,12 @@ a.product__certificate:not(.btn) { // fix a
 .modal-shipping-quote-page {
 	main {
 		@extend .content;
+		text-align: center;
+	}
+
+	form {
 		max-width: $w55;
 		margin: 2rem auto;
-		text-align: center;
 	}
 
 	.modal-close {

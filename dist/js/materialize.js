@@ -6163,10 +6163,8 @@ $jscomp.polyfill = function (e, r, p, m) {
         this.$inputField.append(this.container);
         this.el.setAttribute('data-target', this.container.id);
         // Add caret
-        var dropdownIcon = $('<svg class="caret"><use xlink:href="#drop"></use></svg>');
-        this.$inputField.append(dropdownIcon[0]);
-        var clean = $("<span class=\"waves-effect btn-flat btn--icon input-field__clean\"><i class='icon'><svg><use xlink:href=\"#clean\"></use></svg></i></span>");
-        this.$inputField.append(clean[0]);
+        if (!this.$inputField.find('.caret').length) this.$inputField.append($('<svg class="caret"><use xlink:href="#drop"></use></svg>'));
+        if (!this.$inputField.find('.input-field__clean').length) this.$inputField.append($("<span class=\"waves-effect btn-flat btn--icon input-field__clean\"><i class='icon'><svg><use xlink:href=\"#clean\"></use></svg></i></span>"));
 
         this.dropdown = M.Dropdown.init(this.el, {
           autoFocus: false,

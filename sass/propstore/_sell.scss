@@ -563,6 +563,10 @@
 		min-height: 200px;
 		border-bottom-left-radius: 0;
 		border-top-left-radius: 100px;
+	
+		.cutbottom & {
+			overflow: visible !important;
+		}
 	}
 
 	.sell-cta__img-info {

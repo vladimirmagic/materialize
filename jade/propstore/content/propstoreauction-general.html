@@ -1,0 +1,443 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
+<title></title><meta name="description" content="" /><meta name="keywords" content="" /><script> var UserInfo = {"user_id":59693,"username":"alexey.fominykh@mail.magicwebsolutions.co.uk","customer_no":null}; </script><!-- TEMPLATE HEAD SCRIPTS -->
+    <link href="https://propstore-staging32.auctionserver.net/m/css/reset.css?1391041766" rel="stylesheet" type="text/css">
+    <link href="https://propstore-staging32.auctionserver.net/assets/dist/m.css?1616216191" rel="stylesheet" type="text/css">
+    <link href="https://propstore-staging32.auctionserver.net/m/css/jquery.selectbox.css?1615315804" rel="stylesheet" type="text/css">
+    <link href="https://propstore-staging32.auctionserver.net/m/css/media_queries.css?1615315804" rel="stylesheet" type="text/css">
+<link rel="stylesheet" type="text/css" href="https://propstore-staging32.auctionserver.net/assets/dist/m_auctions_confirm_bid.css?1616216191">    <script type="text/javascript" src="https://propstore-staging32.auctionserver.net/assets/js/vendor/jquery/jquery-3.5.1.min.js?1615315784"></script>
+            <script type="text/javascript" src="https://propstore-staging32.auctionserver.net/assets/js/vendor/jquery/jquery-migrate-1.2.1.min.js?1615315784"></script>
+        <script type="text/javascript" src="https://propstore-staging32.auctionserver.net/assets/js/vendor/jquery/jquery-ui-1.11.1.custom.min.js?1615315784"></script>
+    <script type="text/javascript" src="https://propstore-staging32.auctionserver.net/assets/js/vendor/_core/_qc_minified.js?1615315788"></script>
+    <script type="text/javascript" src="https://propstore-staging32.auctionserver.net/assets/dist/m.js?1616216191"></script>
+
+<script type="text/javascript" src="https://propstore-staging32.auctionserver.net/assets/dist/m_auctions_confirm_bid.js?1616216191"></script></head>
+<body class="auctions auctions-confirm-bid">
+<a href="#" class="back-to-top"></a>
+<div id="custom-header"><style>body{opacity: 0;}</style>
+
+<!-- Google Tag Manager -->
+<noscript><iframe src="https://propstore-staging32.auctionserver.net//www.googletagmanager.com/ns.html?id=GTM-ND7B5TR"
+                  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+        new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    '//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-ND7B5TR');</script>
+<!-- End Google Tag Manager -->
+
+<script src="https://propstore-staging32.auctionserver.net/css/custom/js/sam-custom.js"></script></div><header id="headsec" class="clear">
+<div class="mobile-hamburger-menu"><a class="fas fa-bars"></a></div>
+<nav>
+<ul class="listnav">
+    <li class="search" title="Search">
+        <a href="#" class="magnifying-icon"></a>
+        <form id='searchFilter' action="/search">
+            <div class="search-wrapper">
+                <div class="search-input-container">
+                    <input id="txtSearch" name="key" type="text">
+                    <input id="btnSearch" type="button" value="search">
+                </div>
+                                <div class="exclude-checkbox-container">
+                    <div class="selector smsel">
+                        <input type="checkbox" id="excludeClosed" name="xclosed" checked/>
+                        <label for="excludeClosed" class="flt">Exclude closed lots</label>
+                        <input type="hidden" id="hid_excludeClosed" name ="xclosed"/>
+                        <div class="clear"></div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </li>
+
+        <li class=" current" title="All Auctions">
+            <a href="https://propstore-staging32.auctionserver.net/auctions">All Auctions</a>
+        </li>
+        <li class="" title="My Items">
+            <a href="https://propstore-staging32.auctionserver.net/my-items">My Items</a>
+        </li>
+        <li class="" title="Invoices">
+            <a href="https://propstore-staging32.auctionserver.net/my-invoices">Invoices</a>
+        </li>
+        <li class="" title="Profile">
+            <a href="https://propstore-staging32.auctionserver.net/profile">Profile</a>
+        </li>
+        <li class=" logout" title="Logout">
+            <a href="https://propstore-staging32.auctionserver.net/logout">Logout<p class="welcome-text">Welcome, alexey.fominykh@mail.magicwebsolutions.co.uk</p></a>
+        </li>
+</ul>
+</nav>
+
+
+    <div class="clear"></div>
+</header>
+<div id="wrapper">
+<div id="flash-notification"></div>
+<div id="dialog-message"></div>
+    <script type="text/javascript" src="https://propstore-staging32.auctionserver.net/assets/dist/m_notifications_messages.js?1616216191"></script>
+<script type="text/javascript">
+$(function(){
+sam.serverData.add("dataUrl", "/general/data/sitewidemessage.txt");
+sam.serverData.add("dataUpdateInterval", 90000);
+});
+</script>
+<div id="sitewidemessage" style="display:none;">
+</div><form method="post" id="ConfirmBid" action="/auctions/confirm-bid?url=https%3A%2F%2Fpropstore-staging32.auctionserver.net%2Fauctions%2Fcatalog%2Fid%2F296&amp;auc-lot=107237&amp;vis-ask=150.00&amp;bid-amt=150.00">
+<input type="hidden" id="csrf_token" name="csrf_token" value="ZjdgWOOCApwyliEAfU4hlCj3/XJzKzAJsQTKnzRurxtFJrZJkzYCZnZoI/Mw2f6W" /><input type="hidden" id="Qform__FormCsrfTokenName" name="Qform__FormCsrfTokenName" value="csrf_token" />
+<script type="text/javascript">
+$(function(){
+sam.serverData.add("redirectUrl", "https://propstore-staging32.auctionserver.net/auctions/catalog/id/296");
+sam.serverData.add("isBidder", true);
+sam.serverData.add("noPrivilegeBidderMessage", "Sorry you don\'t have bidder privileges to place bid/buy/make offer");
+});
+</script><div class="container">
+    <article class="bodybox">
+    <section class="register confirm-bid-cont">
+        <div class="confirm-bid-msg">
+            <hr>
+<span id="pblc1_ctl" class="qlabel-ctl" ><span id="pblc1" >Are you sure you want to place this bid $$150?</span></span>            <div class="unibtn confirm-btn">
+                <span id="pblc2_ctl" class="qbutton-ctl" ><input type="button" name="pblc2" id="pblc2" value="Confirm" class="unibtn orng" onclick="this.disabled=true; qc.pB('ConfirmBid', 'pblc2', 'QClickEvent', ''); return false;"  /></span>            </div>
+            <div class="clear"></div>
+            <div class="unibtn confirm-btn">
+                <span id="pblc3_ctl" class="qbutton-ctl" ><input type="button" name="pblc3" id="pblc3" value="Cancel" class="unibtn drkblu" onclick="this.disabled=true; qc.pB('ConfirmBid', 'pblc3', 'QClickEvent', ''); return false;"  /></span>            </div>
+            <div class="error"><span id="pblc5_ctl" class="qlabel-ctl" ><span id="pblc5" ></span></span></div>
+        </div>
+    </section>
+    <div class="clear"></div>
+    </article>
+    <div class="clear"></div>
+</div> <!-- container -->
+
+</form><script type="text/javascript">
+/* Qcodo v0.4.22 */
+                    function qcodoLoaded(qcLoadCount){
+                       if(typeof qc == 'undefined'){
+                           if(qcLoadCount <= 0) {
+                               if(window.console) console.log('qcodo loading failed');
+                               return;
+                           }
+                       setTimeout("qcodoLoaded("+(qcLoadCount-1)+")", 100);
+                       return
+                       }
+qcodo.registerForm("ConfirmBid", "2d7c8228924bac08c68421ba69f8b77a");
+qc.regAL("/assets/js/vendor", "/php", "/css", "/images");
+qc.regCA(new Array("pblc1","pblc2","pblc3","pblc5")); 
+
+}
+$(document).ready(function(){qcodoLoaded(10);});</script></div><!-- //wrapper -->
+<footer>
+<div class="footer__inner collapsible">
+        <div class="footer__column footer__column--logo">
+            <a href="https://propstore-staging32.auctionserver.net/" class="footer__logo">
+                <i class='icon'><svg>
+                        <use xlink:href="#propstore-monogram"></use>
+                    </svg></i>
+            </a>
+        </div>
+        <li class="footer__column footer__column--menu">
+            <div class="footer__menu-title  collapsible-header">
+                Auctions
+                <i class='icon icon--dropdown'><svg>
+                        <use xlink:href="#drop"></use>
+                    </svg></i>
+            </div>
+            <div class='collapsible-body'>
+                <div>
+                    <a class="footer__menu-link" href="https://propstore-staging32.auctionserver.net/auctions">
+                        All Auctions
+                    </a>
+                </div>
+                <div>
+                    <a class="footer__menu-link" href="https://new.propstore.com/account.action" target="_blank">
+                        <span class="btn__title">My Account</span>
+                        <i class='icon'><svg><use xlink:href="#target-blank"></use></svg></i>
+                    </a>
+                </div>
+                <div>
+                    <a class="footer__menu-link" href="https://new.propstore.com/auctions.action" target="_blank">
+                        <span class="btn__title">How it Works</span>
+                        <i class='icon'><svg><use xlink:href="#target-blank"></use></svg></i>
+                    </a>
+                </div>
+            </div>
+        </li>
+        <li class="footer__column footer__column--menu">
+            <div class="footer__menu-title  collapsible-header">
+                Propstore.com
+                <i class='icon icon--dropdown'><svg>
+                        <use xlink:href="#drop"></use>
+                    </svg></i>
+            </div>
+            <div class='collapsible-body'>
+                <div>
+                    <a class="footer__menu-link" href="https://new.propstore.com/products/?auctionType=-1&showSold=0" target="_blank">
+                        <span class="btn__title">Buy Now</span>
+                        <i class='icon'><svg>
+                                <use xlink:href="#target-blank"></use>
+                            </svg></i>
+                    </a>
+                </div>
+                <div>
+                    <a class="footer__menu-link" href="https://new.propstore.com/sell.action" target="_blank">
+                        <span class="btn__title">Sell</span>
+                        <i class='icon'><svg>
+                                <use xlink:href="#target-blank"></use>
+                            </svg></i>
+                    </a>
+                </div>
+                <div>
+                    <a class="footer__menu-link" href="https://new.propstore.com/general-faqs/" target="_blank">
+                        <span class="btn__title">FAQs</span>
+                        <i class='icon'><svg>
+                                <use xlink:href="#target-blank"></use>
+                            </svg></i>
+                    </a>
+                </div>
+                <div>
+                    <a class="footer__menu-link" href="https://new.propstore.com/blog/" target="_blank">
+                        <span class="btn__title">Blog</span>
+                        <i class='icon'><svg>
+                                <use xlink:href="#target-blank"></use>
+                            </svg></i>
+                    </a>
+                </div>
+                <div>
+                    <a class="footer__menu-link" href="https://new.propstore.com/contact-details/" target="_blank">
+                        <span class="btn__title">Contact Us</span>
+                        <i class='icon'><svg>
+                                <use xlink:href="#target-blank"></use>
+                            </svg></i>
+                    </a>
+                </div>
+            </div>
+        </li>
+        <li class="footer__column footer__column--menu">
+            <div class="footer__menu-title  collapsible-header">
+                Legals
+                <i class='icon icon--dropdown'><svg>
+                        <use xlink:href="#drop"></use>
+                    </svg></i>
+            </div>
+            <div class='collapsible-body'>
+                <div>
+                    <a class="footer__menu-link" href="https://new.propstore.com/cookie-policy/" target="_blank">
+                        <span class="btn__title">Cookie Policy</span>
+                        <i class='icon'><svg><use xlink:href="#target-blank"></use></svg></i>
+                    </a>
+                </div>
+                <div>
+                    <a class="footer__menu-link" href="https://new.propstore.com/terms-and-conditions/" target="_blank">
+                        <span class="btn__title">Terms & Conditions</span>
+                        <i class='icon'><svg><use xlink:href="#target-blank"></use></svg></i>
+                    </a>
+                </div>
+                <div>
+                    <a class="footer__menu-link" href="https://new.propstore.com/privacy-policy/" target="_blank">
+                        <span class="btn__title">Copyright</span>
+                        <i class='icon'><svg><use xlink:href="#target-blank"></use></svg></i>
+                    </a>
+                </div>
+            </div>
+        </li>
+
+        <div class="footer__column footer__column--links">
+            <div class="footer__links-follow">
+                <a class="waves-effect btn-flat btn--icon" href="https://www.instagram.com/Prop_Store/">
+                    <i class='icon'><svg>
+                            <use xlink:href="#follow-instagram"></use>
+                        </svg></i>
+                </a>
+                <a class="waves-effect btn-flat btn--icon" href="https://www.facebook.com/PropStore/">
+                    <i class='icon'><svg>
+                            <use xlink:href="#follow-facebook"></use>
+                        </svg></i>
+                </a>
+                <a class="waves-effect btn-flat btn--icon" href="https://twitter.com/propstore_com">
+                    <i class='icon'><svg>
+                            <use xlink:href="#follow-twitter"></use>
+                        </svg></i>
+                </a>
+                <a class="waves-effect btn-flat btn--icon" href="https://www.linkedin.com/company/the-prop-store-of-london/">
+                    <i class='icon'><svg>
+                            <use xlink:href="#follow-linkedin"></use>
+                        </svg></i>
+                </a>
+            </div>
+
+            <div class="footer__links-copyright">
+                <span class="footer__links-copyright-c">
+                    © 2022 Propstore Ltd
+                </span>
+
+            </div>
+
+        </div>
+    </div>
+
+<header class="auc-header">
+        <div class="header__settings">
+            <div class="header__col header__col--left"></div>
+            <div class="header__col header__col--right">
+                <a class="waves-effect btn-flat header__btn" href="https://new.propstore.com" target="_blank">
+                    Go to propstore.com
+                    <i class='icon auc-header__icon-blank'><svg><use xlink:href="#target-blank"></use></svg></i>
+                </a>
+            </div>
+        </div>
+    
+        <div class="header__main">
+            <div class="header__col header__col--left">
+                <a data-target="sidenav" class="header__burger sidenav-trigger waves-effect btn-flat btn--icon">
+                    <i class='icon'><svg><use xlink:href="#burger"></use></svg></i>    
+                </a>
+
+                <a class="header__logo" href='/'>
+                    <svg><use xlink:href="#propstore-auction"></use></svg>
+                </a>
+            </div>
+            <div class="header__col header__col--center">
+                <nav class="header__menu">
+                    <a class="btn-flat header__menu-link" href="https://propstore-staging32.auctionserver.net/auctions">
+                        <span class="header__menu-link-handle">
+                            All Auctions
+                        </span>
+                    </a>
+                    <a class="btn-flat header__menu-link" href="https://propstore-staging32.auctionserver.net/my-items/bidding">
+                        <span class="header__menu-link-handle">
+                            My Lots
+                        </span>
+                    </a>
+                    <a class="btn-flat header__menu-link auc-header__link-blank" href="https://new.propstore.com/account.action" target="_blank">
+                        <span class="header__menu-link-handle">
+                            My Account
+                            <i class='icon auc-header__icon-blank'><svg><use xlink:href="#target-blank"></use></svg></i>
+                        </span>
+                    </a>
+                    <a class="btn-flat header__menu-link auc-header__link-blank auc-header__link-hide" href="https://new.propstore.com/auctions.action" target="_blank">
+                        <span class="header__menu-link-handle">
+                            About Auctions
+                            <i class='icon auc-header__icon-blank'><svg><use xlink:href="#target-blank"></use></svg></i>
+                        </span>
+                    </a>
+                    <a class="btn-flat header__menu-link auc-header__link-blank auc-header__link-hide" href="https://new.propstore.com/search.action?buyNow=2" target="_blank">
+                        <span class="header__menu-link-handle">
+                            Buy Now
+                            <i class='icon auc-header__icon-blank'><svg><use xlink:href="#target-blank"></use></svg></i>
+                        </span>
+                    </a>
+                    <a class="btn-flat header__menu-link auc-header__link-blank auc-header__link-hide" href="https://new.propstore.com/sell.action" target="_blank">
+                        <span class="header__menu-link-handle">
+                            Sell
+                            <i class='icon auc-header__icon-blank'><svg><use xlink:href="#target-blank"></use></svg></i>
+                        </span>
+                    </a>
+                </nav>
+            </div>
+            <div class="header__col header__col--right">
+                <form action="/search" class="header__search input-field input-field--search">
+                    <input name="key" placeholder="Search auctions" type="search">
+                    <button type="submit" class="waves-effect btn-flat btn--icon input-field__button">
+                        <i class='icon'><svg><use xlink:href="#search"></use></svg></i>
+                    </button>
+                </form>
+            </div>
+        </div>
+
+        <div class="sidenav auc-sidenav" id="sidenav">
+            <div class="sidenav__inner">
+                <span class="sidenav-close sidenav__close waves-effect btn-flat btn--icon">
+                    <i class='icon'><svg><use xlink:href="#close"></use></svg></i>
+                </span>
+        
+                <div class="sidenav__links" tabindex="0">
+                    <nav class="sidenav__menu">
+                        <a class="waves-effect btn-flat sidenav__menu-link" href="https://propstore-staging32.auctionserver.net/auctions">All Auctions</a>
+                        <a class="waves-effect btn-flat sidenav__menu-link" href="https://propstore-staging32.auctionserver.net/my-items/bidding">My Lots</a>
+
+                        <a class="waves-effect btn-flat sidenav__menu-link auc-header__link-blank" href="https://new.propstore.com/account.action" target="_blank">
+                            My Account
+                            <i class='icon auc-header__icon-blank'><svg><use xlink:href="#target-blank"></use></svg></i>
+                        </a>
+                        <a class="waves-effect btn-flat sidenav__menu-link auc-header__link-blank" href="https://new.propstore.com/auctions.action" target="_blank">
+                            About Auctions
+                            <i class='icon auc-header__icon-blank'><svg><use xlink:href="#target-blank"></use></svg></i>
+                        </a>
+                        <a class="waves-effect btn-flat sidenav__menu-link auc-header__link-blank" href="https://new.propstore.com/search.action?buyNow=2" target="_blank">
+                            Buy Now
+                            <i class='icon auc-header__icon-blank'><svg><use xlink:href="#target-blank"></use></svg></i>
+                        </a>
+                        <a class="waves-effect btn-flat sidenav__menu-link auc-header__link-blank" href="https://new.propstore.com/sell.action" target="_blank">
+                            Sell
+                            <i class='icon auc-header__icon-blank'><svg><use xlink:href="#target-blank"></use></svg></i>
+                        </a>
+                    </nav>
+        
+                    <div class="sidenav__settings">
+                        <a class="waves-effect btn-flat" href="https://propstore.com" target="_blank">
+                            Go to propstore.com
+                            <i class='icon auc-header__icon-blank'><svg><use xlink:href="#target-blank"></use></svg></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="hero hero--static auc__hero" style="display: none;">
+        <div class="hero__inner">
+            <div class="hero__image"></div>
+            <div class="hero__info">
+                <div class="hero__info-item">
+                    <div class="hero__info-item-inner">
+                        <span class="badge auc__hero-badge" style="display: none;">
+                            <i class='icon'><svg><use xlink:href="#"></use></svg></i>
+                        </span>
+                        <div class="hero__static-title">
+                            Welcome to Propstore Auction
+                        </div>
+                        <div class="hero__static-text" style="display: none;">
+                            Step into the electric world of auctions. Our live auctions are showstoppers, with bidding possible in person, via phone, or online. We also host regular timed auctions with online-only bidding.
+                        </div>
+                        <div class="hero__static-date" style="display: none;">
+                            <i class='icon'><svg><use xlink:href="#calendar"></use></svg></i>
+                        </div>
+                        <div class="hero__static-buttons">
+                            <a class="waves-effect waves-light btn hero__btn auc__hero-aucinfo" style="display: none;">
+                                Auction info
+                            </a>
+                            <a class="waves-effect waves-light btn hero__btn auc__hero-auccatalog" style="display: none;">
+                                All catalogue items
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<div class="loader-block" style="display: none;">
+    <div class="preloader-wrapper active"><div class="spinner-layer"><div class="circle-clipper left"><div class="circle"></div></div><div class="gap-patch"><div class="circle"></div></div><div class="circle-clipper right"><div class="circle"></div></div></div></div>
+</div>
+
+<link async href="https://use.typekit.net/dul3srx.css" rel="stylesheet" data-v2>
+<link href="/dist/css/propstore-ui.min.css" type="text/css" rel="stylesheet" media="screen,projection" data-v2>
+
+<style data-v2>
+.auc__hero .hero__image {background-image:url('https://content.propstore.com/public-img/auctions-search-banner.jpg');}
+
+form#AdvancedSearch[action*="/id/293"] .hero__image, form[action*="/catalog/293/"] .hero__image {background-image:url(https://content.propstore.com/auction/startrekdiscovery/images/Product-Header.jpg);}
+</style>
+<link async href="https://propstore-staging32.auctionserver.net/css/custom/sam-custom.css" type="text/css" rel="stylesheet" media="screen,projection" data-v2>
+
+<script src="https://content.propstore.com/scripts/moment.min.js"></script>
+<script src="https://content.propstore.com/public/js/materialize.min.js"></script>
+<script defer src="/dist/js/propstoreauction.js"></script>
+</footer></body>
+</html>

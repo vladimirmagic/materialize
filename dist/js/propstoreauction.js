@@ -1,6 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
 	if (window.location.href.includes('#nomaterialize')) { // don't materialize
 		document.querySelectorAll('[data-v2]').forEach(item => item.remove());
+        document.body.style.opacity = 1;
 		return;
 	}
 	const svgSprite = document.createElement('div');
@@ -136,7 +137,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     </a>
                 </div>
 
-                <a class="product__certificate" href="https://propstore.com/certificate-of-authenticity/" style="display: none;">
+                <a class="product__certificate" href="/certificate-of-authenticity/" style="display: none;">
                     <div class="product__certificate-icon">
                         <svg class="product__certificate-img"><use xlink:href="#big-authentic"></use></svg>
                     </div>
@@ -452,7 +453,10 @@ document.addEventListener('DOMContentLoaded', () => {
 			$('body').append($('#modal-terms'));
 
 			if ($('.description-info-content-coa, .description-info-content :contains("Certificate of Authenticity")').length) {
-				$('.product__certificate').show();
+				if (!$('.product__certificate').attr('href').includes('http')) {
+                    $('.product__certificate').attr('href', URL_PROPSTORE + $('.product__certificate').attr('href'));
+                }
+                $('.product__certificate').show();
 			}
 			$originalNote = $('.description-info-content-coa-note, .description-info-content p:contains("used in the production")');
 			if ($originalNote.length) {
@@ -928,11 +932,11 @@ document.addEventListener('DOMContentLoaded', () => {
                         }
                     });
                 } else {
-                    $cardItem.find('.aucproduct__card-details').append(`<div class="card__price card__price--login sso-trigger">
+                    $cardItem.find('.aucproduct__card-details').append(`<a class="card__price card__price--login sso-trigger">
                         <i class="icon card__price-sold">?</i>
                         <span class="card__price-sold-login">
                             Login to See Winning Bid
-                    </span></div>`);
+                    </span></a>`);
                 }
 
 				const $timelft = $(item).find('.timelft');
@@ -1028,7 +1032,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         item.innerHTML = item.innerHTML.replace('Item', 'Lot');
                     });
                     
-                    $('.tabnav-tab.selected')[0].scrollIntoView({inline: 'center'});
+                    $('.tabnav-tab.selected')[0].scrollIntoViewIfNeeded({inline: 'center'});
                 });
             }
             
@@ -1096,6 +1100,44 @@ document.addEventListener('DOMContentLoaded', () => {
 
     $('.aucpage__h1').html($('.ltitle h2').html());
     $('.aucpage__content-inner').append($('.tablesection'));
+
+    $('.container').prepend($('.aucpage'));
+/**
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * CONFIRM BID
+ */
+ } else if ($('body').hasClass('auctions-confirm-bid')) {
+    $('footer').append(`
+<div class="general aucpage">
+    <div class="general__inner">
+        <h1 class="h1">Confirm bid</h1>
+        <p class="p-r general__content"></p>
+        <div class="general__btn"></div>
+    </div>
+</div>
+`);
+    document.querySelectorAll('style:not([data-v2]), link[rel="stylesheet"]:not([data-v2])').forEach(item => item.remove());
+
+    $('.confirm-bid-msg').find('hr').remove();
+    $('.general__content').html($('#pblc1').text().replaceAll('$$', '$'));
+    $('#pblc1').remove();
+
+    $('.confirm-bid-msg').find('#pblc2').addClass('waves-effect waves-light btn');
+    $('.confirm-bid-msg').find('#pblc3').addClass('waves-effect waves-grey btn btn--secondary');
+    $('.general__btn').append($('.confirm-bid-msg'));
 
     $('.container').prepend($('.aucpage'));
 /**
@@ -1268,7 +1310,7 @@ document.addEventListener('DOMContentLoaded', () => {
  * SIGN IN, SIGN UP, FORGOT
  */
  if ($('body').hasClass('login') || $('body').hasClass('signup') || $('body').hasClass('forgot-password')) {
-    openSSO(null, '/signIn.action', true);
+    openSSO('signIn.action', true);
     document.querySelectorAll('style:not([data-v2]), link[rel="stylesheet"]:not([data-v2])').forEach(item => item.remove());
 }
 /**
@@ -1290,19 +1332,19 @@ document.addEventListener('DOMContentLoaded', () => {
  */
 if ($('#headsec a:contains("Auction Login")').length) {
     $('.header__settings .header__col--right').append(`
-        <a href="/login" class="waves-effect btn-flat header__btn sso-trigger" data-url="/signIn.action">
+        <a href="/login" class="waves-effect btn-flat header__btn sso-trigger" data-url="signIn.action">
             Sign In
         </a>
         <span class="header__settings-divider2 header__settings-divider2--unregistered">/</span>
-        <a href="/signup" class="waves-effect btn-flat header__btn sso-trigger" data-url="/register.action">
+        <a href="/signup" class="waves-effect btn-flat header__btn sso-trigger" data-url="register.action">
             Register
         </a>
     `);
     $('.sidenav__settings').append(`
         <div class="sidenav__settings-sign-register">
-            <a href="/login" class="waves-effect btn-flat modal-trigger sidenav__settings-sign sso-trigger" data-url="/signIn.action">Sign In</a>
+            <a href="/login" class="waves-effect btn-flat modal-trigger sidenav__settings-sign sso-trigger" data-url="signIn.action">Sign In</a>
             <span class="sidenav__settings-divider">/</span>
-            <a href="/signup" class="waves-effect btn-flat modal-trigger sidenav__settings-register sso-trigger" data-url="/register.action">Register</a>
+            <a href="/signup" class="waves-effect btn-flat modal-trigger sidenav__settings-register sso-trigger" data-url="register.action">Register</a>
         </div>
     `);
     $('.menu-link-login').addClass('sso-trigger');
@@ -1356,7 +1398,7 @@ if ($('#headsec a:contains("Auction Login")').length) {
  */
 const id = window.location.pathname.split('/register/confirm-shipping/id/');
 if (id.length && id.length > 1) {
-    redirectPage(URL_PROPSTORE + '/auctionRegistration.action?auctionId=' + id[1]);
+    redirectPage(URL_PROPSTORE + 'auctionRegistration.action?auctionId=' + id[1]);
 }
 
 /**
@@ -1491,11 +1533,10 @@ if (id.length && id.length > 1) {
 
         $('.sso-trigger').on('click', function (e) {
             e.preventDefault();
-            openSSO(e, $(this).data('url'));
+            openSSO($(this).data('url'));
         });
 
-        function openSSO (e, action = '/signIn.action', parseUrlFromSearch) {
-            if (e) e.preventDefault();
+        function openSSO (action = 'signIn.action', parseUrlFromSearch) {
             let url = '';
             if (parseUrlFromSearch) {
                 const urlParams = new URLSearchParams(window.location.search);
@@ -1519,7 +1560,7 @@ if (id.length && id.length > 1) {
             let params = '&d=2&ru=' + encodeURIComponent(window.location.pathname + '?' + ruParams.toString());
             const scroll = $(window).scrollTop();
             if (scroll > 100) params += '&sc=' + String(Math.round(scroll));
-            redirectPage(URL_PROPSTORE + '/auctionRegistration.action?auctionId=' + id + params);
+            redirectPage(URL_PROPSTORE + 'auctionRegistration.action?auctionId=' + id + params);
         }
         
         function reloadPage () {

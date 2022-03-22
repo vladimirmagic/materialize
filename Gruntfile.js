@@ -404,6 +404,7 @@
             'propstoreauction-bids.html': 'jade/propstore/propstoreauction-bids.jade',
             'propstoreauction-my.html': 'jade/propstore/propstoreauction-my.jade',
             'propstoreauction-registration.html': 'jade/propstore/propstoreauction-registration.jade',
+            'propstoreauction-general.html': 'jade/propstore/propstoreauction-general.jade',
           }
         }
       },

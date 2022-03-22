@@ -9481,7 +9481,7 @@ main {
           flex: 1 1 100%;
 }
 
-.content, .general, .header__main, .header__menu-level1-inner, .header__menu-level1--sell .header__menu-level1-inner, .footer__inner, .hero, .filters, .header__filters .filters__body, .showing-results, .related-movies, .modal-shipping-quote-page main, .how, .whatsnew__text, .section-auctions, .faq, .account-page__text, .account__orders, .account__coa, .account-filter, .payment-plans, .sell__inner, .sell__faq-section, .vouchers, .experts, .auccatalog__nav, .auc-info__inner, .auc-info__video, .aucpage__content {
+.content, .general, .header__main, .header__menu-level1-inner, .header__menu-level1--sell .header__menu-level1-inner, .footer__inner, .hero, .filters, .header__filters .filters__body, .showing-results, .related-movies, .modal-shipping-quote-page main, .how, .whatsnew__text, .section-auctions, .auctions__faq-section, .faq, .account-page__text, .account__orders, .account__coa, .account-filter, .payment-plans, .sell__inner, .sell__faq-section, .vouchers, .experts, .auccatalog__nav, .auc-info__inner, .auc-info__video, .aucpage__content {
   padding-left: 60px;
   padding-right: 60px;
 }
@@ -9717,21 +9717,21 @@ hr.small {
 }
 
 @media only screen and (min-width: 1921px) {
-  .content, .general, .header__main, .header__menu-level1-inner, .header__menu-level1--sell .header__menu-level1-inner, .footer__inner, .hero, .filters, .header__filters .filters__body, .showing-results, .related-movies, .modal-shipping-quote-page main, .how, .whatsnew__text, .section-auctions, .faq, .account-page__text, .account__orders, .account__coa, .account-filter, .payment-plans, .sell__inner, .sell__faq-section, .vouchers, .experts, .auccatalog__nav, .auc-info__inner, .auc-info__video, .aucpage__content {
+  .content, .general, .header__main, .header__menu-level1-inner, .header__menu-level1--sell .header__menu-level1-inner, .footer__inner, .hero, .filters, .header__filters .filters__body, .showing-results, .related-movies, .modal-shipping-quote-page main, .how, .whatsnew__text, .section-auctions, .auctions__faq-section, .faq, .account-page__text, .account__orders, .account__coa, .account-filter, .payment-plans, .sell__inner, .sell__faq-section, .vouchers, .experts, .auccatalog__nav, .auc-info__inner, .auc-info__video, .aucpage__content {
     padding-left: calc(50% - 900px);
     padding-right: calc(50% - 900px);
   }
 }
 
 @media only screen and (max-width: 1200px) {
-  .content, .general, .header__main, .header__menu-level1-inner, .header__menu-level1--sell .header__menu-level1-inner, .footer__inner, .hero, .filters, .header__filters .filters__body, .showing-results, .related-movies, .modal-shipping-quote-page main, .how, .whatsnew__text, .section-auctions, .faq, .account-page__text, .account__orders, .account__coa, .account-filter, .payment-plans, .sell__inner, .sell__faq-section, .vouchers, .experts, .auccatalog__nav, .auc-info__inner, .auc-info__video, .aucpage__content {
+  .content, .general, .header__main, .header__menu-level1-inner, .header__menu-level1--sell .header__menu-level1-inner, .footer__inner, .hero, .filters, .header__filters .filters__body, .showing-results, .related-movies, .modal-shipping-quote-page main, .how, .whatsnew__text, .section-auctions, .auctions__faq-section, .faq, .account-page__text, .account__orders, .account__coa, .account-filter, .payment-plans, .sell__inner, .sell__faq-section, .vouchers, .experts, .auccatalog__nav, .auc-info__inner, .auc-info__video, .aucpage__content {
     padding-left: 40px;
     padding-right: 40px;
   }
 }
 
 @media only screen and (max-width: 600px) {
-  .content, .general, .header__main, .header__menu-level1-inner, .header__menu-level1--sell .header__menu-level1-inner, .footer__inner, .hero, .filters, .header__filters .filters__body, .showing-results, .related-movies, .modal-shipping-quote-page main, .how, .whatsnew__text, .section-auctions, .faq, .account-page__text, .account__orders, .account__coa, .account-filter, .payment-plans, .sell__inner, .sell__faq-section, .vouchers, .experts, .auccatalog__nav, .auc-info__inner, .auc-info__video, .aucpage__content {
+  .content, .general, .header__main, .header__menu-level1-inner, .header__menu-level1--sell .header__menu-level1-inner, .footer__inner, .hero, .filters, .header__filters .filters__body, .showing-results, .related-movies, .modal-shipping-quote-page main, .how, .whatsnew__text, .section-auctions, .auctions__faq-section, .faq, .account-page__text, .account__orders, .account__coa, .account-filter, .payment-plans, .sell__inner, .sell__faq-section, .vouchers, .experts, .auccatalog__nav, .auc-info__inner, .auc-info__video, .aucpage__content {
     padding-left: 24px;
     padding-right: 24px;
   }
@@ -14908,9 +14908,12 @@ a.product__certificate:not(.btn):not(.btn-large):not(.btn-small):not(.btn-extra-
 }
 
 .modal-shipping-quote-page main {
+  text-align: center;
+}
+
+.modal-shipping-quote-page form {
   max-width: 55rem;
   margin: 2rem auto;
-  text-align: center;
 }
 
 .modal-shipping-quote-page .modal-close {
@@ -15039,6 +15042,10 @@ a.product__certificate:not(.btn):not(.btn-large):not(.btn-small):not(.btn-extra-
   .modal-shipping-quote {
     width: 100%;
   }
+}
+
+.share {
+  white-space: nowrap;
 }
 
 .share__title {
@@ -16041,6 +16048,10 @@ tbody .tr:last-child .td {
   min-width: 14rem;
 }
 
+.auctions__faq-section {
+  padding: 6rem 0;
+}
+
 @media only screen and (max-width: 1456px) {
   .section-auctions__item-info {
     -webkit-flex-basis: 440px;
@@ -16261,7 +16272,7 @@ tbody .tr:last-child .td {
   margin-top: 0;
   position: -webkit-sticky;
   position: sticky;
-  top: 2em;
+  top: 4em;
 }
 
 .article-share.article-share--top {
@@ -20020,6 +20031,9 @@ a.account__orders-buy-link:not(.btn):not(.btn-large):not(.btn-small):not(.btn-ex
     border-bottom-left-radius: 0;
     border-top-left-radius: 100px;
   }
+  .cutbottom .sell-cta__img {
+    overflow: visible !important;
+  }
   .sell-cta__img-info {
     padding-right: 2em;
     padding-bottom: 1em;
@@ -21453,7 +21467,17 @@ body.forgot-password #toppaginator,
 body.forgot-password .smpagination,
 body.forgot-password form#AdvancedSearch:before,
 body.forgot-password .filters,
-body.forgot-password .scrolltop {
+body.forgot-password .scrolltop,
+body.auctions-confirm-bid #headsec,
+body.auctions-confirm-bid .mymenu,
+body.auctions-confirm-bid .auctions-filter,
+body.auctions-confirm-bid .srch_sec,
+body.auctions-confirm-bid .bodybox,
+body.auctions-confirm-bid #toppaginator,
+body.auctions-confirm-bid .smpagination,
+body.auctions-confirm-bid form#AdvancedSearch:before,
+body.auctions-confirm-bid .filters,
+body.auctions-confirm-bid .scrolltop {
   display: none;
 }
 
@@ -23276,6 +23300,21 @@ body.search-index .categories-match {
 .auctions-bidding-history .tablesection th {
   width: auto !important;
   text-transform: uppercase;
+}
+
+.confirm-bid-msg {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.confirm-bid-msg .confirm-btn {
+  margin: 1rem;
 }
 
 body.my-items .auccatalog__search {

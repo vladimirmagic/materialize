@@ -27,3 +27,12 @@
 		}
 	}
 }
+
+.confirm-bid-msg {
+	display: flex;
+	justify-content: center;
+
+	.confirm-btn {
+		margin: 1rem;
+	}
+}
