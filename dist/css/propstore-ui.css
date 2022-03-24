@@ -9680,6 +9680,10 @@ hr.small {
           justify-content: center;
 }
 
+.toast-error {
+  background-color: #F93838;
+}
+
 .toast__overlay {
   display: none;
 }
