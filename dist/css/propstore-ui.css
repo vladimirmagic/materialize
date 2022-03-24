@@ -8801,6 +8801,13 @@ input[type=range]::-ms-thumb {
 .carousel--hero {
   width: 100%;
   height: 100% !important;
+  opacity: 0;
+  -webkit-transition: opacity .3s ease-in-out;
+  transition: opacity .3s ease-in-out;
+}
+
+.carousel--hero.init {
+  opacity: 1;
 }
 
 .carousel--hero .carousel-item {
@@ -12068,6 +12075,11 @@ a:not(.btn):not(.btn-large):not(.btn-small):not(.btn-extra-small).footer__terms-
   overflow: hidden;
 }
 
+.hero__inner a.carousel-item:not(.btn):not(.btn-large):not(.btn-small):not(.btn-extra-small) {
+  position: absolute;
+  color: white;
+}
+
 .hero__carousel {
   -webkit-box-flex: 1;
   -webkit-flex: 1 1 60%;
@@ -12077,6 +12089,12 @@ a:not(.btn):not(.btn-large):not(.btn-small):not(.btn-extra-small).footer__terms-
   height: 100%;
   z-index: 100;
   overflow: hidden;
+}
+
+.hero__carousel .carousel-item img {
+  display: block;
+  width: 100%;
+  opacity: 0;
 }
 
 .hero__image {
@@ -12268,7 +12286,7 @@ a:not(.btn):not(.btn-large):not(.btn-small):not(.btn-extra-small).footer__terms-
   width: 100%;
   left: 0;
   bottom: 0;
-  padding: 100px 0 100px 76px;
+  padding: 100px 40px 100px 76px;
   background: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 0)), to(#000));
   background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, #000 100%);
 }
@@ -12279,6 +12297,10 @@ a:not(.btn):not(.btn-large):not(.btn-small):not(.btn-extra-small).footer__terms-
 
 .hero--sell .hero__carousel-info-description {
   max-width: 540px;
+}
+
+.hero__carousel-info-badge {
+  margin-right: 1rem;
 }
 
 @media only screen and (min-width: 1201px) {
@@ -22133,6 +22155,10 @@ body.forgot-password #wrapper {
   position: relative;
 }
 
+.aucproduct__also .also-like__arrows {
+  display: none;
+}
+
 .aucproduct__calendar {
   display: -webkit-box;
   display: -webkit-flex;
@@ -22200,15 +22226,15 @@ body.forgot-password #wrapper {
   margin: 0 0 0 2.5rem;
 }
 
-@media only screen and (max-width: 1024px) {
-  .aucproduct__form-item + .aucproduct__form-item {
-    margin-left: 1rem;
+@media only screen and (min-width: 1374px) {
+  .aucproduct__also .aucproduct__card:first-child {
+    display: none;
   }
 }
 
-@media only screen and (max-width: 992px) {
-  .aucproduct__also .also-like__arrows {
-    display: none;
+@media only screen and (max-width: 1024px) {
+  .aucproduct__form-item + .aucproduct__form-item {
+    margin-left: 1rem;
   }
 }
 

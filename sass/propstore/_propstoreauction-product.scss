@@ -173,6 +173,10 @@
 	.cards__inner {
 		position: relative;
 	}
+
+	.also-like__arrows {
+		display: none;
+	}
 }
 
 .aucproduct__calendar {
@@ -220,17 +224,19 @@
 	}
 }
 
+@media only screen and (min-width: #{$width-4cards-m + 110}) {
+	.aucproduct__also {
+		.aucproduct__card:first-child {
+			display: none;
+		}
+	}
+}
+
 @media #{$breakpoint-tablet} {
 	.aucproduct__form-item {
 		& + & {
 			margin-left: 1rem;
 		}
-	}
-}
-
-@media #{$medium-and-down} {
-	.aucproduct__also .also-like__arrows {
-		display: none;
 	}
 }
 

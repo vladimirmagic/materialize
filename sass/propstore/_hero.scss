@@ -25,6 +25,11 @@
 	background: $color-base;
 	border-bottom-right-radius: 140px;
 	overflow: hidden;
+
+	a.carousel-item:not(.btn) {
+		position: absolute;
+		color: white;
+	}
 }
 
 .hero__carousel {
@@ -33,6 +38,12 @@
 	height: 100%;
 	z-index: 100;
 	overflow: hidden;
+
+	.carousel-item img {
+		display: block;
+		width: 100%;
+		opacity: 0;
+	}
 }
 
 .hero__image {
@@ -193,7 +204,7 @@
 	width: 100%;
 	left: 0;
 	bottom: 0;
-	padding: 100px 0 100px 76px;
+	padding: 100px 40px 100px 76px;
 	background: linear-gradient(180deg, rgba(0,0,0,0) 0%, #000 100%);
 }
 
@@ -205,6 +216,10 @@
 	.hero--sell & {
 		max-width: 540px;
 	}
+}
+
+.hero__carousel-info-badge {
+	margin-right: 1rem;
 }
 
 @media #{$extra-large-and-up} {
