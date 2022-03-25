@@ -212,12 +212,12 @@ document.addEventListener('DOMContentLoaded', () => {
 			let status;
 			if ($('.sale-closed').length) status = 'closed';
 
-            requestAnimationFrame(() => {
-                const heroImage = window.getComputedStyle(document.querySelector('.hero__image'));
-                const aucPoster = window.getComputedStyle(document.querySelector('.bodybox'), ':before');
-                const backgroundImage = aucPoster.backgroundImage !== 'none' ? aucPoster.backgroundImage : heroImage.backgroundImage;
-                $('.hero__image').css({ backgroundImage });
-            });
+            // requestAnimationFrame(() => {
+            //     const heroImage = window.getComputedStyle(document.querySelector('.hero__image'));
+            //     const aucPoster = window.getComputedStyle(document.querySelector('.bodybox'), ':before');
+            //     const backgroundImage = aucPoster.backgroundImage !== 'none' ? aucPoster.backgroundImage : heroImage.backgroundImage;
+            //     $('.hero__image').css({ backgroundImage });
+            // });
 
 			$aucTitle = $('.tle-lot h3').clone();
 			$aucTitle.find('span').remove();
@@ -228,7 +228,7 @@ document.addEventListener('DOMContentLoaded', () => {
 				$badge = $('.auc__hero .badge');
 				switch (status) {
 					case 'closed':
-						$badge.addClass('red').append('Closed').show().find('use').attr('xlink:href', '#flag');
+						$badge.addClass('red').append('Ended').show().find('use').attr('xlink:href', '#flag');
 						break;
 				}
 			}
@@ -347,21 +347,33 @@ document.addEventListener('DOMContentLoaded', () => {
                 $btnPlaceBid.addClass('waves-effect waves-light btn aucproduct__form-item');
                 $('.aucproduct__form').show().append($btnPlaceBid);
 
+                $('#div-hidden').append('<div id="customRegisterButton' + auctionId + '">');
+                const customRegisterButtonBefore = window.getComputedStyle(document.querySelector('#customRegisterButton' + auctionId), ':before');
+                const customRegisterButtonAfter = window.getComputedStyle(document.querySelector('#customRegisterButton' + auctionId), ':after');
+                const customRegisterButtonUrl = customRegisterButtonBefore && customRegisterButtonBefore.content && customRegisterButtonBefore.content != 'none' ? customRegisterButtonBefore.content.replaceAll('"', '') : null;
+                const customRegisterButtonTitle = customRegisterButtonAfter && customRegisterButtonAfter.content && customRegisterButtonAfter.content != 'none' ? customRegisterButtonAfter.content.replaceAll('"', '') : null;
+
+                const replaceClick = () => {
+                    $btnPlaceBid[0].onclick = null;
+                    if (customRegisterButtonUrl) {
+                        $btnPlaceBid.on('click', function (e) {
+                            e.preventDefault();
+                            window.open(customRegisterButtonUrl);
+                        });
+                    } else {
+                        $btnPlaceBid.on('click', function (e) {
+                            e.preventDefault();
+                            openAuctionRegistration(auctionId);
+                        });
+                    }
+                }
                 let val = $btnPlaceBid.val(); 
                 if (val.includes('Login to bid')) {
-                    $btnPlaceBid[0].onclick = null;
-                    $btnPlaceBid.val('Sign in to bid')
-                        .on('click', function (e) {
-                            e.preventDefault();
-                            openAuctionRegistration(auctionId);
-                        });
+                    $btnPlaceBid.val(customRegisterButtonTitle || 'Sign in to bid');
+                    replaceClick();
                 } else if (val.includes('Register to bid')) {
-                    $btnPlaceBid[0].onclick = null;
-                    $btnPlaceBid.val('Register for auction')
-                        .on('click', function (e) {
-                            e.preventDefault();
-                            openAuctionRegistration(auctionId);
-                        });
+                    $btnPlaceBid.val(customRegisterButtonTitle || 'Register for auction');
+                    replaceClick();
                 }
             }
 
@@ -682,17 +694,28 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 $reg = $(item).find('.reg');
                 if ($reg.length) {
+                    $('#div-hidden').append('<div id="customRegisterButton' + id + '">');
+                    const customRegisterButtonBefore = window.getComputedStyle(document.querySelector('#customRegisterButton' + id), ':before');
+                    const customRegisterButtonAfter = window.getComputedStyle(document.querySelector('#customRegisterButton' + id), ':after');
+                    const customRegisterButtonUrl = customRegisterButtonBefore && customRegisterButtonBefore.content && customRegisterButtonBefore.content != 'none' ? customRegisterButtonBefore.content.replaceAll('"', '') : null;
+                    const customRegisterButtonTitle = customRegisterButtonAfter && customRegisterButtonAfter.content && customRegisterButtonAfter.content != 'none' ? customRegisterButtonAfter.content.replaceAll('"', '') : null;
+
                     $reg[0].onclick = null;
-                    $reg.addClass('waves-effect waves-light btn')
-                        .on('click', function (e) {
+                    $reg.addClass('waves-effect waves-light btn');
+                    if (customRegisterButtonUrl) {
+                        $reg.attr('href', customRegisterButtonUrl).attr('target', '_blank');
+                    } else {
+                        $reg.on('click', function (e) {
                             e.preventDefault();
                             openAuctionRegistration(id);
                         });
-                    let html = $reg.html(); 
+                    }
+                    
+                    const html = $reg.html();
                     if (html.includes('Login to bid')) {
-                        $reg.html('Sign in to bid').addClass('auc-button--signin');
+                        $reg.html(customRegisterButtonTitle || 'Sign in to bid').addClass('auc-button--signin');
                     } else if (html.includes('Register to bid!')) {
-                        $reg.html('Register for the auction').addClass('auc-button--registerauc');
+                        $reg.html(customRegisterButtonTitle || 'Register for auction').addClass('auc-button--registerauc');
                     }
                 }
 				$cat = $(item).find('.cat');
@@ -783,12 +806,12 @@ document.addEventListener('DOMContentLoaded', () => {
 			let status;
 			if ($('.sale-closed').length) status = 'closed';
 
-			requestAnimationFrame(() => {
-                const heroImage = window.getComputedStyle(document.querySelector('.hero__image'));
-                const aucPoster = window.getComputedStyle(document.querySelector('#AdvancedSearch'), ':before');
-                const backgroundImage = aucPoster.backgroundImage !== 'none' ? aucPoster.backgroundImage : heroImage.backgroundImage;
-                $('.hero__image').css({ backgroundImage });
-            });
+			// requestAnimationFrame(() => {
+            //     const heroImage = window.getComputedStyle(document.querySelector('.hero__image'));
+            //     const aucPoster = window.getComputedStyle(document.querySelector('#AdvancedSearch'), ':before');
+            //     const backgroundImage = aucPoster.backgroundImage !== 'none' ? aucPoster.backgroundImage : heroImage.backgroundImage;
+            //     $('.hero__image').css({ backgroundImage });
+            // });
 
 			const $searcContent = $('.advSearchAccordionContent');
 			const $searchKey = $('<div class="input-field">');
@@ -883,6 +906,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 sam.serverData.variables &&
                 sam.serverData.variables.default &&
                 sam.serverData.variables.default.viewMode === 'list' ? 'cards--list' : 'cards--grid');
+            
+            const customRegisterButtons = {};
 
             const cardsLength = $('.item-block').length;
             let cardsLoaded = 0;
@@ -916,7 +941,7 @@ document.addEventListener('DOMContentLoaded', () => {
 				} else if ($(item).find('.ended.unsold').length) {
 					$badge.append('Unsold').show().find('use').attr('xlink:href', '#archive');
 				} else if ($(item).find('.ended').length) {
-					$badge.append('Closed').show().find('use').attr('xlink:href', '#archive');
+					$badge.append('Ended').show().find('use').attr('xlink:href', '#archive');
 				}
                 
 				$(item).find('.item-status').remove();
@@ -951,18 +976,36 @@ document.addEventListener('DOMContentLoaded', () => {
 				if ($btn.length) {
 					$btn.addClass('waves-effect waves-light btn aucproduct__card-btn');
 					$cardItem.find('.card__actions').append($btn);
-                    if ($btn[0].href && $btn[0].href.includes('/login/')) {
-                        $btn.text('Sign in to bid')
-                            .on('click', function (e) {
-                                e.preventDefault();
-                                openAuctionRegistration(id);
-                            });
-                    } else if ($btn[0].href && $btn[0].href.includes('/register/')) {
-                        $btn.text('Register for auction')
-                            .on('click', function (e) {
-                                e.preventDefault();
-                                openAuctionRegistration(id);
-                            });
+
+                    if ($btn[0].href) {
+                        const isSign =  $btn[0].href.includes('/login/');
+                        const isRegister =  $btn[0].href.includes('/register/');
+
+                        if (isSign || isRegister) {
+                            if (!customRegisterButtons[id]) {
+                                $('#div-hidden').append('<div id="customRegisterButton' + id + '">');
+                                const customRegisterButtonBefore = window.getComputedStyle(document.querySelector('#customRegisterButton' + id), ':before');
+                                const customRegisterButtonAfter = window.getComputedStyle(document.querySelector('#customRegisterButton' + id), ':after');
+                                const url = customRegisterButtonBefore && customRegisterButtonBefore.content && customRegisterButtonBefore.content != 'none' ? customRegisterButtonBefore.content.replaceAll('"', '') : null;
+                                const title = customRegisterButtonAfter && customRegisterButtonAfter.content && customRegisterButtonAfter.content != 'none' ? customRegisterButtonAfter.content.replaceAll('"', '') : null;
+                                customRegisterButtons[id] = { url, title };
+                            }
+
+                            if (customRegisterButtons[id].url) {
+                                $btn.attr('href', customRegisterButtons[id].url).attr('target', '_blank');
+                            } else {
+                                $btn.on('click', function (e) {
+                                    e.preventDefault();
+                                    openAuctionRegistration(id);
+                                });
+                            }
+                            
+                            if (isSign) {
+                                $btn.text(customRegisterButtons[id].title || 'Sign in to bid');
+                            } else if (isRegister) {
+                                $btn.text(customRegisterButtons[id].title || 'Register for auction');
+                            }
+                        }
                     }
 				}
                 const $bid = $(item).find('[id^="blkRegularBid"]');
@@ -1008,7 +1051,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     $badge = $('.auc__hero .badge');
                     switch (status) {
                         case 'closed':
-                            $badge.addClass('red').append('Closed').show().find('use').attr('xlink:href', '#flag');
+                            $badge.addClass('red').append('Ended').show().find('use').attr('xlink:href', '#flag');
                             break;
                     }
                 }
@@ -1186,7 +1229,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     break;
                 }
                 case 'closed': {
-                    $badge.addClass('red').append('Closed').find('use').attr('xlink:href', '#flag');
+                    $badge.addClass('red').append('Ended').find('use').attr('xlink:href', '#flag');
                     break;
                 }
             }
@@ -1368,14 +1411,15 @@ if ($('#headsec a:contains("Auction Login")').length) {
         $.get('/logout')
             .always(data => {
                 const params = new URLSearchParams('d=2');
-                if (window.location.pathname.includes('/my-items/')) { // redirect to home page after ps logout
+                if (window.location.pathname.includes('/my-items/') ||
+                window.location.pathname.includes('/confirm-bid')) { // redirect to home page after ps logout
                     params.append('ru', '/');
                 } else { // redirect to this page after ps login
                     params.append('ru', encodeURI(window.location.pathname + window.location.search));
                     const scroll = $(window).scrollTop();
                     if (scroll > 100) params.append('sc', String(Math.round(scroll)));
                 }
-                redirectPage(URL_PROPSTORE + 'submitLogout.action?' + params.toString());
+                redirectPage(URL_PROPSTORE + 'signOut.action?' + params.toString());
             });
     });
 }
@@ -1458,46 +1502,41 @@ if (id.length && id.length > 1) {
 		setTimeout(resize, 500);
 		$(window).on('resize', resize);
 
-		const HEADER_THRESHOLD = 100; // px
-		let previousScroll = 0;
-		function headerFloat() {
-			if (!$('.header__main').length) return; // no header
-
-			const $header = $('header');
-			if ($header.length) {
-				$header.css('maxWidth', $('main').width() + 'px');
-				const top = 40; // px
-				const bottom = $header.height();
-				$(window).on('scroll', M.throttle((e) => {
-					const currentScroll = document.body.scrollTop || window.scrollY || document.documentElement.scrollTop;
-					if (currentScroll <= previousScroll) {
-						if (document.body.classList.contains('autoscroll')) return; // dont show header if autoscroll
-						if (
-							previousScroll - currentScroll > HEADER_THRESHOLD ||
-							currentScroll < top
-						) {
-							previousScroll = currentScroll;
-							$header.removeClass('sticky-out');
-							if (currentScroll < top * 2) {
-								$header.removeClass('sticky-in');
-							} else if (currentScroll > bottom) {
-								$header.addClass('sticky-in');
-							}
-						}
-					} else {
-						previousScroll = currentScroll;
-						if (
-							currentScroll > bottom &&
-							$header.hasClass('sticky-in')
-						) {
-							previousScroll = currentScroll;
-							$header.removeClass('sticky-in');
-							$header.addClass('sticky-out');
-						}
-					}
-				}, 100));
-			}
-		}
+        const headerMainTop = $('.header__settings').height();
+        const HEADER_THRESHOLD = 100; // px
+        let previousScroll = 0;
+        function headerFloat () {
+            const $header = $('header');
+            const $headerMain = $('.header__main');
+            if ($header.length && $headerMain.length) {
+                $header.css('maxWidth', $('main').width() + 'px');
+                const bottom = $header.height();
+                $(window).on('scroll', M.throttle((e) => {
+                    const currentScroll = document.body.scrollTop || window.scrollY || document.documentElement.scrollTop;
+                    if (previousScroll - currentScroll > HEADER_THRESHOLD ||
+                        currentScroll < headerMainTop
+                    ) {
+                        if (document.body.classList.contains('autoscroll')) return; // dont show header if autoscroll
+                        previousScroll = currentScroll;
+                        $header.removeClass('sticky-out');
+                        if (currentScroll < headerMainTop * 2) {
+                            $header.removeClass('sticky-in');
+                        } else if (currentScroll > bottom) {
+                            $header.addClass('sticky-in');
+                        }
+                    } else if (currentScroll - previousScroll > HEADER_THRESHOLD) {
+                        previousScroll = currentScroll;
+                        if (
+                            currentScroll > bottom &&
+                            $header.hasClass('sticky-in')
+                        ) {
+                            $header.removeClass('sticky-in');
+                            $header.addClass('sticky-out');
+                        }
+                    }
+                }, 100));
+            }
+        }
 
 		function scrollToWarning () {
 			const warning = document.querySelector('main .warning');
@@ -1544,8 +1583,12 @@ if (id.length && id.length > 1) {
             }            
             const params = new URLSearchParams('d=2');
             if (url) { // redirect to another page after ps login
-                const urlObj = new URL(url);
-                params.append('ru', encodeURI(urlObj.pathname + urlObj.search)); // delete domain
+                try {
+                    const urlObj = new URL(url);
+                    params.append('ru', encodeURI(urlObj.pathname + urlObj.search)); // delete domain
+                } catch (e) {
+                    params.append('ru', '/');
+                }
             } else { // redirect to this page after ps login
                 params.append('ru', encodeURI(window.location.pathname + window.location.search));
                 const scroll = $(window).scrollTop();

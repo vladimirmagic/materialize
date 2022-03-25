@@ -1,0 +1,476 @@
+
+/****** Annihilation  - Header Graphics *****/
+form[action*="catalog/227/"] div.lot-details-container .bodybox:before {
+	background-color: #F6F8F9;
+	background-image: url(https://s3-eu-west-1.amazonaws.com/content.propstore.com/auction/Annihilation/ProductHeader.jpg);
+}
+form#AdvancedSearch[action*="/id/227"]:before {
+	background-color: #F6F8F9;
+    background-image: url(https://s3-eu-west-1.amazonaws.com/content.propstore.com/auction/Annihilation/ProductHeader.jpg);
+}
+
+/****** TEST-Ghost in the Shell - Header Graphics *****/
+form[action*="catalog/150/"] div.lot-details-container .bodybox:before {
+	background-color: #F6F8F9;
+	background-image: url(https://s3-eu-west-1.amazonaws.com/content.propstore.com/auction/gits2/GITS2_LargeBanner_responsive.jpg);
+}
+form#AdvancedSearch[action*="/id/150"]:before {
+	background-color: #F6F8F9;
+    background-image: url(https://s3-eu-west-1.amazonaws.com/content.propstore.com/auction/gits2/GITS2_LargeBanner_responsive.jpg);
+}
+
+/****** John Wick - Header Graphics *****/
+
+form[action*="catalog/216/"] div.lot-details-container .bodybox:before {
+	background-color: #F6F8F9;
+	background-image: url(https://content.propstore.com/auction/JohnWick/JW_ProductHeader.jpg);
+}
+form#AdvancedSearch[action*="/id/216"]:before {
+	background-color: #F6F8F9;
+    background-image: url(https://content.propstore.com/auction/JohnWick/JW_ProductHeader.jpg);
+}
+
+/****** TEST-Great Wall - Header Graphics *****/
+form[action*="catalog/204/"] div.lot-details-container .bodybox:before {
+	background-color: #F6F8F9;
+	background-image: url(https://content.propstore.com/auction/greatwall/ProductHeader.jpg);
+}
+form#AdvancedSearch[action*="/id/204"]:before {
+	background-color: #F6F8F9;
+    background-image: url(https://content.propstore.com/auction/greatwall/ProductHeader.jpg);
+}
+/****** TEST 2 - John Wick - Header Graphics *****/
+
+form[action*="catalog/210/"] div.lot-details-container .bodybox:before {
+	background-color: #F6F8F9;
+	background-image: url(https://content.propstore.com/auction/JohnWick/JW_ProductHeader.jpg);
+}
+form#AdvancedSearch[action*="/id/210"]:before {
+	background-color: #F6F8F9;
+    background-image: url(https://content.propstore.com/auction/JohnWick/JW_ProductHeader.jpg);
+}
+
+/****** Spitting Image Header Graphics *****/
+form[action*="catalog/166/"] div.lot-details-container .bodybox:before {
+	background-color: #F6F8F9;
+	background-image: url(https://content.propstore.com/auction/spittingimage/Product-Header-new.jpg);
+}
+form#AdvancedSearch[action*="/id/166"]:before {
+	background-color: #F6F8F9;
+    background-image: url(https://content.propstore.com/auction/spittingimage/Product-Header-new.jpg);
+}
+
+/****** Divergent 2019 - Header Graphics *****/
+form[action*="catalog/102/"] div.lot-details-container .bodybox:before {
+	background-color: #F6F8F9;
+	background-image: url(https://content.propstore.com/auction/sicario/Sicario_ProductHeader_new.jpg);
+}
+form#AdvancedSearch[action*="/id/102"]:before {
+	background-color: #F6F8F9;
+    background-image: url(https://content.propstore.com/auction/sicario/Sicario_ProductHeader_new.jpg);
+}
+
+/****** Toy Auction LA 2019 - Header Graphics *****/
+form[action*="catalog/174/"] div.lot-details-container .bodybox:before {
+	background-color: #F6F8F9;
+	background-image: url(https://s3-eu-west-1.amazonaws.com/content.propstore.com/auction/toyauction/ToyAuction_LargeBanner-Responsive.jpg);
+}
+form[action*="live-sale/id/174/"] div.lot-details-container .bodybox:before {
+	background-color: #F6F8F9;
+	background-image: url(https://s3-eu-west-1.amazonaws.com/content.propstore.com/auction/toyauction/ToyAuction_LargeBanner-Responsive.jpg);
+}
+form#AdvancedSearch[action*="/id/174"]:before {
+	background-color: #F6F8F9;
+    background-image: url(https://s3-eu-west-1.amazonaws.com/content.propstore.com/auction/toyauction/ToyAuction_LargeBanner-Responsive.jpg);
+}
+
+/****** Sicario - Header Graphics *****/
+form[action*="catalog/177/"] div.lot-details-container .bodybox:before {
+	background-color: #F6F8F9;
+	background-image: url(https://content.propstore.com/auction/sicario/Sicario_ProductHeader_new.jpg);
+}
+form#AdvancedSearch[action*="/id/177"]:before {
+	background-color: #F6F8F9;
+    background-image: url(https://content.propstore.com/auction/sicario/Sicario_ProductHeader_new.jpg);
+}
+
+/****** Cloverfield Paradox - Header Graphics *****/
+form[action*="catalog/185/"] div.lot-details-container .bodybox:before {
+	background-color: #F6F8F9;
+	background-image: url(https://content.propstore.com/auction/JohnWick/JW_ProductHeader.jpg);
+}
+form#AdvancedSearch[action*="/id/185"]:before {
+	background-color: #F6F8F9;
+    background-image: url(https://content.propstore.com/auction/JohnWick/JW_ProductHeader.jpg);
+}
+
+/****** Vice - Header Graphics *****/
+form[action*="catalog/182/"] div.lot-details-container .bodybox:before {
+	background-color: #F6F8F9;
+	background-image: url(https://content.propstore.com/auction/Vice/LandingPage/vice_ProductHeader.jpg);
+}
+form#AdvancedSearch[action*="/id/182"]:before {
+	background-color: #F6F8F9;
+    background-image: url(https://content.propstore.com/auction/Vice/LandingPage/vice_ProductHeader.jpg);
+}
+
+/****** EMLA 2019 - Header Graphics *****/
+form[action*="catalog/169/"] div.lot-details-container .bodybox:before {
+	background-color: #F6F8F9;
+	background-image: url(https://s3-eu-west-1.amazonaws.com/content.propstore.com/EMLA/Product-Header_day2.jpg);
+}
+form#AdvancedSearch[action*="/id/169"]:before {
+	background-color: #F6F8F9;
+    background-image: url(https://s3-eu-west-1.amazonaws.com/content.propstore.com/EMLA/Product-Header_day2.jpg);
+}
+
+/****** TEST EMLA  - Header Graphics *****/
+form[action*="catalog/190/"] div.lot-details-container .bodybox:before {
+	background-color: #F6F8F9;
+	background-image: url(https://s3-eu-west-1.amazonaws.com/content.propstore.com/EMLA/Product-Header_day2.jpg);
+}
+form#AdvancedSearch[action*="/id/190"]:before {
+	background-color: #F6F8F9;
+    background-image: url(https://s3-eu-west-1.amazonaws.com/content.propstore.com/EMLA/Product-Header_day2.jpg);
+}
+
+/****** CPLA4 Bond TEST - Header Graphics *****/
+form[action*="catalog/213/"] div.lot-details-container .bodybox:before {
+	background-color: #F6F8F9;
+	background-image: url(https://content.propstore.com/auction/posterauction4/1880x250_AuctionDayHeader.jpg);
+}
+form#AdvancedSearch[action*="/id/213"]:before {
+	background-color: #F6F8F9;
+    background-image: url(https://content.propstore.com/auction/posterauction4/1880x250_AuctionDayHeader.jpg);
+}
+
+/****** Star Trek TEST - Header Graphics *****/
+form[action*="catalog/219/"] div.lot-details-container .bodybox:before {
+	background-color: #F6F8F9;
+	background-image: url(https://s3-eu-west-1.amazonaws.com/content.propstore.com/auction/StarTrek2/sitegraphics/HeaderTrek.jpg);
+}
+form#AdvancedSearch[action*="/id/219"]:before {
+	background-color: #F6F8F9;
+    background-image: url(https://s3-eu-west-1.amazonaws.com/content.propstore.com/auction/StarTrek2/sitegraphics/HeaderTrek.jpg);
+}
+
+/****** TOY UK 2019 TEST  - Header Graphics *****/
+form[action*="catalog/222/"] div.lot-details-container .bodybox:before {
+	background-color: #F6F8F9;
+	background-image: url(https://content.propstore.com/auction/toyuk2019/1880x250_AuctionDayHeader_Day1.jpg);
+}
+form#AdvancedSearch[action*="/id/222"]:before {
+	background-color: #F6F8F9;
+    background-image: url(https://content.propstore.com/auction/toyuk2019/1880x250_AuctionDayHeader_Day1.jpg);
+}
+
+/****** TEST JJ  - Header Graphics *****/
+form[action*="catalog/224/"] div.lot-details-container .bodybox:before {
+	background-color: #F6F8F9;
+	background-image: url(https://s3-eu-west-1.amazonaws.com/content.propstore.com/auction/marvel_2019/Jessica%20Jones/JJ_ProductHeader.jpg);
+}
+form#AdvancedSearch[action*="/id/224"]:before {
+	background-color: #F6F8F9;
+    background-image: url(https://s3-eu-west-1.amazonaws.com/content.propstore.com/auction/marvel_2019/Jessica%20Jones/JJ_ProductHeader.jpg);
+}
+
+/****** TEST BoBS  - Header Graphics *****/
+form[action*="catalog/233/"] div.lot-details-container .bodybox:before {
+	background-color: #F6F8F9;
+	background-image: url(https://content.propstore.com/wp-content/uploads/2019/11/22140211/BOBS_ProductHeader_v1-B.jpg);
+}
+form#AdvancedSearch[action*="/id/233"]:before {
+	background-color: #F6F8F9;
+    background-image: url(https://content.propstore.com/wp-content/uploads/2019/11/22140211/BOBS_ProductHeader_v1-B.jpg);
+}
+
+/****** BoBS  - Header Graphics *****/
+form[action*="catalog/237/"] div.lot-details-container .bodybox:before {
+	background-color: #F6F8F9;
+	background-image: url(https://content.propstore.com/wp-content/uploads/2019/11/22140211/BOBS_ProductHeader_v1-B.jpg);
+}
+form#AdvancedSearch[action*="/id/237"]:before {
+	background-color: #F6F8F9;
+    background-image: url(https://content.propstore.com/wp-content/uploads/2019/11/22140211/BOBS_ProductHeader_v1-B.jpg);
+}
+
+/****** Death Star Auction  - Header Graphics *****/
+form[action*="catalog/247/"] div.lot-details-container .bodybox:before {
+	background-color: #F6F8F9;
+	background-image: url(https://content.propstore.com/auction/RanchoObiWan/ROW_P01_ProductHeader.jpg);
+}
+form#AdvancedSearch[action*="/id/247"]:before {
+	background-color: #F6F8F9;
+    background-image: url(https://content.propstore.com/auction/RanchoObiWan/ROW_P01_ProductHeader.jpg);
+}
+
+/****** US 2020 Toys Auction  - Header Graphics *****/
+form[action*="catalog/251/"] div.lot-details-container .bodybox:before {
+	background-color: #F6F8F9;
+	background-image: url(https://s3-eu-west-1.amazonaws.com/content.propstore.com/auction/Toys2020/Toys2020ProductHeader.jpg);
+}
+form#AdvancedSearch[action*="/id/251"]:before {
+	background-color: #F6F8F9;
+    background-image: url(https://s3-eu-west-1.amazonaws.com/content.propstore.com/auction/Toys2020/Toys2020ProductHeader.jpg);
+}
+
+/****** SPRING TEST 2020  - Header Graphics *****/
+form[action*="catalog/239/"] div.lot-details-container .bodybox:before {
+	background-color: #F6F8F9;
+	background-image: url(https://content.propstore.com/auction/springauction-2020/Product-Header.jpg);
+}
+form#AdvancedSearch[action*="/id/239"]:before {
+	background-color: #F6F8F9;
+    background-image: url(https://content.propstore.com/auction/springauction-2020/Product-Header.jpg);
+}
+
+/****** CPLA5 TEST 2020  - Header Graphics *****/
+form[action*="catalog/241/"] div.lot-details-container .bodybox:before {
+	background-color: #F6F8F9;
+	background-image: url(https://content.propstore.com/wp-content/uploads/2020/04/08141602/Product-Header-v2.jpg);
+}
+form#AdvancedSearch[action*="/id/241"]:before {
+	background-color: #F6F8F9;
+    background-image: url(https://content.propstore.com/wp-content/uploads/2020/04/08141602/Product-Header-v2.jpg);
+}
+
+/****** Robin Hood Test  - Header Graphics *****/
+form[action*="catalog/259/"] div.lot-details-container .bodybox:before {
+	background-color: #F6F8F9;
+	background-image: url(https://s3-eu-west-1.amazonaws.com/content.propstore.com/robinhood/RHProductHeader.jpg);
+}
+form#AdvancedSearch[action*="/id/259"]:before {
+	background-color: #F6F8F9;
+    background-image: url(https://s3-eu-west-1.amazonaws.com/content.propstore.com/robinhood/RHProductHeader.jpg);
+}
+
+/****** MDK Outlander Test  - Header Graphics *****/
+form[action*="catalog/262/"] div.lot-details-container .bodybox:before {
+	background-color: #F6F8F9;
+	background-image: url(https://s3-eu-west-1.amazonaws.com/content.propstore.com/auction/mdk2020/ProductHeader.jpg);
+}
+form#AdvancedSearch[action*="/id/262"]:before {
+	background-color: #F6F8F9;
+    background-image: url(https://s3-eu-west-1.amazonaws.com/content.propstore.com/auction/mdk2020/ProductHeader.jpg);
+}
+
+/****** EMLA LA 2020 - Header Graphics *****/
+form[action*="catalog/154/"] div.lot-details-container .bodybox:before {
+	background-color: #F6F8F9;
+	background-image: url(https://content.propstore.com/auction/EMLA%20LA/EMLA%20LA%202020%20Main%20Banner.jpeg);
+}
+form#AdvancedSearch[action*="/id/154"]:before {
+	background-color: #F6F8F9;
+    background-image: url(https://content.propstore.com/auction/EMLA%20LA/EMLA%20LA%202020%20Main%20Banner.jpeg);
+}
+
+/****** POP Funko 2022 - Header Graphics *****/
+form[action*="catalog/303/"] div.lot-details-container .bodybox:before {
+	background-color: #F6F8F9;
+	background-image: url(https://content.propstore.com/auction/funko2022/funko2022-samheader-2.jpg);
+}
+form#AdvancedSearch[action*="/id/303"]:before {
+	background-color: #F6F8F9;
+    background-image: url(https://content.propstore.com/auction/funko2022/funko2022-samheader-2.jpg);
+}
+
+
+.auc__hero .hero__image {
+  background-image:url('https://content.propstore.com/public-img/auctions-search-banner.jpg');
+}
+
+.auction165 .hero__image{
+    background-image: url('https://content.propstore.com/public/img/auctionheaders/165_springauction2019.png') !important;
+  }
+  .auction221 .hero__image{
+    background-image: url('https://content.propstore.com/public/img/auctionheaders/221_uktoys2019.png') !important;
+  }
+  .auction187 .hero__image{
+    background-image: url('https://content.propstore.com/public/img/auctionheaders/187_cpla3june2019.jpg') !important;
+  }
+  .auction212 .hero__image{
+    background-image: url('https://content.propstore.com/public/img/auctionheaders/212_cpla4-acj-nov2019.jpg') !important;
+  }
+  .auction178 .hero__image{
+    background-image: url('https://content.propstore.com/public/img/auctionheaders/178_harrylange2019.jpg') !important;
+  }
+  .auction179 .hero__image{
+    background-image: url('https://content.propstore.com/public/img/auctionheaders/179_mdkoutlander2019.png') !important;
+  }
+  .auction244 .hero__image{
+    background-image: url('https://content.propstore.com/public/img/auctionheaders/244_emlauk2020.jpg') !important;
+  }
+  .auction240 .hero__image{
+    background-image: url('https://content.propstore.com/public/img/auctionheaders/240_cpla5april2020.jpg') !important;
+  }
+  .auction232 .hero__image{
+    background-image: url('https://content.propstore.com/public/img/auctionheaders/232_aliensandalienscollectionauction.jpg') !important;
+  }
+  .auction238 .hero__image{
+    background-image: url('https://content.propstore.com/public/img/auctionheaders/238_springauction2020.jpg') !important;
+  }
+  .auction242 .hero__image{
+    background-image: url('https://content.propstore.com/public/img/auctionheaders/242_cpla6nov2020.jpg') !important;
+  }
+  .auction261 .hero__image{
+    background-image: url('https://content.propstore.com/public/img/auctionheaders/246_mdkoutlander2020.png') !important;
+  }
+  .auction299 .hero__image{
+    background-image: url('https://content.propstore.com/public/img/auctionheaders/3000_emlauk2021.jpg') !important;
+  }
+  .auction276 .hero__image{
+    background-image: url('https://content.propstore.com/public/img/auctionheaders/276_cpla7april2021.jpg') !important;
+  }
+  .auction307 .hero__image{
+    background-image: url('https://content.propstore.com/auction/emlauk22/emlauk2022-newsite-landingpageheader-1080x800.jpg') !important;
+  }
+  .auction198 .hero__image{
+    background-image: url('https:///content.propstore.com/public-img/sam-header/198_MarvelTelevisionLiveAuction.jpg') !important;
+  }
+  .auction181 .hero__image{
+    background-image: url('https://content.propstore.com/public-img/sam-header/181_NiloRodis-JameroArtAuction.jpg') !important;
+  }
+  .auction151 .hero__image{
+    background-image: url('https://content.propstore.com/public-img/sam-header/151_GhostintheShellAuction2.jpgg') !important;
+  }
+  .auction160 .hero__image{
+    background-image: url('https://content.propstore.com/public-img/sam-header/160_ToyAuction.jpgg') !important;
+  }
+  .auction164 .hero__image{
+    background-image: url('https://content.propstore.com/public-img/sam-header/164_CommunityAuction2.jpgg') !important;
+  }
+  .auction170 .hero__image{
+    background-image: url('https://content.propstore.com/public-img/sam-header/170_TheDivergentSeriesAuction.jpg') !important;
+  }
+  .auction182 .hero__image{
+    background-image: url('https://content.propstore.com/public-img/sam-header/182_Vice.jpg') !important;
+  }
+  .auction172 .hero__image{
+    background-image: url('https://content.propstore.com/public-img/sam-header/172_ColonyAuction.jpg') !important;
+  }
+  .auction191 .hero__image{
+    background-image: url('https://content.propstore.com/public-img/sam-header/191_Warcraft2.jpg') !important;
+  }
+  .auction189 .hero__image{
+    background-image: url('https://content.propstore.com/public-img/sam-header/189_Cloverfield-Paradox-Auction.jpgg') !important;
+  }
+  .auction177 .hero__image{
+    background-image: url('https://content.propstore.com/public-img/sam-header/177_SicarioDayoftheSoldadoAuction.jpgg') !important;
+  }
+  .auction237 .hero__image{
+    background-image: url('https://content.propstore.com/public-img/sam-header/237_BusterScruggs.jpg') !important;
+  }
+  .auction280 .hero__image{
+    background-image: url('https://content.propstore.com/public-img/sam-header/280_Annihilation.jpg') !important;
+  }
+  .auction258 .hero__image{
+    background-image: url('https://content.propstore.com/public-img/sam-header/258_StarTrekAuc2019.jpg') !important;
+  }
+  .auction206 .hero__image{
+    background-image: url('https://content.propstore.com/public-img/sam-header/206_GreatWall.jpg') !important;
+  }
+  .auction199 .hero__image{
+    background-image: url('https://content.propstore.com/public-img/sam-header/199_VoxLux.jpg') !important;
+  }
+  .auction205 .hero__image{
+    background-image: url('https://content.propstore.com/public-img/sam-header/205_John-Wick.jpg') !important;
+  }
+  .auction281 .hero__image{
+    background-image: url('https://content.propstore.com/public-img/sam-header/281_Zoolander2.jpgg') !important;
+  }
+  .auction220 .hero__image{
+    background-image: url('https://content.propstore.com/public-img/sam-header/220_JessiacaJones.jpg') !important;
+  }
+  .auction267 .hero__image{
+    background-image: url('https://content.propstore.com/public-img/sam-header/267_EMLALA2020.jpg') !important;
+  }
+  .auction260 .hero__image{
+    background-image: url('https://content.propstore.com/public-img/sam-header/260_RobinHood.jpg') !important;
+  }
+  .auction228 .hero__image{
+    background-image: url('https://content.propstore.com/public-img/sam-header/228_Friends.jpg') !important;
+  }
+  .auction255 .hero__image{
+    background-image: url('https://content.propstore.com/public-img/sam-header/255_HouseWClock.jpg') !important;
+  }
+  .auction257 .hero__image{
+    background-image: url('https://content.propstore.com/public-img/sam-header/257_MarvelDefenders.jpg') !important;
+  }
+  .auction250 .hero__image{
+    background-image: url('https://content.propstore.com/public-img/sam-header/250_RanchoObi-Wan.jpg') !important;
+  }
+  .auction249 .hero__image{
+    background-image: url('https://content.propstore.com/public-img/sam-header/249_ToyAuction2020.jpg') !important;
+  }
+  .auction270 .hero__image{
+    background-image: url('https://content.propstore.com/public-img/sam-header/270_AgentsofShield.jpg') !important;
+  }
+  .auction274 .hero__image{
+    background-image: url('https://content.propstore.com/public-img/sam-header/274_HauntingAnthology.jpg') !important;
+  }
+  .auction292 .hero__image{
+    background-image: url('https://content.propstore.com/public-img/sam-header/292_StarTrek-Discovery.jpg') !important;
+  }
+    /*STEVE EDIT EXAMPLE*/
+
+    /*catalog page*/
+    .auction303 .hero__inner .hero__image{
+        background-image: url('https://content.propstore.com/auction/funko2022/funko2022-samheader-2.jpg') !important;
+    }
+    /*landing page*/
+   .auction303 .hero__carousel .hero__image{
+        background-image: url('https://content.propstore.com/auction/funko2022/funko2022-newsite-landingpageheader-1080x800.jpg') !important;
+    }
+
+ /*catalog page*/
+    .auction309 .hero__inner .hero__image{
+        background-image: url('https://content.propstore.com/auction/EMLAUS2022/EMLA-LA2022_Home-Banner_1080x864_v2.jpg') !important;
+    }
+    /*landing page*/
+   .auction309 .hero__carousel .hero__image{
+        background-image: url('https://content.propstore.com/auction/EMLAUS2022/emlaus2022-newsite-landingpageheader-1080x800.jpg') !important;
+    }
+
+/*END STEVE EDIT EXAMPLE*/
+  .auction287 .hero__image{
+    background-image: url('https://content.propstore.com/public-img/sam-header/287_EMLALA2021.jpg') !important;
+  }
+  .auction291 .hero__image{
+    background-image: url('https://content.propstore.com/public-img/sam-header/291_Gifted.jpg') !important;
+  }
+  .auction309 .hero__image{
+    background-image: url('https://content.propstore.com/public-img/sam-header/309_LostinSpace.jpg') !important;
+  }
+  .auction295 .hero__image{
+    background-image: url('https://content.propstore.com/public-img/TDF_SAM-HeaderBanner_1080x800.jpg') !important;
+  }
+  .auction290 .hero__image{
+    background-image: url('https://content.propstore.com/public-img/sam-header/290_GreatWallAuction2.jpg') !important;
+  }
+  .auction293 .hero__image{
+    background-image: url('https://content.propstore.com/public-img/ASOUE_SAM-HeaderBanner_1080x800.jpg') !important;
+  }
+ .auction305 .hero__image{
+    background-image: url('https://content.propstore.com/auction/posterauction10/cpla102022-newsite-landingpageheader-1080x800.jpg') !important;
+  }
+.auction304 .hero__image{
+    background-image: url('https://content.propstore.com/auction/swatch2022/swatch2022-newsite-landingpageheader-1080x800.jpg') !important;
+  }
+
+/* 296 */
+.auction296.auctions-catalog .hero__image {
+  background-image: url('https://content.propstore.com/public-img/LIS_SAM-HeaderBanner_1080x800.jpg')
+}
+.auction296.auctions-info .hero__image {
+  background-image: url('https://content.propstore.com/public-img/LIS_SAM-HeaderBanner_1080x800.jpg')
+}
+
+/* EMLA US 2022 - 309 */
+.auction309.auctions-catalog .hero__image {
+  background-image: url('https://content.propstore.com/auction/EMLAUS2022/emlaus2022-newsite-landingpageheader-1080x800.jpg')
+}
+.auction309.auctions-info .hero__image {
+  background-image: url('https://content.propstore.com/auction/EMLAUS2022/EMLA-LA2022_Home-Banner_1080x864_v2.jpg')
+}
+#customRegisterButton309:before {content: 'http://www.eepurl.com/hXCDmr'}
+#customRegisterButton309:after {content: 'Sign Up For Updates'}

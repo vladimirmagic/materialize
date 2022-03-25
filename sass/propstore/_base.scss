@@ -197,6 +197,10 @@ hr {
 	justify-content: center;
 }
 
+.toast-error {
+	background-color: $color-red;
+}
+
 .toast__overlay {
 	display: none;
 }

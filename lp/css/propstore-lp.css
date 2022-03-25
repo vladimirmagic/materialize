@@ -2855,7 +2855,7 @@ html {
   top: -32vh;
   bottom: 0;
   background-position: 50% 0;
-  background-image: url(/images/lp/lp-hero-bg.jpg);
+  background-image: url(/public-img/landing-page/hero-bg.jpg);
   background-repeat: repeat-x;
   background-size: contain;
   background-color: #2D2E41;
@@ -2981,7 +2981,7 @@ main {
   background-size: contain;
   background-position: 50% 0;
   background-repeat: no-repeat;
-  background-image: url(/images/lp/lp-hero-item.png);
+  background-image: url(/public-img/landing-page/hero-item.png);
 }
 
 .lp__section--2 .lp__top {
@@ -3001,7 +3001,7 @@ main {
 }
 
 .lp__section--2 .lp__section-image {
-  background-image: url(/images/lp/lp-img-buy.png);
+  background-image: url(/public-img/landing-page/img-buy.png);
 }
 
 .lp__section--3 .lp__top {
@@ -3021,7 +3021,7 @@ main {
 }
 
 .lp__section--3 .lp__section-image {
-  background-image: url(/images/lp/lp-img-auction.png);
+  background-image: url(/public-img/landing-page/img-auction.png);
 }
 
 .lp__section--4 .lp__top {
@@ -3041,7 +3041,7 @@ main {
 }
 
 .lp__section--4 .lp__section-image {
-  background-image: url(/images/lp/lp-img-wacthlist.png);
+  background-image: url(/public-img/landing-page/img-wacthlist.png);
 }
 
 .lp__section--5 .lp__top {
@@ -3065,7 +3065,7 @@ main {
 }
 
 .lp__section--5 .lp__section-image {
-  background-image: url(/images/lp/lp-img-plans.png);
+  background-image: url(/public-img/landing-page/img-plans.png);
 }
 
 .lp__section-columns {
@@ -3354,7 +3354,7 @@ main {
   background-repeat: no-repeat;
   background-size: cover;
   background-position: 50% 40%;
-  background-image: url(/images/lp/lp-sell-bg.jpg);
+  background-image: url(/public-img/landing-page/sell-bg.jpg);
   border-top-left-radius: 140px;
 }
 
@@ -3367,7 +3367,7 @@ main {
 }
 
 .lp__sell-inner .lp__section-image {
-  background-image: url(/images/lp/lp-sell-item.png);
+  background-image: url(/public-img/landing-page/sell-item.png);
 }
 
 @media only screen and (max-width: 1660px) {
