@@ -24,6 +24,11 @@
 	&.order-header__col--center {
 		padding-top: 8px;
 	}
+
+	&.order-header__col--right {
+		display: flex;
+        justify-content: flex-end;
+    }
 }
 
 .order-header__secure-checkout {

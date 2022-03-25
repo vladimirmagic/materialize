@@ -643,7 +643,6 @@
 
 
 
-                                    <input type="hidden" id="barcode" name="barcode" value="" />
 
                                     {description}
 
@@ -676,7 +675,7 @@
                                         </div>
                                     </div> -->
 
-<input type="hidden" id="barcode" name="barcode" value="{lcf_barcode}"/>
+<input type="hidden" id="barcode" name="barcode" value="97465"/>
 
 <div style="display: none;">
     <div id="status">{status}</div>
@@ -1116,7 +1115,11 @@
             }
         </style>
 
-        <script defer src="/dist/js/materialize.min.js"></script>
+<script>
+    // let URL_PROPSTORE = 'https://new.propstore.com/';
+    let URL_PROPSTORE = 'http://propstore.loc/';
+</script>        
+<script defer src="/dist/js/materialize.min.js"></script>
         <script defer src="/dist/js/propstoreauction.js"></script>
     </footer>
 </body>

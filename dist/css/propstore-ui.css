@@ -15048,6 +15048,28 @@ a.product__certificate:not(.btn):not(.btn-large):not(.btn-small):not(.btn-extra-
   }
 }
 
+@media only screen and (max-width: 760px) {
+  .modal-shipping-quote-page .order-header {
+    position: -webkit-sticky;
+    position: sticky;
+    z-index: 1000;
+    top: 0;
+    background: white;
+  }
+  .modal-shipping-quote-page .order-header__col.order-header__col--left {
+    padding: 1.5rem 0;
+  }
+  .modal-shipping-quote-page .order-header__col.order-header__col--right {
+    position: absolute;
+    top: .5rem;
+    right: .5rem;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+  }
+}
+
 @media only screen and (max-width: 600px) {
   .product {
     padding-left: 24px;
@@ -17078,6 +17100,17 @@ a.bag__item:not(.btn):not(.btn-large):not(.btn-small):not(.btn-extra-small):befo
 
 .order-header__col.order-header__col--center {
   padding-top: 8px;
+}
+
+.order-header__col.order-header__col--right {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: end;
+  -webkit-justify-content: flex-end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
 }
 
 .order-header__secure-checkout {

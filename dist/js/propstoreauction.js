@@ -109,9 +109,17 @@ document.addEventListener('DOMContentLoaded', () => {
                 <div class="aucproduct__form" style="display: none;"></div>
                 
                 <div class="product__buttons-grey" style="display: none;">
-                    <span class="product__button-grey waves-effect waves-grey btn btn--secondary" id="modal-shipping-quote-button">
+                    <span class="product__button-grey waves-effect waves-grey btn btn--secondary modal-trigger" href="#modal-shipping-quote" id="modal-shipping-quote-button" style="display: none;">
                         <i class='icon'><svg><use xlink:href="#globe"></use></svg></i>
                         <span class="product__buttons-grey-small">Get</span> Shipping Quote
+
+                        <div id="modal-shipping-quote" class="modal modal-shipping-quote modal-ajax">
+                            <div class="modal-header modal-header--sticky">
+                                <a class="modal-close btn-flat btn--icon"><i class='icon'><svg><use xlink:href="#close"></use></svg></i></a>
+                            </div>
+                            <form class="modal-content modal-form modal-shipping-quote-form" action="/ajax/modalShippingQuoteSubmit.action"></form>
+                            <div class="modal__loader"><div class="preloader-wrapper active"><div class="spinner-layer"><div class="circle-clipper left"><div class="circle"></div></div><div class="gap-patch"><div class="circle"></div></div><div class="circle-clipper right"><div class="circle"></div></div></div></div></div>
+                        </div>
                     </span>
                 </div>
 
@@ -409,37 +417,92 @@ document.addEventListener('DOMContentLoaded', () => {
 				$details.append($lineEstimate);
 			}
 
+            function getBarcodeFromJS() {
+                let barcode = null;
+                $('.description-info-content').find('*')
+                    .contents().each((i, element) => {
+                       if (element.nodeType == 3) {
+                            const arr = element.textContent.split('/proxy/shipping-quote/');
+                            if (arr.length > 1) {
+                                barcode = parseInt(arr[1], 10);
+                            }
+                       }
+                    });
+                return barcode;
+            };
+
             $barcode = $('#barcode');
-            if ($barcode.length) {
+            let barcode = $barcode.length ? $barcode.val() : null;
+            if (!barcode || barcode == 'Not Available') barcode = getBarcodeFromJS(); // old auctions
+            if (barcode) {
+                $('body').append($('#modal-shipping-quote'));
+                $('#modal-shipping-quote-button').show();
                 $('.product__buttons-grey').show();
-                $('#modal-shipping-quote-button').on('click', openModalShippingQuote);
 
-                function getBarcodeFromJS() {
-                    let barcode = '';
-                    $('.description-info-content').find('*')
-                        .contents().each((i, element) => {
-                           if (element.nodeType == 3) {
-                                const arr = element.textContent.split('/proxy/shipping-quote/');
-                                if (arr.length > 1) {
-                                    barcode = parseInt(arr[1], 10);
-                                }
-                           }
-                        });
-                    return barcode;
-                };
+                // MODAL SHIPPING QUOTE
+                $('#modal-shipping-quote').modal({ // load form on modal open
+                    onOpenStart: function (el, trigger) {
+                        el.classList.add('sync');
+                        const $form = $(el).find('.modal-shipping-quote-form');
+                        const url = URL_PROPSTORE + '/ajax/modalShippingQuote.action?product=' + barcode;
+                        $.get({
+                            url,
+                            // dataType: 'json',
+                            // contentType: 'text/html',
+                            XHRFields: {
+                                withCredentials: true,
+                            }
+                        })
+                            .done(data => {
+                                if (!checkResponse(data)) return data;
 
-                function openModalShippingQuote () {
-                    let barcode = $barcode.val();
-                    if (!barcode || barcode == 'Not Available') barcode = getBarcodeFromJS(); // its for staging only, i guess
-                    const url = URL_PROPSTORE + 'modalShippingQuote.action?product=' + barcode;
-                    let param = null;
-                    const w = window.screen.width;
-                    const h = window.screen.height;
-                    if (w > 1224) {
-                        param = `width=${w-200},height=${h-200},left=100,top=100,menubar=1,toolbar=1,location=1,status=1`;
+                                $form.html(data);
+                                M.updateTextFields();
+                                $('#modal-shipping-quote-country').formSelect({dropdownOptions: {container: document.body}});
+                                grecaptchaRender('g-recaptcha-quote');
+                            })
+                            .fail(data => {
+                                if (data && data.statusText) $form.html(data.statusText);
+                            })
+                            .always(data => {
+                                el.classList.remove('sync');
+                            });
                     }
-                    window.open(url, 'Propstore Shipping Quote', param);
-                }
+                });
+
+                $('.modal-shipping-quote-form').submit(function (e) {
+                    e.preventDefault();
+                    this.classList.add('sync');
+                    let data = $(this).serialize();
+                    if (e.originalEvent.submitter && e.originalEvent.submitter.name === 'question') {
+                        data += '&question=1';
+                    }
+                    $.post({
+                        url: URL_PROPSTORE + $(this).attr('action'),
+                        data,
+                        // dataType: 'json',
+                        // contentType: 'text/html',
+                        XHRFields: {
+                            withCredentials: true,
+                        }
+                    })
+                        .done(data => {
+                            if (!checkResponse(data)) return data;
+
+                            this.innerHTML = data;
+                            M.updateTextFields();
+                            $('select').formSelect({dropdownOptions: {container: document.body}});
+                            grecaptchaRender('g-recaptcha-quote');
+                        })
+                        .fail(data => {
+                            if (data && data.statusText) this.innerHTML = data.statusText;
+                        })
+                        .always(data => {
+                            this.classList.remove('sync');
+                        });
+                });
+            } else {
+                $('#modal-shipping-quote-button').remove();
             }
 
             $watchlist = $('#watchlist_button');
@@ -1623,6 +1686,26 @@ if (id.length && id.length > 1) {
         document.body.classList.add('loaded'); // if svg fail
 	}); // end of document ready
 });
+
+function grecaptchaRender (id = 'g-recaptcha') {
+    try {
+        grecaptcha.render(id, {
+            'sitekey' : '6LfhkdoZAAAAALO13mfmd1E57vzk-J516oR__cM1'
+        });
+    } catch (error) {/*possible duplicated instances*/}
+}
+
+function checkResponse (data) {
+    if (data && data.includes('<html')) {
+        M.toast({
+            html: 'Unfortunately something went wrong',
+            classes: 'toast-error'
+        });
+        setTimeout(()=>window.location.reload(), 2000);
+        return false;
+    }
+    return true;
+}
 
 if (!generateGoogleCalendarURL) function generateGoogleCalendarURL(lotName, urlLink) {
     return 'NeedGenerateGoogleCalendarURL';

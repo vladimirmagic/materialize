@@ -814,6 +814,28 @@ a.product__certificate:not(.btn) { // fix a
 	}
 }
 
+@media only screen and (max-width: 760px) {
+	.modal-shipping-quote-page {
+		.order-header {
+			position: sticky;
+			z-index: 1000;
+			top: 0;
+			background: white;
+		}
+		.order-header__col {
+			&.order-header__col--left {
+				padding: 1.5rem 0;
+			}
+			&.order-header__col--right {
+				position: absolute;
+				top: .5rem;
+				right: .5rem;
+				display: flex;	
+			}
+		}
+	}
+}
+
 @media #{$small-and-down} {
 	.product {
 		padding-left: 24px;
