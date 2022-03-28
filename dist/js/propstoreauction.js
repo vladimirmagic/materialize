@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', () => {
 	svgSprite.id = 'svg-sprite';
 	document.body.append(svgSprite);
 	const loaded = function () { document.body.classList.add('loaded') };
-	if (typeof fetch != "undefined") fetch('https://propstore-ui.netlify.app/dist/defs/svg/sprite.defs.svg', { cache: 'force-cache' })
+	if (typeof fetch != "undefined") fetch('/css/custom/sprite.defs.svg', { cache: 'force-cache' })
 		.then(response => response.text())
 		.then(html => { svgSprite.innerHTML = html; loaded(); })
 		.catch(loaded);
@@ -745,8 +745,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
 				$type = $('<div class="auclting__type"><i class="icon"><svg><use xlink:href="#auction-line"></use></svg></i></div>');
 				$type.append($desc.find('#sale' + id));
-				$date = $('<div class="auclting__date"><i class="icon"><svg><use xlink:href="#calendar"></use></svg></i></div>');
-				$date.append($desc.find('#aucdate' + id));
+                
+                $aucdate = $desc.find('#aucdate' + id);
+                $('#div-hidden').append('<div id="customDate' + id + '">');
+                const customDateBefore = window.getComputedStyle(document.querySelector('#customDate' + id), ':before');
+                const customDate = customDateBefore && customDateBefore.content && customDateBefore.content != 'none' ? customDateBefore.content.replaceAll('"', '') : null;
+                if (customDate || $aucdate.length) {
+                    $date = $('<div class="auclting__date"><i class="icon"><svg><use xlink:href="#calendar"></use></svg></i></div>');
+				    $date.append(customDate || $aucdate);
+                }
+				
 				$lots = $('<div class="auclting__lots"><i class="icon"><svg><use xlink:href="#ticket"></use></svg></i></div>');
 				$lots.append($desc.find('p').eq(1).text());
 				$details = $('<div class="auclting__details">');

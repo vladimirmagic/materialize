@@ -13427,7 +13427,7 @@ a.card-auction:not(.btn):not(.btn-large):not(.btn-small):not(.btn-extra-small):b
 
 .filters.filters--faq {
   padding-top: 0;
-  padding-bottom: 72px;
+  padding-bottom: 0;
 }
 
 .filters__header {
@@ -13772,7 +13772,7 @@ a.card-auction:not(.btn):not(.btn-large):not(.btn-small):not(.btn-extra-small):b
     display: block;
   }
   .filters.filters--faq {
-    padding: 0 0 18px 0;
+    padding: 0;
   }
   .filters__header {
     display: -webkit-box;
@@ -22934,9 +22934,6 @@ body.search-index .categories-match {
   }
   .auccatalog__nav-paginator .break {
     margin: 0 .5rem;
-  }
-  .auccatalog__nav-paginator .page + .page {
-    display: none;
   }
   .cards .aucproduct__card, .cards-blog .aucproduct__card {
     width: 100%;
