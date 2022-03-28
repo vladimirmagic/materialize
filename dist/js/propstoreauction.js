@@ -1132,6 +1132,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 $('.auccatalog__search').html('My Items');
                 $('<div class="auccatalog__tabs" />').insertAfter('.auccatalog__search').append($('#tabnav'));
                 $('#tabnav a').addClass('waves-effect btn-flat btn--rounded');
+                $('.tab-my-items-consigned:not(.selected)').hide();
                 $('.tab-my-items-all:not(.selected)').hide();
                 requestAnimationFrame(() => {
                     function getNodesThatContain(text) {
