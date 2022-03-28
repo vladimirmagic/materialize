@@ -51,4 +51,4 @@ dist/css/propstore-ui.min.css
 
 # Ignore lock
 yarn.lock
-package-lock.json
+#package-lock.json
