@@ -22929,6 +22929,10 @@ body.search-index .categories-match {
 }
 
 @media only screen and (max-width: 600px) {
+  .auccatalog__nav-paginator .paginator {
+    -webkit-transform: scale(0.8);
+            transform: scale(0.8);
+  }
   .auccatalog__nav-paginator .paginator * {
     font-size: 16px;
   }

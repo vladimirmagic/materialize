@@ -585,6 +585,10 @@ body.search-index {
 
 @media #{$small-and-down} {
 	.auccatalog__nav-paginator {
+		.paginator {
+			transform: scale(.8);
+		}
+
 		.paginator * {
 			font-size: 16px;
 		}
