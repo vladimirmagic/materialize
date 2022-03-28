@@ -619,6 +619,10 @@ a.account__orders-buy-link:not(.btn) {
 			font-size: $input-font-size !important;
 		}
 	}
+
+	#stipeCardCvc + & { // zip
+		display: none;
+	}
 }
 
 .stripeElements__row {

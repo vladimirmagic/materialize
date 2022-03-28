@@ -19137,6 +19137,10 @@ a.account__orders-buy-link:not(.btn):not(.btn-large):not(.btn-small):not(.btn-ex
   font-size: 16px !important;
 }
 
+#stipeCardCvc + .stripeElement {
+  display: none;
+}
+
 .stripeElements__row {
   display: -webkit-box;
   display: -webkit-flex;
