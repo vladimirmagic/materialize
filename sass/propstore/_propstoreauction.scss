@@ -3,7 +3,7 @@ $imgSizeM: 320px;
 $imgSizeS: 240px;
 
 .auclist.auchome {
-	padding: 6em 2.5em;
+	padding: 3em 2.5em 6em;
 	background: $color-bg;
 
 	.toppag {
@@ -22,14 +22,11 @@ $imgSizeS: 240px;
 		align-items: stretch;
 		min-height: $imgSize;
 		margin: 0;
+		margin-top: 3.5em;
 		background: white;
 		border-radius: 6px;
 		box-shadow: $shadow-base;
 		overflow: hidden;
-	}
-
-	.auclting + .auclting {
-		margin-top: 3.5em;
 	}
 
 	.accimg, .accname, .aucspon, .sale-no {
@@ -182,9 +179,9 @@ $imgSizeS: 240px;
 
 @media only screen and (max-width: #{$width-4cards}) {
 	.auclist.auchome {
-		padding: 3em 2.5em;
+		padding: 1em 2.5em 3em;
 		
-		.auclting + .auclting {
+		.auclting {
 			margin-top: 2em;
 		}
 	
@@ -196,7 +193,7 @@ $imgSizeS: 240px;
 
 @media #{$large-and-down} {
 	.auclist.auchome {
-		padding: 3em 1.5em;
+		padding: 1em 1.5em 3em;
 
 		.auclting {
 			min-height: $imgSizeM;
@@ -233,7 +230,7 @@ $imgSizeS: 240px;
 
 @media #{$medium-and-down} {
 	.auclist.auchome {
-		padding: 3em 1em;
+		padding: 1em 1em 3em;
 
 		.auclting {
 			min-height: $imgSizeS;

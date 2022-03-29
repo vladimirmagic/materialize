@@ -735,6 +735,9 @@ document.addEventListener('DOMContentLoaded', () => {
 				if ($badge.find('.in-progress').length) {
 					$badgeNew.addClass('green').append(`<i class="icon"><svg><use xlink:href="#live"></use></svg></i>Live`);
 				} else if ($badge.find('.ended').length) {
+                    if (!$('a[name="ended"]').length) {
+                        $('<a name="ended"/>').insertBefore($(item));
+                    }
 					$badgeNew.addClass('red').append(`<i class='icon'><svg><use xlink:href="#flag"></use></svg></i>Ended`);
 				} else {
 					$badgeNew.addClass('orange').append(`<i class='icon'><svg><use xlink:href="#clockwise"></use></svg></i>Upcoming`);
@@ -815,6 +818,12 @@ document.addEventListener('DOMContentLoaded', () => {
                     $cat.addClass('waves-effect waves-grey btn btn--secondary');
                 }
 			});
+
+            console.log(window.location.hash);
+            if (window.location.hash === '#ended') {
+                console.log('ended!')
+                requestAnimationFrame(()=>$('a[name="ended"]')[0].scrollIntoView({block: 'start', behavior: 'smooth'}));
+            }
 
             $('.filters').hide();
             $('.hero__static-text').show();
