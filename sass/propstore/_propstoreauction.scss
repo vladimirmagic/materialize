@@ -1,5 +1,6 @@
 $imgSize: 440px;
 $imgSizeM: 320px;
+$imgSizeS: 240px;
 
 .auclist.auchome {
 	padding: 6em 2.5em;
@@ -51,7 +52,7 @@ $imgSizeM: 320px;
 		display: block;
 		width: 100%;
 		height: 100%;
-		background: 50% 50% no-repeat $color-base;
+		background: 50% 30% no-repeat $color-base;
 		background-size: cover;
 
 		img {
@@ -85,12 +86,9 @@ $imgSizeM: 320px;
 		display: flex;
 	}
 
-	.auclting__date, .auclting__lots {
-		margin-left: 2em;
-	}
-
 	.auclting__type, .auclting__date, .auclting__lots {
 		position: relative;
+		margin-left: 2em;
 		padding-left: 2em;
 		font-weight: 500;
 
@@ -116,6 +114,7 @@ $imgSizeM: 320px;
 
 	.auclink {
 		margin-top: 2.5em;
+		white-space: nowrap;
 
 		.btn + .btn--secondary {
 			margin-left: 1em;
@@ -206,9 +205,28 @@ $imgSizeM: 320px;
 		.aucimg {
 			flex-basis: $imgSizeM;
 		}
+
+		.h2 {
+			font-size: 2rem;
+		}
 	
 		.aucdes {
 			padding-left: 3em;
+		}
+
+		.auclting__badge {
+			height: 24px;
+			padding: 0 8px;
+			line-height: 24px;
+			font-size: 10px;
+			.icon {
+				width: 12px;
+				height: 12px;
+			}
+		}
+
+		.auclting__type, .auclting__date, .auclting__lots {
+			margin-left: 1em;
 		}
 	}
 }
@@ -218,6 +236,39 @@ $imgSizeM: 320px;
 		padding: 3em 1em;
 
 		.auclting {
+			min-height: $imgSizeS;
+		}
+
+		.aucimg {
+			flex-basis: $imgSizeS;
+		}
+
+		.aucdes {
+			padding: 1em 1em 1em 2em;
+		}
+
+		.auclink__small {
+			display: none;
+		}
+
+		.auclink {
+			.btn {
+				padding: 0 1rem;
+			}
+		}
+
+		.auclting__type, .auclting__date, .auclting__lots {
+			padding: 0;
+			.icon {
+				display: none;
+			}
+		}
+	}
+}
+
+@media only screen and (max-width: 700px) {
+	.auclist.auchome {
+		.auclting {
 			display: block;
 		}
 
@@ -226,7 +277,7 @@ $imgSizeM: 320px;
 		}
 	
 		.aucdes {
-			padding: 2em 1em;
+			padding: 1em 1em 2em;
 			align-items: center;
 			text-align: center;
 		}
@@ -240,20 +291,10 @@ $imgSizeM: 320px;
 			margin: .5em 0 0;
 		}
 
-		.auclting__date {
-			padding: 0;
-			.icon {
-				display: none;
-			}
-		}
-	}
-}
-
-@media #{$small-and-down} {
-	.auclist.auchome {
 		.auclink {
 			max-width: $imgSizeM;
 			margin-top: 1.5em;
+			white-space: normal;
 
 			.btn {
 				width: 100%;

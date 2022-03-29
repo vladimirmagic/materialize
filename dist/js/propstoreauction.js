@@ -803,7 +803,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
 				$cat = $(item).find('.cat');
                 if ($cat.length) {
-                    $cat.html($cat.html().replace('View catalog', 'View catalogue items'));
+                    $cat.html($cat.html().replace('View catalog', 'View catalogue <span class="auclink__small">items</span>'));
                     $cat.addClass('waves-effect waves-grey btn btn--secondary');
                 }
 			});
