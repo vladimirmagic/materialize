@@ -13,6 +13,14 @@
 			background: none;
 		}
 	}
+
+	.indicators {
+		pointer-events: none;
+	}
+
+	.indicator-item {
+		pointer-events: all;
+	}
 }
 
 .hero__inner {

@@ -12058,6 +12058,14 @@ a:not(.btn):not(.btn-large):not(.btn-small):not(.btn-extra-small).footer__terms-
   background: none;
 }
 
+.hero .indicators {
+  pointer-events: none;
+}
+
+.hero .indicator-item {
+  pointer-events: all;
+}
+
 .hero__inner {
   position: relative;
   display: -webkit-box;
