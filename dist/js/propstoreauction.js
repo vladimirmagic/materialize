@@ -167,9 +167,6 @@ document.addEventListener('DOMContentLoaded', () => {
                     <a href="https://twitter.com/intent/tweet?url=" target="_blank" rel="noreferrer" class="waves-effect btn-flat btn--icon share__item">
                         <i class='icon'><svg><use xlink:href="#follow-twitter"></use></svg></i>
                     </a>
-                    <a href="https://www.pinterest.ru/pin/create/button/?url=" target="_blank" rel="noreferrer" class="waves-effect btn-flat btn--icon share__item">
-                        <i class='icon'><svg><use xlink:href="#share-pinterest"></use></svg></i>
-                    </a>
                 </div>
             </div>
         </div>
@@ -741,24 +738,39 @@ document.addEventListener('DOMContentLoaded', () => {
 					$desc.append($text);
 				}
 
-				$desc.prepend($badgeNew);
-
 				$type = $('<div class="auclting__type"><i class="icon"><svg><use xlink:href="#auction-line"></use></svg></i></div>');
 				$type.append($desc.find('#sale' + id));
                 
+                let $date = null;
                 $aucdate = $desc.find('#aucdate' + id);
                 $('#div-hidden').append('<div id="customDate' + id + '">');
                 const customDateBefore = window.getComputedStyle(document.querySelector('#customDate' + id), ':before');
                 const customDate = customDateBefore && customDateBefore.content && customDateBefore.content != 'none' ? customDateBefore.content.replaceAll('"', '') : null;
                 if (customDate || $aucdate.length) {
-                    $date = $('<div class="auclting__date"><i class="icon"><svg><use xlink:href="#calendar"></use></svg></i></div>');
-				    $date.append(customDate || $aucdate);
+                    let date = customDate || '';
+                    if (!date) {
+                        const dates = [];
+                        let start_date = $aucdate.find('.auction_list_start_date').text();
+                        if (start_date) dates.push(moment(start_date).format('MMM D YYYY'));
+                        let end_date = $aucdate.find('.auction_list_end_date').text();
+                        if (end_date) dates.push(moment(end_date).format('MMM D YYYY'));
+                        if (dates.length) {
+                            date += dates.join(' &minus; ');
+                        }
+                    }
+                    if (date) {
+                        $date = $('<div class="auclting__date"><i class="icon"><svg><use xlink:href="#calendar"></use></svg></i></div>');
+                        $date.append(date);
+                    }
                 }
 				
 				$lots = $('<div class="auclting__lots"><i class="icon"><svg><use xlink:href="#ticket"></use></svg></i></div>');
 				$lots.append($desc.find('p').eq(1).text());
+
 				$details = $('<div class="auclting__details">');
-				$details.append($type).append($date).append($lots);
+				$details.append($badgeNew).append($type);
+                if ($date) $details.append($date);
+                $details.append($lots);
 				$details.insertAfter($title);
 
 				$desc.append($(item).find('.auclink'));
@@ -1308,22 +1320,29 @@ document.addEventListener('DOMContentLoaded', () => {
 
             $('.hero__static-title').html($('#name').text());
 
-            let start_date = $('#start_date').text();
-            if (start_date) {
-                start_date = moment(start_date).format('D MMM h:mma');
-                const start_date_tz_code = $('#start_date_tz_code').text();
-                if (start_date_tz_code) start_date += ` (${start_date_tz_code})`;
-            }
+            if ($('.auc-info__date').length) {
+                $('.hero__static-date').show();
+            } else {
+                const dates = [];
+                let start_date = $('#start_date').text();
+                if (start_date) {
+                    dates.push(moment(start_date).format('MMM D YYYY'));
+                    // start_date = moment(start_date).format('D MMM h:mma');
+                    // const start_date_tz_code = $('#start_date_tz_code').text();
+                    // if (start_date_tz_code) start_date += ` (${start_date_tz_code})`;
+                }
 
-            let end_date = $('#end_date').text();
-            if (end_date) {
-                end_date = moment(end_date).format('D MMM h:mma');
-                const end_date_tz_code = $('#end_date_tz_code').text();
-                if (end_date_tz_code) end_date += ` (${end_date_tz_code})`;
-            }
+                let end_date = $('#end_date').text();
+                if (end_date) {
+                    dates.push(moment(end_date).format('MMM D YYYY'));
+                    // end_date = moment(end_date).format('D MMM h:mma');
+                    // const end_date_tz_code = $('#end_date_tz_code').text();
+                    // if (end_date_tz_code) end_date += ` (${end_date_tz_code})`;
+                }
 
-            if (start_date || end_date) {
-                $('.hero__static-date').show().append([start_date, end_date].join(' &minus; '));
+                if (dates.length) {
+                    $('.hero__static-date').show().append(dates.join(' &minus; '));
+                }
             }
 
             const time_left = $('#time_left').text();
