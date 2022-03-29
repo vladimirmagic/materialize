@@ -227,8 +227,16 @@ document.addEventListener('DOMContentLoaded', () => {
 			$aucTitle = $('.tle-lot h3').clone();
 			$aucTitle.find('span').remove();
 			$('.hero__static-title').html($aucTitle.text());
-            $('.sale-date').find('br').remove();
-			$('.hero__static-date').append($('.sale-date').first()).show();
+            
+            const dates = [];
+            let start_date = $('#auction_start_date').text();
+            if (start_date) dates.push(moment(start_date).format('MMM D YYYY'));
+            let end_date = $('#auction_end_date').text();
+            if (end_date) dates.push(moment(end_date).format('MMM D YYYY'));
+            if (dates.length) {
+                $('.hero__static-date').append(dates.join(' &minus; ')).show();
+            }
+
 			if (status) {
 				$badge = $('.auc__hero .badge');
 				switch (status) {
@@ -1128,8 +1136,18 @@ document.addEventListener('DOMContentLoaded', () => {
                 $aucTitle = $('.tle h3').clone();
                 $aucTitle.find('span').remove();
                 $('.hero__static-title').html($aucTitle.text());
+                
                 $('.sale-date').find('br').remove();
-                $('.hero__static-date').append($('.sale-date').first()).show();
+                const datesArr = $('.sale-date').first().text().split(' - ');
+                if (datesArr.length) {
+                    const dates = [];
+                    if (datesArr[0]) dates.push(moment(datesArr[0]).format('MMM D YYYY'));
+                    if (datesArr[1]) dates.push(moment(datesArr[1]).format('MMM D YYYY'));
+                    if (dates.length) {
+                        $('.hero__static-date').append(dates.join(' &minus; ')).show();
+                    }
+                }
+                
                 if (status) {
                     $badge = $('.auc__hero .badge');
                     switch (status) {
