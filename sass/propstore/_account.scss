@@ -107,6 +107,12 @@ a.account__card:not(.btn) { // fix a
 	.account__cards-inner {
 		max-width: $card-width-m * 3 + $card-margin-m * 3;
 	}
+
+	.account__card {
+		width: 33%;
+		max-width: calc(33% - #{$card-margin-m});
+		min-width: 0;
+	}
 }
 
 @media #{$large-and-down} {
