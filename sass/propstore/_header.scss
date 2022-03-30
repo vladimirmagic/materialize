@@ -147,23 +147,25 @@ header {
 	}
 }
 
-.btn--facebook {
+.modal-register__facebook {
+	margin-bottom: 1.5em;
+
 	font-size: 16px;
 	letter-spacing: 0;
 	text-transform: none;
-	background: #415893;
+	color: #415893;
+	border-color: #415893;
 
 	.icon {
 		margin: -4px 8px 0 0;
 	}
-
-	&:hover {
-		background: #4e6bb3;
-	}
 }
 
-.modal-register__facebook {
-	margin-bottom: 1.5em;
+.modal-register__facebook-or {
+	margin: -.5rem 0 1.5rem;
+	color: $color-font-grey;
+	font-size: 14px;
+	letter-spacing: .1em;
 }
 
 .modal-register__terms {

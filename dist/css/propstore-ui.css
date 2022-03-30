@@ -10069,23 +10069,24 @@ header ~ main {
   display: inline-block;
 }
 
-.btn--facebook {
+.modal-register__facebook {
+  margin-bottom: 1.5em;
   font-size: 16px;
   letter-spacing: 0;
   text-transform: none;
-  background: #415893;
+  color: #415893;
+  border-color: #415893;
 }
 
-.btn--facebook .icon {
+.modal-register__facebook .icon {
   margin: -4px 8px 0 0;
 }
 
-.btn--facebook:hover {
-  background: #4e6bb3;
-}
-
-.modal-register__facebook {
-  margin-bottom: 1.5em;
+.modal-register__facebook-or {
+  margin: -.5rem 0 1.5rem;
+  color: #8F8F8F;
+  font-size: 14px;
+  letter-spacing: .1em;
 }
 
 .modal-register__terms {
@@ -18429,6 +18430,11 @@ a.account__card:not(.btn):not(.btn-large):not(.btn-small):not(.btn-extra-small):
 @media only screen and (max-width: 1374px) {
   .account__cards-inner {
     max-width: 960px;
+  }
+  .account__card {
+    width: 33%;
+    max-width: calc(33% - 16px);
+    min-width: 0;
   }
 }
 
