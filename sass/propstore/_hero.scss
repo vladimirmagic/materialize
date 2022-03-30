@@ -227,6 +227,7 @@
 }
 
 .hero__carousel-info-badge {
+	margin-bottom: 1rem;
 	margin-right: 1rem;
 }
 
@@ -429,6 +430,11 @@
         &.hero__image--blog {
             height: 312px;
         }
+	}
+
+	.hero__carousel-info-badge {
+		margin-bottom: .5rem;
+		margin-right: .5rem;
 	}
 }
 

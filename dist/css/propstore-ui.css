@@ -12313,6 +12313,7 @@ a:not(.btn):not(.btn-large):not(.btn-small):not(.btn-extra-small).footer__terms-
 }
 
 .hero__carousel-info-badge {
+  margin-bottom: 1rem;
   margin-right: 1rem;
 }
 
@@ -12491,6 +12492,10 @@ a:not(.btn):not(.btn-large):not(.btn-small):not(.btn-extra-small).footer__terms-
   }
   .hero__image.hero__image--blog {
     height: 312px;
+  }
+  .hero__carousel-info-badge {
+    margin-bottom: .5rem;
+    margin-right: .5rem;
   }
 }
 
