@@ -128,10 +128,6 @@
             margin-top: 1.25em;
         }
 
-        .card__info.card-blog__info {
-            max-height: 256px;
-        }
-
 		.cards__list {
 			margin-left: 0;
 			transform: none;
@@ -249,7 +245,7 @@
         }
         .card-blog {
             width: 100%;
-            max-width: 100%;
+			max-width: none;
             margin-right: 24px;
         }
 	}

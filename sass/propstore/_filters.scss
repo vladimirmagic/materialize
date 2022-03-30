@@ -10,6 +10,7 @@
     &.filters--centered {
         align-items: baseline;
         justify-content: center;
+		text-align: center;
     }
     &.filters--small-top-gap {
         padding-top: 24px;
@@ -98,6 +99,7 @@
 
 .filters__menu-categories {
     display: inline-flex;
+	justify-content: center;
     flex-wrap: wrap;
     margin-right: 16px;
     &.filters__menu-categories--faq {
@@ -115,6 +117,7 @@
 .filters__search-container {
     display: inline-flex;
     min-width: 264px;
+	margin-top: 1rem;
 }
 
 .input-field--filters {
@@ -312,6 +315,7 @@
         
         .filters__search-container {
             display: block;
+			margin-top: 0;
         }
 
         &.filters--faq {

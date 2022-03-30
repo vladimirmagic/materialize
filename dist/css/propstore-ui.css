@@ -12589,7 +12589,7 @@ a:not(.btn):not(.btn-large):not(.btn-small):not(.btn-extra-small).footer__terms-
 }
 
 .card-blog {
-  max-height: 550px;
+  height: auto !important;
 }
 
 a.card:not(.btn):not(.btn-large):not(.btn-small):not(.btn-extra-small), a.card-blog:not(.btn):not(.btn-large):not(.btn-small):not(.btn-extra-small) {
@@ -12625,7 +12625,7 @@ a.card:not(.btn):not(.btn-large):not(.btn-small):not(.btn-extra-small).card--arc
 }
 
 .card-blog__img {
-  max-height: 260px;
+  height: 260px !important;
   background-size: cover;
 }
 
@@ -12695,7 +12695,7 @@ a.card:not(.btn):not(.btn-large):not(.btn-small):not(.btn-extra-small).card--arc
   font-size: 20px;
 }
 
-.card__info, .card-blog__info {
+.card__info {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -12718,8 +12718,25 @@ a.card:not(.btn):not(.btn-large):not(.btn-small):not(.btn-extra-small).card--arc
 }
 
 .card-blog__info {
-  height: 100% !important;
-  max-height: 290px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: start;
+  -webkit-align-items: flex-start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  height: calc(100% - 260px);
+  padding: 24px;
 }
 
 .card__description {
@@ -12960,7 +12977,10 @@ a.card:not(.btn):not(.btn-large):not(.btn-small):not(.btn-extra-small).card--arc
 }
 
 .card-blog__actions {
-  padding-bottom: 8px;
+  -webkit-box-flex: 1;
+  -webkit-flex: 1 0 2rem;
+      -ms-flex: 1 0 2rem;
+          flex: 1 0 2rem;
 }
 
 .card__added {
@@ -12993,23 +13013,18 @@ a.card:not(.btn):not(.btn-large):not(.btn-small):not(.btn-extra-small).card--arc
   .card__img, .card-blog__img {
     height: 304px;
   }
-  .card__img.card-blog__img, .card-blog__img {
-    min-height: 260px;
-  }
-  .card__info, .card-blog__info {
+  .card__info {
     height: 246px;
     padding: 20px;
   }
-  .card__info.card-blog__info, .card-blog__info {
-    padding: 1.5rem 1.5rem 2rem;
+  .card-blog__info {
+    padding: 1rem 1rem 1.5rem;
+    font-size: 14px;
   }
   .card__movie {
     font-size: 18px;
   }
   .card__title {
-    font-size: 14px;
-  }
-  .card-blog__info {
     font-size: 14px;
   }
   .card__price {
@@ -13294,9 +13309,6 @@ a.card-auction:not(.btn):not(.btn-large):not(.btn-small):not(.btn-extra-small):b
   .cards .cards-blog, .cards-blog .cards-blog {
     margin-top: 1.25em;
   }
-  .cards .card__info.card-blog__info, .cards-blog .card__info.card-blog__info, .cards .card-blog__info, .cards-blog .card-blog__info {
-    max-height: 256px;
-  }
   .cards .cards__list, .cards-blog .cards__list {
     margin-left: 0;
     -webkit-transform: none;
@@ -13334,7 +13346,7 @@ a.card-auction:not(.btn):not(.btn-large):not(.btn-small):not(.btn-extra-small):b
     bottom: .5rem;
     font-size: 10px;
   }
-  .cards .card__info:not(.card-blog__info), .cards-blog .card__info:not(.card-blog__info), .cards .card-blog__info:not(.card-blog__info), .cards-blog .card-blog__info:not(.card-blog__info) {
+  .cards .card__info:not(.card-blog__info), .cards-blog .card__info:not(.card-blog__info) {
     height: 340px;
     padding: 20px 16px 16px;
   }
@@ -13396,7 +13408,7 @@ a.card-auction:not(.btn):not(.btn-large):not(.btn-small):not(.btn-extra-small):b
   }
   .cards .card-blog, .cards-blog .card-blog {
     width: 100%;
-    max-width: 100%;
+    max-width: none;
     margin-right: 24px;
   }
 }
@@ -13428,6 +13440,7 @@ a.card-auction:not(.btn):not(.btn-large):not(.btn-small):not(.btn-extra-small):b
   -webkit-justify-content: center;
       -ms-flex-pack: center;
           justify-content: center;
+  text-align: center;
 }
 
 .filters.filters--small-top-gap {
@@ -13537,6 +13550,10 @@ a.card-auction:not(.btn):not(.btn-large):not(.btn-small):not(.btn-extra-small):b
   display: -webkit-inline-flex;
   display: -ms-inline-flexbox;
   display: inline-flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+      -ms-flex-pack: center;
+          justify-content: center;
   -webkit-flex-wrap: wrap;
       -ms-flex-wrap: wrap;
           flex-wrap: wrap;
@@ -13563,6 +13580,7 @@ a.card-auction:not(.btn):not(.btn-large):not(.btn-small):not(.btn-extra-small):b
   display: -ms-inline-flexbox;
   display: inline-flex;
   min-width: 264px;
+  margin-top: 1rem;
 }
 
 .input-field--filters {
@@ -13779,6 +13797,7 @@ a.card-auction:not(.btn):not(.btn-large):not(.btn-small):not(.btn-extra-small):b
   }
   .filters .filters__search-container {
     display: block;
+    margin-top: 0;
   }
   .filters.filters--faq {
     padding: 0;
@@ -22565,7 +22584,7 @@ body.search-index .categories-match {
   height: auto;
 }
 
-.auccatalog .cards--list .card .card__info, .auccatalog .cards--list .card-blog .card__info, .auccatalog .cards--list .card .card-blog__info, .auccatalog .cards--list .card-blog .card-blog__info {
+.auccatalog .cards--list .card .card__info, .auccatalog .cards--list .card-blog .card__info {
   height: auto;
 }
 
@@ -22721,7 +22740,7 @@ body.search-index .categories-match {
   height: auto;
 }
 
-.aucproduct__card .card__info, .aucproduct__card .card-blog__info {
+.aucproduct__card .card__info {
   height: calc(100% - 356px);
 }
 
@@ -22841,7 +22860,7 @@ body.search-index .categories-match {
   .aucproduct__card {
     height: auto;
   }
-  .aucproduct__card .card__info, .aucproduct__card .card-blog__info {
+  .aucproduct__card .card__info {
     height: calc(100% - 304px);
   }
 }
@@ -22923,7 +22942,7 @@ body.search-index .categories-match {
     min-height: 304px;
     border-top-right-radius: 0;
   }
-  .auccatalog .cards--list .card__info, .auccatalog .cards--list .card-blog__info {
+  .auccatalog .cards--list .card__info {
     -webkit-box-flex: 1;
     -webkit-flex: 1 1 100%;
         -ms-flex: 1 1 100%;
@@ -22982,7 +23001,7 @@ body.search-index .categories-match {
   .cards .aucproduct__card, .cards-blog .aucproduct__card {
     height: auto;
   }
-  .cards .aucproduct__card .card__info, .cards-blog .aucproduct__card .card__info, .cards .aucproduct__card .card-blog__info, .cards-blog .aucproduct__card .card-blog__info {
+  .cards .aucproduct__card .card__info, .cards-blog .aucproduct__card .card__info {
     height: calc(100% - 176px);
   }
 }
@@ -23003,7 +23022,7 @@ body.search-index .categories-match {
     max-width: 100%;
     height: auto;
   }
-  .cards .aucproduct__card .card__info, .cards-blog .aucproduct__card .card__info, .cards .aucproduct__card .card-blog__info, .cards-blog .aucproduct__card .card-blog__info {
+  .cards .aucproduct__card .card__info, .cards-blog .aucproduct__card .card__info {
     height: auto;
   }
 }

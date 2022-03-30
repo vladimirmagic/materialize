@@ -35,7 +35,7 @@
 
 .card-blog {
     @extend .card;
-    max-height: $card-height-m;
+	height: auto !important;
 }
 
 a.card:not(.btn) { // fix a
@@ -72,7 +72,7 @@ a.card:not(.btn) { // fix a
 
 .card-blog__img {
     @extend .card__img;
-    max-height: 260px;
+    height: $card-blog-img !important;
 	background-size: cover;
 }
 
@@ -141,9 +141,12 @@ a.card:not(.btn) { // fix a
 }
 
 .card-blog__info {
-    @extend .card__info;
-    height: 100% !important;
-	max-height: 290px;
+    display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	align-items: flex-start;
+	height: calc(100% - #{$card-blog-img});
+	padding: 24px;
 }
 
 .card__description {
@@ -350,7 +353,7 @@ a.card:not(.btn) { // fix a
 
 .card-blog__actions {
     @extend .card__actions;
-    padding-bottom: 8px;
+	flex: 1 0 2rem;
 }
 
 .card__added {
@@ -384,29 +387,23 @@ a.card:not(.btn) { // fix a
     
     .card__img {
         height: $card-width-m;
-        &.card-blog__img {
-            min-height: 260px;
-        }
     }
 
     .card__info {
         height: $card-height-m - $card-width-m;
         padding: 20px;
-
-        &.card-blog__info {
-			padding: 1.5rem 1.5rem 2rem;
-        }
     }
+
+	.card-blog__info {
+		padding: 1rem 1rem 1.5rem;
+		font-size: 14px;
+	}
 
     .card__movie {
         font-size: 18px;
     }
     
     .card__title {
-        font-size: 14px;
-    }
-    
-    .card-blog__info {
         font-size: 14px;
     }
     
