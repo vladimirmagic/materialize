@@ -19,7 +19,8 @@ body.auctions-confirm-bid {
 	.smpagination,
 	form#AdvancedSearch:before,
 	.filters,
-	.scrolltop {
+	.scrolltop,
+	.ui-helper-hidden-accessible {
 		display: none;
 	}
 }
