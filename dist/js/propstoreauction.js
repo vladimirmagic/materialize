@@ -59,6 +59,8 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!$('.container').length) $('#wrapper').append('<div class="container">');
         $('body').append('<div id="div-hidden" style="display:none;">');
 
+        let isSignedIn = !$('#headsec li[title="Auction Login"]').length && !$('#headsec li[title="Login"]').length;
+
 /**
  * 
  * 
@@ -279,26 +281,26 @@ document.addEventListener('DOMContentLoaded', () => {
                         $slider.find('.carousel-item').eq(i).css(imgPrev);
                         if (!i) return; // first is already _0
 
-                        const $img = $('<img src="' + image + '">');
-                        $('#div-hidden').append($img);
-                        $img.on('load', () => {
-                            $thumbnails.find('.product__thumbnail').eq(i).css(imgPrev);
-                            imgsLoaded++;
-                            let interval = setInterval(()=>{ // start load big images after 80% default images loaded
-                                if (imgsLoaded >= imgsLength * .8 &&
-                                    document.body.classList.contains('loaded')) {
-                                    clearInterval(interval);
-                                    setTimeout(() => {
-                                        image = image.replace('_8.', '_0.');
-                                        const $img = $('<img src="' + image + '">');
-                                        $('#div-hidden').append($img);
-                                        $img.on('load', () => {
-                                            $slider.find('.carousel-item').eq(i).css({ backgroundImage: 'url(' + image + ')' });
-                                        });
-                                    }, 2000 + i * 100); // to defer full img load
-                                }
-                            }, 1000);
-                        });
+                        // const $img = $('<img src="' + image + '">');
+                        // $('#div-hidden').append($img);
+                        // $img.on('load', () => {
+                        //     $thumbnails.find('.product__thumbnail').eq(i).css(imgPrev);
+                        //     imgsLoaded++;
+                        //     let interval = setInterval(()=>{ // start load big images after 80% default images loaded
+                        //         if (imgsLoaded >= imgsLength * .8 &&
+                        //             document.body.classList.contains('loaded')) {
+                        //             clearInterval(interval);
+                        //             setTimeout(() => {
+                        //                 image = image.replace('_8.', '_0.');
+                        //                 const $img = $('<img src="' + image + '">');
+                        //                 $('#div-hidden').append($img);
+                        //                 $img.on('load', () => {
+                        //                     $slider.find('.carousel-item').eq(i).css({ backgroundImage: 'url(' + image + ')' });
+                        //                 });
+                        //             }, 2000 + i * 100); // to defer full img load
+                        //         }
+                        //     }, 1000);
+                        // });
                     }, 100 * i); // to defer preview load
                     $thumbnailsItemNew = $thumbnailsItem.clone();
                     $thumbnails.append($thumbnailsItemNew.css(imgThumbnail));
@@ -396,7 +398,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 $win.find('span').remove();
                 $lineWin = $detailsLine.clone();
 
-                const isSignedIn = !$('#headsec a:contains("Auction Login")').length;
                 if (isSignedIn) {
                     $lineWin.html($win.text());
                     if ($winVal.length) {
@@ -1022,20 +1023,20 @@ document.addEventListener('DOMContentLoaded', () => {
                 if ($img.length) {
                     let bg = $img.prop('src');
                     $cardItem.find('.card__img').css('background-image', 'url(' + bg + ')');
-                    $img.on('load', () => {
-                        cardsLoaded++;
-                        let interval = setInterval(()=>{ // start load big images after 80% default images loaded
-                            if (cardsLoaded >= cardsLength * .8) {
-                                clearInterval(interval);
-                                bg = bg.replace('_6.', '_0.');
-                                const $img = $('<img src="' + bg + '">');
-                                $('#div-hidden').append($img);
-                                $img.on('load', () => {
-                                    $('.card__img').eq(i).css('background-image', 'url(' + bg + ')');
-                                });
-                            }
-                        }, 1000);
-                    });
+                    // $img.on('load', () => {
+                    //     cardsLoaded++;
+                    //     let interval = setInterval(()=>{ // start load big images after 80% default images loaded
+                    //         if (cardsLoaded >= cardsLength * .8) {
+                    //             clearInterval(interval);
+                    //             bg = bg.replace('_6.', '_0.');
+                    //             const $img = $('<img src="' + bg + '">');
+                    //             $('#div-hidden').append($img);
+                    //             $img.on('load', () => {
+                    //                 $('.card__img').eq(i).css('background-image', 'url(' + bg + ')');
+                    //             });
+                    //         }
+                    //     }, 1000);
+                    // });
                 }
 				$cardItem.find('.card__movie').append($(item).find('.yaaa'));
 				$badge = $cardItem.find('.card__badge')
@@ -1048,7 +1049,6 @@ document.addEventListener('DOMContentLoaded', () => {
 				}
                 
 				$(item).find('.item-status').remove();
-                const isSignedIn = !$('#headsec a:contains("Auction Login")').length;
                 if (isSignedIn) {
                     $(item).find('.price-info li').each((k, info) => {
                         const $info = $(info);
@@ -1494,7 +1494,7 @@ document.addEventListener('DOMContentLoaded', () => {
  * 
  * NOT LOGGED IN
  */
-if ($('#headsec a:contains("Auction Login")').length) {
+if (!isSignedIn) {
     $('.header__settings .header__col--right').append(`
         <a href="/login" class="waves-effect btn-flat header__btn sso-trigger" data-url="signIn.action">
             Sign In
@@ -1734,7 +1734,7 @@ if (id.length && id.length > 1) {
 
         function redirectPage (url) {
             $('.loader-block').show();
-            window.location.href = url;
+            window.location.href = url.replace(/\/+/g,'/').replace(/^https:\//,'https://');
         }
 
         if (params && params.get('sc') && !params.get('ru')) {
