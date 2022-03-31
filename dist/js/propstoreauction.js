@@ -775,8 +775,11 @@ document.addEventListener('DOMContentLoaded', () => {
                     }
                 }
 				
-				$lots = $('<div class="auclting__lots"><i class="icon"><svg><use xlink:href="#ticket"></use></svg></i></div>');
-				$lots.append($desc.find('p').eq(1).text());
+				$('#div-hidden').append('<div id="customLots' + id + '">');
+                const customLotsBefore = window.getComputedStyle(document.querySelector('#customLots' + id), ':before');
+                const customLots = customLotsBefore && customLotsBefore.content && customLotsBefore.content != 'none' ? customLotsBefore.content.replaceAll('"', '') : null;
+                $lots = $('<div class="auclting__lots"><i class="icon"><svg><use xlink:href="#ticket"></use></svg></i></div>');
+				$lots.append(customLots || $desc.find('p').eq(1).text());
 
 				$details = $('<div class="auclting__details">');
 				$details.append($badgeNew).append($type);
