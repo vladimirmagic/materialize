@@ -321,9 +321,6 @@ form#AdvancedSearch[action*="/id/303"]:before {
   .auction276 .hero__image{
     background-image: url('https://content.propstore.com/public/img/auctionheaders/276_cpla7april2021.jpg') !important;
   }
-  .auction307 .hero__image{
-    background-image: url('https://content.propstore.com/auction/emlauk22/emlauk2022-newsite-landingpageheader-1080x800.jpg') !important;
-  }
   .auction198 .hero__image{
     background-image: url('https:///content.propstore.com/public-img/sam-header/198_MarvelTelevisionLiveAuction.jpg') !important;
   }
@@ -376,7 +373,7 @@ form#AdvancedSearch[action*="/id/303"]:before {
     background-image: url('https://content.propstore.com/public-img/sam-header/205_John-Wick.jpg') !important;
   }
   .auction281 .hero__image{
-    background-image: url('https://content.propstore.com/public-img/sam-header/281_Zoolander2.jpgg') !important;
+    background-image: url('https://content.propstore.com/public-img/sam-header/281_Zoolander2.jpg') !important;
   }
   .auction220 .hero__image{
     background-image: url('https://content.propstore.com/public-img/sam-header/220_JessiacaJones.jpg') !important;
@@ -413,9 +410,9 @@ form#AdvancedSearch[action*="/id/303"]:before {
   }
     /*STEVE EDIT EXAMPLE*/
 
-    /*catalog page*/
+    /* Punisher catalog page*/
     .auction303 .hero__inner .hero__image{
-        background-image: url('https://content.propstore.com/auction/funko2022/funko2022-samheader-2.jpg') !important;
+        background-image: url('https://content.propstore.com/public-img/sam-header/Punisher_SAM-Cat-AuctionHeader_1080x500.jpg') !important;
     }
     /*landing page*/
    .auction303 .hero__carousel .hero__image{
@@ -431,6 +428,15 @@ form#AdvancedSearch[action*="/id/303"]:before {
         background-image: url('https://content.propstore.com/auction/EMLAUS2022/emlaus2022-newsite-landingpageheader-1080x800.jpg') !important;
     }
 
+     /*catalog page*/
+     .auction320 .hero__inner .hero__image{
+      background-image: url('https://content.propstore.com/auction/funko2022/funko2022-samheader-2.jpg') !important;
+  }
+  /*landing page*/
+ .auction320 .hero__carousel .hero__image{
+      background-image: url('https://content.propstore.com/auction/funko2022/funko2022-newsite-landingpageheader-1080x800.jpg') !important;
+  }
+
 /*END STEVE EDIT EXAMPLE*/
   .auction287 .hero__image{
     background-image: url('https://content.propstore.com/public-img/sam-header/287_EMLALA2021.jpg') !important;
@@ -442,7 +448,7 @@ form#AdvancedSearch[action*="/id/303"]:before {
     background-image: url('https://content.propstore.com/public-img/sam-header/309_LostinSpace.jpg') !important;
   }
   .auction295 .hero__image{
-    background-image: url('https://content.propstore.com/public-img/TDF_SAM-HeaderBanner_1080x800.jpg') !important;
+    background-image: url('https://content.propstore.com/public-img/sam-header/295_Mythbusters.jpg') !important;
   }
   .auction290 .hero__image{
     background-image: url('https://content.propstore.com/public-img/sam-header/290_GreatWallAuction2.jpg') !important;
@@ -450,8 +456,8 @@ form#AdvancedSearch[action*="/id/303"]:before {
   .auction293 .hero__image{
     background-image: url('https://content.propstore.com/public-img/ASOUE_SAM-HeaderBanner_1080x800.jpg') !important;
   }
- .auction305 .hero__image{
-    background-image: url('https://content.propstore.com/auction/posterauction10/cpla102022-newsite-landingpageheader-1080x800.jpg') !important;
+ .auction316 .auc__hero .hero__image{
+    background-image: url('https://content.propstore.com/public-img/sam-header/CPLAspring2022_SAM-Cat-AuctionHeader_1080x500.jpg') !important;
   }
 .auction304 .hero__image{
     background-image: url('https://content.propstore.com/auction/swatch2022/swatch2022-newsite-landingpageheader-1080x800.jpg') !important;
@@ -465,6 +471,59 @@ form#AdvancedSearch[action*="/id/303"]:before {
   background-image: url('https://content.propstore.com/public-img/LIS_SAM-HeaderBanner_1080x800.jpg')
 }
 
+/*3-29-2022*/
+  /*CPLA DEC 2021 catalog page*/
+.auction307 .hero__inner .hero__image{
+  background-image: url('https://content.propstore.com/public-img/sam-header/CPLAdec2021_SAM-Cat-AuctionHeader_1080x500.jpg') !important;
+}
+  /*Susan George catalog page*/
+  .auction312 .hero__inner .hero__image{
+    background-image: url('https://content.propstore.com/public-img/sam-header/SusanG_SAM-Cat-AuctionHeader_1080x500.jpg') !important;
+  }
+    /*EMLA US 2022 catalog page*/
+    .auction319 .hero__inner .hero__image{
+      background-image: url('https://content.propstore.com/public-img/sam-header/EMLAUS2022_SAM-Cat-AuctionHeader_1080x500.jpg') !important;
+  }
+  .auction319 .hero__carousel .hero__image{
+    background-image: url('https://content.propstore.com/public-img/EMLA-LA2022_SAM-HeaderBanner_1080x800_v2.jpg') !important;
+}
+/*EMLA US 2020 catalog page*/
+  .auction267 .hero__inner .hero__image{
+      background-image: url('https://content.propstore.com/public-img/sam-header/EMLAUS2020_SAM-Cat-AuctionHeader_1080x500.jpg') !important;
+  }
+
+  /*Terminator: Dark Fate catalog page*/
+  .auction314 .hero__inner .hero__image{
+    background-image: url('https://content.propstore.com/public-img/sam-header/TDF_SAM-Cat-AuctionHeader_1080x500.jpg') !important;
+}
+
+  /*Lost in Space catalog page*/
+  .auction309 .hero__inner .hero__image{
+    background-image: url('https://content.propstore.com/public-img/sam-header/LIS_SAM-Cat-AuctionHeader_1080x500.jpg') !important;
+}
+  /*ASOUE catalog page*/
+  .auction293 .hero__inner .hero__image{
+    background-image: url('https://content.propstore.com/public-img/sam-header/ASOUE_SAM-Cat-AuctionHeader_1080x500.jpg') !important;
+}
+
+  /*catalog page*/
+  .auction299 .hero__inner .hero__image{
+    background-image: url('https://content.propstore.com/public-img/sam-header/EMLAUK2021_SAM-Cat-AuctionHeader_1080x500.jpg') !important;
+}
+  /*EMLA UK 2020 catalog page*/
+  .auction244 .hero__inner .hero__image{
+    background-image: url('https://content.propstore.com/public-img/sam-header/EMLAUK2020_SAM-Cat-AuctionHeader_1080x500.jpg') !important;
+}
+  /*EMLA UK 2021 catalog page*/
+  .auction287 .hero__inner .hero__image{
+    background-image: url('https://content.propstore.com/public-img/sam-header/EMLAUS2021_SAM-Cat-AuctionHeader_1080x500.jpg') !important;
+}
+/*catalog page*/
+.auction275 .hero__inner .hero__image{
+  background-image: url('https://content.propstore.com/public-img/sam-header/Punisher_SAM-Cat-AuctionHeader_1080x500.jpg') !important;
+}
+/*END 3-29-2022*/
+
 /* EMLA US 2022 - 309 */
 .auction309.auctions-catalog .hero__image {
   background-image: url('https://content.propstore.com/auction/EMLAUS2022/emlaus2022-newsite-landingpageheader-1080x800.jpg')
@@ -475,3 +534,38 @@ form#AdvancedSearch[action*="/id/303"]:before {
 #customRegisterButton309:before {content: 'http://www.eepurl.com/hXCDmr'}
 #customRegisterButton309:after {content: 'Sign Up For Updates'}
 #customDate309:before {content: '21 Jun — 24 Jun'}
+
+#customRegisterButton326:before {content: 'https://propstoreauction.com/auctions/info/id/326'}
+#customRegisterButton326:after {content: 'Register Now'}
+#customLots326:before {content: 'Lots: 1'}
+
+#customRegisterButton319:before {content: 'http://www.eepurl.com/hXCDmr'}
+#customRegisterButton319:after {content: 'Sign Up For Updates'}
+
+#customRegisterButton320:before {content: 'http://www.eepurl.com/hXC0KD'}
+#customRegisterButton320:after {content: 'Sign Up For Updates'}
+
+#customRegisterButton323:before {content: 'http://www.eepurl.com/hXC0X1'}
+#customRegisterButton323:after {content: 'Sign Up For Updates'}
+
+#customRegisterButton322:before {content: 'http://www.eepurl.com/hXC0Zn'}
+#customRegisterButton322:after {content: 'Sign Up For Updates'}
+
+#customRegisterButton318:before {content: 'http://www.eepurl.com/hXIFan'}
+#customRegisterButton318:after {content: 'Sign Up For Updates'}
+
+body.auctions-info #AuctionInfoForm #wrapper .bodybox{
+	display: block;
+}
+body.auctions-info #AuctionInfoForm #wrapper .bodybox .auctitle{
+	display: none;
+}
+
+a[href="https://propstoreauction.com/auctions/catalog/id/323"],
+a[href="https://propstoreauction.com/auctions/catalog/id/320"],
+a[href="https://propstoreauction.com/auctions/catalog/id/319"],
+a[href="https://propstoreauction.com/auctions/catalog/id/326"],
+a[href="https://propstoreauction.com/auctions/catalog/id/322"],
+a[href="https://propstoreauction.com/auctions/catalog/id/318"]{
+  display:none
+}
