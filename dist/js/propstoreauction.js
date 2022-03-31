@@ -1455,7 +1455,40 @@ document.addEventListener('DOMContentLoaded', () => {
                 $('.container').prepend($('div.shipping').removeClass('shipping'));
                 $('.container').prepend($('.desc').html());
             }
-        }
+/**
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * REGISTRATION REQUIRED
+ */
+ } else if ($('body').hasClass('auctions-registration-required')) {
+    $('footer').append(`
+<div class="general aucpage">
+    <div class="general__inner">
+        <h1 class="h1">Register for auction</h1>
+        <p class="p-r general__content"></p>
+        <div class="general__btn"></div>
+    </div>
+</div>
+`);
+    document.querySelectorAll('style:not([data-v2]), link[rel="stylesheet"]:not([data-v2])').forEach(item => item.remove());
+
+    $('.general__content').append($('#wrapper'));
+    $('#wrapper input[type="submit"]').addClass('waves-effect waves-light btn');
+
+    $('main').prepend($('.aucpage'));
+}
 /**
  * 
  * 

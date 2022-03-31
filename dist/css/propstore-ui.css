@@ -21592,7 +21592,18 @@ body.auctions-confirm-bid .smpagination,
 body.auctions-confirm-bid form#AdvancedSearch:before,
 body.auctions-confirm-bid .filters,
 body.auctions-confirm-bid .scrolltop,
-body.auctions-confirm-bid .ui-helper-hidden-accessible {
+body.auctions-confirm-bid .ui-helper-hidden-accessible,
+body.auctions #headsec,
+body.auctions .mymenu,
+body.auctions .auctions-filter,
+body.auctions .srch_sec,
+body.auctions .bodybox,
+body.auctions #toppaginator,
+body.auctions .smpagination,
+body.auctions form#AdvancedSearch:before,
+body.auctions .filters,
+body.auctions .scrolltop,
+body.auctions .ui-helper-hidden-accessible {
   display: none;
 }
 
