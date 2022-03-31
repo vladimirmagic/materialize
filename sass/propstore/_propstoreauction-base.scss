@@ -37,3 +37,9 @@ body.forgot-password {
 		display: none;
 	}
 }
+
+.auctions-live-sale .list-opts input[type="radio"] {
+	position: relative;
+	opacity: 1;
+	pointer-events: all;
+}

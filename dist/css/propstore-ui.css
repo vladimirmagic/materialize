@@ -21619,6 +21619,12 @@ body.forgot-password #wrapper {
   display: none;
 }
 
+.auctions-live-sale .list-opts input[type="radio"] {
+  position: relative;
+  opacity: 1;
+  pointer-events: all;
+}
+
 .auc-header .header__col.header__col--left, .auc-header .header__col.header__col--right {
   -webkit-box-flex: 0;
   -webkit-flex: 0 0 360px;

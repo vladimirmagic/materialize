@@ -1470,6 +1470,27 @@ document.addEventListener('DOMContentLoaded', () => {
  * 
  * 
  * 
+ * LIVE SALE
+ */
+ } else if ($('body').hasClass('auctions-live-sale')) {
+     const $selShow = $('#sel-show').clone();
+    $('.show-all').append($selShow.addClass('browser-default').show());
+    $('.show-all .ui-widget').remove();
+/**
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
  * REGISTRATION REQUIRED
  */
  } else if ($('body').hasClass('auctions-registration-required')) {
