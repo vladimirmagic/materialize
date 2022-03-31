@@ -8835,7 +8835,7 @@ input[type=range]::-ms-thumb {
       -ms-flex-align: end;
           align-items: flex-end;
   height: 25%;
-  padding: 0 76px 40px;
+  padding: 0 76px;
   text-align: left;
   background: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 0)), to(#000));
   background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, #000 100%);
@@ -8847,6 +8847,7 @@ input[type=range]::-ms-thumb {
   width: 100%;
   max-width: 33%;
   margin: 0;
+  padding-bottom: 2.5rem;
   background-color: rgba(0, 0, 0, 0);
   border-radius: 0;
   opacity: 1;
@@ -8922,7 +8923,7 @@ input[type=range]::-ms-thumb {
     -webkit-justify-content: flex-start;
         -ms-flex-pack: start;
             justify-content: flex-start;
-    padding: 0 24px 32px;
+    padding: 0 24px;
   }
   .carousel--hero .indicator-item {
     max-width: 44px;
@@ -12402,11 +12403,12 @@ a:not(.btn):not(.btn-large):not(.btn-small):not(.btn-extra-small).footer__terms-
     -webkit-justify-content: flex-start;
         -ms-flex-pack: start;
             justify-content: flex-start;
-    padding: 0 24px 60px 76px;
+    padding: 0 24px 0 76px;
     height: 3px;
   }
   .hero.hero--auctions .indicator-item {
     max-width: 60px;
+    padding-bottom: 3.5rem;
   }
   .hero.hero--auctions .indicator-item + .indicator-item {
     margin-left: 16px;

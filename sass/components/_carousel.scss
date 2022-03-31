@@ -246,7 +246,7 @@
     justify-content: space-between;
     align-items: flex-end;
     height: 25%;
-    padding: 0 76px 40px;
+    padding: 0 76px;
     text-align: left;
     background: linear-gradient(180deg, rgba(0,0,0,0) 0%, #000 100%);
     z-index: 10;
@@ -257,6 +257,7 @@
     width: 100%;
     max-width: 33%;
     margin: 0;
+    padding-bottom: 2.5rem;
     background-color: rgba(0,0,0,0);
     border-radius: 0;
     opacity: 1;
@@ -321,7 +322,7 @@
 	.carousel--hero {
     .indicators {
       justify-content: flex-start;
-      padding: 0 24px 32px;
+      padding: 0 24px;
     }
   
     .indicator-item {

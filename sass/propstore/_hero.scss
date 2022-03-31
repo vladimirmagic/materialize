@@ -315,12 +315,13 @@
 	.hero.hero--auctions {
 		.indicators {
 			justify-content: flex-start;
-			padding: 0 24px 60px 76px;
+			padding: 0 24px 0 76px;
 			height: 3px;
 		}
 	
 		.indicator-item {
 			max-width: 60px;
+			padding-bottom: 3.5rem;
 		}
 	
 		.indicator-item + .indicator-item {
