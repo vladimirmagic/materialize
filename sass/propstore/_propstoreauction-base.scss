@@ -38,8 +38,14 @@ body.forgot-password {
 	}
 }
 
-.auctions-live-sale .list-opts input[type="radio"] {
-	position: relative;
-	opacity: 1;
-	pointer-events: all;
+.auctions-live-sale {
+	.list-opts input[type="radio"] {
+		position: relative;
+		opacity: 1;
+		pointer-events: all;
+	}
+	.btn {
+		font-size: 14px;
+		white-space: nowrap;
+	}
 }

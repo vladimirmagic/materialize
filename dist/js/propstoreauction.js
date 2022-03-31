@@ -446,7 +446,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 $('.product__buttons-grey').show();
 
                 // MODAL SHIPPING QUOTE
-                $('#modal-shipping-quote').modal({ // load form on modal open
+                if ($('#modal-shipping-quote').modal) $('#modal-shipping-quote').modal({ // load form on modal open
                     onOpenStart: function (el, trigger) {
                         el.classList.add('sync');
                         const $form = $(el).find('.modal-shipping-quote-form');
@@ -1474,8 +1474,9 @@ document.addEventListener('DOMContentLoaded', () => {
  */
  } else if ($('body').hasClass('auctions-live-sale')) {
      const $selShow = $('#sel-show').clone();
-    $('.show-all').append($selShow.addClass('browser-default').show());
+    // $('.show-all').append($selShow.addClass('browser-default').show());
     $('.show-all .ui-widget').remove();
+    $('.orng').addClass('waves-effect waves-light btn').removeClass('orng');
 /**
  * 
  * 
