@@ -2854,13 +2854,29 @@ html {
   right: 0;
   top: -32vh;
   bottom: 0;
-  background-position: 50% 0;
-  background-image: url(/public-img/landing-page/hero-bg.jpg);
+  background-position: 0 0;
+  background-image: url(https://content.propstore.com/public-img/landing-page/hero-bg.jpg);
   background-repeat: repeat-x;
-  background-size: contain;
+  background-size: 100vw;
   background-color: #2D2E41;
   transform-origin: 0 0;
   transform: translateZ(-5px) scale(1.65);
+  animation: animation-hero-bg 120s linear infinite;
+}
+
+@keyframes animation-hero-bg {
+  100% {
+    background-position: -100vw 0;
+  }
+}
+
+@keyframes animation-hero-bg-vertical {
+  0% {
+    background-position: 100vh 0;
+  }
+  100% {
+    background-position: -100vh 0;
+  }
 }
 
 main {
@@ -2981,7 +2997,7 @@ main {
   background-size: contain;
   background-position: 50% 0;
   background-repeat: no-repeat;
-  background-image: url(/public-img/landing-page/hero-item.png);
+  background-image: url(https://content.propstore.com/public-img/landing-page/hero-item.png);
 }
 
 .lp__section--2 .lp__top {
@@ -3001,7 +3017,7 @@ main {
 }
 
 .lp__section--2 .lp__section-image {
-  background-image: url(/public-img/landing-page/img-buy.png);
+  background-image: url(https://content.propstore.com/public-img/landing-page/img-buy.png);
 }
 
 .lp__section--3 .lp__top {
@@ -3021,7 +3037,7 @@ main {
 }
 
 .lp__section--3 .lp__section-image {
-  background-image: url(/public-img/landing-page/img-auction.png);
+  background-image: url(https://content.propstore.com/public-img/landing-page/img-auction.png);
 }
 
 .lp__section--4 .lp__top {
@@ -3041,7 +3057,7 @@ main {
 }
 
 .lp__section--4 .lp__section-image {
-  background-image: url(/public-img/landing-page/img-wacthlist.png);
+  background-image: url(https://content.propstore.com/public-img/landing-page/img-wacthlist.png);
 }
 
 .lp__section--5 .lp__top {
@@ -3065,7 +3081,7 @@ main {
 }
 
 .lp__section--5 .lp__section-image {
-  background-image: url(/public-img/landing-page/img-plans.png);
+  background-image: url(https://content.propstore.com/public-img/landing-page/img-plans.png);
 }
 
 .lp__section-columns {
@@ -3354,7 +3370,7 @@ main {
   background-repeat: no-repeat;
   background-size: cover;
   background-position: 50% 40%;
-  background-image: url(/public-img/landing-page/sell-bg.jpg);
+  background-image: url(https://content.propstore.com/public-img/landing-page/sell-bg.jpg);
   border-top-left-radius: 140px;
 }
 
@@ -3367,7 +3383,7 @@ main {
 }
 
 .lp__sell-inner .lp__section-image {
-  background-image: url(/public-img/landing-page/sell-item.png);
+  background-image: url(https://content.propstore.com/public-img/landing-page/sell-item.png);
 }
 
 @media only screen and (max-width: 1660px) {
@@ -3550,9 +3566,6 @@ main {
 }
 
 @media only screen and (max-width: 680px) {
-  .lp:before {
-    background-size: 300vw;
-  }
   .h1 {
     font-size: 52px;
   }
@@ -3611,5 +3624,12 @@ main {
   .lp__section-info {
     padding-left: 1rem;
     padding-right: 1rem;
+  }
+}
+
+@media (max-aspect-ratio: 1 / 1) {
+  .lp:before {
+    background-size: 200vh;
+    animation-name: animation-hero-bg-vertical;
   }
 }
