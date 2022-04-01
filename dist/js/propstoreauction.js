@@ -284,26 +284,26 @@ const auctionId = (
                 $slider.find('.carousel-item').eq(i).css(imgPrev);
                 if (!i) return; // first is already _0
 
-                // const $img = $('<img src="' + image + '">');
-                // $('#div-hidden').append($img);
-                // $img.on('load', () => {
-                //     $thumbnails.find('.product__thumbnail').eq(i).css(imgPrev);
-                //     imgsLoaded++;
-                //     let interval = setInterval(()=>{ // start load big images after 80% default images loaded
-                //         if (imgsLoaded >= imgsLength * .8 &&
-                //             document.body.classList.contains('loaded')) {
-                //             clearInterval(interval);
-                //             setTimeout(() => {
-                //                 image = image.replace('_8.', '_0.');
-                //                 const $img = $('<img src="' + image + '">');
-                //                 $('#div-hidden').append($img);
-                //                 $img.on('load', () => {
-                //                     $slider.find('.carousel-item').eq(i).css({ backgroundImage: 'url(' + image + ')' });
-                //                 });
-                //             }, 2000 + i * 100); // to defer full img load
-                //         }
-                //     }, 1000);
-                // });
+                const $img = $('<img src="' + image + '">');
+                $('#div-hidden').append($img);
+                $img.on('load', () => {
+                    $thumbnails.find('.product__thumbnail').eq(i).css(imgPrev);
+                    imgsLoaded++;
+                    let interval = setInterval(()=>{ // start load big images after 80% default images loaded
+                        if (imgsLoaded >= imgsLength * .8 &&
+                            document.body.classList.contains('loaded')) {
+                            clearInterval(interval);
+                            setTimeout(() => {
+                                image = image.replace('_8.', '_0.');
+                                const $img = $('<img src="' + image + '">');
+                                $('#div-hidden').append($img);
+                                $img.on('load', () => {
+                                    $slider.find('.carousel-item').eq(i).css({ backgroundImage: 'url(' + image + ')' });
+                                });
+                            }, 2000 + i * 100); // to defer full img load
+                        }
+                    }, 1000);
+                });
             }, 100 * i); // to defer preview load
             $thumbnailsItemNew = $thumbnailsItem.clone();
             $thumbnails.append($thumbnailsItemNew.css(imgThumbnail));
@@ -456,8 +456,6 @@ const auctionId = (
                 const url = URL_PROPSTORE + '/ajax/modalShippingQuote.action?product=' + barcode;
                 $.get({
                     url,
-                    // dataType: 'json',
-                    // contentType: 'text/html',
                     XHRFields: {
                         withCredentials: true,
                     }
@@ -467,7 +465,7 @@ const auctionId = (
 
                         $form.html(data);
                         M.updateTextFields();
-                        $('#modal-shipping-quote-country').formSelect({dropdownOptions: {container: document.body}});
+                        M.FormSelect.init(document.querySelectorAll('select'), {dropdownOptions: {container: document.body}});
                         grecaptchaRender('g-recaptcha-quote');
                     })
                     .fail(data => {
@@ -489,8 +487,7 @@ const auctionId = (
             $.post({
                 url: URL_PROPSTORE + $(this).attr('action'),
                 data,
-                // dataType: 'json',
-                // contentType: 'text/html',
+                contentType: 'application/x-www-form-urlencoded',
                 XHRFields: {
                     withCredentials: true,
                 }
@@ -500,7 +497,7 @@ const auctionId = (
 
                     this.innerHTML = data;
                     M.updateTextFields();
-                    $('select').formSelect({dropdownOptions: {container: document.body}});
+                    M.FormSelect.init(document.querySelectorAll('select'), {dropdownOptions: {container: document.body}});
                     grecaptchaRender('g-recaptcha-quote');
                 })
                 .fail(data => {
@@ -1026,20 +1023,20 @@ const auctionId = (
         if ($img.length) {
             let bg = $img.prop('src');
             $cardItem.find('.card__img').css('background-image', 'url(' + bg + ')');
-            // $img.on('load', () => {
-            //     cardsLoaded++;
-            //     let interval = setInterval(()=>{ // start load big images after 80% default images loaded
-            //         if (cardsLoaded >= cardsLength * .8) {
-            //             clearInterval(interval);
-            //             bg = bg.replace('_6.', '_0.');
-            //             const $img = $('<img src="' + bg + '">');
-            //             $('#div-hidden').append($img);
-            //             $img.on('load', () => {
-            //                 $('.card__img').eq(i).css('background-image', 'url(' + bg + ')');
-            //             });
-            //         }
-            //     }, 1000);
-            // });
+            $img.on('load', () => {
+                cardsLoaded++;
+                let interval = setInterval(()=>{ // start load big images after 80% default images loaded
+                    if (cardsLoaded >= cardsLength * .8) {
+                        clearInterval(interval);
+                        bg = bg.replace('_6.', '_0.');
+                        const $img = $('<img src="' + bg + '">');
+                        $('#div-hidden').append($img);
+                        $img.on('load', () => {
+                            $('.card__img').eq(i).css('background-image', 'url(' + bg + ')');
+                        });
+                    }
+                }, 1000);
+            });
         }
         $cardItem.find('.card__movie').append($(item).find('.yaaa'));
         $badge = $cardItem.find('.card__badge')
@@ -1432,7 +1429,7 @@ $('.container').prepend($('.aucpage'));
         $(gallery).appendTo('body');
         $(gallery).find('.modal-gallery__carousel').append('<div class="preloader-wrapper active"><div class="spinner-layer spinner-white-only"><div class="circle-clipper left"><div class="circle"></div></div><div class="gap-patch"><div class="circle"></div></div><div class="circle-clipper right"><div class="circle"></div></div></div></div>');
         
-        M.Modal.init([gallery], {
+        M.Modal.init($(gallery), {
             opacity: .75,
             onCloseStart: (el) => {
                 if (modalSlider && modalSlider[0]) modalSlider[0].destroy();
@@ -1654,7 +1651,7 @@ M.Collapsible.init(document.querySelectorAll('.collapsible.expandable'), {
 M.Materialbox.init(document.querySelectorAll('.materialboxed'));
 M.Modal.init(document.querySelectorAll('.modal:not(.modal-ajax)'));
 M.Tabs.init(document.querySelectorAll('.tabs'));
-M.FormSelect.init(document.querySelectorAll('select:not(.disabled'));
+M.FormSelect.init(document.querySelectorAll('select:not(.disabled)'));
 M.Sidenav.init(document.querySelectorAll('.sidenav'));
 M.CharacterCounter.init(document.querySelectorAll('input[data-length], textarea[data-length]'));
 M.updateTextFields();
