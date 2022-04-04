@@ -49,3 +49,12 @@ body.forgot-password {
 		white-space: nowrap;
 	}
 }
+
+footer {
+	.auccatalog,
+	.auccatalog__nav,
+	.aucproduct,
+	.aucpage {
+		display: none;
+	}
+}

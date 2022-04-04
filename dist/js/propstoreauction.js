@@ -818,12 +818,11 @@ const auctionId = (
         }
         $cat = $(item).find('.cat');
         if ($cat.length) {
-            $cat.html($cat.html().replace('View catalog', 'View catalogue <span class="auclink__small">items</span>'));
+            $cat.html($cat.html().replace('View catalog', 'View catalog <span class="auclink__small">items</span>'));
             $cat.addClass('waves-effect waves-grey btn btn--secondary');
         }
     });
 
-    console.log(window.location.hash);
     if (window.location.hash === '#ended') {
         console.log('ended!')
         requestAnimationFrame(()=>$('a[name="ended"]')[0].scrollIntoView({block: 'start', behavior: 'smooth'}));
@@ -832,6 +831,7 @@ const auctionId = (
     $('.filters').hide();
     $('.hero__static-text').show();
     $('main').prepend($('.auc__hero').show());
+    $('.auclist.auchome').show();
 /**
 * 
 * 
@@ -1407,9 +1407,9 @@ $('.container').prepend($('.aucpage'));
     $('.auc-btn__register').attr('href', $('#register_to_bid_url').text());
     $('.auc-btn__catalog').attr('href', $('#catalog_url').text());
 
-    $catalogueTimer = $('.sell-cta__catalog-timer');
-    if ($catalogueTimer.length) {
-        setTimer($catalogueTimer, $catalogueTimer.data('sec'));
+    $catalogTimer = $('.sell-cta__catalog-timer');
+    if ($catalogTimer.length) {
+        setTimer($catalogTimer, $catalogTimer.data('sec'));
     }
 
     $('.share__item').each((i, item) => {

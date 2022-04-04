@@ -21630,6 +21630,13 @@ body.forgot-password #wrapper {
   white-space: nowrap;
 }
 
+footer .auccatalog,
+footer .auccatalog__nav,
+footer .aucproduct,
+footer .aucpage {
+  display: none;
+}
+
 .auc-header .header__col.header__col--left, .auc-header .header__col.header__col--right {
   -webkit-box-flex: 0;
   -webkit-flex: 0 0 360px;
@@ -21781,6 +21788,7 @@ body.forgot-password #wrapper {
 }
 
 .auclist.auchome {
+  display: none;
   padding: 3em 2.5em 6em;
   background: #F4F4F4;
 }
