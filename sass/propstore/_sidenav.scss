@@ -293,6 +293,10 @@ $main-link-height: 72px;
 .sidenav__settings-sign-register {
 	padding-left: 16px;
 	line-height: 1;
+
+	.signout-trigger {
+		padding-left: 8px;
+	}
 }
 
 @media #{$large-and-up} {

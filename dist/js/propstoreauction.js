@@ -14,6 +14,8 @@ document.addEventListener('DOMContentLoaded', () => {
 		.catch(loaded);
 
 	$(function () {
+        $('footer').append($('.auclting')); // hide front page items
+
         let interval = setInterval(() => {
             if (M) { // wait materialize
 clearInterval(interval);
@@ -440,9 +442,12 @@ const auctionId = (
         return barcode;
     };
 
-    $barcode = $('#barcode');
-    let barcode = $barcode.length ? $barcode.val() : null;
-    if (!barcode || barcode == 'Not Available') barcode = getBarcodeFromJS(); // old auctions
+    let barcode;
+    if (status !== 'closed') {
+        $barcode = $('#barcode');
+        barcode = $barcode.length ? $barcode.val() : null;
+        if (!barcode || barcode == 'Not Available') barcode = getBarcodeFromJS(); // old auctions
+    }
     if (barcode) {
         $('body').append($('#modal-shipping-quote'));
         $('#modal-shipping-quote-button').show();
@@ -821,10 +826,11 @@ const auctionId = (
             $cat.html($cat.html().replace('View catalog', 'View catalog <span class="auclink__small">items</span>'));
             $cat.addClass('waves-effect waves-grey btn btn--secondary');
         }
+
+        requestAnimationFrame(()=>$('#aucDtr').append(item));
     });
 
     if (window.location.hash === '#ended') {
-        console.log('ended!')
         requestAnimationFrame(()=>$('a[name="ended"]')[0].scrollIntoView({block: 'start', behavior: 'smooth'}));
     }
 
@@ -945,8 +951,6 @@ const auctionId = (
 
     $('#adv_search_categories .scroll-list').addClass('auccatalog__search-panel-checkboxes');
     $('#adv_search_categories > label').addClass('h6');
-    $('#adv_search_categories .accordion-header').click();
-    // $('#adv_search_categories .scroll-list').show();
 
     const $searchMatch = $('<div class="input-field input-field--label input-field--select">');
     $searchMatch.append($('.categories-match label').addClass('active')).append($('#advsCatMatch'));
@@ -1796,6 +1800,8 @@ if (params && params.get('sc') && !params.get('ru')) {
     $('html').scrollTop(params.get('sc'));
 }
 
+document.addEventListener('visibilitychange', () => $('.loader-block').hide(), false); // hide loader on browser back
+
 document.body.classList.add('loaded'); // if svg fail
             }
         }, 100);
@@ -1829,3 +1835,7 @@ if (!generateGoogleCalendarURL) function generateGoogleCalendarURL(lotName, urlL
 if (!generateICSFileURL) function generateICSFileURL(lotName, urlLink) {
     return 'NeedGenerateICSFileURL';
 }
+
+window.alert = function (text) { // prevent sam alert
+    console.log('Alert: ' + text); return true;
+};

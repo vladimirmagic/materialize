@@ -11210,6 +11210,10 @@ a.modal-bag__item:not(.btn):not(.btn-large):not(.btn-small):not(.btn-extra-small
   line-height: 1;
 }
 
+.sidenav__settings-sign-register .signout-trigger {
+  padding-left: 8px;
+}
+
 @media only screen and (min-width: 993px) {
   .sidenav:not(.sidenav-filter) {
     display: none;
@@ -21633,7 +21637,8 @@ body.forgot-password #wrapper {
 footer .auccatalog,
 footer .auccatalog__nav,
 footer .aucproduct,
-footer .aucpage {
+footer .aucpage,
+footer .auclting {
   display: none;
 }
 
@@ -21788,7 +21793,6 @@ footer .aucpage {
 }
 
 .auclist.auchome {
-  display: none;
   padding: 3em 2.5em 6em;
   background: #F4F4F4;
 }
@@ -22882,6 +22886,37 @@ body.search-index .categories-match {
   color: #F93838;
   font-size: 1rem;
   font-weight: 300 !important;
+}
+
+.adsrch {
+  max-height: calc(100vh - 88px);
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+.accordion-header.filter_ttl {
+  font-weight: 400;
+  line-height: 1.5;
+}
+
+.accordion-header.filter_ttl:after {
+  content: '';
+  display: inline-block;
+  margin: 0 0 -2px 8px;
+  width: 12px;
+  height: 12px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath fill-rule='evenodd' clip-rule='evenodd' d='M14.53 5.47a.75.75 0 00-1.06 0L8 10.94 2.53 5.47a.75.75 0 00-1.06 1.06l6 6c.3.3.77.3 1.06 0l6-6c.3-.3.3-.77 0-1.06z'/%3E%3C/svg%3E");
+}
+
+.accordion-header.filter_ttl.on:after {
+  -webkit-transform: rotate(180deg);
+          transform: rotate(180deg);
+}
+
+.accordion-content.scroll-list {
+  max-height: 70vh;
+  overflow-x: hidden;
+  overflow-y: auto;
 }
 
 @media only screen and (max-width: 1636px) {
