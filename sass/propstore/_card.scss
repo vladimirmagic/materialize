@@ -77,13 +77,14 @@ a.card:not(.btn) { // fix a
 }
 
 .card__featured {
+	@extend .h6;
 	position: absolute;
 	left: -30px;
-	top: 40px;
-	width: 160px;
+	top: 64px;
+	width: 210px;
 	text-align: center;
 	color: #fff;
-	font-weight: 600;
+	line-height: 2;
 	background: $color-turquoise;
 	transform-origin: 30px 50%;
 	transform: rotate(-30deg);
@@ -123,7 +124,7 @@ a.card:not(.btn) { // fix a
 	background: $color-red;
 
 	.card__featured ~ & {
-		top: 64px;
+		top: 80px;
 	}
 }
 
