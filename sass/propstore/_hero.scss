@@ -93,7 +93,7 @@
 	align-items: center;
 	width: 60px;
 	height: 60px;
-	margin-bottom: 24px;
+	margin-right: 32px;
 	color: #fff;
 	border-radius: 30px;
 	background: $color-blue;
@@ -109,7 +109,7 @@
 }
 
 .hero__suptitle {
-	margin-bottom: 24px;
+	margin-bottom: 8px;
 	font-size: 14px;
 	font-weight: 600;
   	letter-spacing: .12em;
@@ -231,6 +231,40 @@
 	margin-right: 1rem;
 }
 
+@media only screen and (max-width: 1456px) {
+	.hero {
+		height: 560px;
+	}
+
+	.hero__info-item-inner {
+		max-width: 400px;
+
+		.hero--auctions & {
+			max-width: 350px;
+		}
+	}
+
+	.hero__suptitle {
+		margin-bottom: 0;
+	}
+
+	.hero__details-item {
+		margin-bottom: 8px;
+	}
+
+	.hero__title {
+		margin-bottom: 20px;
+	}
+
+	.hero__description {
+		margin-bottom: 20px;
+
+		& + .hero__btn {
+			margin-top: 8px;
+		}
+	}
+}
+
 @media #{$extra-large-and-up} {
 	.hero.hero--auctions {
 		.hero__info {
@@ -294,7 +328,7 @@
 
 	.hero__info-item-inner {
 		width: 640px;
-		max-width: none;
+		max-width: none !important;
 	}
 
 	.hero__details {
@@ -345,17 +379,14 @@
 	}
 
 	.hero__suptitle {
-		margin-bottom: 16px;
 		font-size: 12px;
 	}
 
 	.hero__title {
-		margin-bottom: 20px;
 		font-size: 36px;
 	}
 	
 	.hero__description {
-		margin-bottom: 20px;
 		font-size: 18px;
 	}
 	

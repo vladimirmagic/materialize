@@ -180,6 +180,7 @@ $main-link-height: 72px;
 .sidenav .sidenav__menu-block-link,
 .sidenav .menu-auction-link {
 	@extend .sidenav__menu-underline;
+	position: relative;
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
