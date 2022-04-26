@@ -30,7 +30,7 @@
 	display: block;
 	height: auto;
 	width: auto;
-	margin-bottom: 64px;
+	margin-bottom: 40px;
 	background-color: rgba(0,0,0,0);
 
 	.indicator {
@@ -45,15 +45,35 @@
 }
 
 .whatsnew__cards {
-	height: $card-height + 32; // hide scrollbar (card height + cards-scroll paddings)
+	position: relative;
+	height: $card-height + 88; // hide scrollbar (card height + cards-scroll paddings)
 	overflow: hidden;
+
+	&:before,
+	&:after {
+		content: '';
+		position: absolute;
+		z-index: 100;
+		width: 12px;
+		top: 0;
+		bottom: 0;
+	}
+
+	&:before {
+		left: 0;
+		background: linear-gradient(to right, #fff, rgba(255,255,255,0));
+	}
+	&:after {
+		right: 0;
+		background: linear-gradient(to left, #fff, rgba(255,255,255,0));
+	}
 }
 
 .whatsnew__cards-scroll {
 	display: flex;
 	overflow-y: hidden;
 	overflow-x: auto;
-	padding: 8px 0 24px 12px;
+	padding: 32px 0 56px 12px;
 	scroll-behavior: smooth;
 
 	&:after {
@@ -298,8 +318,12 @@
 }
 
 @media #{$breakpoint-4cards} {
+	.whatsnew__inner {
+		max-width: none;
+	}
+
 	.whatsnew__cards {
-		height: $card-height-m + 32;
+		height: $card-height-m + 88;
 	}
 
 	.whatsnew__cards-scroll {
@@ -351,7 +375,7 @@
 	}
 
 	.whatsnew__tabs {
-		margin-bottom: 40px;
+		margin-bottom: 16px;
 	}
 
 	.whatsnew__cards-arrows {
