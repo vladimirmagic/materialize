@@ -324,6 +324,11 @@
 
 	.whatsnew__cards {
 		height: $card-height-m + 88;
+
+		&:before,
+		&:after {
+			display: none;
+		}
 	}
 
 	.whatsnew__cards-scroll {
