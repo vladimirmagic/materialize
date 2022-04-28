@@ -615,9 +615,10 @@ document.addEventListener('DOMContentLoaded', () => {
                         }
                     });
 
-                    setInterval(() => { // listen ajax updates
+                    let interval = setInterval(() => { // listen ajax updates
                         $others = $('#pnlOtherLots .lot');
                         if ($others.length) {
+                            clearInterval(interval);
                             $list = $('.cards__list');
                             $list.html('');
                             $others.each((index, item) => {
@@ -1478,8 +1479,82 @@ document.addEventListener('DOMContentLoaded', () => {
                      * LIVE SALE
                      */
                 } else if ($('body').hasClass('auctions-live-sale')) {
-                    const $selShow = $('#sel-show').clone();
-// $('.show-all').append($selShow.addClass('browser-default').show());
+                    document.querySelectorAll('style:not([data-v2]), link[rel="stylesheet"]:not([data-v2])').forEach(item => item.remove());
+
+                    const samVariables = (
+                        sam &&
+                        sam.serverData &&
+                        sam.serverData.variables &&
+                        sam.serverData.variables.default
+                    ) || {};
+                    const auctionId = samVariables && samVariables.auctionId || 0;
+                    const lblLotNoControlId = samVariables && samVariables.lblLotNoControlId || '';
+                    const lblLotNameControlId = samVariables && samVariables.lblLotNameControlId || '';
+                    const lblLotDescControlId = samVariables && samVariables.lblLotDescControlId || '';
+
+                    $('#rtb-panel').addClass('auclive-sale');
+                    $('.mobile-content-wrap').hide();
+                    $('#rtb-panel').prepend('<div class="auclive-sale__header">');
+                    $('.auclive-sale__header').append('<div class="auclive-sale__header-auction">').append('<div class="auclive-sale__header-lot">');
+                    $('.auclive-sale__header-auction').append('<div class="auclive-sale__header-auction-title">').append('<div class="auclive-sale__header-buttons">');
+                    $('.auclive-sale__header-auction-title').append($('.auction-details'));
+                    $('.auction-date').prepend('<i class="icon"><svg><use xlink:href="#calendar"></use></svg></i>');
+                    $('.auclive-sale__header-buttons').append($('.auctitle-live a'));
+                    $('.auclive-sale__header-buttons a').addClass('waves-effect waves-light btn auclive-sale__header-button')
+                    $('.auclive-sale__header-lot').append($('.lot-label'));
+                    $('.lot-label').append($('#' + lblLotNoControlId));
+                    $('.auclive-sale__header-lot').append('<div class="auclive-sale__header-lot-name">');
+                    $('.auclive-sale__header-lot-name').append($('#' + lblLotNameControlId));
+
+                    $('<div class="auclive-sale__sections">').insertAfter('.auclive-sale__header');
+                    $('.auclive-sale__sections').append('<div class="auclive-sale__sections-inner">');
+                    $('.auclive-sale__sections-inner').append($('.lot-images-container')).append($('.lot-bidding')).append($('.video-stream')).append($('.lot-description'));
+                    $('<div class="auclive-sale__upcoming">').insertAfter('.auclive-sale__sections');
+                    $('.auclive-sale__upcoming').append($('.lot-upcoming'));
+                    $('.auclive-sale__upcoming').append($('#upcoming-scroll'));
+
+                    $(document).ajaxSuccess(function(event, jqXHR, ajaxOptions, data) {
+                        if (!data) return;
+
+                        setTimeout(() => { // wait dom
+                            if (data.Imgs) { // lot info
+                                info();
+                            } else if (!!data.includes & data.includes('footable')) { // other lots
+                                upcoming();
+                            }
+                        }, 100);
+                    });
+
+                    function info () {
+                        const $desc = $('#' + lblLotDescControlId + ' > *');
+                        if ($desc.length) {
+                            if (!$('.product-description-content').length) { // old product
+                                const $productDescriptionContent = $('<div class="product-description-content">');
+                                $productDescriptionContent.append($desc);
+                                $('#' + lblLotDescControlId).append($productDescriptionContent);
+                            }
+                        }
+                    };
+                    setTimeout(info, 2000); // if ajax ended before ajaxSuccess
+
+                    function upcoming () {
+                        $upcoming = $('#upcoming-scroll .preview');
+                        if ($upcoming.length) {
+                            $upcoming.each((index, item) => {
+                                if (!$(item).find('.auclive-sale__upcoming-img').length) {
+                                    $img = $('<img class="auclive-sale__upcoming-img" src="' + $(item).prop('href').replace('_2.', '_1.') + '">');
+                                    $(item).append($img);
+                                }
+                            });
+
+                            $('#upcoming-scroll .upcoming').on('click', function () {
+                                window.open('/lot-details/index/catalog/' + auctionId + '/lot/' + $(this).data('lot_item_id'));
+                            });
+                        }
+                    };
+                    upcoming(); // if ajax ended before ajaxSuccess
+
+                    $('.show-all').addClass('input-field input-field--select').append($('#sel-show').attr('style', ''));
                     $('.show-all .ui-widget').remove();
                     $('.orng').addClass('waves-effect waves-light btn').removeClass('orng');
                     /**
