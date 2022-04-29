@@ -1512,47 +1512,33 @@ document.addEventListener('DOMContentLoaded', () => {
                     $('<div class="auclive-sale__upcoming">').insertAfter('.auclive-sale__sections');
                     $('.auclive-sale__upcoming').append($('.lot-upcoming'));
                     $('.auclive-sale__upcoming').append($('#upcoming-scroll'));
+                    $('.lot-upcoming h3').addClass('h3');
 
-                    $(document).ajaxSuccess(function(event, jqXHR, ajaxOptions, data) {
-                        if (!data) return;
-
-                        setTimeout(() => { // wait dom
-                            if (data.Imgs) { // lot info
-                                info();
-                            } else if (!!data.includes & data.includes('footable')) { // other lots
-                                upcoming();
-                            }
-                        }, 100);
-                    });
-
-                    function info () {
+                    let interval = setInterval(() => { // listen ajax updates
                         const $desc = $('#' + lblLotDescControlId + ' > *');
                         if ($desc.length) {
                             if (!$('.product-description-content').length) { // old product
+                                document.querySelectorAll('style:not([data-v2]), link[rel="stylesheet"]:not([data-v2])').forEach(item => item.remove());
                                 const $productDescriptionContent = $('<div class="product-description-content">');
                                 $productDescriptionContent.append($desc);
                                 $('#' + lblLotDescControlId).append($productDescriptionContent);
                             }
                         }
-                    };
-                    setTimeout(info, 2000); // if ajax ended before ajaxSuccess
 
-                    function upcoming () {
                         $upcoming = $('#upcoming-scroll .preview');
                         if ($upcoming.length) {
                             $upcoming.each((index, item) => {
                                 if (!$(item).find('.auclive-sale__upcoming-img').length) {
                                     $img = $('<img class="auclive-sale__upcoming-img" src="' + $(item).prop('href').replace('_2.', '_1.') + '">');
                                     $(item).append($img);
+
+                                    $(item).on('click', function () {
+                                        window.open('/lot-details/index/catalog/' + auctionId + '/lot/' + $(this).data('lot_item_id'));
+                                    });
                                 }
                             });
-
-                            $('#upcoming-scroll .upcoming').on('click', function () {
-                                window.open('/lot-details/index/catalog/' + auctionId + '/lot/' + $(this).data('lot_item_id'));
-                            });
                         }
-                    };
-                    upcoming(); // if ajax ended before ajaxSuccess
+                    }, 1000);
 
                     $('.show-all').addClass('input-field input-field--select').append($('#sel-show').attr('style', ''));
                     $('.show-all .ui-widget').remove();

@@ -68,7 +68,7 @@
 		min-height: 240px;
 
 		img {
-			max-width: 500px;
+			max-width: 100%;
 			max-height: 500px;
 		}
 
@@ -210,7 +210,12 @@
 
 	.show-all {
 		flex: 1 1 100%;
-		text-align: right;
+		display: flex;
+		justify-content: flex-end;
+
+		.select-wrapper {
+			max-width: 200px;
+		}
 	}
 
 	h3 {
@@ -261,10 +266,14 @@
 	}
 }
 
-@media #{$large-and-up} {
+@media #{$medium-and-up} {
 	.auclive-sale__header-auction {
 		display: flex;
 		justify-content: space-between;
+	}
+
+	.auclive-sale__header-auction-title {
+		flex: 0 0 50%;
 	}
 
 	.auclive-sale__sections-inner {
@@ -288,6 +297,99 @@
 		.video-stream,
 		.lot-description {
 			margin-top: 3rem;
+		}
+	}
+}
+
+@media #{$medium-and-down} {
+	.auclive-sale__header-button {
+		display: block;
+		& + & {
+			margin-top: 1rem;
+			margin-left: 0;
+		}
+	}
+
+	.auclive-sale__sections-inner {
+		.lot-images-container .lot-images,
+		.video-stream #z39 {
+			margin-right: 2rem;
+		}
+
+		.video-stream,
+		.lot-description {
+			margin-top: 1.5rem;
+		}
+	}
+
+	.auclive-sale__upcoming {
+		.footable > thead th.icon, .footable > tbody td.icon {
+			width: 10%;
+		}
+		.footable > thead th.lot, .footable > tbody td.lot {
+			width: 7%;
+		}
+		.footable > thead th.estimate, .footable > tbody td.estimate {
+			width: 20%;
+		}
+		.footable > thead th.hammer, .footable > tbody td.hammer {
+			 width: 20%;
+		}
+	}
+}
+
+@media #{$small-and-down} {
+	.auclive-sale__header-lot {
+		margin-top: 1rem;
+	}
+
+	.auclive-sale__sections-inner {
+		padding-top: 2rem;
+		padding-bottom: 2rem;
+	}
+
+	.auclive-sale__sections-inner {
+		.lot-images-container .lot-images,
+		.video-stream #z39,
+		.video-stream,
+		.lot-description {
+			margin-top: 0;
+			margin-right: 0;
+			margin-bottom: 1.5rem;
+		}
+
+		.lot-images {
+			height: 300px;
+		}
+	
+		#z9 {
+			img {
+				max-height: 300px;
+			}
+		}
+
+		.video-stream {
+			iframe {
+				height: 320px;
+			}
+		}
+	}
+
+	.auclive-sale__upcoming {
+		font-size: 12px;
+
+		.lot-upcoming {
+			top: -7rem;
+		}
+
+		.footable > tbody td.icon {
+			width: 48px;
+		}
+		
+		.footable > tbody td.lot {
+			position: absolute;
+			left: 0;
+			top: 32px;
 		}
 	}
 }
