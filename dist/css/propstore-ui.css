@@ -13386,6 +13386,11 @@ a.card-auction:not(.btn):not(.btn-large):not(.btn-small):not(.btn-extra-small):b
     left: .5rem;
     top: .5rem;
   }
+  .cards .card__featured ~ .card__discount, .cards-blog .card__featured ~ .card__discount {
+    -webkit-transform: scale(0.8);
+            transform: scale(0.8);
+    top: 74px;
+  }
   .cards .card__heart, .cards-blog .card__heart {
     right: .5rem;
     top: .5rem;

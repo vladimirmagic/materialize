@@ -160,6 +160,11 @@
 			top: .5rem;
 		}
 
+		.card__featured ~ .card__discount {
+			transform: scale(.8);
+			top: 74px;
+		}
+
 		.card__heart {
 			right: .5rem;
 			top: .5rem;
