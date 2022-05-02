@@ -3,6 +3,10 @@
 	.mobile-content-wrap {
 		display: none;
 	}
+
+	.hero__static-text {
+		margin-bottom: .5rem;
+	}
 }
 
 .auclive-sale {
@@ -33,6 +37,8 @@
 }
 
 .auclive-sale__header-lot {
+	margin-top: 1rem;
+
 	.lot-label {
 		margin-bottom: 1rem;
 		color: $color-font-grey;
@@ -59,6 +65,11 @@
 		margin-bottom: 0;
 		background: white;
 		border-radius: 6px;
+
+		.live-slide-left,
+		.live-slide-right {
+			display: none;
+		}
 	}
 
 	#z9 {
@@ -182,7 +193,10 @@
 	}
 
 	.lot-description-content {
-		#z18 > *:not(.product-description-content) {
+		#z18 > *:not(.product-description-content),
+		#calendarBtnBox,
+		.addthis_toolbox,
+		#infoBtnBox {
 			display: none;
 		}
 	}

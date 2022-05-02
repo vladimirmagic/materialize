@@ -1501,19 +1501,25 @@ document.addEventListener('DOMContentLoaded', () => {
                     const lblLotNameControlId = samVariables && samVariables.lblLotNameControlId || '';
                     const lblLotDescControlId = samVariables && samVariables.lblLotDescControlId || '';
 
+                    $('.hero__info-item-inner').prepend('<div class="hero__static-category">');
+                    $('.hero__static-category').append($('.lot-label'));
+                    $('.lot-label').append($('#' + lblLotNoControlId));
+                    $('.hero__static-title').html('').append($('#' + lblLotNameControlId));
+                    
+                    
+                    $('.hero__static-text').html('').append($('.auction-title')).show();
+                    $('.hero__static-date').append(moment($('.auction-date').text()).format('MMM D YYYY')).show();
+                    $('.container').prepend($('.auc__hero').show());
                     $('#rtb-panel').addClass('auclive-sale');
                     $('.mobile-content-wrap').hide();
-                    $('#rtb-panel').prepend('<div class="auclive-sale__header">');
-                    $('.auclive-sale__header').append('<div class="auclive-sale__header-auction">').append('<div class="auclive-sale__header-lot">');
-                    $('.auclive-sale__header-auction').append('<div class="auclive-sale__header-auction-title">').append('<div class="auclive-sale__header-buttons">');
-                    $('.auclive-sale__header-auction-title').append($('.auction-details'));
-                    $('.auction-date').prepend('<i class="icon"><svg><use xlink:href="#calendar"></use></svg></i>');
-                    $('.auclive-sale__header-buttons').append($('.auctitle-live a'));
-                    $('.auclive-sale__header-buttons a').addClass('waves-effect waves-light btn auclive-sale__header-button')
-                    $('.auclive-sale__header-lot').append($('.lot-label'));
-                    $('.lot-label').append($('#' + lblLotNoControlId));
+
+                    $('.container').append('<div class="auclive-sale__header">');
+                    $('.auclive-sale__header').append('<div class="auclive-sale__header-lot">');
+                    
                     $('.auclive-sale__header-lot').append('<div class="auclive-sale__header-lot-name">');
-                    $('.auclive-sale__header-lot-name').append($('#' + lblLotNameControlId));
+                    $('.auclive-sale__header-lot-name').append();
+
+                    $('.container').append($('#rtb-panel'));
 
                     $('<div class="auclive-sale__sections">').insertAfter('.auclive-sale__header');
                     $('.auclive-sale__sections').append('<div class="auclive-sale__sections-inner">');

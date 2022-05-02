@@ -23697,6 +23697,10 @@ body.my-items .categories-match {
   display: none;
 }
 
+.auctions-live-sale .hero__static-text {
+  margin-bottom: .5rem;
+}
+
 .auclive-sale {
   padding-top: 1rem;
   padding-bottom: 4rem;
@@ -23716,6 +23720,10 @@ body.my-items .categories-match {
 
 .auclive-sale__header-button + .auclive-sale__header-button {
   margin-left: 1rem;
+}
+
+.auclive-sale__header-lot {
+  margin-top: 1rem;
 }
 
 .auclive-sale__header-lot .lot-label {
@@ -23742,6 +23750,11 @@ body.my-items .categories-match {
   margin-bottom: 0;
   background: white;
   border-radius: 6px;
+}
+
+.auclive-sale__sections-inner .lot-images .live-slide-left,
+.auclive-sale__sections-inner .lot-images .live-slide-right {
+  display: none;
 }
 
 .auclive-sale__sections-inner #z9 {
@@ -23875,7 +23888,10 @@ body.my-items .categories-match {
   border-radius: 6px;
 }
 
-.auclive-sale__sections-inner .lot-description-content #z18 > *:not(.product-description-content) {
+.auclive-sale__sections-inner .lot-description-content #z18 > *:not(.product-description-content),
+.auclive-sale__sections-inner .lot-description-content #calendarBtnBox,
+.auclive-sale__sections-inner .lot-description-content .addthis_toolbox,
+.auclive-sale__sections-inner .lot-description-content #infoBtnBox {
   display: none;
 }
 
