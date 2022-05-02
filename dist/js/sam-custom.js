@@ -1,5 +1,3 @@
-let URL_PROPSTORE = 'https://live.propstore.com/';
-if (window.location.href.includes('localhost')) URL_PROPSTORE = 'http://propstore.loc/';
 const params = new URLSearchParams(window.location.search);
 let redirect;
 if (params.get('action')) {
