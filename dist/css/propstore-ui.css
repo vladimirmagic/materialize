@@ -23891,7 +23891,8 @@ body.my-items .categories-match {
 .auclive-sale__sections-inner .lot-description-content #z18 > *:not(.product-description-content),
 .auclive-sale__sections-inner .lot-description-content #calendarBtnBox,
 .auclive-sale__sections-inner .lot-description-content .addthis_toolbox,
-.auclive-sale__sections-inner .lot-description-content #infoBtnBox {
+.auclive-sale__sections-inner .lot-description-content #infoBtnBox,
+.auclive-sale__sections-inner .lot-description-content #modal-set {
   display: none;
 }
 
