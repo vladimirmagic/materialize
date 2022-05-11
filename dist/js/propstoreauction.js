@@ -1930,5 +1930,7 @@ if (!generateICSFileURL) function generateICSFileURL(lotName, urlLink) {
 }
 
 window.alert = function (text) { // prevent sam alert
-    console.log('Alert: ' + text); return true;
+    if (text && text.includes && text.includes('successfully added to your watchlist')) {
+        console.log('Alert: ' + text); return true;
+    }
 };
