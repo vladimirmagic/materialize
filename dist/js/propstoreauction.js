@@ -316,6 +316,12 @@ document.addEventListener('DOMContentLoaded', () => {
                         });
                     }
 
+                    $liveSale = $('.live-sale a');
+                    if ($liveSale.length) {
+                        $liveSale.addClass('waves-effect waves-light btn btn--tertiary aucproduct__livesale-link');
+                        $('<div class="aucproduct__livesale">').append($liveSale).insertBefore('.aucproduct__details');
+                    }
+
                     $detailsLine = $('.aucproduct__details-line').clone();
                     $details = $('.aucproduct__details');
                     $details.html('');
