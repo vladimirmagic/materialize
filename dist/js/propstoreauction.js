@@ -978,15 +978,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
                     $('#adv_search_categories .scroll-list').addClass('auccatalog__search-panel-checkboxes');
                     $('#adv_search_categories > label').addClass('h6');
-                    $('#adv_search_categories .accordion-header').prepend('<input type="checkbox" class="categ-chk">');
-                    
-                    const observer = new MutationObserver(function (events) {
-                        if (events && events[0] && events[0].target) {
-                            $target = $(events[0].target);
-                            $target.find('.categ-chk')[0].checked = $target.hasClass('on');
-                        }
-                    });  
-                    observer.observe($('#adv_search_categories .accordion-header')[0], { attributeFilter: ['class'] });
 
                     const $searchMatch = $('<div class="input-field input-field--label input-field--select">');
                     $searchMatch.append($('.categories-match label').addClass('active')).append($('#advsCatMatch'));
