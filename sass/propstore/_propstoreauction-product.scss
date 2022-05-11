@@ -7,6 +7,18 @@
 	}
 }
 
+.aucproduct__livesale {
+	margin-bottom: 2rem;
+}
+
+.aucproduct__livesale-link {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 100%;
+	line-height: 1.2;
+}
+
 .aucproduct__details {
 	margin-bottom: 2rem;
 	font-size: 1.5em;
@@ -57,7 +69,7 @@
 	justify-content: space-between;
 	margin-bottom: 2rem;
 
-	.maxbid {
+	.maxbid, .mxbid-input {
 		list-style: none;
 
 		.mxbid {
@@ -71,7 +83,7 @@
 			color: $color-font-grey;
 		}
 
-		.txt-max-bid {
+		.txt-max-bid, .textbox {
 			width: 100% !important;
 		}
 

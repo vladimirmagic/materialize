@@ -27,6 +27,10 @@
 	width: 736px;
 	max-width: 50%;
 	overflow: hidden;
+
+	.zoom-viewer {
+		display: none;
+	}
 }
 
 .product__slider {
