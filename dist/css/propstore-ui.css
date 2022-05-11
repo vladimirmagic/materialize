@@ -22305,41 +22305,41 @@ footer .auclting {
   margin-bottom: 2rem;
 }
 
-.aucproduct__form .maxbid {
+.aucproduct__form .maxbid, .aucproduct__form .mxbid-input {
   list-style: none;
 }
 
-.aucproduct__form .maxbid .mxbid {
+.aucproduct__form .maxbid .mxbid, .aucproduct__form .mxbid-input .mxbid {
   display: none;
 }
 
-.aucproduct__form .maxbid .maxbid-curr {
+.aucproduct__form .maxbid .maxbid-curr, .aucproduct__form .mxbid-input .maxbid-curr {
   position: absolute;
   z-index: 100;
   margin: 15px 0 0 12px;
   color: #8F8F8F;
 }
 
-.aucproduct__form .maxbid .txt-max-bid {
+.aucproduct__form .maxbid .txt-max-bid, .aucproduct__form .maxbid .textbox, .aucproduct__form .mxbid-input .txt-max-bid, .aucproduct__form .mxbid-input .textbox {
   width: 100% !important;
 }
 
-.aucproduct__form .maxbid .youre-winning {
+.aucproduct__form .maxbid .youre-winning, .aucproduct__form .mxbid-input .youre-winning {
   font-weight: 500;
   color: #11BFC5;
 }
 
-.aucproduct__form .maxbid label {
+.aucproduct__form .maxbid label, .aucproduct__form .mxbid-input label {
   color: #8F8F8F;
 }
 
-.aucproduct__form .maxbid .warning {
+.aucproduct__form .maxbid .warning, .aucproduct__form .mxbid-input .warning {
   display: block;
   font-weight: 500;
   color: #F93838;
 }
 
-.aucproduct__form .maxbid br {
+.aucproduct__form .maxbid br, .aucproduct__form .mxbid-input br {
   display: inline;
   content: '';
 }

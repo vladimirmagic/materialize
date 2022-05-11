@@ -356,7 +356,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         $('.aucproduct__button').show().append($nextBid);
                     }
 
-                    $bidInput = $('.maxbid');
+                    $bidInput = $('.maxbid, .mxbid-input');
                     if ($bidInput.length) {
                         $bidInput.addClass('aucproduct__form-item');
                         $('.aucproduct__form').show().append($bidInput);
@@ -420,12 +420,38 @@ document.addEventListener('DOMContentLoaded', () => {
                         $details.append($lineWin);
                     }
 
+                    $absentee = $('#blkAbs');
+                    if ($absentee.length) {
+                        $line = $detailsLine.clone();
+                        let html = $absentee.html();
+                        $line.html(html);
+                        let arr = html.split(':');
+                        if (arr.length && arr.length > 1) {
+                            let result = arr[0] + ':';
+                            arr = arr[1].split('(');
+                            if (arr.length && arr.length > 1) {
+                                result += '<strong>' + arr[0] + '</strong>';
+                                result += ' (' + arr[1];
+                                $line.html(result);
+                            }
+                        }
+                        $details.append($line);
+                    }
+
                     $estimate = $('.estimate');
                     $estimateVal = $('.estimate-val');
                     if ($estimate.length && $estimateVal.length) {
-                        $lineEstimate = $detailsLine.clone();
-                        $lineEstimate.html($estimate.text() + ' <strong>' + $estimateVal.html() + '</strong>');
-                        $details.append($lineEstimate);
+                        $line = $detailsLine.clone();
+                        $line.html($estimate.text() + ' <strong>' + $estimateVal.html() + '</strong>');
+                        $details.append($line);
+                    }
+
+                    $starting = $('.starting');
+                    $startingVal = $('.starting-val');
+                    if ($starting.length && $startingVal.length) {
+                        $line = $detailsLine.clone();
+                        $line.html($starting.text() + ' <strong>' + $startingVal.html() + '</strong>');
+                        $details.append($line);
                     }
 
                     function getBarcodeFromJS() {

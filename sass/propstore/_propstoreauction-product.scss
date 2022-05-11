@@ -57,7 +57,7 @@
 	justify-content: space-between;
 	margin-bottom: 2rem;
 
-	.maxbid {
+	.maxbid, .mxbid-input {
 		list-style: none;
 
 		.mxbid {
@@ -71,7 +71,7 @@
 			color: $color-font-grey;
 		}
 
-		.txt-max-bid {
+		.txt-max-bid, .textbox {
 			width: 100% !important;
 		}
 
