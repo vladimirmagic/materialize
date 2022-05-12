@@ -7,6 +7,94 @@
 	.hero__static-text {
 		margin-bottom: .5rem;
 	}
+
+	.list-opts {
+		input[type="radio"] {
+			position: relative;
+			opacity: 1;
+			pointer-events: all;
+		}
+		input[type="radio"],
+		input[type="checkbox"] {
+			margin-right: .5rem;
+		}
+	}
+	.btn {
+		font-size: 14px;
+		white-space: nowrap;
+	}
+
+	.ui-dialog {
+		padding: 1rem;
+		font-size: 20px;
+		border-radius: 6px;
+		z-index: 1010;
+		background: white;
+	}
+
+	.ui-dialog-titlebar {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		margin-bottom: 1rem;
+	}
+
+	.ui-dialog-titlebar-close.ui-button {
+		position: relative;
+		width: 32px;
+		height: 32px;
+		padding: 0;
+		font-size: 0;
+		border: 0;
+		outline: 0;
+		background: none;
+
+		.ui-button-icon {
+			position: absolute;
+			top: 4px;
+			bottom: 4px;
+			left: 4px;
+			right: 4px;
+			background-position: 50% 50%;
+			background-size: contain;
+			background-repeat: no-repeat;
+			background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 14 14'%3E%3Cpath fill-rule='evenodd' clip-rule='evenodd' d='M.47.47c.3-.3.77-.3 1.06 0L7 5.94 12.47.47a.75.75 0 111.06 1.06L8.06 7l5.47 5.47a.75.75 0 11-1.06 1.06L7 8.06l-5.47 5.47a.75.75 0 01-1.06-1.06L5.94 7 .47 1.53a.75.75 0 010-1.06z' /%3E%3C/svg%3E%0A");
+		}
+	}
+
+	.ui-dialog-title {
+		font-size: 24px;
+		font-weight: 600;
+	}
+
+	.ui-button {
+		padding: .5rem 1rem;
+		font-size: 12px;
+		font-weight: 600;
+		line-height: 1.5;
+		letter-spacing: .12em;
+		text-transform: uppercase;
+		cursor: pointer;
+	}
+
+	.ui-dialog-buttonset {
+		margin: 1rem 0;
+		text-align: center;
+
+		.ui-button + .ui-button {
+			margin-left: 1rem;
+		}
+	}
+
+	.ui-widget-overlay {
+		position: fixed;
+		left: 0;
+		right: 0;
+		top: 0;
+		bottom: 0;
+		z-index: 1000;
+		background: rgba(0,0,0,.7);
+	}
 }
 
 .auclive-sale {
