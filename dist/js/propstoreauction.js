@@ -1553,35 +1553,47 @@ i.timeout=!1},1e3)),this},prev:function(){var t=this.index-1;return t<0&&(t=0<ar
                     const lblLotNameControlId = samVariables && samVariables.lblLotNameControlId || '';
                     const lblLotDescControlId = samVariables && samVariables.lblLotDescControlId || '';
 
-                    $('.hero__info-item-inner').prepend('<div class="hero__static-category">');
-                    $('.hero__static-category').append($('.lot-label'));
-                    $('.lot-label').append($('#' + lblLotNoControlId));
-                    $('.hero__static-title').html('').append($('#' + lblLotNameControlId));
+                    const badge = '<span class="badge green"><i class="icon"><svg><use xlink:href="#live"></use></svg></i>Live bidding</span>';
+                    let title = 'Lot #' + $('#' + lblLotNoControlId).html() + ': ' + $('#' + lblLotNameControlId).html();
+                    $('.hero__static-title').html('').append($('.auction-title'));
+                    $('.hero__static-text').html('').append(
+                        badge,
+                        $('<span class="h4 auclive-sale-title">'),
+                    ).show();
                     
-                    
-                    $('.hero__static-text').html('').append($('.auction-title')).show();
                     $('.hero__static-date').append(moment($('.auction-date').text()).format('MMM D YYYY')).show();
-                    $('.container').prepend($('.auc__hero').show());
+                    $('.container').prepend($('.auc__hero').addClass('auc__hero--small').show());
                     $('#rtb-panel').addClass('auclive-sale');
                     $('.mobile-content-wrap').hide();
-
-                    $('.container').append('<div class="auclive-sale__header">');
-                    $('.auclive-sale__header').append('<div class="auclive-sale__header-lot">');
-                    
-                    $('.auclive-sale__header-lot').append('<div class="auclive-sale__header-lot-name">');
-                    $('.auclive-sale__header-lot-name').append();
-
                     $('.container').append($('#rtb-panel'));
 
-                    $('<div class="auclive-sale__sections">').insertAfter('.auclive-sale__header');
-                    $('.auclive-sale__sections').append('<div class="auclive-sale__sections-inner">');
-                    $('.auclive-sale__sections-inner').append($('.lot-images-container')).append($('.lot-bidding')).append($('.video-stream')).append($('.lot-description'));
-                    $('<div class="auclive-sale__upcoming">').insertAfter('.auclive-sale__sections');
+                    $('.container').append($('<div class="product auclive-sale__sections">'));
+                    $('.lot-bidding').prepend(badge, $('<div class="auclive-sale__title h2 auclive-sale-title">'));
+                    $('.product').append('<div class="product__inner">');
+                    $('.product__inner').append('<div class="product__gallery">').append('<div class="product__info">');
+                    $('.product__gallery').append($('.lot-images-container'));
+                    $('.product__info').append($('.lot-bidding')).append($('.video-stream'));
+
+                    $('.bidding-main .current').prepend('<i class="icon auclive-sale__current-icon"><svg><use xlink:href="#auction"></use></svg></i>');
+                    $('.lot-messages').insertAfter('.video-stream');
+                    $('.lot-messages').prepend($('<div class="auclive-sale__messages-bidder">'));
+                    $('.auclive-sale__messages-bidder').append($('.bidder-num'));
+                    $('.lot-messages').prepend($('<div class="auclive-sale__messages">'));
+                    $('.auclive-sale__messages').append(
+                        $('.lot-messages .sound'),
+                        $('.link-report-problem')
+                    );
+                    $('#report-problems').addClass('waves-effect waves-light btn btn--tertiary auclive-sale__propblems-link');
+
+                    $('<div class="auclive-sale__upcoming">').insertAfter('.product');
                     $('.auclive-sale__upcoming').append($('.lot-upcoming'));
                     $('.auclive-sale__upcoming').append($('#upcoming-scroll'));
                     $('.lot-upcoming h3').addClass('h3');
 
                     let interval = setInterval(() => { // listen ajax updates
+                        title = 'Lot #' + $('#' + lblLotNoControlId).html() + ': ' + $('#' + lblLotNameControlId).html();
+                        $('.auclive-sale-title').html(title);
+
                         const $desc = $('#' + lblLotDescControlId + ' > *');
                         if ($desc.length) {
                             if (!$('.product-description-content').length) { // old product
@@ -1606,6 +1618,16 @@ i.timeout=!1},1e3)),this},prev:function(){var t=this.index-1;return t<0&&(t=0<ar
                             });
                         }
                     }, 1000);
+
+                    function onResize () {
+                        if (getComputedStyle($('.product__inner')[0]).display === 'block') {
+                            $('.product__info').append($('.lot-description'));
+                        } else {
+                            $('.product__gallery').append($('.lot-description'));
+                        }
+                    }
+                    $(window).on('resize', onResize);
+                    onResize();
 
                     $('.show-all').addClass('input-field input-field--select').append($('#sel-show').attr('style', ''));
                     $('.show-all .ui-widget').remove();
