@@ -5813,11 +5813,11 @@ body.keyboard-focused .dropdown-content li:focus {
   content: '';
   position: absolute;
   z-index: -1;
-  left: -1em;
-  right: -1em;
-  top: -1em;
-  bottom: -1em;
-  border-radius: 5em;
+  left: -1rem;
+  right: -1rem;
+  top: -1rem;
+  bottom: -1rem;
+  border-radius: 5rem;
   background: rgba(0, 0, 0, 0.3);
   -webkit-transition: opacity .2s ease;
   transition: opacity .2s ease;
@@ -8690,11 +8690,11 @@ input[type=range]::-ms-thumb {
   content: '';
   position: absolute;
   z-index: -1;
-  left: -1.2em;
-  right: -.8em;
-  top: -1em;
-  bottom: -1em;
-  border-radius: 5em;
+  left: -1.2rem;
+  right: -.8rem;
+  top: -1rem;
+  bottom: -1rem;
+  border-radius: 5rem;
   background: rgba(0, 0, 0, 0.3);
   opacity: 0;
   -webkit-transition: opacity .2s ease;
@@ -8877,8 +8877,8 @@ input[type=range]::-ms-thumb {
 .carousel--hero .indicator-item:after {
   content: '';
   position: absolute;
-  height: 2em;
-  top: -1em;
+  height: 2rem;
+  top: -1rem;
   left: 0;
   right: 0;
 }
@@ -15111,7 +15111,7 @@ a.product__certificate:not(.btn):not(.btn-large):not(.btn-small):not(.btn-extra-
   }
   .product__info {
     max-width: 100%;
-    margin-top: 44px;
+    margin-top: 24px;
   }
   .product__slider,
   .product__video {
@@ -15742,11 +15742,11 @@ tbody .tr:last-child .td {
   content: '';
   position: absolute;
   z-index: -1;
-  left: -1em;
-  right: -1em;
-  top: -1em;
-  bottom: -1em;
-  border-radius: 5em;
+  left: -1rem;
+  right: -1rem;
+  top: -1rem;
+  bottom: -1rem;
+  border-radius: 5rem;
   background: rgba(0, 0, 0, 0.3);
   -webkit-transition: opacity .2s ease;
   transition: opacity .2s ease;
@@ -23588,6 +23588,9 @@ body.search-index .categories-match {
   .auc__hero.hero--static .hero__info {
     text-align: center;
   }
+  .auc__hero.hero--static.auc__hero--small {
+    background: #F4F4F4;
+  }
   .auc__hero.hero--static.auc__hero--small .hero__info {
     padding: 2rem 1rem;
   }
@@ -24163,6 +24166,7 @@ body.my-items .categories-match {
 }
 
 .auclive-sale__sections {
+  margin-top: 0;
   font-size: 20px;
   background: #F4F4F4;
 }
@@ -24507,6 +24511,12 @@ body.my-items .categories-match {
 
 .auclive-sale__upcoming .footable > thead th.hammer, .auclive-sale__upcoming .footable > tbody td.hammer {
   width: 15%;
+}
+
+@media only screen and (max-width: 1200px) {
+  .auclive-sale {
+    display: none;
+  }
 }
 
 @media only screen and (max-width: 992px) {

@@ -107,6 +107,7 @@
 }
 
 .auclive-sale__sections {
+	margin-top: 0;
 	font-size: 20px;
 	background: $color-bg;
 
@@ -407,6 +408,12 @@
 	}
 	.footable > thead th.hammer, .footable > tbody td.hammer {
 		 width: 15%;
+	}
+}
+
+@media #{$large-and-down} {
+	.auclive-sale {
+		display: none;
 	}
 }
 

@@ -72,6 +72,91 @@ i.timeout=!1},1e3)),this},prev:function(){var t=this.index-1;return t<0&&(t=0<ar
 
                 let isSignedIn = !$('#headsec li[title="Auction Login"]').length && !$('#headsec li[title="Login"]').length;
 
+                function addProductZoom() {
+                    $('#modal-product-gallery .carousel-item').each((index, item) => {
+                        const url = item.style.backgroundImage.slice(4, -1).replace(/["']/g, '');
+                        $(item).append('<img src="' + url + '" class="zoom-viewer"/>');
+                    });
+                }
+
+                function addProductGallery() {
+                    const $productItems = $('.product__slider .carousel-item');
+                    const $productThumbnails = $('.product__thumbnail');
+                    if ($productItems.length && $productThumbnails.length) {
+                        $('.modal-gallery__carousel').append('<div class="preloader-wrapper active"><div class="spinner-layer spinner-white-only"><div class="circle-clipper left"><div class="circle"></div></div><div class="gap-patch"><div class="circle"></div></div><div class="circle-clipper right"><div class="circle"></div></div></div></div>');
+                        let productSlider;
+                        function productCarousel () {
+                            if (productSlider && productSlider[0]) productSlider[0].destroy();
+                            productSlider = M.Carousel.init(document.querySelectorAll('.product__slider'), {
+                                onCycleTo: function(item, dragged) {
+                                    const index = $productItems.index(item);
+                                    const $thumbnail = $productThumbnails.eq(index);
+                                    $productThumbnails.removeClass('active');
+                                    $thumbnail.addClass('active');
+                                },
+                                onDestroy: function() {
+                                    $productThumbnails.off('mousemove', onClickProductThumbnail);
+                                },
+                            });
+                            function onClickProductThumbnail (e) {
+                                const index = $productThumbnails.index(e.target);
+                                productSlider[0].set(index);
+                            }
+                            $productThumbnails.on('mousemove', onClickProductThumbnail);
+                        }
+                        productCarousel();
+                        $(window).on('resize', productCarousel);
+                    }
+                    let modalSlider;
+                    let zoomViewer;
+                    function modalCarousel () {
+                        if (modalSlider && modalSlider[0]) modalSlider[0].destroy();
+                        modalSlider = M.Carousel.init($('#modal-product-gallery').find('.modal-gallery__carousel'), {
+                            fullWidth: true,
+                            indicators: true,
+                            onCycleTo: function(item, dragged) {
+                                if ($(item).find('.zoom-viewer').length) {
+                                    if (zoomViewer) {
+                                        zoomViewer.destroy();
+                                        $('.zoom-viewer__toggler').remove();
+                                    }
+                                    zoomViewer = new Viewer($(item).find('.zoom-viewer')[0], {
+                                        navbar: false,
+                                        title: false,
+                                        toolbar: false,
+                                        zoomRatio: .5,
+                                        viewed() { zoomViewer.zoomTo(1.5); },
+                                    });
+                                    $('#modal-product-gallery').append('<div class="zoom-viewer__toggler">');
+                                    $('.zoom-viewer__toggler').on('click', ()=>{
+                                        zoomViewer.show();
+                                    });
+                                }
+                            },
+                        });
+                    }
+                    M.Modal.init(document.querySelectorAll('#modal-product-gallery'), {
+                        opacity: .75,
+                        onCloseStart: (el) => {
+                            if (modalSlider && modalSlider[0]) modalSlider[0].destroy();
+                            $(window).off('resize', modalCarousel);
+                        },
+                        onOpenEnd: (el, trigger) => {
+                            modalCarousel();
+                            $(window).on('resize', modalCarousel);
+                            const $productGallery = $(trigger).closest('.product__gallery');
+                            if ($productGallery.length) {
+                                const timer = document.body.classList.contains('touch') ? 300 : 0; // on touch wait for active
+                                setTimeout(() => {
+                                    const $active = $productGallery.find('.carousel-item.active');
+                                    const index = $productItems.index($active);
+                                    modalSlider[0].set(index);
+                                }, timer);
+                            }
+                        }
+                    });
+                }
+
                 /**
                  *
                  *
@@ -271,10 +356,7 @@ i.timeout=!1},1e3)),this},prev:function(){var t=this.index-1;return t<0&&(t=0<ar
                     if ($('.description-info-content .product__gallery').length) {
                         $('.product__inner .product__gallery').remove();
                         $('.product__gallery').prependTo('.product__inner');
-                        $('#modal-product-gallery .carousel-item').each((index, item) => {
-                            const url = item.style.backgroundImage.slice(4, -1).replace(/["']/g, '');
-                            $(item).append('<img src="' + url + '" class="zoom-viewer"/>');
-                        });
+                        addProductZoom();
                     } else {
                         $carouselItem = $('.product__slider .carousel-item').clone();
                         $slider = $('.product__slider').html('');
@@ -599,82 +681,7 @@ i.timeout=!1},1e3)),this},prev:function(){var t=this.index-1;return t<0&&(t=0<ar
                     $('.container').prepend($('.aucproduct'));
                     $('.container').prepend($('.auc__hero').show());
 
-                    // PRODUCT
-                    const $productItems = $('.product__slider .carousel-item');
-                    const $productThumbnails = $('.product__thumbnail');
-                    if ($productItems.length && $productThumbnails.length) {
-                        $('.modal-gallery__carousel').append('<div class="preloader-wrapper active"><div class="spinner-layer spinner-white-only"><div class="circle-clipper left"><div class="circle"></div></div><div class="gap-patch"><div class="circle"></div></div><div class="circle-clipper right"><div class="circle"></div></div></div></div>');
-                        let productSlider;
-                        function productCarousel () {
-                            if (productSlider && productSlider[0]) productSlider[0].destroy();
-                            productSlider = M.Carousel.init(document.querySelectorAll('.product__slider'), {
-                                onCycleTo: function(item, dragged) {
-                                    const index = $productItems.index(item);
-                                    const $thumbnail = $productThumbnails.eq(index);
-                                    $productThumbnails.removeClass('active');
-                                    $thumbnail.addClass('active');
-                                },
-                                onDestroy: function() {
-                                    $productThumbnails.off('mousemove', onClickProductThumbnail);
-                                },
-                            });
-                            function onClickProductThumbnail (e) {
-                                const index = $productThumbnails.index(e.target);
-                                productSlider[0].set(index);
-                            }
-                            $productThumbnails.on('mousemove', onClickProductThumbnail);
-                        }
-                        productCarousel();
-                        $(window).on('resize', productCarousel);
-                    }
-                    let modalSlider;
-                    let zoomViewer;
-                    function modalCarousel () {
-                        if (modalSlider && modalSlider[0]) modalSlider[0].destroy();
-                        modalSlider = M.Carousel.init($('#modal-product-gallery').find('.modal-gallery__carousel'), {
-                            fullWidth: true,
-                            indicators: true,
-                            onCycleTo: function(item, dragged) {
-                                if ($(item).find('.zoom-viewer').length) {
-                                    if (zoomViewer) {
-                                        zoomViewer.destroy();
-                                        $('.zoom-viewer__toggler').remove();
-                                    }
-                                    zoomViewer = new Viewer($(item).find('.zoom-viewer')[0], {
-                                        navbar: false,
-                                        title: false,
-                                        toolbar: false,
-                                        zoomRatio: .5,
-                                        viewed() { zoomViewer.zoomTo(1.5); },
-                                    });
-                                    $('#modal-product-gallery').append('<div class="zoom-viewer__toggler">');
-                                    $('.zoom-viewer__toggler').on('click', ()=>{
-                                        zoomViewer.show();
-                                    });
-                                }
-                            },
-                        });
-                    }
-                    M.Modal.init(document.querySelectorAll('#modal-product-gallery'), {
-                        opacity: .75,
-                        onCloseStart: (el) => {
-                            if (modalSlider && modalSlider[0]) modalSlider[0].destroy();
-                            $(window).off('resize', modalCarousel);
-                        },
-                        onOpenEnd: (el, trigger) => {
-                            modalCarousel();
-                            $(window).on('resize', modalCarousel);
-                            const $productGallery = $(trigger).closest('.product__gallery');
-                            if ($productGallery.length) {
-                                const timer = document.body.classList.contains('touch') ? 300 : 0; // on touch wait for active
-                                setTimeout(() => {
-                                    const $active = $productGallery.find('.carousel-item.active');
-                                    const index = $productItems.index($active);
-                                    modalSlider[0].set(index);
-                                }, timer);
-                            }
-                        }
-                    });
+                    addProductGallery();
 
                     let interval = setInterval(() => { // listen ajax updates
                         $others = $('#pnlOtherLots .lot');
@@ -1567,7 +1574,7 @@ i.timeout=!1},1e3)),this},prev:function(){var t=this.index-1;return t<0&&(t=0<ar
                     $('.mobile-content-wrap').hide();
                     $('.container').append($('#rtb-panel'));
 
-                    $('.container').append($('<div class="product auclive-sale__sections">'));
+                    $('.container').append($('<div class="product aucproduct auclive-sale__sections">'));
                     $('.lot-bidding').prepend(badge, $('<div class="auclive-sale__title h2 auclive-sale-title">'));
                     $('.product').append('<div class="product__inner">');
                     $('.product__inner').append('<div class="product__gallery">').append('<div class="product__info">');
@@ -1601,6 +1608,32 @@ i.timeout=!1},1e3)),this},prev:function(){var t=this.index-1;return t<0&&(t=0<ar
                                 const $productDescriptionContent = $('<div class="product-description-content">');
                                 $productDescriptionContent.append($desc);
                                 $('#' + lblLotDescControlId).append($productDescriptionContent);
+                            }
+                            if (!$('#' + lblLotDescControlId).find('.product__gallery').length) $('#' + lblLotDescControlId).append(`<div class="product__gallery">
+                                <div class="product__slider">
+                                    <div class="carousel-item modal-trigger" href="#modal-product-gallery" style="background-image:url('https://propstoreauction.com/images/lot/5970/597041_0.jpg');"></div>
+                                    <div class="carousel-item modal-trigger" href="#modal-product-gallery" style="background-image:url('https://propstoreauction.com/images/lot/5970/597042_0.jpg');"></div>
+                                </div>
+                                <div class="product__thumbnails">
+                                    <div class="product__thumbnails-scroll">
+                                        <div class="product__thumbnail modal-trigger" href="#modal-product-gallery" style="background-image: url('https://propstoreauction.com/images/lot/5970/597041_0.jpg');"></div>
+                                        <div class="product__thumbnail modal-trigger" href="#modal-product-gallery" style="background-image: url('https://propstoreauction.com/images/lot/5970/597042_0.jpg');"></div>
+                                    </div>
+                                </div>
+                                <div id="modal-product-gallery" class="modal-gallery" style="display: none;">
+                                    <div class="modal-gallery__carousel">
+                                        <div class="carousel-item" style="background-image: url('https://propstoreauction.com/images/lot/5970/597041_9.jpg');"></div>
+                                        <div class="carousel-item" style="background-image: url('https://propstoreauction.com/images/lot/5970/597042_9.jpg');"></div>
+                                    </div>
+                                </div>
+                            </div>`); // test
+                            const $gallery = $('#' + lblLotDescControlId).find('.product__slider');
+                            if ($gallery.length) {
+                                $('.lot-images-container').hide();
+                                $('.product__gallery').first().prepend($('#' + lblLotDescControlId).find('.product__gallery').html());
+                                $gallery.remove();
+                                addProductZoom();
+                                addProductGallery();
                             }
                         }
 
