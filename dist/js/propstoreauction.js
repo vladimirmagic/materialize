@@ -1609,24 +1609,6 @@ i.timeout=!1},1e3)),this},prev:function(){var t=this.index-1;return t<0&&(t=0<ar
                                 $productDescriptionContent.append($desc);
                                 $('#' + lblLotDescControlId).append($productDescriptionContent);
                             }
-                            if (!$('#' + lblLotDescControlId).find('.product__gallery').length) $('#' + lblLotDescControlId).append(`<div class="product__gallery">
-                                <div class="product__slider">
-                                    <div class="carousel-item modal-trigger" href="#modal-product-gallery" style="background-image:url('https://propstoreauction.com/images/lot/5970/597041_0.jpg');"></div>
-                                    <div class="carousel-item modal-trigger" href="#modal-product-gallery" style="background-image:url('https://propstoreauction.com/images/lot/5970/597042_0.jpg');"></div>
-                                </div>
-                                <div class="product__thumbnails">
-                                    <div class="product__thumbnails-scroll">
-                                        <div class="product__thumbnail modal-trigger" href="#modal-product-gallery" style="background-image: url('https://propstoreauction.com/images/lot/5970/597041_0.jpg');"></div>
-                                        <div class="product__thumbnail modal-trigger" href="#modal-product-gallery" style="background-image: url('https://propstoreauction.com/images/lot/5970/597042_0.jpg');"></div>
-                                    </div>
-                                </div>
-                                <div id="modal-product-gallery" class="modal-gallery" style="display: none;">
-                                    <div class="modal-gallery__carousel">
-                                        <div class="carousel-item" style="background-image: url('https://propstoreauction.com/images/lot/5970/597041_9.jpg');"></div>
-                                        <div class="carousel-item" style="background-image: url('https://propstoreauction.com/images/lot/5970/597042_9.jpg');"></div>
-                                    </div>
-                                </div>
-                            </div>`); // test
                             const $gallery = $('#' + lblLotDescControlId).find('.product__slider');
                             if ($gallery.length) {
                                 $('.lot-images-container').hide();
