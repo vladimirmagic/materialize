@@ -229,6 +229,18 @@
 		}
 	}
 
+	#chat-messages {
+		margin-top: 2rem;
+		padding-left: 2rem;
+		border-left: 1px solid $color-grey;
+		height: 360px;
+		overflow: auto;
+
+		.auc-lbl {
+			font-weight: 500;
+		}
+	}
+
 	.video-stream {
 		margin-top: 1rem;
 
@@ -385,7 +397,8 @@
 	}
 
 	&[data-upcoming="upcoming"] {
-		.sold {
+		.sold,
+		.unsold {
 			display: none;
 		}
 	}
@@ -449,7 +462,8 @@
 			font-size: 1rem;
 		}
 	
-		.lot-messages {
+		.lot-messages,
+		#chat-messages {
 			padding-left: 1rem;
 			font-size: 1rem;
 		}

@@ -24307,6 +24307,18 @@ body.my-items .categories-match {
   background: linear-gradient(rgba(0, 0, 0, 0), #F4F4F4);
 }
 
+.auclive-sale__sections #chat-messages {
+  margin-top: 2rem;
+  padding-left: 2rem;
+  border-left: 1px solid #c7c7c7;
+  height: 360px;
+  overflow: auto;
+}
+
+.auclive-sale__sections #chat-messages .auc-lbl {
+  font-weight: 500;
+}
+
 .auclive-sale__sections .video-stream {
   margin-top: 1rem;
 }
@@ -24475,7 +24487,8 @@ body.my-items .categories-match {
           justify-content: center;
 }
 
-.auclive-sale__upcoming[data-upcoming="upcoming"] .sold {
+.auclive-sale__upcoming[data-upcoming="upcoming"] .sold,
+.auclive-sale__upcoming[data-upcoming="upcoming"] .unsold {
   display: none;
 }
 
@@ -24522,7 +24535,8 @@ body.my-items .categories-match {
   .auclive-sale__sections .lot-description {
     font-size: 1rem;
   }
-  .auclive-sale__sections .lot-messages {
+  .auclive-sale__sections .lot-messages,
+  .auclive-sale__sections #chat-messages {
     padding-left: 1rem;
     font-size: 1rem;
   }

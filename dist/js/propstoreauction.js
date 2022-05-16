@@ -1596,6 +1596,7 @@ i.timeout=!1},1e3)),this},prev:function(){var t=this.index-1;return t<0&&(t=0<ar
                         $('.link-report-problem')
                     );
                     $('#report-problems').addClass('waves-effect waves-light btn btn--tertiary auclive-sale__propblems-link');
+                    $('#chat-messages').insertAfter('.lot-messages');
 
                     $('<div class="auclive-sale__upcoming">').insertAfter('.product');
                     $('.auclive-sale__upcoming').append($('.lot-upcoming'));
