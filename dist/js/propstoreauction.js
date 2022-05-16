@@ -1626,20 +1626,17 @@ i.timeout=!1},1e3)),this},prev:function(){var t=this.index-1;return t<0&&(t=0<ar
 
 
                     let interval = setInterval(() => { // listen ajax updates
-                        const $currentLot = $('.upcoming').first();
-                        if (!$currentLot.length) return;
+                        const currentLot = $('#' + lblLotNoControlId).text();
+                        if (!currentLot) return;
 
-                        const currentLotId = $currentLot[0].dataset['lot_item_id'];
-                        $('.upcoming--current').removeClass('upcoming--current');
-                        $currentLot.addClass('upcoming--current');
-                        if ($('#rtb-panel')[0].dataset.lot != currentLotId) {
-                            $('#rtb-panel')[0].dataset.lot = currentLotId;
-
+                        if ($('#rtb-panel')[0].dataset.lot != currentLot) {
                             title = 'Lot #' + $('#' + lblLotNoControlId).html() + ': ' + $('#' + lblLotNameControlId).html();
                             $('.auclive-sale-title').html(title);
 
                             const $desc = $('#' + lblLotDescControlId + ' > *');
                             if ($desc.length) {
+                                $('#rtb-panel')[0].dataset.lot = currentLot;
+
                                 if (!$('.product-description-content').length) { // old product
                                     document.querySelectorAll('style:not([data-v2]), link[rel="stylesheet"]:not([data-v2])').forEach(item => item.remove());
                                     const $productDescriptionContent = $('<div class="product-description-content">');
@@ -1660,25 +1657,25 @@ i.timeout=!1},1e3)),this},prev:function(){var t=this.index-1;return t<0&&(t=0<ar
                             }
                         }
 
-                        if ($('.auclive-sale__upcoming')[0].dataset.lot != currentLotId) {
-                            $('.auclive-sale__upcoming')[0].dataset.lot = currentLotId;
-
-                            $upcoming = $('#upcoming-scroll .preview');
+                        if ($('.auclive-sale__upcoming')[0].dataset.lot != currentLot) {
+                            $upcoming = $('#upcoming-scroll tr');
                             if ($upcoming.length) {
+                                $('.auclive-sale__upcoming')[0].dataset.lot = currentLot;
+                                $('.upcoming--current').removeClass('upcoming--current');
+
                                 $upcoming .each((index, item) => {
                                     if (!$(item).find('.auclive-sale__upcoming-img').length) {
-                                        $img = $('<img class="auclive-sale__upcoming-img" src="' + $(item).prop('href').replace('_2.', '_1.') + '">');
-                                        $(item).append($img);
+                                        $img = $('<img class="auclive-sale__upcoming-img" src="' + $(item).find('.preview').prop('href').replace('_2.', '_1.') + '">');
+                                        $(item).find('.preview').append($img);
 
-                                        $(item).on('click', function () {
+                                        $(item).find('.preview').on('click', function () {
                                             window.open('/lot-details/index/catalog/' + auctionId + '/lot/' + $(this).data('lot_item_id'));
                                         });
                                     }
+                                    if ($(item).find('.lot').text() == currentLot) {
+                                        $(item).addClass('upcoming--current');
+                                    }
                                 });
-                                
-                                if ($('.auclive-sale__upcoming')[0].dataset.upcoming === 'past') {
-                                    $('#catalog-page-1').html($('#catalog-page-1 tr').get().reverse());
-                                }
                             }
                         }
                     }, 1000);

@@ -24228,6 +24228,10 @@ body.my-items .categories-match {
   font-weight: 300;
 }
 
+.auclive-sale__sections .lot-bidding .bidding-main .current-btn .btn, .auclive-sale__sections .lot-bidding .bidding-main .current-btn .btn-large, .auclive-sale__sections .lot-bidding .bidding-main .current-btn .btn-small, .auclive-sale__sections .lot-bidding .bidding-main .current-btn .btn-extra-small {
+  width: 100%;
+}
+
 .auclive-sale__sections .lot-bidding .bidding-main .current-btn .warning {
   margin-bottom: .5rem;
 }
