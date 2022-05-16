@@ -125,6 +125,7 @@ i.timeout=!1},1e3)),this},prev:function(){var t=this.index-1;return t<0&&(t=0<ar
                                         title: false,
                                         toolbar: false,
                                         zoomRatio: .5,
+                                        maxZoomRatio: 2,
                                         viewed() { zoomViewer.zoomTo(1.5); },
                                     });
                                     $('#modal-product-gallery').append('<div class="zoom-viewer__toggler">');
