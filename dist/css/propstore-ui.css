@@ -24051,23 +24051,13 @@ body.my-items .categories-match {
 }
 
 .auctions-live-sale .auctitle-live,
-.auctions-live-sale .mobile-content-wrap {
+.auctions-live-sale .mobile-content-wrap,
+.auctions-live-sale .list-opts {
   display: none;
 }
 
 .auctions-live-sale .hero__static-text {
   margin-bottom: .5rem;
-}
-
-.auctions-live-sale .list-opts input[type="radio"] {
-  position: relative;
-  opacity: 1;
-  pointer-events: all;
-}
-
-.auctions-live-sale .list-opts input[type="radio"],
-.auctions-live-sale .list-opts input[type="checkbox"] {
-  margin-right: .5rem;
 }
 
 .auctions-live-sale .btn, .auctions-live-sale .btn-large, .auctions-live-sale .btn-small, .auctions-live-sale .btn-extra-small {
@@ -24184,7 +24174,7 @@ body.my-items .categories-match {
   display: none;
 }
 
-.auclive-sale__sections #z9 {
+.auclive-sale__sections .lblLotImgControlId {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -24200,12 +24190,12 @@ body.my-items .categories-match {
   min-height: 240px;
 }
 
-.auclive-sale__sections #z9 img {
+.auclive-sale__sections .lblLotImgControlId img {
   width: 100%;
   max-width: 736px;
 }
 
-.auclive-sale__sections #z9 .loader-img {
+.auclive-sale__sections .lblLotImgControlId .loader-img {
   width: 32px;
   height: 32px;
   opacity: .5;
@@ -24338,7 +24328,7 @@ body.my-items .categories-match {
   margin-top: 2rem;
 }
 
-.auclive-sale__sections .lot-description-content #z18 > *:not(.product-description-content),
+.auclive-sale__sections .lot-description-content .lblLotDescControlId > *:not(.product-description-content),
 .auclive-sale__sections .lot-description-content #calendarBtnBox,
 .auclive-sale__sections .lot-description-content .addthis_toolbox,
 .auclive-sale__sections .lot-description-content #infoBtnBox,
@@ -24414,41 +24404,6 @@ body.my-items .categories-match {
   background: white;
 }
 
-.auclive-sale__upcoming .list-opts {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: justify;
-  -webkit-justify-content: space-between;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
-  -webkit-box-align: center;
-  -webkit-align-items: center;
-      -ms-flex-align: center;
-          align-items: center;
-  white-space: nowrap;
-}
-
-.auclive-sale__upcoming .show-all {
-  -webkit-box-flex: 1;
-  -webkit-flex: 1 1 100%;
-      -ms-flex: 1 1 100%;
-          flex: 1 1 100%;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: end;
-  -webkit-justify-content: flex-end;
-      -ms-flex-pack: end;
-          justify-content: flex-end;
-}
-
-.auclive-sale__upcoming .show-all .select-wrapper {
-  max-width: 200px;
-}
-
 .auclive-sale__upcoming h3 {
   margin-bottom: 1em;
   text-align: center;
@@ -24468,16 +24423,12 @@ body.my-items .categories-match {
   height: 2.5rem;
 }
 
-.auclive-sale__upcoming tr.sold {
-  opacity: .5;
-}
-
 .auclive-sale__upcoming tr:hover {
   opacity: 1;
   background: rgba(200, 200, 200, 0.07);
 }
 
-.auclive-sale__upcoming .sold + .upcoming {
+.auclive-sale__upcoming .upcoming--current {
   background: #F4F4F4;
 }
 
@@ -24513,6 +24464,33 @@ body.my-items .categories-match {
   width: 15%;
 }
 
+.auclive-sale__upcoming .list-options {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.auclive-sale__upcoming[data-upcoming="upcoming"] .sold {
+  display: none;
+}
+
+.auclive-sale__upcoming[data-upcoming="past"] .upcoming:not(.upcoming--current) {
+  display: none;
+}
+
+.auclive-sale__upcoming-options label {
+  color: #2D2E41;
+}
+
+.auclive-sale__upcoming-options label + label {
+  margin-left: 2rem;
+}
+
 @media only screen and (max-width: 1200px) {
   .auclive-sale {
     display: none;
@@ -24520,7 +24498,7 @@ body.my-items .categories-match {
 }
 
 @media only screen and (max-width: 992px) {
-  .auclive-sale__sections #z9 img {
+  .auclive-sale__sections .lblLotImgControlId img {
     max-width: 300px;
   }
   .auclive-sale__upcoming .footable > thead th.icon, .auclive-sale__upcoming .footable > tbody td.icon {

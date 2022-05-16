@@ -1560,6 +1560,10 @@ i.timeout=!1},1e3)),this},prev:function(){var t=this.index-1;return t<0&&(t=0<ar
                     const lblLotNoControlId = samVariables && samVariables.lblLotNoControlId || '';
                     const lblLotNameControlId = samVariables && samVariables.lblLotNameControlId || '';
                     const lblLotDescControlId = samVariables && samVariables.lblLotDescControlId || '';
+                    const lblLotImgControlId = samVariables && samVariables.lblLotImgControlId || '';
+
+                    $('#' + lblLotDescControlId).addClass('lblLotDescControlId');
+                    $('#' + lblLotImgControlId).addClass('lblLotImgControlId');
 
                     const badge = '<span class="badge green"><i class="icon"><svg><use xlink:href="#live"></use></svg></i>Live bidding</span>';
                     let title = 'Lot #' + $('#' + lblLotNoControlId).html() + ': ' + $('#' + lblLotNameControlId).html();
@@ -1597,6 +1601,28 @@ i.timeout=!1},1e3)),this},prev:function(){var t=this.index-1;return t<0&&(t=0<ar
                     $('.auclive-sale__upcoming').append($('.lot-upcoming'));
                     $('.auclive-sale__upcoming').append($('#upcoming-scroll'));
                     $('.lot-upcoming h3').addClass('h3');
+                    $('.list-options').append(`<fieldset class="auclive-sale__upcoming-options">
+                        <label>
+                            <input name="upcoming-options" value="upcoming" type="radio" checked />
+                            <span>Upcoming</span>
+                        </label>
+                        <label>
+                            <input name="upcoming-options" value="past" type="radio" />
+                            <span>Past</span>
+                        </label>
+                    </fieldset>`);
+
+                    function onOptionsChange () {
+                        const $input = $('input[name="upcoming-options"]:checked');
+                        const data = $('.auclive-sale__upcoming')[0].dataset;
+                        if (data.upcoming && data.upcoming !== $input.val()) {
+                            $('#catalog-page-1').html($('#catalog-page-1 tr').get().reverse());
+                        }
+                        data.upcoming = $input.val();
+                    }
+                    $('input[name="upcoming-options"]').on('change', onOptionsChange);
+                    onOptionsChange();
+
 
                     let interval = setInterval(() => { // listen ajax updates
                         title = 'Lot #' + $('#' + lblLotNoControlId).html() + ': ' + $('#' + lblLotNameControlId).html();
@@ -1620,9 +1646,10 @@ i.timeout=!1},1e3)),this},prev:function(){var t=this.index-1;return t<0&&(t=0<ar
                             }
                         }
 
-                        $upcoming = $('#upcoming-scroll .preview');
-                        if ($upcoming.length) {
-                            $upcoming.each((index, item) => {
+                        $upcoming = $('#upcoming-scroll .upcoming');
+                        if ($upcoming.length && $('.auclive-sale__upcoming')[0].dataset.length != $upcoming.length) {
+                            $('.auclive-sale__upcoming')[0].dataset.length = $upcoming.length;
+                            $('#upcoming-scroll .preview').each((index, item) => {
                                 if (!$(item).find('.auclive-sale__upcoming-img').length) {
                                     $img = $('<img class="auclive-sale__upcoming-img" src="' + $(item).prop('href').replace('_2.', '_1.') + '">');
                                     $(item).append($img);
@@ -1632,6 +1659,10 @@ i.timeout=!1},1e3)),this},prev:function(){var t=this.index-1;return t<0&&(t=0<ar
                                     });
                                 }
                             });
+                            $('.upcoming').first().addClass('upcoming--current');
+                            if ($('.auclive-sale__upcoming')[0].dataset.upcoming === 'past') {
+                                $('#catalog-page-1').html($('#catalog-page-1 tr').get().reverse());
+                            }
                         }
                     }, 1000);
 
@@ -1645,8 +1676,6 @@ i.timeout=!1},1e3)),this},prev:function(){var t=this.index-1;return t<0&&(t=0<ar
                     $(window).on('resize', onResize);
                     onResize();
 
-                    $('.show-all').addClass('input-field input-field--select').append($('#sel-show').attr('style', ''));
-                    $('.show-all .ui-widget').remove();
                     $('.orng').addClass('waves-effect waves-light btn').removeClass('orng');
                     /**
                      *

@@ -1,6 +1,7 @@
 .auctions-live-sale {
 	.auctitle-live,
-	.mobile-content-wrap {
+	.mobile-content-wrap,
+	.list-opts {
 		display: none;
 	}
 
@@ -8,17 +9,6 @@
 		margin-bottom: .5rem;
 	}
 
-	.list-opts {
-		input[type="radio"] {
-			position: relative;
-			opacity: 1;
-			pointer-events: all;
-		}
-		input[type="radio"],
-		input[type="checkbox"] {
-			margin-right: .5rem;
-		}
-	}
 	.btn {
 		font-size: 14px;
 		white-space: nowrap;
@@ -124,7 +114,7 @@
 		}
 	}
 
-	#z9 {
+	.lblLotImgControlId {
 		display: flex;
 		justify-content: center;
 		align-items: center;
@@ -265,7 +255,7 @@
 	}
 
 	.lot-description-content {
-		#z18 > *:not(.product-description-content),
+		.lblLotDescControlId > *:not(.product-description-content),
 		#calendarBtnBox,
 		.addthis_toolbox,
 		#infoBtnBox,
@@ -332,23 +322,6 @@
 		}
 	}
 
-	.list-opts {
-		display: flex;
-		justify-content: space-between;
-		align-items: center;
-		white-space: nowrap;
-	}
-
-	.show-all {
-		flex: 1 1 100%;
-		display: flex;
-		justify-content: flex-end;
-
-		.select-wrapper {
-			max-width: 200px;
-		}
-	}
-
 	h3 {
 		margin-bottom: 1em;
 		text-align: center;
@@ -366,17 +339,13 @@
 			height: 2.5rem;
 		}
 
-		&.sold {
-			opacity: .5;
-		}
-
 		&:hover {
 			opacity: 1;
 			background: rgba(200,200,200,.07);
 		}
 	}
 
-	.sold + .upcoming {
+	.upcoming--current {
 		background: $color-bg;
 	}
 
@@ -409,6 +378,32 @@
 	.footable > thead th.hammer, .footable > tbody td.hammer {
 		 width: 15%;
 	}
+
+	.list-options {
+		display: flex;
+		justify-content: center;
+	}
+
+	&[data-upcoming="upcoming"] {
+		.sold {
+			display: none;
+		}
+	}
+	&[data-upcoming="past"] {
+		.upcoming:not(.upcoming--current) {
+			display: none;
+		}
+	}
+}
+
+.auclive-sale__upcoming-options {
+	label {
+		color: $color-base;
+	}
+
+	label + label {
+		margin-left: 2rem;
+	}
 }
 
 @media #{$large-and-down} {
@@ -419,7 +414,7 @@
 
 @media #{$medium-and-down} {
 	.auclive-sale__sections {
-		#z9 {
+		.lblLotImgControlId {
 			img {
 				max-width: 300px;
 			}
