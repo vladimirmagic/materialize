@@ -149,11 +149,11 @@
 			margin: 0;
 
 			.current {
-				@extend .h2;
-				margin-bottom: 1rem;
+				@extend .h4;
+				margin-bottom: .5rem;
 				padding: .75rem 1rem;
-				color: white;
-				background: $color-base;
+				text-align: center;
+				background: rgba(0,0,0,.1);
 
 				.current-bid-label {
 					font-weight: 300;
@@ -163,6 +163,7 @@
 			.current-btn {
 				.btn {
 					width: 100%;
+					font-size: 1rem;
 				}
 
 				.warning {
@@ -246,7 +247,7 @@
 	}
 
 	.video-stream {
-		margin-top: 1rem;
+		margin-top: 2rem;
 
 		iframe {
 			width: 100%;
@@ -278,20 +279,6 @@
 		#modal-set {
 			display: none;
 		}
-	}
-}
-
-.auclive-sale__current-icon {
-	width: 40px;
-	height: 40px;
-	margin-right: .5rem;
-	border-radius: 40px;
-	background: $color-blue;
-	transform: translateY(-.2rem);
-
-	svg {
-		width: 18px;
-		height: 18px;
 	}
 }
 
@@ -425,7 +412,7 @@
 
 @media #{$large-and-down} {
 	.auclive-sale {
-		display: none;
+		padding-top: 0;
 	}
 }
 

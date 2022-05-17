@@ -1568,12 +1568,13 @@ i.timeout=!1},1e3)),this},prev:function(){var t=this.index-1;return t<0&&(t=0<ar
                     const badge = '<span class="badge green"><i class="icon"><svg><use xlink:href="#live"></use></svg></i>Live bidding</span>';
                     let title = 'Lot #' + $('#' + lblLotNoControlId).html() + ': ' + $('#' + lblLotNameControlId).html();
                     $('.hero__static-title').html('').append($('.auction-title'));
-                    $('.hero__static-text').html('').append(
-                        badge,
-                        $('<span class="h4 auclive-sale-title">'),
-                    ).show();
                     
-                    $('.hero__static-date').append(moment($('.auction-date').text()).format('MMM D YYYY')).show();
+                    $('#div-hidden').append('<div id="customDate' + auctionId + '">');
+                    const customDateBefore = window.getComputedStyle(document.querySelector('#customDate' + auctionId), ':before');
+                    const customDate = customDateBefore && customDateBefore.content && customDateBefore.content != 'none' ? customDateBefore.content.replaceAll('"', '') : null;
+                    const auctionDate = customDate || moment($('.auction-date').text()).format('MMM D YYYY');
+                    $('.hero__static-date').append(auctionDate).show();
+
                     $('.container').prepend($('.auc__hero').addClass('auc__hero--small').show());
                     $('#rtb-panel').addClass('auclive-sale');
                     $('.mobile-content-wrap').hide();
@@ -1586,7 +1587,6 @@ i.timeout=!1},1e3)),this},prev:function(){var t=this.index-1;return t<0&&(t=0<ar
                     $('.product__gallery').append($('.lot-images-container'));
                     $('.product__info').append($('.lot-bidding')).append($('.video-stream'));
 
-                    $('.bidding-main .current').prepend('<i class="icon auclive-sale__current-icon"><svg><use xlink:href="#auction"></use></svg></i>');
                     $('.lot-messages').insertAfter('.video-stream');
                     $('.lot-messages').prepend($('<div class="auclive-sale__messages-bidder">'));
                     $('.auclive-sale__messages-bidder').append($('.bidder-num'));
