@@ -9538,13 +9538,14 @@ fieldset {
   text-align: center;
 }
 
-.general .h1 {
-  margin-bottom: .7em;
-}
-
 .general__inner {
   max-width: 36rem;
   margin: 0 auto;
+  text-align: center;
+}
+
+.general__inner .h1 {
+  margin-bottom: .7em;
 }
 
 .general--error .general__inner {
@@ -21640,6 +21641,115 @@ span.badge.auction-registration__badge-approved {
   }
   .form-section__row-actions {
     padding: 1rem 0 0;
+  }
+}
+
+.exhibition__row {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.exhibition__img {
+  min-width: 50%;
+  background-position: 50% 50%;
+  background-size: cover;
+  background-repeat: no-repeat;
+  -webkit-transition: all .3s ease-in-out;
+  transition: all .3s ease-in-out;
+}
+
+.exhibition__info {
+  position: relative;
+  width: 100%;
+  max-width: 50%;
+  padding: 140px 0;
+  color: #fff;
+  background: #2D2E41;
+  z-index: 1;
+}
+
+.exhibition__info .h2, .exhibition__info .how__title, .exhibition__info .section-auctions__item-title {
+  margin: 0 0 .5em;
+  font-weight: 300;
+}
+
+.exhibition__text {
+  margin-bottom: 2em;
+}
+
+.exhibition__info-inner {
+  max-width: 508px;
+  margin: 0 auto;
+}
+
+.exhibition__row:nth-child(even) .exhibition__info {
+  -webkit-box-ordinal-group: 1;
+  -webkit-order: 0;
+      -ms-flex-order: 0;
+          order: 0;
+}
+
+.exhibition__row:nth-child(even) .exhibition__img {
+  -webkit-box-ordinal-group: 2;
+  -webkit-order: 1;
+      -ms-flex-order: 1;
+          order: 1;
+}
+
+@media only screen and (min-width: 1921px) {
+  .exhibition__info-inner {
+    margin: 0 auto 0 240px;
+  }
+  .exhibition__row:nth-child(even) .exhibition__info-inner {
+    margin: 0 240px 0 auto;
+  }
+}
+
+@media only screen and (min-width: 1201px) {
+  .exhibition__row:first-child .exhibition__img {
+    min-width: calc(50% + 140px);
+  }
+  .exhibition__row:first-child .exhibition__info {
+    margin-left: -140px;
+    border-top-left-radius: 140px;
+  }
+  .exhibition__row:last-child .exhibition__img {
+    min-width: calc(50% + 140px);
+  }
+  .exhibition__row:last-child .exhibition__info {
+    margin-left: -140px;
+    border-bottom-left-radius: 140px;
+  }
+  .exhibition__row:last-child:nth-child(even) .exhibition__info {
+    margin-left: 0;
+    margin-right: -140px;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 140px;
+  }
+}
+
+@media only screen and (max-width: 1200px) {
+  .exhibition__row {
+    display: block;
+  }
+  .exhibition__img {
+    display: block;
+    height: 30vh;
+  }
+  .exhibition__info {
+    max-width: 100%;
+    margin: 0;
+    padding: 80px 0;
+    text-align: center;
+  }
+}
+
+@media only screen and (max-width: 992px) {
+  .exhibition__info {
+    padding: 64px 24px;
+    text-align: left;
   }
 }
 

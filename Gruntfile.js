@@ -396,6 +396,7 @@
             'signin.html': 'jade/propstore/signin.jade',
             'our-experts.html': 'jade/propstore/our-experts.jade',
             'landing.html': 'jade/propstore/landing.jade',
+            'starwars.html': 'jade/propstore/starwars.jade',
             'propstoreauction.html': 'jade/propstore/propstoreauction.jade',
             'propstoreauction-product.html': 'jade/propstore/propstoreauction-product.jade',
             'propstoreauction-catalog.html': 'jade/propstore/propstoreauction-catalog.jade',

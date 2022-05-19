@@ -73,15 +73,16 @@ fieldset {
 	align-items: center;
 	height: 100%;
 	text-align: center;
-
-	.h1 {
-		margin-bottom: .7em;
-	}
 }
 
 .general__inner {
 	max-width: $w36;
 	margin: 0 auto;
+	text-align: center;
+
+	.h1 {
+		margin-bottom: .7em;
+	}
 
 	.general--error & {
 		max-width: $w55;
