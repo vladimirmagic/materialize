@@ -208,6 +208,14 @@
   }
 
   .arrow {
+    opacity: 1;
+
+    &:hover {
+      &:before {
+        background: #000;
+      }
+    }
+
     &.arrow--prev {
       left: 40px;
     }

@@ -155,12 +155,11 @@
     right: 40px;
     width: 32px;
     height: 32px;
-    opacity: .5;
     cursor: pointer;
     transition: all .3s ease-in-out;
 
     &:hover {
-      opacity: 1;
+      opacity: .5;
     }
 
     &:before {
@@ -172,7 +171,7 @@
       top: -1rem;
       bottom: -1rem;
       border-radius: 5rem;
-      background: rgba(0,0,0,.3);
+      background: #000;
       transition: opacity .2s ease;
     }
 
