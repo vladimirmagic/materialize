@@ -211,11 +211,14 @@
 
 .zoom-viewer__toggler-label {
 	position: absolute;
-	left: -1rem;
+	left: -.5rem;
 	top: 3.5rem;
-	width: 4rem;
-	font-size: .8rem;
+	width: 3rem;
+	padding: .15rem 0;
+	font-size: .7rem;
 	font-weight: 600;
 	color: $color-turquoise;
 	text-align: center;
+	background: white;
+	border-radius: 4px;
 }
