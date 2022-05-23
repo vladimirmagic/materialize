@@ -15778,16 +15778,14 @@ tbody .tr:last-child .td {
 
 .zoom-viewer__toggler-label {
   position: absolute;
-  left: -.5rem;
+  left: -1rem;
   top: 3.5rem;
-  width: 3rem;
-  padding: .15rem 0;
-  font-size: .7rem;
+  width: 4rem;
+  font-size: .8rem;
   font-weight: 600;
   color: #11BFC5;
   text-align: center;
-  background: white;
-  border-radius: 4px;
+  line-height: 1.2;
 }
 
 .whatsnew {

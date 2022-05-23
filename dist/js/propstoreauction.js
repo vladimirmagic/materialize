@@ -129,7 +129,7 @@ i.timeout=!1},1e3)),this},prev:function(){var t=this.index-1;return t<0&&(t=0<ar
                                         viewed() { zoomViewer.zoomTo(1.5); },
                                     });
                                     $('#modal-product-gallery').append('<div class="zoom-viewer__toggler">');
-                                    $('.zoom-viewer__toggler').append('<div class="zoom-viewer__toggler-label">Zoom</div>');
+                                    $('.zoom-viewer__toggler').append('<div class="zoom-viewer__toggler-label">Click To&nbsp;Zoom</div>');
                                     $('.zoom-viewer__toggler').on('click', ()=>{
                                         zoomViewer.show();
                                     });
