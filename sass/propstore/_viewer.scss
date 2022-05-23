@@ -208,3 +208,12 @@
 		background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cpath fill-rule='evenodd' clip-rule='evenodd' d='M8.75 2.67a6.08 6.08 0 100 12.16 6.08 6.08 0 000-12.16zm6.38 11.04a8.08 8.08 0 10-1.41 1.42l3.07 3.08a1 1 0 001.42-1.42l-3.08-3.08z' fill='%23fff' /%3E%3C/svg%3E%0A");
 	}
 }
+
+.zoom-viewer__toggler-label {
+	position: absolute;
+	right: 4rem;
+	top: 0;
+	font-size: 1.5rem;
+	font-weight: 600;
+	color: $color-turquoise;
+}
