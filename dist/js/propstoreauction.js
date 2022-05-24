@@ -1040,6 +1040,29 @@ i.timeout=!1},1e3)),this},prev:function(){var t=this.index-1;return t<0&&(t=0<ar
                     });
                     $('#adv_search_categories > label').addClass('h6');
                     $('#adv_search_categories .accordion-header').append('<div class="auccatalog__search-panel-checkboxes-note">Click to expand</div>');
+                    if ($('.auccatalog__search-panel-checkboxes .sm_sel').length) {
+                        let list = {};
+                        $sorted = $('<div id="auccatalog__search-panel-checkboxes-sorted">');
+                        $('.auccatalog__search-panel-checkboxes > div').each((key, item) => {
+                            if ($(item).hasClass('selector')) {
+                                const keys = Object.keys(list);
+                                if (keys.length) {
+                                    keys.sort().forEach(key => $sorted.append(list[key]));
+                                    list = {};
+                                }
+                                $sorted.append($(item));
+                            } else {
+                                list[$(item).find('label').text()] = $(item);
+                                $('#div-hidden').append($(item));
+                            }
+                        });
+                        const keys = Object.keys(list);
+                        if (keys.length) {
+                            keys.sort().forEach(key => $sorted.append(list[key]));
+                        }
+                        $('#div-hidden').append($sorted);
+                        $('.auccatalog__search-panel-checkboxes').append($('#auccatalog__search-panel-checkboxes-sorted > div'));
+                    }
 
                     const $searchMatch = $('<div class="input-field input-field--label input-field--select">');
                     $searchMatch.append($('.categories-match label').addClass('active')).append($('#advsCatMatch'));
@@ -1063,6 +1086,10 @@ i.timeout=!1},1e3)),this},prev:function(){var t=this.index-1;return t<0&&(t=0<ar
                     const $searchLot = $('<div class="input-field input-field--label">');
                     $searchLot.append($searchLotSource.find('label').addClass('active')).append($('#advsLotNum_ctl'));
                     $searchLotSource.append($searchLot);
+
+                    $searchInner.append('<div class="auccatalog__search-panel-buttons">');
+                    // $('.auccatalog__search-panel-buttons').append('<a class="waves-effect waves-light btn auccatalog__search-panel-button-clear" href="' + window.location.pathname + '">Clear</a>');
+                    $('.auccatalog__search-panel-buttons').append($('#advsSearch_ctl'));
 
                     $('.auccatalog__search-panel').append($('#ads01'));
 

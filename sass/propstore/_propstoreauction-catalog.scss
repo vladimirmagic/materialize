@@ -238,15 +238,15 @@ body.search-index {
 		margin: .5em 0;
 
 		input {
-			flex: 0 0 20px;
-			height: 20px;
+			flex: 0 0 1rem;
+			height: 1rem;
 			margin-right: .5rem;
 		}
 
 		label {
 			color: $color-base;
-			font-size: 1rem;
-			line-height: 20px;
+			font-size: 14px;
+			line-height: 1;
 		}
 	}
 
@@ -258,6 +258,31 @@ body.search-index {
 	#category_button_more {
 		display: none;
 	}
+
+	.accordion-content {
+		margin-left: 1.5rem;
+		margin-right: -1.5rem;
+	}
+}
+
+.auccatalog__search-panel-buttons {
+	position: sticky;
+	z-index: 100;
+	bottom: -1rem;
+	padding: 1rem 0;
+	display: flex;
+	justify-content: space-between;
+	background: white;
+
+	& > * {
+		flex: 1 1 50%;
+	}
+}
+
+.auccatalog__search-panel-button-clear {
+	margin-right: 1rem;
+	color: $color-base;
+	background: $color-bg !important;
 }
 
 .auccatalog__search-panel-title {
@@ -285,9 +310,6 @@ body.search-index {
 }
 
 .auccatalog__search-panel-checkboxes {
-	margin-left: 1.5rem;
-	margin-right: -1.5rem;
-
 	.checkbox__label {
 		display: block;
 		margin: .5em 0;
@@ -298,12 +320,12 @@ body.search-index {
 	}
 
 	.smsel {
-		margin: .7rem;
+		margin: .3rem 0;
 	}
 
 	.smsel:not([data-childcount="0"]) {
 		position: relative;
-		margin-top: 1rem;
+		margin: 1rem 0;
 		padding-left: 1.7rem;
 		font-weight: 400;
 		line-height: 1.5;
@@ -316,8 +338,7 @@ body.search-index {
 			content: '';
 			position: absolute;
 			left: 0;
-			top: 4px;
-			margin: 0 0 -2px;
+			top: 0;
 			width: 1rem;
 			height: 1rem;
 			background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath fill-rule='evenodd' clip-rule='evenodd' d='M14.53 5.47a.75.75 0 00-1.06 0L8 10.94 2.53 5.47a.75.75 0 00-1.06 1.06l6 6c.3.3.77.3 1.06 0l6-6c.3-.3.3-.77 0-1.06z'/%3E%3C/svg%3E");
@@ -331,7 +352,7 @@ body.search-index {
 }
 
 .auccatalog__search-panel-checkboxes-note {
-	font-size: 1rem;
+	font-size: 14px;
 	font-weight: 300;
 	color: $color-font-grey;
 	line-height: 1.2;
