@@ -23166,6 +23166,10 @@ body.search-index .categories-match {
 
 .auccatalog__search-panel .selector,
 .auccatalog__search-panel .accordion-header {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
   margin: .5em 0;
 }
 
@@ -23429,6 +23433,7 @@ body.search-index .categories-match {
 
 .accordion-header.filter_ttl {
   position: relative;
+  display: block;
   padding-left: 2rem;
   font-size: 1.2rem;
   font-weight: 500;
