@@ -738,6 +738,8 @@ i.timeout=!1},1e3)),this},prev:function(){var t=this.index-1;return t<0&&(t=0<ar
                             .append($('#calendarBtnBox'));
                     }
                     // giveLotViewCalendarButtonsLinks();
+                    lotBannerAutomation($('#watchlist_button'));
+
                     /**
                      *
                      *
@@ -1023,6 +1025,8 @@ i.timeout=!1},1e3)),this},prev:function(){var t=this.index-1;return t<0&&(t=0<ar
 
                     $('#adv_search_categories .scroll-list').addClass('auccatalog__search-panel-checkboxes');
                     $('#adv_search_categories > label').addClass('h6');
+                    $('#adv_search_categories .accordion-header').appned('<div class="auccatalog__search-panel-checkboxes-note">Make Selections Below</div>');
+                    // $('#adv_search_categories .selector')
 
                     const $searchMatch = $('<div class="input-field input-field--label input-field--select">');
                     $searchMatch.append($('.categories-match label').addClass('active')).append($('#advsCatMatch'));
@@ -2017,6 +2021,80 @@ i.timeout=!1},1e3)),this},prev:function(){var t=this.index-1;return t<0&&(t=0<ar
                 document.body.classList.add('loaded'); // if svg fail
             }
         }, 100);
+
+
+        /*
+            TO USE:
+            * First argument should be the SAM lot ID for the loaded product
+            * Second argument should be the SAM lot ID of the last lot of day 1
+            * Every subsequent argument should be an object of the format { last, url } to represent days of the auction after the
+                first, with last equal to the ID of the last lot of the day, url set to the url of the corresponding banner for the day
+            * Url for day 1 is assumed to be in place as default
+        */
+        function lotBannerUpdate(){
+            if(arguments[0] <= arguments[1]){
+                let dayNum = $("<p></p>").text("Day 1").css("font-size", "20px");
+                $(".hero__static-title").after(dayNum);
+
+                let dateInfo = $('.hero__static-date').contents().filter(function() {
+                    return this.nodeType == Node.TEXT_NODE;
+                })[2];
+                let dateRead = dateInfo.textContent;
+                if(dateRead.includes("âˆ’")){
+                    dateInfo.textContent = dateRead.substr(0, dateRead.indexOf(" ", 10));
+                }
+                return;
+            }
+            for(let i = 2; i < arguments.length; i++){
+                if(arguments[0] <= arguments[i].last){
+                    $(".hero__image").css({'cssText': "background-image: url(\'" + arguments[i].url + "\') !important"});
+                    let dayNum = $("<p></p>").text("Day " + i).css("font-size", "20px");
+                    $(".hero__static-title").after(dayNum);
+
+                    Date.prototype.addDays = function(days) {
+                        var date = new Date(this.valueOf());
+                        date.setDate(date.getDate() + days);
+                        return date;
+                    }
+                    let dateInfo = $('.hero__static-date').contents().filter(function() {
+                        return this.nodeType == Node.TEXT_NODE;
+                    })[2];
+                    let dateRead = dateInfo.textContent;
+                    if(dateRead.includes("âˆ’")){
+                        dateRead = dateRead.substr(0, dateRead.indexOf(" ", 10));
+                    }
+                    let finalDate = new Date(Date.parse(dateRead));
+                    let format = { month: "short", day: "numeric", year: "numeric" }
+                    dateInfo.textContent = finalDate.addDays(i - 1).toLocaleString("en-US", format).replace(",", "");
+                    return;
+                }
+            }
+        }
+
+        /*
+            Reads auction and lot ID from the #watchlist_button element and calls lotBannerUpdate with corresponding arguments
+        */
+        function lotBannerAutomation(watchListButton){
+            switch(watchListButton.data('aid')){
+                case 332: 
+                    return lotBannerUpdate(
+                        watchListButton.data('lid'),
+                        89189,
+                        {last: 89671, url: "https://s3.eu-west-1.amazonaws.com/content.propstore.com/auction/EMLAUS2022/Headers/EMLA-US2022_DayBreak-Headers_v2-Day02.jpg"}, 
+                        {last: 90164, url: "https://s3.eu-west-1.amazonaws.com/content.propstore.com/auction/EMLAUS2022/Headers/EMLA-US2022_DayBreak-Headers_v2-Day03.jpg"}, 
+                        {last: 90593, url: "https://s3.eu-west-1.amazonaws.com/content.propstore.com/auction/EMLAUS2022/Headers/EMLA-US2022_DayBreak-Headers_v2-Day04.jpg"}
+                    );
+                case 192:
+                    return lotBannerUpdate(
+                        watchListButton.data('lid'),
+                        47524,
+                        {last: 47526, url: "https://lumiere-a.akamaihd.net/v1/images/Darth-Vader_6bda9114.jpeg"},
+                        {last: 47528, url: "https://cdn.mos.cms.futurecdn.net/FwNw2ZUryX6yAmFSSajDv4-1200-80.jpg"}
+                    );
+                default:
+                    return "";
+            }  
+        }
     }); // end of document ready
 });
 
