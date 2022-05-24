@@ -21,7 +21,7 @@
 
 .aucproduct__details {
 	margin-bottom: 2rem;
-	font-size: 1.5em;
+	font-size: 1.4em;
 
 	#currentBid,
 	.biddingHistoryLink:not(.btn) {
@@ -233,6 +233,12 @@
 
 	.l3desctextwhite {
 		margin: 0 0 0 2.5rem;
+	}
+}
+
+@media #{$extra-large-and-up} {
+	.aucproduct .product__title {
+		font-size: 32px;
 	}
 }
 

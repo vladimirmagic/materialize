@@ -198,7 +198,7 @@ i.timeout=!1},1e3)),this},prev:function(){var t=this.index-1;return t<0&&(t=0<ar
     </div>
     <div class="product__info">
         <div class="product__number"></div>
-        <div class="product__title h2"></div>
+        <div class="product__title h3"></div>
 
         <div class="aucproduct__details">
             <div class="aucproduct__details-line"></div>
@@ -324,6 +324,7 @@ i.timeout=!1},1e3)),this},prev:function(){var t=this.index-1;return t<0&&(t=0<ar
                     //     $('.hero__image').css({ backgroundImage });
                     // });
 
+                    $('.auc__hero').addClass('auc__hero--small');
                     $aucTitle = $('.tle-lot h3').clone();
                     $aucTitle.find('span').remove();
                     $('.hero__static-title').html($aucTitle.text());
@@ -1220,6 +1221,7 @@ i.timeout=!1},1e3)),this},prev:function(){var t=this.index-1;return t<0&&(t=0<ar
 
                     $('.container').prepend($('.auccatalog'));
                     if ($('body').hasClass('auctions-catalog')) {
+                        $('.auc__hero').addClass('auc__hero--small');
                         $aucTitle = $('.tle h3').clone();
                         $aucTitle.find('span').remove();
                         $('.hero__static-title').html($aucTitle.text());

@@ -22609,7 +22609,7 @@ footer .auclting {
 
 .aucproduct__details {
   margin-bottom: 2rem;
-  font-size: 1.5em;
+  font-size: 1.4em;
 }
 
 .aucproduct__details #currentBid,
@@ -22860,6 +22860,12 @@ footer .auclting {
 
 .aucproduct .product__detail .l3desctextwhite {
   margin: 0 0 0 2.5rem;
+}
+
+@media only screen and (min-width: 1201px) {
+  .aucproduct .product__title {
+    font-size: 32px;
+  }
 }
 
 @media only screen and (min-width: 1374px) {
@@ -23689,7 +23695,6 @@ body.search-index .categories-match {
 
 .auc__hero.hero--static.auc__hero--small .hero__static-title {
   margin-bottom: 0.2em;
-  font-size: 52px;
 }
 
 .auc__hero.hero--static.auc__hero--small .hero__static-text {
@@ -23714,7 +23719,6 @@ body.search-index .categories-match {
   }
   .auc__hero.hero--static.auc__hero--small .hero__static-title {
     margin-bottom: 0.5em;
-    font-size: 44px;
   }
   .auc__hero.hero--static.auc__hero--small .hero__static-text .badge {
     margin: 0 0 .5rem;
@@ -23742,9 +23746,6 @@ body.search-index .categories-match {
   }
   .auc__hero.hero--static .hero__static-date .icon {
     display: none;
-  }
-  .auc__hero.hero--static.auc__hero--small .hero__static-title {
-    font-size: 36px;
   }
 }
 

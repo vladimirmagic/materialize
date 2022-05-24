@@ -56,7 +56,6 @@
 
 	.hero__static-title {
 		margin-bottom: 0.2em;
-		font-size: 52px;
 	}
 
 	.hero__static-text {
@@ -85,7 +84,6 @@
 
 		.hero__static-title {
 			margin-bottom: 0.5em;
-			font-size: 44px;
 		}
 
 		.hero__static-text {
@@ -127,12 +125,6 @@
 			.icon {
 				display: none;
 			}
-		}
-	}
-
-	.auc__hero.hero--static.auc__hero--small {
-		.hero__static-title {
-			font-size: 36px;
 		}
 	}
 }
