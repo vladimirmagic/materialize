@@ -1,11 +1,11 @@
-const params = new URLSearchParams(window.location.search);
-const sc = params.get('sc');
-if (sc && !params.get('ru')) {
-    $('html').scrollTop(sc);
-}
-
 document.addEventListener('DOMContentLoaded', () => {
     $(function() {
+        const params = new URLSearchParams(window.location.search);
+        const sc = params.get('sc');
+        if (sc && !params.get('ru')) {
+            $('html').scrollTop(sc);
+        }
+
         // Detect touch screen and enable scrollbar if necessary
         function is_touch_device() {
             try {
@@ -66,7 +66,8 @@ document.addEventListener('DOMContentLoaded', () => {
             $('.header__bag-number').length
         ) getHeaderUpdate();
 
-        if ($('#whatsnew-auctions').length) getWhatsNews();
+        getHomeWhatsNews();
+        getHomeTopselling();
 
         // SIGN OUT SSO
         if ($('.signout-trigger').length) {
@@ -75,15 +76,23 @@ document.addEventListener('DOMContentLoaded', () => {
                 $('.loader-block').show();
                 $.get(this.href)
                     .always(() => {
-                        let params = '?action=signout&d=1&ru=' + encodeURIComponent(window.location.pathname + window.location.search);
+                        let params = '?action=signout&d=1&ru=/';
                         const scroll = $(window).scrollTop();
                         if (scroll > 100) params += '&sc=' + String(Math.round(scroll));
-                        redirectPage(AUCTION_URL + params + (window.location.href.includes('propstore.loc') ? '#localhost' : ''));
+                        redirectPage(AUCTION_URL + params);
                     });
             });
         }
 
         // MODAL SIGNIN
+
+        function ssoParams(params) {
+            const ruParams = new URLSearchParams(window.location.search);
+            if (ruParams.get('sc')) ruParams.delete('sc'); // delete old sc
+            params.append('ru', encodeURIComponent(window.location.pathname + '?' + ruParams.toString()));
+            const scroll = $(window).scrollTop();
+            if (scroll > 100) params.append('sc', String(Math.round(scroll)));
+        }
 
         $('#modal-signin').modal({ // load form on modal open
             onOpenStart: function (el, trigger) {
@@ -91,18 +100,19 @@ document.addEventListener('DOMContentLoaded', () => {
                 const $form = $(el).find('.modal-signin-form');
                 const params = new URLSearchParams('d=1');
                 if ($(trigger).data('ru')) { // redirect to another page after sam login
+                    $('body').data('ru', $(trigger).data('ru'));
                     params.append('ru', encodeURIComponent($(trigger).data('ru')));
                 } else { // redirect to this page after sam login
-                    params.append('ru', encodeURIComponent(window.location.pathname + window.location.search));
-                    const scroll = $(window).scrollTop();
-                    if (scroll > 100) params.append('sc', String(Math.round(scroll)));
+                    ssoParams(params);
                 }
-                $form.data('params', params.toString() + (window.location.href.includes('propstore.loc') ? '#localhost' : ''));
+                $form.data('params', params.toString());
                 $.get('/ajax/modalSignIn.action')
                     .done(data => {
+                        if (!checkResponse(data)) return data;
+
                         $form.html(data);
                         M.updateTextFields();
-                        initFacebookLoginButton();
+                        initFacebookLoginButton($form.data('params'));
                     })
                     .fail(data => {
                         if (data && data.statusText) $form.html(data.statusText);
@@ -110,12 +120,6 @@ document.addEventListener('DOMContentLoaded', () => {
                     .always(data => {
                         el.classList.remove('sync');
                     });
-            },
-            onCloseStart: function (el) {
-                const $ssoTrigger = $(el).find('.modal-register__sso-trigger');
-                if ($ssoTrigger.length) {
-                    reloadPage();
-                }
             },
         });
 
@@ -129,12 +133,15 @@ document.addEventListener('DOMContentLoaded', () => {
                 $(this).serialize(),
             )
                 .done(data => {
+                    if (!checkResponse(data)) return data;
+
                     if (data && data.trim() === 'success') {
                         $('.loader-block').show();
                         redirectPage('/sso.action?' + $form.data('params'));
                     } else {
                         this.innerHTML = data;
                         M.updateTextFields();
+                        initFacebookLoginButton($form.data('params'));
                     }
                 })
                 .fail(data => {
@@ -151,12 +158,22 @@ document.addEventListener('DOMContentLoaded', () => {
             onOpenStart: function (el) {
                 el.classList.add('sync');
                 const $form = $(el).find('.modal-register-form');
+                const params = new URLSearchParams('d=1');
+                if ($('body').data('ru')) { // redirect to another page after sam login
+                    params.append('ru', encodeURIComponent($('body').data('ru')));
+                } else { // redirect to this page after sam login
+                    ssoParams(params);
+                }
+                $form.data('params', params.toString());
                 $.get('/ajax/modalRegister.action')
                     .done(data => {
+                        if (!checkResponse(data)) return data;
+
                         $form.html(data);
                         M.updateTextFields();
                         grecaptchaRender('g-recaptcha-register');
-                        initFacebookLoginButton();
+                        initFacebookLoginButton($form.data('params'));
+                        trackEvent('RegistrationForm');
                     })
                     .fail(data => {
                         if (data && data.statusText) $form.html(data.statusText);
@@ -164,20 +181,36 @@ document.addEventListener('DOMContentLoaded', () => {
                     .always(data => {
                         el.classList.remove('sync');
                     });
-            }
+            },
+            onCloseStart: function (el) {
+                const $ssoTrigger = $(el).find('.modal-register__sso-trigger');
+                if ($ssoTrigger.length) $ssoTrigger.trigger('click');
+            },
         });
 
         $('.modal-register-form').submit(function (e) {
             e.preventDefault();
             this.classList.add('sync');
+            $form = $(this);
+
             $.post(
                 this.action,
                 $(this).serialize(),
             )
                 .done(data => {
+                    if (!checkResponse(data)) return data;
+
                     this.innerHTML = data;
                     M.updateTextFields();
                     grecaptchaRender('g-recaptcha-register');
+                    initFacebookLoginButton($form.data('params'));
+                    if ($('.modal-register__sso-trigger').length) { // success
+                        $('.modal-register__sso-trigger').on('click', function (e) {
+                            e.preventDefault();
+                            setTimeout(() => redirectPage('/sso.action?' + $form.data('params')));
+                        });
+                        trackEvent('SignUp');
+                    }
                 })
                 .fail(data => {
                     if (data && data.statusText) this.innerHTML = data.statusText;
@@ -195,6 +228,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 const $form = $(el).find('.modal-password-form');
                 $.get('/ajax/modalPasswordAssistance.action')
                     .done(data => {
+                        if (!checkResponse(data)) return data;
+
                         $form.html(data);
                         M.updateTextFields();
                         grecaptchaRender('g-recaptcha-password');
@@ -216,6 +251,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 $(this).serialize(),
             )
                 .done(data => {
+                    if (!checkResponse(data)) return data;
+
                     this.innerHTML = data;
                     M.updateTextFields();
                     grecaptchaRender('g-recaptcha-password');
@@ -245,8 +282,14 @@ document.addEventListener('DOMContentLoaded', () => {
                         } else {
                             $card.addClass('card--added');
                             bagCountUpdate();
+                            M.toast({html: `<span>Added to cart&nbsp; <a href="/shoppingCart.action" class="h6">Open Cart</a></span>`});
                         }
                     });
+            });
+
+            $('.card__added').on('click', function (e) {
+                e.preventDefault();
+                redirectPage($(this).attr('href'));
             });
 
             // todo: server response always return OK, no exceptions handling
@@ -258,19 +301,16 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (!$card.length) return;
 
                 const productId = $card[0].getAttribute('data-id');
-                const lotUrl = this.getAttribute('data-url');
                 if ($card.hasClass('card--liked')) {
                     $.get('/ajax/removeFromFavorites.action?product=' + productId)
                         .done(data => {
                             $card.removeClass('card--liked');
                         });
-                    // if (lotUrl) $.get(AUCTION_URL + '/watchlist/remove?autoclose=true&' + lotUrl); // todo: cors
                 } else {
                     $.get('/ajax/addToFavorites.action?product=' + productId)
                         .done(data => {
                             $card.addClass('card--liked');
                         });
-                    // if (lotUrl) $.get(AUCTION_URL + '/watchlist/add?autoclose=true&' + lotUrl); // todo: cors
                 }
             });
 
@@ -280,7 +320,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (!$card.length) return;
 
                 const productId = $card[0].getAttribute('data-id');
-                redirectPage('/sellRequest.action?productId=' + productId);
+                redirectPage('/sellRequest.action?productId=' + productId + '#form');
             });
 
             const currency = document.querySelectorAll('.card__price-i, .product__price-i');
@@ -308,6 +348,8 @@ document.addEventListener('DOMContentLoaded', () => {
                     $('.footer, .footer-signup').hide();
 
                     $.get('/ajax/products.action?' + $('#filterForm').serialize() + '&' + $('.header__filters').serialize(), function (data) {
+                        if (!checkResponse(data, false)) return data;
+
                         const trim = $.trim(data);
                         if (trim === 'no results') {
                             $(window).off('scroll', loadProducts);
@@ -362,6 +404,8 @@ document.addEventListener('DOMContentLoaded', () => {
                     this.dropdownEl.classList.add('sync');
                     $.get('/ajax/rest.action?actions=productBasket&actions=productBasketCount')
                         .done(data => {
+                            if (!checkResponse(data)) return data;
+
                             const $data = $('<div/>').html(data);
                             const bagCount = $data.find('#productBasketCount').text().trim();
                             const $bagItems = $data.find('#productBasket');
@@ -550,6 +594,7 @@ document.addEventListener('DOMContentLoaded', () => {
         $(window).on('resize', resize);
 
         // HEADER
+        const headerMainTop = $('.header__settings').height();
         const HEADER_THRESHOLD = 100; // px
         let previousScroll = 0;
         function headerFloat () {
@@ -557,31 +602,26 @@ document.addEventListener('DOMContentLoaded', () => {
             const $headerMain = $('.header__main');
             if ($header.length && $headerMain.length) {
                 $header.css('maxWidth', $('main').width() + 'px');
-                const top = $headerMain.offset().top;
                 const bottom = $header.height();
                 $(window).on('scroll', M.throttle((e) => {
                     const currentScroll = document.body.scrollTop || window.scrollY || document.documentElement.scrollTop;
-                    if (currentScroll <= previousScroll) {
+                    if (previousScroll - currentScroll > HEADER_THRESHOLD ||
+                        currentScroll < headerMainTop
+                    ) {
                         if (document.body.classList.contains('autoscroll')) return; // dont show header if autoscroll
-                        if (
-                            previousScroll - currentScroll > HEADER_THRESHOLD ||
-                            currentScroll < top
-                        ) {
-                            previousScroll = currentScroll;
-                            $header.removeClass('sticky-out');
-                            if (currentScroll < top * 2) {
-                                $header.removeClass('sticky-in');
-                            } else if (currentScroll > bottom) {
-                                $header.addClass('sticky-in');
-                            }
+                        previousScroll = currentScroll;
+                        $header.removeClass('sticky-out');
+                        if (currentScroll < headerMainTop * 2) {
+                            $header.removeClass('sticky-in');
+                        } else if (currentScroll > bottom) {
+                            $header.addClass('sticky-in');
                         }
-                    } else {
+                    } else if (currentScroll - previousScroll > HEADER_THRESHOLD) {
                         previousScroll = currentScroll;
                         if (
                             currentScroll > bottom &&
                             $header.hasClass('sticky-in')
                         ) {
-                            previousScroll = currentScroll;
                             $header.removeClass('sticky-in');
                             $header.addClass('sticky-out');
                             $('.header__filters .filters__body').removeClass('active');
@@ -730,15 +770,20 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         // WHATS NEW
-        function getWhatsNews () {
+        function getHomeWhatsNews () {
+            const $homeNews = $('#whatsnew-auctions');
+            if (!$homeNews.length) return;
+
             $.get('/ajax/rest.action?actions=auctionedNewAdditions')
                 .done(data => {
+                    if (!checkResponse(data, false)) return data;
+
                     const $data = $('<div/>').html(data);
                     let auctions = $data.find('#auctionedNewAdditions').html();
                     if (auctions) auctions = auctions.trim();
                     if (!auctions) {
                         $('.whatsnew__tabs').hide();
-                        $('#whatsnew-auctions').hide().removeClass('active');
+                        $homeNews.hide().removeClass('active');
                         $('#whatsnew-buy').show().addClass('active');
                     }
                     $('#whatsnew-auctions .whatsnew__cards-scroll').html(auctions);
@@ -747,6 +792,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
             $.get('/ajax/rest.action?actions=buyNowNewAdditions')
                 .done(data => {
+                    if (!checkResponse(data, false)) return data;
+
                     const $data = $('<div/>').html(data);
                     $('#whatsnew-buy .whatsnew__cards-scroll').html($data.find('#buyNowNewAdditions').html());
                     cardsHandlers();
@@ -791,6 +838,22 @@ document.addEventListener('DOMContentLoaded', () => {
             whatsnewArrowRight.addEventListener('click', move);
         }
 
+        // HOME TOP SELLING
+        function getHomeTopselling () {
+            const $homeTopselling = $('#home-topselling');
+            if (!$homeTopselling.length) return;
+
+            $.get('/ajax/rest.action?actions=recordSelling')
+                .done(data => {
+                    if (!checkResponse(data, false)) return data;
+
+                    const $data = $('<div/>').html(data);
+                    let html = $data.find('#recordSelling').html();
+                    if (html) html = html.trim();
+                    $homeTopselling .html(html);
+                });
+        }
+
         // CURRENCY DROPDOWN
         const currency = document.querySelectorAll('.card__price-i, .product__price-i');
         if (currency) M.Dropdown.init(currency, { container: document.body });
@@ -803,66 +866,30 @@ document.addEventListener('DOMContentLoaded', () => {
         const setalert = document.querySelectorAll('.setalert-dropdown');
         if (setalert) M.Dropdown.init(setalert, { container: document.body });
 
+        // CART
+
+        if ($('.bag__item').length) {
+            $('.bag-item-dec-trigger').on('click', function (e) {
+                e.preventDefault();
+                const id = $(this).closest('.bag__item').data('id');
+                if (id) redirectPage('/shoppingCartDec.action?product=' + id);
+            });
+
+            $('.bag-item-inc-trigger').on('click', function (e) {
+                e.preventDefault();
+                const id = $(this).closest('.bag__item').data('id');
+                if (id) redirectPage('/shoppingCartInc.action?product=' + id);
+            });
+
+            $('.bag-item-remove-trigger').on('click', function (e) {
+                e.preventDefault();
+                const id = $(this).closest('.bag__item').data('id');
+                if (id) redirectPage('/shoppingCartRemove.action?product=' + id);
+            });
+        }
+
         // SELL
-        const $sellTabsA = $('.sell__tab a');
-        const $sellTabs = $('.sell__tab-content');
-        if ($sellTabsA.length && $sellTabs.length) {
-            function showSellTab (e) {
-                let active;
-                window.onpopstate = () => showSellTab();
-                if (e) { // click
-                    e.preventDefault();
-                    active = this.getAttribute('href');
-                    window.history.pushState(null, this.innerText, this.href);
-                } else { // init
-                    const hashes = window.location.href.split('#'); // find hash in url
-                    if (hashes && hashes.length && hashes.length > 1) {
-                        let hash = hashes[1];
-                        const query = hash.search(/[^\w]/g);
-                        if (query > -1) hash = hash.substr(0, query);
-                        active = '#' + hash;
-                        setTimeout(() => $('.hero__btn.sell__button-valuation')[0].scrollIntoView({block: 'start'}));
-                    } else { // if no hash in url
-                        if (window.location.href.includes('sellRequestSubmit') || window.location.href.includes('requestSent')) { // form submit
-                            active = '#valuation';
-                        } else { // take first tab
-                            const tabActive = document.querySelector('.sell__tab:first-of-type a');
-                            if (tabActive) active = tabActive.getAttribute('href');
-                        }
-                    }
-                }
-                if (active) {
-                    $sellTabs.hide();
-                    $(active).show();
-                    $('.sell__tab a.active').removeClass('active');
-                    $('.sell__tab a[href="' + active + '"]').addClass('active');
-                    if (active === '#valuation' &&
-                        (window.location.search.includes('productId') ||
-                        window.location.href.includes('requestSent'))
-                    ) { // scroll to form
-                        setTimeout(() => {
-                            const $valuationForm = $('.sell__valuation-form-title');
-                            if ($valuationForm.length) $valuationForm[0].scrollIntoView({block: 'start'});
-                        }, 100);
-                    }
-                }
-            }
-            $sellTabsA.on('click', showSellTab);
-            showSellTab();
-
-            const $sellButtonValuation = $('.sell__button-valuation');
-            if ($sellButtonValuation.length) {
-                function sellButtonValuationClick () {
-                    $valuationTab[0].click();
-                    $valuationForm[0].scrollIntoView({behavior: 'smooth', block: 'start'});
-                }
-                const $valuationTab = $('.sell__tab a[href="#valuation"]');
-                const $valuationForm = $('.sell__valuation-form-title');
-                if ($valuationTab.length && $valuationForm.length) {
-                    $sellButtonValuation.on('click', sellButtonValuationClick);
-                }
-            }
-
+        if ($('.sell-from').length) {
             const $valuationFormNext = $('.sell__valuation-form-next-button');
             if ($valuationFormNext.length) {
                 function valuationFormNextClick () {
@@ -944,7 +971,17 @@ document.addEventListener('DOMContentLoaded', () => {
             const movieId = $('#movieId').val() || 0;
             const moviesOptions = {};
 
-            initializeAutocomplete(moviesOptions);
+            $('#moviesAutocomplete').on('focus keydown', function (e) {
+                setTimeout(() => {
+                    const autocomplete = M.Autocomplete.getInstance(this);
+                    if (!e || !e.target || !e.target.value || e.target.value.length < 2) {
+                        if (autocomplete) autocomplete.destroy();
+                    } else if (!autocomplete) {
+                        initializeAutocomplete(moviesOptions);
+                    }
+                });
+            });
+            if (movieId && Number(movieId)) initializeAutocomplete(moviesOptions);
 
             $.getJSON('/ajax/movies.action', function (json) {
                 if (json && json.movies) {
@@ -993,48 +1030,69 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             }
             $sellStepButtons.on('click', sellStepButtonClick);
+
+            const hash = window.location.hash;
+            if (hash && hash.includes('#guide-1') &&
+                $('#dropdown-account').length) { // signedIn
+                $sellStepButtons.eq(1).trigger('click');
+            }
         }
 
         // RELATED
         const $relatedMoviesScroll = $('.related-movies__scroll');
         if ($relatedMoviesScroll.length) {
-            let relatedScrolling;
-            let relatedScrollingTimer;
+            const scrollWidth = $relatedMoviesScroll.outerWidth();
+            const listWidth = $relatedMoviesScroll[0].scrollWidth;
+            if (scrollWidth < listWidth) {
+                const isTouch = is_touch_device();
+                $relatedMoviesScroll.addClass('arrow-right');
+                if (!isTouch) $relatedMoviesScroll.addClass('arrow-left');
+                const cardWidth = listWidth / $('.related-movies__item').length;
+                const moveWidth = Math.floor(scrollWidth / cardWidth - 1) * cardWidth;
+                const SCROLL_THRESHOLD = 50;
+                let curScroll = 0;
+                let relatedScrolling;
+                let relatedScrollingTimer;
+                $relatedMoviesScroll.prepend($('.related-movies__item').clone()); // duplicate for infinite
+                $relatedMoviesScroll.prepend($('.related-movies__item').clone()); // duplicate for infinite
 
-            function onScroll() {
-                if (relatedScrollingTimer) clearTimeout(relatedScrollingTimer);
-                relatedScrollingTimer = setTimeout(() => { // debounce while scrolling
-                    relatedScrolling = null;
-
-                    $(this).toggleClass('arrow-left', (
-                        this.scrollWidth > this.clientWidth &&
-                        this.scrollLeft > 0
-                    ));
-                    $(this).toggleClass('arrow-right', (
-                        this.scrollWidth > this.clientWidth + this.scrollLeft + 1
-                    ));
-                }, 100);
-            }
-            $relatedMoviesScroll.on('scroll', onScroll);
-            onScroll.call($relatedMoviesScroll[0]);
-
-            function move (forward = true) {
-                if (relatedScrolling) return;
-                const scroll = $relatedMoviesScroll[0];
-                const width = scroll.clientWidth;
-                const sign = forward ? 1 : -1;
-                relatedScrolling = scroll;
-                let x = sign * width * .8;
-                if (forward && scroll.scrollWidth - width - scroll.scrollLeft - x < width * .2) { // if close to end, scroll to end
-                    x = width;
-                } else if (!forward && scroll.scrollLeft + x < width * .2) {
-                    x = - width;
+                function scrollCycle (sign = 1) {
+                    let scroll = $relatedMoviesScroll[0].scrollLeft + sign * listWidth;
+                    $relatedMoviesScroll[0].style.scrollBehavior = 'unset';
+                    $relatedMoviesScroll[0].scrollLeft = scroll;
+                    requestAnimationFrame(()=>$relatedMoviesScroll[0].style.scrollBehavior = 'smooth');
+                    return scroll;
                 }
-                scroll.scrollLeft += x;
-            }
 
-            $('.related-movies__arrow--left').on('click', function () { move(false); });
-            $('.related-movies__arrow--right').on('click', move);
+                setTimeout(()=>{
+                    $relatedMoviesScroll.on('scroll', function () {
+                        if (relatedScrollingTimer) clearTimeout(relatedScrollingTimer);
+                        relatedScrollingTimer = setTimeout(() => { // debounce while scrolling
+                            relatedScrolling = null;
+                            if (isTouch) return;
+
+                            let scroll = $(this).scrollLeft();
+                            if (scroll - curScroll > SCROLL_THRESHOLD) { // right
+                                if (scroll > listWidth + scrollWidth) scroll = scrollCycle(-1);
+                                curScroll = scroll;
+                            } else if (curScroll - scroll > SCROLL_THRESHOLD) { // left
+                                if (scroll < listWidth - scrollWidth) scroll = scrollCycle(1);
+                                curScroll = scroll;
+                            }
+                        }, 200);
+                    });
+                    if (!isTouch) curScroll = scrollCycle(1);
+                }, 1000);
+
+                function move (sign = 1) {
+                    if (relatedScrolling) return;
+                    relatedScrolling = true;
+                    $relatedMoviesScroll[0].scrollLeft += sign * moveWidth;
+                }
+
+                $('.related-movies__arrow--left').on('click', () => move(-1));
+                $('.related-movies__arrow--right').on('click', () => move(1));
+            }
         }
 
         // PRODUCTS
@@ -1086,7 +1144,17 @@ document.addEventListener('DOMContentLoaded', () => {
             const movieId = $('#movieId').val() || 0;
             const moviesOptions = {};
 
-            initializeAutocomplete(moviesOptions);
+            $('#moviesAutocomplete').on('focus keydown', function (e) {
+                setTimeout(() => {
+                    const autocomplete = M.Autocomplete.getInstance(this);
+                    if (!e || !e.target || !e.target.value || e.target.value.length < 2) {
+                        if (autocomplete) autocomplete.destroy();
+                    } else if (!autocomplete) {
+                        initializeAutocomplete(moviesOptions);
+                    }
+                });
+            });
+            if (movieId && Number(movieId)) initializeAutocomplete(moviesOptions);
 
             $.getJSON('/ajax/movies.action', function (json) {
                 if (json && json.movies) {
@@ -1228,6 +1296,8 @@ document.addEventListener('DOMContentLoaded', () => {
                     }
 
                     $.get('/ajax/count.action?' + $formClone.serialize(), function (data) {
+                        if (!checkResponse(data, false)) return data;
+
                         data = Number(data.trim());
                         if (data > 0) data -= $('#productsCount').val();
                         if (data > 0) {
@@ -1320,6 +1390,8 @@ document.addEventListener('DOMContentLoaded', () => {
                     const $form = $(el).find('.modal-payment-plan-form');
                     $.get($form.attr('action'))
                         .done(data => {
+                            if (!checkResponse(data)) return data;
+
                             $form.html(data);
                             M.updateTextFields();
                             $($('.modal-payment-plan__months-buttons input:checked').data('tab')).show();
@@ -1364,28 +1436,21 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (!$product.length) return;
 
                 const productId = $product[0].getAttribute('data-id');
-                const lotUrl = this.getAttribute('data-url');
                 if ($heart.hasClass('active')) {
                     $.get('/ajax/removeFromFavorites.action?product=' + productId)
                         .done(data => {
                             $heart.removeClass('active');
                         });
-                    // if (lotUrl) openSamAndClose(AUCTION_URL + '/watchlist/remove?autoclose=true&' + lotUrl);
                 } else {
                     $.get('/ajax/addToFavorites.action?product=' + productId)
                         .done(data => {
                             $heart.addClass('active');
                         });
-                    // if (lotUrl) openSamAndClose(AUCTION_URL + '/watchlist/add?autoclose=true&' + lotUrl);
                 }
             });
-        }
 
-        //MODAL ASK PRIVATE SALE
-        if ($('#modal-private-sales-form').length) {
-            grecaptchaRender('g-recaptcha-private-sales');
-
-            $('#modal-private-sales-form').submit(function (e) {
+            // GET EMAIL NOTICES WHEN WE HAVE NEW ITEMS FROM THIS TITLE
+            $('#product-movie-form').submit(function (e) {
                 e.preventDefault();
                 $('.loader-block').show();
 
@@ -1394,7 +1459,57 @@ document.addEventListener('DOMContentLoaded', () => {
                     $(this).serialize(),
                 )
                     .done(data => {
-                        // this.innerHTML = data;
+                        $('.loader-block').hide();
+                        M.Toast.dismissAll();
+                        const toast = `<span>Movie added&nbsp; <a href="/emailNotifications.action" class="h6">Open Email Notifications</a></span>`;
+                        setTimeout(() => M.toast({html: toast}), 100);
+                    })
+                    .fail(data => {
+                        redirectPage($('#product-movie-button')[0].href);
+                    });
+            });
+            $('#product-movie-button').on('click', function (e) {
+                e.preventDefault();
+                $('#product-movie-form').submit();
+            });
+        }
+
+        //MODAL ASK PRIVATE SALE
+        if ($('#modal-private-sales').length) {
+            $('#modal-private-sales').modal({ // load form on modal open
+                onOpenStart: function (el) {
+                    el.classList.add('sync');
+                    const $form = $('#modal-private-sales-form');
+                    $.get($form.attr('action'))
+                        .done(data => {
+                            if (!checkResponse(data)) return data;
+
+                            $form.html(data);
+                            M.updateTextFields();
+                            grecaptchaRender('g-recaptcha-private-sales');
+                        })
+                        .fail(data => {
+                            if (data && data.statusText) $form.html(data.statusText);
+                        })
+                        .always(data => {
+                            el.classList.remove('sync');
+                        });
+                },
+            });
+
+            $('#modal-private-sales-form').submit(function (e) {
+                e.preventDefault();
+                $('.loader-block').show();
+
+                $.post(
+                    '/ajax/requestSubmit.action',
+                    $(this).serialize(),
+                )
+                    .done(data => {
+                        if (!checkResponse(data)) return data;
+
+                        this.innerHTML = data;
+                        M.updateTextFields();
                         grecaptchaRender('g-recaptcha-private-sales');
                     })
                     .fail(data => {
@@ -1415,6 +1530,8 @@ document.addEventListener('DOMContentLoaded', () => {
                     const contentURL = $(trigger).data('form-content-url');
                     $.get(contentURL)
                         .done(data => {
+                            if (!checkResponse(data)) return data;
+
                             $form.html(data);
                             M.updateTextFields();
                             $('#modal-shipping-quote-country').formSelect({dropdownOptions: {container: document.body}});
@@ -1441,6 +1558,8 @@ document.addEventListener('DOMContentLoaded', () => {
                     data,
                 )
                     .done(data => {
+                        if (!checkResponse(data)) return data;
+
                         this.innerHTML = data;
                         M.updateTextFields();
                         $('select').formSelect({dropdownOptions: {container: document.body}});
@@ -1456,13 +1575,13 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         // PROFILE
-        if ($('#accountDetailsSubmit').length) {
-            $('#accountDetailsSubmit').submit(function (e) {
+        if ($('#userProfileSubmit').length) {
+            $('#userProfileSubmit').submit(function (e) {
                 $('.loader-block').show();
             });
 
             //billingAsShipping
-            const $shippingAddressCheckbox = $('#accountDetailsSubmit input[name="billingAsShipping"]');
+            const $shippingAddressCheckbox = $('#userProfileSubmit input[name="billingAsShipping"]');
             if ($shippingAddressCheckbox.length) {
                 function accountBillingAddress() {
                     const $form = $('.account-billing-address-form');
@@ -1524,7 +1643,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
 
             // REGISTERED BUSINESS
-            const $businessCheckbox = $('#accountDetailsSubmit_business');
+            const $businessCheckbox = $('#userProfileSubmit_business');
             if ($businessCheckbox.length) {
                 function isRegisteredBusiness() {
                     const $form = $('.business-form');
@@ -1532,7 +1651,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         $form.show();
                     } else {
                         $form.hide();
-                        $('#accountDetailsSubmit_businessNumber').val('');
+                        $('#userProfileSubmit_businessNumber').val('');
                     }
                 }
 
@@ -1559,7 +1678,16 @@ document.addEventListener('DOMContentLoaded', () => {
                 });
             }
             const moviesOptions = {};
-            initializeAutocomplete(moviesOptions);
+            $('#moviesAutocomplete').on('focus keydown', function (e) {
+                setTimeout(() => {
+                    const autocomplete = M.Autocomplete.getInstance(this);
+                    if (!e || !e.target || !e.target.value || e.target.value.length < 2) {
+                        if (autocomplete) autocomplete.destroy();
+                    } else if (!autocomplete) {
+                        initializeAutocomplete(moviesOptions);
+                    }
+                });
+            });
             $.getJSON('/ajax/movies.action', function (json) {
                 if (json && json.movies) {
                     $(json.movies).each(function (index, movie) {
@@ -1637,15 +1765,14 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         // BLOG
+        $('.card-blog').on('click', function(event) {
+            const fakeUrl = $(event.target).data('href');
+            if (fakeUrl) {
+                event.preventDefault();
+                redirectPage(fakeUrl);
+            }
+        });
         if ($('.wp.blog').length || $('.wp.archive').length || $('.wp.search').length) {
-            $('.card-blog').on('click', function(event) {
-                const fakeUrl = $(event.target).data('href');
-                if (fakeUrl) {
-                    event.preventDefault();
-                    redirectPage(fakeUrl);
-                }
-            });
-
             $('.filters__select-category select').on('change', function(event) {
                 redirectPage(event.target.value);
             });
@@ -1924,6 +2051,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 $.get('/ajax/subscribe.action')
                     .done(data => {
+                        if (!checkResponse(data, false)) return data;
+
                         $form.html(data);
                         M.updateTextFields();
 
@@ -1947,6 +2076,8 @@ document.addEventListener('DOMContentLoaded', () => {
                     $(this).serialize(),
                 )
                     .done(data => {
+                        if (!checkResponse(data)) return data;
+
                         this.innerHTML = data;
                         M.updateTextFields();
 
@@ -1974,6 +2105,8 @@ document.addEventListener('DOMContentLoaded', () => {
                     $(this).serialize(),
                 )
                     .done(data => {
+                        if (!checkResponse(data)) return data;
+
                         if (data && data.trim() === 'success') {
                             redirectPage('/sso.action' + window.location.search);
                         } else {
@@ -1997,9 +2130,18 @@ document.addEventListener('DOMContentLoaded', () => {
                     $(this).serialize(),
                 )
                     .done(data => {
+                        if (!checkResponse(data)) return data;
+
                         this.innerHTML = data;
                         modalLoginForms();
                         grecaptchaRender('g-recaptcha-register');
+                        if ($('.modal-register__sso-trigger').length) { // success
+                            $('.modal-register__sso-trigger').on('click', function (e) {
+                                e.preventDefault();
+                                redirectPage('/sso.action' + window.location.search);
+                            });
+                            trackEvent('SignUp');
+                        }
                     })
                     .fail(data => {
                         if (data && data.statusText) this.innerHTML = data.statusText;
@@ -2018,6 +2160,8 @@ document.addEventListener('DOMContentLoaded', () => {
                     $(this).serialize(),
                 )
                     .done(data => {
+                        if (!checkResponse(data)) return data;
+
                         this.innerHTML = data;
                         modalLoginForms();
                         grecaptchaRender('g-recaptcha-password');
@@ -2032,6 +2176,8 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         function modalLoginForms () {
+            if (!$('.modal-auction-register-form .modal-trigger').length) return; // already handled
+
             $('.modal-auction-register-form .modal-close').removeClass('modal-close');
             $('.modal-auction-register-form .modal-trigger').removeClass('modal-trigger').addClass('modal-trigger-auction-registration');
 
@@ -2040,6 +2186,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 $('.modal-auction-register-form').hide();
                 $('#modal-auction-register-form').show();
                 grecaptchaRender('g-recaptcha-register');
+                trackEvent('RegistrationForm');
             });
             $('.modal-trigger-auction-registration[href="#modal-signin"]').on('click', function (e) {
                 e.preventDefault();
@@ -2054,6 +2201,9 @@ document.addEventListener('DOMContentLoaded', () => {
             });
             initFacebookLoginButton();
             M.updateTextFields();
+            if ($('.modal-register-page').length) { // register page from sam
+                trackEvent('RegistrationForm');
+            }
         }
 
         // AUCTION REGISTRATION
@@ -2076,7 +2226,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 // open second page
                 function goBack (e) {
                     e.preventDefault();
-                    reloadPage();
+                    redirectPage('/auctionRegistration.action?auctionId=' + $('#modal-register-auction-form_auctionId').val() +
+                        '&d=' + $('#modal-register-auction-form_d').val() +
+                        '&ru=' + encodeURIComponent($('#modal-register-auction-form_ru').val()) +
+                        '&sc=' + $('#modal-register-auction-form_sc').val());
                 };
 
                 function setStep (step) {
@@ -2176,11 +2329,13 @@ document.addEventListener('DOMContentLoaded', () => {
                         $(this).serialize(),
                     )
                         .done(data => {
+                            if (!checkResponse(data)) return data;
+
                             if (data && data.trim() === 'success') {
                                 redirectPage('/sso.action' + window.location.search);
                             } else {
                                 this.innerHTML = data;
-                                M.updateTextFields();
+                                auctionRegistration();
                             }
                         })
                         .fail(data => {
@@ -2202,9 +2357,18 @@ document.addEventListener('DOMContentLoaded', () => {
                         $(this).serialize(),
                     )
                         .done(data => {
+                            if (!checkResponse(data)) return data;
+
                             this.innerHTML = data;
                             auctionRegistration();
                             grecaptchaRender('g-recaptcha-register');
+                            if ($('.modal-register__sso-trigger').length) { // success
+                                $('.modal-register__sso-trigger').on('click', function (e) {
+                                    e.preventDefault();
+                                    redirectPage('/sso.action' + window.location.search);
+                                });
+                                trackEvent('SignUp');
+                            }
                         })
                         .fail(data => {
                             if (data && data.statusText) this.innerHTML = data.statusText;
@@ -2225,6 +2389,8 @@ document.addEventListener('DOMContentLoaded', () => {
                         $(this).serialize(),
                     )
                         .done(data => {
+                            if (!checkResponse(data)) return data;
+
                             this.innerHTML = data;
                             auctionRegistration();
                             grecaptchaRender('g-recaptcha-password');
@@ -2244,11 +2410,10 @@ document.addEventListener('DOMContentLoaded', () => {
         if ($auctionRegistrationTrigger.length) {
             $auctionRegistrationTrigger.on('click', function (e) {
                 e.preventDefault();
-                let params = 'd=1&ru=' + encodeURIComponent(window.location.pathname + window.location.search);
-                const scroll = $(window).scrollTop();
-                if (scroll > 100) params += '&sc=' + String(Math.round(scroll));
+                const params = new URLSearchParams('d=1');
+                ssoParams(params);
                 const paramsSymbol = this.href.includes('?') ? '&' : '?';
-                redirectPage(this.href + paramsSymbol + params);
+                redirectPage(this.href + paramsSymbol + params.toString());
             });
         }
 
@@ -2264,7 +2429,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         // COOKIES
-        const isCookiesAccepted = true//$.cookie('cookies_accepted');
+        const isCookiesAccepted = $.cookie('cookies_accepted');
         if (!isCookiesAccepted) {
             M.toast({
                 html: `<span class="cookies-toast"><span class="cookies-toast__body"><strong class="c-r">This website uses cookies</strong><br/>
@@ -2278,18 +2443,7 @@ We also share information about your use of our site with our social media, adve
                 $.cookie('cookies_accepted', new Date().toISOString().replaceAll(':', '-'), { expires: new Date(2147483647 * 1000), path: '/' });
                 M.Toast.dismissAll();
             });
-        }
-
-        // SELL-CTA
-        if ($('.sell-cta').length) {
-            setTimeout(() => {
-                $('.sell-cta').each((i, el) => {
-                    const $image = $(el).find('.sell-cta__img-image');
-                    const style = $image.attr('style') || '';
-                    if (style.includes('cutbottom')) $(el).addClass('cutbottom');
-                    if (style.includes('cutbottomwide')) $(el).addClass('cutbottomwide');
-                });
-            }, 200);
+            $('#toast-container').prepend('<div class="toast__overlay"/>');
         }
 
     }); // end of document ready
@@ -2312,6 +2466,8 @@ function bagCountToggle (count) {
 function bagCountUpdate () {
     $.get('/ajax/rest.action?actions=productBasketCount')
         .done(data => {
+            if (!checkResponse(data, false)) return data;
+
             const $data = $('<div/>').html(data);
             const bagCount = $data.find('#productBasketCount').text().trim();
             bagCountToggle(bagCount);
@@ -2324,6 +2480,8 @@ function getHeaderUpdate () {
     }
     $.get('/ajax/rest.action?actions=userLoggedIn&actions=productBasketCount&actions=headerMenuAuctions')
         .done(data => {
+            if (!checkResponse(data, false)) return data;
+
             const $data = $('<div/>').html(data);
 
             if ($('body').hasClass('wp')) {
@@ -2345,16 +2503,53 @@ function getHeaderUpdate () {
         });
 }
 
-function initFacebookLoginButton() {
+function initFacebookLoginButton(sso = null) {
     // todo: logic from old new-design, requires review
-    $('#facebookLoginButtonLogin, #facebookLoginButtonRegister').click(function () {
-        var url = $(this).attr('data-url');
+    $('#facebookLoginButtonLogin, #facebookLoginButtonRegister').click(function (e) {
+        let url = $(this).attr('data-url');
+        const state = {};
+        if ($(e.target).closest('#facebookLoginButtonLogin').length) {
+            state.action = 'login';
+        } else if ($(e.target).closest('#facebookLoginButtonRegister').length) {
+            state.action = 'register';
+        }
+        if (sso) {
+            state.redirectUrl = escape(sso);
+        }
+        if (url.includes('facebookLoginCallback.action&state={')) { // already has state
+            url = url.replace(
+                'facebookLoginCallback.action&state={',
+                'facebookLoginCallback.action&state=' + JSON.stringify(state).slice(0,-1) + ','
+            );
+        } else {
+            url = url.replace(
+                'facebookLoginCallback.action&',
+                'facebookLoginCallback.action&state=' + JSON.stringify(state) + '&'
+            );
+        }
+
         var w = 600;
         var h = 600;
         var left = (screen.width / 2) - (w / 2);
         var top = (screen.height / 2) - (h / 2);
 
         window.open(url, 'facebookLogin', 'width=' + w + ',height=' + h + ',top=' + top + ', left=' + left);
+
+        $button = $(this).next('.modal-register__facebook-or');
+        function onMessage (event) {
+            if (event.data) {
+                if (event.data === 'fbTrackSignUp') {
+                    window.removeEventListener('message', onMessage);
+                    trackEvent('SignUp');
+                } else if (event.data.includes && event.data.includes('fbErrorMessage:')) {
+                    $('#facebookError').remove();
+                    $(`<div id="facebookError" class="input-field__helper error">
+                        ${event.data.replace('fbErrorMessage:', '')}
+                    <br/><br/></div>`).insertAfter($button);
+                }
+            }
+        }
+        window.addEventListener('message', onMessage);
     });
 }
 
@@ -2367,5 +2562,36 @@ function reloadPage () {
 
 function redirectPage (url) {
     $('.loader-block').show();
-    window.location.href = url;
+    window.location.href = url.replace(/\/+/g,'/').replace(/^https:\//,'https://');
+}
+
+function checkResponse (data, isReload = true) {
+    if (data && data.includes('<html')) {
+        M.toast({
+            html: 'Unfortunately something went wrong',
+            classes: 'toast-error'
+        });
+        if (isReload) setTimeout(()=>window.location.reload(), 2000);
+        return false;
+    }
+    return true;
+}
+
+function trackEvent (event) {
+    try {
+        switch (event) {
+            case 'SignUp': {
+                fbq('track', 'CompleteRegistration');
+                rdt('track', 'SignUp');
+                break;
+            }
+            case 'RegistrationForm': {
+                fbq('trackCustom', 'RegistrationForm');
+                rdt('track', 'Custom', { customEventName: 'RegistrationForm' }); 
+                break;
+            }
+        }
+    } catch (e) {
+        setTimeout(()=>trackEvent(event), 100);
+    }
 }
