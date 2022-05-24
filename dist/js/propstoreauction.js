@@ -1899,10 +1899,12 @@ i.timeout=!1},1e3)),this},prev:function(){var t=this.index-1;return t<0&&(t=0<ar
                  *
                  * HEADER
                  */
+                let headerDebounce;
                 function resize() {
-                    headerFloat();
+                    if (headerDebounce) clearTimeout(headerDebounce);
+                    headerDebounce = setTimeout(headerFloat, 100);
                 }
-                setTimeout(resize, 500);
+                resize();
                 $(window).on('resize', resize);
 
                 const headerMainTop = $('.header__settings').height();
