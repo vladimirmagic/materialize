@@ -352,8 +352,8 @@ i.timeout=!1},1e3)),this},prev:function(){var t=this.index-1;return t<0&&(t=0<ar
                     $itemTitleH.find('.lot-name').remove();
                     $('.product__number').html($itemTitleH.text());
                     $('.product__title').html($itemTitle.text());
-                    $('.auc__hero-aucinfo').attr('href', $('.aucinfo').attr('href')).show();
-                    $('.auc__hero-auccatalog').attr('href', $('.catlg').attr('href')).show();
+                    $('.auc__hero-aucinfo').attr('href', $('.aucinfo').attr('href')).attr('style', '');
+                    $('.auc__hero-auccatalog').attr('href', $('.catlg').attr('href')).attr('style', '');
 
 
                     if ($('.description-info-content .product__gallery').length) {
@@ -1028,12 +1028,18 @@ i.timeout=!1},1e3)),this},prev:function(){var t=this.index-1;return t<0&&(t=0<ar
 
                         const $selector = $(e.target).closest('.selector');
                         if ($selector.length) {
-                            $selector[0].dataset.on = !$selector[0].dataset.on || $selector[0].dataset.on == '0' ? 1 : 0;
+                            setTimeout(() => {
+                                const on = !$selector[0].dataset.on || $selector[0].dataset.on == '0';
+                                if ($selector.find('.categ-chk').prop('checked') != on) { // click on :after
+                                    $selector.find('label').trigger('click');
+                                } else {
+                                    $selector[0].dataset.on = on ? 1 : 0;
+                                }
+                            }, 100);
                         }
                     });
                     $('#adv_search_categories > label').addClass('h6');
-                    $('#adv_search_categories .accordion-header').append('<div class="auccatalog__search-panel-checkboxes-note">Make Selections Below</div>');
-                    // $('#adv_search_categories .selector')
+                    $('#adv_search_categories .accordion-header').append('<div class="auccatalog__search-panel-checkboxes-note">Click to expand</div>');
 
                     const $searchMatch = $('<div class="input-field input-field--label input-field--select">');
                     $searchMatch.append($('.categories-match label').addClass('active')).append($('#advsCatMatch'));
@@ -1694,12 +1700,16 @@ i.timeout=!1},1e3)),this},prev:function(){var t=this.index-1;return t<0&&(t=0<ar
                         }
                     }, 1000);
 
+                    let resizeDebounce;
                     function onResize () {
-                        if (getComputedStyle($('.product__inner')[0]).display === 'block') {
-                            $('.product__info').append($('.lot-description'));
-                        } else {
-                            $('.product__gallery').append($('.lot-description'));
-                        }
+                        if (resizeDebounce) clearTimeout(resizeDebounce);
+                        resizeDebounce = setTimeout(() => {
+                            if (getComputedStyle($('.product__inner')[0]).display === 'block') {
+                                $('.product__info').append($('.lot-description'));
+                            } else {
+                                $('.product__gallery').first().append($('.lot-description'));
+                            }
+                        }, 100);
                     }
                     $(window).on('resize', onResize);
                     onResize();

@@ -23194,6 +23194,11 @@ body.search-index .categories-match {
   margin-top: 2rem;
 }
 
+.auccatalog__search-panel .featured,
+.auccatalog__search-panel #category_button_more {
+  display: none;
+}
+
 .auccatalog__search-panel-title {
   display: -webkit-box;
   display: -webkit-flex;

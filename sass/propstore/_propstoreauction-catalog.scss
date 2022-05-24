@@ -253,6 +253,11 @@ body.search-index {
 	.categories-match {
 		margin-top: 2rem;
 	}
+
+	.featured,
+	#category_button_more {
+		display: none;
+	}
 }
 
 .auccatalog__search-panel-title {
