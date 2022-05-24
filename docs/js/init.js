@@ -585,10 +585,13 @@ document.addEventListener('DOMContentLoaded', () => {
         // document.body.append(out);
 
         let isMobileFilter = false;
-
-        function resize () {
-            headerFloat();
-            mobileFilterToggle();
+        let headerDebounce;
+        function resize() {
+            if (headerDebounce) clearTimeout(headerDebounce);
+            headerDebounce = setTimeout(() => {
+                headerFloat();
+                mobileFilterToggle();
+            }, 100);
         }
         resize();
         $(window).on('resize', resize);
