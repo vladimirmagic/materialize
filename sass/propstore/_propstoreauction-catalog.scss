@@ -234,7 +234,6 @@ body.search-index {
 
 	.selector,
 	.accordion-header {
-		display: flex;
 		margin: .5em 0;
 
 		input {
@@ -319,10 +318,17 @@ body.search-index {
 		}
 
 		.categ-chk:checked ~ &:after,
-		&.on:after {
+		&[data-on="1"]:after {
 			transform: rotate(180deg);
 		}
 	}
+}
+
+.auccatalog__search-panel-checkboxes-note {
+	font-size: 1rem;
+	font-weight: 300;
+	color: $color-font-grey;
+	line-height: 1.2;
 }
 
 #adv_search_categories,

@@ -23166,10 +23166,6 @@ body.search-index .categories-match {
 
 .auccatalog__search-panel .selector,
 .auccatalog__search-panel .accordion-header {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
   margin: .5em 0;
 }
 
@@ -23269,9 +23265,16 @@ body.search-index .categories-match {
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath fill-rule='evenodd' clip-rule='evenodd' d='M14.53 5.47a.75.75 0 00-1.06 0L8 10.94 2.53 5.47a.75.75 0 00-1.06 1.06l6 6c.3.3.77.3 1.06 0l6-6c.3-.3.3-.77 0-1.06z'/%3E%3C/svg%3E");
 }
 
-.categ-chk:checked ~ .auccatalog__search-panel-checkboxes .smsel:not([data-childcount="0"]):after, .auccatalog__search-panel-checkboxes .smsel:not([data-childcount="0"]).on:after {
+.categ-chk:checked ~ .auccatalog__search-panel-checkboxes .smsel:not([data-childcount="0"]):after, .auccatalog__search-panel-checkboxes .smsel:not([data-childcount="0"])[data-on="1"]:after {
   -webkit-transform: rotate(180deg);
           transform: rotate(180deg);
+}
+
+.auccatalog__search-panel-checkboxes-note {
+  font-size: 1rem;
+  font-weight: 300;
+  color: #8F8F8F;
+  line-height: 1.2;
 }
 
 #adv_search_categories label,

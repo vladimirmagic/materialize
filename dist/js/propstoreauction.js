@@ -1023,9 +1023,16 @@ i.timeout=!1},1e3)),this},prev:function(){var t=this.index-1;return t<0&&(t=0<ar
                     $('section.sort-by').append($searchSort);
                     $('section.sort-by .drplist').hide();
 
-                    $('#adv_search_categories .scroll-list').addClass('auccatalog__search-panel-checkboxes');
+                    $('#adv_search_categories .scroll-list').addClass('auccatalog__search-panel-checkboxes').on('click', (e) => {
+                        if (e.target.className == 'categ-chk') return;
+
+                        const $selector = $(e.target).closest('.selector');
+                        if ($selector.length) {
+                            $selector[0].dataset.on = !$selector[0].dataset.on || $selector[0].dataset.on == '0' ? 1 : 0;
+                        }
+                    });
                     $('#adv_search_categories > label').addClass('h6');
-                    $('#adv_search_categories .accordion-header').appned('<div class="auccatalog__search-panel-checkboxes-note">Make Selections Below</div>');
+                    $('#adv_search_categories .accordion-header').append('<div class="auccatalog__search-panel-checkboxes-note">Make Selections Below</div>');
                     // $('#adv_search_categories .selector')
 
                     const $searchMatch = $('<div class="input-field input-field--label input-field--select">');
