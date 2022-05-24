@@ -217,7 +217,7 @@ i.timeout=!1},1e3)),this},prev:function(){var t=this.index-1;return t<0&&(t=0<ar
                     <div class="modal-header modal-header--sticky">
                         <a class="modal-close btn-flat btn--icon"><i class='icon'><svg><use xlink:href="#close"></use></svg></i></a>
                     </div>
-                    <form class="modal-content modal-form modal-shipping-quote-form" action="/ajax/modalShippingQuoteSubmit.action"></form>
+                    <form class="modal-content modal-form modal-shipping-quote-form" action="/ajax/modalShippingQuoteASubmit.action"></form>
                     <div class="modal__loader"><div class="preloader-wrapper active"><div class="spinner-layer"><div class="circle-clipper left"><div class="circle"></div></div><div class="gap-patch"><div class="circle"></div></div><div class="circle-clipper right"><div class="circle"></div></div></div></div></div>
                 </div>
             </span>
