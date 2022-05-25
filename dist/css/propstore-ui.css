@@ -23496,6 +23496,35 @@ body.search-index .categories-match {
   overflow-y: auto;
 }
 
+.place-bid-live-online-item-dialog {
+  padding: 1rem;
+  font-size: 20px;
+  border-radius: 6px;
+  z-index: 1010;
+  background: white;
+}
+
+.place-bid-live-online-item-dialog__buttons {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  padding-bottom: 1rem;
+}
+
+.place-bid-live-online-item-dialog__buttons .btn + .btn, .place-bid-live-online-item-dialog__buttons .btn-large + .btn, .place-bid-live-online-item-dialog__buttons .btn-small + .btn, .place-bid-live-online-item-dialog__buttons .btn-extra-small + .btn, .place-bid-live-online-item-dialog__buttons .btn + .btn-large, .place-bid-live-online-item-dialog__buttons .btn-large + .btn-large, .place-bid-live-online-item-dialog__buttons .btn-small + .btn-large, .place-bid-live-online-item-dialog__buttons .btn-extra-small + .btn-large, .place-bid-live-online-item-dialog__buttons .btn + .btn-small, .place-bid-live-online-item-dialog__buttons .btn-large + .btn-small, .place-bid-live-online-item-dialog__buttons .btn-small + .btn-small, .place-bid-live-online-item-dialog__buttons .btn-extra-small + .btn-small, .place-bid-live-online-item-dialog__buttons .btn + .btn-extra-small, .place-bid-live-online-item-dialog__buttons .btn-large + .btn-extra-small, .place-bid-live-online-item-dialog__buttons .btn-small + .btn-extra-small, .place-bid-live-online-item-dialog__buttons .btn-extra-small + .btn-extra-small {
+  margin-left: 1rem;
+}
+
+.place-bid-live-online-item-dialog__buttons input {
+  color: white;
+  font-weight: 600;
+}
+
 @media only screen and (max-width: 1636px) {
   .auccatalog__nav-inner {
     max-width: 1264px;

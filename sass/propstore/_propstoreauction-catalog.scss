@@ -527,6 +527,29 @@ body.search-index {
 	overflow-y: auto;
 }
 
+.place-bid-live-online-item-dialog {
+	padding: 1rem;
+	font-size: 20px;
+	border-radius: 6px;
+	z-index: 1010;
+	background: white;
+}
+
+.place-bid-live-online-item-dialog__buttons {
+	display: flex;
+	justify-content: center;
+	padding-bottom: 1rem;
+
+	.btn + .btn {
+		margin-left: 1rem;
+	}
+
+	input {
+		color: white;
+		font-weight: 600;
+	}
+}
+
 @media #{$breakpoint-4cards} {
 	.auccatalog__nav-inner {
 		max-width: $width-4cards-m;

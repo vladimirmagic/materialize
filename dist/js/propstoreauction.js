@@ -1328,6 +1328,18 @@ document.addEventListener('DOMContentLoaded', () => {
                         $('.cards__list').append($cardItem);
                     });
 
+
+                    $('#pbloi3')[0].onclick = () => {
+                        $('#lac29_ctl, #lac29_ctldbbg').hide();
+                    };
+                    const $placeBidLiveDialog = $('.place-bid-live-online-item-dialog');
+                    if ($placeBidLiveDialog.length) {
+                        $placeBidLiveDialog.find('.unibtn').parent('div').prepend('<div class="place-bid-live-online-item-dialog__buttons">');
+                        $placeBidLiveDialog.find('.unibtn').appendTo('.place-bid-live-online-item-dialog__buttons').addClass('waves-effect waves-light btn btn--tertiary').each((i, item) => {
+                            if (!$(item).find('.qbutton-ctl').children().length) $(item).hide();
+                        });
+                    }
+
                     $('.container').prepend($('.auccatalog'));
                     if ($('body').hasClass('auctions-catalog')) {
                         $('.auc__hero').addClass('auc__hero--small');
