@@ -1,3 +1,10 @@
+.lot-details .product__info .product__number{
+	display: none;
+}
+
+.auctions-info #wrapper .bodybox > *{
+  display: none;
+}
 
 /****** Annihilation  - Header Graphics *****/
 form[action*="catalog/227/"] div.lot-details-container .bodybox:before {
@@ -436,6 +443,21 @@ form#AdvancedSearch[action*="/id/303"]:before {
  .auction320 .hero__carousel .hero__image{
       background-image: url('https://content.propstore.com/auction/funko2022/funko2022-newsite-landingpageheader-1080x800.jpg') !important;
   }
+/*catalog page*/
+  .auction319 .hero__image, .auction332 .hero__image {
+        background-image: url('https://s3.eu-west-1.amazonaws.com/content.propstore.com/auction/EMLAUS2022/Headers/EMLA-US2022_Catalog.jpg') !important;
+    }
+/*lot page*/
+  .auction319.lot-details .hero__image, .auction332.lot-details .hero__image {
+        background-image: url('https://s3.eu-west-1.amazonaws.com/content.propstore.com/auction/EMLAUS2022/Headers/EMLA-US2022_DayBreak-Headers_v2-Day01.jpg') !important;
+    }
+/*EMLA US 2022 catalog page*/
+/* .auction319 .hero__inner .hero__image{
+  background-image: url('https://content.propstore.com/auction/EMLAUS2022/EMLAUS2022_SAM-Cat-AuctionHeader_1080x500_gizmo.jpg') !important;
+} */
+.auction319 .hero__carousel .hero__image {
+  background-image: url('https://content.propstore.com/auction/EMLAUS2022/EMLAUS22_Auctions-Banner_1080x864_gizmo.jpg') !important;
+}
 
 /*END STEVE EDIT EXAMPLE*/
   .auction287 .hero__image{
@@ -480,20 +502,13 @@ form#AdvancedSearch[action*="/id/303"]:before {
   .auction312 .hero__inner .hero__image{
     background-image: url('https://content.propstore.com/public-img/sam-header/SusanG_SAM-Cat-AuctionHeader_1080x500.jpg') !important;
   }
-    /*EMLA US 2022 catalog page*/
-    .auction319 .hero__inner .hero__image{
-      background-image: url('https://content.propstore.com/public-img/sam-header/EMLAUS2022_SAM-Cat-AuctionHeader_1080x500.jpg') !important;
-  }
-  .auction319 .hero__carousel .hero__image{
-    background-image: url('https://content.propstore.com/public-img/EMLA-LA2022_SAM-HeaderBanner_1080x800_v2.jpg') !important;
-}
 /*EMLA US 2020 catalog page*/
   .auction267 .hero__inner .hero__image{
       background-image: url('https://content.propstore.com/public-img/sam-header/EMLAUS2020_SAM-Cat-AuctionHeader_1080x500.jpg') !important;
   }
 
   /*Terminator: Dark Fate catalog page*/
-  .auction314 .hero__inner .hero__image{
+  .auctions-catalog.auction326 .hero__inner .hero__image, .lot-details.auction326 .hero__inner .hero__image{
     background-image: url('https://content.propstore.com/public-img/sam-header/TDF_SAM-Cat-AuctionHeader_1080x500.jpg') !important;
 }
 
@@ -533,14 +548,10 @@ form#AdvancedSearch[action*="/id/303"]:before {
 }
 #customRegisterButton309:before {content: 'http://www.eepurl.com/hXCDmr'}
 #customRegisterButton309:after {content: 'Sign Up For Updates'}
-#customDate309:before {content: '21 Jun — 24 Jun'}
+#customDate309:before {content: '21 Jun - 24 Jun'}
 
-#customRegisterButton326:before {content: 'https://propstoreauction.com/auctions/info/id/326'}
-#customRegisterButton326:after {content: 'Register Now'}
-#customLots326:before {content: 'Lots: 1'}
-
-#customRegisterButton319:before {content: 'http://www.eepurl.com/hXCDmr'}
-#customRegisterButton319:after {content: 'Sign Up For Updates'}
+#customRegisterButton319:before {content: 'https://propstore.com/auctionRegistration.action?auctionId=319'}
+#customRegisterButton319:after {content: 'Register Now'}
 
 #customRegisterButton320:before {content: 'http://www.eepurl.com/hXC0KD'}
 #customRegisterButton320:after {content: 'Sign Up For Updates'}
@@ -561,10 +572,54 @@ body.auctions-info #AuctionInfoForm #wrapper .bodybox .auctitle{
 	display: none;
 }
 
+.calendar-btn-box{
+  justify-content: space-between;
+  display: flex;
+  margin-bottom: 24px;
+  text-align: center;
+}
+
+.buttonIcon{
+  height: 20px;
+  display: inline;
+  vertical-align: text-bottom;
+}
+
+.addToCalendarLg {
+  flex-basis: calc(50% - .75rem);
+  display: inline;
+  -webkit-box-pack: justify;
+  padding: 0 8px;
+  color: #2D2E41;
+  border: #c7c7c7 1px solid;
+  background-color: rgba(0,0,0,0.05);
+  height: 56px;
+  line-height: 56px;
+  text-transform: uppercase;
+  background-color: rgba(0,0,0,0);
+  font-weight: 600;
+  font-size: 12px;
+  letter-spacing: .12em;
+  text-align: center;
+}
+
+.card__info .calendar-btn-box{
+  margin-top: 8px;
+  margin-bottom: 0;
+}
+
+.card__info .addToCalendarLg{
+ width: calc(50% - 4px);
+ flex-basis: unset;
+}
+
+/*------------!!LIVE SALE BUTTON VISIBILITY!!------------*/
+.aucproduct__livesale-link{
+    display: none;
+}
+
 a[href="https://propstoreauction.com/auctions/catalog/id/323"],
 a[href="https://propstoreauction.com/auctions/catalog/id/320"],
-a[href="https://propstoreauction.com/auctions/catalog/id/319"],
-a[href="https://propstoreauction.com/auctions/catalog/id/326"],
 a[href="https://propstoreauction.com/auctions/catalog/id/322"],
 a[href="https://propstoreauction.com/auctions/catalog/id/318"]{
   display:none

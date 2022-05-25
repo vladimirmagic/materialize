@@ -738,68 +738,14 @@ document.addEventListener('DOMContentLoaded', () => {
                             .append($('#calendarBtnBox'));
                     }
                     // giveLotViewCalendarButtonsLinks();
-                    let wlb = $('#watchlist_button');
-                    lotBannerAutomation(wlb);
-
-                    function generateLotViewCalendarButtons(remindDate){
-                        let auctionTitle = document.getElementsByClassName("hero__static-title")[0].innerText;
-                        let lotName = document.getElementsByClassName("product__title")[0].innerText;
-                        let lotViewUrl = top.location.origin + top.location.pathname;
-                        let beforeElement = document.getElementsByClassName("product__buttons-grey")[0];
+                    try {
+                        let wlb = $('#watchlist_button');
+                        window.lotBannerAutomation(wlb);
+                        window.lotCalendarAutomation(wlb);
+                    } catch (e) {
+                        console.log(e);
+                    }
                     
-                        let btnBox = document.createElement("div");
-                        btnBox.classList = ["calendar-btn-box"];
-                        generateCalendarButton(auctionTitle, new Date(remindDate.getFullYear(), remindDate.getMonth(), remindDate.getDate(), remindDate.getHours(), remindDate.getMinutes() + 5, 0, 0), lotName, lotViewUrl, "OUTLOOK", btnBox);
-                        generateCalendarButton(auctionTitle, remindDate, lotName, lotViewUrl, "GOOGLE", btnBox);
-
-                        $(btnBox).insertAfter(beforeElement);
-                    }
-
-                    let lid = wlb.data('lid');
-                    switch(wlb.data('aid')){
-                        case 319:
-                            if(lid < 89190){
-                                generateLotViewCalendarButtons(new Date(2022, 5, 21, 7, 35 + lid - 88704, 0));
-                            }
-                            else if(lid < 89672){
-                                generateLotViewCalendarButtons(new Date(2022, 5, 22, 7, 35 + lid - 89190, 0));
-                            }
-                            else if(lid < 90164){
-                                generateLotViewCalendarButtons(new Date(2022, 5, 23, 7, 35 + lid - 89672, 0));
-                            }
-                            else{
-                                generateLotViewCalendarButtons(new Date(2022, 5, 24, 7, 35 + lid - 90164, 0));
-                            }
-                            break;
-                        case 332:
-                            if(lid < 87331){
-                                generateLotViewCalendarButtons(new Date(2022, 5, 21, 7, 35 + lid - 86845, 0));
-                            }
-                            else if(lid < 87811){
-                                generateLotViewCalendarButtons(new Date(2022, 5, 22, 7, 35 + lid - 87331, 0));
-                            }
-                            else if(lid < 88304){
-                                generateLotViewCalendarButtons(new Date(2022, 5, 23, 7, 35 + lid - 87811, 0));
-                            }
-                            else{
-                                generateLotViewCalendarButtons(new Date(2022, 5, 24, 7, 35 + lid - 88304, 0));
-                            }
-                            break;
-                        case 192:
-                            if(lid < 47525){
-                                generateLotViewCalendarButtons(new Date(2022, 5, 21, 7, 35 + lid - 47524, 0));
-                            }
-                            else if(lid < 47527){
-                                generateLotViewCalendarButtons(new Date(2022, 5, 22, 7, 35 + lid - 47525, 0));
-                            }
-                            else{
-                                generateLotViewCalendarButtons(new Date(2022, 5, 23, 7, 35 + lid - 47527, 0));
-                            }
-                            break;
-                        case 330:
-                            generateLotViewCalendarButtons(new Date(2022, 5, 24, 7, 35 + lid - 47524, 0));
-                            break;
-                    }
 
                     /**
                      *
@@ -1368,6 +1314,12 @@ document.addEventListener('DOMContentLoaded', () => {
                         }
                         $('.auc__hero-aucinfo').attr('href', $('.aucinfo').attr('href')).show();
                         $('.container').prepend($('.auc__hero').show());
+
+                        try {
+                            window.catalogBannerAutomation();
+                        } catch (e) {
+                            console.log(e);
+                        }
                     } else if ($('body').hasClass('my-items')) {
                         $('.auccatalog__search').html('My Items');
                         $('<div class="auccatalog__tabs" />').insertAfter('.auccatalog__search').append($('#tabnav'));
@@ -1391,63 +1343,10 @@ document.addEventListener('DOMContentLoaded', () => {
                         });
                     }
 
-                    function generateCatalogViewCalendarButtons(remindDate, auctionTitle, lotName, lotViewUrl, parentElement){
-                        let btnBox = document.createElement("div");
-                        btnBox.style = "width: 100%";
-                        btnBox.className = "calendar-btn-box";
-                        generateCalendarButton(auctionTitle, remindDate, lotName, lotViewUrl, "OUTLOOK", btnBox);
-                        generateCalendarButton(auctionTitle, remindDate, lotName, lotViewUrl, "GOOGLE", btnBox);
-
-                        parentElement.appendChild(btnBox);
-                    }
-                    
-                    let  lotDataSources = $(".lot-item");
-                    let lotTitles = $(".yaaa");
-                    let parentElements = $(".card__info");
-                    
-                    for(let i = 0; i < lotDataSources.length; i++){
-                        let lid = parseInt(lotDataSources[i].getAttribute("data-lid"));
-                        let url = lotTitles[i].href;
-                        switch(parseInt(lotDataSources[i].getAttribute("data-aid"))){
-                            case 319:
-                                if(lid < 89190){
-                                    generateCatalogViewCalendarButtons(new Date(2022, 5, 21, 7, 35 + lid - 88704, 0), "Entertainment Memorabilia Live Auction: Los Angeles 2022", lotTitles[i].innerText, url.substring(0, url.indexOf("?")), parentElements[i]);
-                                }
-                                else if(lid < 89672){
-                                    generateCatalogViewCalendarButtons(new Date(2022, 5, 22, 7, 35 + lid - 89190, 0), "Entertainment Memorabilia Live Auction: Los Angeles 2022", lotTitles[i].innerText, url.substring(0, url.indexOf("?")), parentElements[i]);
-                                }
-                                else if(lid < 90164){
-                                    generateCatalogViewCalendarButtons(new Date(2022, 5, 23, 7, 35 + lid - 89672, 0), "Entertainment Memorabilia Live Auction: Los Angeles 2022", lotTitles[i].innerText, url.substring(0, url.indexOf("?")), parentElements[i]);
-                                }
-                                else{
-                                    generateCatalogViewCalendarButtons(new Date(2022, 5, 24, 7, 35 + lid - 90164, 0), "Entertainment Memorabilia Live Auction: Los Angeles 2022", lotTitles[i].innerText, url.substring(0, url.indexOf("?")), parentElements[i]);
-                                }
-                            break;
-                            case 332:
-                                if(lid < 87331){
-                                    generateCatalogViewCalendarButtons(new Date(2022, 5, 21, 7, 35 + lid - 86845, 0), "Entertainment Memorabilia Live Auction: Los Angeles 2022", lotTitles[i].innerText, url.substring(0, url.indexOf("?")), parentElements[i]);
-                                }
-                                else if (lid < 87811){
-                                    generateCatalogViewCalendarButtons(new Date(2022, 5, 22, 7, 35 + lid - 87331, 0), "Entertainment Memorabilia Live Auction: Los Angeles 2022", lotTitles[i].innerText, url.substring(0, url.indexOf("?")), parentElements[i]);
-                                }
-                                else if (lid < 88304){
-                                    generateCatalogViewCalendarButtons(new Date(2022, 5, 23, 7, 35 + lid - 87811, 0), "Entertainment Memorabilia Live Auction: Los Angeles 2022", lotTitles[i].innerText, url.substring(0, url.indexOf("?")), parentElements[i]);
-                                }
-                                else{
-                                    generateCatalogViewCalendarButtons(new Date(2022, 5, 24, 7, 35 + lid - 88304, 0), "Entertainment Memorabilia Live Auction: Los Angeles 2022", lotTitles[i].innerText, url.substring(0, url.indexOf("?")), parentElements[i]);
-                                }
-                            break;
-                            case 192:
-                                if(lid < 47525){
-                                    generateCatalogViewCalendarButtons(new Date(2022, 5, 21, 7, 35 + lid - 47524, 0), "Entertainment Memorabilia Live Auction: Los Angeles 2022", lotTitles[i].innerText, url.substring(0, url.indexOf("?")), parentElements[i]);
-                                }
-                                else if (lid < 47527){
-                                    generateCatalogViewCalendarButtons(new Date(2022, 5, 22, 7, 35 + lid - 47525, 0), "Entertainment Memorabilia Live Auction: Los Angeles 2022", lotTitles[i].innerText, url.substring(0, url.indexOf("?")), parentElements[i]);
-                                }
-                                else{
-                                    generateCatalogViewCalendarButtons(new Date(2022, 5, 23, 7, 35 + lid - 47527, 0), "Entertainment Memorabilia Live Auction: Los Angeles 2022", lotTitles[i].innerText, url.substring(0, url.indexOf("?")), parentElements[i]);
-                                }
-                        }
+                    try {
+                        window.catalogCalendarAutomation();
+                    } catch (e) {
+                        console.log(e);
                     }
 
                     /**
@@ -2204,260 +2103,6 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }, 100);
 
-
-        /*
-            TO USE:
-            * First argument should be the SAM lot ID for the loaded product
-            * Second argument should be the SAM lot ID of the last lot of day 1
-            * Every subsequent argument should be an object of the format { last, url } to represent days of the auction after the
-                first, with last equal to the ID of the last lot of the day, url set to the url of the corresponding banner for the day
-            * Url for day 1 is assumed to be in place as default
-        */
-        function lotBannerUpdate(){
-            if(arguments[0] <= arguments[1]){
-                let dayNum = $("<p></p>").text("Day 1").css("font-size", "20px");
-                $(".hero__static-title").after(dayNum);
-
-                let dateInfo = $('.hero__static-date').contents().filter(function() {
-                    return this.nodeType == Node.TEXT_NODE;
-                })[2];
-                let dateRead = dateInfo.textContent;
-                if(dateRead.includes("-")){
-                    dateInfo.textContent = dateRead.substr(0, dateRead.indexOf(" ", 10));
-                }
-                return;
-            }
-            for(let i = 2; i < arguments.length; i++){
-                if(arguments[0] <= arguments[i].last){
-                    $(".hero__image").css({'cssText': "background-image: url(\'" + arguments[i].url + "\') !important"});
-                    let dayNum = $("<p></p>").text("Day " + i).css("font-size", "20px");
-                    $(".hero__static-title").after(dayNum);
-
-                    Date.prototype.addDays = function(days) {
-                        var date = new Date(this.valueOf());
-                        date.setDate(date.getDate() + days);
-                        return date;
-                    }
-                    let dateInfo = $('.hero__static-date').contents().filter(function() {
-                        return this.nodeType == Node.TEXT_NODE;
-                    })[2];
-                    let dateRead = dateInfo.textContent;
-                    if(dateRead.includes("-")){
-                        dateRead = dateRead.substr(0, dateRead.indexOf(" ", 10));
-                    }
-                    let finalDate = new Date(Date.parse(dateRead));
-                    let format = { month: "short", day: "numeric", year: "numeric" }
-                    dateInfo.textContent = finalDate.addDays(i - 1).toLocaleString("en-US", format).replace(",", "");
-                    return;
-                }
-            }
-        }
-
-        /*
-            Reads auction and lot ID from the #watchlist_button element and calls lotBannerUpdate with corresponding arguments
-        */
-        function lotBannerAutomation(watchListButton){
-            switch(watchListButton.data('aid')){
-                case 319:
-                case 332:
-                    return lotBannerUpdate(
-                        watchListButton.data('lid'),
-                        89189,
-                        {last: 89671, url: "https://s3.eu-west-1.amazonaws.com/content.propstore.com/auction/EMLAUS2022/Headers/EMLA-US2022_DayBreak-Headers_v2-Day02.jpg"}, 
-                        {last: 90164, url: "https://s3.eu-west-1.amazonaws.com/content.propstore.com/auction/EMLAUS2022/Headers/EMLA-US2022_DayBreak-Headers_v2-Day03.jpg"}, 
-                        {last: 90593, url: "https://s3.eu-west-1.amazonaws.com/content.propstore.com/auction/EMLAUS2022/Headers/EMLA-US2022_DayBreak-Headers_v2-Day04.jpg"}
-                    );
-                case 192:
-                    return lotBannerUpdate(
-                        watchListButton.data('lid'),
-                        47524,
-                        {last: 47526, url: "https://lumiere-a.akamaihd.net/v1/images/Darth-Vader_6bda9114.jpeg"},
-                        {last: 47528, url: "https://cdn.mos.cms.futurecdn.net/FwNw2ZUryX6yAmFSSajDv4-1200-80.jpg"}
-                    );
-                default:
-                    return "";
-            }  
-        }
-
-        function generateCalendarButton(auctionTitle, remindDate, lotName, lotViewUrl, btnText, parentElement){
-            let btn = document.createElement("span");
-            btn.className = "waves-effect waves-grey btn--secondary addToCalendarLg";
-        
-            let icon = document.createElement("img");
-            icon.className = "buttonIcon";
-            icon.src = "https://s3.eu-west-1.amazonaws.com/content.propstore.com/auction/EMLALA2021/graphics/calendar3.png";
-            btn.append(icon);
-        
-            let textSpan = document.createElement("span");
-            textSpan.innerText = " " + btnText;
-            btn.append(textSpan);
-        
-            remindDate = new Date(remindDate.getTime() + remindDate.getTimezoneOffset() * 60000);
-        
-            let href;
-        
-            if(btnText == "OUTLOOK"){
-                href = generateICSFileURL(auctionTitle, remindDate, lotName, lotViewUrl);
-                btn.addEventListener("click", function(event){
-                    event.stopPropagation();
-                    event.preventDefault();
-                    downloadURI(href, "propstore.ics");
-                });
-            }
-            else{
-                href = generateGoogleCalendarURL(auctionTitle, remindDate, lotName, lotViewUrl)
-        
-                btn.addEventListener("click", function(event){
-                    event.stopPropagation();
-                    event.preventDefault();
-                    window.open(href, "_blank");
-                });
-            }
-            parentElement.appendChild(btn);
-        }
-        
-        function generateICSFileURL(auctionTitle, remindDate, lotName, lotViewUrl){
-            let encodedLotName = encodeURIComponent(lotName);
-            let remindMonth = remindDate.getMonth();
-            let remindDay = remindDate.getDate();
-            let remindHr = remindDate.getHours();
-            let remindMin = remindDate.getMinutes();
-            let remindYear = remindDate.getFullYear();
-            let sellDate = new Date (remindYear, remindMonth, remindDay, remindHr, remindMin + 20, 0, 0);
-        
-            remindMonth += 1;
-            if(remindMonth < 10)
-                remindMonth = "0" + remindMonth;
-        
-            if(remindDay < 10)
-                remindDay = "0" + remindDay;
-            
-            if(remindHr < 10)
-                remindHr = "0" + remindHr;
-            
-            if(remindMin < 10)
-                remindMin = "0" + remindMin;
-        
-            let sellMonth = sellDate.getMonth();
-            sellMonth += 1;
-            if(sellMonth < 10)
-                sellMonth = "0" + sellMonth;
-        
-            let sellDay = sellDate.getDate();
-            if(sellDay < 10)
-                sellDay = "0" + sellDay;
-            
-            let sellHr = sellDate.getHours();
-            if(sellHr < 10)
-                sellHr = "0" + sellHr;
-        
-            let sellMin = sellDate.getMinutes();
-            if(sellMin < 10)
-                sellMin = "0" + sellMin;
-        
-            let sellYear = sellDate.getFullYear();
-        
-            let href = "data:text/calendar;charset=utf8,BEGIN:VCALENDAR%0AVERSION:2.0%0ABEGIN:VEVENT%0ADTSTART:";
-            href += remindYear;
-            href += remindMonth;
-            href += remindDay + "T";
-            href += remindHr;
-            href += remindMin;
-            href += "00Z%0ADTEND:";
-            href += sellYear;
-            href += sellMonth;
-            href += sellDay + "T";
-            href += sellHr;
-            href += sellMin;
-            href += "00Z%0ASUMMARY:";
-            href += encodedLotName;
-            href += "%0ADESCRIPTION:BIDDING%20TIME!%20This%20reminder%20on%20your%20calendar%20will%20notify%20you%20on%20auction%20day%20that%20";
-            href += encodedLotName;
-            href += "%20in%20Prop%20Store's%20";
-            href += encodeURIComponent(auctionTitle);
-            href += "%20will%20be%20closing%20in%2020%20mins.%5Cn%5CnPlease%20note%20that%20you%20must%20be%20registered%20and%20approved%20in%20order%20to%20bid%20on%20line%20when%20the%20Lot%20crosses%20the%20auction%20block.%20You%20should%20register%20in%20advance%2C%20it%20is%20unlikely%20you%20will%20have%20enough%20time%20to%20register%20once%20this%20calendar%20reminder%20appears%20on%20auction%20day.%5Cn%5CnA%20direct%20link%20to%20this%20lot%20is%20below%3A%5Cn%5Cn";
-            href += lotViewUrl;
-            href += "%0AEND:VEVENT%0AEND:VCALENDAR%0A";
-        
-            return href;
-        }
-        
-        function generateGoogleCalendarURL(auctionTitle, remindDate, lotName, lotViewUrl){
-            let remindMonth = remindDate.getMonth();
-            let remindDay = remindDate.getDate();
-            let remindHr = remindDate.getHours();
-            let remindMin = remindDate.getMinutes();
-            let remindYear = remindDate.getFullYear();
-            lotName = encodeForGoogleCalendarURL(lotName);
-            let sellDate = new Date (remindYear, remindMonth, remindDay, remindHr, remindMin + 20, 0, 0);
-        
-            remindMonth += 1;
-            if(remindMonth < 10)
-                remindMonth = "0" + remindMonth;
-        
-            if(remindDay < 10)
-                remindDay = "0" + remindDay;
-        
-            if(remindHr < 10)
-                remindHr = "0" + remindHr;
-        
-            if(remindMin < 10)
-                remindMin = "0" + remindMin;
-        
-            let sellMonth = sellDate.getMonth();
-            sellMonth += 1;
-            if(sellMonth < 10)
-                sellMonth = "0" + sellMonth;
-        
-            let sellDay = sellDate.getDate();
-        
-            if(sellDay < 10)
-                sellDay = "0" + sellDay;
-        
-            let sellHr = sellDate.getHours();
-            if(sellHr < 10)
-                sellHr = "0" + sellHr;
-        
-            let sellMin = sellDate.getMinutes();
-        
-            if(sellMin < 10)
-                sellMin = "0" + sellMin;
-        
-            let sellYear = sellDate.getFullYear();
-        
-            let href = "https://calendar.google.com/calendar/u/0/r/eventedit?dates="
-            href += remindYear;
-            href += remindMonth;
-            href += remindDay + "T";
-            href += remindHr;
-            href += remindMin + "Z/";
-            href += sellYear;
-            href += sellMonth;
-            href += sellDay + "T";
-            href += sellHr;
-            href += sellMin;
-            href += "Z&details=BIDDING+TIME!+This+reminder+on+your+calendar+will+notify+you+on+auction+day+that+";
-            href += lotName;
-            href += "+in+Prop+Store%27s+"
-            href += encodeForGoogleCalendarURL(auctionTitle);
-            href += "+will+be+closing+in+20+mins.%0A+%0APlease+note+that+you+must+be+registered+and+approved+in+order+to+bid+on+line+when+the+Lot+crosses+the+auction+block.+You+should+register+in+advance,+it+is+unlikely+you+will+have+enough+time+to+register+once+this+calendar+reminder+appears+on+auction+day.%0A%0AA+direct+link+to+this+lot+is+below:%0A+%0A";
-            href += lotViewUrl;
-            href += "&text=" + lotName;
-        
-            return href;
-        }
-        
-        function encodeForGoogleCalendarURL(str){
-            return str.replaceAll("%", "%25").replaceAll("+", "%2B").replaceAll(" ", "+").replaceAll("&", "%26").replaceAll("'", "%27").replaceAll("#", "%23");
-        }
-        
-        function downloadURI(uri, name) 
-        {
-            var link = document.createElement("a");
-            link.download = name;
-            link.href = uri;
-            link.click();
-        }
     }); // end of document ready
 });
 
