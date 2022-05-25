@@ -68,14 +68,14 @@ document.addEventListener('DOMContentLoaded', () => {
                 $('body').append($('.auc-sidenav'));
                 $('<main>').append($('#wrapper')).insertAfter($('.auc-header'));
                 if (!$('.container').length) $('#wrapper').append('<div class="container">');
-                $('body').append('<div id="div-hidden" style="display:none;">');
+                $('body').append('<div id="div-hidden" style="display:none;"><div id="zoom-viewer-images"></div>');
 
                 let isSignedIn = !$('#headsec li[title="Auction Login"]').length && !$('#headsec li[title="Login"]').length;
 
                 function addProductZoom() {
                     $('#modal-product-gallery .carousel-item').each((index, item) => {
                         const url = item.style.backgroundImage.slice(4, -1).replace(/["']/g, '');
-                        $(item).append('<img src="' + url + '" class="zoom-viewer"/>');
+                        $('#zoom-viewer-images').append('<img src="' + url + '" class="zoom-viewer"/>');
                     });
                 }
 
@@ -107,41 +107,74 @@ document.addEventListener('DOMContentLoaded', () => {
                         productCarousel();
                         $(window).on('resize', productCarousel);
                     }
+                    let modalGallery;
                     let modalSlider;
+                    let modalSliderIndex;
                     let zoomViewer;
+                    const slide = (prev = false) => {
+                        if (prev) {
+                            if (zoomViewer && zoomViewer.isShown) zoomViewer.prev(true);
+                            if (modalSlider && modalSlider[0]) modalSlider[0].prev();
+                        } else {
+                            if (zoomViewer && zoomViewer.isShown) zoomViewer.next(true);
+                            if (modalSlider && modalSlider[0]) modalSlider[0].next();
+                        }
+                    }
+                    function modalCarouselKeydown ({ key }) {
+                        const callback = {
+                            'ArrowLeft': () => slide(true),
+                            'ArrowRight': () => slide(false),
+                        }[key];
+                        callback?.();
+                    }
                     function modalCarousel () {
                         if (modalSlider && modalSlider[0]) modalSlider[0].destroy();
                         modalSlider = M.Carousel.init($('#modal-product-gallery').find('.modal-gallery__carousel'), {
                             fullWidth: true,
                             indicators: true,
-                            onCycleTo: function(item, dragged) {
-                                if ($(item).find('.zoom-viewer').length) {
-                                    if (zoomViewer) {
-                                        zoomViewer.destroy();
-                                        $('.zoom-viewer__toggler').remove();
-                                    }
-                                    zoomViewer = new Viewer($(item).find('.zoom-viewer')[0], {
-                                        navbar: false,
-                                        title: false,
-                                        toolbar: false,
-                                        zoomRatio: .5,
-                                        maxZoomRatio: 2,
-                                        viewed() { zoomViewer.zoomTo(1.5); },
-                                    });
-                                    $('#modal-product-gallery').append('<div class="zoom-viewer__toggler">');
-                                    $('.zoom-viewer__toggler').append('<div class="zoom-viewer__toggler-label">Click To&nbsp;Zoom</div>');
-                                    $('.zoom-viewer__toggler').on('click', ()=>{
-                                        zoomViewer.show();
-                                    });
-                                }
+                            onCycleTo: (item, dragged) => {
+                                modalSliderIndex = $('#modal-product-gallery .carousel-item').index(item);
                             },
                         });
+                        if ($('.zoom-viewer').length) {
+                            if (zoomViewer) {
+                                zoomViewer.destroy();
+                                $('.zoom-viewer__toggler').remove();
+                            }
+                            zoomViewer = new Viewer($('#zoom-viewer-images')[0], {
+                                navbar: false,
+                                title: false,
+                                toolbar: false,
+                                zoomRatio: .5,
+                                maxZoomRatio: 2,
+                                keyboard: false,
+                                viewed() {
+                                    zoomViewer.zoomTo(1.5);
+                                    if (!$('.viewer-button--close-modal').length) {
+                                        $('.viewer-close').append('<div class="zoom-viewer__toggler-label">Use scroll wheel to&nbsp;control zoom</div>');
+                                        $('.viewer-container').append('<div class="viewer-button viewer-button--close-modal">', '<div class="arrows"><div class="arrow arrow--prev"></div><div class="arrow arrow--next"></div></div>');
+                                        $('.viewer-button--close-modal').on('click', ()=>{
+                                            if (zoomViewer) zoomViewer.destroy();
+                                            if (modalGallery && modalGallery[0]) modalGallery[0].close();
+                                        });
+                                        $('.viewer-container .arrow--prev').on('click', ()=>slide(true));
+                                        $('.viewer-container .arrow--next').on('click', ()=>slide(false));
+                                    }
+                                },
+                            });
+                            $('#modal-product-gallery').append('<div class="zoom-viewer__toggler">');
+                            $('.zoom-viewer__toggler').append('<div class="zoom-viewer__toggler-label">Click To&nbsp;Zoom</div>');
+                            $('.zoom-viewer__toggler').on('click', ()=>{
+                                zoomViewer.view(modalSliderIndex);
+                            });
+                        }
                     }
-                    M.Modal.init(document.querySelectorAll('#modal-product-gallery'), {
+                    modalGallery = M.Modal.init(document.querySelectorAll('#modal-product-gallery'), {
                         opacity: .75,
                         onCloseStart: (el) => {
                             if (modalSlider && modalSlider[0]) modalSlider[0].destroy();
                             $(window).off('resize', modalCarousel);
+                            document.removeEventListener('keydown', modalCarouselKeydown);
                         },
                         onOpenEnd: (el, trigger) => {
                             modalCarousel();
@@ -155,6 +188,7 @@ document.addEventListener('DOMContentLoaded', () => {
                                     modalSlider[0].set(index);
                                 }, timer);
                             }
+                            document.addEventListener('keydown', modalCarouselKeydown);
                         }
                     });
                 }

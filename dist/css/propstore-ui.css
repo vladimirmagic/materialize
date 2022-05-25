@@ -15788,6 +15788,114 @@ tbody .tr:last-child .td {
   line-height: 1.2;
 }
 
+.viewer-button.viewer-button--close-modal {
+  position: absolute;
+  z-index: 10;
+  top: 40px;
+  right: 40px;
+  width: 32px;
+  height: 32px;
+  cursor: pointer;
+  -webkit-transition: all .3s ease-in-out;
+  transition: all .3s ease-in-out;
+}
+
+.viewer-button.viewer-button--close-modal:hover {
+  opacity: .5;
+}
+
+.viewer-button.viewer-button--close-modal:before {
+  content: '';
+  position: absolute;
+  z-index: -1;
+  left: -1rem;
+  right: -1rem;
+  top: -1rem;
+  bottom: -1rem;
+  border-radius: 5rem;
+  background: #000;
+  -webkit-transition: opacity .2s ease;
+  transition: opacity .2s ease;
+}
+
+.viewer-button.viewer-button--close-modal:after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-position: 50% 50%;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 14 14'%3E%3Cpath fill-rule='evenodd' clip-rule='evenodd' d='M.47.47c.3-.3.77-.3 1.06 0L7 5.94 12.47.47a.75.75 0 111.06 1.06L8.06 7l5.47 5.47a.75.75 0 11-1.06 1.06L7 8.06l-5.47 5.47a.75.75 0 01-1.06-1.06L5.94 7 .47 1.53a.75.75 0 010-1.06z' fill='%23ffffff'/%3E%3C/svg%3E%0A");
+}
+
+.viewer-container .arrows {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  right: 0;
+}
+
+.touch .viewer-container .arrows {
+  display: none;
+}
+
+.viewer-container .arrow {
+  position: absolute;
+  top: 0;
+  width: 40px;
+  height: 40px;
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+  opacity: 1;
+  cursor: pointer;
+  -webkit-transition: all .3s ease-in-out;
+  transition: all .3s ease-in-out;
+}
+
+.viewer-container .arrow:hover:before {
+  background: #000;
+}
+
+.viewer-container .arrow.arrow--prev {
+  left: 40px;
+  -webkit-transform: translateY(-50%) rotate(180deg);
+          transform: translateY(-50%) rotate(180deg);
+}
+
+.viewer-container .arrow.arrow--next {
+  right: 40px;
+}
+
+.viewer-container .arrow:before {
+  content: '';
+  position: absolute;
+  z-index: -1;
+  left: -1.2rem;
+  right: -.8rem;
+  top: -1rem;
+  bottom: -1rem;
+  border-radius: 5rem;
+  background: rgba(0, 0, 0, 0.3);
+  -webkit-transition: opacity .2s ease;
+  transition: opacity .2s ease;
+}
+
+.viewer-container .arrow:after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-position: 50% 50%;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 14'%3E%3Cpath fill-rule='evenodd' clip-rule='evenodd' d='M.47.47c-.3.3-.3.77 0 1.06L5.94 7 .47 12.47a.75.75 0 101.06 1.06l6-6c.3-.3.3-.77 0-1.06l-6-6a.75.75 0 00-1.06 0z' fill='%23ffffff'/%3E%3C/svg%3E%0A");
+}
+
 .whatsnew {
   margin-top: 140px;
   text-align: center;
