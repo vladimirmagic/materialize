@@ -2105,8 +2105,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
 
                 function scrollToWarning () {
-                    const warning = document.querySelector('main .warning');
-                    if (warning) warning.scrollIntoView({behavior: 'smooth', block: 'center'});
+                    const $warning = $('main .warning:contains(" ")'); // not empty warning
+                    if ($warning.length) $warning[0].scrollIntoView({behavior: 'smooth', block: 'center'});
                 }
                 requestAnimationFrame(scrollToWarning);
 
