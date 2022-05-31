@@ -164,6 +164,10 @@ body.search-index {
 }
 
 .auccatalog {
+	.cards {
+		padding-top: 0;
+	}
+
 	.cards__inner {
 		display: flex;
 		align-items: flex-start;
@@ -171,6 +175,10 @@ body.search-index {
 
 	.cards__list {
 		flex: 1 1 100%;
+
+		.card {
+			margin-top: 2.5em;
+		}
 	}
 
 	.cards--list {
@@ -199,7 +207,7 @@ body.search-index {
 	left: 0;
 	top: 0;
 	flex: 0 0 $card-width;
-	margin: 5em $card-margin 0 0;
+	margin: 2.5em $card-margin 0 0;
 	background: white;
 	border-radius: 6px;
 	box-shadow: $shadow-base;
@@ -609,10 +617,6 @@ body.search-index {
 		padding-left: 1.5rem;
 		padding-right: 1.5rem;
 	}
-
-	.auccatalog__search-panel {
-		margin-top: 3.75em;
-	}
 }
 
 @media #{$large-and-up} {
@@ -702,7 +706,6 @@ body.search-index {
 	.auccatalog__search-panel {
 		position: relative;
 		flex: 1 1 100%;
-		margin-top: 2.5em;
 	}
 
 	.cards .aucproduct__card {

@@ -1,5 +1,5 @@
 .aucproduct {
-	margin-top: 3em;
+	padding-top: 3em;
 	background: $color-bg;
 
 	.product__slider {
@@ -237,6 +237,10 @@
 }
 
 @media #{$extra-large-and-up} {
+	.aucproduct {
+		margin-top: 3em;
+	}
+
 	.aucproduct .product__title {
 		font-size: 32px;
 	}
