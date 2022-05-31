@@ -331,6 +331,10 @@ body.search-index {
 		margin: .3rem 0;
 	}
 
+	.smsel[data-childcount="0"] {
+		text-transform: uppercase;
+	}
+
 	.smsel:not([data-childcount="0"]) {
 		position: relative;
 		margin: 1rem 0;
