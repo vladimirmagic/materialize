@@ -1298,14 +1298,6 @@ document.addEventListener('DOMContentLoaded', () => {
                             </div>`);
                             $cardItem.find('.aucproduct__card-details-bidding').append($biddingStatus);  
                         }
-                        const $reserveNotMet = $(item).find('.reserve-not-met');
-                        if ($reserveNotMet.length) {
-                            $cardItem.find('.aucproduct__card-details').append(`<div class="aucproduct__card-details-row">
-                                <div class="aucproduct__card-details-label"></div>
-                                <div class="aucproduct__card-details-value aucproduct__card-details-reserve-not-met"></div>
-                            </div>`);
-                            $cardItem.find('.aucproduct__card-details-reserve-not-met').append($reserveNotMet);    
-                        }
                         
                         const $heart = $(item).find('.bd-chk');
                         if ($heart.length) {
