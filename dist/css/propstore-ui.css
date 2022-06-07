@@ -23498,6 +23498,19 @@ body.search-index .categories-match {
   white-space: nowrap;
 }
 
+.aucproduct__card .bidding-status .youre-winning {
+  color: #11BFC5;
+  background: none;
+  white-space: unset;
+}
+
+.aucproduct__card .bidding-status .card__price-i {
+  top: unset;
+  right: unset;
+  -webkit-transform: translate(-0.5rem, -0.75rem);
+          transform: translate(-0.5rem, -0.75rem);
+}
+
 .aucproduct__card .blkRegularBid {
   position: relative;
   margin-top: 1rem;
@@ -23511,6 +23524,11 @@ body.search-index .categories-match {
 .aucproduct__card .blkRegularBid .btn, .aucproduct__card .blkRegularBid .btn-large, .aucproduct__card .blkRegularBid .btn-small, .aucproduct__card .blkRegularBid .btn-extra-small {
   width: 100%;
   padding: 0 8px;
+}
+
+.aucproduct__card .blkRegularBid .card__price-i {
+  right: -12px;
+  color: white;
 }
 
 .aucproduct__card .currency-input__label {

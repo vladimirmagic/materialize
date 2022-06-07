@@ -425,6 +425,20 @@ body.search-index {
 		white-space: nowrap;
 	}
 
+	.bidding-status {
+		.youre-winning {
+			color: $color-turquoise;
+			background: none;
+			white-space: unset;
+		}
+
+		.card__price-i {
+			top: unset;
+			right: unset;
+			transform: translate(-.5rem, -.75rem);
+		}
+	}
+
 	.blkRegularBid {
 		position: relative;
 		margin-top: 1rem;
@@ -437,6 +451,11 @@ body.search-index {
 		.btn {
 			width: 100%;
 			padding: 0 8px;
+		}
+
+		.card__price-i {
+			right: -12px;
+			color: white;
 		}
 	}
 

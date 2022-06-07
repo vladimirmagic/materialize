@@ -1289,6 +1289,10 @@ document.addEventListener('DOMContentLoaded', () => {
                             $bid.find('input[type="button"]').addClass('waves-effect waves-light btn btn--tertiary');
                             $bid.find('input[type="text"]').attr('autocomplete', 'off');
                             $cardItem.find('.card__bid').append($bid.addClass('blkRegularBid'));
+
+                            $bid.find('.unibtn').last().append(`<span class="waves-effect btn-flat btn--icon card__price-i dropdown-trigger" data-target='dropdown-bids-placed'>
+                                <i class='icon'><svg><use xlink:href="#i"></use></svg></i>
+                            </span>`);
                         }
                         const $biddingStatus = $(item).find('.bidding-status');
                         if ($biddingStatus.length) {
@@ -1296,7 +1300,14 @@ document.addEventListener('DOMContentLoaded', () => {
                                 <div class="aucproduct__card-details-label"></div>
                                 <div class="aucproduct__card-details-value aucproduct__card-details-bidding"></div>
                             </div>`);
-                            $cardItem.find('.aucproduct__card-details-bidding').append($biddingStatus);  
+
+                            if ($biddingStatus.text().includes('reserve')) {
+                                $biddingStatus.children().last().append(`<span class="waves-effect btn-flat btn--icon card__price-i dropdown-trigger" data-target='dropdown-reserve-price'>
+                                    <i class='icon'><svg><use xlink:href="#i"></use></svg></i>
+                                </span>`);
+                            }
+
+                            $cardItem.find('.aucproduct__card-details-bidding').append($biddingStatus);
                         }
                         
                         const $heart = $(item).find('.bd-chk');
@@ -1309,7 +1320,9 @@ document.addEventListener('DOMContentLoaded', () => {
                         }
 
                         $cardItem.on('click', function(e) {
-                            if (!$(e.target).is("input") && !$(e.target).is("a") && !$(e.target).closest('a').length) {
+                            if (!$(e.target).is("input") && !$(e.target).is("a") && !$(e.target).closest('a').length
+                                && !$(e.target).closest('.card__price-i').length
+                            ) {
                                 redirectPage($(e.target).closest('.card').find('.yaaa').attr('href'));
                             }
                         });
@@ -1328,6 +1341,9 @@ document.addEventListener('DOMContentLoaded', () => {
                             if (!$(item).find('.qbutton-ctl').children().length) $(item).hide();
                         });
                     }
+
+                    const currency = document.querySelectorAll('.card__price-i');
+                    if (currency) M.Dropdown.init(currency, { container: document.body });
 
                     $('.container').prepend($('.auccatalog'));
                     if ($('body').hasClass('auctions-catalog')) {
