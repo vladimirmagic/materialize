@@ -393,7 +393,6 @@ document.addEventListener('DOMContentLoaded', () => {
                     if ($('.description-info-content .product__gallery').length) {
                         $('.product__inner .product__gallery').remove();
                         $('.product__gallery').prependTo('.product__inner');
-                        addProductZoom();
                     } else {
                         $carouselItem = $('.product__slider .carousel-item').clone();
                         $slider = $('.product__slider').html('');
@@ -444,6 +443,7 @@ document.addEventListener('DOMContentLoaded', () => {
                             item.remove();
                         });
                     }
+                    addProductZoom();
 
                     $liveSale = $('.live-sale a');
                     if ($liveSale.length) {
@@ -1133,7 +1133,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     $searchLotSource.append($searchLot);
 
                     $searchInner.append('<div class="auccatalog__search-panel-buttons">');
-                    // $('.auccatalog__search-panel-buttons').append('<a class="waves-effect waves-light btn auccatalog__search-panel-button-clear" href="' + window.location.pathname + '">Clear</a>');
+                    $('.auccatalog__search-panel-buttons').append('<a class="waves-effect waves-light btn auccatalog__search-panel-button-clear" href="' + window.location.pathname + '">Clear</a>');
                     $('.auccatalog__search-panel-buttons').append($('#advsSearch_ctl'));
 
                     $('.auccatalog__search-panel').append($('#ads01'));
