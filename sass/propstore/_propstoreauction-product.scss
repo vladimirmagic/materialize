@@ -65,6 +65,7 @@
 }
 
 .aucproduct__form {
+	position: relative;
 	display: flex;
 	justify-content: space-between;
 	margin-bottom: 2rem;
@@ -90,6 +91,12 @@
 		.youre-winning {
 			font-weight: 500;
 			color: $color-turquoise;
+
+			.card__price-i {
+				top: unset;
+				right: unset;
+				transform: translate(-.75rem, -.75rem);
+			}
 		}
 
 		label {
@@ -106,6 +113,12 @@
 			display: inline;
 			content: '';
 		  }
+	}
+
+	.card__price-i--lot-place-bid {
+		top: -12px;
+    	right: -10px;
+		color: white;
 	}
 }
 

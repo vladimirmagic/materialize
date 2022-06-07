@@ -22761,6 +22761,7 @@ footer .auclting {
 }
 
 .aucproduct__form {
+  position: relative;
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -22796,6 +22797,13 @@ footer .auclting {
   color: #11BFC5;
 }
 
+.aucproduct__form .maxbid .youre-winning .card__price-i, .aucproduct__form .mxbid-input .youre-winning .card__price-i {
+  top: unset;
+  right: unset;
+  -webkit-transform: translate(-0.75rem, -0.75rem);
+          transform: translate(-0.75rem, -0.75rem);
+}
+
 .aucproduct__form .maxbid label, .aucproduct__form .mxbid-input label {
   color: #8F8F8F;
 }
@@ -22809,6 +22817,12 @@ footer .auclting {
 .aucproduct__form .maxbid br, .aucproduct__form .mxbid-input br {
   display: inline;
   content: '';
+}
+
+.aucproduct__form .card__price-i--lot-place-bid {
+  top: -12px;
+  right: -10px;
+  color: white;
 }
 
 .aucproduct__form-item {

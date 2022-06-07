@@ -494,6 +494,16 @@ document.addEventListener('DOMContentLoaded', () => {
                     $bidInput = $('.maxbid, .mxbid-input');
                     if ($bidInput.length) {
                         $bidInput.addClass('aucproduct__form-item');
+
+                        const $youreWinning = $bidInput.find('.youre-winning');
+                        if ($youreWinning.length) {
+                            if ($youreWinning.text().includes('reserve')) {
+                                $youreWinning.append(`<span class="waves-effect btn-flat btn--icon card__price-i dropdown-trigger" data-target='dropdown-reserve-price'>
+                                    <i class='icon'><svg><use xlink:href="#i"></use></svg></i>
+                                </span>`);
+                            }
+                        }
+
                         $('.aucproduct__form').show().append($bidInput);
                     }
 
@@ -529,6 +539,10 @@ document.addEventListener('DOMContentLoaded', () => {
                         } else if (val.includes('Register to bid')) {
                             $btnPlaceBid.val(customRegisterButtonTitle || 'Register for auction');
                             replaceClick();
+                        } else if (val.includes(' bid')) {
+                            $('.aucproduct__form').append(`<span class="waves-effect btn-flat btn--icon card__price-i card__price-i--lot-place-bid dropdown-trigger" data-target='dropdown-bids-placed'>
+                                <i class='icon'><svg><use xlink:href="#i"></use></svg></i>
+                            </span>`);
                         }
                     }
 
@@ -779,6 +793,9 @@ document.addEventListener('DOMContentLoaded', () => {
                     } catch (e) {
                         console.log(e);
                     }
+
+                    const currency = document.querySelectorAll('.card__price-i');
+                    if (currency) M.Dropdown.init(currency, { container: document.body });
                     
 
                     /**

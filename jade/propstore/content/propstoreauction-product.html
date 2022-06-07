@@ -226,27 +226,28 @@ Lot #2<span class="lot-name">Lot #2 - 2001: A SPACE ODYSSEY (1968) - Hand-Number
                                     <li>
                                         <label class="mxbid">
                                             My max bid </label>
-                                        <span class="mxbid-input"><span class="maxbid-curr">$</span><span id="tmbid126555_ctl"
-                                                class="qtextbox-ctl"><input type="text" name="tmbid126555" id="tmbid126555" value=""
+                                        <span class="mxbid-input"><span class="maxbid-curr">$</span><span id="tmbid126250_ctl"
+                                                class="qtextbox-ctl"><input type="text" name="tmbid126250" id="tmbid126250" value="2000"
                                                     class="textbox"
-                                                    onkeydown="if (event.keyCode == 13) {qc.pB('LotDetailsLive', 'tmbid126555', 'QEnterKeyEvent', '');}"
-                                                    style="width:145px;"></span></span>
-            
+                                                    onkeydown="if (event.keyCode == 13) {qc.pB('LotDetailsLive', 'tmbid126250', 'QEnterKeyEvent', '');}"
+                                                    style="width:145px;" /></span><span class="youre-winning"><br />Your bid is below the
+                                                reserve.</span></span>
+                            
                                     </li>
                                     <li>
                                         <div class="unibtn">
-                                            <span id="bPbid126555_ctl" class="qbutton-ctl"><input type="button" name="bPbid126555"
-                                                    id="bPbid126555" value="Place bid!" class="orng place-bid"
-                                                    onclick="if(!sam.isBidValid(this, 'Invalid max bid', '#tmbid126555')) return false; if(!sam.excessiveBidChecker.checkSingleBid(this, 'tmbid126555', 2750, '', 1000)) return false; qc.pA('LotDetailsLive', 'bPbid126555', 'QClickEvent', '', 'oai41'); return false;"></span>
+                                            <span id="bPbid126250_ctl" class="qbutton-ctl"><input type="button" name="bPbid126250" id="bPbid126250"
+                                                    value="Change bid!" class="orng place-bid"
+                                                    onclick="if(!sam.isBidValid(this, 'Invalid max bid', '#tmbid126250')) return false; if(!sam.excessiveBidChecker.checkSingleBid(this, 'tmbid126250', 850, '', 1000)) return false; qc.pA('LotDetailsLive', 'bPbid126250', 'QClickEvent', '', 'oai41'); return false;" /></span>
                                         </div>
                                     </li>
                                     <li>
-                                        <div class="time-status" id="auc-lot-time126555">
+                                        <div class="time-status" id="auc-lot-time126250">
                                         </div>
                                     </li>
                                 </ul>
                             </fieldset>
-                            <!-- //MAIN BIDDING BLOCK -->
+                <!-- //MAIN BIDDING BLOCK -->
                         </div>
                     </div>
                     <div class="clearfix"></div>
@@ -1201,6 +1202,19 @@ $(document).ready(function(){qcodoLoaded(10);});</script>
 
 <div class="loader-block" style="display: none;">
     <div class="preloader-wrapper active"><div class="spinner-layer"><div class="circle-clipper left"><div class="circle"></div></div><div class="gap-patch"><div class="circle"></div></div><div class="circle-clipper right"><div class="circle"></div></div></div></div>
+</div>
+
+<div style="display: none;">
+    <div id='dropdown-reserve-price' class='dropdown-content dropdown-currency'>
+        <p>The Reserve Price is the minimum price the Seller will accept for a Lot.
+        The Reserve Price will not be more than the lowest estimate given by Propstore.
+        Please increase your bid to ensure it is above the reserve.</p>
+    </div>
+    <div id='dropdown-bids-placed' class='dropdown-content dropdown-currency'>
+        <p>Bids placed now are max bids which will be executed on your behalf once the auction starts.
+        These bids will be executed at the lowest possible price during the auction, as dictated by other bidding activity.
+        Please follow the auction closely as most bidding activity occurs while the lot is closing - should you be outbid, you will be able to increase your bid at any point until the lot is sold.</p>
+    </div>
 </div>
 
 <link async href="https://ukm.propstoreauction.com/css/custom/sam-custom.css?v=2022-03-31" type="text/css" rel="stylesheet" media="screen,projection" data-v2>
