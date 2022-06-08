@@ -1319,7 +1319,7 @@ document.addEventListener('DOMContentLoaded', () => {
                             </div>`);
 
                             if ($biddingStatus.text().includes('reserve')) {
-                                $biddingStatus.children().last().append(`<span class="waves-effect btn-flat btn--icon card__price-i dropdown-trigger" data-target='dropdown-reserve-price'>
+                                $biddingStatus.append(`<span class="waves-effect btn-flat btn--icon card__price-i dropdown-trigger" data-target='dropdown-reserve-price'>
                                     <i class='icon'><svg><use xlink:href="#i"></use></svg></i>
                                 </span>`);
                             }
@@ -1744,6 +1744,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     $('.product__inner').append('<div class="product__gallery">').append('<div class="product__info">');
                     $('.product__gallery').append($('.lot-images-container'));
                     $('.product__info').append($('.lot-bidding')).append($('.video-stream'));
+                    $('.currency-cont').wrap('<div class="input-field input-field--select" style="display:none;" />');
 
                     $('.lot-messages').insertAfter('.video-stream');
                     $('.lot-messages').prepend($('<div class="auclive-sale__messages-bidder">'));

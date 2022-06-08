@@ -23513,6 +23513,7 @@ body.search-index .categories-match {
 }
 
 .aucproduct__card .bidding-status .youre-winning {
+  display: inline;
   color: #11BFC5;
   background: none;
   white-space: unset;
@@ -24682,6 +24683,10 @@ body.my-items .categories-match {
   border-top: 1px solid #c7c7c7;
 }
 
+.auclive-sale__sections .lot-category {
+  display: none !important;
+}
+
 .auclive-sale__sections .product__gallery .lot-description {
   margin-top: 2rem;
 }
@@ -24833,6 +24838,12 @@ body.my-items .categories-match {
 
 .auclive-sale__upcoming-options label + label {
   margin-left: 2rem;
+}
+
+@media only screen and (min-width: 1201px) {
+  .auclive-sale__title {
+    font-size: 32px;
+  }
 }
 
 @media only screen and (max-width: 1200px) {

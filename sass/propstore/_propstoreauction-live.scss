@@ -263,6 +263,10 @@
 		border-top: 1px solid $color-grey;
 	}
 
+	.lot-category {
+		display: none !important;
+	}
+
 	.product__gallery .lot-description {
 		margin-top: 2rem;
 	}
@@ -407,6 +411,12 @@
 
 	label + label {
 		margin-left: 2rem;
+	}
+}
+
+@media #{$extra-large-and-up} {
+	.auclive-sale__title {
+		font-size: 32px;
 	}
 }
 

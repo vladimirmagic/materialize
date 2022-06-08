@@ -427,6 +427,7 @@ body.search-index {
 
 	.bidding-status {
 		.youre-winning {
+			display: inline;
 			color: $color-turquoise;
 			background: none;
 			white-space: unset;
