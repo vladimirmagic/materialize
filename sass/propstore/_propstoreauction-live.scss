@@ -162,8 +162,18 @@
 
 			.current-btn {
 				.btn {
-					width: 100%;
-					font-size: 1rem;
+					width: 100% !important;
+					font-size: 1rem !important;
+					text-shadow: none !important;
+					color: white !important;
+					background: $primary-color !important;
+					border-radius: 0 !important;
+					box-shadow: none !important;
+
+					&.disabled {
+						color: $color-font-grey !important;
+						background: $color-grey !important;
+					}
 				}
 
 				.warning {

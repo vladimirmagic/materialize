@@ -24571,8 +24571,19 @@ body.my-items .categories-match {
 }
 
 .auclive-sale__sections .lot-bidding .bidding-main .current-btn .btn, .auclive-sale__sections .lot-bidding .bidding-main .current-btn .btn-large, .auclive-sale__sections .lot-bidding .bidding-main .current-btn .btn-small, .auclive-sale__sections .lot-bidding .bidding-main .current-btn .btn-extra-small {
-  width: 100%;
-  font-size: 1rem;
+  width: 100% !important;
+  font-size: 1rem !important;
+  text-shadow: none !important;
+  color: white !important;
+  background: #764AAF !important;
+  border-radius: 0 !important;
+  -webkit-box-shadow: none !important;
+          box-shadow: none !important;
+}
+
+.auclive-sale__sections .lot-bidding .bidding-main .current-btn .btn.disabled, .auclive-sale__sections .lot-bidding .bidding-main .current-btn .disabled.btn-large, .auclive-sale__sections .lot-bidding .bidding-main .current-btn .disabled.btn-small, .auclive-sale__sections .lot-bidding .bidding-main .current-btn .disabled.btn-extra-small {
+  color: #8F8F8F !important;
+  background: #c7c7c7 !important;
 }
 
 .auclive-sale__sections .lot-bidding .bidding-main .current-btn .warning {
