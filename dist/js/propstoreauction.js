@@ -1755,7 +1755,6 @@ document.addEventListener('DOMContentLoaded', () => {
                         $('.link-report-problem')
                     );
                     $('#report-problems').addClass('waves-effect waves-light btn btn--tertiary auclive-sale__propblems-link');
-                    $('#chat-messages').insertAfter('.lot-messages');
 
                     $('<div class="auclive-sale__upcoming">').insertAfter('.product');
                     $('.auclive-sale__upcoming').append($('.lot-upcoming'));

@@ -235,15 +235,7 @@
 	}
 
 	#chat-messages {
-		margin-top: 2rem;
-		padding-left: 2rem;
-		border-left: 1px solid $color-grey;
-		height: 360px;
-		overflow: auto;
-
-		.auc-lbl {
-			font-weight: 500;
-		}
+		display: none !important;
 	}
 
 	.video-stream {
@@ -463,8 +455,7 @@
 			font-size: 1rem;
 		}
 	
-		.lot-messages,
-		#chat-messages {
+		.lot-messages {
 			padding-left: 1rem;
 			font-size: 1rem;
 		}
