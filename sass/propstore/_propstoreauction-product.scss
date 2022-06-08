@@ -8,15 +8,17 @@
 }
 
 .aucproduct__livesale {
-	margin-bottom: 2rem;
+	margin: 0 0 3rem;
+	text-align: center;
 }
 
 .aucproduct__livesale-link {
-	display: flex;
-	justify-content: center;
+	display: inline-flex !important;
 	align-items: center;
-	width: 100%;
-	line-height: 1.2;
+	background: $color-red;
+	background: linear-gradient(90deg, $color-red, rgba($color-red, .5) 10%, $color-red 20%);
+	background-size: 200%;
+	animation: animation_livesale_link 1.5s infinite ease-in-out;
 }
 
 .aucproduct__details {

@@ -447,8 +447,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
                     $liveSale = $('.live-sale a');
                     if ($liveSale.length) {
-                        $liveSale.addClass('waves-effect waves-light btn btn--tertiary aucproduct__livesale-link');
-                        $('<div class="aucproduct__livesale">').append($liveSale).insertBefore('.aucproduct__details');
+                        $liveSale.addClass('waves-effect waves-light btn aucproduct__livesale-link').html('<span class="btn__title">GO TO LIVE SALE NOW</span><i class="icon"><svg><use xlink:href="#arrow-right"></use></svg></i>');
+                        $('<div class="aucproduct__livesale">').append($liveSale).prependTo('.aucproduct');
                     }
 
                     $detailsLine = $('.aucproduct__details-line').clone();
@@ -1361,6 +1361,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
                     const currency = document.querySelectorAll('.card__price-i');
                     if (currency) M.Dropdown.init(currency, { container: document.body });
+
+                    $liveSale = $('.catalog-live-sale-link').first();
+                    if ($liveSale.length) {
+                        $liveSale.addClass('waves-effect waves-light btn auccatalog__livesale-link').html('<span class="btn__title">GO TO LIVE SALE NOW</span><i class="icon"><svg><use xlink:href="#arrow-right"></use></svg></i>');
+                        $('<div class="auccatalog__livesale">').append($liveSale).prependTo('.auccatalog');
+                    }
 
                     $('.container').prepend($('.auccatalog'));
                     if ($('body').hasClass('auctions-catalog')) {

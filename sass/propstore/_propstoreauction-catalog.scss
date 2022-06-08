@@ -582,6 +582,18 @@ body.search-index {
 	}
 }
 
+.auccatalog__livesale {
+	margin: 3rem 0 0;
+	text-align: center;
+}
+
+.auccatalog__livesale-link {
+	background: $color-red;
+	background: linear-gradient(90deg, $color-red, rgba($color-red, .5) 10%, $color-red 20%);
+	background-size: 200%;
+	animation: animation_livesale_link 1.5s infinite ease-in-out;
+}
+
 @media #{$breakpoint-4cards} {
 	.auccatalog__nav-inner {
 		max-width: $width-4cards-m;

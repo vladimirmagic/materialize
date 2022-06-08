@@ -22209,6 +22209,40 @@ footer .auclting {
   display: none;
 }
 
+@-webkit-keyframes animation_livesale_link {
+  0% {
+    background-position: 50% 50%;
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+  50% {
+    -webkit-transform: scale(1.2);
+            transform: scale(1.2);
+  }
+  100% {
+    background-position: -100% 50%;
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+}
+
+@keyframes animation_livesale_link {
+  0% {
+    background-position: 50% 50%;
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+  50% {
+    -webkit-transform: scale(1.2);
+            transform: scale(1.2);
+  }
+  100% {
+    background-position: -100% 50%;
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+}
+
 .auc-header .header__col.header__col--left, .auc-header .header__col.header__col--right {
   -webkit-box-flex: 0;
   -webkit-flex: 0 0 360px;
@@ -22695,24 +22729,25 @@ footer .auclting {
 }
 
 .aucproduct__livesale {
-  margin-bottom: 2rem;
+  margin: 0 0 3rem;
+  text-align: center;
 }
 
 .aucproduct__livesale-link {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  display: -webkit-inline-box !important;
+  display: -webkit-inline-flex !important;
+  display: -ms-inline-flexbox !important;
+  display: inline-flex !important;
   -webkit-box-align: center;
   -webkit-align-items: center;
       -ms-flex-align: center;
           align-items: center;
-  width: 100%;
-  line-height: 1.2;
+  background: #F93838;
+  background: -webkit-gradient(linear, left top, right top, from(#F93838), color-stop(10%, rgba(249, 56, 56, 0.5)), color-stop(20%, #F93838));
+  background: linear-gradient(90deg, #F93838, rgba(249, 56, 56, 0.5) 10%, #F93838 20%);
+  background-size: 200%;
+  -webkit-animation: animation_livesale_link 1.5s infinite ease-in-out;
+          animation: animation_livesale_link 1.5s infinite ease-in-out;
 }
 
 .aucproduct__details {
@@ -23679,6 +23714,20 @@ body.search-index .categories-match {
 .place-bid-live-online-item-dialog__buttons input {
   color: white;
   font-weight: 600;
+}
+
+.auccatalog__livesale {
+  margin: 3rem 0 0;
+  text-align: center;
+}
+
+.auccatalog__livesale-link {
+  background: #F93838;
+  background: -webkit-gradient(linear, left top, right top, from(#F93838), color-stop(10%, rgba(249, 56, 56, 0.5)), color-stop(20%, #F93838));
+  background: linear-gradient(90deg, #F93838, rgba(249, 56, 56, 0.5) 10%, #F93838 20%);
+  background-size: 200%;
+  -webkit-animation: animation_livesale_link 1.5s infinite ease-in-out;
+          animation: animation_livesale_link 1.5s infinite ease-in-out;
 }
 
 @media only screen and (max-width: 1636px) {

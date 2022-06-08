@@ -47,3 +47,17 @@ footer {
 		display: none;
 	}
 }
+
+@keyframes animation_livesale_link {
+    0% {
+		background-position: 50% 50%;
+		transform: scale(1);
+	}
+	50% {
+		transform: scale(1.2);
+	}
+	100% {
+		background-position: -100% 50%;
+		transform: scale(1);
+	}
+}
