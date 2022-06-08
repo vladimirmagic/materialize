@@ -621,7 +621,8 @@ document.addEventListener('DOMContentLoaded', () => {
                     if (status !== 'closed') {
                         $barcode = $('#barcode');
                         barcode = $barcode.length ? $barcode.val() : null;
-                        if (!barcode || barcode == 'Not Available') barcode = getBarcodeFromJS(); // old auctions
+                        if (!barcode || barcode == 'Not Available') barcode = $('.product-description-content').data('id');
+                        if (!barcode) barcode = getBarcodeFromJS(); // old auctions
                     }
                     if (barcode) {
                         $('body').append($('#modal-shipping-quote'));
