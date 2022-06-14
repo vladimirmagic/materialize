@@ -1738,15 +1738,16 @@ document.addEventListener('DOMContentLoaded', () => {
                     const customDateBefore = window.getComputedStyle(document.querySelector('#customDate' + auctionId), ':before');
                     const customDate = customDateBefore && customDateBefore.content && customDateBefore.content != 'none' ? customDateBefore.content.replaceAll('"', '') : null;
                     const auctionDate = customDate || moment($('.auction-date').text()).format('MMM D YYYY');
-                    $('.hero__static-date').append(auctionDate).show();
+                    $('.hero__static-date').append(auctionDate, badge).show();
 
-                    $('.container').prepend($('.auc__hero').addClass('auc__hero--small').show());
+                    $('.container').prepend($('.auc__hero').addClass('auc__hero--tiny').show());
                     $('#rtb-panel').addClass('auclive-sale');
                     $('.mobile-content-wrap').hide();
                     $('.container').append($('#rtb-panel'));
 
                     $('#rtb-panel').append($('<div class="product aucproduct auclive-sale__sections">'));
                     $('.lot-bidding').prepend(badge, $('<div class="auclive-sale__title h2 auclive-sale-title">'));
+                    $('.current-bid-label').prepend('<i class="icon blue"><svg><use xlink:href="#auction"></use></svg></i>');
                     $('.product').append('<div class="product__inner">');
                     $('.product__inner').append('<div class="product__gallery">').append('<div class="product__info">');
                     $('.product__gallery').append($('.lot-images-container'));
@@ -1859,7 +1860,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     $(window).on('resize', onResize);
                     onResize();
 
-                    $('.orng').addClass('waves-effect waves-light btn').removeClass('orng');
+                    $('.orng, .live-bid').addClass('waves-effect waves-light btn').removeClass('orng');
                     /**
                      *
                      *
