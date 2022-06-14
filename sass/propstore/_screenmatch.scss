@@ -1,0 +1,21 @@
+.screenmatch {
+	max-width: 1200px;
+	margin: 0 auto;
+	text-align: center;
+}
+
+.screenmatch__row {
+	margin-bottom: 5vh;
+	padding-bottom: 5vh;
+	border-bottom: 1px solid $color-grey;
+}
+
+.screenmatch__img {
+	width: 100%;
+	margin-bottom: 1rem;
+	cursor: pointer;
+}
+
+.screenmatch__title {
+	padding: 0 1rem;
+}
