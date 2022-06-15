@@ -324,10 +324,14 @@
 .auclive-sale__upcoming {
 	@extend .content;
 	position: relative;
-	max-width: $width-4cards;
-	margin: 0 auto;
 	padding-top: 2em;
 	font-size: 20px;
+
+	.lot-upcoming,
+	#upcoming-scroll {
+		max-width: $width-4cards;
+		margin: 0 auto;
+	}
 
 	.lot-upcoming {
 		position: sticky;

@@ -24937,10 +24937,14 @@ body.my-items .categories-match {
 
 .auclive-sale__upcoming {
   position: relative;
-  max-width: 1496px;
-  margin: 0 auto;
   padding-top: 2em;
   font-size: 20px;
+}
+
+.auclive-sale__upcoming .lot-upcoming,
+.auclive-sale__upcoming #upcoming-scroll {
+  max-width: 1496px;
+  margin: 0 auto;
 }
 
 .auclive-sale__upcoming .lot-upcoming {
