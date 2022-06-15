@@ -583,15 +583,32 @@ body.search-index {
 }
 
 .auccatalog__livesale {
-	margin: 3rem 0 0;
-	text-align: center;
+	display: flex;
+	justify-content: center;
+	margin: 0 auto 3rem;
+}
+
+.auccatalog__livesale-inner {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 1.5rem 2rem;
+	color: white;
+	background: $color-base;
+	background: linear-gradient(90deg, $color-base, rgba($color-base, .7) 5%, $color-base 10%);
+	background-size: 200%;
+	animation: animation_livesale_link 1.5s 1s infinite ease-in-out;
+}
+
+.auccatalog__livesale-label {
+	margin-right: 3rem;
+	font-size: 40px;
+	line-height: 1;
 }
 
 .auccatalog__livesale-link {
-	background: $color-red;
-	background: linear-gradient(90deg, $color-red, rgba($color-red, .5) 10%, $color-red 20%);
-	background-size: 200%;
-	animation: animation_livesale_link 1.5s infinite ease-in-out;
+	height: 40px;
+	line-height: 40px;
 }
 
 @media #{$breakpoint-4cards} {
@@ -751,6 +768,22 @@ body.search-index {
 			height: calc(100% - #{$card-width-s});
 		}
     }
+
+	.auccatalog__livesale {
+		margin-bottom: 0;
+	}
+
+	.auccatalog__livesale-inner {
+		display: block;
+		width: 100%;
+		text-align: center;
+	}
+	
+	.auccatalog__livesale-label {
+		margin-right: 0;
+		margin-bottom: 1.5rem;
+		font-size: 24px;
+	}
 }
 
 
