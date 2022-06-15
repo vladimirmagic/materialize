@@ -23043,7 +23043,7 @@ footer .auclting {
 
 @media only screen and (min-width: 1201px) {
   .aucproduct {
-    padding-top: 6em;
+    margin-top: 3em;
   }
   .aucproduct .product__title {
     font-size: 32px;
@@ -23963,22 +23963,22 @@ body.search-index .categories-match {
 }
 
 .auc__hero.hero--static.auc__hero--small {
-  min-height: 300px;
+  min-height: 424px;
 }
 
 .auc__hero.hero--static.auc__hero--small .hero__image {
   -webkit-box-flex: 1;
-  -webkit-flex: 1 1 33%;
-      -ms-flex: 1 1 33%;
-          flex: 1 1 33%;
-  min-height: 300px;
+  -webkit-flex: 1 1 50%;
+      -ms-flex: 1 1 50%;
+          flex: 1 1 50%;
+  min-height: 424px;
 }
 
 .auc__hero.hero--static.auc__hero--small .hero__info {
   -webkit-box-flex: 1;
-  -webkit-flex: 1 1 66%;
-      -ms-flex: 1 1 66%;
-          flex: 1 1 66%;
+  -webkit-flex: 1 1 50%;
+      -ms-flex: 1 1 50%;
+          flex: 1 1 50%;
   padding: 1rem 4rem;
 }
 
