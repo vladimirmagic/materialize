@@ -433,6 +433,32 @@
 	}
 }
 
+.auclive-sale__bidstatus {
+	padding: 1rem 1.5rem;
+	font-style: italic;
+	color: $primary-color;
+	background: white;
+	border-radius: 6px;
+
+	&.red {
+		color: $color-red;
+		background: #FFCECE !important;
+	}
+
+	&.green {
+		color: $color-green;
+		background: #BCFCD7 !important;
+	}
+}
+
+.auclive-sale__bidstatus-title {
+	font-weight: 600;
+}
+
+.auclive-sale__bidstatus-text {
+	font-size: 1rem;
+}
+
 @media #{$extra-large-and-up} {
 	.auclive-sale__title {
 		font-size: 32px;

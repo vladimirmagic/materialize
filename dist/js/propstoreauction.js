@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', () => {
     svgSprite.id = 'svg-sprite';
     document.body.append(svgSprite);
     const loaded = function () { document.body.classList.add('loaded') };
-    if (typeof fetch != "undefined") fetch('/css/custom/sprite.defs.svg', { cache: 'force-cache' })
+    if (typeof fetch != "undefined") fetch('/css/custom/sprite.defs.svg?v=20220609', { cache: 'force-cache' })
         .then(response => response.text())
         .then(html => { svgSprite.innerHTML = html; loaded(); })
         .catch(loaded);
@@ -1754,6 +1754,8 @@ document.addEventListener('DOMContentLoaded', () => {
                     $('.product__info').append($('.lot-bidding')).append($('.video-stream'));
                     $('.currency-cont').wrap('<div class="input-field input-field--select" style="display:none;" />');
 
+                    $('.bidding-main').append('<div class="auclive-sale__bidstatus" style="display:none;"><div class="auclive-sale__bidstatus-title"></div><div class="auclive-sale__bidstatus-text"></div></div>');                     
+
                     $('.lot-messages').insertAfter('.video-stream');
                     $('.lot-messages').prepend($('<div class="auclive-sale__messages-bidder">'));
                     $('.auclive-sale__messages-bidder').append($('.bidder-num'));
@@ -1794,6 +1796,70 @@ document.addEventListener('DOMContentLoaded', () => {
                     let interval = setInterval(() => { // listen ajax updates
                         const currentLot = $('#' + lblLotNoControlId).text();
                         if (!currentLot) return;
+
+                        const $btn = $('.live-bid');
+                        if ($btn.length) {
+                            if ($btn.text().includes('Login to bid')) {
+                                $btn.html(`
+                                    <span class="btn__title">Sign in to bid</span>
+                                    <i class="icon"><svg width="17" height="14" viewBox="0 0 17 14"><use xlink:href="#arrow-right"></use></svg></i>
+                                `).removeAttr('style');
+                                $('.auclive-sale__bidstatus-title').html('Bidding has started!');
+                                $('.auclive-sale__bidstatus-text').html('Sign in now to participate in the auction.');
+                                $('.auclive-sale__bidstatus').removeClass('red').removeClass('green').show();
+                            } else if ($btn.text().includes('Pending approval')) {
+                                $btn.html(`
+                                    <span class="btn__title">Place bid</span>
+                                    <i class="icon"><svg width="17" height="14" viewBox="0 0 17 14"><use xlink:href="#arrow-right"></use></svg></i>
+                                `).removeAttr('style');
+                                $('.auclive-sale__bidstatus-title').html('Your account is pending approval');
+                                $('.auclive-sale__bidstatus-text').html('Your application to participate in this auction is pending approval. You cannot bid at this time.');
+                                $('.auclive-sale__bidstatus').removeClass('green').addClass('red').show();
+                            } else if ($btn.text().includes('You are the high bidder')) {
+                                let nextAskStr = '';
+                                let nextAsk = $btn.html().split('Asking bid: ');
+                                if (nextAsk.length && nextAsk.length > 1) {
+                                    nextAskStr = nextAsk[1];
+                                    nextAsk = nextAskStr.split('</span>');
+                                    if (nextAsk.length) nextAskStr = nextAsk[0];
+                                }
+                                if (nextAskStr) {
+                                    nextAskStr = '<br><strong>The next asking bid is ' + nextAskStr + '</strong>';
+                                }
+                                $btn.html(`
+                                    <span class="btn__title">Place bid</span>
+                                    <i class="icon"><svg width="17" height="14" viewBox="0 0 17 14"><use xlink:href="#arrow-right"></use></svg></i>
+                                `).removeAttr('style');
+                                $('.auclive-sale__bidstatus-title').html('You are the highest bidder!');
+                                $('.auclive-sale__bidstatus-text').html('Keep watching until the auction ends to see if you win. ' + nextAskStr);
+                                $('.auclive-sale__bidstatus').removeClass('red').addClass('green').show();
+                            } else if ($btn.text().includes(' now!') && !$btn.text().includes('Register ')) {
+                                let nextAskStr = '';
+                                let nextAsk = $btn.html().split('BID ');
+                                if (nextAsk.length && nextAsk.length > 1) {
+                                    nextAskStr = nextAsk[1];
+                                    nextAsk = nextAskStr.split(' now!</a>');
+                                    if (nextAsk.length) nextAskStr = nextAsk[0];
+                                }
+                                if (nextAskStr) {
+                                    nextAskStr = '<br><strong>The next asking bid is ' + nextAskStr + '</strong>';
+                                }
+
+                                if ($btn.html().includes('btn-outbid')) {
+                                    $('.auclive-sale__bidstatus-title').html('You have been outbid!');
+                                    $('.auclive-sale__bidstatus-text').html('Hit ‘Place Bid’ above to bid again before the auction ends. ' + nextAskStr);
+                                    $('.auclive-sale__bidstatus').removeClass('green').addClass('red').show();
+                                } else {
+                                    $('.auclive-sale__bidstatus-title').html('Bidding has started!');
+                                    $('.auclive-sale__bidstatus-text').html('Hit ‘Place Bid’ above to place a bid for this item. ' + nextAskStr);
+                                    $('.auclive-sale__bidstatus').removeClass('red').removeClass('green').show();
+                                }
+                                $btn.html(`
+                                    <span class="btn__title">Place bid</span>
+                                    <i class="icon"><svg width="17" height="14" viewBox="0 0 17 14"><use xlink:href="#arrow-right"></use></svg></i>
+                                `).removeAttr('style');
+                            }
+                        }
 
                         if ($('#rtb-panel')[0].dataset.lot != currentLot) {
                             title = 'Lot #' + $('#' + lblLotNoControlId).html() + ': ' + $('#' + lblLotNameControlId).html();
