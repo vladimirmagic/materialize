@@ -24977,6 +24977,32 @@ body.my-items .categories-match {
   margin-left: 2rem;
 }
 
+.auclive-sale__bidstatus {
+  padding: 1rem 1.5rem;
+  font-style: italic;
+  color: #764AAF;
+  background: white;
+  border-radius: 6px;
+}
+
+.auclive-sale__bidstatus.red {
+  color: #F93838;
+  background: #FFCECE !important;
+}
+
+.auclive-sale__bidstatus.green {
+  color: #19BA5D;
+  background: #BCFCD7 !important;
+}
+
+.auclive-sale__bidstatus-title {
+  font-weight: 600;
+}
+
+.auclive-sale__bidstatus-text {
+  font-size: 1rem;
+}
+
 @media only screen and (min-width: 1201px) {
   .auclive-sale__title {
     font-size: 32px;

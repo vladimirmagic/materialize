@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', () => {
     svgSprite.id = 'svg-sprite';
     document.body.append(svgSprite);
     const loaded = function () { document.body.classList.add('loaded') };
-    if (typeof fetch != "undefined") fetch('/css/custom/sprite.defs.svg?v=20220609', { cache: 'force-cache' })
+    if (typeof fetch != "undefined") fetch('/css/custom/sprite.defs.svg?v=20220615', { cache: 'force-cache' })
         .then(response => response.text())
         .then(html => { svgSprite.innerHTML = html; loaded(); })
         .catch(loaded);
@@ -499,7 +499,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         if ($youreWinning.length) {
                             if ($youreWinning.text().includes('reserve')) {
                                 $youreWinning.append(`<span class="waves-effect btn-flat btn--icon card__price-i dropdown-trigger" data-target='dropdown-reserve-price'>
-                                    <i class='icon'><svg><use xlink:href="#i"></use></svg></i>
+                                    <i class='icon'><svg><use xlink:href="#question"></use></svg></i>
                                 </span>`);
                             }
                         }
@@ -541,7 +541,7 @@ document.addEventListener('DOMContentLoaded', () => {
                             replaceClick();
                         } else if (val.includes(' bid')) {
                             $('.aucproduct__form').append(`<span class="waves-effect btn-flat btn--icon card__price-i card__price-i--lot-place-bid dropdown-trigger" data-target='dropdown-bids-placed'>
-                                <i class='icon'><svg><use xlink:href="#i"></use></svg></i>
+                                <i class='icon'><svg><use xlink:href="#question"></use></svg></i>
                             </span>`);
                         }
                     }
@@ -1309,7 +1309,7 @@ document.addEventListener('DOMContentLoaded', () => {
                             $cardItem.find('.card__bid').append($bid.addClass('blkRegularBid'));
 
                             $bid.find('.unibtn').last().append(`<span class="waves-effect btn-flat btn--icon card__price-i dropdown-trigger" data-target='dropdown-bids-placed'>
-                                <i class='icon'><svg><use xlink:href="#i"></use></svg></i>
+                                <i class='icon'><svg><use xlink:href="#question"></use></svg></i>
                             </span>`);
                         }
                         const $biddingStatus = $(item).find('.bidding-status');
@@ -1321,7 +1321,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
                             if ($biddingStatus.text().includes('reserve')) {
                                 $biddingStatus.append(`<span class="waves-effect btn-flat btn--icon card__price-i dropdown-trigger" data-target='dropdown-reserve-price'>
-                                    <i class='icon'><svg><use xlink:href="#i"></use></svg></i>
+                                    <i class='icon'><svg><use xlink:href="#question"></use></svg></i>
                                 </span>`);
                             }
 
