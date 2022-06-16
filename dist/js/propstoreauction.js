@@ -1734,7 +1734,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
                     const badge = '<span class="badge green"><i class="icon"><svg><use xlink:href="#live"></use></svg></i>Live bidding</span>';
                     let title = 'Lot #' + $('#' + lblLotNoControlId).html() + ': ' + $('#' + lblLotNameControlId).html();
-                    
+
                     $('#div-hidden').append('<div id="customTitle' + auctionId + '">');
                     const customTitleBefore = window.getComputedStyle(document.querySelector('#customTitle' + auctionId), ':before');
                     const customTitle = customTitleBefore && customTitleBefore.content && customTitleBefore.content != 'none' ? customTitleBefore.content.replaceAll('"', '') : null;
@@ -1820,7 +1820,7 @@ document.addEventListener('DOMContentLoaded', () => {
                                     <i class="icon"><svg width="17" height="14" viewBox="0 0 17 14"><use xlink:href="#arrow-right"></use></svg></i>
                                 `).removeAttr('style');
                                 $('.auclive-sale__bidstatus-title').html('Your account is pending approval');
-                                $('.auclive-sale__bidstatus-text').html('Your application to participate in this auction is pending approval. You cannot bid at this time.');
+                                $('.auclive-sale__bidstatus-text').html('Your registration to participate in this auction is pending approval. Please contact us for assistance.');
                                 $('.auclive-sale__bidstatus').removeClass('green').addClass('red').show();
                             } else if ($btn.text().includes('You are the high bidder')) {
                                 let nextAskStr = '';
@@ -1840,7 +1840,7 @@ document.addEventListener('DOMContentLoaded', () => {
                                 $('.auclive-sale__bidstatus-title').html('You are the highest bidder!');
                                 $('.auclive-sale__bidstatus-text').html('Keep watching until the auction ends to see if you win. ' + nextAskStr);
                                 $('.auclive-sale__bidstatus').removeClass('red').addClass('green').show();
-                            } else if ($btn.text().includes(' now!') && !$btn.text().includes('Register ')) {
+                            } else if ($btn.text().includes(' now!') && !$btn.text().includes('Register ')) { // BID $xxx NOW!
                                 let nextAskStr = '';
                                 let nextAsk = $btn.html().split('BID ');
                                 if (nextAsk.length && nextAsk.length > 1) {
@@ -1856,15 +1856,13 @@ document.addEventListener('DOMContentLoaded', () => {
                                     $('.auclive-sale__bidstatus-title').html('You have been outbid!');
                                     $('.auclive-sale__bidstatus-text').html('Hit ‘Place Bid’ above to bid again before the auction ends. ' + nextAskStr);
                                     $('.auclive-sale__bidstatus').removeClass('green').addClass('red').show();
+                                    $btn.find('#btn-outbid').hide();
                                 } else {
                                     $('.auclive-sale__bidstatus-title').html('Bidding has started!');
                                     $('.auclive-sale__bidstatus-text').html('Hit ‘Place Bid’ above to place a bid for this item. ' + nextAskStr);
                                     $('.auclive-sale__bidstatus').removeClass('red').removeClass('green').show();
                                 }
-                                $btn.html(`
-                                    <span class="btn__title">Place bid</span>
-                                    <i class="icon"><svg width="17" height="14" viewBox="0 0 17 14"><use xlink:href="#arrow-right"></use></svg></i>
-                                `).removeAttr('style');
+                                $btn.removeAttr('style');
                             }
                         }
 
