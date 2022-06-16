@@ -1734,7 +1734,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
                     const badge = '<span class="badge green"><i class="icon"><svg><use xlink:href="#live"></use></svg></i>Live bidding</span>';
                     let title = 'Lot #' + $('#' + lblLotNoControlId).html() + ': ' + $('#' + lblLotNameControlId).html();
-                    $('.hero__static-title').html('').append($('.auction-title'));
+                    
+                    $('#div-hidden').append('<div id="customTitle' + auctionId + '">');
+                    const customTitleBefore = window.getComputedStyle(document.querySelector('#customTitle' + auctionId), ':before');
+                    const customTitle = customTitleBefore && customTitleBefore.content && customTitleBefore.content != 'none' ? customTitleBefore.content.replaceAll('"', '') : null;
+                    const auctionTitle = customTitle || $('.auction-title');
+                    $('.hero__static-title').html('').append(auctionTitle);
                     
                     $('#div-hidden').append('<div id="customDate' + auctionId + '">');
                     const customDateBefore = window.getComputedStyle(document.querySelector('#customDate' + auctionId), ':before');
