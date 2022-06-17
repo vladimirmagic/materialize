@@ -1735,33 +1735,34 @@ document.addEventListener('DOMContentLoaded', () => {
                     const badge = '<span class="badge green"><i class="icon"><svg><use xlink:href="#live"></use></svg></i>Live bidding</span>';
                     let title = 'Lot #' + $('#' + lblLotNoControlId).html() + ': ' + $('#' + lblLotNameControlId).html();
 
-                    $('#div-hidden').append('<div id="customTitle' + auctionId + '">');
-                    const customTitleBefore = window.getComputedStyle(document.querySelector('#customTitle' + auctionId), ':before');
-                    const customTitle = customTitleBefore && customTitleBefore.content && customTitleBefore.content != 'none' ? customTitleBefore.content.replaceAll('"', '') : null;
-                    const auctionTitle = customTitle || $('.auction-title');
-                    $('.hero__static-title').html('').append(auctionTitle);
-                    
-                    $('#div-hidden').append('<div id="customDate' + auctionId + '">');
-                    const customDateBefore = window.getComputedStyle(document.querySelector('#customDate' + auctionId), ':before');
-                    const customDate = customDateBefore && customDateBefore.content && customDateBefore.content != 'none' ? customDateBefore.content.replaceAll('"', '') : null;
-                    const auctionDate = customDate || moment($('.auction-date').text()).format('MMM D YYYY');
-                    $('.hero__static-date').append(auctionDate, badge).show();
-
-                    $('.container').prepend($('.auc__hero').addClass('auc__hero--tiny').show());
                     $('#rtb-panel').addClass('auclive-sale');
                     $('.mobile-content-wrap').hide();
                     $('.container').append($('#rtb-panel'));
 
                     $('#rtb-panel').append($('<div class="product aucproduct auclive-sale__sections">'));
-                    $('.lot-bidding').prepend(badge, $('<div class="auclive-sale__title h2 auclive-sale-title">'));
-                    $('.current-bid-label').prepend('<i class="icon blue"><svg><use xlink:href="#auction"></use></svg></i>');
+                    $('.lot-bidding').prepend($('<div class="auclive-sale__title h3 auclive-sale-title">'));
                     $('.product').append('<div class="product__inner">');
-                    $('.product__inner').append('<div class="product__gallery">').append('<div class="product__info">');
+                    $('.product__inner').append('<div class="product__info">').append('<div class="product__gallery">');
                     $('.product__gallery').append($('.lot-images-container'));
                     $('.product__info').append($('.lot-bidding')).append($('.video-stream'));
                     $('.currency-cont').wrap('<div class="input-field input-field--select" style="display:none;" />');
 
-                    $('.bidding-main').append('<div class="auclive-sale__bidstatus" style="display:none;"><div class="auclive-sale__bidstatus-title"></div><div class="auclive-sale__bidstatus-text"></div></div>');                     
+                    $('#div-hidden').append('<div id="customDate' + auctionId + '">');
+                    const customDateBefore = window.getComputedStyle(document.querySelector('#customDate' + auctionId), ':before');
+                    const customDate = customDateBefore && customDateBefore.content && customDateBefore.content != 'none' ? customDateBefore.content.replaceAll('"', '') : null;
+                    const auctionDate = customDate || moment($('.auction-date').text()).format('MMM D YYYY');
+                    $('.product__info').prepend($('<div class="auclive-sale__auc-text">'));
+                    $('.auclive-sale__auc-text').append(badge, '<div class="auclive-sale__auc-date"><i class="icon"><svg><use xlink:href="#calendar"></use></svg></i>' + auctionDate + '</div>');
+
+                    $('#div-hidden').append('<div id="customTitle' + auctionId + '">');
+                    const customTitleBefore = window.getComputedStyle(document.querySelector('#customTitle' + auctionId), ':before');
+                    const customTitle = customTitleBefore && customTitleBefore.content && customTitleBefore.content != 'none' ? customTitleBefore.content.replaceAll('"', '') : null;
+                    const auctionTitle = customTitle || $('.auction-title');
+                    $('.product__info').prepend($('<div class="auclive-sale__auc-title h4">'));
+                    $('.auclive-sale__auc-title').append(auctionTitle);
+
+                    $('.bidding-main').prepend('<div class="auclive-sale__current">');
+                    $('.auclive-sale__current').append($('.bidding-main .current'), '<div class="auclive-sale__bidstatus" style="display:none;"><div class="auclive-sale__bidstatus-title"></div><div class="auclive-sale__bidstatus-text"></div></div>');                     
 
                     $('.lot-messages').insertAfter('.video-stream');
                     $('.lot-messages').prepend($('<div class="auclive-sale__messages-bidder">'));
@@ -1854,12 +1855,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
                                 if ($btn.html().includes('btn-outbid')) {
                                     $('.auclive-sale__bidstatus-title').html('You have been outbid!');
-                                    $('.auclive-sale__bidstatus-text').html('Hit ‘Place Bid’ above to bid again before the auction ends. ' + nextAskStr);
+                                    $('.auclive-sale__bidstatus-text').html('Hit ‘Place Bid’ below to bid again before the auction ends. ' + nextAskStr);
                                     $('.auclive-sale__bidstatus').removeClass('green').addClass('red').show();
                                     $btn.find('#btn-outbid').hide();
                                 } else {
                                     $('.auclive-sale__bidstatus-title').html('Bidding has started!');
-                                    $('.auclive-sale__bidstatus-text').html('Hit ‘Place Bid’ above to place a bid for this item. ' + nextAskStr);
+                                    $('.auclive-sale__bidstatus-text').html('Hit ‘Place Bid’ below to place a bid for this item. ' + nextAskStr);
                                     $('.auclive-sale__bidstatus').removeClass('red').removeClass('green').show();
                                 }
                                 $btn.removeAttr('style');
@@ -1925,7 +1926,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     function onResize () {
                         if (resizeDebounce) clearTimeout(resizeDebounce);
                         resizeDebounce = setTimeout(() => {
-                            if (getComputedStyle($('.product__inner')[0]).display === 'block') {
+                            if (getComputedStyle($('.product__inner')[0]).flexWrap === 'wrap') {
                                 $('.product__info').append($('.lot-description'));
                             } else {
                                 $('.product__gallery').first().append($('.lot-description'));
