@@ -1869,28 +1869,32 @@ document.addEventListener('DOMContentLoaded', () => {
                         if ($('#rtb-panel')[0].dataset.lot != currentLot) {
                             title = 'Lot #' + $('#' + lblLotNoControlId).html() + ': ' + $('#' + lblLotNameControlId).html();
                             $('.auclive-sale-title').html(title);
+                        }
 
-                            const $desc = $('#' + lblLotDescControlId + ' > *');
-                            if ($desc.length) {
-                                $('#rtb-panel')[0].dataset.lot = currentLot;
+                        const $desc = $('#' + lblLotDescControlId + ' > *');
+                        if ($desc.length) {
+                            $('#rtb-panel')[0].dataset.lot = currentLot;
 
-                                if (!$('.product-description-content').length) { // old product
-                                    document.querySelectorAll('style:not([data-v2]), link[rel="stylesheet"]:not([data-v2])').forEach(item => item.remove());
-                                    const $productDescriptionContent = $('<div class="product-description-content">');
-                                    $productDescriptionContent.append($desc);
-                                    $('#' + lblLotDescControlId).append($productDescriptionContent);
-                                }
-                                const $gallery = $('#' + lblLotDescControlId).find('.product__slider');
+                            if (!$('.product-description-content').length) { // old product
+                                document.querySelectorAll('style:not([data-v2]), link[rel="stylesheet"]:not([data-v2])').forEach(item => item.remove());
+                                const $productDescriptionContent = $('<div class="product-description-content">');
+                                $productDescriptionContent.append($desc);
+                                $('#' + lblLotDescControlId).append($productDescriptionContent);
+                            }
+                            const $gallery = $('#' + lblLotDescControlId).find('.product__gallery');
+                            if ($gallery.length) {
+                                const $gallery = $('#' + lblLotDescControlId).find('.product__gallery > *');
                                 if ($gallery.length) {
                                     $('.lot-images-container').hide();
-                                    $('.product__gallery').first().prepend($('#' + lblLotDescControlId).find('.product__gallery').html());
-                                    $gallery.remove();
+                                    $galPlace = $('.product__gallery').first();
+                                    $galPlace.find('> *:not(.lot-description)').remove();
+                                    $galPlace.prepend($('#' + lblLotDescControlId).find('.product__gallery > *'));
                                     addProductZoom();
                                     addProductGallery();
-                                } else {
-                                    $('.lot-images-container').show();
-                                    $('.product__slider, .product__thumbnails').remove();
                                 }
+                            } else {
+                                $('.lot-images-container').show();
+                                $('.product__slider, .product__thumbnails').remove();
                             }
                         }
 
