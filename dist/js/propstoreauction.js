@@ -1885,12 +1885,12 @@ document.addEventListener('DOMContentLoaded', () => {
                         if ($desc.length) {
                             $('#rtb-panel')[0].dataset.lot = currentLot;
 
-                            // if (!$('.product-description-content').length) { // old product
-                            //     document.querySelectorAll('style:not([data-v2]), link[rel="stylesheet"]:not([data-v2])').forEach(item => item.remove());
-                            //     const $productDescriptionContent = $('<div class="product-description-content">');
-                            //     $productDescriptionContent.append($desc);
-                            //     $('#' + lblLotDescControlId).append($productDescriptionContent);
-                            // }
+                            if (!$('.product-description-content').length) { // old product
+                                document.querySelectorAll('style:not([data-v2]), link[rel="stylesheet"]:not([data-v2])').forEach(item => item.remove());
+                                const $productDescriptionContent = $('<div class="product-description-content">');
+                                $productDescriptionContent.append($desc);
+                                $('#' + lblLotDescControlId).append($productDescriptionContent);
+                            }
                             // const $gallery = $('#' + lblLotDescControlId).find('.product__gallery');
                             // if ($gallery.length) {
                             //     const $gallery = $('#' + lblLotDescControlId).find('.product__gallery > *');
@@ -1906,6 +1906,12 @@ document.addEventListener('DOMContentLoaded', () => {
                             //     $('.lot-images-container').show();
                             //     $('.product__slider, .product__thumbnails').remove();
                             // }
+
+                            const $img = $('#' + lblLotDescControlId + ' .carousel-item').first();
+                            if ($img.length) {
+                                const url = $img[0].style.backgroundImage.slice(4, -1).replace(/["']/g, '');
+                                $('.lblLotImgControlId img').attr('src', url);
+                            }
                         }
 
                         if ($('.auclive-sale__upcoming')[0].dataset.lot != currentLot) {
@@ -1938,7 +1944,7 @@ document.addEventListener('DOMContentLoaded', () => {
                             if (getComputedStyle($('.product__inner')[0]).flexWrap === 'wrap') {
                                 $('.product__info').append($('.lot-description'));
                             } else {
-                                $('.product__gallery').first().append($('.lot-description'));
+                                $('.product__inner > .product__gallery').append($('.lot-description'));
                             }
                         }, 100);
                     }
