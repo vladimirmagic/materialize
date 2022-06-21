@@ -1764,7 +1764,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     $('.bidding-main').prepend('<div class="auclive-sale__current">');
                     $('.auclive-sale__current').append($('.bidding-main .current'), '<div class="auclive-sale__bidstatus" style="display:none;"><div class="auclive-sale__bidstatus-title"></div><div class="auclive-sale__bidstatus-text"></div></div>');                     
 
-                    $('.lot-messages').insertAfter('.video-stream');
+                    $('.lot-messages').insertBefore('.video-stream');
                     $('.lot-messages').prepend($('<div class="auclive-sale__messages-bidder">'));
                     $('.auclive-sale__messages-bidder').append($('.bidder-num'));
                     $('.lot-messages').prepend($('<div class="auclive-sale__messages">'));
@@ -1772,7 +1772,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         $('.lot-messages .sound'),
                         $('.link-report-problem')
                     );
-                    $('#report-problems').addClass('waves-effect waves-light btn btn--tertiary auclive-sale__propblems-link');
+                    $('#report-problems').addClass('waves-effect waves-light btn-flat auclive-sale__propblems-link');
 
                     $('<div class="auclive-sale__upcoming">').insertAfter('.product');
                     $('.auclive-sale__upcoming').append($('.lot-upcoming'));

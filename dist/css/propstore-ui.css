@@ -24805,7 +24805,7 @@ body.my-items .categories-match {
 }
 
 .auclive-sale__sections .lot-messages {
-  margin-top: 1rem;
+  margin-top: 2rem;
   padding-left: 2rem;
   border-left: 1px solid #c7c7c7;
 }
@@ -24854,7 +24854,7 @@ body.my-items .categories-match {
 }
 
 .auclive-sale__sections .lot-messages .messages .messages {
-  height: 440px;
+  height: 320px;
   padding-bottom: 150px;
   overflow: auto;
 }
@@ -24865,9 +24865,10 @@ body.my-items .categories-match {
   left: 0;
   right: 0;
   bottom: 0;
-  height: 150px;
+  height: 160px;
   background: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 0)), to(#F4F4F4));
   background: linear-gradient(rgba(0, 0, 0, 0), #F4F4F4);
+  pointer-events: none;
 }
 
 .auclive-sale__sections #chat-messages {
@@ -24927,7 +24928,7 @@ body.my-items .categories-match {
   opacity: .7;
 }
 
-.btn.auclive-sale__propblems-link, .auclive-sale__propblems-link.btn-large, .auclive-sale__propblems-link.btn-small, .auclive-sale__propblems-link.btn-extra-small {
+.btn-flat.auclive-sale__propblems-link {
   height: 2.5rem;
   line-height: 2.5rem;
 }
@@ -25137,6 +25138,13 @@ body.my-items .categories-match {
 }
 
 @media only screen and (max-width: 992px) {
+  .auclive-sale .product__slider {
+    width: 100%;
+    height: 360px;
+  }
+  .auclive-sale .lot-images {
+    width: 100%;
+  }
   .auclive-sale .product__inner {
     display: -webkit-box;
     display: -webkit-flex;
