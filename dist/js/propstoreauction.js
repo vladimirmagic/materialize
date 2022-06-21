@@ -1762,7 +1762,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     $('.auclive-sale__auc-title').append(auctionTitle);
 
                     $('.bidding-main').prepend('<div class="auclive-sale__current">');
-                    $('.auclive-sale__current').append($('.bidding-main .current'), '<div class="auclive-sale__bidstatus" style="display:none;"><div class="auclive-sale__bidstatus-title"></div><div class="auclive-sale__bidstatus-text"></div></div>');                     
+                    $('.auclive-sale__current').append($('.bidding-main .current'), '<div class="auclive-sale__bidstatus" style="display:none;"><div class="auclive-sale__bidstatus-title"></div><div class="auclive-sale__bidstatus-text"></div></div>');
 
                     $('.lot-messages').insertBefore('.video-stream');
                     $('.lot-messages').prepend($('<div class="auclive-sale__messages-bidder">'));
@@ -1800,6 +1800,27 @@ document.addEventListener('DOMContentLoaded', () => {
                     $('input[name="upcoming-options"]').on('change', onOptionsChange);
                     onOptionsChange();
 
+                    function getNextAsk (str, strBefore, strAfter) {
+                        let nextAskStr = '';
+                        let nextAskBP = '';
+                        let nextAsk = str.split(strBefore);
+                        if (nextAsk.length && nextAsk.length > 1) {
+                            nextAskStr = nextAsk[1];
+                            nextAsk = nextAskStr.split(strAfter);
+                            if (nextAsk.length) nextAskStr = nextAsk[0];
+                        }
+                        if (nextAskStr) {
+                            nextAskCurrency = nextAskStr[0];
+                            nextAsk = parseFloat(nextAskStr.slice(1).replace(/,/g, ''));
+                            if (nextAsk) {
+                                nextAskBP = nextAskCurrency + (nextAsk * 1.25).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+                            }
+                            nextAskStr = '<br><strong>The next asking bid is ' + nextAskStr + '</strong>';
+                            if (nextAskBP) nextAskStr += '<br>(' + nextAskBP + ' incl. Buyer’s Prem)';
+                        }
+                        return nextAskStr;
+                    }
+
 
                     let interval = setInterval(() => { // listen ajax updates
                         const currentLot = $('#' + lblLotNoControlId).text();
@@ -1824,16 +1845,7 @@ document.addEventListener('DOMContentLoaded', () => {
                                 $('.auclive-sale__bidstatus-text').html('Your registration to participate in this auction is pending approval. Please contact us for assistance.');
                                 $('.auclive-sale__bidstatus').removeClass('green').addClass('red').show();
                             } else if ($btn.text().includes('You are the high bidder')) {
-                                let nextAskStr = '';
-                                let nextAsk = $btn.html().split('Asking bid: ');
-                                if (nextAsk.length && nextAsk.length > 1) {
-                                    nextAskStr = nextAsk[1];
-                                    nextAsk = nextAskStr.split('</span>');
-                                    if (nextAsk.length) nextAskStr = nextAsk[0];
-                                }
-                                if (nextAskStr) {
-                                    nextAskStr = '<br><strong>The next asking bid is ' + nextAskStr + '</strong>';
-                                }
+                                let nextAskStr = getNextAsk($btn.html(), 'Asking bid: ', '</span>');
                                 $btn.html(`
                                     <span class="btn__title">Place bid</span>
                                     <i class="icon"><svg width="17" height="14" viewBox="0 0 17 14"><use xlink:href="#arrow-right"></use></svg></i>
@@ -1842,16 +1854,7 @@ document.addEventListener('DOMContentLoaded', () => {
                                 $('.auclive-sale__bidstatus-text').html('Keep watching until the auction ends to see if you win. ' + nextAskStr);
                                 $('.auclive-sale__bidstatus').removeClass('red').addClass('green').show();
                             } else if ($btn.text().includes(' now!') && !$btn.text().includes('Register ')) { // BID $xxx NOW!
-                                let nextAskStr = '';
-                                let nextAsk = $btn.html().split('BID ');
-                                if (nextAsk.length && nextAsk.length > 1) {
-                                    nextAskStr = nextAsk[1];
-                                    nextAsk = nextAskStr.split(' now!</a>');
-                                    if (nextAsk.length) nextAskStr = nextAsk[0];
-                                }
-                                if (nextAskStr) {
-                                    nextAskStr = '<br><strong>The next asking bid is ' + nextAskStr + '</strong>';
-                                }
+                                let nextAskStr = getNextAsk($btn.html(), 'BID ', ' now!');
 
                                 if ($btn.html().includes('btn-outbid')) {
                                     $('.auclive-sale__bidstatus-title').html('You have been outbid!');
@@ -1866,6 +1869,12 @@ document.addEventListener('DOMContentLoaded', () => {
                                 $btn.removeAttr('style');
                             }
                         }
+
+                        // const currentBidAmountStr = $('.current-bid-amt .amount').text() || '';
+                        // const currentBidAmount = parseFloat(currentBidAmountStr.replace(/,/g, ''));
+                        // const currentBidCurrency = $('.current-bid-amt .currency').text();
+                        // const currentBidBP = currentBidCurrency + currentBidAmount * 1.25;
+                        // $('.current-bid-amt .amount')
 
                         if ($('#rtb-panel')[0].dataset.lot != currentLot) {
                             title = 'Lot #' + $('#' + lblLotNoControlId).html() + ': ' + $('#' + lblLotNameControlId).html();

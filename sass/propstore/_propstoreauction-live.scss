@@ -443,7 +443,6 @@
 	margin-bottom: 1.25rem;
 
 	.current {
-		@extend .h4;
 		flex: 1 0 220px;
 		display: flex;
 		flex-direction: column;
@@ -460,6 +459,7 @@
 		}
 
 		.current-bid-amt {
+			font-size: 32px;
 			font-weight: 600;
 		}
 	}
