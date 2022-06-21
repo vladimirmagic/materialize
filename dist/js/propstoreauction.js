@@ -1816,7 +1816,7 @@ document.addEventListener('DOMContentLoaded', () => {
                                 nextAskBP = nextAskCurrency + (nextAsk * 1.25).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
                             }
                             nextAskStr = '<br><strong>The next asking bid is ' + nextAskStr + '</strong>';
-                            if (nextAskBP) nextAskStr += '<br>(' + nextAskBP + ' incl. Buyer’s Prem)';
+                            if (nextAskBP) nextAskStr += '<div class="auclive-sale__bidstatus-prem">(' + nextAskBP + ' incl. Buyer’s Prem)</div>';
                         }
                         return nextAskStr;
                     }
@@ -1830,7 +1830,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         if ($btn.length) {
                             if ($btn.text().includes('Login to bid')) {
                                 $btn.html(`
-                                    <span class="btn__title">Sign in to bid</span>
+                                    <span class="btn__title">Sign In To Bid</span>
                                     <i class="icon"><svg width="17" height="14" viewBox="0 0 17 14"><use xlink:href="#arrow-right"></use></svg></i>
                                 `).removeAttr('style');
                                 $('.auclive-sale__bidstatus-title').html('Bidding has started!');
@@ -1838,7 +1838,7 @@ document.addEventListener('DOMContentLoaded', () => {
                                 $('.auclive-sale__bidstatus').removeClass('red').removeClass('green').show();
                             } else if ($btn.text().includes('Pending approval')) {
                                 $btn.html(`
-                                    <span class="btn__title">Place bid</span>
+                                    <span class="btn__title">Bid Now</span>
                                     <i class="icon"><svg width="17" height="14" viewBox="0 0 17 14"><use xlink:href="#arrow-right"></use></svg></i>
                                 `).removeAttr('style');
                                 $('.auclive-sale__bidstatus-title').html('Your account is pending approval');
@@ -1847,7 +1847,7 @@ document.addEventListener('DOMContentLoaded', () => {
                             } else if ($btn.text().includes('You are the high bidder')) {
                                 let nextAskStr = getNextAsk($btn.html(), 'Asking bid: ', '</span>');
                                 $btn.html(`
-                                    <span class="btn__title">Place bid</span>
+                                    <span class="btn__title">Place Bid</span>
                                     <i class="icon"><svg width="17" height="14" viewBox="0 0 17 14"><use xlink:href="#arrow-right"></use></svg></i>
                                 `).removeAttr('style');
                                 $('.auclive-sale__bidstatus-title').html('You are the highest bidder!');
@@ -1866,6 +1866,10 @@ document.addEventListener('DOMContentLoaded', () => {
                                     $('.auclive-sale__bidstatus-text').html('Hit ‘Bid Now’ below to place a bid for this item. ' + nextAskStr);
                                     $('.auclive-sale__bidstatus').removeClass('red').removeClass('green').show();
                                 }
+                                if (!$btn.html().includes('arrow-right')) {
+                                    $btn.html('<span class="btn__title">' + $btn.html() + '</span><i class="icon"><svg width="17" height="14" viewBox="0 0 17 14"><use xlink:href="#arrow-right"></use></svg></i>');
+                                }
+                                
                                 $btn.removeAttr('style');
                             }
                         }
