@@ -1928,14 +1928,14 @@ document.addEventListener('DOMContentLoaded', () => {
                                 $('.upcoming--current').removeClass('upcoming--current');
 
                                 $upcoming .each((index, item) => {
-                                    if (!$(item).find('.auclive-sale__upcoming-img').length) {
-                                        $img = $('<img class="auclive-sale__upcoming-img" src="' + $(item).find('.preview').prop('href').replace('_2.', '_1.') + '">');
-                                        $(item).find('.preview').append($img);
+                                    // if (!$(item).find('.auclive-sale__upcoming-img').length) {
+                                    //     $img = $('<img class="auclive-sale__upcoming-img" src="' + $(item).find('.preview').prop('href').replace('_2.', '_1.') + '">');
+                                    //     $(item).find('.preview').append($img);
 
-                                        $(item).find('.preview').on('click', function () {
-                                            window.open('/lot-details/index/catalog/' + auctionId + '/lot/' + $(this).data('lot_item_id'));
-                                        });
-                                    }
+                                    //     $(item).find('.preview').on('click', function () {
+                                    //         window.open('/lot-details/index/catalog/' + auctionId + '/lot/' + $(this).data('lot_item_id'));
+                                    //     });
+                                    // }
                                     if ($(item).find('.lot').text() == currentLot) {
                                         $(item).addClass('upcoming--current');
                                     }
