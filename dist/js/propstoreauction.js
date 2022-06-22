@@ -1867,7 +1867,7 @@ document.addEventListener('DOMContentLoaded', () => {
                                     $('.auclive-sale__bidstatus').removeClass('red').removeClass('green').show();
                                 }
                                 if (!$btn.html().includes('arrow-right')) {
-                                    $btn.html('<span class="btn__title">' + $btn.html() + '</span><i class="icon"><svg width="17" height="14" viewBox="0 0 17 14"><use xlink:href="#arrow-right"></use></svg></i>');
+                                    $btn.html('<span class="btn__title">' + $btn.html().toLowerCase().replace(/!/g, '') + '</span><i class="icon"><svg width="17" height="14" viewBox="0 0 17 14"><use xlink:href="#arrow-right"></use></svg></i>');
                                 }
                                 
                                 $btn.removeAttr('style');

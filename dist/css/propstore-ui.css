@@ -24856,8 +24856,8 @@ body.my-items .categories-match {
 }
 
 .auclive-sale__sections .lot-messages .messages .messages {
-  height: 320px;
-  padding-bottom: 150px;
+  height: 160px;
+  padding-bottom: 80px;
   overflow: auto;
 }
 
@@ -24867,7 +24867,7 @@ body.my-items .categories-match {
   left: 0;
   right: 0;
   bottom: 0;
-  height: 160px;
+  height: 80px;
   background: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 0)), to(#F4F4F4));
   background: linear-gradient(rgba(0, 0, 0, 0), #F4F4F4);
   pointer-events: none;
