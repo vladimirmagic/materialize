@@ -244,6 +244,11 @@ hr {
 	cursor: pointer;
 }
 
+.dropdown-trigger--question {
+	margin: -.5rem 0 0 -.5rem;
+	color: $color-font-grey;
+}
+
 @media #{$media-fullhd-up} {
 	$content-padding: calc(50% - 900px);
     .content {

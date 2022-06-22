@@ -565,6 +565,12 @@ form#AdvancedSearch[action*="/id/303"]:before {
 #customRegisterButton318:before {content: 'http://www.eepurl.com/hXIFan'}
 #customRegisterButton318:after {content: 'Sign Up For Updates'}
 
+
+/* TEST 330 */
+#customTitle330:before {content: 'Custom Title 330'}
+#customDate330:before {content: 'Custom Date 330'}
+
+
 body.auctions-info #AuctionInfoForm #wrapper .bodybox{
 	display: block;
 }
@@ -623,4 +629,16 @@ a[href="https://propstoreauction.com/auctions/catalog/id/320"],
 a[href="https://propstoreauction.com/auctions/catalog/id/322"],
 a[href="https://propstoreauction.com/auctions/catalog/id/318"]{
   display:none
+}
+
+a.off-increment:not(.btn):not(.btn-large):not(.btn-small):not(.btn-extra-small):not(.btn-flat):hover {
+  cursor: sw-resize;
+}
+a.off-increment:not(.btn):not(.btn-large):not(.btn-small):not(.btn-extra-small):not(.btn-flat) {
+  color: red;
+  text-decoration: none;
+  font-weight: unset;
+}
+.outbid{
+  color: red;
 }

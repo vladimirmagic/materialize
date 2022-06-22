@@ -9749,6 +9749,11 @@ hr.small {
   cursor: pointer;
 }
 
+.dropdown-trigger--question {
+  margin: -.5rem 0 0 -.5rem;
+  color: #8F8F8F;
+}
+
 @media only screen and (min-width: 1921px) {
   .content, .general, .header__main, .header__menu-level1-inner, .header__menu-level1--sell .header__menu-level1-inner, .footer__inner, .hero, .filters, .header__filters .filters__body, .showing-results, .related-movies, .modal-shipping-quote-page main, .how, .whatsnew__text, .section-auctions, .auctions__faq-section, .faq, .account-page__text, .account__orders, .account__coa, .account-filter, .payment-plans, .sell__inner, .sell__faq-section, .vouchers, .experts, .auccatalog__nav, .auc-info__inner, .auc-info__video, .aucpage__content, .auclive-sale__upcoming {
     padding-left: calc(50% - 900px);
