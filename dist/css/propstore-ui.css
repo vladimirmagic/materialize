@@ -24881,9 +24881,22 @@ body.my-items .categories-match {
   margin-top: 2rem;
 }
 
+.auclive-sale__sections .video-stream > div {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
 .auclive-sale__sections .video-stream iframe {
   width: 100%;
-  height: 540px;
+  max-width: 480px;
+  height: 480px;
+  margin: 0 auto;
   border: 0;
   overflow: auto;
 }
