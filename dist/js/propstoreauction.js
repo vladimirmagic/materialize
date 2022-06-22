@@ -1914,7 +1914,10 @@ document.addEventListener('DOMContentLoaded', () => {
                             const $img = $('#' + lblLotDescControlId + ' .carousel-item').first();
                             if ($img.length) {
                                 const url = $img[0].style.backgroundImage.slice(4, -1).replace(/["']/g, '');
-                                $('.lblLotImgControlId img').attr('src', url);
+                                if ($('.lblLotImgControlId img').attr('src') != url) {
+                                    $('.lblLotImgControlId img').attr('src', url);
+                                    $('.lblLotImgControlId img').removeClass('loader-img');
+                                }
                             }
                         }
 
