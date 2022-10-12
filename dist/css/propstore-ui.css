@@ -23682,7 +23682,8 @@ body.search-index .categories-match {
   margin-top: .5em;
 }
 
-.aucproduct__card-details-label {
+.aucproduct__card-details-label,
+.aucproduct__card-details-row .title {
   -webkit-box-flex: 0;
   -webkit-flex: 0 0 7em;
       -ms-flex: 0 0 7em;
@@ -23690,12 +23691,17 @@ body.search-index .categories-match {
   font-weight: 500;
 }
 
-.aucproduct__card-details-value {
+.aucproduct__card-details-value,
+.aucproduct__card-details-row .value {
   -webkit-box-flex: 1;
   -webkit-flex: 1 1 100%;
       -ms-flex: 1 1 100%;
           flex: 1 1 100%;
   font-weight: 300;
+}
+
+.item-bidhistory .aucproduct__card-details-label {
+  display: none;
 }
 
 .aucproduct__card-details-timer .timelft {

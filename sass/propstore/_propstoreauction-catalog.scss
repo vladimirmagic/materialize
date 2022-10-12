@@ -500,14 +500,22 @@ body.search-index {
 	margin-top: .5em;
 }
 
-.aucproduct__card-details-label {
+.aucproduct__card-details-label,
+.aucproduct__card-details-row .title {
 	flex: 0 0 7em;
 	font-weight: 500;
 }
 
-.aucproduct__card-details-value {
+.aucproduct__card-details-value,
+.aucproduct__card-details-row .value {
 	flex: 1 1 100%;
 	font-weight: 300;
+}
+
+.item-bidhistory {
+	.aucproduct__card-details-label {
+		display: none;
+	}
 }
 
 .aucproduct__card-details-timer {

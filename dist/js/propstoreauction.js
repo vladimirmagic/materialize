@@ -549,17 +549,17 @@ document.addEventListener('DOMContentLoaded', () => {
 
                     $win = $('#lac28, #oai21, .message-closed');
                     if ($win.length) {
-                        $winVal = $win.find('span').first();
+                        const $winVal = $win.find('> .exratetip');
+                        let winVal = $winVal.length ? $winVal.html() : '';
                         $lineWin = $detailsLine.clone();
 
                         if (isSignedIn) {
-                            let messageArr = $win.html().split('<span');
+                            let messageArr = $win.html().split('<');
                             let winLabel = messageArr.length ? messageArr[0] : '';
                             $lineWin.html(winLabel);
-                            if ($winVal.length) {
-                                $winVal.append(' ').append($('.biddingHistoryLink'));
-                                $lineWin.html($lineWin.html() + ' <strong>' + $winVal.html() + '</strong>');
-                            }
+                            $strong = $('<strong>');
+                            $strong.append(winVal, ' ', $('.biddingHistoryLink'));
+                            $lineWin.append($strong);
                         } else {
                             $lineWin.html(`<div class="product__price sso-trigger">
                 <i class='icon product__price-sold'>?</i>
@@ -1022,7 +1022,7 @@ document.addEventListener('DOMContentLoaded', () => {
             <div class="card__info">
                 <div class="card__description">
                     <div class="card__movie"></div>
-                    <div class="aucproduct__card-details"></div>
+                    <ul class="aucproduct__card-details price-info"></ul>
                 </div>
                 <div class="card__actions"></div>
                 <div class="card__bid"></div>
@@ -1204,6 +1204,12 @@ document.addEventListener('DOMContentLoaded', () => {
                         const $aid = $(item).find('section[data-aid]');
                         let id = $aid.length ? $aid.data('aid') : 0;
                         $cardItem = $card.clone();
+                        if ($aid.length && $aid.data()) { // data-lid="91233" data-aid="341" data-alid="135184"
+                            for (let data in $aid.data()) {
+                                $cardItem.attr('data-' + data, $aid.data(data));
+                            }
+                            $cardItem.find('.card__description').addClass('bd-info-' + $aid.data('alid'));
+                        }
                         const $img = $(item).find('figure').length > 1 ? $(item).find('.figure-col img') : $(item).find('figure img'); // 2 figure in list view
                         if ($img.length) {
                             let bg = $img.prop('src');
@@ -1912,14 +1918,14 @@ document.addEventListener('DOMContentLoaded', () => {
                             //     $('.product__slider, .product__thumbnails').remove();
                             // }
 
-                            const $img = $('#' + lblLotDescControlId + ' .carousel-item').first();
-                            if ($img.length) {
-                                const url = $img[0].style.backgroundImage.slice(4, -1).replace(/["']/g, '');
-                                if ($('.lblLotImgControlId img').attr('src') != url) {
-                                    $('.lblLotImgControlId img').attr('src', url);
-                                    $('.lblLotImgControlId img').removeClass('loader-img');
-                                }
-                            }
+                            // const $img = $('#' + lblLotDescControlId + ' .carousel-item').first();
+                            // if ($img.length) {
+                            //     const url = $img[0].style.backgroundImage.slice(4, -1).replace(/["']/g, '');
+                            //     if ($('.lblLotImgControlId img').attr('src') != url) {
+                            //         $('.lblLotImgControlId img').attr('src', url);
+                            //         $('.lblLotImgControlId img').removeClass('loader-img');
+                            //     }
+                            // }
                         }
 
                         if ($('.auclive-sale__upcoming')[0].dataset.lot != currentLot) {
