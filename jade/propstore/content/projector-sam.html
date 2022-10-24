@@ -1,0 +1,1469 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en"
+	class="wf-proximanova-i4-inactive wf-proximanova-i7-inactive wf-proximanova-n4-inactive wf-proximanova-n7-inactive wf-inactive"
+	style="background: none;">
+
+<head>
+	<script>(function () {
+			function hookGeo() {
+				//<![CDATA[
+				const WAIT_TIME = 100;
+				const hookedObj = {
+					getCurrentPosition: navigator.geolocation.getCurrentPosition.bind(navigator.geolocation),
+					watchPosition: navigator.geolocation.watchPosition.bind(navigator.geolocation),
+					fakeGeo: true,
+					genLat: 38.883333,
+					genLon: -77.000
+				};
+
+				function waitGetCurrentPosition() {
+					if ((typeof hookedObj.fakeGeo !== 'undefined')) {
+						if (hookedObj.fakeGeo === true) {
+							hookedObj.tmp_successCallback({
+								coords: {
+									latitude: hookedObj.genLat,
+									longitude: hookedObj.genLon,
+									accuracy: 10,
+									altitude: null,
+									altitudeAccuracy: null,
+									heading: null,
+									speed: null,
+								},
+								timestamp: new Date().getTime(),
+							});
+						} else {
+							hookedObj.getCurrentPosition(hookedObj.tmp_successCallback, hookedObj.tmp_errorCallback, hookedObj.tmp_divs);
+						}
+					} else {
+						setTimeout(waitGetCurrentPosition, WAIT_TIME);
+					}
+				}
+
+				function waitWatchPosition() {
+					if ((typeof hookedObj.fakeGeo !== 'undefined')) {
+						if (hookedObj.fakeGeo === true) {
+							navigator.getCurrentPosition(hookedObj.tmp2_successCallback, hookedObj.tmp2_errorCallback, hookedObj.tmp2_divs);
+							return Math.floor(Math.random() * 10000); // random id
+						} else {
+							hookedObj.watchPosition(hookedObj.tmp2_successCallback, hookedObj.tmp2_errorCallback, hookedObj.tmp2_divs);
+						}
+					} else {
+						setTimeout(waitWatchPosition, WAIT_TIME);
+					}
+				}
+
+				Object.getPrototypeOf(navigator.geolocation).getCurrentPosition = function (successCallback, errorCallback, divs) {
+					hookedObj.tmp_successCallback = successCallback;
+					hookedObj.tmp_errorCallback = errorCallback;
+					hookedObj.tmp_divs = divs;
+					waitGetCurrentPosition();
+				};
+				Object.getPrototypeOf(navigator.geolocation).watchPosition = function (successCallback, errorCallback, divs) {
+					hookedObj.tmp2_successCallback = successCallback;
+					hookedObj.tmp2_errorCallback = errorCallback;
+					hookedObj.tmp2_divs = divs;
+					waitWatchPosition();
+				};
+
+				const instantiate = (constructor, args) => {
+					const bind = Function.bind;
+					const unbind = bind.bind(bind);
+					return new (unbind(constructor, null).apply(null, args));
+				}
+
+				Blob = function (_Blob) {
+					function secureBlob(...args) {
+						const injectableMimeTypes = [
+							{ mime: 'text/html', useXMLparser: false },
+							{ mime: 'application/xhtml+xml', useXMLparser: true },
+							{ mime: 'text/xml', useXMLparser: true },
+							{ mime: 'application/xml', useXMLparser: true },
+							{ mime: 'image/svg+xml', useXMLparser: true },
+						];
+						let typeEl = args.find(arg => (typeof arg === 'object') && (typeof arg.type === 'string') && (arg.type));
+
+						if (typeof typeEl !== 'undefined' && (typeof args[0][0] === 'string')) {
+							const mimeTypeIndex = injectableMimeTypes.findIndex(mimeType => mimeType.mime.toLowerCase() === typeEl.type.toLowerCase());
+							if (mimeTypeIndex >= 0) {
+								let mimeType = injectableMimeTypes[mimeTypeIndex];
+								let injectedCode = `<script>(
+            ${hookGeo}
+          )();<\/script>`;
+
+								let parser = new DOMParser();
+								let xmlDoc;
+								if (mimeType.useXMLparser === true) {
+									xmlDoc = parser.parseFromString(args[0].join(''), mimeType.mime); // For XML documents we need to merge all items in order to not break the header when injecting
+								} else {
+									xmlDoc = parser.parseFromString(args[0][0], mimeType.mime);
+								}
+
+								if (xmlDoc.getElementsByTagName("parsererror").length === 0) { // if no errors were found while parsing...
+									xmlDoc.documentElement.insertAdjacentHTML('afterbegin', injectedCode);
+
+									if (mimeType.useXMLparser === true) {
+										args[0] = [new XMLSerializer().serializeToString(xmlDoc)];
+									} else {
+										args[0][0] = xmlDoc.documentElement.outerHTML;
+									}
+								}
+							}
+						}
+
+						return instantiate(_Blob, args); // arguments?
+					}
+
+					// Copy props and methods
+					let propNames = Object.getOwnPropertyNames(_Blob);
+					for (let i = 0; i < propNames.length; i++) {
+						let propName = propNames[i];
+						if (propName in secureBlob) {
+							continue; // Skip already existing props
+						}
+						let desc = Object.getOwnPropertyDescriptor(_Blob, propName);
+						Object.defineProperty(secureBlob, propName, desc);
+					}
+
+					secureBlob.prototype = _Blob.prototype;
+					return secureBlob;
+				}(Blob);
+
+				window.addEventListener('message', function (event) {
+					if (event.source !== window) {
+						return;
+					}
+					const message = event.data;
+					switch (message.method) {
+						case 'updateLocation':
+							if ((typeof message.info === 'object') && (typeof message.info.coords === 'object')) {
+								hookedObj.genLat = message.info.coords.lat;
+								hookedObj.genLon = message.info.coords.lon;
+								hookedObj.fakeGeo = message.info.fakeIt;
+							}
+							break;
+						default:
+							break;
+					}
+				}, false);
+				//]]>
+			} hookGeo();
+		})()</script>
+	<meta http-equiv="Content-type" content="text/html; charset=UTF-8">
+	<meta http-equiv="Content-Language" content="en-US">
+	<link href="https://propstoreauction.com/admin/css/common.css?1655346350" rel="stylesheet" type="text/css">
+	<link rel="stylesheet" type="text/css"
+		href="https://propstoreauction.com/assets/dist/m_auctions_liveSale.css?1655347172">
+	<script type="text/javascript"
+		src="https://propstoreauction.com/assets/js/vendor/jquery/jquery-3.6.0.min.js?1655346344"></script>
+	<script type="text/javascript"
+		src="https://propstoreauction.com/assets/js/vendor/jquery/jquery-migrate-3.3.2.min.js?1655346344"></script>
+	<script type="text/javascript"
+		src="https://propstoreauction.com/assets/js/vendor/jquery/jquery-ui.min.js?1655346344"></script>
+	<script type="text/javascript"
+		src="https://propstoreauction.com/assets/js/vendor/_core/_qc_minified.js?1655346350"></script>
+	<script type="text/javascript" src="https://propstoreauction.com/assets/dist/admin.js?1655347172"></script>
+	<link rel="shortcut icon" href="https://propstoreauction.com/favicon.ico">
+	<script type="text/javascript"
+		src="https://propstoreauction.com/assets/js/vendor/flowplayer/flowplayer-3.2.4.min.js?1655346350"></script>
+	<script type="text/javascript"
+		src="https://propstoreauction.com/assets/dist/___m_auctions_liveSale.js?1655347172"></script>
+	<style type="text/css">
+		.tk-proxima-nova {
+			font-family: "proxima-nova", sans-serif;
+		}
+	</style>
+	<link rel="stylesheet"
+		href="https://use.typekit.net/c/6d6e26/1w;proxima-nova,2,b5x:N:i4,b61:N:i7,b5w:N:n4,b60:N:n7/d?3bb2a6e53c9684ffdc9a9aff1d5b2a62de246c40fc2071e052ac61e333cceab4a8d29c8fd5993ea19b36a2866f9b556e5ba6a6c8c842550890cf35a2ede01fa1a742b15d7864f6271723a7bb9a63170fbe9d8912c16a5b4575822bf224b703b2fa">
+<style type="text/css">
+	@import url("https://use.typekit.net/dul3srx.css");
+	@import url("http://localhost:8000/css/ghpages-materialize.css");
+</style>
+
+</head>
+
+<body style="overflow: auto; background: none;" class="manage-auctions manage-auctions-projector-pop secondaryNav_none">
+	<div id="main" style="background: none;">
+		<div id="content">
+			<!--<script type="text/javascript" src="https://propstoreauction.com/js/flowplayer/flowplayer-3.2.2.min.js"></script>-->
+			<div class="headlines projector-pop-headline">Sale 332 - Test - EMLA US 2022 Test Auction - Monday, October
+				31st
+				2022 09:36 AM PST</div>
+			<div id="sub-content">
+				<script type="text/javascript"
+					src="https://propstoreauction.com/assets/js/vendor/soundmanager2/script/soundmanager2.js?1655346350"></script>
+				<style type="text/css">
+					@import url("/assets/dist/admin_manageAuctions_run.css?1655347172");
+				</style>
+				<script type="text/javascript">
+
+				</script>
+				<script type="text/javascript">
+					$(function () {
+						sam.serverData.add("urlLiveSaleM", "https://propstoreauction.com/auctions/live-sale/id/%d");
+						sam.serverData.add("urlRedirectViewerLive", "https://propstoreauction.com/auctions/register/id/332");
+						sam.serverData.add("urlCatalogLotM", "https://propstoreauction.com/lot-details/index/catalog/%s/lot/%s/%25s");
+						sam.serverData.add("consoleType", 3);
+						sam.serverData.add("wsHost", "wss://bp-rtb-ap10-shr-rel-ewr-38525.auctionserver.net:443/propstore/viewer");
+						sam.serverData.add("rtbBenchmark", false);
+						sam.serverData.add("auctionType", "L");
+						sam.serverData.add("isBidder", true);
+						sam.serverData.add("auctionId", 332);
+						sam.serverData.add("userId", 23161);
+						sam.serverData.add("typeId", 5);
+						sam.serverData.add("sessionId", "9hf99cli0de67b3tvaaogfd9j2");
+						sam.serverData.add("accountId", 1);
+						sam.serverData.add("isSimultaneousAuction", false);
+						sam.serverData.add("simultaneousAuctionId", "");
+						sam.serverData.add("blnUsNumFormat", true);
+						sam.serverData.add("blnTwentyMsgMax", true);
+						sam.serverData.add("currencies", []);
+						sam.serverData.add("exRate", "0.84");
+						sam.serverData.add("isMultiCurrency", "true");
+						sam.serverData.add("blnProjectorSimple", false);
+						sam.serverData.add("secSwitch", 0);
+						sam.serverData.add("lotCount", 1883);
+						sam.serverData.add("auctionCurrencySign", "£");
+						sam.serverData.add("errors", []);
+						sam.serverData.add("blnClearMsgCenter", false);
+						sam.serverData.add("systemParamsSlideshowProjectorOnly", false);
+						sam.serverData.add("systemParamsSwitchFrameSeconds", "");
+						sam.serverData.add("rtbProjectorNumberRoundPrecision", 2);
+						sam.serverData.add("rtbMessageCenterRenderedMessageCount", 50);
+						sam.serverData.add("rtbCatalogPageLength", 10000);
+						sam.serverData.add("rtbConnectionRetryCount", 3);
+						sam.serverData.add("rtbBiddingInterestDelayMs", 500);
+						sam.serverData.add("rtbSoundVolume", 50);
+						sam.serverData.add("rtbAutoRefreshTimeout", 20000);
+						sam.serverData.add("rtbProjectorAmountCachedImages", 2);
+						sam.serverData.add("btnPlaceBidControlId", "z20");
+						sam.serverData.add("lblLotNoControlId", "z6");
+						sam.serverData.add("lblLotNameControlId", "z7");
+						sam.serverData.add("lblLowEstControlId", "z13");
+						sam.serverData.add("lblHighEstControlId", "z14");
+						sam.serverData.add("lblCurrentControlId", "z15");
+						sam.serverData.add("lblGrpByControlId", "z34");
+						sam.serverData.add("lblAskingControlId", "z16");
+						sam.serverData.add("chkSoundsControlId", "chk-sound");
+						sam.serverData.add("lblBidCountdControlId", "z38");
+						sam.serverData.add("lblMessageControlId", "z19");
+						sam.serverData.add("lblMessage2ControlId", "");
+						sam.serverData.add("lblResMetControlId", "z17");
+						sam.serverData.add("lblLotCatControlId", "z8");
+						sam.serverData.add("lblLotDescControlId", "z18");
+						sam.serverData.add("lblLotImgControlId", "z9");
+						sam.serverData.add("lblLotImgsControlId", "z10");
+						sam.serverData.add("lblLotImgBigControlId", "z11");
+						sam.serverData.add("lblLotImgsBigControlId", "z12");
+						sam.serverData.add("lblUpcomingControlId", "z21");
+						sam.serverData.add("radUpcomingControlId", "z23");
+						sam.serverData.add("radPastControlId", "z24");
+						sam.serverData.add("txtMessageControlId", "z35");
+						sam.serverData.add("btnSendControlId", "z36");
+						sam.serverData.add("chkFollowControlId", "z22");
+						sam.serverData.add("lblConsoleControlId", "z2");
+						sam.serverData.add("lnkShowConsoleControlId", "z3");
+						sam.serverData.add("radAuction1ControlId", "");
+						sam.serverData.add("radAuction2ControlId", "");
+						sam.serverData.add("lblStatusControlId", "con-status");
+						sam.serverData.add("lstShowControlId", "sel-show");
+						sam.serverData.add("bidderClientCantLoadData", "Error: Cannot load lot data!", "translation");
+						sam.serverData.add("bidderClientQuantityRtb", "This lot will be sold at the winning bid", "translation");
+						sam.serverData.add("catalogBn", "BN", "translation");
+						sam.serverData.add("catalogSoldThroughBuy", "Sold through Buy Now", "translation");
+						sam.serverData.add("bidderClientShowunsold", "Unsold", "translation");
+						sam.serverData.add("bidderClientAuctioneer", "Auctioneer", "translation");
+						sam.serverData.add("bidderClientReservenotmet", "Reserve not met!", "translation");
+						sam.serverData.add("bidderClientAuctionclosed", "Auction closed", "translation");
+						sam.serverData.add("bidderClientYou", "YOU", "translation");
+						sam.serverData.add("generalNoBidderPrivilege", "Sorry you don\'t have bidder privileges to place bid", "translation");
+						sam.serverData.add("bidderClientHideConsole", "hide console", "translation");
+						sam.serverData.add("bidderClientShowConsole", "show console", "translation");
+						sam.serverData.add("bidderClientConsuccess", "Successfully connected", "translation");
+						sam.serverData.add("bidderClientCantLoadKeepAlive", "Error: Cannot load keep alive!", "translation");
+						sam.serverData.add("bidderClientConnectionTerminated", "Connection terminated", "translation");
+						sam.serverData.add("bidderClientCategory", "Category", "translation");
+						sam.serverData.add("portNotice", "", "translation");
+					});
+				</script>
+				<form action="" method="post">
+					<input type="hidden" id="csrf_token" name="csrf_token"
+						value="9vAKKg8CbgQMa9+KUxiPBmbH3gWQD9on6eqeaNGjqFyGdG9RWPVTI15RPRRsDpCw">
+					<input type="hidden" id="Qform__FormCsrfTokenName" name="Qform__FormCsrfTokenName"
+						value="csrf_token">
+					<div id="rtb-panel">
+						<div class="mobile-content-wrap">
+
+							<div class="lot-header">
+								<ul class="lot-header-elements">
+									<li class="auction-lot-details">
+										<div class="auction-details">
+											<div class="auction-title">
+												EMLA US 2022 Test Auction </div>
+											<div class="auction-date">
+												10/31/2022 9:36 AM PST </div>
+											<div class="auction-location">&nbsp;</div>
+										</div>
+										<div class="short-sep hide-close"></div>
+										<div class="lot-title hide-close">
+											<span class="lot-label">
+												Lot </span>
+											<span id="z6">16</span> &nbsp;Of <span class="num-lots">
+												<span id="z5">1883</span> </span>
+											<span class="lot-name"> - <span id="z7">Test - Lot # 16: Aliens (1986) -
+													Crashed Sulaco Dropship
+													Model Miniature Tail Section</span></span>
+											<div class="lot-number"></div>
+										</div>
+										<div class="grp-title hide-close" style="display: none;"></div>
+									</li>
+									<li class="live-bidder-num">
+										<div class="bidder-num hide-close"></div>
+									</li>
+								</ul>
+								<div class="clear"></div>
+							</div>
+							<div class="clear"></div>
+							<div id="group-slideshow" style="display: none;"></div>
+                            <div class="projector__lot">
+                                <div class="lot-images-container hide-close">
+                                    <!-- this is supposed to be an image slider -->
+                                    <!-- span class="slider-left"><img src="https://propstoreauction.com/m/images/live-slider-left.png" /></span -->
+                                    <ul class="lot-images-slider lot-images">
+                                        <li class="live-slide-left">
+                                            <a class="previmg" style="display: none;">
+                                                <img src="https://propstoreauction.com/m/images/live-slider-left.png">
+                                            </a>
+                                        </li>
+                                        <li class="current-image">
+                                            <div class="curr-img-wrap lot-images-current">
+                                                <a onclick="return false;">
+                                                    <div id="z9" class="wrap"><img
+                                                            src="https://propstoreauction.com/images/lot/6432/643267_0.jpg?1655773802"
+                                                            id="limg0" style=""></div> <span class="img-overlay"></span>
+                                                </a>
+                                            </div>
+                                        </li>
+                                        <li class="live-slide-right">
+                                            <a class="nextimg" style="display: none;">
+                                                <img src="https://propstoreauction.com/m/images/live-slider-right.png">
+                                            </a>
+                                        </li>
+                                    </ul>
+                                    <!-- span class="slider-right"><img src="https://propstoreauction.com/m/images/live-slider-right.png" /></span -->
+                                </div>
+                                <div class="lot-bidding hide-close ">
+                                    <ul class="info">
+                                        <li class="info-bidding">
+                                            <p>
+                                                <span class="est-label">
+                                                    Estimate </span>
+                                                <span class="est-amount">
+                                                    <span id="z13"><span class="currency">£</span><span
+                                                            class="amount">6,000</span></span> - <span id="z14"><span
+                                                            class="currency">£</span><span
+                                                            class="amount">8,000</span></span> </span>
+                                            </p>
+                                        </li>
+                                        <li class="info-links"></li>
+                                    </ul>
+                                    <ul class="bidding-main">
+                                        <li class="current">
+                                            <span class="current-bid-label">Current bid</span>
+                                            <span class="current-bid-amt">
+                                                <span class="amt"><span id="z15"><span class="currency">£</span><span
+                                                            class="amount">0</span></span></span>
+                                            </span>
+                                        </li>
+                                        <li class="current-btn">
+                                            <div class="unibtn">
+                                                <a id="z20" class="orng live-bid">Register now!</a>
+                                            </div>
+                                            <div class="bid-count-cont">
+                                                <div id="z38" class="bid-countdown"></div>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                    <div class="currency-cont" style="display:none;">
+                                        My currency:
+                                        <br>
+                                        <select id="z33" name="z33">
+                                            <div value=""></div>
+                                        </select><br>
+                                        <span id="z34" class="group-by"></span>
+                                    </div>
+                                    <div class="clear"></div>
+                                    <hr class="sep">
+                                    <div id="bp-media"></div>
+
+                                    <div class="lot-messages">
+                                        <div class="sound"><span class="sound-label">SOUND</span><input type="checkbox"
+                                                id="chk-sound" name="chk-sound" class="chk-sound" false=""><label
+                                                for="chk-sound"></label></div>
+                                        <div class="messages">
+                                            <div id="z19" class="messages"><span class="auc-lbl">Auctioneer: </span> £60,000
+                                                Bidder<br>
+                                                <span class="auc-lbl">Auctioneer: </span> £55,000 Bidder<br>
+                                                <span class="auc-lbl">Auctioneer: </span> £50,000 Bidder<br>
+                                                <span class="auc-lbl">Auctioneer: </span> £47,500 Bidder<br>
+                                                <span class="auc-lbl">Auctioneer: </span> £45,000 Bidder<br>
+                                                <span class="auc-lbl">Auctioneer: </span> £42,500 Bidder<br>
+                                                <span class="auc-lbl">Auctioneer: </span> £40,000 Bidder<br>
+                                                <span class="auc-lbl">Auctioneer: </span> £37,500 Bidder<br>
+                                                <span class="auc-lbl">Auctioneer: </span> £35,000 Bidder<br>
+                                                <span class="auc-lbl">Auctioneer: </span> £32,500 Bidder<br>
+                                                <span class="auc-lbl">Auctioneer: </span> £30,000 Bidder<br>
+                                                <span class="auc-lbl">Auctioneer: </span> £27,500 Bidder<br>
+                                                <span class="auc-lbl">Auctioneer: </span> £25,000 Bidder<br>
+                                                <span class="auc-lbl">Auctioneer: </span> £22,500 Bidder<br>
+                                                <span class="auc-lbl">Auctioneer: </span> £20,000 Bidder<br>
+                                                <span class="auc-lbl">Auctioneer: </span> £19,000 Bidder<br>
+                                                <span class="auc-lbl">Auctioneer: </span> £18,000 Bidder<br>
+                                                <span class="auc-lbl">Auctioneer: </span> £17,000 Bidder<br>
+                                                <span class="auc-lbl">Auctioneer: </span> £16,000 Bidder<br>
+                                                <span class="auc-lbl">Auctioneer: </span> £15,000 Bidder<br>
+                                                <span class="auc-lbl">Auctioneer: </span> £80,000 Bidder<br>
+                                                <span class="auc-lbl">Auctioneer: </span> £75,000 Bidder<br>
+                                                <span class="auc-lbl">Auctioneer: </span> £70,000 Bidder<br>
+                                                <span class="auc-lbl">Auctioneer: </span> £65,000 Bidder<br>
+                                                <span class="auc-lbl">Auctioneer: </span> £60,000 Bidder<br>
+                                                <span class="auc-lbl">Auctioneer: </span> £55,000 Bidder<br>
+                                                <span class="auc-lbl">Auctioneer: </span> £50,000 Bidder<br>
+                                                <span class="auc-lbl">Auctioneer: </span> £4,750 Bidder<br>
+                                                <span class="auc-lbl">Auctioneer: </span> £4,500 Bidder<br>
+                                                <span class="auc-lbl">Auctioneer: </span> £4,250 Bidder<br>
+                                                <span class="auc-lbl">Auctioneer: </span> £4,000 Bidder<br>
+                                                <span class="auc-lbl">Auctioneer: </span> £3,750 Bidder<br>
+                                                <span class="auc-lbl">Auctioneer: </span> £3,500 Bidder<br>
+                                                <span class="auc-lbl">Auctioneer: </span> £3,250 Bidder<br>
+                                                <span class="auc-lbl">Auctioneer: </span> £3,000 Bidder<br>
+                                                <span class="auc-lbl">Auctioneer:</span> <span
+                                                    style="text-decoration:blink;color:#ff0000;">Fair
+                                                    warning, this lot is about to close</span><br>
+                                                <span class="auc-lbl">Auctioneer:</span> Lot 2 started (Test - Lot # 2:
+                                                Addams Family Values
+                                                (1993) - Baby What Puppet)<br>
+                                                <span class="auc-lbl">Auctioneer:</span> Auction started<br>
+                                                <span class="auc-lbl">Auctioneer:</span> Auction closed<br>
+                                                <span class="auc-lbl">Auctioneer: </span> £1,500 Bidder<br>
+                                                <span class="auc-lbl">Auctioneer: </span> £1,400 Bidder<br>
+                                                <span class="auc-lbl">Auctioneer: </span> £1,300 Bidder<br>
+                                                <span class="auc-lbl">Auctioneer: </span> £1,200 Bidder<br>
+                                                <span class="auc-lbl">Auctioneer: </span> £1,100 Bidder<br>
+                                                <span class="auc-lbl">Auctioneer: </span> £1,000 Bidder<br>
+                                                <span class="auc-lbl">Auctioneer: </span> £5,500 Bidder<br>
+                                                <span class="auc-lbl">Auctioneer:</span> Absentee bidder priority. £5,000
+                                                Internet Bidder 19<br>
+                                                <span class="auc-lbl">Auctioneer: </span> £5,000 Bidder<br>
+                                                <span class="auc-lbl">Auctioneer: </span> £4,750 Internet Bidder 19<br>
+                                                <span class="auc-lbl">Auctioneer: </span> £4,500 Bidder<br>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div id="chat-messages"><span class="auc-lbl">Auctioneer:</span> Lot 12 started (Test -
+                                        Lot # 12: Aliens
+                                        (1986) - Pvt. Frost's (Ricco Ross) Photo-Matched U.S. Colonial Marines Armor Costume
+                                        and Corpora)<br>
+                                        <span class="auc-lbl">Auctioneer:</span> Lot 13 started (Test - Lot # 13: Aliens
+                                        (1986) - Pvt. Frost's
+                                        (Ricco Ross) Screen-Matched Light-Up Helmet)<br>
+                                        <span class="auc-lbl">Auctioneer:</span> Lot 12 started (Test - Lot # 12: Aliens
+                                        (1986) - Pvt. Frost's
+                                        (Ricco Ross) Photo-Matched U.S. Colonial Marines Armor Costume and Corpora)<br>
+                                        <span class="auc-lbl">Auctioneer:</span> Lot 11 started (Test - Lot # 11: Aliens
+                                        (1986) - Pvt.
+                                        Spunkmeyer's (Daniel Kash) Photo-Matched Dropship Helmet and Flightsuit)<br>
+                                        <span class="auc-lbl">Auctioneer:</span> Lot 10 started (Test - Lot # 10: Aliens
+                                        (1986) - Corporal
+                                        Ferro's (Colette Hiller) Screen-Matched Dropship Helmet)<br>
+                                        <span class="auc-lbl">Auctioneer:</span> Lot 9 passed<br>
+                                        <span class="auc-lbl">Auctioneer:</span> Lot 9 started (Test - Lot # 9: Aliens
+                                        (1986) - M56
+                                        Smartgun)<br>
+                                        <span class="auc-lbl">Auctioneer:</span> Lot 8 passed<br>
+                                        <span class="auc-lbl">Auctioneer:</span> Lot 8 started (Test - Lot # 8: Aliens
+                                        (1986) - Pvt. Drake's
+                                        (Mark Rolston) Costume)<br>
+                                        <span class="auc-lbl">Auctioneer:</span> Lot 7 passed<br>
+                                        <span class="auc-lbl">Auctioneer:</span> Lot 7 started (Test - Lot # 7: Aliens
+                                        (1986) - Pvt. Vasquez's
+                                        (Jenette Goldstein) Screen-Matched M56 Smartgun Eye Piece)<br>
+                                        <span class="auc-lbl">Auctioneer:</span> Lot 4 passed<br>
+                                        <span class="auc-lbl">Auctioneer:</span> Lot 4 started (Test - Lot # 4: Alien (1979)
+                                        - Light-Up
+                                        Nostromo Door Control Panel)<br>
+                                        <span class="auc-lbl">Auctioneer:</span> Lot 3 passed<br>
+                                        <span class="auc-lbl">Auctioneer:</span> Lot 3 started (Test - Lot # 3: Ali (2001) -
+                                        Muhammad Ali's
+                                        (Will Smith) Boxing Shorts)<br>
+                                        <span class="auc-lbl">Auctioneer:</span> Lot 2 passed<br>
+                                        <span class="auc-lbl">Auctioneer:</span> Lot 4 started (Test - Lot # 4: Alien (1979)
+                                        - Light-Up
+                                        Nostromo Door Control Panel)<br>
+                                        <span class="auc-lbl">Auctioneer:</span> Lot 3 passed<br>
+                                        <span class="auc-lbl">Auctioneer:</span> Lot 3 started (Test - Lot # 3: Ali (2001) -
+                                        Muhammad Ali's
+                                        (Will Smith) Boxing Shorts)<br>
+                                        <span class="auc-lbl">Auctioneer:</span> Lot 2 passed<br>
+                                        <span class="auc-lbl">Auctioneer:</span> Lot 16 started (Test - Lot # 16: Aliens
+                                        (1986) - Crashed
+                                        Sulaco Dropship Model Miniature Tail Section)<br>
+                                        <span class="auc-lbl">Auctioneer:</span> Lot 15 started (Test - Lot # 15: Aliens
+                                        (1986) - Colonial
+                                        Marine Flamethrower)<br>
+                                        <span class="auc-lbl">Auctioneer:</span> Lot 14 started (Test - Lot # 14: Aliens
+                                        (1986) - Pvt. Frost's
+                                        (Ricco Ross) USCM Name Tag)<br>
+                                        <span class="auc-lbl">Auctioneer:</span> Lot 15 started (Test - Lot # 15: Aliens
+                                        (1986) - Colonial
+                                        Marine Flamethrower)<br>
+                                        <span class="auc-lbl">Auctioneer:</span> Lot 16 started (Test - Lot # 16: Aliens
+                                        (1986) - Crashed
+                                        Sulaco Dropship Model Miniature Tail Section)<br>
+                                        <span class="auc-lbl">Auctioneer:</span> Lot 17 started (Test - Lot # 17: Aliens
+                                        (1986) - Hand-Drawn
+                                        M577 Armored Personnel Carrier (A.P.C.) Blueprint)<br>
+                                        <span class="auc-lbl">Auctioneer:</span> Lot 16 started (Test - Lot # 16: Aliens
+                                        (1986) - Crashed
+                                        Sulaco Dropship Model Miniature Tail Section)<br>
+                                        <span class="auc-lbl">Auctioneer:</span> Lot 15 started (Test - Lot # 15: Aliens
+                                        (1986) - Colonial
+                                        Marine Flamethrower)<br>
+                                        <span class="auc-lbl">Auctioneer:</span> Lot 14 started (Test - Lot # 14: Aliens
+                                        (1986) - Pvt. Frost's
+                                        (Ricco Ross) USCM Name Tag)<br>
+                                        <span class="auc-lbl">Auctioneer:</span> Lot 15 started (Test - Lot # 15: Aliens
+                                        (1986) - Colonial
+                                        Marine Flamethrower)<br>
+                                        <span class="auc-lbl">Auctioneer:</span> Lot 16 started (Test - Lot # 16: Aliens
+                                        (1986) - Crashed
+                                        Sulaco Dropship Model Miniature Tail Section)<br>
+                                        <span class="auc-lbl">Auctioneer:</span> Lot 15 started (Test - Lot # 15: Aliens
+                                        (1986) - Colonial
+                                        Marine Flamethrower)<br>
+                                        <span class="auc-lbl">Auctioneer:</span> Lot 16 started (Test - Lot # 16: Aliens
+                                        (1986) - Crashed
+                                        Sulaco Dropship Model Miniature Tail Section)<br>
+                                        <span class="auc-lbl">Auctioneer:</span> Lot 15 started (Test - Lot # 15: Aliens
+                                        (1986) - Colonial
+                                        Marine Flamethrower)<br>
+                                        <span class="auc-lbl">Auctioneer:</span> Lot 14 started (Test - Lot # 14: Aliens
+                                        (1986) - Pvt. Frost's
+                                        (Ricco Ross) USCM Name Tag)<br>
+                                        <span class="auc-lbl">Auctioneer:</span> Lot 15 started (Test - Lot # 15: Aliens
+                                        (1986) - Colonial
+                                        Marine Flamethrower)<br>
+                                        <span class="auc-lbl">Auctioneer:</span> Lot 14 started (Test - Lot # 14: Aliens
+                                        (1986) - Pvt. Frost's
+                                        (Ricco Ross) USCM Name Tag)<br>
+                                        <span class="auc-lbl">Auctioneer:</span> Lot 15 started (Test - Lot # 15: Aliens
+                                        (1986) - Colonial
+                                        Marine Flamethrower)<br>
+                                        <span class="auc-lbl">Auctioneer:</span> Lot 14 started (Test - Lot # 14: Aliens
+                                        (1986) - Pvt. Frost's
+                                        (Ricco Ross) USCM Name Tag)<br>
+                                        <span class="auc-lbl">Auctioneer:</span> Lot 15 started (Test - Lot # 15: Aliens
+                                        (1986) - Colonial
+                                        Marine Flamethrower)<br>
+                                        <span class="auc-lbl">Auctioneer:</span> Lot 16 started (Test - Lot # 16: Aliens
+                                        (1986) - Crashed
+                                        Sulaco Dropship Model Miniature Tail Section)<br>
+                                        <span class="auc-lbl">Auctioneer:</span> Lot 15 started (Test - Lot # 15: Aliens
+                                        (1986) - Colonial
+                                        Marine Flamethrower)<br>
+                                        <span class="auc-lbl">Auctioneer:</span> Lot 16 started (Test - Lot # 16: Aliens
+                                        (1986) - Crashed
+                                        Sulaco Dropship Model Miniature Tail Section)<br>
+                                        <span class="auc-lbl">Auctioneer:</span> Lot 15 started (Test - Lot # 15: Aliens
+                                        (1986) - Colonial
+                                        Marine Flamethrower)<br>
+                                        <span class="auc-lbl">Auctioneer:</span> Lot 16 started (Test - Lot # 16: Aliens
+                                        (1986) - Crashed
+                                        Sulaco Dropship Model Miniature Tail Section)<br>
+                                        <span class="auc-lbl">Auctioneer:</span> Lot 15 started (Test - Lot # 15: Aliens
+                                        (1986) - Colonial
+                                        Marine Flamethrower)<br>
+                                        <span class="auc-lbl">Auctioneer:</span> Lot 16 started (Test - Lot # 16: Aliens
+                                        (1986) - Crashed
+                                        Sulaco Dropship Model Miniature Tail Section)<br>
+                                        <span class="auc-lbl">Auctioneer:</span> Lot 15 started (Test - Lot # 15: Aliens
+                                        (1986) - Colonial
+                                        Marine Flamethrower)<br>
+                                        <span class="auc-lbl">Auctioneer:</span> Lot 14 passed<br>
+                                        <span class="auc-lbl">Auctioneer:</span> Lot 13 started (Test - Lot # 13: Aliens
+                                        (1986) - Pvt. Frost's
+                                        (Ricco Ross) Screen-Matched Light-Up Helmet)<br>
+                                    </div>
+                                </div>
+                            </div>
+							<div class="clear"></div>
+							<div class="video-stream">
+								<div id="z39"><iframe id="bidpathplayer" class="bidpathplayertype-1"
+										allow="autoplay; fullscreen" allowfullscreen="allowfullscreen"
+										src="https://sacn476dmd.execute-api.eu-west-2.amazonaws.com/tokens/subscriber?qs=PVK%2FpkOaTH%2F4LF4b2VXqIgAfK7SvK2pVtzRxFoIPAFpV4T7qKzsRoPjtBTkiVE4ibWr9t%2BW6UMsJth8qkHek5ugvGccAIpnkMOzlh7gpe1hzfq1A%2B0W%2BRzPAdTyqigM0QCbRw8MZBNg7KJOgmtQWLA%3D%3D"></iframe>
+								</div>
+								<script type="text/javascript" id="z40"></script>
+							</div>
+							<div class="lot-description hide-close ">
+								<div class="lot-description-header">
+									Lot Description </div>
+								<div class="lot-description-content">
+									<div class="lot-category hide-close"><span id="z8">Category: Films &amp; Shows (Make
+											Selections Below)
+											&gt; ALIENS (1986); By Day &gt; Day 1 (June 21st); Lot Type &gt; Costumes;
+											Franchises &amp; Series
+											&gt; Alien - All Items; Genres &gt; Sci-fi; Genres &gt; Action; Genres &gt;
+											Horror</span></div>
+									<div id="z18">
+										<div id="calendarBtnBox">
+											<button id="googleCalendarBtnLg" class="calendarBtn">Google Calendar
+												Reminder</button><button id="outlookCalendarBtnLg"
+												class="calendarBtn">Outlook Calendar Reminder</button>
+										</div>
+										<div class="product-description-content" data-id="144682">
+											<p class="l1desctextwhite"><strong><span style="font-size:14px">This lot
+														will be auctioned on
+														Tuesday, June 21st. The auction will begin at 8:00am PDT and
+														lots are sold sequentially via
+														live auctioneer; tune in to the live streaming broadcast on
+														auction day to follow the pace.
+														Note other lots in the auction may close on Wednesday, June
+														22nd; Thursday, June 23rd; or
+														Friday, June 24th. </span></strong><br><br>Pvt. Frost's (Ricco
+												Ross) photo-matched U.S.
+												Colonial Marines armor costume from James Cameron's sci-fi horror sequel
+												Aliens. Frost and his
+												fellow Colonial Marines helped Ellen Ripley (Sigourney Weaver)
+												investigate the desolate moon
+												LV-426. <br><br>The USCM armored costumes were designed by Emma
+												Porteous, with the armor
+												elements hand-crafted from aluminum by master armorer Terry English.
+												Multiple sets of armor were
+												made for each character in the film with this particular body armor used
+												for the shot where
+												Frost caught fire during the battle with xenomorphs and fell over the
+												railing. The shot was
+												achieved with a practical burn effect on a mannequin dressed in the
+												costume. The body armor and
+												leg armor photo-match to a behind-the-scenes photo of the
+												costume-dressed mannequin. The
+												mannequin is also holding a large cigar as a gag reference to the burn.
+												<br><br>The central
+												element of the ensemble is Frost's body armor, which consists of chest,
+												back, and shoulder plate
+												armor assemblies that were hand-formed in aluminum and hand-painted with
+												a custom camouflage
+												pattern. It is stenciled "FROST" on the upper chest and marked "FROST
+												RICCO ROSS" in the
+												interior, and also hand-numbered "3." It features padding on the
+												shoulder bells and lower back
+												section in a green waffle-pattern foam that is unique to film-used
+												Aliens armor. The back of the
+												shoulder straps are still coated in a material that was designed to burn
+												for the burn effect,
+												and the interior foam padding and plastic side-strap buckles are melted
+												from the
+												flames.<br><br>The other Frost armor components included are a pair of
+												camouflage-patterned
+												aluminum shin guards and a pair of matching knee pads. These are also
+												photo-matched to the same
+												image and feature the same material applied for the burn effect. The
+												final component of original
+												armor is the gray leather abdominal padding with aluminum accents marked
+												"DIETRICH" and "SCOTT"
+												(for the performer) with a replica waist strap. <br><br>Several elements
+												have been added to the
+												original armor to complete it for display, including a
+												camouflage-patterned cotton replica shirt
+												and matching replica pants; replica webbing on the body armor, and a
+												pair of replica boots. Also
+												included is a color photograph of Frost inscribed "She had my back and
+												front" and autographed by
+												Ross. The armor exhibits signs of wear, including scratches and paint
+												chipping, along with some
+												indentations, missing plastic clips, and burned elements from the
+												practical fire
+												effect.<br><br><strong> <strong>Estimate: $30,000 -
+														50,000</strong><br><br><a
+														href="https://propstoreauction.com/auctions/catalog/id/319?page=1&amp;view=grid&amp;cat=1544&amp;catm=any&amp;order=order_num&amp;xclosed=no&amp;featured=no">View
+														all lots from ALIENS (1986)</a><br><br><a
+														href="https://propstoreauction.com/auctions/catalog/id/319?page=1&amp;view=grid&amp;cat=4116&amp;catm=any&amp;order=order_num&amp;xclosed=no&amp;featured=no">View
+														all lots from The ALIEN Franchise</a><br></strong></p><strong>
+											</strong>
+										</div><strong>
+											<p class="text-center description-info-content-coa">This item comes with a
+												Propstore Certificate
+												of Authenticity.</p>
+											<div id="buyers-content">
+												<p><strong>Introduction</strong></p>
+												<p>This Buyer's Guide contains a brief overview of Propstore's auction
+													process and the terms
+													under which Lots are made available for sale at auction. A more
+													detailed statement of our
+													Terms and Conditions of Sale follow after this Buyer's Guide. Please
+													read the Buyer's Guide
+													and the Terms and Conditions of Sale carefully. By registering to
+													bid and participate in a
+													Propstore auction, you will be deemed to have agreed to be bound by
+													them.</p>
+												<p><strong>2. Definitions</strong></p>
+												<p>2.1. When the following words are used in this Buyer's Guide, they
+													mean:</p>
+												<table>
+													<tbody>
+														<tr>
+															<td>Auction</td>
+															<td>A live sale by auction hosted by Propstore</td>
+														</tr>
+														<tr>
+															<td>Bidder</td>
+															<td>Any person, properly registered and approved by
+																Propstore to participate in an Auction
+																who makes or considers making a bid to buy a Lot at
+																Auction</td>
+														</tr>
+														<tr>
+															<td>Buyer</td>
+															<td>The person or Company making the highest bid or offer
+																for a Lot accepted by the
+																auctioneer, including a principal bidding as agent</td>
+														</tr>
+														<tr>
+															<td>Buyer's Expenses</td>
+															<td>A fee of 5% of the Hammer Price charged to the Buyer for
+																a Lot won on any bidding
+																platform other than propstoreauction.com</td>
+														</tr>
+														<tr>
+															<td>Buyer's Premium</td>
+															<td>A commission of 25% of the Hammer Price charged to the
+																Buyer for a Lot</td>
+														</tr>
+														<tr>
+															<td>Company</td>
+															<td>Any partnership, corporation, limited liability company,
+																association, or any other
+																business entity duly organized and qualified to conduct
+																business under the laws of its
+																state of formation</td>
+														</tr>
+														<tr>
+															<td>Cryptocurrency</td>
+															<td>Cryptocurrency means the virtual or digital currency
+																accepted by Prop Store as
+																payment, using our chosen payment processor. The current
+																list of the forms of
+																Cryptocurrency we accept are set out on our website at
+																<a
+																	href="https://propstore.com/cryptocurrency">propstore.com/cryptocurrency</a>
+															</td>
+														</tr>
+														<tr>
+															<td>Guarantee of Attribution</td>
+															<td>Propstore's limited guarantee relating to the provenance
+																of each Lot, as set forth in
+																Paragraph 6 of the Terms and Conditions of Sale</td>
+														</tr>
+														<tr>
+															<td>Hammer Price</td>
+															<td>The highest bid for a Lot accepted by the auctioneer at
+																the Auction</td>
+														</tr>
+														<tr>
+															<td>Lot</td>
+															<td>Each item or group of items consigned by the Seller to
+																Propstore to be made available
+																for sale at an Auction, as detailed in the catalog</td>
+														</tr>
+														<tr>
+															<td>Propstore</td>
+															<td>The Prop Store of London, Inc., d/b/a Propstore, of
+																28014 Harrison Pkwy, Valencia, CA
+																91355</td>
+														</tr>
+														<tr>
+															<td>Purchase Price</td>
+															<td>The Hammer Price plus the Buyer's Premium, any
+																applicable Buyer's Expenses and any
+																applicable sales tax, charged to the Buyer</td>
+														</tr>
+														<tr>
+															<td>Seller</td>
+															<td>The person or Company offering the Lot for sale,
+																including their agents or personal
+																representatives</td>
+														</tr>
+														<tr>
+															<td>Terms and Conditions of Sale</td>
+															<td>Propstore's Terms and Conditions of Sale at Auction,
+																from time to time as may be
+																amended, a copy of which appears following the Buyer's
+																Guide</td>
+														</tr>
+													</tbody>
+												</table>
+												<p><strong>3. Before the Auction</strong></p>
+												<p>3.1. Bidder Registration</p>
+												<p>3.1.1. Every person or Company wishing to make a bid in the Auction
+													is required to register
+													with Propstore before participating at an Auction.</p>
+												<p>3.1.2. To register, each person or Company must complete and return a
+													bidder registration
+													form available in this Buyer's Guide or online at <a
+														href="https://www.propstore.com/">www.propstore.com</a>, which
+													must include valid Visa,
+													MasterCard or American Express credit card details to be held on
+													file.</p>
+												<p>3.1.2.1. Each Company registering to bid must provide a certified
+													copy or original articles
+													of incorporation, articles of organization, or other documents
+													satisfactory to Propstore â€“
+													contact Propstore at +1 818 727 7829 for confirmation of what will
+													be acceptable.</p>
+												<p>3.1.2.2. Any person seeking to participate in the Auction as an agent
+													on behalf of a
+													registered principal must complete and submit an Agent Information
+													Form, and provide an
+													up-to-date, valid government-issued photo identification
+													(e.g.passport, driver's license), as
+													well as a written authorization from the principal confirming the
+													agent's authority to
+													participate at the Auction on the principal's behalf.</p>
+												<p>3.2. Pre-Auction Viewing</p>
+												<p>3.2.1. During the Pre-Auction Viewing period, as set forth in the
+													Auction catalog, any Bidder
+													may preview Lots with Propstore. Viewing by appointment may also be
+													possible outside of the
+													Pre-Auction Viewing period.</p>
+												<p>3.3. Shipping Charge Estimates</p>
+												<p>3.3.1. At Bidder 's request, without any liability therefore,
+													Propstore can provide shipping
+													estimates before the Auction. Bidders requesting this information
+													should email
+													support@propstore.com including the Lot number and shipping address
+													at least 3 days before the
+													start of the Auction. Real-time shipping estimates are also
+													available on many lots through the
+													online bidding platform. Bidders should be aware that oversize lots
+													may be expensive to ship
+													and inquire for a quote before bidding on these items. Estimates are
+													provided as a courtesy to
+													bidders, cannot be guaranteed, and in all cases, Buyer will be
+													responsible for associated
+													shipping costs as per section 5.3 of the Terms and Conditions.
+													Winning bids are legally
+													binding and must be paid regardless of final shipping expenses.</p>
+												<p>3.4. Bidders outside the US</p>
+												<p>3.4.1. If the Bidder is located outside the United States, it is the
+													Bidder's sole
+													responsibility and obligation to ensure in advance of the Auction
+													that any Lot purchased in
+													the Auction can be exported from the United States and imported into
+													the country of
+													destination. No sale will be canceled because the Lot may not be
+													imported into the country of
+													destination.</p>
+												<p>3.4.2. PackAir Airfreight, Inc., a third-party independent freight
+													vendor, can advise Bidders
+													on relevant export licensing regulations and may submit export
+													license applications upon
+													request. Neither Propstore nor PackAir Freight, Inc. can guarantee
+													that any licenses, permits
+													or consents will be granted, and shall have no liability arising out
+													of or relating thereto.
+												</p>
+												<p><strong>4. At the Auction</strong></p>
+												<p>4.1. Estimates</p>
+												<p>4.1.1. Estimates represent Propstore's guide to Bidders and do not
+													give any indication or
+													representation of actual values or likely bids. Estimates do not
+													include any Buyer's Premium,
+													Buyer's Expense or sales tax.</p>
+												<p>4.1.2. Propstore reserves the right to amend its estimates from time
+													to time.</p>
+												<p>4.2. Reserve Price</p>
+												<p>4.2.1. Certain Lots in this auction may be sold without a Reserve
+													Price; the majority of Lots
+													in this auction are sold with a Reserve Price. The Reserve Price is
+													the minimum price the
+													Seller will accept for a Lot. The Reserve Price will not be more
+													than the lowest estimate
+													given by Propstore. Propstore may disclose or keep confidential the
+													Reserve Price at its
+													entire discretion.</p>
+												<p>4.3. Bidding Process</p>
+												<p>4.3.1. All bids are by individual Lot unless the auctioneer states to
+													the contrary during the
+													live Auction. Lots will usually be sold in their numbered sequence,
+													unless the auctioneer
+													announces otherwise at the Auction.</p>
+												<p>4.3.2. The auctioneer may accept bids from Bidders present in the
+													sale room, via telephone,
+													or via online at the time of the Auction. The auctioneer may also
+													accept proxy bids delivered
+													to Propstore before the start of the Auction. Proxy bids may be
+													submitted either by using the
+													form in this Buyer's Guide or the online form at <a
+														href="https://www.propstore.com">www.propstore.com</a>. Proxy
+													bids will be executed at the
+													lowest possible price.</p>
+												<p>4.3.3. Any Bidder wishing to place bids at the time of the Auction
+													via telephone must provide
+													to Propstore a list of Lots on which they intend to bid at least 24
+													hours before the start of
+													the Auction.</p>
+												<p>4.3.4. In addition to Propstore's Terms and Conditions of Sale, any
+													Bidder placing bids
+													online must comply with the terms for use of the online auction
+													platform access provider.</p>
+												<p>4.3.5. Except as expressly stated in this Buyer's Guide or the Terms
+													and Conditions of Sale,
+													Propstore shall have no liability arising out of or related to any
+													errors or omission in
+													respect of bids made online, by telephone or by proxy.</p>
+												<p>4.3.6. The auctioneer shall have sole discretion to accept or decline
+													any bid.</p>
+												<p><strong>5. After the Auction</strong></p>
+												<p>5.1. Payment</p>
+												<p>5.1.1. Propstore will notify the Buyer and send (by email unless
+													requested otherwise) a
+													payment invoice setting out the Purchase Price and itemizing the
+													Hammer Price, Buyer's
+													Premium, plus any applicable Buyer's Expense or sales tax, within 7
+													business days of the end
+													of the Auction. Sales tax, as required by law, shall be applied at
+													the state's prevailing rate
+													when being shipped to the following states:</p>
+												<table>
+													<tbody>
+														<tr>
+															<td>Shipping State</td>
+															<td>Arizona</td>
+															<td>California</td>
+															<td>Colorado</td>
+															<td>Florida</td>
+															<td>Georgia</td>
+															<td>Illinois</td>
+															<td>Indiana</td>
+															<td>Kansas</td>
+															<td>Louisiana</td>
+															<td>Maryland</td>
+															<td>Massachusetts</td>
+															<td>Michigan</td>
+														</tr>
+														<tr>
+															<td>Tax Rate (%)</td>
+															<td>5.60%</td>
+															<td>9.50%</td>
+															<td>7.72%</td>
+															<td>8%</td>
+															<td>6%</td>
+															<td>6.25%</td>
+															<td>7%</td>
+															<td>6.5%</td>
+															<td>9.95%</td>
+															<td>6%</td>
+															<td>6.25%</td>
+															<td>5%</td>
+														</tr>
+														<tr>
+															<td>Shipping State</td>
+															<td>New Jersey</td>
+															<td>New York</td>
+															<td>North Carolina</td>
+															<td>Ohio</td>
+															<td>Pennsylvania</td>
+															<td>Texas</td>
+															<td>Utah</td>
+															<td>Vermont</td>
+															<td>Virginia</td>
+															<td>Washington</td>
+															<td>Wisconsin</td>
+															<td></td>
+														</tr>
+														<tr>
+															<td>Tax Rate (%)</td>
+															<td>6.625%</td>
+															<td>8%</td>
+															<td>6.75%</td>
+															<td>7.25%</td>
+															<td>6%</td>
+															<td>6.25%</td>
+															<td>4.85%</td>
+															<td>6%</td>
+															<td>7%</td>
+															<td>10.1%</td>
+															<td>5%</td>
+															<td></td>
+														</tr>
+													</tbody>
+												</table>
+												<p>Propstore charges sales tax in accordance with the individual state
+													requirements; therefore
+													additional states may become taxable for purchases from Propstore at
+													any time. Buyers are
+													encouraged to check with Propstore prior to bidding if they have
+													questions about the sales tax
+													status of potential purchases.</p>
+												<p>5.1.2. Unless you have been approved for a payment plan as set forth
+													in Paragraph 5.1(c) of
+													the Terms and Conditions of Sale, payment of the invoice is due
+													within 7 business days from
+													receipt of the invoice and must be made by the Buyer. Payments from
+													any other source will not
+													be accepted and shall be returned by Propstore.</p>
+												<p>5.1.3. Payment must be in US dollars and may be made by electronic
+													transfer, debit card,
+													credit card (up to a maximum of $25,000), banker's draft or check
+													(drawn on a US bank account
+													â€“ note check clearance can take between 5 and 10 working days), or
+													cash (up to a maximum of
+													$5,000. Please quote the Lot number, invoice number and Bidder
+													registration number when making
+													payment to ensure it can be processed as efficiently as possible.
+												</p>
+												<p>5.1.4. If payment is made by credit card, Buyer expressly agrees that
+													such payment is
+													nonrefundable nor may be credited to any other purchase, and that
+													Buyer will not undertake any
+													action or effort to stop payment, seek a refund, or attempt a charge
+													back of such amounts by
+													the issuer of the credit card.</p>
+												<p>5.1.5. Cryptocurrency payments are accepted via our payment processor
+													(Bitpay), as indicated
+													at checkout. You must pay for the entire balance owed including the
+													Purchase Price and any
+													other relevant charges entirely in one form of Cryptocurrency and
+													you should ensure you have a
+													sufficient balance to pay for all sums owed. We do not accept
+													partial payment by
+													Cryptocurrency and a different form of payment in one transaction.
+													Cryptocurrency payment is
+													only acceptable on the express understanding that the Lot is not
+													returnable, refundable nor
+													exchangeable. Buyers paying with Cryptocurrency are also not
+													eligible to use payment plans. We
+													reserve the right to exclude the use of payment by Cryptocurrency on
+													certain Lots, such
+													exclusion to be noted on the listing.</p>
+												<p>5.2. Shipping and Storage</p>
+												<p>5.2.1. The Buyer is solely responsible for all shipping, handling,
+													and delivery costs.
+													Propstore can help you arrange packing and shipping through FedEx or
+													USPS for smaller items or
+													PackAir AirFreight, Inc. for larger items, or you can use your own
+													licensed carrier, approved
+													by Propstore. Please contact Propstore at +1 818 727 7829 for
+													further details. Propstore does
+													not warranty the Lots against and shall have no liability for any
+													damage that any Lot may
+													incur or suffer during the shipping or delivery process. Propstore
+													offers insurance for
+													shipments in transit at an additional charge; buyers will have an
+													div to select this when
+													finalizing your purchase after auction. Bidders should be aware that
+													oversize lots may be
+													expensive to ship and inquire for a quote before bidding on these
+													items; also be aware that
+													certain lots, as indicated, are stored separate to Propstore's
+													primary facility and shipping
+													charges on these pieces may vary accordingly. Winning bids are
+													legally binding and must be
+													paid regardless of final shipping expenses.</p>
+												<p>5.2.2. After 30 days after close of Auction, if Buyer has not made
+													arrangements for and paid
+													the shipping cost of the Lots purchased, or has otherwise failed to
+													collect the Lots,
+													Propstore may impose a storage fee of 3% of the Hammer Price per
+													month to be charged to the
+													Buyer. After 14 days after close of Auction, if Buyer has not made
+													arrangements for and paid
+													the shipping cost of the Lots purchased, or has otherwise failed to
+													collect the Lots, a
+													storage fee of 3% of the Hammer Price per month shall be charged to
+													the Buyer. If the Buyer
+													has failed to pay the Purchase Price and the cost of shipping and
+													handling, Propstore, at its
+													div may cancel the sale.</p>
+											</div>
+											<div class="product__gallery">
+												<div class="product__slider">
+													<div class="carousel-item modal-trigger"
+														href="#modal-product-gallery"
+														style="background-image:url('https://images.propstore.com/831c472f2dff72b0f44765bb2c3fa75a-1.jpg');">
+													</div>
+													<div class="carousel-item modal-trigger"
+														href="#modal-product-gallery"
+														style="background-image:url('https://images.propstore.com/3ed3717987ac8e7f0c4db7ac276af3a3-1.jpg');">
+													</div>
+													<div class="carousel-item modal-trigger"
+														href="#modal-product-gallery"
+														style="background-image:url('https://images.propstore.com/1dfc5a511dd35e0cbf0a1b0baf2af059-1.jpg');">
+													</div>
+													<div class="carousel-item modal-trigger"
+														href="#modal-product-gallery"
+														style="background-image:url('https://images.propstore.com/67a2a5303fe0030efeb091319e0db9d6-1.jpg');">
+													</div>
+													<div class="carousel-item modal-trigger"
+														href="#modal-product-gallery"
+														style="background-image:url('https://images.propstore.com/0656bc3d7a56ca92f2f8f385d73404ab-1.jpg');">
+													</div>
+													<div class="carousel-item modal-trigger"
+														href="#modal-product-gallery"
+														style="background-image:url('https://images.propstore.com/f025847aac2885cdc6737270d66817be-1.jpg');">
+													</div>
+													<div class="carousel-item modal-trigger"
+														href="#modal-product-gallery"
+														style="background-image:url('https://images.propstore.com/5f0dd38af8e8d8dc15721f3fb3f4b8b8-1.jpg');">
+													</div>
+													<div class="carousel-item modal-trigger"
+														href="#modal-product-gallery"
+														style="background-image:url('https://images.propstore.com/497d6261e56495b4381ce5f7906d5472-1.jpg');">
+													</div>
+													<div class="carousel-item modal-trigger"
+														href="#modal-product-gallery"
+														style="background-image:url('https://images.propstore.com/32bf7707bcd21c1b5269f1d3423334dd-1.jpg');">
+													</div>
+													<div class="carousel-item modal-trigger"
+														href="#modal-product-gallery"
+														style="background-image:url('https://images.propstore.com/28ac1fa3c5b11f8bfab1e25eab7a6e7d-1.jpg');">
+													</div>
+													<div class="carousel-item modal-trigger"
+														href="#modal-product-gallery"
+														style="background-image:url('https://images.propstore.com/b901b25f44fc7ff8613a06592e39f588-1.jpg');">
+													</div>
+													<div class="carousel-item modal-trigger"
+														href="#modal-product-gallery"
+														style="background-image:url('https://images.propstore.com/b3b565acf19bfbcfe9f5a5544d33a9e0-1.jpg');">
+													</div>
+													<div class="carousel-item modal-trigger"
+														href="#modal-product-gallery"
+														style="background-image:url('https://images.propstore.com/198845c1606464e3491a7f40caf528d4-1.jpg');">
+													</div>
+													<div class="carousel-item modal-trigger"
+														href="#modal-product-gallery"
+														style="background-image:url('https://images.propstore.com/b1c612049b7053e75ec5f5d90f10a030-1.jpg');">
+													</div>
+													<div class="carousel-item modal-trigger"
+														href="#modal-product-gallery"
+														style="background-image:url('https://images.propstore.com/1c16c919e44c2230143a8a8736d153ef-1.jpg');">
+													</div>
+													<div class="carousel-item modal-trigger"
+														href="#modal-product-gallery"
+														style="background-image:url('https://images.propstore.com/e9cf39f07d3902444ff983f45822046b-1.jpg');">
+													</div>
+													<div class="carousel-item modal-trigger"
+														href="#modal-product-gallery"
+														style="background-image:url('https://images.propstore.com/1d6ae3ba8f1785e769e43a35dfcb72a0-1.jpg');">
+													</div>
+													<div class="carousel-item modal-trigger"
+														href="#modal-product-gallery"
+														style="background-image:url('https://images.propstore.com/8065a552fbdd0a1967dee4cd3b1e38ac-1.jpg');">
+													</div>
+													<div class="carousel-item modal-trigger"
+														href="#modal-product-gallery"
+														style="background-image:url('https://images.propstore.com/5c4d98428064b906a04108ccbfb70971-1.jpg');">
+													</div>
+													<div class="carousel-item modal-trigger"
+														href="#modal-product-gallery"
+														style="background-image:url('https://images.propstore.com/7e80112d110f200905e6dfdd69166b45-1.jpg');">
+													</div>
+													<div class="carousel-item modal-trigger"
+														href="#modal-product-gallery"
+														style="background-image:url('https://images.propstore.com/4e6e4ec2792740797e2bcab3485c9a32-1.jpg');">
+													</div>
+												</div>
+												<div class="product__thumbnails">
+													<div class="product__thumbnails-scroll">
+														<div class="product__thumbnail modal-trigger"
+															href="#modal-product-gallery"
+															style="background-image: url('https://images.propstore.com/831c472f2dff72b0f44765bb2c3fa75a-3.jpg');">
+														</div>
+														<div class="product__thumbnail modal-trigger"
+															href="#modal-product-gallery"
+															style="background-image: url('https://images.propstore.com/3ed3717987ac8e7f0c4db7ac276af3a3-3.jpg');">
+														</div>
+														<div class="product__thumbnail modal-trigger"
+															href="#modal-product-gallery"
+															style="background-image: url('https://images.propstore.com/1dfc5a511dd35e0cbf0a1b0baf2af059-3.jpg');">
+														</div>
+														<div class="product__thumbnail modal-trigger"
+															href="#modal-product-gallery"
+															style="background-image: url('https://images.propstore.com/67a2a5303fe0030efeb091319e0db9d6-3.jpg');">
+														</div>
+														<div class="product__thumbnail modal-trigger"
+															href="#modal-product-gallery"
+															style="background-image: url('https://images.propstore.com/0656bc3d7a56ca92f2f8f385d73404ab-3.jpg');">
+														</div>
+														<div class="product__thumbnail modal-trigger"
+															href="#modal-product-gallery"
+															style="background-image: url('https://images.propstore.com/f025847aac2885cdc6737270d66817be-3.jpg');">
+														</div>
+														<div class="product__thumbnail modal-trigger"
+															href="#modal-product-gallery"
+															style="background-image: url('https://images.propstore.com/5f0dd38af8e8d8dc15721f3fb3f4b8b8-3.jpg');">
+														</div>
+														<div class="product__thumbnail modal-trigger"
+															href="#modal-product-gallery"
+															style="background-image: url('https://images.propstore.com/497d6261e56495b4381ce5f7906d5472-3.jpg');">
+														</div>
+														<div class="product__thumbnail modal-trigger"
+															href="#modal-product-gallery"
+															style="background-image: url('https://images.propstore.com/32bf7707bcd21c1b5269f1d3423334dd-3.jpg');">
+														</div>
+														<div class="product__thumbnail modal-trigger"
+															href="#modal-product-gallery"
+															style="background-image: url('https://images.propstore.com/28ac1fa3c5b11f8bfab1e25eab7a6e7d-3.jpg');">
+														</div>
+														<div class="product__thumbnail modal-trigger"
+															href="#modal-product-gallery"
+															style="background-image: url('https://images.propstore.com/b901b25f44fc7ff8613a06592e39f588-3.jpg');">
+														</div>
+														<div class="product__thumbnail modal-trigger"
+															href="#modal-product-gallery"
+															style="background-image: url('https://images.propstore.com/b3b565acf19bfbcfe9f5a5544d33a9e0-3.jpg');">
+														</div>
+														<div class="product__thumbnail modal-trigger"
+															href="#modal-product-gallery"
+															style="background-image: url('https://images.propstore.com/198845c1606464e3491a7f40caf528d4-3.jpg');">
+														</div>
+														<div class="product__thumbnail modal-trigger"
+															href="#modal-product-gallery"
+															style="background-image: url('https://images.propstore.com/b1c612049b7053e75ec5f5d90f10a030-3.jpg');">
+														</div>
+														<div class="product__thumbnail modal-trigger"
+															href="#modal-product-gallery"
+															style="background-image: url('https://images.propstore.com/1c16c919e44c2230143a8a8736d153ef-3.jpg');">
+														</div>
+														<div class="product__thumbnail modal-trigger"
+															href="#modal-product-gallery"
+															style="background-image: url('https://images.propstore.com/e9cf39f07d3902444ff983f45822046b-3.jpg');">
+														</div>
+														<div class="product__thumbnail modal-trigger"
+															href="#modal-product-gallery"
+															style="background-image: url('https://images.propstore.com/1d6ae3ba8f1785e769e43a35dfcb72a0-3.jpg');">
+														</div>
+														<div class="product__thumbnail modal-trigger"
+															href="#modal-product-gallery"
+															style="background-image: url('https://images.propstore.com/8065a552fbdd0a1967dee4cd3b1e38ac-3.jpg');">
+														</div>
+														<div class="product__thumbnail modal-trigger"
+															href="#modal-product-gallery"
+															style="background-image: url('https://images.propstore.com/5c4d98428064b906a04108ccbfb70971-3.jpg');">
+														</div>
+														<div class="product__thumbnail modal-trigger"
+															href="#modal-product-gallery"
+															style="background-image: url('https://images.propstore.com/7e80112d110f200905e6dfdd69166b45-3.jpg');">
+														</div>
+														<div class="product__thumbnail modal-trigger"
+															href="#modal-product-gallery"
+															style="background-image: url('https://images.propstore.com/4e6e4ec2792740797e2bcab3485c9a32-3.jpg');">
+														</div>
+													</div>
+												</div>
+												<div id="modal-product-gallery" class="modal-gallery"
+													style="display: none;">
+													<div class="modal-gallery__carousel">
+														<div class="carousel-item"
+															style="background-image: url('https://images.propstore.com/831c472f2dff72b0f44765bb2c3fa75a.jpg');">
+														</div>
+														<div class="carousel-item"
+															style="background-image: url('https://images.propstore.com/3ed3717987ac8e7f0c4db7ac276af3a3.jpg');">
+														</div>
+														<div class="carousel-item"
+															style="background-image: url('https://images.propstore.com/1dfc5a511dd35e0cbf0a1b0baf2af059.jpg');">
+														</div>
+														<div class="carousel-item"
+															style="background-image: url('https://images.propstore.com/67a2a5303fe0030efeb091319e0db9d6.jpg');">
+														</div>
+														<div class="carousel-item"
+															style="background-image: url('https://images.propstore.com/0656bc3d7a56ca92f2f8f385d73404ab.jpg');">
+														</div>
+														<div class="carousel-item"
+															style="background-image: url('https://images.propstore.com/f025847aac2885cdc6737270d66817be.jpg');">
+														</div>
+														<div class="carousel-item"
+															style="background-image: url('https://images.propstore.com/5f0dd38af8e8d8dc15721f3fb3f4b8b8.jpg');">
+														</div>
+														<div class="carousel-item"
+															style="background-image: url('https://images.propstore.com/497d6261e56495b4381ce5f7906d5472.jpg');">
+														</div>
+														<div class="carousel-item"
+															style="background-image: url('https://images.propstore.com/32bf7707bcd21c1b5269f1d3423334dd.jpg');">
+														</div>
+														<div class="carousel-item"
+															style="background-image: url('https://images.propstore.com/28ac1fa3c5b11f8bfab1e25eab7a6e7d.jpg');">
+														</div>
+														<div class="carousel-item"
+															style="background-image: url('https://images.propstore.com/b901b25f44fc7ff8613a06592e39f588.jpg');">
+														</div>
+														<div class="carousel-item"
+															style="background-image: url('https://images.propstore.com/b3b565acf19bfbcfe9f5a5544d33a9e0.jpg');">
+														</div>
+														<div class="carousel-item"
+															style="background-image: url('https://images.propstore.com/198845c1606464e3491a7f40caf528d4.jpg');">
+														</div>
+														<div class="carousel-item"
+															style="background-image: url('https://images.propstore.com/b1c612049b7053e75ec5f5d90f10a030.jpg');">
+														</div>
+														<div class="carousel-item"
+															style="background-image: url('https://images.propstore.com/1c16c919e44c2230143a8a8736d153ef.jpg');">
+														</div>
+														<div class="carousel-item"
+															style="background-image: url('https://images.propstore.com/e9cf39f07d3902444ff983f45822046b.jpg');">
+														</div>
+														<div class="carousel-item"
+															style="background-image: url('https://images.propstore.com/1d6ae3ba8f1785e769e43a35dfcb72a0.jpg');">
+														</div>
+														<div class="carousel-item"
+															style="background-image: url('https://images.propstore.com/8065a552fbdd0a1967dee4cd3b1e38ac.jpg');">
+														</div>
+														<div class="carousel-item"
+															style="background-image: url('https://images.propstore.com/5c4d98428064b906a04108ccbfb70971.jpg');">
+														</div>
+														<div class="carousel-item"
+															style="background-image: url('https://images.propstore.com/7e80112d110f200905e6dfdd69166b45.jpg');">
+														</div>
+														<div class="carousel-item"
+															style="background-image: url('https://images.propstore.com/4e6e4ec2792740797e2bcab3485c9a32.jpg');">
+														</div>
+													</div>
+												</div>
+											</div>
+										</strong>
+									</div>
+								</div>
+							</div>
+							<div class="clear"></div>
+							<div class="lot-upcoming hide-close">
+								<h3>Other lots in this sale</h3>
+								<div class="short-sep"></div>
+								<div class="list-divs">
+									<ul class="list-opts">
+										<li>
+											<span style="margin-right: 10px;">
+												<input type="checkbox" id="z22" name="z22" checked=""> Follow </span>
+										</li>
+										<li>
+											<span style="margin-right: 10px;">
+												<input type="radio" id="z23" name="z23" value="Upcoming" checked="">
+												Upcoming </span>
+											<span style="margin-right: 10px;">
+												<input type="radio" id="z24" name="z24" value="Past"> Past </span>
+										</li>
+										<li class="show-all frm">
+											<div class="ui-widget">
+												<select id="sel-show" name="sel-show" class="combobox"
+													style="display: none;">
+													<div value="all">All</div>
+													<div value="sold">Sold</div>
+													<div value="unsold">Unsold</div>
+												</select><span class="custom-combobox"><input title=""
+														class="custom-combobox-input ui-widget ui-widget-content ui-state-default ui-corner-left ui-autocomplete-input"
+														autocomplete="off"><a tabindex="-1"
+														class="ui-button ui-widget ui-button-icon-only custom-combobox-toggle ui-corner-right"
+														role="button"><span
+															class="ui-button-icon ui-icon ui-icon-triangle-1-s"></span><span
+															class="ui-button-icon-space"> </span></a></span>
+												<div class="clear"></div>
+											</div>
+										</li>
+									</ul>
+								</div>
+								<div class="clear"></div>
+								<table class="footable">
+									<thead>
+										<tr>
+											<th class="icon">Image</th>
+											<th class="lot">Lot</th>
+											<th class="title">Title</th>
+											<th class="estimate">Est.</th>
+											<th class="hammer">Hammer</th>
+										</tr>
+									</thead>
+								</table>
+								<div id="preview-image-container" class="default-img-view" style="display:none;">
+									<table>
+										<tbody>
+											<tr>
+												<td>
+													<img id="preview-image"
+														src="https://propstoreauction.com/images/spacer.png" border="0"
+														alt="">
+												</td>
+											</tr>
+										</tbody>
+									</table>
+								</div>
+								<div id="upcoming-scroll">
+									<ul id="z21">
+										<table class="footable">
+											<tbody id="catalog-page-1" class="data-page">
+												<tr class="sold row-odd" data-lot_item_id="90753" id="lot-90753"
+													data-seo_url="" "="">
+   <td class=" icon">
+													<a href="https://propstoreauction.com/images/lot/6504/650468_2.jpg?1655822042"
+														class="preview" target="_blank" onclick="return false;"></a>
+													</td>
+													<td class="lot">0a</td>
+													<td class="title">Test - TEST LOT - TEST YOUR BID BUTTON NOW</td>
+													<td class="estimate">£100 - £200</td>
+													<td class="hammer"><span class="lot90753">£100</span></td>
+												</tr>
+												<tr class="sold row-even" data-lot_item_id="86845" id="lot-86845"
+													data-seo_url="" "="">
+   <td class=" icon">
+													<a href="https://propstoreauction.com/images/lot/6432/643256_2.jpg?1655750762"
+														class="preview" target="_blank" onclick="return false;"></a>
+													</td>
+													<td class="lot">1</td>
+													<td class="title">Test - Lot # 1: 2001: A Space Odyssey (1968) -
+														Discovery One Spoon and Fork
+													</td>
+													<td class="estimate">£5,000 - £7,000</td>
+													<td class="hammer"><span class="lot86845">£5,500</span></td>
+												</tr>
+
+												<tr class="upcoming row-odd" data-lot_item_id="90738" id="lot-90738"
+													data-seo_url="" "="">
+   <td class=" icon">
+													<a href="https://propstoreauction.com/images/lot/0/0_2.jpg?1606682881"
+														class="preview" target="_blank" onclick="return false;"></a>
+													</td>
+													<td class="lot">1883</td>
+													<td class="title">Test - Lot # 1883: X2: X-Men United (2003) - Set
+														of 10 Main Cast-Autographed
+														Photos</td>
+													<td class="estimate">£800 - £1,200</td>
+													<td class="hammer"><span class="lot90738"></span></td>
+												</tr>
+											</tbody>
+										</table>
+									</ul>
+									<div id="preview-image-container" class="default-img-view" style="display:none;">
+										<img id="preview-image" src="https://propstoreauction.com/images/spacer.png"
+											border="0" alt=""></div>
+								</div>
+							</div>
+						</div>
+
+					</div>
+				</form>
+				<div class="clear"></div>
+			</div>
+		</div>
+	</div>
+	<script type="text/javascript"
+		src="https://propstoreauction.com/assets/js/vendor/typekit/hyz6gyn.js?1655346350"></script>
+	<script type="text/javascript">try { Typekit.load(); } catch (e) { }</script>
+
+
+	<ul id="ui-id-1" tabindex="0" class="ui-menu ui-widget ui-widget-content ui-autocomplete ui-front" unselectable="on"
+		style="display: none;"></ul>
+	<div role="status" aria-live="assertive" aria-relevant="additions" class="ui-helper-hidden-accessible"></div>
+	<div role="log" aria-live="assertive" aria-relevant="additions" class="ui-helper-hidden-accessible"></div>
+	<div role="log" aria-live="assertive" aria-relevant="additions" class="ui-helper-hidden-accessible"></div>
+
+
+</body>
+
+</html>

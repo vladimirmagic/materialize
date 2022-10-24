@@ -119,7 +119,7 @@
 	.product__info {
 		width: 50%;
 		max-width: 50%;
-		margin-right: 4rem;
+		margin-left: 2.5rem;
 	}
 
 	.product__slider {
@@ -133,7 +133,6 @@
 		background: white;
 		border-radius: 6px;
 		overflow: hidden;
-		width: 565px;
 
 		.live-slide-left,
 		.live-slide-right {
@@ -248,6 +247,8 @@
 			height: 160px;
 			padding-bottom: 80px;
 			overflow: auto;
+			font-size: 1rem;
+			line-height: 1;
 
 			&:after {
 				content: '';
@@ -449,10 +450,10 @@
 .auclive-sale__current {
 	display: flex;
 	justify-content: space-between;
-	margin-bottom: .5rem;
+	margin-bottom: 1rem;
 
 	.current {
-		flex: 1 0 220px;
+		flex: 1 1 50%;
 		display: flex;
 		flex-direction: column;
 		justify-content: center;
@@ -463,7 +464,7 @@
 		white-space: nowrap;
 		font-size: 24px;
 		line-height: 1.2;
-		background: rgba(0,0,0,.1);
+		background: rgba(0,0,0,.05);
 
 		.current-bid-label {
 			font-weight: 300;
@@ -476,12 +477,12 @@
 }
 
 .auclive-sale__bidstatus {
-	flex: 1 1 100%;
+	flex: 1 1 50%;
 	margin: 0 0 0 .5rem;
-	padding: 1rem 1.5rem;
+	padding: .5rem 1.5rem;
 	font-style: italic;
 	color: $primary-color;
-	background: white !important;
+	background: rgba(0,0,0,0) !important;
 
 	&.red {
 		color: $color-red;
@@ -505,19 +506,19 @@
 	}
 }
 
-.auclive-sale__bidstatus-prem {
+.auclive-sale__current-prem {
 	margin-top: .5rem;
+	font-size: 1rem;
+	font-weight: 300;
+	font-style: italic;
 }
+
 
 @media #{$medium-and-down} {
 	.auclive-sale {
 		.product__slider {
 			width: 100%;
 			height: 360px;
-		}
-	
-		.lot-images {
-			width: 100%;
 		}
 
 		.product__inner {
@@ -588,7 +589,6 @@
 	
 		.lot-messages {
 			padding-left: 1rem;
-			font-size: 1rem;
 		}
 	}
 

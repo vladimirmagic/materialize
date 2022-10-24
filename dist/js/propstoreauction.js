@@ -1747,26 +1747,28 @@ document.addEventListener('DOMContentLoaded', () => {
                     $('.container').append($('#rtb-panel'));
 
                     $('#rtb-panel').append($('<div class="product aucproduct auclive-sale__sections">'));
-                    $('.lot-bidding').prepend($('<div class="auclive-sale__title h3 auclive-sale-title">'));
                     $('.product').append('<div class="product__inner">');
-                    $('.product__inner').append('<div class="product__info">').append('<div class="product__gallery">');
+                    $('.product__inner').append('<div class="product__gallery">').append('<div class="product__info">');
                     $('.product__gallery').append($('.lot-images-container'));
                     $('.product__info').append($('.lot-bidding')).append($('.video-stream'));
                     $('.currency-cont').wrap('<div class="input-field input-field--select" style="display:none;" />');
+
+                    $('.product__gallery').prepend($('<div class="auclive-sale__title h3 auclive-sale-title">Lot #16: Test - Lot # 16: Aliens (1986) - Crashed Sulaco Dropship Model Miniature Tail Section</div>'));
 
                     $('#div-hidden').append('<div id="customDate' + auctionId + '">');
                     const customDateBefore = window.getComputedStyle(document.querySelector('#customDate' + auctionId), ':before');
                     const customDate = customDateBefore && customDateBefore.content && customDateBefore.content != 'none' ? customDateBefore.content.replaceAll('"', '') : null;
                     const auctionDate = customDate || moment($('.auction-date').text()).format('MMM D YYYY');
-                    $('.product__info').prepend($('<div class="auclive-sale__auc-text">'));
+                    $('.product__gallery').prepend($('<div class="auclive-sale__auc-text">'));
                     $('.auclive-sale__auc-text').append(badge, '<div class="auclive-sale__auc-date"><i class="icon"><svg><use xlink:href="#calendar"></use></svg></i>' + auctionDate + '</div>');
 
-                    $('#div-hidden').append('<div id="customTitle' + auctionId + '">');
-                    const customTitleBefore = window.getComputedStyle(document.querySelector('#customTitle' + auctionId), ':before');
-                    const customTitle = customTitleBefore && customTitleBefore.content && customTitleBefore.content != 'none' ? customTitleBefore.content.replaceAll('"', '') : null;
-                    const auctionTitle = customTitle || $('.auction-title');
-                    $('.product__info').prepend($('<div class="auclive-sale__auc-title h4">'));
-                    $('.auclive-sale__auc-title').append(auctionTitle);
+                    // no auctionTitle
+                    // $('#div-hidden').append('<div id="customTitle' + auctionId + '">');
+                    // const customTitleBefore = window.getComputedStyle(document.querySelector('#customTitle' + auctionId), ':before');
+                    // const customTitle = customTitleBefore && customTitleBefore.content && customTitleBefore.content != 'none' ? customTitleBefore.content.replaceAll('"', '') : null;
+                    // const auctionTitle = customTitle || $('.auction-title');
+                    // $('.product__info').prepend($('<div class="auclive-sale__auc-title h4">'));
+                    // $('.auclive-sale__auc-title').append(auctionTitle);
 
                     $('.bidding-main').prepend('<div class="auclive-sale__current">');
                     $('.auclive-sale__current').append($('.bidding-main .current'), '<div class="auclive-sale__bidstatus" style="display:none;"><div class="auclive-sale__bidstatus-title"></div><div class="auclive-sale__bidstatus-text"></div></div>');
@@ -1828,11 +1830,43 @@ document.addEventListener('DOMContentLoaded', () => {
                         return nextAskStr;
                     }
 
-
-                    let interval = setInterval(() => { // listen ajax updates
+                    const updateLotCallback = () => {
                         const currentLot = $('#' + lblLotNoControlId).text();
                         if (!currentLot) return;
 
+                        if ($('#rtb-panel')[0].dataset.lot != currentLot) {
+                            title = 'Lot #' + $('#' + lblLotNoControlId).html() + ': ' + $('#' + lblLotNameControlId).html();
+                            $('.auclive-sale-title').html(title);
+                        }
+
+                        const $desc = $('#' + lblLotDescControlId + ' > *');
+                        if ($desc.length) {
+                            $('#rtb-panel')[0].dataset.lot = currentLot;
+
+                            if (!$('.product-description-content').length) { // old product
+                                document.querySelectorAll('style:not([data-v2]), link[rel="stylesheet"]:not([data-v2])').forEach(item => item.remove());
+                                const $productDescriptionContent = $('<div class="product-description-content">');
+                                $productDescriptionContent.append($desc);
+                                $('#' + lblLotDescControlId).append($productDescriptionContent);
+                            }
+                        }
+
+                        if ($('.auclive-sale__upcoming')[0].dataset.lot != currentLot) {
+                            $upcoming = $('#upcoming-scroll tr');
+                            if ($upcoming.length) {
+                                $('.auclive-sale__upcoming')[0].dataset.lot = currentLot;
+                                $('.upcoming--current').removeClass('upcoming--current');
+
+                                $upcoming .each((index, item) => {
+                                    if ($(item).find('.lot').text() == currentLot) {
+                                        $(item).addClass('upcoming--current');
+                                    }
+                                });
+                            }
+                        }
+                    };
+
+                    const updateBtnCallback = () => {
                         const $btn = $('.live-bid');
                         if ($btn.length) {
                             if ($btn.text().includes('Login to bid')) {
@@ -1880,76 +1914,30 @@ document.addEventListener('DOMContentLoaded', () => {
                                 $btn.removeAttr('style');
                             }
                         }
+                    };
 
-                        // const currentBidAmountStr = $('.current-bid-amt .amount').text() || '';
-                        // const currentBidAmount = parseFloat(currentBidAmountStr.replace(/,/g, ''));
-                        // const currentBidCurrency = $('.current-bid-amt .currency').text();
-                        // const currentBidBP = currentBidCurrency + currentBidAmount * 1.25;
-                        // $('.current-bid-amt .amount')
-
-                        if ($('#rtb-panel')[0].dataset.lot != currentLot) {
-                            title = 'Lot #' + $('#' + lblLotNoControlId).html() + ': ' + $('#' + lblLotNameControlId).html();
-                            $('.auclive-sale-title').html(title);
+                    const updateBidCallback = () => {
+                        const currentBidAmountStr = $('.current-bid-amt .amount').text() || '';
+                        const currentBidAmount = parseFloat(currentBidAmountStr.replace(/,/g, ''));
+                        if (currentBidAmount) {
+                            const currentBidCurrency = $('.current-bid-amt .currency').text();
+                            const currentBidBP = currentBidCurrency + (currentBidAmount * 1.25).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+                            if (!$('.auclive-sale__current-prem').length) $('.current-bid-amt').append('<div class="auclive-sale__current-prem">');
+                            $('.auclive-sale__current-prem').html(currentBidBP + ' incl. Buyer’s Prem').show();
+                        } else {
+                            $('.auclive-sale__current-prem').hide();
                         }
+                    };
 
-                        const $desc = $('#' + lblLotDescControlId + ' > *');
-                        if ($desc.length) {
-                            $('#rtb-panel')[0].dataset.lot = currentLot;
-
-                            if (!$('.product-description-content').length) { // old product
-                                document.querySelectorAll('style:not([data-v2]), link[rel="stylesheet"]:not([data-v2])').forEach(item => item.remove());
-                                const $productDescriptionContent = $('<div class="product-description-content">');
-                                $productDescriptionContent.append($desc);
-                                $('#' + lblLotDescControlId).append($productDescriptionContent);
-                            }
-                            // const $gallery = $('#' + lblLotDescControlId).find('.product__gallery');
-                            // if ($gallery.length) {
-                            //     const $gallery = $('#' + lblLotDescControlId).find('.product__gallery > *');
-                            //     if ($gallery.length) {
-                            //         $('.lot-images-container').hide();
-                            //         $galPlace = $('.product__inner > .product__gallery');
-                            //         $galPlace.find('> *:not(.lot-description)').remove();
-                            //         $galPlace.prepend($('#' + lblLotDescControlId).find('.product__gallery > *'));
-                            //         addProductZoom();
-                            //         addProductGallery();
-                            //     }
-                            // } else {
-                            //     $('.lot-images-container').show();
-                            //     $('.product__slider, .product__thumbnails').remove();
-                            // }
-
-                            // const $img = $('#' + lblLotDescControlId + ' .carousel-item').first();
-                            // if ($img.length) {
-                            //     const url = $img[0].style.backgroundImage.slice(4, -1).replace(/["']/g, '');
-                            //     if ($('.lblLotImgControlId img').attr('src') != url) {
-                            //         $('.lblLotImgControlId img').attr('src', url);
-                            //         $('.lblLotImgControlId img').removeClass('loader-img');
-                            //     }
-                            // }
-                        }
-
-                        if ($('.auclive-sale__upcoming')[0].dataset.lot != currentLot) {
-                            $upcoming = $('#upcoming-scroll tr');
-                            if ($upcoming.length) {
-                                $('.auclive-sale__upcoming')[0].dataset.lot = currentLot;
-                                $('.upcoming--current').removeClass('upcoming--current');
-
-                                $upcoming .each((index, item) => {
-                                    // if (!$(item).find('.auclive-sale__upcoming-img').length) {
-                                    //     $img = $('<img class="auclive-sale__upcoming-img" src="' + $(item).find('.preview').prop('href').replace('_2.', '_1.') + '">');
-                                    //     $(item).find('.preview').append($img);
-
-                                    //     $(item).find('.preview').on('click', function () {
-                                    //         window.open('/lot-details/index/catalog/' + auctionId + '/lot/' + $(this).data('lot_item_id'));
-                                    //     });
-                                    // }
-                                    if ($(item).find('.lot').text() == currentLot) {
-                                        $(item).addClass('upcoming--current');
-                                    }
-                                });
-                            }
-                        }
-                    }, 1000);
+                    const updateLotObserver = new MutationObserver(updateLotCallback);
+                    updateLotObserver.observe($(`#${lblLotNoControlId}`)[0], {characterData: true});
+                    updateLotCallback();
+                    const updateBtnObserver = new MutationObserver(updateBtnCallback);
+                    updateBtnObserver.observe($('.live-bid')[0], {characterData: true});
+                    updateBtnCallback();
+                    const updateBidObserver = new MutationObserver(updateBidCallback);
+                    updateBidObserver.observe($('.current-bid-amt .amount')[0], {characterData: true});
+                    updateBidCallback();
 
                     let resizeDebounce;
                     function onResize () {

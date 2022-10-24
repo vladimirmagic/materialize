@@ -1,0 +1,127 @@
+<div class="product projector">
+    <div class="projector__room p-l">
+        You are viewing the auction from our holding room – to enter the bidding you must be signed in and registered to bid.
+
+        <div class="projector__cta">
+            <a href="https://propstore.com/auctionRegistration.action?auctionId=318&d=2&ru=/auctions/live-sale/id/318" class="waves-effect waves-light btn">
+                <span class='btn__title'>Sign In To Bid</span>
+                <i class='icon'><svg><use xlink:href="#arrow-right"></use></svg></i>
+            </a>
+        </div>
+    </div>
+
+    <div class="product__inner">
+        <div class="product__info">
+            <div class="auclive-sale__auc-text">
+                <span class="badge green">
+                    <i class="icon"><svg><use xlink:href="#live"></use></svg></i>Live bidding
+                </span>
+                <div class="auclive-sale__auc-date">
+                    <i class="icon"><svg><use xlink:href="#calendar"></use></svg></i>Nov 3 2022
+                </div>
+            </div>
+
+            <video id="projector__sam" autoplay onclick="startCapture();"></video>
+
+            <!-- <div class="lot-title hide-close">
+                <span class="lot-label">
+                    Lot </span>
+                <span id="z6">16</span> &nbsp;Of <span class="num-lots">
+                    <span id="z5">1883</span> </span>
+                <span class="lot-name"> - <span id="z7">Test - Lot # 16: Aliens (1986) -
+                        Crashed Sulaco Dropship
+                        Model Miniature Tail Section</span></span>
+                <div class="lot-number"></div>
+            </div>
+
+            <div class="projector__lot">
+                <div class="lot-images-container hide-close">
+                    <ul class="lot-images-slider lot-images">
+                        <li class="live-slide-left">
+                            <a class="previmg" style="display: none;">
+                                <img src="https://propstoreauction.com/m/images/live-slider-left.png">
+                            </a>
+                        </li>
+                        <li class="current-image">
+                            <div class="curr-img-wrap lot-images-current">
+                                <a onclick="return false;">
+                                    <div id="z9" class="wrap">
+                                        <img src="https://propstoreauction.com/images/lot/6432/643267_0.jpg?1655773802" id="limg0" style="">
+                                        <!- <img src="https://propstoreauction.com/images/ajax-loader-bg.gif" class="loader-img"> ->
+                                    </div> <span class="img-overlay"></span>
+                                </a>
+                            </div>
+                        </li>
+                        <li class="live-slide-right">
+                            <a class="nextimg" style="display: none;">
+                                <img src="https://propstoreauction.com/m/images/live-slider-right.png">
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="lot-bidding hide-close ">
+                    <ul class="info">
+                        <li class="info-bidding">
+                            <p>
+                                <span class="est-label">
+                                    Estimate </span>
+                                <span class="est-amount">
+                                    <span id="z13"><span class="currency">£</span><span
+                                            class="amount">6,000</span></span> - <span id="z14"><span
+                                            class="currency">£</span><span
+                                            class="amount">8,000</span></span> </span>
+                            </p>
+                        </li>
+                        <li class="info-links"></li>
+                    </ul>
+                    <ul class="bidding-main">
+                        <li class="current">
+                            <span class="current-bid-label">Current bid</span>
+                            <span class="current-bid-amt">
+                                <span class="amt"><span id="z15"><span class="currency">£</span><span
+                                            class="amount">123,456</span></span></span>
+                            </span>
+                            <div class="projector__current-prem">£234,567 incl. Buyer’s Prem</div>
+                        </li>
+                        <li class="current-btn">
+                            <div class="unibtn">
+                                <a id="z20" class="orng live-bid">Register now!</a>
+                            </div>
+                            <div class="bid-count-cont">
+                                <div id="z38" class="bid-countdown"></div>
+                            </div>
+                        </li>
+                    </ul>
+                </div> 
+
+            </div>-->
+        </div>
+        <div class="product__gallery">
+            <iframe id="bidpathplayer" class="bidpathplayertype-1" allow="autoplay; fullscreen" allowfullscreen="allowfullscreen" src="https://sacn476dmd.execute-api.eu-west-2.amazonaws.com/tokens/subscriber?qs=PVK%2FpkOaTH%2F4LF4b2VXqIgAfK7SvK2pVtzRxFoIPAFpV4T7qKzsRoPjtBTkiVE4ibWr9t%2BW6UMsJth8qkHek5ugvGccAIpnkMOzlh7gpe1hzfq1A%2B0W%2BRzPAdTyqigM0QCbRw8MZBNg7KJOgmtQWLA%3D%3D"></iframe>
+        </div>
+    </div>
+
+    <div class="projector__room p-l">
+        You are viewing the auction from our holding room – to enter the bidding you must be signed in and registered to bid.
+
+        <div class="projector__cta">
+            <a href="https://propstore.com/auctionRegistration.action?auctionId=318&d=2&ru=/auctions/live-sale/id/318" class="waves-effect waves-light btn">
+                <span class='btn__title'>Sign In To Bid</span>
+                <i class='icon'><svg><use xlink:href="#arrow-right"></use></svg></i>
+            </a>
+        </div>
+    </div>
+
+<script>
+    const videoElem = document.getElementById('projector__sam');
+    async function startCapture() {
+        try {
+            videoElem.srcObject = await navigator.mediaDevices.getDisplayMedia({});
+        } catch (err) {
+            console.error(`Error: ${err}`);
+        }
+    }
+</script>
+
+</div>
