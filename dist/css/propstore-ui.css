@@ -21863,6 +21863,10 @@ span.badge.auction-registration__badge-approved {
   padding: 0 1rem;
 }
 
+.page-room .footer-signup {
+  display: none;
+}
+
 .projector {
   background: #F4F4F4;
 }

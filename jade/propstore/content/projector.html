@@ -23,6 +23,36 @@
 
             <video id="projector__sam" autoplay onclick="startCapture();"></video>
 
+        </div>
+        <div class="product__gallery">
+            <iframe id="bidpathplayer" class="bidpathplayertype-1" allow="autoplay; fullscreen" allowfullscreen="allowfullscreen" src="https://sacn476dmd.execute-api.eu-west-2.amazonaws.com/tokens/subscriber?qs=PVK%2FpkOaTH%2F4LF4b2VXqIgAfK7SvK2pVtzRxFoIPAFpV4T7qKzsRoPjtBTkiVE4ibWr9t%2BW6UMsJth8qkHek5ugvGccAIpnkMOzlh7gpe1hzfq1A%2B0W%2BRzPAdTyqigM0QCbRw8MZBNg7KJOgmtQWLA%3D%3D"></iframe>
+        </div>
+    </div>
+
+    <div class="projector__room p-l">
+        You are viewing the auction from our holding room – to enter the bidding you must be signed in and registered to bid.
+
+        <div class="projector__cta">
+            <a href="https://propstore.com/auctionRegistration.action?auctionId=318&d=2&ru=/auctions/live-sale/id/318" class="waves-effect waves-light btn">
+                <span class='btn__title'>Sign In To Bid</span>
+                <i class='icon'><svg><use xlink:href="#arrow-right"></use></svg></i>
+            </a>
+        </div>
+    </div>
+</div>
+
+<script>
+    const videoElem = document.getElementById('projector__sam');
+    async function startCapture() {
+        try {
+            videoElem.srcObject = await navigator.mediaDevices.getDisplayMedia({});
+        } catch (err) {
+            console.error(`Error: ${err}`);
+        }
+    }
+</script>
+
+
             <!-- <div class="lot-title hide-close">
                 <span class="lot-label">
                     Lot </span>
@@ -96,32 +126,3 @@
                 </div> 
 
             </div>-->
-        </div>
-        <div class="product__gallery">
-            <iframe id="bidpathplayer" class="bidpathplayertype-1" allow="autoplay; fullscreen" allowfullscreen="allowfullscreen" src="https://sacn476dmd.execute-api.eu-west-2.amazonaws.com/tokens/subscriber?qs=PVK%2FpkOaTH%2F4LF4b2VXqIgAfK7SvK2pVtzRxFoIPAFpV4T7qKzsRoPjtBTkiVE4ibWr9t%2BW6UMsJth8qkHek5ugvGccAIpnkMOzlh7gpe1hzfq1A%2B0W%2BRzPAdTyqigM0QCbRw8MZBNg7KJOgmtQWLA%3D%3D"></iframe>
-        </div>
-    </div>
-
-    <div class="projector__room p-l">
-        You are viewing the auction from our holding room – to enter the bidding you must be signed in and registered to bid.
-
-        <div class="projector__cta">
-            <a href="https://propstore.com/auctionRegistration.action?auctionId=318&d=2&ru=/auctions/live-sale/id/318" class="waves-effect waves-light btn">
-                <span class='btn__title'>Sign In To Bid</span>
-                <i class='icon'><svg><use xlink:href="#arrow-right"></use></svg></i>
-            </a>
-        </div>
-    </div>
-
-<script>
-    const videoElem = document.getElementById('projector__sam');
-    async function startCapture() {
-        try {
-            videoElem.srcObject = await navigator.mediaDevices.getDisplayMedia({});
-        } catch (err) {
-            console.error(`Error: ${err}`);
-        }
-    }
-</script>
-
-</div>
