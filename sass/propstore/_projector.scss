@@ -4,6 +4,32 @@
 	}
 }
 
+.live-sale-projector {
+	overflow: hidden;
+	background: $color-bg !important;
+
+	.auc-header,
+	footer,
+	.current-btn,
+	.lot-messages,
+	.auclive-sale__bidstatus,
+	.product__info {
+		display: none !important;
+	}
+	main {
+		padding-top: 0 !important;
+	}
+	.auclive-sale {
+		padding-bottom: 0 !important;
+	}
+	.aucproduct {
+		padding: 2px !important;
+	}
+	.product__gallery {
+		max-width: 680px !important;
+	}
+}
+
 .projector {
 	background: $color-bg;
 
@@ -83,6 +109,7 @@
 		}
 
 		.current {
+			display: block;
 			margin: 0;
 			padding: 1rem 1rem;
 			text-align: center;

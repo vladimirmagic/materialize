@@ -21867,6 +21867,36 @@ span.badge.auction-registration__badge-approved {
   display: none;
 }
 
+.live-sale-projector {
+  overflow: hidden;
+  background: #F4F4F4 !important;
+}
+
+.live-sale-projector .auc-header,
+.live-sale-projector footer,
+.live-sale-projector .current-btn,
+.live-sale-projector .lot-messages,
+.live-sale-projector .auclive-sale__bidstatus,
+.live-sale-projector .product__info {
+  display: none !important;
+}
+
+.live-sale-projector main {
+  padding-top: 0 !important;
+}
+
+.live-sale-projector .auclive-sale {
+  padding-bottom: 0 !important;
+}
+
+.live-sale-projector .aucproduct {
+  padding: 2px !important;
+}
+
+.live-sale-projector .product__gallery {
+  max-width: 680px !important;
+}
+
 .projector {
   background: #F4F4F4;
 }
@@ -21966,6 +21996,7 @@ span.badge.auction-registration__badge-approved {
 }
 
 .projector__lot .lot-bidding .current {
+  display: block;
   margin: 0;
   padding: 1rem 1rem;
   text-align: center;

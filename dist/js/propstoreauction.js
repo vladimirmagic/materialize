@@ -1736,6 +1736,8 @@ document.addEventListener('DOMContentLoaded', () => {
                         redirectPage(URL_PROPSTORE + 'room');
                     }
 
+                    const isProjector = window.location.hash === '#projector';
+
                     const samVariables = (
                         sam &&
                         sam.serverData &&
@@ -1756,17 +1758,16 @@ document.addEventListener('DOMContentLoaded', () => {
                     let title = 'Lot #' + $('#' + lblLotNoControlId).html() + ': ' + $('#' + lblLotNameControlId).html();
 
                     $('#rtb-panel').addClass('auclive-sale');
+                    if (isProjector) $('body').addClass('live-sale-projector');
                     $('.mobile-content-wrap').hide();
                     $('.container').append($('#rtb-panel'));
 
                     $('#rtb-panel').append($('<div class="product aucproduct auclive-sale__sections">'));
                     $('.product').append('<div class="product__inner">');
                     $('.product__inner').append('<div class="product__gallery">').append('<div class="product__info">');
-                    $('.product__gallery').append($('.lot-images-container'));
-                    $('.product__info').append($('.lot-bidding')).append($('.video-stream'));
                     $('.currency-cont').wrap('<div class="input-field input-field--select" style="display:none;" />');
 
-                    $('.product__gallery').prepend($('<div class="auclive-sale__title h3 auclive-sale-title">Lot #16: Test - Lot # 16: Aliens (1986) - Crashed Sulaco Dropship Model Miniature Tail Section</div>'));
+                    $('.product__gallery').prepend($('<div class="auclive-sale__title h3 auclive-sale-title"></div>'));
 
                     $('#div-hidden').append('<div id="customDate' + auctionId + '">');
                     const customDateBefore = window.getComputedStyle(document.querySelector('#customDate' + auctionId), ':before');
@@ -1786,41 +1787,48 @@ document.addEventListener('DOMContentLoaded', () => {
                     $('.bidding-main').prepend('<div class="auclive-sale__current">');
                     $('.auclive-sale__current').append($('.bidding-main .current'), '<div class="auclive-sale__bidstatus" style="display:none;"><div class="auclive-sale__bidstatus-title"></div><div class="auclive-sale__bidstatus-text"></div></div>');
 
-                    $('.lot-messages').insertBefore('.video-stream');
-                    $('.lot-messages').prepend($('<div class="auclive-sale__messages-bidder">'));
-                    $('.auclive-sale__messages-bidder').append($('.bidder-num'));
-                    $('.lot-messages').prepend($('<div class="auclive-sale__messages">'));
-                    $('.auclive-sale__messages').append(
-                        $('.lot-messages .sound'),
-                        $('.link-report-problem')
-                    );
-                    $('#report-problems').addClass('waves-effect waves-light btn-flat auclive-sale__propblems-link');
+                    if (isProjector) {
+                        $('.product__gallery').append($('<div class="projector__lot"/>'));
+                        $('.projector__lot').append($('.lot-images-container'), $('.lot-bidding'));
+                    } else {
+                        $('.product__gallery').append($('.lot-images-container'));
+                        $('.product__info').append($('.lot-bidding'));
+                        $('.lot-messages').insertBefore('.video-stream');
+                        $('.lot-messages').prepend($('<div class="auclive-sale__messages-bidder">'));
+                        $('.auclive-sale__messages-bidder').append($('.bidder-num'));
+                        $('.lot-messages').prepend($('<div class="auclive-sale__messages">'));
+                        $('.auclive-sale__messages').append(
+                            $('.lot-messages .sound'),
+                            $('.link-report-problem')
+                        );
+                        $('#report-problems').addClass('waves-effect waves-light btn-flat auclive-sale__propblems-link');
 
-                    $('<div class="auclive-sale__upcoming">').insertAfter('.product');
-                    $('.auclive-sale__upcoming').append($('.lot-upcoming'));
-                    $('.auclive-sale__upcoming').append($('#upcoming-scroll'));
-                    $('.lot-upcoming h3').addClass('h3');
-                    $('.list-options').append(`<fieldset class="auclive-sale__upcoming-options">
-                        <label>
-                            <input name="upcoming-options" value="upcoming" type="radio" checked />
-                            <span>Upcoming</span>
-                        </label>
-                        <label>
-                            <input name="upcoming-options" value="past" type="radio" />
-                            <span>Past</span>
-                        </label>
-                    </fieldset>`);
+                        $('<div class="auclive-sale__upcoming">').insertAfter('.product');
+                        $('.auclive-sale__upcoming').append($('.lot-upcoming'));
+                        $('.auclive-sale__upcoming').append($('#upcoming-scroll'));
+                        $('.lot-upcoming h3').addClass('h3');
+                        $('.list-options').append(`<fieldset class="auclive-sale__upcoming-options">
+                            <label>
+                                <input name="upcoming-options" value="upcoming" type="radio" checked />
+                                <span>Upcoming</span>
+                            </label>
+                            <label>
+                                <input name="upcoming-options" value="past" type="radio" />
+                                <span>Past</span>
+                            </label>
+                        </fieldset>`);
 
-                    function onOptionsChange () {
-                        const $input = $('input[name="upcoming-options"]:checked');
-                        const data = $('.auclive-sale__upcoming')[0].dataset;
-                        if (data.upcoming && data.upcoming !== $input.val()) {
-                            $('#catalog-page-1').html($('#catalog-page-1 tr').get().reverse());
+                        function onOptionsChange () {
+                            const $input = $('input[name="upcoming-options"]:checked');
+                            const data = $('.auclive-sale__upcoming')[0].dataset;
+                            if (data.upcoming && data.upcoming !== $input.val()) {
+                                $('#catalog-page-1').html($('#catalog-page-1 tr').get().reverse());
+                            }
+                            data.upcoming = $input.val();
                         }
-                        data.upcoming = $input.val();
+                        $('input[name="upcoming-options"]').on('change', onOptionsChange);
+                        onOptionsChange();
                     }
-                    $('input[name="upcoming-options"]').on('change', onOptionsChange);
-                    onOptionsChange();
 
                     function getNextAsk (str, strBefore, strAfter) {
                         let nextAskStr = '';
@@ -1988,8 +1996,10 @@ document.addEventListener('DOMContentLoaded', () => {
                             }
                         }, 100);
                     }
-                    $(window).on('resize', onResize);
-                    onResize();
+                    if (!isProjector) {
+                        $(window).on('resize', onResize);
+                        onResize();
+                    }
 
                     $('.orng, .live-bid').addClass('waves-effect waves-light btn').removeClass('orng');
                     /**
