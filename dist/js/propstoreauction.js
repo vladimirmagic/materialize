@@ -72,13 +72,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 let isSignedIn = !$('#headsec li[title="Auction Login"]').length && !$('#headsec li[title="Login"]').length;
 
-                function addProductZoom() {
-                    $('#modal-product-gallery .carousel-item').each((index, item) => {
-                        const url = item.style.backgroundImage.slice(4, -1).replace(/["']/g, '');
-                        $('#zoom-viewer-images').append('<img src="' + url + '" class="zoom-viewer"/>');
-                    });
-                }
-
                 function addProductGallery() {
                     const $productItems = $('.product__slider .carousel-item');
                     const $productThumbnails = $('.product__thumbnail');
@@ -136,6 +129,14 @@ document.addEventListener('DOMContentLoaded', () => {
                                 modalSliderIndex = $('#modal-product-gallery .carousel-item').index(item);
                             },
                         });
+                        
+                        if (!$('.zoom-viewer').length) {
+                            $('#modal-product-gallery .carousel-item').each((index, item) => {
+                                const url = item.style.backgroundImage.slice(4, -1).replace(/["']/g, '');
+                                $('#zoom-viewer-images').append('<img src="' + url + '" class="zoom-viewer"/>');
+                            });
+                        }
+
                         if ($('.zoom-viewer').length) {
                             if (zoomViewer) {
                                 zoomViewer.destroy();
@@ -443,13 +444,16 @@ document.addEventListener('DOMContentLoaded', () => {
                             item.remove();
                         });
                     }
-                    addProductZoom();
 
                     $liveSale = $('.live-sale a');
                     if ($liveSale.length) {
                         $liveSale.addClass('waves-effect waves-light btn aucproduct__livesale-link').html('<span class="btn__title">Go to live auction</span><i class="icon"><svg><use xlink:href="#arrow-right"></use></svg></i>');
                         $('<div class="aucproduct__livesale">').append('<div class="aucproduct__livesale-inner">').prependTo('.aucproduct');
                         $('.aucproduct__livesale-inner').append('<div class="aucproduct__livesale-label">Live Auction is open!</div>', $liveSale);
+
+                        if (!isSignedIn && IS_REDIRECT_TO_HOLDING_ROOM) {
+                            $liveSale.attr('href', URL_PROPSTORE + 'room');
+                        }
                     }
 
                     $detailsLine = $('.aucproduct__details-line').clone();
@@ -1376,6 +1380,10 @@ document.addEventListener('DOMContentLoaded', () => {
                         $liveSale.addClass('waves-effect waves-light btn auccatalog__livesale-link').html('<span class="btn__title">Go to live auction</span><i class="icon"><svg><use xlink:href="#arrow-right"></use></svg></i>');
                         $('<div class="auccatalog__livesale">').append('<div class="auccatalog__livesale-inner">').insertBefore('.cards');
                         $('.auccatalog__livesale-inner').append('<div class="auccatalog__livesale-label">Live Auction is open!</div>', $liveSale);
+
+                        if (!isSignedIn && IS_REDIRECT_TO_HOLDING_ROOM) {
+                            $liveSale.attr('href', URL_PROPSTORE + 'room');
+                        }
                     }
 
                     $('.container').prepend($('.auccatalog'));
@@ -1724,6 +1732,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 } else if ($('body').hasClass('auctions-live-sale')) {
                     document.querySelectorAll('style:not([data-v2]), link[rel="stylesheet"]:not([data-v2])').forEach(item => item.remove());
 
+                    if (!isSignedIn && IS_REDIRECT_TO_HOLDING_ROOM) {
+                        redirectPage(URL_PROPSTORE + 'room');
+                    }
+
                     const samVariables = (
                         sam &&
                         sam.serverData &&
@@ -1735,6 +1747,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     const lblLotNameControlId = samVariables && samVariables.lblLotNameControlId || '';
                     const lblLotDescControlId = samVariables && samVariables.lblLotDescControlId || '';
                     const lblLotImgControlId = samVariables && samVariables.lblLotImgControlId || '';
+                    const lblCurrentControlId = samVariables && samVariables.lblCurrentControlId || '';
 
                     $('#' + lblLotDescControlId).addClass('lblLotDescControlId');
                     $('#' + lblLotImgControlId).addClass('lblLotImgControlId');
@@ -1830,9 +1843,11 @@ document.addEventListener('DOMContentLoaded', () => {
                         return nextAskStr;
                     }
 
-                    const updateLotCallback = () => {
+                    const updateLotCallback = function () {
                         const currentLot = $('#' + lblLotNoControlId).text();
                         if (!currentLot) return;
+
+                        updateLotObserver.disconnect();
 
                         if ($('#rtb-panel')[0].dataset.lot != currentLot) {
                             title = 'Lot #' + $('#' + lblLotNoControlId).html() + ': ' + $('#' + lblLotNameControlId).html();
@@ -1864,80 +1879,103 @@ document.addEventListener('DOMContentLoaded', () => {
                                 });
                             }
                         }
+                        updateLotObserve();
                     };
 
-                    const updateBtnCallback = () => {
+                    const updateBtnCallback = function () {
                         const $btn = $('.live-bid');
-                        if ($btn.length) {
-                            if ($btn.text().includes('Login to bid')) {
-                                $btn.html(`
-                                    <span class="btn__title">Sign In To Bid</span>
-                                    <i class="icon"><svg width="17" height="14" viewBox="0 0 17 14"><use xlink:href="#arrow-right"></use></svg></i>
-                                `).removeAttr('style');
-                                $('.auclive-sale__bidstatus-title').html('Bidding has started!');
-                                $('.auclive-sale__bidstatus-text').html('Sign in now to participate in the auction.');
-                                $('.auclive-sale__bidstatus').removeClass('red').removeClass('green').show();
-                            } else if ($btn.text().includes('Pending approval')) {
-                                $btn.html(`
-                                    <span class="btn__title">Bid Now</span>
-                                    <i class="icon"><svg width="17" height="14" viewBox="0 0 17 14"><use xlink:href="#arrow-right"></use></svg></i>
-                                `).removeAttr('style');
-                                $('.auclive-sale__bidstatus-title').html('Your account is pending approval');
-                                $('.auclive-sale__bidstatus-text').html('Your registration to participate in this auction is pending approval. Please contact us for assistance.');
-                                $('.auclive-sale__bidstatus').removeClass('green').addClass('red').show();
-                            } else if ($btn.text().includes('You are the high bidder')) {
-                                let nextAskStr = getNextAsk($btn.html(), 'Asking bid: ', '</span>');
-                                $btn.html(`
-                                    <span class="btn__title">Place Bid</span>
-                                    <i class="icon"><svg width="17" height="14" viewBox="0 0 17 14"><use xlink:href="#arrow-right"></use></svg></i>
-                                `).removeAttr('style');
-                                $('.auclive-sale__bidstatus-title').html('You are the highest bidder!');
-                                $('.auclive-sale__bidstatus-text').html('Keep watching until the auction ends to see if you win. ' + nextAskStr);
-                                $('.auclive-sale__bidstatus').removeClass('red').addClass('green').show();
-                            } else if ($btn.text().includes(' now!') && !$btn.text().includes('Register ')) { // BID $xxx NOW!
-                                let nextAskStr = getNextAsk($btn.html(), 'BID ', ' now!');
+                        if (!$btn.length) return;
 
-                                if ($btn.html().includes('btn-outbid')) {
-                                    $('.auclive-sale__bidstatus-title').html('You have been outbid!');
-                                    $('.auclive-sale__bidstatus-text').html('Hit ‘Bid Now’ below to bid again before the auction ends. ' + nextAskStr);
-                                    $('.auclive-sale__bidstatus').removeClass('green').addClass('red').show();
-                                    $btn.find('#btn-outbid').hide();
-                                } else {
-                                    $('.auclive-sale__bidstatus-title').html('Bidding has started!');
-                                    $('.auclive-sale__bidstatus-text').html('Hit ‘Bid Now’ below to place a bid for this item. ' + nextAskStr);
-                                    $('.auclive-sale__bidstatus').removeClass('red').removeClass('green').show();
-                                }
-                                if (!$btn.html().includes('arrow-right')) {
-                                    $btn.html('<span class="btn__title">' + $btn.html().toLowerCase().replace(/!/g, '') + '</span><i class="icon"><svg width="17" height="14" viewBox="0 0 17 14"><use xlink:href="#arrow-right"></use></svg></i>');
-                                }
-                                
-                                $btn.removeAttr('style');
+                        updateBtnObserver.disconnect();
+                            
+                        if ($btn.text().includes('Login to bid')) {
+                            $btn.html(`
+                                <span class="btn__title">Sign In To Bid</span>
+                                <i class="icon"><svg width="17" height="14" viewBox="0 0 17 14"><use xlink:href="#arrow-right"></use></svg></i>
+                            `).removeAttr('style');
+                            $('.auclive-sale__bidstatus-title').html('Bidding has started!');
+                            $('.auclive-sale__bidstatus-text').html('Sign in now to participate in the auction.');
+                            $('.auclive-sale__bidstatus').removeClass('red').removeClass('green').show();
+                        } else if ($btn.text().includes('Pending approval')) {
+                            $btn.html(`
+                                <span class="btn__title">Bid Now</span>
+                                <i class="icon"><svg width="17" height="14" viewBox="0 0 17 14"><use xlink:href="#arrow-right"></use></svg></i>
+                            `).removeAttr('style');
+                            $('.auclive-sale__bidstatus-title').html('Your account is pending approval');
+                            $('.auclive-sale__bidstatus-text').html('Your registration to participate in this auction is pending approval. Please contact us for assistance.');
+                            $('.auclive-sale__bidstatus').removeClass('green').addClass('red').show();
+                        } else if ($btn.text().includes('You are the high bidder')) {
+                            let nextAskStr = getNextAsk($btn.html(), 'Asking bid: ', '</span>');
+                            $btn.html(`
+                                <span class="btn__title">Place Bid</span>
+                                <i class="icon"><svg width="17" height="14" viewBox="0 0 17 14"><use xlink:href="#arrow-right"></use></svg></i>
+                            `).removeAttr('style');
+                            $('.auclive-sale__bidstatus-title').html('You are the highest bidder!');
+                            $('.auclive-sale__bidstatus-text').html('Keep watching until the auction ends to see if you win. ' + nextAskStr);
+                            $('.auclive-sale__bidstatus').removeClass('red').addClass('green').show();
+                        } else if ($btn.text().includes(' now!') && !$btn.text().includes('Register ')) { // BID $xxx NOW!
+                            let nextAskStr = getNextAsk($btn.html(), 'BID ', ' now!');
+
+                            if ($btn.html().includes('btn-outbid')) {
+                                $('.auclive-sale__bidstatus-title').html('You have been outbid!');
+                                $('.auclive-sale__bidstatus-text').html('Hit ‘Bid Now’ below to bid again before the auction ends. ' + nextAskStr);
+                                $('.auclive-sale__bidstatus').removeClass('green').addClass('red').show();
+                                $btn.find('#btn-outbid').hide();
+                            } else {
+                                $('.auclive-sale__bidstatus-title').html('Bidding has started!');
+                                $('.auclive-sale__bidstatus-text').html('Hit ‘Bid Now’ below to place a bid for this item. ' + nextAskStr);
+                                $('.auclive-sale__bidstatus').removeClass('red').removeClass('green').show();
                             }
+                            if (!$btn.html().includes('arrow-right')) {
+                                $btn.html('<span class="btn__title">' + $btn.html().toLowerCase().replace(/!/g, '') + '</span><i class="icon"><svg width="17" height="14" viewBox="0 0 17 14"><use xlink:href="#arrow-right"></use></svg></i>');
+                            }
+                            
+                            $btn.removeAttr('style');
+                        } else if ($btn.text().includes('Register ') && IS_REDIRECT_TO_HOLDING_ROOM) {
+                            redirectPage(URL_PROPSTORE + 'room');
                         }
+                        updateBtnObserve();
+                        updateBidCallback();
                     };
 
-                    const updateBidCallback = () => {
-                        const currentBidAmountStr = $('.current-bid-amt .amount').text() || '';
-                        const currentBidAmount = parseFloat(currentBidAmountStr.replace(/,/g, ''));
+                    const updateBidCallback = function () {
+                        const $currentControl = $(`#${lblCurrentControlId}`);
+                        let currentBidAmount;
+                        let currentBidCurrency;
+                        if ($currentControl.find('.amount').length) {
+                            const currentBidAmountStr = $currentControl.find('.amount').text() || '';
+                            currentBidAmount = parseFloat(currentBidAmountStr.replace(/,/g, ''));
+                            currentBidCurrency = $currentControl.find('.currency').text();
+                        } else {
+                            const currentBidAmountStr = $currentControl.text();
+                            currentBidAmount = parseFloat(currentBidAmountStr.slice(1).replace(/,/g, ''));
+                            currentBidCurrency = currentBidAmountStr.length ? currentBidAmountStr[0] : '';
+                        }
+                        
+                        updateBidObserver.disconnect();
                         if (currentBidAmount) {
-                            const currentBidCurrency = $('.current-bid-amt .currency').text();
                             const currentBidBP = currentBidCurrency + (currentBidAmount * 1.25).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
                             if (!$('.auclive-sale__current-prem').length) $('.current-bid-amt').append('<div class="auclive-sale__current-prem">');
                             $('.auclive-sale__current-prem').html(currentBidBP + ' incl. Buyer’s Prem').show();
                         } else {
                             $('.auclive-sale__current-prem').hide();
                         }
+                        updateBidObserve();
                     };
 
                     const updateLotObserver = new MutationObserver(updateLotCallback);
-                    updateLotObserver.observe($(`#${lblLotNoControlId}`)[0], {characterData: true});
+                    const updateLotObserve = () => updateLotObserver.observe($(`#${lblLotNoControlId}`)[0], {characterData: true, childList: true, subtree: true});
+                    updateLotObserve();
                     updateLotCallback();
-                    const updateBtnObserver = new MutationObserver(updateBtnCallback);
-                    updateBtnObserver.observe($('.live-bid')[0], {characterData: true});
-                    updateBtnCallback();
+
                     const updateBidObserver = new MutationObserver(updateBidCallback);
-                    updateBidObserver.observe($('.current-bid-amt .amount')[0], {characterData: true});
-                    updateBidCallback();
+                    const updateBidObserve = () => updateBidObserver.observe($(`#${lblCurrentControlId}`)[0], {characterData: true, childList: true, subtree: true});
+                    updateBidObserve();
+
+                    const updateBtnObserver = new MutationObserver(updateBtnCallback);
+                    const updateBtnObserve = () => updateBtnObserver.observe($('.live-bid')[0], {characterData: true, childList: true, subtree: true});
+                    updateBtnObserve();
+                    updateBtnCallback();
 
                     let resizeDebounce;
                     function onResize () {
