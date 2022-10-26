@@ -22022,8 +22022,20 @@ span.badge.auction-registration__badge-approved {
   font-style: italic;
 }
 
-#projector__sam {
+.projector__sam {
+  position: relative;
   width: 100%;
+  height: 0;
+  padding-bottom: 70.6%;
+  /* The height of the item will now be 56% of the width. */
+}
+
+.projector__sam iframe {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
 }
 
 .manage-auctions-projector-pop {
