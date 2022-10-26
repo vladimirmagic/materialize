@@ -1792,7 +1792,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         $('.projector__lot').append($('.lot-images-container'), $('.lot-bidding'));
                     } else {
                         $('.product__gallery').append($('.lot-images-container'));
-                        $('.product__info').append($('.lot-bidding'));
+                        $('.product__info').append($('.lot-bidding')).append($('.video-stream'));
                         $('.lot-messages').insertBefore('.video-stream');
                         $('.lot-messages').prepend($('<div class="auclive-sale__messages-bidder">'));
                         $('.auclive-sale__messages-bidder').append($('.bidder-num'));
