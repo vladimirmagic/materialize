@@ -145,7 +145,7 @@
 	position: relative;
 	width: 100%;
 	height: 0;
-	padding-bottom: 70.6%; /* 680x480 */
+	padding-bottom: 75%; /* 4:3 iframe ratio */
 
 	iframe {
 		position: absolute;
@@ -154,6 +154,12 @@
 		left: 0;
 		top: 0;
 	}
+}
+  
+.projector__lot-sign {
+	color: #764AAF;
+	font-size: 1rem;
+	font-style: italic;
 }
 
 @media #{$medium-and-down} {
