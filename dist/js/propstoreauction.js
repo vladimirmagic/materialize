@@ -1732,11 +1732,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 } else if ($('body').hasClass('auctions-live-sale')) {
                     document.querySelectorAll('style:not([data-v2]), link[rel="stylesheet"]:not([data-v2])').forEach(item => item.remove());
 
-                    if (!isSignedIn && IS_REDIRECT_TO_HOLDING_ROOM) {
+                    const isProjector = window.location.hash === '#projector';
+
+                    if (!isProjector && !isSignedIn && IS_REDIRECT_TO_HOLDING_ROOM) {
                         redirectPage(URL_PROPSTORE + 'room');
                     }
-
-                    const isProjector = window.location.hash === '#projector';
 
                     const samVariables = (
                         sam &&
@@ -1788,8 +1788,9 @@ document.addEventListener('DOMContentLoaded', () => {
                     $('.auclive-sale__current').append($('.bidding-main .current'), '<div class="auclive-sale__bidstatus" style="display:none;"><div class="auclive-sale__bidstatus-title"></div><div class="auclive-sale__bidstatus-text"></div></div>');
 
                     if (isProjector) {
-                        $('.product__gallery').append($('<div class="projector__lot"/>'));
+                        $('.product__gallery').append('<div class="projector__lot">');
                         $('.projector__lot').append($('.lot-images-container'), $('.lot-bidding'));
+                        $('.lot-bidding').append('<div class="projector__lot-sign">You must be signed in and registered to bid <br>to participate in the auction.</div>');
                     } else {
                         $('.product__gallery').append($('.lot-images-container'));
                         $('.product__info').append($('.lot-bidding')).append($('.video-stream'));
@@ -1858,8 +1859,8 @@ document.addEventListener('DOMContentLoaded', () => {
                         updateLotObserver.disconnect();
 
                         if ($('#rtb-panel')[0].dataset.lot != currentLot) {
-                            title = 'Lot #' + $('#' + lblLotNoControlId).html() + ': ' + $('#' + lblLotNameControlId).html();
-                            $('.auclive-sale-title').html(title);
+                            // title = 'Lot #' + $('#' + lblLotNoControlId).html() + ': ' + $('#' + lblLotNameControlId).html();
+                            $('.auclive-sale-title').html($('#' + lblLotNameControlId).html());
                         }
 
                         const $desc = $('#' + lblLotDescControlId + ' > *');
@@ -1874,7 +1875,7 @@ document.addEventListener('DOMContentLoaded', () => {
                             }
                         }
 
-                        if ($('.auclive-sale__upcoming')[0].dataset.lot != currentLot) {
+                        if ($('.auclive-sale__upcoming').length && $('.auclive-sale__upcoming')[0].dataset.lot != currentLot) {
                             $upcoming = $('#upcoming-scroll tr');
                             if ($upcoming.length) {
                                 $('.auclive-sale__upcoming')[0].dataset.lot = currentLot;
