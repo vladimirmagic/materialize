@@ -770,6 +770,21 @@
 	max-width: 352px;
 }
 
+.icon-link {
+    padding: 0px;
+    position: absolute;
+    margin: -12px 0 0 -8px;
+}
+
+.modal-salestax {
+	width: 100%;
+	max-width: $w84;
+
+	@media #{$large-and-up} {
+		width: 80%;
+	}
+}
+
 /** MEDIA */
 
 @media #{$breakpoint-4cards} {
