@@ -22086,6 +22086,124 @@ span.badge.auction-registration__badge-approved {
   }
 }
 
+.modal-mail {
+  position: fixed;
+  left: unset;
+  top: unset;
+  right: 16px;
+  bottom: 16px;
+  width: 100%;
+  max-width: 800px;
+  text-align: center;
+}
+
+.modal-mail.show {
+  display: block;
+  opacity: 1;
+}
+
+.modal-mail .modal-header {
+  padding-top: 0;
+}
+
+.modal-mail__content {
+  padding: 0 1.5rem 2rem;
+}
+
+.modal-mail__title {
+  margin-bottom: .4em;
+}
+
+.modal-mail__text {
+  font-size: 18px;
+}
+
+.modal-mail__form {
+  padding-top: 1rem;
+}
+
+.modal-mail__form fieldset {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.modal-mail__recaptcha {
+  -webkit-box-flex: 0;
+  -webkit-flex: 0 0 100%;
+      -ms-flex: 0 0 100%;
+          flex: 0 0 100%;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.modal-mail__recaptcha .g-recaptcha {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.modal-mail__recaptcha .g-recaptcha-field {
+  margin: 0;
+}
+
+.modal-mail__input {
+  margin-right: 24px;
+  width: 100%;
+  max-width: 240px;
+}
+
+.modal-mail__close-label {
+  display: block;
+  margin-left: 1.5rem;
+}
+
+a:not(.btn):not(.btn-large):not(.btn-small):not(.btn-extra-small).modal-mail__close {
+  font-size: 1rem;
+  font-weight: 300;
+  color: #764AAF;
+  cursor: pointer;
+}
+
+a:not(.btn):not(.btn-large):not(.btn-small):not(.btn-extra-small).modal-mail__close:active {
+  color: #764AAF;
+}
+
+@media only screen and (max-width: 1200px) {
+  .modal-mail {
+    left: 0;
+    right: 0;
+    bottom: 0;
+    max-width: none;
+  }
+}
+
+@media only screen and (max-width: 992px) {
+  .modal-mail__form .modal-mail__checkboxes {
+    display: block;
+  }
+  .modal-mail__close-label {
+    margin-top: 1.5rem;
+    margin-left: 0;
+  }
+}
+
 .wp h1 {
   margin-bottom: 2em;
   font-size: 52px;

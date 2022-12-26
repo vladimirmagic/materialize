@@ -25,3 +25,63 @@
         </div>
     </div>
 </div>
+
+<div id="modal-mail" class="modal-mail dropdown-content">
+    <div class="modal-header modal-header--sticky modal-header--title">
+        <a class="modal-close btn-flat btn--icon modal-mail-close">
+            <i class='icon'><svg><use xlink:href="#close"></use></svg></i>
+        </a>
+    </div>
+    <div class="modal-content modal-mail__content">
+        <div class="modal__title modal-mail__title">Looking for something specific? Stay in the loop.</div>
+        <div class="modal-mail__text">
+            We have new items arriving all the time, sign up for our mailing list to get early alerts and more.
+        </div>
+        
+        <form class="modal-mail__form">
+            <fieldset class="modal-mail__recaptcha" style="display: none;">
+                <div class="input-field g-recaptcha-field error1">
+                    <div id="g-recaptcha-mail" class="g-recaptcha" name="code"></div>
+                    <div class="input-field__helper">Please confirm</div>
+                </div>
+            </fieldset>
+
+            <fieldset>
+                <div class="modal-mail__input input-field error1">
+                    <input id="modal-mail__email" type="email">
+                    <label for="modal-mail__email">Email</label>
+                    <div class="input-field__helper">Invalid email</div>
+                </div>
+                <div class="input-field">
+                    <button type="submit" class="waves-effect waves-light btn modal-mail__submit">
+                        <span class='btn__title'>Sign&nbsp;up</span>
+                        <i class='icon'><svg><use xlink:href="#arrow-right"></use></svg></i>
+                    </button>
+                </div>
+            </fieldset>
+
+            <fieldset class="modal-mail__checkboxes">
+                <label class="checkbox__label error1">
+                    <input type="checkbox" class="filled-in" checked="checked" />
+                    <input type="hidden" />
+                    <span>I agree to the <a href="#">Privacy Policy</a> *</span>
+                    <div class="input-field__helper">You have to agree</div>
+                </label>
+                <label class="modal-mail__close-label">
+                    <a class="modal-close modal-mail__close modal-mail-close-forever">
+                        Don’t show me this message again
+                    </a>
+                </label>
+            </fieldset>
+        </form>
+
+        <div class="loader-section" style="display: none;">
+            <div class="preloader-wrapper active"><div class="spinner-layer"><div class="circle-clipper left"><div class="circle"></div></div><div class="gap-patch"><div class="circle"></div></div><div class="circle-clipper right"><div class="circle"></div></div></div></div>
+        </div>
+    </div>
+</div>
+
+<script>
+    const ALGOLIA_APP_ID = 'A5AL9F3L4A';
+    const ALGOLIA_FRONTEND_API_KEY = 'eea59177235126b5aa25bdfa2a6fe6d0';
+</script>

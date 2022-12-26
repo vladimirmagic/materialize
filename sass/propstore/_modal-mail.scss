@@ -1,0 +1,97 @@
+.modal-mail {
+	position: fixed;
+	left: unset;
+    top: unset;
+	right: 16px;
+	bottom: 16px;
+	width: 100%;
+	max-width: 800px;
+	text-align: center;  
+    
+	&.show {
+		display: block;
+    	opacity: 1;
+	}
+
+	.modal-header {
+		padding-top: 0;
+	}
+}
+
+.modal-mail__content {
+	padding: 0 1.5rem 2rem;
+}
+
+.modal-mail__title {
+	margin-bottom: .4em;
+}
+
+.modal-mail__text {
+	font-size: 18px;
+}
+
+.modal-mail__form {
+	padding-top: 1rem;
+
+	fieldset {
+		display: flex;
+		justify-content: center;
+	}
+}
+
+.modal-mail__recaptcha {
+	flex: 0 0 100%;
+	display: flex;
+	justify-content: center;
+
+	.g-recaptcha {
+		display: flex;
+		justify-content: center;
+	}
+
+	.g-recaptcha-field {
+		margin: 0;
+	}
+}
+
+.modal-mail__input {
+	margin-right: 24px;
+	width: 100%;
+	max-width: 240px;
+}
+
+.modal-mail__close-label {
+	display: block;
+	margin-left: 1.5rem;
+}
+
+a:not(.btn).modal-mail__close {
+	font-size: 1rem;
+	font-weight: 300;
+	color: $primary-color;
+	cursor: pointer;
+
+	&:active {
+		color: $primary-color;
+	}
+}
+
+@media #{$large-and-down} {
+	.modal-mail {
+		left: 0;
+		right: 0;
+		bottom: 0;
+		max-width: none;
+	}
+}
+
+@media #{$medium-and-down} {
+	.modal-mail__form .modal-mail__checkboxes {
+		display: block;
+	}
+
+	.modal-mail__close-label {
+		margin-top: 1.5rem;
+		margin-left: 0;
+	}
+}

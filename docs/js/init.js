@@ -1412,6 +1412,23 @@ document.addEventListener('DOMContentLoaded', () => {
             $('#filterForm').submit(function () {
                 $('.loader-block').show();
             });
+
+            // MAIL MODAL
+            function showMailModal() {
+                if ($(window).scrollTop() > $(window).height() * 3) {
+                    $(window).off('scroll', showMailModal);
+                    $('#modal-mail').addClass('show');
+                    $('.modal-mail__form input').on('focus', function () {
+                        $('.modal-mail__recaptcha').show();
+                    });
+
+                    $('#modal-mail .loader-section').show();
+                }
+            }
+            const isMailModalCookie = $.cookie('mail_modal');
+            if (!isMailModalCookie) {
+                $(window).on('scroll', showMailModal);
+            }
         }
 
         function addProductGallery() {
