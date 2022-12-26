@@ -6855,6 +6855,13 @@ textarea.materialize-textarea:focus-within {
   margin: 0;
 }
 
+.input-field__helper .errorMessage li {
+  min-height: none;
+  line-height: inherit;
+  padding: 0;
+  color: inherit;
+}
+
 .input-field.error input:not(.browser-default),
 .input-field.error textarea.materialize-textarea {
   border: 2px solid #F93838 !important;
@@ -22088,13 +22095,20 @@ span.badge.auction-registration__badge-approved {
 
 .modal-mail {
   position: fixed;
-  left: unset;
-  top: unset;
   right: 16px;
   bottom: 16px;
   width: 100%;
   max-width: 800px;
+  padding: 8px 0;
   text-align: center;
+  background-color: white;
+  -webkit-box-shadow: 0px 8px 32px -10px rgba(0, 0, 0, 0.15);
+          box-shadow: 0px 8px 32px -10px rgba(0, 0, 0, 0.15);
+  border-radius: 6px;
+  overflow-y: auto;
+  z-index: 1000;
+  display: none;
+  opacity: 0;
 }
 
 .modal-mail.show {
