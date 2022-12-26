@@ -881,7 +881,7 @@ document.addEventListener('DOMContentLoaded', () => {
                             $badgeNew.addClass('green').append(`<i class="icon"><svg><use xlink:href="#live"></use></svg></i>Live`);
                         } else if ($badge.find('.ended').length) {
                             if (!$('a[name="ended"]').length) {
-                                $('<a name="ended"/>').insertBefore($(item));
+                                $(item).prepend('<a name="ended">');
                             }
                             $badgeNew.addClass('red').append(`<i class='icon'><svg><use xlink:href="#flag"></use></svg></i>Ended`);
                         } else {
