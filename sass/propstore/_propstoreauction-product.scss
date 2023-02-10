@@ -68,6 +68,12 @@
 
 .aucproduct__details-line {
 	margin-top: .5rem;
+
+	.card__price-i {
+		top: unset;
+		right: unset;
+		margin: -8px 0 0 -6px;
+	}
 }
 
 .aucproduct__timer {

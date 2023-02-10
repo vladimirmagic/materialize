@@ -488,6 +488,18 @@ body.search-index {
 		width: 100%;
 		max-width: 624px;
 	}
+
+	.item-win-bid {
+		.card__price-i {
+			top: unset;
+			right: unset;
+			margin: -12px 0 0 -10px;
+		}
+	}
+
+	a:before {
+		display: none;
+	}
 }
 
 .aucproduct__card-details {

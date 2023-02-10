@@ -12657,6 +12657,10 @@ a:not(.btn):not(.btn-large):not(.btn-small):not(.btn-extra-small).footer__terms-
   display: inline-block;
 }
 
+.card a:before, .card-blog a:before {
+  display: none;
+}
+
 .card-blog {
   height: auto !important;
 }
@@ -23174,6 +23178,12 @@ footer .auclting {
   margin-top: .5rem;
 }
 
+.aucproduct__details-line .card__price-i {
+  top: unset;
+  right: unset;
+  margin: -8px 0 0 -6px;
+}
+
 .aucproduct__timer {
   color: #F93838;
 }
@@ -24022,6 +24032,16 @@ body.search-index .categories-match {
 .aucproduct__card .card__bid {
   width: 100%;
   max-width: 624px;
+}
+
+.aucproduct__card .item-win-bid .card__price-i {
+  top: unset;
+  right: unset;
+  margin: -12px 0 0 -10px;
+}
+
+.aucproduct__card a:before {
+  display: none;
 }
 
 .aucproduct__card-details {

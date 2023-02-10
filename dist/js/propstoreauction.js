@@ -562,7 +562,11 @@ document.addEventListener('DOMContentLoaded', () => {
                             let winLabel = messageArr.length ? messageArr[0] : '';
                             $lineWin.html(winLabel);
                             $strong = $('<strong>');
-                            $strong.append(winVal, ' ', $('.biddingHistoryLink'));
+                            $strong.append(winVal, ' ', $('.biddingHistoryLink'), 
+                                `<span class="waves-effect btn-flat btn--icon card__price-i dropdown-trigger" data-target="dropdown-incl-buyers-premium">
+                                    <i class='icon'><svg><use xlink:href="#i"></use></svg></i>
+                                </span>`
+                            );
                             $lineWin.append($strong);
                         } else {
                             $lineWin.html(`<div class="product__price sso-trigger">
@@ -1017,12 +1021,12 @@ document.addEventListener('DOMContentLoaded', () => {
     <div class="auccatalog__search-panel"></div>
     <div class="cards__list">
         <div class="card aucproduct__card">
-            <div class="card__img">
+            <a class="card__img">
                 <span class="heart card__heart" style="display: none;"></span>
                 <span class="badge card__badge" style="display: none;">
                     <i class="icon"><svg><use xlink:href="#"></use></svg></i>
                 </span>
-            </div>
+            </a>
             <div class="card__info">
                 <div class="card__description">
                     <div class="card__movie"></div>
@@ -1214,6 +1218,7 @@ document.addEventListener('DOMContentLoaded', () => {
                             }
                             $cardItem.find('.card__description').addClass('bd-info-' + $aid.data('alid'));
                         }
+                        $cardItem.find('.card__img').attr('href', $(item).find('.yaaa').attr('href'));
                         const $img = $(item).find('figure').length > 1 ? $(item).find('.figure-col img') : $(item).find('figure img'); // 2 figure in list view
                         if ($img.length) {
                             let bg = $img.prop('src');
@@ -1251,6 +1256,11 @@ document.addEventListener('DOMContentLoaded', () => {
                                     $info.find('.value').addClass('aucproduct__card-details-value');
                                     $info.addClass('aucproduct__card-details-row');
                                     $cardItem.find('.aucproduct__card-details').append($info);
+                                }
+                                if ($info.hasClass('item-win-bid')) {
+                                    $info.find('.aucproduct__card-details-value').append(`<span class="waves-effect btn-flat btn--icon card__price-i dropdown-trigger" data-target="dropdown-incl-buyers-premium">
+                                        <i class='icon'><svg><use xlink:href="#i"></use></svg></i>
+                                    </span>`);
                                 }
                             });
                         } else {
