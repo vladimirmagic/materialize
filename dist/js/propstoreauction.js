@@ -1456,6 +1456,28 @@ document.addEventListener('DOMContentLoaded', () => {
                         });
                     }
 
+                    setTimeout(() => {
+                        const referrer = document.referrer;
+                        if (referrer && referrer.includes('/auctions/confirm-bid')) { // after confirm-bid scroll to lot
+                            const params = referrer.split('&');
+                            console.log(params);
+                            if (params) {
+                                for (let i=0; i<params.length; i++) {
+                                    if (params[i].includes('auc-lot=')) {
+                                        const lot = params[i].split('auc-lot=');
+                                        console.log(lot);
+                                        if (lot && lot.length && lot.length > 1) {
+                                            const $card = $('.aucproduct__card[data-alid="' + lot[1] + '"]');
+                                            $card[0].scrollIntoView({'block': 'center', 'behavior': 'smooth'});
+                                        }
+                                        break;
+                                    }
+                                }
+                            }
+                        }
+                    }, 100);
+                    
+
                     try {
                         window.catalogCalendarAutomation();
                     } catch (e) {
