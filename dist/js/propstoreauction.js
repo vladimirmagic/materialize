@@ -1218,7 +1218,9 @@ document.addEventListener('DOMContentLoaded', () => {
                             }
                             $cardItem.find('.card__description').addClass('bd-info-' + $aid.data('alid'));
                         }
-                        $cardItem.find('.card__img').attr('href', $(item).find('.yaaa').attr('href'));
+                        
+                        const $titleEl = $(item).find('.yaaa');
+                        $cardItem.find('.card__img').attr('href', $titleEl.attr('href'));
                         const $img = $(item).find('figure').length > 1 ? $(item).find('.figure-col img') : $(item).find('figure img'); // 2 figure in list view
                         if ($img.length) {
                             let bg = $img.prop('src');
@@ -1238,7 +1240,8 @@ document.addEventListener('DOMContentLoaded', () => {
                                 }, 1000);
                             });
                         }
-                        $cardItem.find('.card__movie').append($(item).find('.yaaa'));
+                        $titleEl.attr('title', $titleEl.text().trim());
+                        $cardItem.find('.card__movie').append($titleEl);
                         $badge = $cardItem.find('.card__badge')
                         if ($(item).find('.ended.sold').length) {
                             $badge.addClass('red').append('Sold').show().find('use').attr('xlink:href', '#flag');

@@ -12657,10 +12657,6 @@ a:not(.btn):not(.btn-large):not(.btn-small):not(.btn-extra-small).footer__terms-
   display: inline-block;
 }
 
-.card a:before, .card-blog a:before {
-  display: none;
-}
-
 .card-blog {
   height: auto !important;
 }
