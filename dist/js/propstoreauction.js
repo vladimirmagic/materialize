@@ -1208,169 +1208,211 @@ document.addEventListener('DOMContentLoaded', () => {
 
                     const cardsLength = $('.item-block').length;
                     let cardsLoaded = 0;
-                    $('.item-block').each((i, item) => {
+
+                    function prepareItem(i, item) {
                         const $aid = $(item).find('section[data-aid]');
                         let id = $aid.length ? $aid.data('aid') : 0;
-                        $cardItem = $card.clone();
-                        if ($aid.length && $aid.data()) { // data-lid="91233" data-aid="341" data-alid="135184"
-                            for (let data in $aid.data()) {
-                                $cardItem.attr('data-' + data, $aid.data(data));
+                        $cardExist = $('.aucproduct__card[data-alid="' + $aid.data('alid') + '"]');
+                        const isExist = $cardExist && $cardExist.length;
+                        $cardItem = isExist ? $cardExist : $card.clone();
+                        if (!isExist) {
+                            if ($aid.length && $aid.data()) { // data-lid="91233" data-aid="341" data-alid="135184"
+                                for (let data in $aid.data()) {
+                                    $cardItem.attr('data-' + data, $aid.data(data));
+                                }
+                                $cardItem.find('.card__description').addClass('bd-info-' + $aid.data('alid'));
                             }
-                            $cardItem.find('.card__description').addClass('bd-info-' + $aid.data('alid'));
-                        }
-                        
-                        const $titleEl = $(item).find('.yaaa');
-                        $cardItem.find('.card__img').attr('href', $titleEl.attr('href'));
-                        const $img = $(item).find('figure').length > 1 ? $(item).find('.figure-col img') : $(item).find('figure img'); // 2 figure in list view
-                        if ($img.length) {
-                            let bg = $img.prop('src');
-                            $cardItem.find('.card__img').css('background-image', 'url(' + bg + ')');
-                            $img.on('load', () => {
-                                cardsLoaded++;
-                                let interval = setInterval(()=>{ // start load big images after 80% default images loaded
-                                    if (cardsLoaded >= cardsLength * .8) {
-                                        clearInterval(interval);
-                                        bg = bg.replace('_6.', '_0.');
-                                        const $img = $('<img src="' + bg + '">');
-                                        $('#div-hidden').append($img);
-                                        $img.on('load', () => {
-                                            $('.card__img').eq(i).css('background-image', 'url(' + bg + ')');
-                                        });
+                            
+                            const $titleEl = $(item).find('.yaaa');
+                            $cardItem.find('.card__img').attr('href', $titleEl.attr('href'));
+                            const $img = $(item).find('figure').length > 1 ? $(item).find('.figure-col img') : $(item).find('figure img'); // 2 figure in list view
+                            if ($img.length) {
+                                let bg = $img.prop('src');
+                                $cardItem.find('.card__img').css('background-image', 'url(' + bg + ')');
+                                $img.on('load', () => {
+                                    cardsLoaded++;
+                                    let interval = setInterval(()=>{ // start load big images after 80% default images loaded
+                                        if (cardsLoaded >= cardsLength * .8) {
+                                            clearInterval(interval);
+                                            bg = bg.replace('_6.', '_0.');
+                                            const $img = $('<img src="' + bg + '">');
+                                            $('#div-hidden').append($img);
+                                            $img.on('load', () => {
+                                                $('.card__img').eq(i).css('background-image', 'url(' + bg + ')');
+                                            });
+                                        }
+                                    }, 1000);
+                                });
+                            }
+                            $titleEl.attr('title', $titleEl.text().trim());
+                            $cardItem.find('.card__movie').append($titleEl.clone());
+                            $badge = $cardItem.find('.card__badge');
+                            if ($(item).find('.ended.sold').length) {
+                                $badge.addClass('red').append('Sold').show().find('use').attr('xlink:href', '#flag');
+                            } else if ($(item).find('.ended.unsold').length) {
+                                $badge.append('Unsold').show().find('use').attr('xlink:href', '#archive');
+                            } else if ($(item).find('.ended').length) {
+                                $badge.append('Ended').show().find('use').attr('xlink:href', '#archive');
+                            }
+
+                            if (isSignedIn || !$(item).find('.ended').length) {
+                                $(item).find('.price-info li').each((k, info) => {
+                                    const $info = $(info).clone();
+                                    if ($info.text()) {
+                                        $info.find('.title').addClass('aucproduct__card-details-label');
+                                        $info.find('.value').addClass('aucproduct__card-details-value');
+                                        $info.addClass('aucproduct__card-details-row');
+                                        $cardItem.find('.aucproduct__card-details').append($info);
                                     }
-                                }, 1000);
-                            });
-                        }
-                        $titleEl.attr('title', $titleEl.text().trim());
-                        $cardItem.find('.card__movie').append($titleEl);
-                        $badge = $cardItem.find('.card__badge')
-                        if ($(item).find('.ended.sold').length) {
-                            $badge.addClass('red').append('Sold').show().find('use').attr('xlink:href', '#flag');
-                        } else if ($(item).find('.ended.unsold').length) {
-                            $badge.append('Unsold').show().find('use').attr('xlink:href', '#archive');
-                        } else if ($(item).find('.ended').length) {
-                            $badge.append('Ended').show().find('use').attr('xlink:href', '#archive');
-                        }
-
-                        if (isSignedIn || !$(item).find('.ended').length) {
-                            $(item).find('.price-info li').each((k, info) => {
-                                const $info = $(info);
-                                if ($info.text()) {
-                                    $info.find('.title').addClass('aucproduct__card-details-label');
-                                    $info.find('.value').addClass('aucproduct__card-details-value');
-                                    $info.addClass('aucproduct__card-details-row');
-                                    $cardItem.find('.aucproduct__card-details').append($info);
-                                }
-                                if ($info.hasClass('item-win-bid')) {
-                                    $info.find('.aucproduct__card-details-value').append(`<span class="waves-effect btn-flat btn--icon card__price-i dropdown-trigger" data-target="dropdown-incl-buyers-premium">
-                                        <i class='icon'><svg><use xlink:href="#i"></use></svg></i>
-                                    </span>`);
-                                }
-                            });
-                        } else {
-                            $cardItem.find('.aucproduct__card-details').append(`<a class="card__price card__price--login sso-trigger">
-                                <i class="icon card__price-sold">?</i>
-                                <span class="card__price-sold-login">
-                                    Login to See Winning Bid
-                            </span></a>`);
-                        }
-                        $(item).find('.item-status').remove();
-
-                        const $timelft = $(item).find('.timelft');
-                        if ($timelft.length && $timelft.text()) {
-                            $cardItem.find('.aucproduct__card-details').append(`<div class="aucproduct__card-details-row">
-                <div class="aucproduct__card-details-label">Time Left</div>
-                <div class="aucproduct__card-details-value aucproduct__card-details-timer"></div>
-            </div>`);
-                            $cardItem.find('.aucproduct__card-details-timer').append($timelft);
-                        }
-                        const $btn = $(item).find('.auclistbtn .orng, .auclistbtn .grey');
-                        if ($btn.length) {
-                            $btn.addClass('waves-effect waves-light btn aucproduct__card-btn');
-                            $cardItem.find('.card__actions').append($btn);
-
-                            if ($btn[0].href) {
-                                const isSign =  $btn[0].href.includes('/login/');
-                                const isRegister =  $btn[0].href.includes('/register/');
-
-                                if (isSign || isRegister) {
-                                    if (!customRegisterButtons[id]) {
-                                        $('#div-hidden').append('<div id="customRegisterButton' + id + '">');
-                                        const customRegisterButtonBefore = window.getComputedStyle(document.querySelector('#customRegisterButton' + id), ':before');
-                                        const customRegisterButtonAfter = window.getComputedStyle(document.querySelector('#customRegisterButton' + id), ':after');
-                                        const url = customRegisterButtonBefore && customRegisterButtonBefore.content && customRegisterButtonBefore.content != 'none' ? customRegisterButtonBefore.content.replaceAll('"', '') : null;
-                                        const title = customRegisterButtonAfter && customRegisterButtonAfter.content && customRegisterButtonAfter.content != 'none' ? customRegisterButtonAfter.content.replaceAll('"', '') : null;
-                                        customRegisterButtons[id] = { url, title };
+                                    if ($info.hasClass('item-win-bid')) {
+                                        $info.find('.aucproduct__card-details-value').append(`<span class="waves-effect btn-flat btn--icon card__price-i dropdown-trigger" data-target="dropdown-incl-buyers-premium">
+                                            <i class='icon'><svg><use xlink:href="#i"></use></svg></i>
+                                        </span>`);
                                     }
+                                });
+                            } else {
+                                $cardItem.find('.aucproduct__card-details').append(`<a class="card__price card__price--login sso-trigger">
+                                    <i class="icon card__price-sold">?</i>
+                                    <span class="card__price-sold-login">
+                                        Login to See Winning Bid
+                                </span></a>`);
+                            }
+                            $(item).find('.item-status').remove();
 
-                                    if (customRegisterButtons[id].url) {
-                                        $btn.attr('href', customRegisterButtons[id].url).attr('target', '_blank');
-                                    } else {
-                                        $btn.on('click', function (e) {
-                                            e.preventDefault();
-                                            openAuctionRegistration(id);
-                                        });
-                                    }
+                            const $timelft = $(item).find('.timelft');
+                            if ($timelft.length && $timelft.text()) {
+                                $cardItem.find('.aucproduct__card-details').append(`<div class="aucproduct__card-details-row">
+                    <div class="aucproduct__card-details-label">Time Left</div>
+                    <div class="aucproduct__card-details-value aucproduct__card-details-timer"></div>
+                </div>`);
+                                $cardItem.find('.aucproduct__card-details-timer').append($timelft);
+                            }
+                            const $btn = $(item).find('.auclistbtn .orng, .auclistbtn .grey');
+                            if ($btn.length) {
+                                $btn.addClass('waves-effect waves-light btn aucproduct__card-btn');
+                                $cardItem.find('.card__actions').append($btn);
 
-                                    if (isSign) {
-                                        $btn.text(customRegisterButtons[id].title || 'Sign in to bid');
-                                    } else if (isRegister) {
-                                        $btn.text(customRegisterButtons[id].title || 'Register for auction');
+                                if ($btn[0].href) {
+                                    const isSign =  $btn[0].href.includes('/login/');
+                                    const isRegister =  $btn[0].href.includes('/register/');
+
+                                    if (isSign || isRegister) {
+                                        if (!customRegisterButtons[id]) {
+                                            $('#div-hidden').append('<div id="customRegisterButton' + id + '">');
+                                            const customRegisterButtonBefore = window.getComputedStyle(document.querySelector('#customRegisterButton' + id), ':before');
+                                            const customRegisterButtonAfter = window.getComputedStyle(document.querySelector('#customRegisterButton' + id), ':after');
+                                            const url = customRegisterButtonBefore && customRegisterButtonBefore.content && customRegisterButtonBefore.content != 'none' ? customRegisterButtonBefore.content.replaceAll('"', '') : null;
+                                            const title = customRegisterButtonAfter && customRegisterButtonAfter.content && customRegisterButtonAfter.content != 'none' ? customRegisterButtonAfter.content.replaceAll('"', '') : null;
+                                            customRegisterButtons[id] = { url, title };
+                                        }
+
+                                        if (customRegisterButtons[id].url) {
+                                            $btn.attr('href', customRegisterButtons[id].url).attr('target', '_blank');
+                                        } else {
+                                            $btn.on('click', function (e) {
+                                                e.preventDefault();
+                                                openAuctionRegistration(id);
+                                            });
+                                        }
+
+                                        if (isSign) {
+                                            $btn.text(customRegisterButtons[id].title || 'Sign in to bid');
+                                        } else if (isRegister) {
+                                            $btn.text(customRegisterButtons[id].title || 'Register for auction');
+                                        }
                                     }
                                 }
                             }
-                        }
-                        const $bid = $(item).find('[id^="blkRegularBid"]');
-                        if ($bid.length) {
-                            $curInput = $bid.find('.currency-input');
-                            $curInputSpan = $('<div>');
-                            $curInputSpan.append($curInput.find('span'));
-                            $curInputLabel = $('<div class="currency-input__label">');
-                            $curInputLabel.html($curInput.html());
-                            $curInput.html('')
-                            $curInput.append($curInputLabel);
-                            $curInput.append($curInputSpan.find('span'));
-                            $bid.find('input[type="button"]').addClass('waves-effect waves-light btn btn--tertiary');
-                            $bid.find('input[type="text"]').attr('autocomplete', 'off');
-                            $cardItem.find('.card__bid').append($bid.addClass('blkRegularBid'));
+                            const $bid = $(item).find('[id^="blkRegularBid"]');
+                            if ($bid.length) {
+                                $curInput = $bid.find('.currency-input');
+                                $curInputSpan = $('<div>');
+                                $curInputSpan.append($curInput.find('span'));
+                                $curInputLabel = $('<div class="currency-input__label">');
+                                $curInputLabel.html($curInput.html());
+                                $curInput.html('')
+                                $curInput.append($curInputLabel);
+                                $curInput.append($curInputSpan.find('span'));
+                                $bid.find('input[type="button"]').addClass('waves-effect waves-light btn btn--tertiary');
+                                $bid.find('input[type="text"]').attr('autocomplete', 'off');
+                                $cardItem.find('.card__bid').append($bid.addClass('blkRegularBid'));
 
-                            $bid.find('.unibtn').last().append(`<span class="waves-effect btn-flat btn--icon card__price-i dropdown-trigger" data-target='dropdown-bids-placed'>
-                                <i class='icon'><svg><use xlink:href="#question"></use></svg></i>
-                            </span>`);
-                        }
-                        const $biddingStatus = $(item).find('.bidding-status');
-                        if ($biddingStatus.length) {
-                            $cardItem.find('.aucproduct__card-details').append(`<div class="aucproduct__card-details-row">
-                                <div class="aucproduct__card-details-label"></div>
-                                <div class="aucproduct__card-details-value aucproduct__card-details-bidding"></div>
-                            </div>`);
-
-                            if ($biddingStatus.text().includes('reserve')) {
-                                $biddingStatus.append(`<span class="waves-effect btn-flat btn--icon card__price-i dropdown-trigger" data-target='dropdown-reserve-price'>
+                                $bid.find('.unibtn').last().append(`<span class="waves-effect btn-flat btn--icon card__price-i dropdown-trigger" data-target='dropdown-bids-placed'>
                                     <i class='icon'><svg><use xlink:href="#question"></use></svg></i>
                                 </span>`);
                             }
+                            const $biddingStatus = $(item).find('.bidding-status');
+                            if ($biddingStatus.length) {
+                                $cardItem.find('.aucproduct__card-details').append(`<div class="aucproduct__card-details-row">
+                                    <div class="aucproduct__card-details-label"></div>
+                                    <div class="aucproduct__card-details-value aucproduct__card-details-bidding"></div>
+                                </div>`);
 
-                            $cardItem.find('.aucproduct__card-details-bidding').append($biddingStatus);
-                        }
-                        
-                        const $heart = $(item).find('.bd-chk');
-                        if ($heart.length) {
-                            $cardItem.find('.heart').append($heart).show();
-                            if ($heart.find('input').prop('checked')) $cardItem.addClass('card--liked');
-                            $heart.find('input').on('change', function(e) {
-                                $(e.target).closest('.card').toggleClass('card--liked', $heart.find('input').prop('checked'));
-                            });
-                        }
+                                if ($biddingStatus.text().includes('reserve')) {
+                                    $biddingStatus.append(`<span class="waves-effect btn-flat btn--icon card__price-i dropdown-trigger" data-target='dropdown-reserve-price'>
+                                        <i class='icon'><svg><use xlink:href="#question"></use></svg></i>
+                                    </span>`);
+                                }
 
-                        $cardItem.on('click', function(e) {
-                            if (!$(e.target).is("input") && !$(e.target).is("a") && !$(e.target).closest('a').length
-                                && !$(e.target).closest('.card__price-i').length
-                            ) {
-                                redirectPage($(e.target).closest('.card').find('.yaaa').attr('href'));
+                                $cardItem.find('.aucproduct__card-details-bidding').append($biddingStatus);
                             }
-                        });
+                            
+                            const $heart = $(item).find('.bd-chk');
+                            if ($heart.length) {
+                                $cardItem.find('.heart').append($heart).show();
+                                if ($heart.find('input').prop('checked')) $cardItem.addClass('card--liked');
+                                $heart.find('input').on('change', function(e) {
+                                    $(e.target).closest('.card').toggleClass('card--liked', $heart.find('input').prop('checked'));
+                                });
+                            }
 
-                        $('.cards__list').append($cardItem);
+                            $cardItem.on('click', function(e) {
+                                if (!$(e.target).is("input") && !$(e.target).is("a") && !$(e.target).closest('a').length
+                                    && !$(e.target).closest('.card__price-i').length
+                                ) {
+                                    redirectPage($(e.target).closest('.card').find('.yaaa').attr('href'));
+                                }
+                            });
+
+                            $('.cards__list').append($cardItem);
+                        } else {
+                            if ($cardItem.find('.item-status').length) {
+                                if (!$cardItem.find('.card__movie').length) {
+                                    $cardItem.find('.card__description').prepend('<div class="card__movie"></div>');
+                                    const $titleEl = $(item).find('.yaaa');
+                                    $titleEl.attr('title', $titleEl.text().trim());
+                                    $cardItem.find('.card__movie').append($titleEl.clone());
+                                }
+
+                                $badge = $cardItem.find('.card__badge');
+                                $badge.html($badge.find('.icon'));
+                                if ($cardItem.find('.ended.sold').length) {
+                                    $badge.addClass('red').append('Sold').show().find('use').attr('xlink:href', '#flag');
+                                } else if ($cardItem.find('.ended.unsold').length) {
+                                    $badge.append('Unsold').show().find('use').attr('xlink:href', '#archive');
+                                } else if ($cardItem.find('.ended').length) {
+                                    $badge.append('Ended').show().find('use').attr('xlink:href', '#archive');
+                                }
+                                
+                                $cardItem.find('.price-info li:not(.aucproduct__card-details-row)').each((k, info) => {
+                                    const $info = $(info);
+                                    if ($info.text()) {
+                                        $info.find('.title').addClass('aucproduct__card-details-label');
+                                        $info.find('.value').addClass('aucproduct__card-details-value');
+                                        $info.addClass('aucproduct__card-details-row');
+                                    } else {
+                                        $info.remove();
+                                    }
+                                });
+                                $(item).find('.item-status').remove();
+                            }
+                        }
+                    }
+
+                    $('.item-block').each((i, item) => {
+                        prepareItem(i, item);
+                        const observer = new MutationObserver(() => prepareItem(i, item));
+                        observer.observe(item, {characterData: true, childList: true, subtree: true});
                     });
 
 
