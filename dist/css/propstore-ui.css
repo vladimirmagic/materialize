@@ -4904,6 +4904,11 @@ small {
   margin-right: 4px;
 }
 
+.btn .icon--small, .btn-large .icon--small, .btn-small .icon--small, .btn-extra-small .icon--small,
+.btn-flat .icon--small {
+  width: 16px;
+}
+
 .btn__title + .icon {
   margin-right: 0;
   margin-left: 16px;
@@ -22215,6 +22220,267 @@ a:not(.btn):not(.btn-large):not(.btn-small):not(.btn-extra-small).modal-mail__cl
   .modal-mail__close-label {
     margin-top: 1.5rem;
     margin-left: 0;
+  }
+}
+
+.landing-cat .also-like__title {
+  margin: 0;
+}
+
+.landing-cat .section-sell {
+  padding-top: 0;
+}
+
+.landing-cat__anchors {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-flex-wrap: wrap;
+      -ms-flex-wrap: wrap;
+          flex-wrap: wrap;
+  gap: 1.5rem;
+  margin-top: 4.5rem;
+}
+
+.landing-cat__whatsnew {
+  margin-top: 4.5rem;
+  padding-top: 5rem;
+  background: #F4F4F4;
+}
+
+.landing-cat__whatsnew .whatsnew__cards:before {
+  background: -webkit-gradient(linear, left top, right top, from(#F4F4F4), to(rgba(255, 255, 255, 0)));
+  background: linear-gradient(to right, #F4F4F4, rgba(255, 255, 255, 0));
+}
+
+.landing-cat__whatsnew .whatsnew__cards:after {
+  background: -webkit-gradient(linear, right top, left top, from(#F4F4F4), to(rgba(255, 255, 255, 0)));
+  background: linear-gradient(to left, #F4F4F4, rgba(255, 255, 255, 0));
+}
+
+.landing-cat__current-items .section-auctions__item {
+  background: #F4F4F4;
+}
+
+.landing-cat__featured {
+  padding-bottom: 1rem;
+  background: #F4F4F4;
+  border-bottom-right-radius: 140px;
+  overflow: hidden;
+}
+
+.landing-cat__featured .cards, .landing-cat__featured .cards-blog {
+  padding-top: 0;
+}
+
+.landing-cat__more-auctions {
+  padding-top: 6rem;
+  text-align: center;
+}
+
+.landing-cat__more-auctions .cards, .landing-cat__more-auctions .cards-blog {
+  background: white;
+}
+
+.landing-cat__more-auctions .cards__list {
+  gap: 1.5rem;
+}
+
+.landing-cat__more-auctions a {
+  position: relative;
+  display: block;
+  width: 356px;
+  min-width: 356px;
+  height: auto;
+  padding: 0;
+  text-align: left;
+  font-size: 20px;
+  line-height: 1.5rem;
+  text-transform: none;
+  letter-spacing: 0;
+}
+
+.landing-cat__more-auctions a > .icon {
+  display: block;
+  width: 100%;
+  height: 220px;
+  margin-bottom: 12px;
+  background-position: 50% 50%;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-color: #212121;
+  -webkit-transition: all .2s ease;
+  transition: all .2s ease;
+}
+
+.landing-cat__more-auctions a:focus, .landing-cat__more-auctions a:hover {
+  background: none;
+}
+
+.landing-cat__more-auctions a:focus .icon, .landing-cat__more-auctions a:hover .icon {
+  -webkit-box-shadow: 0px 3px 20px -5px rgba(0, 0, 0, 0.6);
+          box-shadow: 0px 3px 20px -5px rgba(0, 0, 0, 0.6);
+}
+
+.landing-cat__more-auctions a:active .icon {
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+
+.landing-cat__more-auctions a .badge {
+  display: block;
+  width: -webkit-min-content;
+  width: -moz-min-content;
+  width: min-content;
+  margin-top: 1rem;
+  font-size: 10px;
+  line-height: 1.5rem;
+  height: 1.5rem;
+}
+
+.landing-cat__more-auctions a .badge .icon {
+  width: 14px !important;
+  height: 20px !important;
+}
+
+.landing-cat__grey {
+  padding-bottom: 1rem;
+  background: #F4F4F4;
+}
+
+.landing-cat__specialists {
+  margin: 0 auto;
+  max-width: 1496px;
+  padding-top: 6rem;
+  text-align: center;
+}
+
+.landing-cat__specialists-h1 {
+  margin-bottom: .8em;
+  font-weight: 500;
+}
+
+.landing-cat__specialists-text1 {
+  max-width: 55rem;
+  margin: 0 auto;
+  padding-bottom: 3em;
+}
+
+.landing-cat__specialists-list {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  gap: 1.5rem;
+  text-align: left;
+}
+
+.landing-cat__specialists-item {
+  -webkit-box-flex: 1;
+  -webkit-flex: 1 1 50%;
+      -ms-flex: 1 1 50%;
+          flex: 1 1 50%;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  background: white;
+  -webkit-box-shadow: 0px 8px 32px -10px rgba(0, 0, 0, 0.15);
+          box-shadow: 0px 8px 32px -10px rgba(0, 0, 0, 0.15);
+  border-radius: 6px;
+}
+
+.landing-cat__specialists-item-photo img {
+  max-width: none !important;
+}
+
+.landing-cat__specialists-item-info {
+  padding: 2rem 4rem 2rem 1.5rem;
+}
+
+.landing-cat__specialists-item-name {
+  margin-bottom: .3em;
+}
+
+.landing-cat__specialists-item-name .icon {
+  width: 2rem;
+  height: 2rem;
+  margin: -4px 16px 0 0;
+}
+
+.landing-cat__specialists-item-desc {
+  margin-bottom: 2em;
+}
+
+.landing-cat__specialists-item-address {
+  margin-top: 2em;
+}
+
+.landing-cat__specialists-item-address a:not(.btn):not(.btn-large):not(.btn-small):not(.btn-extra-small) {
+  font-weight: 300;
+}
+
+@media only screen and (max-width: 1636px) {
+  .landing-cat__more-auctions .cards__list {
+    gap: 16px;
+  }
+  .landing-cat__more-auctions a {
+    width: 304px;
+    min-width: 304px;
+  }
+}
+
+@media only screen and (max-width: 1200px) {
+  .landing-cat__anchors {
+    gap: 1rem;
+    margin-top: 2rem;
+  }
+  .landing-cat__whatsnew {
+    margin-top: 2rem;
+    padding-top: 2.5rem;
+  }
+  .landing-cat__featured {
+    border-bottom-right-radius: 100px;
+  }
+  .landing-cat__more-auctions {
+    padding-top: 3rem;
+  }
+  .landing-cat__grey {
+    padding-bottom: 2.5rem;
+  }
+  .landing-cat__specialists {
+    padding-top: 3rem;
+  }
+  .landing-cat__specialists-list {
+    -webkit-flex-wrap: wrap;
+        -ms-flex-wrap: wrap;
+            flex-wrap: wrap;
+    padding: 0 1rem;
+  }
+}
+
+@media only screen and (max-width: 992px) {
+  .landing-cat .also-like {
+    padding-top: 1rem;
+  }
+  .landing-cat__featured {
+    border-bottom-right-radius: 0;
+  }
+  .landing-cat__more-auctions a {
+    width: 50%;
+    max-width: calc(50% - 20px);
+    min-width: 0;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .landing-cat__specialists-item {
+    display: block;
   }
 }
 

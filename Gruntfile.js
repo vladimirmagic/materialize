@@ -398,6 +398,8 @@
             'landing.html': 'jade/propstore/landing.jade',
             'starwars.html': 'jade/propstore/starwars.jade',
             'screenmatch.html': 'jade/propstore/screenmatch.jade',
+            'landing-posters.html': 'jade/propstore/landing-posters.jade',
+
             'projector.html': 'jade/propstore/projector.jade',
             'projector-sam.html': 'jade/propstore/projector-sam.jade',
             'propstoreauction.html': 'jade/propstore/propstoreauction.jade',

@@ -1,0 +1,254 @@
+.landing-cat {
+    .also-like__title {
+        margin: 0;
+    }
+
+    .section-sell {
+        padding-top: 0;
+    }
+}
+
+.landing-cat__anchors {
+	display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    margin-top: 4.5rem;
+}
+
+.landing-cat__whatsnew {
+    margin-top: 4.5rem;
+    padding-top: 5rem;
+    background: $color-bg;
+
+    .whatsnew__cards {
+        &:before {
+            background: linear-gradient(to right, $color-bg, rgba(255,255,255,0));
+        }
+        &:after {
+            background: linear-gradient(to left, $color-bg, rgba(255,255,255,0));
+        }
+    }
+}
+
+.landing-cat__current-items .section-auctions__item {
+    background: $color-bg;
+}
+
+.landing-cat__featured {
+    padding-bottom: 1rem;
+    background: $color-bg;
+    border-bottom-right-radius: 140px;
+    overflow: hidden;
+
+    .cards {
+        padding-top: 0;
+    }
+}
+
+.landing-cat__more-auctions {
+    padding-top: 6rem;
+    text-align: center;
+
+    .cards {
+        background: white;
+    }
+
+    .cards__list {
+        gap: 1.5rem;
+    }
+}
+
+.landing-cat__more-auctions a {
+    position: relative;
+	display: block;
+	width: $card-width;
+	min-width: $card-width;
+    height: auto;
+    padding: 0;
+	text-align: left;
+
+    font-size: 20px;
+    line-height: 1.5rem;
+    text-transform: none;
+    letter-spacing: 0;
+
+    & > .icon {
+		display: block;
+		width: 100%;
+		height: 220px;
+		margin-bottom: 12px;
+		background-position: 50% 50%;
+		background-size: cover;
+		background-repeat: no-repeat;
+		background-color: color("grey", "darken-4");
+		transition: all .2s ease;
+	}
+
+	&:focus,
+	&:hover {
+		background: none;
+		.icon {
+			box-shadow: 0px 3px 20px -5px rgba(0, 0, 0, 0.6);
+		}
+	}
+
+	&:active {
+		.icon {
+			box-shadow: none;
+		}
+	}
+
+    .badge {
+		display: block;
+		width: min-content;
+		margin-top: 1rem;
+		font-size: 10px;
+		line-height: 1.5rem;
+		height: 1.5rem;
+
+		.icon {
+			width: 14px !important;
+			height: 20px !important;
+		}
+	}
+}
+
+.landing-cat__grey {
+    padding-bottom: 1rem;
+    background: $color-bg;
+}
+
+.landing-cat__specialists {
+	margin: 0 auto;
+	max-width: $width-4cards;
+    padding-top: 6rem;
+    text-align: center;
+}
+
+.landing-cat__specialists-h1 {
+    margin-bottom: .8em;
+    font-weight: 500;
+}
+
+.landing-cat__specialists-text1 {
+    max-width: $w55;
+	margin: 0 auto;
+	padding-bottom: 3em;
+}
+
+.landing-cat__specialists-list {
+    display: flex;
+    gap: 1.5rem;
+    text-align: left;
+}
+
+.landing-cat__specialists-item {
+    flex: 1 1 50%;
+    display: flex;
+    background: white;
+    box-shadow: $shadow-base;
+    border-radius: 6px;
+}
+
+.landing-cat__specialists-item-photo {
+    img {
+        max-width: none !important;
+    }
+}
+
+.landing-cat__specialists-item-info {
+    padding: 2rem 4rem 2rem 1.5rem;
+}
+
+.landing-cat__specialists-item-name {
+    margin-bottom: .3em;
+
+    .icon {
+        width: 2rem;
+        height: 2rem;
+        margin: -4px 16px 0 0;
+    }
+}
+
+.landing-cat__specialists-item-desc {
+    margin-bottom: 2em;
+}
+
+.landing-cat__specialists-item-address {
+    margin-top: 2em;
+
+    a:not(.btn) {
+        font-weight: 300;
+    }
+}
+
+@media #{$breakpoint-4cards} {
+    .landing-cat__more-auctions {
+        .cards__list {
+            gap: $card-margin-m;
+        }
+    }
+
+    .landing-cat__more-auctions a {
+        width: $card-width-m;
+        min-width: $card-width-m;
+    }
+}
+
+@media #{$large-and-down} {
+	.landing-cat__anchors {
+        gap: 1rem;
+        margin-top: 2rem;
+    }
+
+    .landing-cat__whatsnew {
+        margin-top: 2rem;
+        padding-top: 2.5rem;
+    }
+
+    .landing-cat__featured {
+        border-bottom-right-radius: 100px;
+    }
+
+    .landing-cat__more-auctions {
+        padding-top: 3rem;
+    }
+
+    .landing-cat__grey {
+        padding-bottom: 2.5rem;
+    }
+
+    .landing-cat__specialists {
+        padding-top: 3rem;
+    }
+
+    .landing-cat__specialists-list {
+        flex-wrap: wrap;
+        padding: 0 1rem;
+    }
+}
+
+@media #{$medium-and-down} {
+    .landing-cat {
+        .also-like {
+            padding-top: 1rem;
+        }
+    }
+
+    .landing-cat__featured {
+        border-bottom-right-radius: 0;
+    }
+
+    .landing-cat__more-auctions a {
+        width: 50%;
+        max-width: calc(50% - #{$card-margin-m * 1.25});
+        min-width: 0;
+    }
+}
+
+@media #{$small-and-down} {
+    .landing-cat__specialists-item {
+        display: block;
+    }
+}
