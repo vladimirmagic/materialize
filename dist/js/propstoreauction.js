@@ -628,13 +628,12 @@ document.addEventListener('DOMContentLoaded', () => {
                     };
 
                     let barcode;
-                    if (status !== 'closed') {
-                        $barcode = $('#barcode');
-                        barcode = $barcode.length ? $barcode.val() : null;
-                        if (!barcode || barcode == 'Not Available') barcode = $('.product-description-content').data('id');
-                        if (!barcode) barcode = getBarcodeFromJS(); // old auctions
-                    }
-                    if (barcode) {
+                    $barcode = $('#barcode');
+                    barcode = $barcode.length ? $barcode.val() : null;
+                    if (!barcode || barcode == 'Not Available') barcode = $('.product-description-content').data('id');
+                    if (!barcode) barcode = getBarcodeFromJS(); // old auctions
+
+                    if (barcode && status !== 'closed') {
                         $('body').append($('#modal-shipping-quote'));
                         $('#modal-shipping-quote-button').show();
                         $('.product__buttons-grey').show();
@@ -1250,7 +1249,7 @@ document.addEventListener('DOMContentLoaded', () => {
                             if ($(item).find('.ended.sold').length) {
                                 $badge.addClass('red').append('Sold').show().find('use').attr('xlink:href', '#flag');
                             } else if ($(item).find('.ended.unsold').length) {
-                                $badge.append('Unsold').show().find('use').attr('xlink:href', '#archive');
+                                $badge.append('Make an offer').show().find('use').attr('xlink:href', '#auction');
                             } else if ($(item).find('.ended').length) {
                                 $badge.append('Ended').show().find('use').attr('xlink:href', '#archive');
                             }
