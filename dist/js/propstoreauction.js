@@ -1022,6 +1022,10 @@ document.addEventListener('DOMContentLoaded', () => {
         <div class="card aucproduct__card">
             <a class="card__img">
                 <span class="heart card__heart" style="display: none;"></span>
+                <span class="card__img-more" style="display: none;">
+                    <span>More Items<br><span class="card__img-more-text">in This Lot</span></span>
+                    <i class="icon"><svg><use xlink:href="#arrow-right"></use></svg></i>
+                </span>
                 <span class="badge card__badge" style="display: none;">
                     <i class="icon"><svg><use xlink:href="#"></use></svg></i>
                 </span>
@@ -1372,6 +1376,22 @@ document.addEventListener('DOMContentLoaded', () => {
                                     redirectPage($(e.target).closest('.card').find('.yaaa').attr('href'));
                                 }
                             });
+
+                            const $ctag = $(item).find('.item-ctag:contains("CUSTOM_PARAM_TAG")');
+                            let ctag;
+                            if ($ctag.length) {
+                                $ctagValue = $ctag.find('.value');
+                                if ($ctagValue.length) {
+                                    try {
+                                        ctag = JSON.parse($ctagValue.text());
+                                    } catch (e) {
+                                        console.log(e);
+                                    }
+                                }
+                            }
+                            if (ctag && ctag.isMultiItem) {
+                                $cardItem.find('.card__img-more').show();
+                            }
 
                             $('.cards__list').append($cardItem);
                         } else {

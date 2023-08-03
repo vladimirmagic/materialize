@@ -132,6 +132,27 @@ a.card:not(.btn) { // fix a
 	font-size: 20px;
 }
 
+.card__img-more {
+	position: absolute;
+	right: 16px;
+	bottom: 16px;
+	padding: 8px 8px 8px 12px;
+	color: white;
+	font-size: 14px;
+	line-height: 1.2;
+    background-color: $primary-color;
+
+	.icon {
+		margin-left: 8px;
+		margin-top: -4px;
+	}
+}
+
+.card__img-more-text {
+	font-weight: 300;
+	opacity: .6;
+}
+
 .card__info {
 	display: flex;
 	flex-direction: column;

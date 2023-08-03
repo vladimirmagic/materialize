@@ -175,6 +175,18 @@
 			bottom: .5rem;
 			font-size: 10px;
 		}
+
+		.card__img-more {
+			right: .5rem;
+			bottom: 2rem;
+			padding: .3rem .5rem;
+			font-size: .8em;
+			text-align: right;
+
+			.icon {
+				display: none;
+			}
+		}
 	
 		.card__info:not(.card-blog__info) {
 			height: $card-height-s - $card-width-s;

@@ -12769,6 +12769,27 @@ a.card:not(.btn):not(.btn-large):not(.btn-small):not(.btn-extra-small).card--arc
   font-size: 20px;
 }
 
+.card__img-more {
+  position: absolute;
+  right: 16px;
+  bottom: 16px;
+  padding: 8px 8px 8px 12px;
+  color: white;
+  font-size: 14px;
+  line-height: 1.2;
+  background-color: #764AAF;
+}
+
+.card__img-more .icon {
+  margin-left: 8px;
+  margin-top: -4px;
+}
+
+.card__img-more-text {
+  font-weight: 300;
+  opacity: .6;
+}
+
 .card__info {
   display: -webkit-box;
   display: -webkit-flex;
@@ -13424,6 +13445,16 @@ a.card-auction:not(.btn):not(.btn-large):not(.btn-small):not(.btn-extra-small):b
     left: .5rem;
     bottom: .5rem;
     font-size: 10px;
+  }
+  .cards .card__img-more, .cards-blog .card__img-more {
+    right: .5rem;
+    bottom: 2rem;
+    padding: .3rem .5rem;
+    font-size: .8em;
+    text-align: right;
+  }
+  .cards .card__img-more .icon, .cards-blog .card__img-more .icon {
+    display: none;
   }
   .cards .card__info:not(.card-blog__info), .cards-blog .card__info:not(.card-blog__info) {
     height: 340px;
