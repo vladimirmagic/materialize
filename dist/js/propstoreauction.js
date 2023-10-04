@@ -256,6 +256,19 @@ document.addEventListener('DOMContentLoaded', () => {
                     <div class="modal__loader"><div class="preloader-wrapper active"><div class="spinner-layer"><div class="circle-clipper left"><div class="circle"></div></div><div class="gap-patch"><div class="circle"></div></div><div class="circle-clipper right"><div class="circle"></div></div></div></div></div>
                 </div>
             </span>
+
+            <span class="product__button-grey waves-effect waves-grey btn btn--secondary modal-trigger" href="#modal-offer" id="modal-offer-button" style="display: none;">
+                Make&nbsp;an&nbsp;Offer
+                <i class='icon'><svg><use xlink:href="#auction"></use></svg></i>
+
+                <div id="modal-offer" class="modal modal-shipping-quote modal-ajax">
+                    <div class="modal-header modal-header--sticky">
+                        <a class="modal-close btn-flat btn--icon"><i class='icon'><svg><use xlink:href="#close"></use></svg></i></a>
+                    </div>
+                    <form action="/ajax/makeOfferSubmit.action" class="modal-content" id="modal-offer-form"></form>
+                    <div class="modal__loader"><div class="preloader-wrapper active"><div class="spinner-layer"><div class="circle-clipper left"><div class="circle"></div></div><div class="gap-patch"><div class="circle"></div></div><div class="circle-clipper right"><div class="circle"></div></div></div></div></div>
+                </div>
+            </span>
         </div>
 
         <ul class="product__details collapsible expandable">
@@ -699,6 +712,69 @@ document.addEventListener('DOMContentLoaded', () => {
                         });
                     } else {
                         $('#modal-shipping-quote-button').remove();
+                    }
+
+                    let makeOfferType = $('.product-description-content').data('makeoffertype');
+                    if (makeOfferType && barcode) {
+                        $('body').append($('#modal-offer'));
+                        $('#modal-offer-button').show();
+                        $('.product__buttons-grey').show();
+
+                        // MODAL OFFER
+                        M.Modal.init(document.querySelectorAll('#modal-offer'), { // load form on modal open
+                            onOpenStart: function (el, trigger) {
+                                el.classList.add('sync');
+                                const $form = $(el).find('#modal-offer-form');
+                                const url = URL_PROPSTORE + '/ajax/makeOffer.action?id=' + barcode;
+                                $.get({
+                                    url,
+                                    XHRFields: {
+                                        withCredentials: true,
+                                    }
+                                })
+                                    .done(data => {
+                                        if (!checkResponse(data)) return data;
+
+                                        $form.html(data);
+                                        M.updateTextFields();
+                                        grecaptchaRender('g-recaptcha-offer');
+                                    })
+                                    .fail(data => {
+                                        if (data && data.statusText) $form.html(data.statusText);
+                                    })
+                                    .always(data => {
+                                        el.classList.remove('sync');
+                                    });
+                            }
+                        });
+
+                        $('#modal-offer-form').submit(function (e) {
+                            e.preventDefault();
+                            this.classList.add('sync');
+                            $.post({
+                                url: URL_PROPSTORE + $(this).attr('action'),
+                                data: $(this).serialize(),
+                                contentType: 'application/x-www-form-urlencoded',
+                                XHRFields: {
+                                    withCredentials: true,
+                                }
+                            })
+                                .done(data => {
+                                    if (!checkResponse(data)) return data;
+
+                                    this.innerHTML = data;
+                                    M.updateTextFields();
+                                    grecaptchaRender('g-recaptcha-offer');
+                                })
+                                .fail(data => {
+                                    if (data && data.statusText) this.innerHTML = data.statusText;
+                                })
+                                .always(data => {
+                                    this.classList.remove('sync');
+                                });
+                        });
+                    } else {
+                        $('#modal-offer-button').remove();
                     }
 
                     $watchlist = $('#watchlist_button');
@@ -1253,7 +1329,7 @@ document.addEventListener('DOMContentLoaded', () => {
                             if ($(item).find('.ended.sold').length) {
                                 $badge.addClass('red').append('Sold').show().find('use').attr('xlink:href', '#flag');
                             } else if ($(item).find('.ended.unsold').length) {
-                                $badge.append('Make an offer').show().find('use').attr('xlink:href', '#auction');
+                                $badge.append('Unsold').show().find('use').attr('xlink:href', '#archive');
                             } else if ($(item).find('.ended').length) {
                                 $badge.append('Ended').show().find('use').attr('xlink:href', '#archive');
                             }
@@ -1392,7 +1468,12 @@ document.addEventListener('DOMContentLoaded', () => {
                             if (ctag && ctag.isMultiItem) {
                                 $cardItem.find('.card__img-more').show();
                             }
-
+                            if (ctag && ctag.makeOfferType) {
+                                if ($btn.length) {
+                                    $btn.html(`<span class='btn__title'>Make&nbsp;an&nbsp;Offer</span>
+                                    <i class='icon'><svg><use xlink:href="#auction"></use></svg></i>`);
+                                }
+                            }
                             $('.cards__list').append($cardItem);
                         } else {
                             if ($cardItem.find('.item-status').length) {
