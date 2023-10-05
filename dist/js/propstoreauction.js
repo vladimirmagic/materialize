@@ -789,26 +789,29 @@ document.addEventListener('DOMContentLoaded', () => {
 
                     let reminderDate = $('.product-description-content').data('reminderdate');
                     if (reminderDate) {
-                        $('.calendarBtn, .calendarBtnLg').addClass('waves-effect waves-grey btn btn--secondary');
-                        $('<div class="aucproduct__calendar">').insertAfter('.product__buttons-grey')
-                            .append('<div class="aucproduct__calendar-title h5">Add reminder</div>')
-                            .append($('#calendarBtnBox'));
-
                         let remindDate = new Date(reminderDate);
-                        let lotUrl = $('head link[rel="canonical"]').attr('href');
-                        let href = generateICSFileURL(auctionTitle, remindDate, lotName, lotUrl);
-                        $('#googleCalendarBtnLg').on('click', function(event) {
-                            event.stopPropagation();
-                            event.preventDefault();
-                            downloadURI(href, "propstore.ics");
-                        });
+                        let delta = (remindDate.getTime() - Date.now()) / 1000 / 60 / 60; // hours
+                        if (delta >= 1) {
+                            $('.calendarBtn, .calendarBtnLg').addClass('waves-effect waves-grey btn btn--secondary');
+                            $('<div class="aucproduct__calendar">').insertAfter('.product__buttons-grey')
+                                .append('<div class="aucproduct__calendar-title h5">Add reminder</div>')
+                                .append($('#calendarBtnBox'));
 
-                        href = generateGoogleCalendarURL(auctionTitle, remindDate, lotName, lotUrl)
-                        $('#outlookCalendarBtnLg').on('click', function(event) {
-                            event.stopPropagation();
-                            event.preventDefault();
-                            window.open(href, "_blank");
-                        });
+                            let lotUrl = $('head link[rel="canonical"]').attr('href');
+                            let href = generateICSFileURL(auctionTitle, remindDate, lotName, lotUrl);
+                            $('#googleCalendarBtnLg').on('click', function(event) {
+                                event.stopPropagation();
+                                event.preventDefault();
+                                downloadURI(href, "propstore.ics");
+                            });
+
+                            href = generateGoogleCalendarURL(auctionTitle, remindDate, lotName, lotUrl)
+                            $('#outlookCalendarBtnLg').on('click', function(event) {
+                                event.stopPropagation();
+                                event.preventDefault();
+                                window.open(href, "_blank");
+                            });
+                        }
                     }
 
                     if ($('.product-description-content').length) {
@@ -1564,9 +1567,13 @@ document.addEventListener('DOMContentLoaded', () => {
                                 }
                             }
                             if (ctag && ctag.reminderDate) {
+                                let remindDate = new Date(ctag.reminderDate);
+                                let delta = (remindDate.getTime() - Date.now()) / 1000 / 60 / 60; // hours
                                 $parentElement = $cardItem.find('.card__info');
-                                if ($parentElement.length) {
-                                    generateCatalogViewCalendarButtons(new Date(ctag.reminderDate), auctionTitle, lotName, lotUrl, $parentElement);
+                                if (delta >= 1 && $parentElement.length) {
+                                    let searchIndex = lotUrl.indexOf('?');
+                                    let lotUrlTrim = searchIndex > 0 ? lotUrl.slice(0, searchIndex) : lotUrl;
+                                    generateCatalogViewCalendarButtons(remindDate, auctionTitle, lotName, lotUrlTrim, $parentElement);
                                 }
                             }
                             $('.cards__list').append($cardItem);
