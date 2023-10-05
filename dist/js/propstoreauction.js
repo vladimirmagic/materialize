@@ -792,25 +792,28 @@ document.addEventListener('DOMContentLoaded', () => {
                         let remindDate = new Date(reminderDate);
                         let delta = (remindDate.getTime() - Date.now()) / 1000 / 60 / 60; // hours
                         if (delta >= 1) {
-                            $('.calendarBtn, .calendarBtnLg').addClass('waves-effect waves-grey btn btn--secondary');
+                            $('#calendarBtnBox').remove(); // old description
                             $('<div class="aucproduct__calendar">').insertAfter('.product__buttons-grey')
-                                .append('<div class="aucproduct__calendar-title h5">Add reminder</div>')
-                                .append($('#calendarBtnBox'));
+                                .append(`<div class="aucproduct__calendar-title h5">Add reminder</div>
+                                    <div id="calendarBtnBox"></div>
+                                `);
 
                             let lotUrl = $('head link[rel="canonical"]').attr('href');
-                            let href = generateICSFileURL(auctionTitle, remindDate, lotName, lotUrl);
-                            $('#googleCalendarBtnLg').on('click', function(event) {
+                            $btnOutlook = $('<span class="calendarBtn waves-effect waves-grey btn btn--secondary">Outlook Calendar Reminder</span>');
+                            $btnOutlook.on('click', function(event) {
                                 event.stopPropagation();
                                 event.preventDefault();
-                                downloadURI(href, "propstore.ics");
+                                downloadURI(generateICSFileURL(auctionTitle, remindDate, lotName, lotUrl), "propstore.ics");
                             });
 
-                            href = generateGoogleCalendarURL(auctionTitle, remindDate, lotName, lotUrl)
-                            $('#outlookCalendarBtnLg').on('click', function(event) {
+                            $btnGoogle = $('<span class="calendarBtn waves-effect waves-grey btn btn--secondary">Google Calendar Reminder</span>');
+                            $btnGoogle.on('click', function(event) {
                                 event.stopPropagation();
                                 event.preventDefault();
-                                window.open(href, "_blank");
+                                window.open(generateGoogleCalendarURL(auctionTitle, remindDate, lotName, lotUrl), "_blank");
                             });
+                            
+                            $('#calendarBtnBox').append($btnOutlook, $btnGoogle);
                         }
                     }
 
@@ -874,33 +877,6 @@ document.addEventListener('DOMContentLoaded', () => {
                         $('#next')[0].click();
                     });
 
-                    function giveLotViewCalendarButtonsLinks(){
-                        const lotName = $itemTitle.text();
-                        const $outlookCalendarBtn = $('#outlookCalendarBtn');
-                        $outlookCalendarBtn.html('Outlook');
-                        const outlookHref = generateICSFileURL(escape(lotName), window.location.href);
-                        $outlookCalendarBtn.on('click', function(e){
-                            e.preventDefault();
-                            window.open(outlookHref, '_blank');
-                        });
-
-                        const $googleCalendarBtn = $('#googleCalendarBtn');
-                        $googleCalendarBtn.html('Google');
-                        const googleHref = generateGoogleCalendarURL(lotName, window.location.href);
-                        $googleCalendarBtn.on('click', function(e){
-                            e.preventDefault();
-                            window.open(googleHref, '_blank');
-                        });
-
-                        const $textReminderBtn = $('#textReminderBtn');
-                        $textReminderBtn.html('Text');
-
-                        $('.calendarBtn, .calendarBtnLg').addClass('waves-effect waves-grey btn btn--secondary');
-                        $('<div class="aucproduct__calendar">').insertAfter('.product__buttons-grey')
-                            .append('<div class="aucproduct__calendar-title h5">Add reminder</div>')
-                            .append($('#calendarBtnBox'));
-                    }
-                    // giveLotViewCalendarButtonsLinks();
                     try {
                         let wlb = $('#watchlist_button');
                         window.lotBannerAutomation(wlb);
@@ -2597,18 +2573,16 @@ function generateCalendarButton(auctionTitle, remindDate, lotName, lotViewUrl, b
     </span>`);
 
     if (btnText == "OUTLOOK") {
-        href = generateICSFileURL(auctionTitle, remindDate, lotName, lotViewUrl);
         $btn.on('click', function(event) {
             event.stopPropagation();
             event.preventDefault();
-            downloadURI(href, "propstore.ics");
+            downloadURI(generateICSFileURL(auctionTitle, remindDate, lotName, lotViewUrl), "propstore.ics");
         });
     } else {
-        href = generateGoogleCalendarURL(auctionTitle, remindDate, lotName, lotViewUrl)
         $btn.on('click', function(event) {
             event.stopPropagation();
             event.preventDefault();
-            window.open(href, "_blank");
+            window.open(generateGoogleCalendarURL(auctionTitle, remindDate, lotName, lotViewUrl), "_blank");
         });
     }
     parentElement.append($btn);
