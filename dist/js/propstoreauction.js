@@ -375,7 +375,8 @@ document.addEventListener('DOMContentLoaded', () => {
                     $('.auc__hero').addClass('auc__hero--small');
                     $aucTitle = $('.tle-lot h3').clone();
                     $aucTitle.find('span').remove();
-                    $('.hero__static-title').html($aucTitle.text());
+                    let auctionTitle = $aucTitle.text();
+                    $('.hero__static-title').html(auctionTitle);
 
                     const dates = [];
                     let start_date = $('#auction_start_date').text();
@@ -398,8 +399,9 @@ document.addEventListener('DOMContentLoaded', () => {
                     $itemTitleH = $('.tle-lot + h3');
                     $itemTitle = $itemTitleH.find('.lot-name');
                     $itemTitleH.find('.lot-name').remove();
+                    let lotName = $itemTitle.text();
                     $('.product__number').html($itemTitleH.text());
-                    $('.product__title').html($itemTitle.text());
+                    $('.product__title').html(lotName);
                     $('.auc__hero-aucinfo').attr('href', $('.aucinfo').attr('href')).attr('style', '');
                     $('.auc__hero-auccatalog').attr('href', $('.catlg').attr('href')).attr('style', '');
 
@@ -783,6 +785,30 @@ document.addEventListener('DOMContentLoaded', () => {
                         $watchlist.find('.remove-watch').html('<i class="icon"><svg><use xlink:href="#heart-fill"></use></svg></i> <span class="product__buttons-grey-small">In</span> Watchlist');
                         $watchlist.find('.add-watch').html('<i class="icon"><svg><use xlink:href="#heart"></use></svg></i> <span class="product__buttons-grey-small">Add to</span> Watchlist');
                         $('.product__buttons-grey').show().append($watchlist);
+                    }
+
+                    let reminderDate = $('.product-description-content').data('reminderdate');
+                    if (reminderDate) {
+                        $('.calendarBtn, .calendarBtnLg').addClass('waves-effect waves-grey btn btn--secondary');
+                        $('<div class="aucproduct__calendar">').insertAfter('.product__buttons-grey')
+                            .append('<div class="aucproduct__calendar-title h5">Add reminder</div>')
+                            .append($('#calendarBtnBox'));
+
+                        let remindDate = new Date(reminderDate);
+                        let lotUrl = $('head link[rel="canonical"]').attr('href');
+                        let href = generateICSFileURL(auctionTitle, remindDate, lotName, lotUrl);
+                        $('#googleCalendarBtnLg').on('click', function(event) {
+                            event.stopPropagation();
+                            event.preventDefault();
+                            downloadURI(href, "propstore.ics");
+                        });
+
+                        href = generateGoogleCalendarURL(auctionTitle, remindDate, lotName, lotUrl)
+                        $('#outlookCalendarBtnLg').on('click', function(event) {
+                            event.stopPropagation();
+                            event.preventDefault();
+                            window.open(href, "_blank");
+                        });
                     }
 
                     if ($('.product-description-content').length) {
@@ -1274,6 +1300,65 @@ document.addEventListener('DOMContentLoaded', () => {
                         })
                     });
 
+                    let auctionTitle;
+                    $('.container').prepend($('.auccatalog'));
+                    if ($('body').hasClass('auctions-catalog')) {
+                        $('.auc__hero').addClass('auc__hero--small');
+                        $aucTitle = $('.tle h3').clone();
+                        $aucTitle.find('span').remove();
+                        auctionTitle = $aucTitle.text();
+                        $('.hero__static-title').html(auctionTitle);
+
+                        $('.sale-date').find('br').remove();
+                        const datesArr = $('.sale-date').first().text().split(' - ');
+                        if (datesArr.length) {
+                            const dates = [];
+                            if (datesArr[0]) dates.push(moment(datesArr[0]).format('MMM D YYYY'));
+                            if (datesArr[1]) dates.push(moment(datesArr[1]).format('MMM D YYYY'));
+                            if (dates.length) {
+                                $('.hero__static-date').append(dates.join(' &minus; ')).show();
+                            }
+                        }
+
+                        if (status) {
+                            $badge = $('.auc__hero .badge');
+                            switch (status) {
+                                case 'closed':
+                                    $badge.addClass('red').append('Ended').show().find('use').attr('xlink:href', '#flag');
+                                    break;
+                            }
+                        }
+                        $('.auc__hero-aucinfo').attr('href', $('.aucinfo').attr('href')).show();
+                        $('.container').prepend($('.auc__hero').show());
+
+                        try {
+                            window.catalogBannerAutomation();
+                        } catch (e) {
+                            console.log(e);
+                        }
+                    } else if ($('body').hasClass('my-items')) {
+                        $('.auccatalog__search').html('My Items');
+                        $('<div class="auccatalog__tabs" />').insertAfter('.auccatalog__search').append($('#tabnav'));
+                        $('#tabnav a').addClass('waves-effect btn-flat btn--rounded');
+                        $('.tab-my-items-consigned:not(.selected)').hide();
+                        $('.tab-my-items-all:not(.selected)').hide();
+                        requestAnimationFrame(() => {
+                            function getNodesThatContain(text) {
+                                var textNodes = $('.auccatalog__tabs, .auccatalog__nav').find('*')
+                                    .contents().filter(function() {
+                                        return this.nodeType == 3 && this.textContent.indexOf(text) > -1;
+                                    });
+                                return textNodes.parent();
+                            };
+                            $item = getNodesThatContain('Item').add($('.auccatalog__search'));
+                            $item.each((i, item) => {
+                                item.innerHTML = item.innerHTML.replace('Item', 'Lot');
+                            });
+
+                            $('.tabnav-tab.selected')[0].scrollIntoViewIfNeeded({inline: 'center'});
+                        });
+                    }
+
                     $('.aucproduct__card-details').html();
                     $card = $('.card').clone();
                     $('.cards__list').html('').toggleClass('cards__list--list', $('.compact_container'));
@@ -1289,6 +1374,8 @@ document.addEventListener('DOMContentLoaded', () => {
                     let cardsLoaded = 0;
 
                     function prepareItem(i, item) {
+                        let lotName;
+                        let lotUrl;
                         const $aid = $(item).find('section[data-aid]');
                         let id = $aid.length ? $aid.data('aid') : 0;
                         $cardExist = $('.aucproduct__card[data-alid="' + $aid.data('alid') + '"]');
@@ -1303,7 +1390,8 @@ document.addEventListener('DOMContentLoaded', () => {
                             }
                             
                             const $titleEl = $(item).find('.yaaa');
-                            $cardItem.find('.card__img').attr('href', $titleEl.attr('href'));
+                            lotUrl = $titleEl.attr('href');
+                            $cardItem.find('.card__img').attr('href', lotUrl);
                             const $img = $(item).find('figure').length > 1 ? $(item).find('.figure-col img') : $(item).find('figure img'); // 2 figure in list view
                             if ($img.length) {
                                 let bg = $img.prop('src');
@@ -1323,7 +1411,8 @@ document.addEventListener('DOMContentLoaded', () => {
                                     }, 1000);
                                 });
                             }
-                            $titleEl.attr('title', $titleEl.text().trim());
+                            lotName = $titleEl.text().trim();
+                            $titleEl.attr('title', lotName);
                             $cardItem.find('.card__movie').append($titleEl.clone());
                             $badge = $cardItem.find('.card__badge');
                             if ($(item).find('.ended.sold').length) {
@@ -1474,6 +1563,12 @@ document.addEventListener('DOMContentLoaded', () => {
                                     <i class='icon'><svg><use xlink:href="#auction"></use></svg></i>`);
                                 }
                             }
+                            if (ctag && ctag.reminderDate) {
+                                $parentElement = $cardItem.find('.card__info');
+                                if ($parentElement.length) {
+                                    generateCatalogViewCalendarButtons(new Date(ctag.reminderDate), auctionTitle, lotName, lotUrl, $parentElement);
+                                }
+                            }
                             $('.cards__list').append($cardItem);
                         } else {
                             if ($cardItem.find('.item-status').length) {
@@ -1539,63 +1634,6 @@ document.addEventListener('DOMContentLoaded', () => {
                         if (!isSignedIn && IS_REDIRECT_TO_HOLDING_ROOM) {
                             $liveSale.attr('href', URL_PROPSTORE + 'room');
                         }
-                    }
-
-                    $('.container').prepend($('.auccatalog'));
-                    if ($('body').hasClass('auctions-catalog')) {
-                        $('.auc__hero').addClass('auc__hero--small');
-                        $aucTitle = $('.tle h3').clone();
-                        $aucTitle.find('span').remove();
-                        $('.hero__static-title').html($aucTitle.text());
-
-                        $('.sale-date').find('br').remove();
-                        const datesArr = $('.sale-date').first().text().split(' - ');
-                        if (datesArr.length) {
-                            const dates = [];
-                            if (datesArr[0]) dates.push(moment(datesArr[0]).format('MMM D YYYY'));
-                            if (datesArr[1]) dates.push(moment(datesArr[1]).format('MMM D YYYY'));
-                            if (dates.length) {
-                                $('.hero__static-date').append(dates.join(' &minus; ')).show();
-                            }
-                        }
-
-                        if (status) {
-                            $badge = $('.auc__hero .badge');
-                            switch (status) {
-                                case 'closed':
-                                    $badge.addClass('red').append('Ended').show().find('use').attr('xlink:href', '#flag');
-                                    break;
-                            }
-                        }
-                        $('.auc__hero-aucinfo').attr('href', $('.aucinfo').attr('href')).show();
-                        $('.container').prepend($('.auc__hero').show());
-
-                        try {
-                            window.catalogBannerAutomation();
-                        } catch (e) {
-                            console.log(e);
-                        }
-                    } else if ($('body').hasClass('my-items')) {
-                        $('.auccatalog__search').html('My Items');
-                        $('<div class="auccatalog__tabs" />').insertAfter('.auccatalog__search').append($('#tabnav'));
-                        $('#tabnav a').addClass('waves-effect btn-flat btn--rounded');
-                        $('.tab-my-items-consigned:not(.selected)').hide();
-                        $('.tab-my-items-all:not(.selected)').hide();
-                        requestAnimationFrame(() => {
-                            function getNodesThatContain(text) {
-                                var textNodes = $('.auccatalog__tabs, .auccatalog__nav').find('*')
-                                    .contents().filter(function() {
-                                        return this.nodeType == 3 && this.textContent.indexOf(text) > -1;
-                                    });
-                                return textNodes.parent();
-                            };
-                            $item = getNodesThatContain('Item').add($('.auccatalog__search'));
-                            $item.each((i, item) => {
-                                item.innerHTML = item.innerHTML.replace('Item', 'Lot');
-                            });
-
-                            $('.tabnav-tab.selected')[0].scrollIntoViewIfNeeded({inline: 'center'});
-                        });
                     }
 
                     setTimeout(() => {
@@ -2529,12 +2567,186 @@ function checkResponse (data) {
     return true;
 }
 
-if (!generateGoogleCalendarURL) function generateGoogleCalendarURL(lotName, urlLink) {
-    return 'NeedGenerateGoogleCalendarURL';
+function generateCatalogViewCalendarButtons(remindDate, auctionTitle, lotName, lotViewUrl, parentElement) {
+    let $btnBox = $('<div class="calendar-btn-box">');
+
+    //correct for timezone
+    remindDate.setMinutes(remindDate.getMinutes() - remindDate.getTimezoneOffset());
+    let outlookDate = new Date(remindDate);
+    outlookDate.setMinutes(remindDate.getMinutes() + 5);
+
+    generateCalendarButton(auctionTitle, outlookDate, lotName, lotViewUrl, "OUTLOOK", $btnBox);
+    generateCalendarButton(auctionTitle, remindDate, lotName, lotViewUrl, "GOOGLE", $btnBox);
+
+    parentElement.append($btnBox);
 }
 
-if (!generateICSFileURL) function generateICSFileURL(lotName, urlLink) {
-    return 'NeedGenerateICSFileURL';
+function generateCalendarButton(auctionTitle, remindDate, lotName, lotViewUrl, btnText, parentElement) {
+    remindDate = new Date(remindDate.getTime() + remindDate.getTimezoneOffset() * 60000);
+    let href;
+    $btn = $(`<span class="waves-effect btn-flat btn--secondary">
+        <i class='icon'><svg><use xlink:href="#calendar"></use></svg></i>
+        ${btnText}
+    </span>`);
+
+    if (btnText == "OUTLOOK") {
+        href = generateICSFileURL(auctionTitle, remindDate, lotName, lotViewUrl);
+        $btn.on('click', function(event) {
+            event.stopPropagation();
+            event.preventDefault();
+            downloadURI(href, "propstore.ics");
+        });
+    } else {
+        href = generateGoogleCalendarURL(auctionTitle, remindDate, lotName, lotViewUrl)
+        $btn.on('click', function(event) {
+            event.stopPropagation();
+            event.preventDefault();
+            window.open(href, "_blank");
+        });
+    }
+    parentElement.append($btn);
+}
+
+function generateICSFileURL(auctionTitle, remindDate, lotName, lotViewUrl) {
+    let encodedLotName = encodeURIComponent(lotName);
+    let remindMonth = remindDate.getMonth();
+    let remindDay = remindDate.getDate();
+    let remindHr = remindDate.getHours();
+    let remindMin = remindDate.getMinutes();
+    let remindYear = remindDate.getFullYear();
+    let sellDate = new Date(remindYear, remindMonth, remindDay, remindHr, remindMin + 20, 0, 0);
+
+    remindMonth += 1;
+    if (remindMonth < 10)
+        remindMonth = "0" + remindMonth;
+
+    if (remindDay < 10)
+        remindDay = "0" + remindDay;
+
+    if (remindHr < 10)
+        remindHr = "0" + remindHr;
+
+    if (remindMin < 10)
+        remindMin = "0" + remindMin;
+
+    let sellMonth = sellDate.getMonth();
+    sellMonth += 1;
+    if (sellMonth < 10)
+        sellMonth = "0" + sellMonth;
+
+    let sellDay = sellDate.getDate();
+    if (sellDay < 10)
+        sellDay = "0" + sellDay;
+
+    let sellHr = sellDate.getHours();
+    if (sellHr < 10)
+        sellHr = "0" + sellHr;
+
+    let sellMin = sellDate.getMinutes();
+    if (sellMin < 10)
+        sellMin = "0" + sellMin;
+
+    let sellYear = sellDate.getFullYear();
+
+    let href = "data:text/calendar;charset=utf8,BEGIN:VCALENDAR%0AVERSION:2.0%0ABEGIN:VEVENT%0ADTSTART:";
+    href += remindYear;
+    href += remindMonth;
+    href += remindDay + "T";
+    href += remindHr;
+    href += remindMin;
+    href += "00Z%0ADTEND:";
+    href += sellYear;
+    href += sellMonth;
+    href += sellDay + "T";
+    href += sellHr;
+    href += sellMin;
+    href += "00Z%0ASUMMARY:";
+    href += encodedLotName;
+    href += "%0ADESCRIPTION:BIDDING%20TIME!%20";
+    href += encodedLotName;
+    href += "%20in%20Prop%20Store's%20";
+    href += encodeURIComponent(auctionTitle);
+    href += "%20will%20be%20coming%20to%20the%20auction%20block%20at%20approximately%20this%20time.%20follow%20the%20live%20sale%20to%20be%20sure%20you%20don't%20miss%20your%20lot(s)!%5Cn%5CnPlease%20note%20that%20you%20must%20be%20registered%20and%20approved%20in%20order%20to%20bid%20on%20line%20when%20the%20Lot%20crosses%20the%20auction%20block.%20You%20should%20register%20in%20advance%2C%20it%20is%20unlikely%20you%20will%20have%20enough%20time%20to%20register%20once%20this%20calendar%20reminder%20appears%20on%20auction%20day.%5Cn%5CnA%20direct%20link%20to%20this%20lot%20is%20below%3A%5Cn%5Cn";
+    href += lotViewUrl;
+    href += "%0AEND:VEVENT%0AEND:VCALENDAR%0A";
+
+    return href;
+}
+
+function generateGoogleCalendarURL(auctionTitle, remindDate, lotName, lotViewUrl) {
+    let remindMonth = remindDate.getMonth();
+    let remindDay = remindDate.getDate();
+    let remindHr = remindDate.getHours();
+    let remindMin = remindDate.getMinutes();
+    let remindYear = remindDate.getFullYear();
+    lotName = encodeForGoogleCalendarURL(lotName);
+    let sellDate = new Date(remindYear, remindMonth, remindDay, remindHr, remindMin + 20, 0, 0);
+
+    remindMonth += 1;
+    if (remindMonth < 10)
+        remindMonth = "0" + remindMonth;
+
+    if (remindDay < 10)
+        remindDay = "0" + remindDay;
+
+    if (remindHr < 10)
+        remindHr = "0" + remindHr;
+
+    if (remindMin < 10)
+        remindMin = "0" + remindMin;
+
+    let sellMonth = sellDate.getMonth();
+    sellMonth += 1;
+    if (sellMonth < 10)
+        sellMonth = "0" + sellMonth;
+
+    let sellDay = sellDate.getDate();
+
+    if (sellDay < 10)
+        sellDay = "0" + sellDay;
+
+    let sellHr = sellDate.getHours();
+    if (sellHr < 10)
+        sellHr = "0" + sellHr;
+
+    let sellMin = sellDate.getMinutes();
+
+    if (sellMin < 10)
+        sellMin = "0" + sellMin;
+
+    let sellYear = sellDate.getFullYear();
+
+    let href = "https://calendar.google.com/calendar/u/0/r/eventedit?dates="
+    href += remindYear;
+    href += remindMonth;
+    href += remindDay + "T";
+    href += remindHr;
+    href += remindMin + "Z/";
+    href += sellYear;
+    href += sellMonth;
+    href += sellDay + "T";
+    href += sellHr;
+    href += sellMin;
+    href += "Z&details=BIDDING+TIME!+";
+    href += lotName;
+    href += "+in+Prop+Store%27s+"
+    href += encodeForGoogleCalendarURL(auctionTitle);
+    href += "+will+be+coming+to+the+auction+block+at+approximately+this+time.+Follow+the+live+sale+to+be+certain+you+don%27t+miss+your+lot%28s%29!%0A+%0APlease+note+that+you+must+be+registered+and+approved+in+order+to+bid+on+line+when+the+Lot+crosses+the+auction+block.+You+should+register+in+advance,+it+is+unlikely+you+will+have+enough+time+to+register+once+this+calendar+reminder+appears+on+auction+day.%0A%0AA+direct+link+to+this+lot+is+below:%0A+%0A";
+    href += lotViewUrl;
+    href += "&text=" + lotName;
+
+    return href;
+}
+
+function encodeForGoogleCalendarURL(str) {
+    return str.replaceAll("%", "%25").replaceAll("+", "%2B").replaceAll(" ", "+").replaceAll("&", "%26").replaceAll("'", "%27").replaceAll("#", "%23");
+}
+
+function downloadURI(uri, name) {
+    var link = document.createElement("a");
+    link.download = name;
+    link.href = uri;
+    link.click();
 }
 
 window.alert = function (text) { // prevent sam alert

@@ -500,6 +500,22 @@ body.search-index {
 	a:before {
 		display: none;
 	}
+
+	.calendar-btn-box {
+		flex: 1 1 100%;
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		gap: .5rem;
+		width: 100%;
+		margin-top: 1rem;
+		text-align: center;
+
+		.btn-flat {
+			flex: 1 1 50%;
+			color: $primary-color;
+		}
+	}
 }
 
 .aucproduct__card-details {
