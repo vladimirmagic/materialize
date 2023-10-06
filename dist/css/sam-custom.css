@@ -1110,12 +1110,12 @@ form#AdvancedSearch[action*="/id/303"]:before {
  .auction320 .hero__carousel .hero__image{
       background-image: url('https://content.propstore.com/auction/funko2022/funko2022-newsite-landingpageheader-1080x800.jpg') !important;
   }
-/*catalog page*/
-  .auction319 .hero__image, .auction332 .hero__image {
+/*catalog page , .auction332 .hero__image*/
+  .auction319 .hero__image {
         background-image: url('https://s3.eu-west-1.amazonaws.com/content.propstore.com/auction/EMLAUS2022/Headers/EMLA-US2022_Catalog.jpg') !important;
     }
-/*lot page*/
-  .auction319.lot-details .hero__image, .auction332.lot-details .hero__image {
+/*lot page, .auction332.lot-details .hero__image*/
+  .auction319.lot-details .hero__image {
         background-image: url('https://s3.eu-west-1.amazonaws.com/content.propstore.com/auction/EMLAUS2022/Headers/EMLA-US2022_DayBreak-Headers_v2-Day01.jpg') !important;
     }
 

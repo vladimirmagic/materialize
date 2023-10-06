@@ -21,6 +21,7 @@ document.addEventListener('DOMContentLoaded', () => {
         1,this.viewed=!1,this.isShown=!1,this.close(),this.unbind(),R(i,v),i.removeAttribute("role"),i.removeAttribute("aria-labelledby"),i.removeAttribute("aria-modal"),i.setAttribute("aria-hidden",!0),this.resetList(),this.resetImage(),this.hiding=!1,this.destroyed||(A(e.hidden)&&M(t,"hidden",e.hidden,{once:!0}),P(t,"hidden",null,{cancelable:!1}))},requestFullscreen:function(t){var e=this.element.ownerDocument;this.fulled&&!(e.fullscreenElement||e.webkitFullscreenElement||e.mozFullScreenElement||e.msFullscreenElement)&&((e=e.documentElement).requestFullscreen?I(t)?e.requestFullscreen(t):e.requestFullscreen():e.webkitRequestFullscreen?e.webkitRequestFullscreen(Element.ALLOW_KEYBOARD_INPUT):e.mozRequestFullScreen?e.mozRequestFullScreen():e.msRequestFullscreen&&e.msRequestFullscreen())},exitFullscreen:function(){var t=this.element.ownerDocument;this.fulled&&(t.fullscreenElement||t.webkitFullscreenElement||t.mozFullScreenElement||t.msFullscreenElement)&&(t.exitFullscreen?t.exitFullscreen():t.webkitExitFullscreen?t.webkitExitFullscreen():t.mozCancelFullScreen?t.mozCancelFullScreen():t.msExitFullscreen&&t.msExitFullscreen())},change:function(t){var e=this.options,i=this.pointers,n=i[Object.keys(i)[0]];if(n){var s,a,o=n.endX-n.startX,r=n.endY-n.startY;switch(this.action){case l:this.move(o,r,t);break;case c:this.zoom((s=q({},h=i),a=[],S(h,function(o,t){delete s[t],S(s,function(t){var e=Math.abs(o.startX-t.startX),i=Math.abs(o.startY-t.startY),n=Math.abs(o.endX-t.endX),t=Math.abs(o.endY-t.endY),e=Math.sqrt(e*e+i*i),i=Math.sqrt(n*n+t*t);a.push((i-e)/e)})}),a.sort(function(t,e){return Math.abs(t)<Math.abs(e)}),a[0]),!1,t);break;case W:this.action="switched";var h=Math.abs(o);1<h&&h>Math.abs(r)&&(this.pointers={},1<o?this.prev(e.loop):o<-1&&this.next(e.loop))}S(i,function(t){t.startX=t.endX,t.startY=t.endY})}},isSwitchable:function(){var t=this.imageData,e=this.viewerData;return 1<this.length&&0<=t.x&&0<=t.y&&t.width<=e.width&&t.height<=e.height}},Ct=e.Viewer,Lt=(It=-1,function(){return It+=1}),e=function(){function o(t){var e=1<arguments.length&&void 0!==arguments[1]?arguments[1]:{},i=this,n=o;if(!(i instanceof n))throw new TypeError("Cannot call a class as a function");if(!t||1!==t.nodeType)throw new Error("The first argument is required and must be an element.");this.element=t,this.options=O({},h,I(e)&&e),this.action=!1,this.fading=!1,this.fulled=!1,this.hiding=!1,this.imageClicked=!1,this.imageData={},this.index=this.options.initialViewIndex,this.isImg=!1,this.isShown=!1,this.length=0,this.moving=!1,this.played=!1,this.playing=!1,this.pointers={},this.ready=!1,this.rotating=!1,this.scaling=!1,this.showing=!1,this.timeout=!1,this.tooltipping=!1,this.viewed=!1,this.viewing=!1,this.wheeling=!1,this.zooming=!1,this.id=Lt(),this.init()}var t,e,i;return t=o,i=[{key:"noConflict",value:function(){return window.Viewer=Ct,o}},{key:"setDefaults",value:function(t){O(h,I(t)&&t)}}],(e=[{key:"init",value:function(){var t,e,i,n,o=this,s=this.element,a=this.options;s[g]||(s[g]=this,a.focus&&!a.keyboard&&(a.focus=!1),t="img"===s.localName,e=[],S(t?[s]:s.querySelectorAll("img"),function(t){A(a.filter)?a.filter.call(o,t)&&e.push(t):o.getImageURL(t)&&e.push(t)}),this.isImg=t,this.length=e.length,this.images=e,this.initBody(),D(document.createElement(g).style.transition)&&(a.transition=!1),a.inline?(i=0,n=function(){var t;(i+=1)===o.length&&(o.initializing=!1,o.delaying={abort:function(){clearTimeout(t)}},t=setTimeout(function(){o.delaying=!1,o.build()},0))},this.initializing={abort:function(){S(e,function(t){t.complete||(X(t,y,n),X(t,x,n))})}},S(e,function(t){var e,i;t.complete?n():(M(t,y,e=function(){X(t,x,i),n()},{once:!0}),M(t,x,i=function(){X(t,y,e),n()},{once:!0}))})):M(s,w,this.onStart=function(t){t=t.target;"img"!==t.localName||A(a.filter)&&!a.filter.call(o,t)||o.view(o.images.indexOf(t))}))}},{key:"build",value:function(){var t,s,e,i,n,o,a,r,h,l,c,u,d,m;this.ready||(t=this.element,s=this.options,e=t.parentNode,(d=document.createElement("div")).innerHTML='<div class="viewer-container" tabindex="-1" touch-action="none"><div class="viewer-canvas"></div><div class="viewer-footer"><div class="viewer-title"></div><div class="viewer-toolbar"></div><div class="viewer-navbar"><ul class="viewer-list" role="navigation"></ul></div></div><div class="viewer-tooltip" role="alert" aria-hidden="true"></div><div class="viewer-button" data-viewer-action="mix" role="button"></div><div class="viewer-player"></div></div>',d=(i=d.querySelector(".".concat(g,"-container"))).querySelector(".".concat(g,"-title")),n=i.querySelector(".".concat(g,"-toolbar")),m=i.querySelector(".".concat(g,"-navbar")),o=i.querySelector(".".concat(g,"-button")),a=i.querySelector(".".concat(g,"-canvas")),this.parent=e,this.viewer=i,this.title=d,this.toolbar=n,this.navbar=m,this.button=o,this.canvas=a,this.footer=i.querySelector(".".concat(g,"-footer")),this.tooltipBox=i.querySelector(".".concat(g,"-tooltip")),this.player=i.querySelector(".".concat(g,"-player")),this.list=i.querySelector(".".concat(g,"-list")),i.id="".concat(g).concat(this.id),d.id="".concat(g,"Title").concat(this.id),R(d,s.title?Tt(Array.isArray(s.title)?s.title[0]:s.title):v),R(m,s.navbar?Tt(s.navbar):v),N(o,v,!s.button),s.keyboard&&o.setAttribute("tabindex",0),s.backdrop&&(R(i,"".concat(g,"-backdrop")),s.inline||"static"===s.backdrop||bt(a,ct,"hide")),E(s.className)&&s.className&&s.className.split(ut).forEach(function(t){R(i,t)}),s.toolbar?(r=document.createElement("ul"),h=I(s.toolbar),l=dt.slice(0,3),c=dt.slice(7,9),u=dt.slice(9),h||R(n,Tt(s.toolbar)),S(h?s.toolbar:dt,function(t,e){var i,n=h&&I(t),e=h?pt(e):t,o=n&&!D(t.show)?t.show:t;!o||!s.zoomable&&-1!==l.indexOf(e)||!s.rotatable&&-1!==c.indexOf(e)||!s.scalable&&-1!==u.indexOf(e)||(i=n&&!D(t.size)?t.size:t,n=n&&!D(t.click)?t.click:t,t=document.createElement("li"),s.keyboard&&t.setAttribute("tabindex",0),t.setAttribute("role","button"),R(t,"".concat(g,"-").concat(e)),A(n)||bt(t,ct,e),T(o)&&R(t,Tt(o)),-1!==["small","large"].indexOf(i)?R(t,"".concat(g,"-").concat(i)):"play"===e&&R(t,"".concat(g,"-large")),A(n)&&M(t,w,n),r.appendChild(t))}),n.appendChild(r)):R(n,v),s.rotatable||(R(d=n.querySelectorAll('li[class*="rotate"]'),p),S(d,function(t){n.appendChild(t)})),s.inline?(R(o,V),C(i,{zIndex:s.zIndexInline}),"static"===window.getComputedStyle(e).position&&C(e,{position:"relative"}),e.insertBefore(i,t.nextSibling)):(R(o,j),R(i,B),R(i,H),R(i,v),C(i,{zIndex:s.zIndex}),(m=(m=E(m=s.container)?t.ownerDocument.querySelector(m):m)||this.body).appendChild(i)),s.inline&&(this.render(),this.bind(),this.isShown=!0),this.ready=!0,A(s.ready)&&M(t,rt,s.ready,{once:!0}),!1===P(t,rt)?this.ready=!1:this.ready&&s.inline&&this.view(this.index))}}])&&r(t.prototype,e),i&&r(t,i),Object.defineProperty(t,"prototype",{writable:!1}),o}();return O(e.prototype,i,t,At,St,Ot),e});       
 
         $('footer').append($('.auclting')); // hide front page items
+        const AUCTION_CONTENT_FOLDER = 'https://content.propstore.com/public-img/auction-content';
 
         let interval = setInterval(() => {
             if (M) { // wait materialize
@@ -380,11 +381,26 @@ document.addEventListener('DOMContentLoaded', () => {
 
                     const dates = [];
                     let start_date = $('#auction_start_date').text();
-                    if (start_date) dates.push(moment(start_date).format('MMM D YYYY'));
-                    let end_date = $('#auction_end_date').text();
-                    if (end_date) dates.push(moment(end_date).format('MMM D YYYY'));
-                    if (dates.length) {
-                        $('.hero__static-date').append(dates.join(' - ')).show();
+
+                    let auctionday = $('.product-description-content').data('auctionday');
+                    if (auctionday) auctionday = parseInt(auctionday);
+                    if (auctionday) {
+                        $(`<p class="p-r">Day ${auctionday}</p>`).insertBefore('.hero__static-date');
+                        if (start_date) {
+                            $('.hero__static-date').append(
+                                moment(start_date).add(auctionday - 1, 'days').format('MMM D YYYY')
+                            ).show();
+                            $('.hero__image').css({
+                                backgroundImage: `url(${AUCTION_CONTENT_FOLDER}/${auctionId}/header-${auctionday}.jpg)`
+                            });
+                        }
+                    } else {
+                        if (start_date) dates.push(moment(start_date).format('MMM D YYYY'));
+                        let end_date = $('#auction_end_date').text();
+                        if (end_date) dates.push(moment(end_date).format('MMM D YYYY'));
+                        if (dates.length) {
+                            $('.hero__static-date').append(dates.join(' - ')).show();
+                        }
                     }
 
                     if (status) {
@@ -406,9 +422,34 @@ document.addEventListener('DOMContentLoaded', () => {
                     $('.auc__hero-auccatalog').attr('href', $('.catlg').attr('href')).attr('style', '');
 
 
-                    if ($('.description-info-content .product__gallery').length) {
+                    if ($('.description-info-content .product__gallery').length) { // full gallery in description
                         $('.product__inner .product__gallery').remove();
                         $('.product__gallery').prependTo('.product__inner');
+                    } else if ($('.description-info-content .product__gallery-array').length) { // array of imgs in description
+                        $('.product__inner .product__gallery').remove();
+                        $('.product__gallery-array')
+                            .removeClass('product__gallery-array')
+                            .addClass('product__gallery')
+                            .prependTo('.product__inner');
+                        const $productSlider = $(`<div class="product__slider">`);
+                        const $productThumbnails = $('<div class="product__thumbnails">');
+                        const $productThumbnailsScroll = $('<div class="product__thumbnails-scroll">');
+                        $productThumbnails.append($productThumbnailsScroll);
+                        const $productGallery = $('<div id="modal-product-gallery" class="modal-gallery" style="display: none;">');
+                        const $productGalleryCarousel = $('<div class="modal-gallery__carousel">');
+                        $productGallery.append($productGalleryCarousel);
+                        $('.product__gallery').append($productSlider, $productThumbnails, $productGallery);                        
+                        
+                        $('.product__gallery-array-item').each((i, item) => {
+                            let img = $(item).data('url');
+                            let img1 = img.replace(new RegExp('.jpg$'), '-1.jpg');
+                            let img3 = img.replace(new RegExp('.jpg$'), '-3.jpg');
+                            $productSlider.append(`<div class="carousel-item modal-trigger" href="#modal-product-gallery" style="background-image:url('${img1}');">&nbsp;</div>`);
+                            $productThumbnailsScroll.append(`<div class="product__thumbnail modal-trigger" href="#modal-product-gallery" style="background-image: url('${img3}');">&nbsp;</div>`);
+                            $productGalleryCarousel.append(`<div class="carousel-item" style="background-image: url('${img}');"></div>&nbsp;</div>`);
+                            $(item).remove();
+                        });
+
                     } else {
                         $carouselItem = $('.product__slider .carousel-item').clone();
                         $slider = $('.product__slider').html('');
@@ -822,7 +863,18 @@ document.addEventListener('DOMContentLoaded', () => {
                     } else {
                         $('.product__detail .collapsible-body').append($('.l1desctextwhite, .l2desctextwhite, .l3desctextwhite'));
                     }
-                    $('#modal-buyers-guide .modal-content').append($('#buyers-content'));
+                    let $buyersGuide = $('#buyers-content');
+                    if ($buyersGuide.length) {
+                        $('#modal-buyers-guide .modal-content').append($buyersGuide);
+                    } else {
+                        $.get(`${AUCTION_CONTENT_FOLDER}/${auctionId}/buyers-guide.txt`)
+                            .done(data => {
+                                if (!checkResponse(data)) return data;
+
+                                $('#modal-buyers-guide .modal-content').append(data);
+                            })
+                    }
+
                     $('body').append($('#modal-buyers-guide'));
 
                     $('#modal-shipping .modal-content').append($('.shipping-info-content'));
@@ -1149,6 +1201,19 @@ document.addEventListener('DOMContentLoaded', () => {
                     //     const backgroundImage = aucPoster.backgroundImage !== 'none' ? aucPoster.backgroundImage : heroImage.backgroundImage;
                     //     $('.hero__image').css({ backgroundImage });
                     // });
+
+                    const auctionId = (
+                        sam &&
+                        sam.serverData &&
+                        sam.serverData.variables &&
+                        sam.serverData.variables.default &&
+                        sam.serverData.variables.default.auctionId
+                    ) || 0;
+                    if (auctionId) {
+                        $('.hero__image').css({
+                            backgroundImage: `url(${AUCTION_CONTENT_FOLDER}/${auctionId}/header.jpg)`
+                        });
+                    }
 
                     const $searcContent = $('.advSearchAccordionContent');
                     const $searchKey = $('<div class="input-field">');
