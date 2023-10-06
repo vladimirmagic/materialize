@@ -6,6 +6,638 @@
   display: none;
 }
 
+.reserve-not-met-text{
+  color: #11BFC5 !important;
+}
+
+.disclaimer{
+	font-size: 13px;
+	font-style: italic;
+}
+
+/*button margin fixes*/
+.auction361 .auc__hero.hero--auctions .hero__btn {
+  margin-top: 0;
+}
+.auction358 .auc__hero.hero--auctions .hero__btn {
+  margin-top: 0;
+}
+.auction363 .auc__hero.hero--auctions .hero__btn {
+  margin-top: 0;
+}
+.auction347 .auc__hero.hero--auctions .hero__btn {
+  margin-top: 0;
+}
+.auction360 .auc__hero.hero--auctions .hero__btn {
+  margin-top: 0;
+}
+.auction359 .auc__hero.hero--auctions .hero__btn {
+  margin-top: 0;
+}
+.auction362 .auc__hero.hero--auctions .hero__btn {
+  margin-top: 0;
+}
+
+.auctions-info.auction322 .hero__static-date, .lot-details.auction322 .hero__static-date{
+  font-size: 0;
+}
+.auctions-info.auction322 .hero__static-date:after, .lot-details.auction322 .hero__static-date:after{
+  font-size: 16px;
+  content: " Sep 15 2022";
+  vertical-align: bottom;
+  line-height: 18px;
+}
+
+.lot-details.auction341 .aucproduct__form{
+  display: block;
+}
+.lot-details.auction341 .aucproduct__form .mxbid-input .txt-max-bid{
+  width: calc(50% - 13px) !important;
+  margin-right: 23px;
+}
+.lot-details.auction341 .place-bid{
+  width: calc(50% - 13px);
+  padding: 0;
+}
+@media only screen and (max-width: 1024px){
+  .lot-details.auction341 .aucproduct__form-item + .aucproduct__form-item{
+    margin-left: 0;
+  }
+}
+.lot-details.auction341 .youre-winning {
+  display: inline-block;
+}
+
+.lot-details.auction342 .aucproduct__form{
+  display: block;
+}
+.lot-details.auction342 .aucproduct__form .mxbid-input .txt-max-bid{
+  width: calc(50% - 13px) !important;
+  margin-right: 23px;
+}
+.lot-details.auction342 .place-bid{
+  width: calc(50% - 13px);
+  padding: 0;
+}
+@media only screen and (max-width: 1024px){
+  .lot-details.auction342 .aucproduct__form-item + .aucproduct__form-item{
+    margin-left: 0;
+  }
+}
+.lot-details.auction342 .youre-winning {
+  display: inline-block;
+}
+
+@media only screen and (min-width: 1201px){
+  @media screen and (max-width: 1456px){
+    .auctions-info.auction361 .hero{
+      height: 1000px;
+   } } }
+/*
+#anim{
+  -webkit-animation:opacity 1.5s 1s infinite ease-in-out;
+  animation:opacity 1.5s 1s infinite ease-in-out !important;
+  text-align: center;
+  width: 100%;
+  display: inline-block;
+  font-weight: bold;
+  color: red;
+  opacity: 1;
+}
+
+@keyframes opacity {
+  0% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+*/
+/* ----- COPYRIGHT FORMAT ----- */
+
+form[action*="catalog/374/"] .product__slider > .carousel-item:after{
+  content: "© 2023 Sony Pictures Television Inc. All Rights Reserved.";
+  text-align: center;
+  display: block;
+  font-size: 10.5px;
+  letter-spacing: 0.3px;
+  margin-top: 714px;
+}
+
+@media only screen and (max-width: 1024px){
+  form[action*="catalog/374/"] .product__slider > .carousel-item:after{margin-top: 434px;}
+}
+
+@media only screen and (max-width: 992px){
+  form[action*="catalog/374/"] .product__slider > .carousel-item:after{margin-top: 363px;}
+}
+
+form[action*="catalog/374/"] .modal-gallery .indicators:after{
+  content: "© 2023 Sony Pictures Television Inc. All Rights Reserved.";
+  text-align: center;
+  display: block;
+  font-size: 10.5px;
+  letter-spacing: 0.3px;
+  margin-top: -20px;  
+  margin-bottom: 9px;
+}
+
+.auctions-catalog.auction374 .card__img::after {
+  content: "© 2023 Sony Pictures Television Inc. All Rights Reserved.";
+  text-align: center;
+  display: inline-block;
+  font-size: 10.5px;
+  letter-spacing: 0.3px;
+  margin-top: 100%;
+  width: 100%;
+}
+
+form[action*="catalog/374/"] .product__slider > .carousel-item:after{
+  content: "© 2023 Sony Pictures Television Inc. All Rights Reserved.";
+  text-align: center;
+  display: block;
+  font-size: 10.5px;
+  letter-spacing: 0.3px;
+  margin-top: 714px;
+}
+
+@media only screen and (max-width: 1024px){
+  form[action*="catalog/374/"] .product__slider > .carousel-item:after{margin-top: 434px;}
+}
+
+@media only screen and (max-width: 992px){
+  form[action*="catalog/374/"] .product__slider > .carousel-item:after{margin-top: 363px;}
+}
+
+form[action*="catalog/374/"] .modal-gallery .indicators:after{
+  content: "© 2023 Sony Pictures Television Inc. All Rights Reserved.";
+  text-align: center;
+  display: block;
+  font-size: 10.5px;
+  letter-spacing: 0.3px;
+  margin-top: -20px;  
+  margin-bottom: 9px;
+}
+
+.auctions-catalog.auction374 .card__img::after {
+  content: "© 2023 Sony Pictures Television Inc. All Rights Reserved.";
+  text-align: center;
+  display: inline-block;
+  font-size: 10.5px;
+  letter-spacing: 0.3px;
+  margin-top: 100%;
+  width: 100%;
+}
+
+form[action*="catalog/341/"] .product__slider > .carousel-item:after{
+  content: "© 2022 Sony Pictures Television Inc. All Rights Reserved.";
+  text-align: center;
+  display: block;
+  font-size: 10.5px;
+  letter-spacing: 0.3px;
+  margin-top: 714px;
+}
+
+@media only screen and (max-width: 1024px){
+  form[action*="catalog/341/"] .product__slider > .carousel-item:after{margin-top: 434px;}
+}
+
+@media only screen and (max-width: 992px){
+  form[action*="catalog/341/"] .product__slider > .carousel-item:after{margin-top: 363px;}
+}
+
+form[action*="catalog/341/"] .modal-gallery .indicators:after{
+  content: "© 2022 Sony Pictures Television Inc. All Rights Reserved.";
+  text-align: center;
+  display: block;
+  font-size: 10.5px;
+  letter-spacing: 0.3px;
+  margin-top: -20px;  
+  margin-bottom: 9px;
+}
+
+.auctions-catalog.auction341 .card__img::after {
+  content: "© 2022 Sony Pictures Television Inc. All Rights Reserved.";
+  text-align: center;
+  display: inline-block;
+  font-size: 10.5px;
+  letter-spacing: 0.3px;
+  margin-top: 100%;
+  width: 100%;
+}
+
+
+form[action*="catalog/381/"] .product__slider > .carousel-item:after, form[action*="catalog/383/"] .product__slider > .carousel-item:after{
+  content: "";
+  text-align: center;
+  display: block;
+  font-size: 10.5px;
+  letter-spacing: 0.3px;
+  margin-top: 714px;
+}
+
+@media only screen and (max-width: 1024px){
+  form[action*="catalog/381/"] .product__slider > .carousel-item:after, form[action*="catalog/383/"] .product__slider > .carousel-item:after{margin-top: 434px;}
+}
+
+@media only screen and (max-width: 992px){
+  form[action*="catalog/381/"] .product__slider > .carousel-item:after, form[action*="catalog/383/"] .product__slider > .carousel-item:after{margin-top: 363px;}
+}
+
+form[action*="catalog/381/"] .modal-gallery .indicators:after, form[action*="catalog/383/"] .modal-gallery .indicators:after{
+  content: "";
+  text-align: center;
+  display: block;
+  font-size: 10.5px;
+  letter-spacing: 0.3px;
+  margin-top: -20px;  
+  margin-bottom: 9px;
+}
+
+.auctions-catalog.auction381 .card__img::after, .auctions-catalog.auction383 .card__img::after {
+  content: "";
+  text-align: center;
+  display: inline-block;
+  font-size: 10.5px;
+  letter-spacing: 0.3px;
+  margin-top: 100%;
+  width: 100%;
+}
+
+form[action*="catalog/381/"] .product__slider > .carousel-item:after, form[action*="catalog/383/"] .product__slider > .carousel-item:after{
+  content: "";
+  text-align: center;
+  display: block;
+  font-size: 10.5px;
+  letter-spacing: 0.3px;
+  margin-top: 714px;
+}
+
+@media only screen and (max-width: 1024px){
+  form[action*="catalog/381/"] .product__slider > .carousel-item:after, form[action*="catalog/383/"] .product__slider > .carousel-item:after{margin-top: 434px;}
+}
+
+@media only screen and (max-width: 992px){
+  form[action*="catalog/381/"] .product__slider > .carousel-item:after, form[action*="catalog/383/"] .product__slider > .carousel-item:after{margin-top: 363px;}
+}
+
+form[action*="catalog/381/"] .modal-gallery .indicators:after, form[action*="catalog/383/"] .modal-gallery .indicators:after{
+  content: "";
+  text-align: center;
+  display: block;
+  font-size: 10.5px;
+  letter-spacing: 0.3px;
+  margin-top: -20px;  
+  margin-bottom: 9px;
+}
+
+.auctions-catalog.auction381 .card__img::after, .auctions-catalog.auction383 .card__img::after {
+  content: "";
+  text-align: center;
+  display: inline-block;
+  font-size: 10.5px;
+  letter-spacing: 0.3px;
+  margin-top: 100%;
+  width: 100%;
+}
+
+
+form[action*="catalog/342/"] .product__slider > .carousel-item:after{
+  content: "© 2022 Sony Pictures Television Inc. All Rights Reserved.";
+  text-align: center;
+  display: block;
+  font-size: 10.5px;
+  letter-spacing: 0.3px;
+  margin-top: 714px;
+}
+
+@media only screen and (max-width: 1024px){
+  form[action*="catalog/342/"] .product__slider > .carousel-item:after{margin-top: 434px;}
+}
+
+@media only screen and (max-width: 992px){
+  form[action*="catalog/342/"] .product__slider > .carousel-item:after{margin-top: 363px;}
+}
+
+form[action*="catalog/342/"] .modal-gallery .indicators:after{
+  content: "© 2022 Sony Pictures Television Inc. All Rights Reserved.";
+  text-align: center;
+  display: block;
+  font-size: 10.5px;
+  letter-spacing: 0.3px;
+  margin-top: -20px;  
+  margin-bottom: 9px;
+}
+
+.auctions-catalog.auction342 .card__img::after {
+  content: "© 2022 Sony Pictures Television Inc. All Rights Reserved.";
+  text-align: center;
+  display: inline-block;
+  font-size: 10.5px;
+  letter-spacing: 0.3px;
+  margin-top: 100%;
+  width: 100%;
+}
+
+.auctions-catalog.auction354 .card__img::after {
+  content: "© 2023 MARVEL";
+  text-align: center;
+  display: inline-block;
+  font-size: 10.5px;
+  letter-spacing: 0.3px;
+  margin-top: 100%;
+  width: 100%;
+}
+
+form[action*="catalog/354/"] .product__slider > .carousel-item:after{
+  content: "© 2023 MARVEL";
+  text-align: center;
+  display: block;
+  font-size: 10.5px;
+  letter-spacing: 0.3px;
+  margin-top: 714px;
+}
+
+@media only screen and (max-width: 1024px){
+  form[action*="catalog/354/"] .product__slider > .carousel-item:after{margin-top: 434px;}
+}
+
+@media only screen and (max-width: 992px){
+  form[action*="catalog/354/"] .product__slider > .carousel-item:after{margin-top: 363px;}
+}
+
+form[action*="catalog/354/"] .modal-gallery .indicators:after{
+  content: "© 2023 MARVEL";
+  text-align: center;
+  display: block;
+  font-size: 10.5px;
+  letter-spacing: 0.3px;
+  margin-top: -20px;  
+  margin-bottom: 9px;
+}
+
+.auctions-catalog.auction354 .card__img::after {
+  content: "© 2023 MARVEL";
+  text-align: center;
+  display: inline-block;
+  font-size: 10.5px;
+  letter-spacing: 0.3px;
+  margin-top: 100%;
+  width: 100%;
+}
+
+@media only screen and (max-width: 1636px){
+  .auctions-catalog.auction341 .card__img::after {margin-top: 304px;}
+}
+
+@media only screen and (max-width: 992px){
+  .auctions-catalog.auction341 .card__img::after {margin-top: 176px;}
+}
+
+@media only screen and (max-width: 1636px){
+  .auctions-catalog.auction342 .card__img::after {margin-top: 304px;}
+}
+
+@media only screen and (max-width: 992px){
+  .auctions-catalog.auction342 .card__img::after {margin-top: 176px;}
+}
+
+/*Y&R copyright*/
+form[action*="catalog/368/"] .product__slider > .carousel-item:after, form[action*="catalog/370/"] .product__slider > .carousel-item:after{
+  content: "©2023 Sony Pictures Television. All Rights Reserved.";
+  text-align: center;
+  display: block;
+  font-size: 10.5px;
+  letter-spacing: 0.3px;
+  margin-top: 714px;
+}
+
+@media only screen and (max-width: 1024px){
+  form[action*="catalog/368/"] .product__slider > .carousel-item:after, form[action*="catalog/370/"] .product__slider > .carousel-item:after{margin-top: 434px;}
+}
+
+@media only screen and (max-width: 992px){
+  form[action*="catalog/368/"] .product__slider > .carousel-item:after, form[action*="catalog/370/"] .product__slider > .carousel-item:after{margin-top: 363px;}
+}
+
+form[action*="catalog/368/"] .modal-gallery .indicators:after, form[action*="catalog/370/"] .modal-gallery .indicators:after{
+  content: "©2023 Sony Pictures Television. All Rights Reserved.";
+  text-align: center;
+  display: block;
+  font-size: 10.5px;
+  letter-spacing: 0.3px;
+  margin-top: -20px;  
+  margin-bottom: 9px;
+}
+
+.auctions-catalog.auction368 .card__img::after, .auctions-catalog.auction370 .card__img::after{
+  content: "©2023 Sony Pictures Television. All Rights Reserved.";
+  text-align: center;
+  display: inline-block;
+  font-size: 10.5px;
+  letter-spacing: 0.3px;
+  margin-top: 100%;
+  width: 100%;
+}
+
+@media only screen and (max-width: 1636px){
+  .auctions-catalog.auction370 .card__img::after {margin-top: 304px;}
+}
+
+@media only screen and (max-width: 992px){
+  .auctions-catalog.auction370 .card__img::after {margin-top: 176px;}
+}
+
+@media only screen and (max-width: 1636px){
+  .auctions-catalog.auction370 .card__img::after {margin-top: 304px;}
+}
+
+@media only screen and (max-width: 992px){
+  .auctions-catalog.auction370 .card__img::after {margin-top: 176px;}
+}
+
+/*Picard copyright*/
+form[action*="catalog/321/"] .product__slider > .carousel-item:after{
+  content: "TM & © 2022 CBS Studios Inc. All Rights Reserved.";
+  text-align: center;
+  display: block;
+  font-size: 10.5px;
+  letter-spacing: 0.3px;
+  margin-top: 714px;
+}
+
+@media only screen and (max-width: 1024px){
+  form[action*="catalog/321/"] .product__slider > .carousel-item:after{margin-top: 434px;}
+}
+
+@media only screen and (max-width: 992px){
+  form[action*="catalog/321/"] .product__slider > .carousel-item:after{margin-top: 363px;}
+}
+
+form[action*="catalog/321/"] .modal-gallery .indicators:after{
+  content: "TM & © 2022 CBS Studios Inc. All Rights Reserved.";
+  text-align: center;
+  display: block;
+  font-size: 10.5px;
+  letter-spacing: 0.3px;
+  margin-top: -20px;  
+  margin-bottom: 9px;
+}
+
+.auctions-catalog.auction321 .card__img::after {
+  content: "TM & © 2022 CBS Studios Inc. All Rights Reserved.";
+  text-align: center;
+  display: inline-block;
+  font-size: 10.5px;
+  letter-spacing: 0.3px;
+  margin-top: 100%;
+  width: 100%;
+}
+
+form[action*="catalog/321/"] .product__slider > .carousel-item:after{
+  content: "TM & © 2022 CBS Studios Inc. All Rights Reserved.";
+  text-align: center;
+  display: block;
+  font-size: 10.5px;
+  letter-spacing: 0.3px;
+  margin-top: 714px;
+}
+
+@media only screen and (max-width: 1024px){
+  form[action*="catalog/321/"] .product__slider > .carousel-item:after{margin-top: 434px;}
+}
+
+@media only screen and (max-width: 992px){
+  form[action*="catalog/321/"] .product__slider > .carousel-item:after{margin-top: 363px;}
+}
+
+form[action*="catalog/321/"] .modal-gallery .indicators:after{
+  content: "TM & © 2022 CBS Studios Inc. All Rights Reserved.";
+  text-align: center;
+  display: block;
+  font-size: 10.5px;
+  letter-spacing: 0.3px;
+  margin-top: -20px;  
+  margin-bottom: 9px;
+}
+
+.auctions-catalog.auction321 .card__img::after {
+  content: "TM & © 2022 CBS Studios Inc. All Rights Reserved.";
+  text-align: center;
+  display: inline-block;
+  font-size: 10.5px;
+  letter-spacing: 0.3px;
+  margin-top: 100%;
+  width: 100%;
+}
+
+/*Marvel 2023 copyright*/
+form[action*="catalog/354/"] .product__slider > .carousel-item:after{
+  content: "© 2023 MARVEL";
+  text-align: center;
+  display: block;
+  font-size: 10.5px;
+  letter-spacing: 0.3px;
+  margin-top: 714px;
+}
+
+@media only screen and (max-width: 1024px){
+  form[action*="catalog/354/"] .product__slider > .carousel-item:after{margin-top: 434px;}
+}
+
+@media only screen and (max-width: 992px){
+  form[action*="catalog/354/"] .product__slider > .carousel-item:after{margin-top: 363px;}
+}
+
+form[action*="catalog/354/"] .modal-gallery .indicators:after{
+  content: "© 2023 MARVEL";
+  text-align: center;
+  display: block;
+  font-size: 10.5px;
+  letter-spacing: 0.3px;
+  margin-top: -20px;  
+  margin-bottom: 9px;
+}
+
+.auctions-catalog.auction354 .card__img::after {
+  content: "© 2023 MARVEL";
+  text-align: center;
+  display: inline-block;
+  font-size: 10.5px;
+  letter-spacing: 0.3px;
+  margin-top: 100%;
+  width: 100%;
+}
+
+form[action*="catalog/354/"] .product__slider > .carousel-item:after{
+  content: "© 2023 MARVEL";
+  text-align: center;
+  display: block;
+  font-size: 10.5px;
+  letter-spacing: 0.3px;
+  margin-top: 714px;
+}
+
+@media only screen and (max-width: 1024px){
+  form[action*="catalog/354/"] .product__slider > .carousel-item:after{margin-top: 434px;}
+}
+
+@media only screen and (max-width: 992px){
+  form[action*="catalog/354/"] .product__slider > .carousel-item:after{margin-top: 363px;}
+}
+
+form[action*="catalog/354/"] .modal-gallery .indicators:after{
+  content: "© 2023 MARVEL";
+  text-align: center;
+  display: block;
+  font-size: 10.5px;
+  letter-spacing: 0.3px;
+  margin-top: -20px;  
+  margin-bottom: 9px;
+}
+
+.auctions-catalog.auction354 .card__img::after {
+  content: "© 2023 MARVEL";
+  text-align: center;
+  display: inline-block;
+  font-size: 10.5px;
+  letter-spacing: 0.3px;
+  margin-top: 100%;
+  width: 100%;
+}
+
+@media only screen and (max-width: 992px){
+  .auctions-catalog.auction354 .card__img::after {
+    margin-top: 175px;
+  }
+}
+
+.auctions-catalog.auction321 div[data-lid="96399"] .card__img::after{
+  display: none !important;
+}
+
+@media only screen and (max-width: 1636px){
+  .auctions-catalog.auction321 .card__img::after {margin-top: 304px;}
+}
+
+@media only screen and (max-width: 992px){
+  .auctions-catalog.auction321 .card__img::after {margin-top: 176px;}
+}
+
+@media only screen and (max-width: 1636px){
+  .auctions-catalog.auction321 .card__img::after {margin-top: 304px;}
+}
+
+@media only screen and (max-width: 992px){
+  .auctions-catalog.auction321 .card__img::after {margin-top: 176px;}
+}
+
 /****** Annihilation  - Header Graphics *****/
 form[action*="catalog/227/"] div.lot-details-container .bodybox:before {
 	background-color: #F6F8F9;
@@ -14,6 +646,25 @@ form[action*="catalog/227/"] div.lot-details-container .bodybox:before {
 form#AdvancedSearch[action*="/id/227"]:before {
 	background-color: #F6F8F9;
     background-image: url(https://s3-eu-west-1.amazonaws.com/content.propstore.com/auction/Annihilation/ProductHeader.jpg);
+}
+
+/****** Picard  - Header Graphics *****/
+form[action*="catalog/321/"] div.lot-details-container .bodybox:before {
+	background-color: #F6F8F9;
+	background-image: url(https://content.propstore.com/auction/StarTrekPicard/AuctionHeader.jpg);
+}
+form#AdvancedSearch[action*="/id/321"]:before {
+	background-color: #F6F8F9;
+    background-image: url(https://content.propstore.com/auction/StarTrekPicard/AuctionHeader.jpg);
+}
+/****** TEST-Picard - Header Graphics *****/
+form[action*="catalog/338/"] div.lot-details-container .bodybox:before {
+	background-color: #F6F8F9;
+	background-image: url(https://content.propstore.com/auction/StarTrekPicard/AuctionHeader.jpg);
+}
+form#AdvancedSearch[action*="/id/338"]:before {
+	background-color: #F6F8F9;
+    background-image: url(https://content.propstore.com/auction/StarTrekPicard/AuctionHeader.jpg);
 }
 
 /****** TEST-Ghost in the Shell - Header Graphics *****/
@@ -281,11 +932,27 @@ form#AdvancedSearch[action*="/id/303"]:before {
     background-image: url(https://content.propstore.com/auction/funko2022/funko2022-samheader-2.jpg);
 }
 
-
 .auc__hero .hero__image {
   background-image:url('https://content.propstore.com/public-img/auctions-search-banner.jpg');
 }
 
+.auction363 .hero__image{
+    background-image: url('https://content.propstore.com/auction/posterauction11/SAM_AuctionHeader_1200x440_pa11.jpg') !important;
+}
+
+.auction322 .hero__image{
+    background-image: url('https://content.propstore.com/auction/posterauction10/Auctions-Banner_1080x864_updated-backend.jpg') !important;
+}
+
+.auction342 .hero__image{
+    background-image: url('https://content.propstore.com/auction/BetterCallSaul/LandingPage/Headermobile.jpg') !important;
+  }
+  .auctions-info.auction341 .auc__hero .hero__image{
+    background-image: url('https://content.propstore.com/auction/BetterCallSaul/LandingPage/Headermobile.jpg') !important;
+  }
+  .auctions-info.auction342 .auc__hero .hero__image{
+    background-image: url('https://content.propstore.com/auction/BetterCallSaul/LandingPage/Headermobile.jpg') !important;
+  }
 .auction165 .hero__image{
     background-image: url('https://content.propstore.com/public/img/auctionheaders/165_springauction2019.png') !important;
   }
@@ -293,13 +960,13 @@ form#AdvancedSearch[action*="/id/303"]:before {
     background-image: url('https://content.propstore.com/public/img/auctionheaders/221_uktoys2019.png') !important;
   }
   .auction187 .hero__image{
-    background-image: url('https://content.propstore.com/public/img/auctionheaders/187_cpla3june2019.jpg') !important;
+    background-image: url('https://s3.eu-west-1.amazonaws.com/content.propstore.com/auction/posterauction3/CPLA3_1080x800+header.png') !important;
   }
   .auction212 .hero__image{
     background-image: url('https://content.propstore.com/public/img/auctionheaders/212_cpla4-acj-nov2019.jpg') !important;
   }
   .auction178 .hero__image{
-    background-image: url('https://content.propstore.com/public/img/auctionheaders/178_harrylange2019.jpg') !important;
+    background-image: url('https://s3.eu-west-1.amazonaws.com/content.propstore.com/auction/harrylange/1080x800+Header+Graphic+Harry+Lange_2.png') !important;
   }
   .auction179 .hero__image{
     background-image: url('https://content.propstore.com/public/img/auctionheaders/179_mdkoutlander2019.png') !important;
@@ -314,10 +981,10 @@ form#AdvancedSearch[action*="/id/303"]:before {
     background-image: url('https://content.propstore.com/public/img/auctionheaders/232_aliensandalienscollectionauction.jpg') !important;
   }
   .auction238 .hero__image{
-    background-image: url('https://content.propstore.com/public/img/auctionheaders/238_springauction2020.jpg') !important;
+    background-image: url('https://content.propstore.com/auction/springauction-2020/1080x800+header+image.png') !important;
   }
   .auction242 .hero__image{
-    background-image: url('https://content.propstore.com/public/img/auctionheaders/242_cpla6nov2020.jpg') !important;
+    background-image: url('https://s3.eu-west-1.amazonaws.com/content.propstore.com/auction/posterauction6/1080x800+Header+image.png') !important;
   }
   .auction261 .hero__image{
     background-image: url('https://content.propstore.com/public/img/auctionheaders/246_mdkoutlander2020.png') !important;
@@ -451,12 +1118,158 @@ form#AdvancedSearch[action*="/id/303"]:before {
   .auction319.lot-details .hero__image, .auction332.lot-details .hero__image {
         background-image: url('https://s3.eu-west-1.amazonaws.com/content.propstore.com/auction/EMLAUS2022/Headers/EMLA-US2022_DayBreak-Headers_v2-Day01.jpg') !important;
     }
+
+/*catalog page*/
+  .auction344 .hero__image, .auction318 .hero__image {
+    background-image: url('https://s3.eu-west-1.amazonaws.com/content.propstore.com/auction/emlauk22/Headers/EMLA+UK+2022+Catalog+Header.jpeg') !important;
+}
+/*lot page*/
+.auction344.lot-details .hero__image, .auction318.lot-details .hero__image {
+    background-image: url('https://s3.eu-west-1.amazonaws.com/content.propstore.com/auction/emlauk22/Headers/Day+1.jpg') !important;
+}
+
+/*Marvel 2023*/
+/*catalog page*/
+.auction354 .auc__hero .hero__image{
+  background-image: url('https://s3.eu-west-1.amazonaws.com/content.propstore.com/auction/Marvel4/SAM+Auction+Header-narrow.jpg') !important;
+}
+
+/*Y&R catalog page*/
+.auctions-catalog.auction370 .auc__hero .hero__image, .lot-details-index.auction370 .auc__hero .hero__image{
+  background-image: url('https://content.propstore.com/auction/YoungandRestless/SAMAuctionHeader.jpg') !important;
+}
+
+/*TEST UK Posters sept 2023 catalog and lot pages */
+.auctions-catalog.auction380 .auc__hero .hero__image, .auctions-catalog.auction369 .auc__hero .hero__image{
+  background-image: url('https://content.propstore.com/auction/posterauction12/OCPA12_SAMHeader_2.png') !important;
+}
+.lot-details-index.auction380 .auc__hero .hero__image, .lot-details-index.auction369 .auc__hero .hero__image{
+    background-image: url('https://content.propstore.com/auction/posterauction12/OCPA12_SAMHeader_2.png') !important;
+}
+
+/*UK Posters sept 2023 catalog and lot pages*/
+.auctions-catalog.auction360 .auc__hero .hero__image, .auctions-catalog.auction369 .auc__hero .hero__image{
+  background-image: url('https://content.propstore.com/auction/posterauction12/OCPA12_SAMHeader_2.png') !important;
+}
+.lot-details-index.auction360 .auc__hero .hero__image, .lot-details-index.auction369 .auc__hero .hero__image{
+    background-image: url('https://content.propstore.com/auction/posterauction12/OCPA12_SAMHeader_2.png') !important;
+}
+
+/*Expanse catalog and lot pages*/
+.auctions-catalog.auction376 .auc__hero .hero__image, .auctions-catalog.auction377 .auc__hero .hero__image{
+  background-image: url('https://s3.eu-west-1.amazonaws.com/content.propstore.com/auction/Expanse/SAM+Auction+Header-narrow.jpg') !important;
+}
+.lot-details-index.auction376 .auc__hero .hero__image, .lot-details-index.auction377 .auc__hero .hero__image{
+    background-image: url('https://s3.eu-west-1.amazonaws.com/content.propstore.com/auction/Expanse/SAM+Auction+Header-narrow.jpg') !important;
+}
+
+/*ASOUE2 catalog and lot pages*/
+.auctions-catalog.auction381 .auc__hero .hero__image, .auctions-catalog.auction383 .auc__hero .hero__image{
+  background-image: url('https://s3.eu-west-1.amazonaws.com/content.propstore.com/auction/ASOUE2/SAM+Auction+Header-narrow.jpg') !important;
+}
+.lot-details-index.auction381 .auc__hero .hero__image, .lot-details-index.auction383 .auc__hero .hero__image{
+    background-image: url('https://s3.eu-west-1.amazonaws.com/content.propstore.com/auction/ASOUE2/SAM+Auction+Header-narrow.jpg') !important;
+}
+
+/*US Posters May 2023 catalog and lot pages - COPY THIS FORMAT*/
+.auctions-catalog.auction358 .auc__hero .hero__image, .auctions-catalog.auction369 .auc__hero .hero__image{
+  background-image: url('https://s3.eu-west-1.amazonaws.com/content.propstore.com/auction/postersus_may2023/OCPA1_SAMHeader_Full_2.jpg') !important;
+}
+.lot-details-index.auction358 .auc__hero .hero__image, .lot-details-index.auction369 .auc__hero .hero__image{
+    background-image: url('https://s3.eu-west-1.amazonaws.com/content.propstore.com/auction/postersus_may2023/OCPA1_SAMHeader_Day%2B1_cream.jpg') !important;
+}
+
+/*US EMLA 2023 catalog and lot pages*/
+.auctions-catalog.auction378 .auc__hero .hero__image, .auctions-catalog.auction347 .auc__hero .hero__image{
+  background-image: url('https://s3.eu-west-1.amazonaws.com/content.propstore.com/auction/EMLA+US+23/EMLAUS_SAMHeader_All+days.jpg') !important;
+}
+.lot-details-index.auction378 .auc__hero .hero__image, .lot-details-index.auction347 .auc__hero .hero__image{
+    background-image: url('https://s3.eu-west-1.amazonaws.com/content.propstore.com/auction/EMLA+US+23/EMLAUS_SAMHeader_day1.jpg') !important;
+}
+
+/*Goldbergs catalog page*/
+.auctions-catalog.auction374 .auc__hero .hero__image, .lot-details-index.auction374 .auc__hero .hero__image{
+  background-image: url('https://s3.eu-west-1.amazonaws.com/content.propstore.com/auction/Goldbergs/SAM+Auction+Header-narrow+(1).jpg') !important;
+}
+
+
+p > a:not(.btn):not(.btn-large):not(.btn-small):not(.btn-extra-small):not(.btn-flat){
+   color: #039be5;
+}
+
+/*Takamoto catalog page*/
+.auctions-catalog.auction357 .auc__hero .hero__image, .lot-details-index.auction357 .auc__hero .hero__image, .auctions-catalog.auction355 .auc__hero .hero__image, .lot-details-index.auction355 .auc__hero .hero__image{
+  background-image: url('https://s3.eu-west-1.amazonaws.com/content.propstore.com/auction/Takamoto/SAM+Auction+Header-narrow.jpg') !important;
+}
+
+/*landing page*/
+.auction354.auctions-info .auc__hero .hero__image {
+  background-image: url('https://content.propstore.com/auction/Marvel4/LandingPageHeader.jpg') !important;
+}
+
+/*OEMA LA 2023 Test Auction - COPY THIS FORMAT*/
+/*catalog page*/
+.auction356 .auc__hero .hero__image{
+  background-image: url('https://content.propstore.com/auction/OEMALA2023/SAMHeader.jpg') !important;
+}
+
+/*OEMA LA 2023*/
+/*catalog page*/
+.auction361 .auc__hero .hero__image{
+  background-image: url('https://content.propstore.com/auction/OEMALA2023/SAMHeader.jpg') !important;
+}
+ 
+/*STP*/
+  /*catalog Page*/
+.auction321 .auc__hero .hero__image{
+  background-image: url('https://content.propstore.com/auction/StarTrekPicard/AuctionHeader.jpg') !important;
+}
+/*landing page*/
+.auctions-info.auction321 .auc__hero .hero__image{
+  background-image: url('https://content.propstore.com/auction/StarTrekPicard/LandingPage/HeaderImage.jpg') !important;
+}
+
+/*STP - Test*/
+  /*Landing Page*/
+  .auction338 .auc__hero .hero__image{
+    background-image: url('https://content.propstore.com/auction/StarTrekPicard/AuctionHeader.jpg') !important;
+  }
+  /*catalog page*/
+  .auctions-info.auction338 .auc__hero .hero__image{
+    background-image: url('https://content.propstore.com/auction/StarTrekPicard/LandingPage/HeaderImage.jpg') !important;
+  }
+
+/*BCS*/
+.auction342 .auc__hero .hero__image{
+        background-image: url('https://s3.eu-west-1.amazonaws.com/content.propstore.com/auction/BetterCallSaul/SAMAuctionHeader.jpg') !important;
+    }
+.auction341 .auc__hero .hero__image{
+      background-image: url('https://s3.eu-west-1.amazonaws.com/content.propstore.com/auction/BetterCallSaul/SAMAuctionHeader.jpg') !important;
+  }
+/*PA11*/
+  /*catalog Page*/
+.auction363 .auc__hero .hero__image{
+  background-image: url('https://content.propstore.com/auction/posterauction11/SAM_AuctionHeader_1200x440_pa11.jpg') !important;
+}
+/*landing page*/
+.auctions-info.auction363 .auc__hero .hero__image{
+  background-image: url('https://content.propstore.com/auction/posterauction11/SAM_AuctionHeader_1200x440_pa11.jpg') !important;
+}
+
 /*EMLA US 2022 catalog page*/
 /* .auction319 .hero__inner .hero__image{
   background-image: url('https://content.propstore.com/auction/EMLAUS2022/EMLAUS2022_SAM-Cat-AuctionHeader_1080x500_gizmo.jpg') !important;
 } */
 .auction319 .hero__carousel .hero__image {
   background-image: url('https://content.propstore.com/auction/EMLAUS2022/EMLAUS22_Auctions-Banner_1080x864_gizmo.jpg') !important;
+}
+
+.auction319 .hero__carousel .hero__image {
+  background-image: url('https://content.propstore.com/auction/EMLAUS2022/EMLAUS22_Auctions-Banner_1080x864_gizmo.jpg') !important;
+}
+
+.auction318 .hero__carousel .hero__image {
+  background-image: url('https://content.propstore.com/auction/emlauk22/landingpage_regnow/Landing-Page-Header-1080x800_superman.jpg') !important;
 }
 
 /*END STEVE EDIT EXAMPLE*/
@@ -479,10 +1292,14 @@ form#AdvancedSearch[action*="/id/303"]:before {
     background-image: url('https://content.propstore.com/public-img/ASOUE_SAM-HeaderBanner_1080x800.jpg') !important;
   }
  .auction316 .auc__hero .hero__image{
-    background-image: url('https://content.propstore.com/public-img/sam-header/CPLAspring2022_SAM-Cat-AuctionHeader_1080x500.jpg') !important;
+    background-image: url('https://s3.eu-west-1.amazonaws.com/content.propstore.com/auction/cpla9/1080x800+CPLA9+Page+Header.png') !important;
   }
 .auction304 .hero__image{
     background-image: url('https://content.propstore.com/auction/swatch2022/swatch2022-newsite-landingpageheader-1080x800.jpg') !important;
+  }
+
+.auction363 .hero__image{
+    background-image: url('https://content.propstore.com/auction/posterauction11/SAM_AuctionHeader_1200x440_pa11.jpg') !important;
   }
 
 /* 296 */
@@ -496,7 +1313,7 @@ form#AdvancedSearch[action*="/id/303"]:before {
 /*3-29-2022*/
   /*CPLA DEC 2021 catalog page*/
 .auction307 .hero__inner .hero__image{
-  background-image: url('https://content.propstore.com/public-img/sam-header/CPLAdec2021_SAM-Cat-AuctionHeader_1080x500.jpg') !important;
+  background-image: url('https://s3.eu-west-1.amazonaws.com/content.propstore.com/auction/cpla8/CPLA8_Header+Image+1080x800.png') !important;
 }
   /*Susan George catalog page*/
   .auction312 .hero__inner .hero__image{
@@ -523,7 +1340,7 @@ form#AdvancedSearch[action*="/id/303"]:before {
 
   /*catalog page*/
   .auction299 .hero__inner .hero__image{
-    background-image: url('https://content.propstore.com/public-img/sam-header/EMLAUK2021_SAM-Cat-AuctionHeader_1080x500.jpg') !important;
+    background-image: url('https://s3.eu-west-1.amazonaws.com/content.propstore.com/auction/emlauk2021/images/1080x800_EMLA_UK21_Header.png') !important;
 }
   /*EMLA UK 2020 catalog page*/
   .auction244 .hero__inner .hero__image{
@@ -539,6 +1356,10 @@ form#AdvancedSearch[action*="/id/303"]:before {
 }
 /*END 3-29-2022*/
 
+.aucimg a[href="https://propstoreauction.com/auctions/info/id/377"]{
+  background-image: url("https://propstoreauction.com/images/auction/171_9.jpg?1684268530") !important;
+}
+
 /* EMLA US 2022 - 309 */
 .auction309.auctions-catalog .hero__image {
   background-image: url('https://content.propstore.com/auction/EMLAUS2022/emlaus2022-newsite-landingpageheader-1080x800.jpg')
@@ -553,18 +1374,33 @@ form#AdvancedSearch[action*="/id/303"]:before {
 #customRegisterButton319:before {content: 'https://propstore.com/auctionRegistration.action?auctionId=319'}
 #customRegisterButton319:after {content: 'Register Now'}
 
-#customRegisterButton320:before {content: 'http://www.eepurl.com/hXC0KD'}
-#customRegisterButton320:after {content: 'Sign Up For Updates'}
+#customRegisterButton320:before {content: 'https://propstoreauction.com/auctions/info/id/320'}
+#customRegisterButton320:after {content: 'Bid Now'}
 
-#customRegisterButton323:before {content: 'http://www.eepurl.com/hXC0X1'}
-#customRegisterButton323:after {content: 'Sign Up For Updates'}
+#customRegisterButton323:before {content: 'https://propstoreauction.com/auctions/info/id/323'}
+#customRegisterButton323:after {content: 'Bid Now'}
 
-#customRegisterButton322:before {content: 'http://www.eepurl.com/hXC0Zn'}
-#customRegisterButton322:after {content: 'Sign Up For Updates'}
+/* #customRegisterButton347:before {content: 'https://propstore.com/auctionRegistration.action?auctionId=347'}
+#customRegisterButton347:after {content: 'Register Now'} */
 
-#customRegisterButton318:before {content: 'http://www.eepurl.com/hXIFan'}
-#customRegisterButton318:after {content: 'Sign Up For Updates'}
+#customRegisterButton359:before {content: 'https://propstoreauction.com/auctions/info/id/359'}
+#customRegisterButton359:after {content: 'Register Now'} 
+#customDate309:before {content: 'Nov 9 - 12, 2023'}
 
+#customRegisterButton362:before {content: 'https://propstoreauction.com/auctions/info/id/362'}
+#customRegisterButton362:after {content: 'Sign Up For Updates'}
+
+
+/*#customRegisterButton318:before {content: 'https://propstore.com/auctionRegistration.action?auctionId=318&d=2&ru=%252Fauctions%252Fcatalog%252Fid%252F318'}
+#customRegisterButton318:after {content: 'Bid Now'}*/
+
+.auctions-index #btnR318{
+  font-size: 0;
+}
+.auctions-index #btnR318:before {
+  content: 'Bid Now';
+  font-size: 12px;
+}
 
 /* TEST 330 */
 #customTitle330:before {content: 'Custom Title 330'}
@@ -619,16 +1455,28 @@ body.auctions-info #AuctionInfoForm #wrapper .bodybox .auctitle{
  flex-basis: unset;
 }
 
+@media (min-width: 1201px){
+	.auctions-info.auction319 .sell-cta__catalog{
+		float: left;
+	}
+}
+
 /*------------!!LIVE SALE BUTTON VISIBILITY!!------------*/
 .aucproduct__livesale-link{
     display: none;
 }
 
-a[href="https://propstoreauction.com/auctions/catalog/id/323"],
-a[href="https://propstoreauction.com/auctions/catalog/id/320"],
-a[href="https://propstoreauction.com/auctions/catalog/id/322"],
-a[href="https://propstoreauction.com/auctions/catalog/id/318"]{
-  display:none
+/* a[href="https://propstoreauction.com/auctions/catalog/id/347"]{
+  display:none;
+} */
+
+
+a[href="https://propstoreauction.com/auctions/catalog/id/359"]{
+  display:none;
+}
+
+a[href="https://propstoreauction.com/auctions/catalog/id/362"]{
+  display:none;
 }
 
 a.off-increment:not(.btn):not(.btn-large):not(.btn-small):not(.btn-extra-small):not(.btn-flat):hover {
@@ -641,4 +1489,39 @@ a.off-increment:not(.btn):not(.btn-large):not(.btn-small):not(.btn-extra-small):
 }
 .outbid{
   color: red;
+}
+
+/* EMLA DAY INDICATOR */
+
+/*.auctions-live-sale .auction-title::after{
+    content: "- Day 1 of 4"
+}
+.auclive-sale__upcoming .footable > thead th.icon, .auclive-sale__upcoming .footable > tbody td.icon{
+    display: none;
+}*/
+
+/* EMLA UK 2022 date correction*/
+.auction318 div.auclive-sale__auc-date{
+  color: #F4F4F4;
+}
+.auction318 div.auclive-sale__auc-date > .icon{
+  color: #2D2E41;
+}
+.auction318 div.auclive-sale__auc-date::after{
+  content: "Nov 6 2022 - Day 4 of 4";
+  color: #2D2E41;
+  margin-left: -81px;
+}
+
+/* EMLA LA 2022 date correction*/
+    .auction319 div.auclive-sale__auc-date{
+  color: #F4F4F4;
+}
+.auction319 div.auclive-sale__auc-date > .icon{
+  color: #2D2E41;
+}
+.auction319 div.auclive-sale__auc-date::after{
+  content: "Jun 24 2022";
+  color: #2D2E41;
+  margin-left: -81px;
 }
