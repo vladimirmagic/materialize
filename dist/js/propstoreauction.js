@@ -385,6 +385,9 @@ document.addEventListener('DOMContentLoaded', () => {
                     let auctionday = $('.product-description-content').data('auctionday');
                     if (auctionday) auctionday = parseInt(auctionday);
                     if (auctionday) {
+                        if (auctionId === 359 && auctionday > 2) {
+                            auctionday--;
+                        }
                         $(`<p class="p-r">Day ${auctionday}</p>`).insertBefore('.hero__static-date');
                         if (start_date) {
                             $('.hero__static-date').append(
@@ -401,6 +404,9 @@ document.addEventListener('DOMContentLoaded', () => {
                         if (dates.length) {
                             $('.hero__static-date').append(dates.join(' - ')).show();
                         }
+                        $('.hero__image').css({
+                            backgroundImage: `url(${AUCTION_CONTENT_FOLDER}/${auctionId}/header.jpg)`
+                        });
                     }
 
                     if (status) {
