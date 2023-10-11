@@ -385,6 +385,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     let auctionday = $('.product-description-content').data('auctionday');
                     if (auctionday) auctionday = parseInt(auctionday);
                     if (auctionday) {
+                        let auctiondayImg = auctionday;
                         if (auctionId === 359 && auctionday > 2) {
                             auctionday--;
                         }
@@ -394,7 +395,7 @@ document.addEventListener('DOMContentLoaded', () => {
                                 moment(start_date).add(auctionday - 1, 'days').format('MMM D YYYY')
                             ).show();
                             $('.hero__image').css({
-                                backgroundImage: `url(${AUCTION_CONTENT_FOLDER}/${auctionId}/header-${auctionday}.jpg)`
+                                backgroundImage: `url(${AUCTION_CONTENT_FOLDER}/${auctionId}/header-${auctiondayImg}.jpg)`
                             });
                         }
                     } else {
