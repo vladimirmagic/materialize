@@ -423,8 +423,24 @@ document.addEventListener('DOMContentLoaded', () => {
                     $itemTitle = $itemTitleH.find('.lot-name');
                     $itemTitleH.find('.lot-name').remove();
                     let lotName = $itemTitle.text();
+                    let lotMovie = '';
+                    let $productTitle = $('.product__title');
+                    if (lotName.includes(' ### ')) { // new format 2023-10-11
+                        let nameArr = lotName.split(' ### ');
+                        if (nameArr.length > 1) {
+                            lotName = nameArr[0];
+                            lotMovie = nameArr[1];
+                        }
+                    }
+                    if (lotMovie) {
+                        $productTitle.html(lotMovie);
+                        let $lotName = $('<div class="product__description h4" />');
+                        $lotName.html(lotName);
+                        $lotName.insertAfter($productTitle);
+                    } else {
+                        $productTitle.html(lotName);
+                    }
                     $('.product__number').html($itemTitleH.text());
-                    $('.product__title').html(lotName);
                     $('.auc__hero-aucinfo').attr('href', $('.aucinfo').attr('href')).attr('style', '');
                     $('.auc__hero-auccatalog').attr('href', $('.catlg').attr('href')).attr('style', '');
 
@@ -1417,7 +1433,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     sam.serverData &&
                     sam.serverData.variables &&
                     sam.serverData.variables.default &&
-                    sam.serverData.variables.default.viewMode === 'list' ? 'cards--list' : 'cards--grid');
+                    sam.serverData.variables.default.viewMode === 'list' ? 'cards--grid' : 'cards--grid');
 
                     const customRegisterButtons = {};
 
@@ -1462,9 +1478,32 @@ document.addEventListener('DOMContentLoaded', () => {
                                     }, 1000);
                                 });
                             }
-                            lotName = $titleEl.text().trim();
-                            $titleEl.attr('title', lotName);
-                            $cardItem.find('.card__movie').append($titleEl.clone());
+                            let lotName = $titleEl.text().trim();
+                            let lotMovie = '';
+                            let $cardMovie = $cardItem.find('.card__movie');
+                            if (lotName.includes(' ### ')) { // new format 2023-10-11
+                                let nameArr = lotName.split(' ### ');
+                                if (nameArr.length > 1) {
+                                    lotName = nameArr[0];
+                                    lotMovie = nameArr[1];
+                                }
+                            }
+                            if (lotMovie) {
+                                const $lotMovie = $titleEl.clone();
+                                $lotMovie.html(lotMovie);
+                                $lotMovie.attr('title', lotMovie);
+                                $cardMovie.append($lotMovie);
+                                let $lotName = $('<div class="card__title" />');
+                                const $lotNameLink = $titleEl.clone();
+                                $lotNameLink.html(lotName);
+                                $lotNameLink.attr('title', lotName);
+                                $lotName.append($lotNameLink);
+                                $lotName.insertAfter($cardMovie);
+                            } else {
+                                $titleEl.attr('title', lotName);
+                                $cardMovie.append($titleEl.clone());
+                            }
+
                             $badge = $cardItem.find('.card__badge');
                             if ($(item).find('.ended.sold').length) {
                                 $badge.addClass('red').append('Sold').show().find('use').attr('xlink:href', '#flag');
@@ -1630,8 +1669,31 @@ document.addEventListener('DOMContentLoaded', () => {
                                 if (!$cardItem.find('.card__movie').length) {
                                     $cardItem.find('.card__description').prepend('<div class="card__movie"></div>');
                                     const $titleEl = $(item).find('.yaaa');
-                                    $titleEl.attr('title', $titleEl.text().trim());
-                                    $cardItem.find('.card__movie').append($titleEl.clone());
+                                    let lotName = $titleEl.text().trim();
+                                    let lotMovie = '';
+                                    let $cardMovie = $cardItem.find('.card__movie');
+                                    if (lotName.includes(' ### ')) { // new format 2023-10-11
+                                        let nameArr = lotName.split(' ### ');
+                                        if (nameArr.length > 1) {
+                                            lotName = nameArr[0];
+                                            lotMovie = nameArr[1];
+                                        }
+                                    }
+                                    if (lotMovie) {
+                                        const $lotMovie = $titleEl.clone();
+                                        $lotMovie.html(lotMovie);
+                                        $lotMovie.attr('title', lotMovie);
+                                        $cardMovie.append($lotMovie);
+                                        let $lotName = $('<div class="card__title" />');
+                                        const $lotNameLink = $titleEl.clone();
+                                        $lotNameLink.html(lotName);
+                                        $lotNameLink.attr('title', lotName);
+                                        $lotName.append($lotNameLink);
+                                        $lotName.insertAfter($cardMovie);
+                                    } else {
+                                        $titleEl.attr('title', lotName);
+                                        $cardMovie.append($titleEl.clone());
+                                    }
                                 }
 
                                 $badge = $cardItem.find('.card__badge');

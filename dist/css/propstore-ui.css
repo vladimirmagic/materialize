@@ -23719,6 +23719,7 @@ footer .auclting {
   }
   .aucproduct .product__title {
     font-size: 32px;
+    margin-bottom: 0.5em;
   }
 }
 
@@ -24251,6 +24252,12 @@ body.search-index .categories-match {
   line-height: 1.4;
 }
 
+.aucproduct__card .card__title {
+  -webkit-line-clamp: 3;
+  max-height: 4.2em;
+  line-height: 1.4;
+}
+
 .aucproduct__card a:not(.btn):not(.btn-large):not(.btn-small):not(.btn-extra-small) {
   text-decoration: none;
 }
@@ -24339,9 +24346,9 @@ body.search-index .categories-match {
 
 .aucproduct__card .calendar-btn-box {
   -webkit-box-flex: 1;
-  -webkit-flex: 1 1 100%;
-      -ms-flex: 1 1 100%;
-          flex: 1 1 100%;
+  -webkit-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;

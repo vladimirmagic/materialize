@@ -412,6 +412,12 @@ body.search-index {
 		line-height: 1.4;
 	}
 
+	.card__title {
+		-webkit-line-clamp: 3;
+		max-height: 4.2em;
+		line-height: 1.4;
+	}
+
 	a:not(.btn) {
 		text-decoration: none;
 	}
@@ -502,7 +508,7 @@ body.search-index {
 	}
 
 	.calendar-btn-box {
-		flex: 1 1 100%;
+		flex: 1;
 		display: flex;
 		justify-content: space-between;
 		align-items: center;
