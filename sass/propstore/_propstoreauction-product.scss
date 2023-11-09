@@ -243,7 +243,11 @@
 
 	.calendarBtn, .calendarBtnLg {
 		flex: 1 1 33%;
+		display: flex;
+		justify-content: center;
+		align-items: center;
 		padding: 0 .5rem;
+		line-height: 1.5;
 		color: $color-base;
 		border-color: $color-grey;
 	}
@@ -270,6 +274,20 @@
 
 	.l3desctextwhite {
 		margin: 0 0 0 2.5rem;
+	}
+}
+
+#modal-sms {
+	max-width: 400px;
+	text-align: center;
+
+	.modal__title {
+		position: absolute;
+	}
+
+	.modal-sms-form {
+		padding-left: 2rem;
+		padding-right: 2rem;
 	}
 }
 
@@ -328,6 +346,10 @@
 @media #{$small-and-down} {
 	.aucproduct__calendar {
 		display: block;
+
+		.calendarBtn {
+			font-size: 10px;
+		}
 	}
 
 	.aucproduct__calendar-title {

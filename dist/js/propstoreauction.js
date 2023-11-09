@@ -354,6 +354,15 @@ document.addEventListener('DOMContentLoaded', () => {
 </div>
 <div class="modal-content"></div>
 </div>
+
+<div id="modal-sms" class="modal modal-sms modal-ajax">
+    <div class="modal-header modal-header--sticky">
+        <div class="modal__title">Add SMS reminder</div>
+        <a class="modal-close btn-flat btn--icon"><i class='icon'><svg><use xlink:href="#close"></use></svg></i></a>
+    </div>
+    <form class="modal-content modal-form modal-sms-form" action="/ajax/reminderSubmit.action"></form>
+    <div class="modal__loader"><div class="preloader-wrapper active"><div class="spinner-layer"><div class="circle-clipper left"><div class="circle"></div></div><div class="gap-patch"><div class="circle"></div></div><div class="circle-clipper right"><div class="circle"></div></div></div></div></div>
+</div>
 `);
                     document.querySelectorAll('style:not([data-v2]), link[rel="stylesheet"]:not([data-v2])').forEach(item => item.remove());
                     const auctionId = (
@@ -362,6 +371,13 @@ document.addEventListener('DOMContentLoaded', () => {
                         sam.serverData.variables &&
                         sam.serverData.variables.default &&
                         sam.serverData.variables.default.auctionId
+                    ) || 0;
+                    const lotItemId = (
+                        sam &&
+                        sam.serverData &&
+                        sam.serverData.variables &&
+                        sam.serverData.variables.default &&
+                        sam.serverData.variables.default.lotItemId
                     ) || 0;
                     let status;
                     if ($('.sale-closed').length) status = 'closed';
@@ -863,21 +879,28 @@ document.addEventListener('DOMContentLoaded', () => {
                                 `);
 
                             let lotUrl = $('head link[rel="canonical"]').attr('href');
-                            $btnOutlook = $('<span class="calendarBtn waves-effect waves-grey btn btn--secondary">Outlook Calendar Reminder</span>');
+                            $btnOutlook = $('<span class="calendarBtn waves-effect waves-grey btn btn--secondary">Outlook Calendar</span>');
                             $btnOutlook.on('click', function(event) {
                                 event.stopPropagation();
                                 event.preventDefault();
                                 downloadURI(generateICSFileURL(auctionTitle, remindDate, lotName, lotUrl), "propstore.ics");
                             });
 
-                            $btnGoogle = $('<span class="calendarBtn waves-effect waves-grey btn btn--secondary">Google Calendar Reminder</span>');
+                            $btnGoogle = $('<span class="calendarBtn waves-effect waves-grey btn btn--secondary">Google Calendar</span>');
                             $btnGoogle.on('click', function(event) {
                                 event.stopPropagation();
                                 event.preventDefault();
                                 window.open(generateGoogleCalendarURL(auctionTitle, remindDate, lotName, lotUrl), "_blank");
                             });
-                            
+
                             $('#calendarBtnBox').append($btnOutlook, $btnGoogle);
+
+                            let sms = $('.product-description-content').data('sms');
+                            if (sms) {
+                                $btnSMS = $(`<span class="calendarBtn waves-effect waves-grey btn btn--secondary modal-trigger modal-sms-button" href="#modal-sms" data-auctionid="${auctionId}" data-lotid="${lotItemId}">SMS Reminder</span>`);
+                                $('body').append($('#modal-sms'));
+                                $('#calendarBtnBox').append($btnSMS);
+                            }
                         }
                     }
 
@@ -1433,7 +1456,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     sam.serverData &&
                     sam.serverData.variables &&
                     sam.serverData.variables.default &&
-                    sam.serverData.variables.default.viewMode === 'list' ? 'cards--grid' : 'cards--grid');
+                    sam.serverData.variables.default.viewMode === 'list' ? 'cards--list' : 'cards--grid');
 
                     const customRegisterButtons = {};
 
@@ -1658,9 +1681,26 @@ document.addEventListener('DOMContentLoaded', () => {
                                 let delta = (remindDate.getTime() - Date.now()) / 1000 / 60 / 60; // hours
                                 $parentElement = $cardItem.find('.card__info');
                                 if (delta >= 1 && $parentElement.length) {
+                                    
+                                    const $aid = $(item).find('section[data-aid]');
+                                    if ($aid.length && $aid.data()) {
+                                        for (let data in $aid.data()) {
+                                            $parentElement.attr('data-' + data, $aid.data(data));
+                                        }
+                                    }
                                     let searchIndex = lotUrl.indexOf('?');
                                     let lotUrlTrim = searchIndex > 0 ? lotUrl.slice(0, searchIndex) : lotUrl;
-                                    generateCatalogViewCalendarButtons(remindDate, auctionTitle, lotName, lotUrlTrim, $parentElement);
+                                    generateCatalogViewCalendarButtons(remindDate, auctionTitle, lotName, lotUrlTrim, $parentElement, ctag.sms);
+                                    if (!$('#modal-sms').length) $('body').append(`
+                                        <div id="modal-sms" class="modal modal-sms modal-ajax">
+                                            <div class="modal-header modal-header--sticky">
+                                                <div class="modal__title">Add SMS reminder</div>
+                                                <a class="modal-close btn-flat btn--icon"><i class='icon'><svg><use xlink:href="#close"></use></svg></i></a>
+                                            </div>
+                                            <form class="modal-content modal-form modal-sms-form" action="/ajax/reminderSubmit.action"></form>
+                                            <div class="modal__loader"><div class="preloader-wrapper active"><div class="spinner-layer"><div class="circle-clipper left"><div class="circle"></div></div><div class="gap-patch"><div class="circle"></div></div><div class="circle-clipper right"><div class="circle"></div></div></div></div></div>
+                                        </div>
+                                    `);
                                 }
                             }
                             $('.cards__list').append($cardItem);
@@ -2457,6 +2497,78 @@ document.addEventListener('DOMContentLoaded', () => {
                             });
                     });
                 }
+
+                /**
+                 *
+                 *
+                 *
+                 *
+                 *
+                 *
+                 *
+                 *
+                 *
+                 *
+                 *
+                 *
+                 *
+                 *
+                 * MODAL SMS
+                 */
+                M.Modal.init(document.querySelectorAll('#modal-sms'), { // load form on modal open
+                    onOpenStart: function (el, trigger) {
+                        el.classList.add('sync');
+                        const $form = $(el).find('.modal-sms-form');
+                        const url = `${URL_PROPSTORE}/ajax/reminder.action?samAuctionId=${$(trigger).data('auctionid')}&samId=${$(trigger).data('lotid')}`;
+                        $.get({
+                            url,
+                            XHRFields: {
+                                withCredentials: true,
+                            }
+                        })
+                            .done(data => {
+                                // if (!checkResponse(data)) return data;
+
+                                $form.html(data);
+
+                                $('.modal-sms-button-register').on('click', function(){
+                                    openAuctionRegistration($(trigger).data('auctionid'));
+                                });
+                            })
+                            .fail(data => {
+                                if (data && data.statusText) $form.html(data.statusText);
+                            })
+                            .always(data => {
+                                el.classList.remove('sync');
+                            });
+                    }
+                });
+
+                $('.modal-sms-form').submit(function (e) {
+                    e.preventDefault();
+                    this.classList.add('sync');
+                    let data = $(this).serialize();
+                    $.post({
+                        url: URL_PROPSTORE + $(this).attr('action'),
+                        data,
+                        contentType: 'application/x-www-form-urlencoded',
+                        XHRFields: {
+                            withCredentials: true,
+                        }
+                    })
+                        .done(data => {
+                            if (!checkResponse(data)) return data;
+
+                            this.innerHTML = data;
+                        })
+                        .fail(data => {
+                            if (data && data.statusText) this.innerHTML = data.statusText;
+                        })
+                        .always(data => {
+                            this.classList.remove('sync');
+                        });
+                });
+
                 /**
                  *
                  *
@@ -2684,8 +2796,13 @@ function checkResponse (data) {
     return true;
 }
 
-function generateCatalogViewCalendarButtons(remindDate, auctionTitle, lotName, lotViewUrl, parentElement) {
+function generateCatalogViewCalendarButtons(remindDate, auctionTitle, lotName, lotViewUrl, parentElement,
+    sms = false
+) {
     let $btnBox = $('<div class="calendar-btn-box">');
+    for (let data in parentElement.data()) {
+        $btnBox.attr('data-' + data, parentElement.data(data));
+    }
 
     //correct for timezone
     remindDate.setMinutes(remindDate.getMinutes() - remindDate.getTimezoneOffset());
@@ -2694,30 +2811,38 @@ function generateCatalogViewCalendarButtons(remindDate, auctionTitle, lotName, l
 
     generateCalendarButton(auctionTitle, outlookDate, lotName, lotViewUrl, "OUTLOOK", $btnBox);
     generateCalendarButton(auctionTitle, remindDate, lotName, lotViewUrl, "GOOGLE", $btnBox);
+    if (sms) generateCalendarButton(auctionTitle, remindDate, lotName, lotViewUrl, "SMS", $btnBox);
 
     parentElement.append($btnBox);
 }
 
 function generateCalendarButton(auctionTitle, remindDate, lotName, lotViewUrl, btnText, parentElement) {
     remindDate = new Date(remindDate.getTime() + remindDate.getTimezoneOffset() * 60000);
-    let href;
-    $btn = $(`<span class="waves-effect btn-flat btn--secondary">
-        <i class='icon'><svg><use xlink:href="#calendar"></use></svg></i>
+    $btn = $(`<a class="waves-effect btn-flat btn--secondary" title="Add reminder" data-auctionid="${parentElement.data('aid')}" data-lotid="${parentElement.data('lid')}">
         ${btnText}
-    </span>`);
+    </a>`);
 
-    if (btnText == "OUTLOOK") {
-        $btn.on('click', function(event) {
-            event.stopPropagation();
-            event.preventDefault();
-            downloadURI(generateICSFileURL(auctionTitle, remindDate, lotName, lotViewUrl), "propstore.ics");
-        });
-    } else {
-        $btn.on('click', function(event) {
-            event.stopPropagation();
-            event.preventDefault();
-            window.open(generateGoogleCalendarURL(auctionTitle, remindDate, lotName, lotViewUrl), "_blank");
-        });
+    switch (btnText) {
+        case 'OUTLOOK': {
+            $btn.on('click', function(event) {
+                event.stopPropagation();
+                event.preventDefault();
+                downloadURI(generateICSFileURL(auctionTitle, remindDate, lotName, lotViewUrl), "propstore.ics");
+            });
+            break;
+        }
+        case 'GOOGLE': {
+            $btn.on('click', function(event) {
+                event.stopPropagation();
+                event.preventDefault();
+                window.open(generateGoogleCalendarURL(auctionTitle, remindDate, lotName, lotViewUrl), "_blank");
+            });
+            break;
+        }
+        case 'SMS': {
+            $btn.addClass('modal-trigger modal-sms-button').attr('href', '#modal-sms');
+            break;
+        }
     }
     parentElement.append($btn);
 }

@@ -23686,7 +23686,20 @@ footer .auclting {
   -webkit-flex: 1 1 33%;
       -ms-flex: 1 1 33%;
           flex: 1 1 33%;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
   padding: 0 .5rem;
+  line-height: 1.5;
   color: #2D2E41;
   border-color: #c7c7c7;
 }
@@ -23711,6 +23724,20 @@ footer .auclting {
 
 .aucproduct .product__detail .l3desctextwhite {
   margin: 0 0 0 2.5rem;
+}
+
+#modal-sms {
+  max-width: 400px;
+  text-align: center;
+}
+
+#modal-sms .modal__title {
+  position: absolute;
+}
+
+#modal-sms .modal-sms-form {
+  padding-left: 2rem;
+  padding-right: 2rem;
 }
 
 @media only screen and (min-width: 1201px) {
@@ -23761,6 +23788,9 @@ footer .auclting {
 @media only screen and (max-width: 600px) {
   .aucproduct__calendar {
     display: block;
+  }
+  .aucproduct__calendar .calendarBtn {
+    font-size: 10px;
   }
   .aucproduct__calendar-title {
     margin-right: 0;
@@ -24373,6 +24403,7 @@ body.search-index .categories-match {
       -ms-flex: 1 1 50%;
           flex: 1 1 50%;
   color: #764AAF;
+  font-size: 10px;
 }
 
 .aucproduct__card-details {
