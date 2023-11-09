@@ -23621,6 +23621,11 @@ footer .auclting {
   margin-left: 1rem;
 }
 
+.modal-offer-button {
+  width: 100%;
+  margin-bottom: 1rem;
+}
+
 .aucproduct__certificate {
   margin-top: 2rem;
   font-style: italic;

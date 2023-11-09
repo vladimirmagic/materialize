@@ -243,6 +243,19 @@ document.addEventListener('DOMContentLoaded', () => {
         <div class="aucproduct__button"></div>
 
         <div class="aucproduct__form" style="display: none;"></div>
+
+        <span class="product__button waves-effect waves-grey btn modal-trigger modal-offer-button" href="#modal-offer" id="modal-offer-button" style="display: none;">
+            Make&nbsp;an&nbsp;Offer
+            <i class='icon'><svg><use xlink:href="#auction"></use></svg></i>
+
+            <div id="modal-offer" class="modal modal-shipping-quote modal-ajax">
+                <div class="modal-header modal-header--sticky">
+                    <a class="modal-close btn-flat btn--icon"><i class='icon'><svg><use xlink:href="#close"></use></svg></i></a>
+                </div>
+                <form action="/ajax/makeOfferSubmit.action" class="modal-content" id="modal-offer-form"></form>
+                <div class="modal__loader"><div class="preloader-wrapper active"><div class="spinner-layer"><div class="circle-clipper left"><div class="circle"></div></div><div class="gap-patch"><div class="circle"></div></div><div class="circle-clipper right"><div class="circle"></div></div></div></div></div>
+            </div>
+        </span>
         
         <div class="product__buttons-grey" style="display: none;">
             <span class="product__button-grey waves-effect waves-grey btn btn--secondary modal-trigger" href="#modal-shipping-quote" id="modal-shipping-quote-button" style="display: none;">
@@ -254,19 +267,6 @@ document.addEventListener('DOMContentLoaded', () => {
                         <a class="modal-close btn-flat btn--icon"><i class='icon'><svg><use xlink:href="#close"></use></svg></i></a>
                     </div>
                     <form class="modal-content modal-form modal-shipping-quote-form" action="/ajax/modalShippingQuoteASubmit.action"></form>
-                    <div class="modal__loader"><div class="preloader-wrapper active"><div class="spinner-layer"><div class="circle-clipper left"><div class="circle"></div></div><div class="gap-patch"><div class="circle"></div></div><div class="circle-clipper right"><div class="circle"></div></div></div></div></div>
-                </div>
-            </span>
-
-            <span class="product__button-grey waves-effect waves-grey btn btn--secondary modal-trigger" href="#modal-offer" id="modal-offer-button" style="display: none;">
-                Make&nbsp;an&nbsp;Offer
-                <i class='icon'><svg><use xlink:href="#auction"></use></svg></i>
-
-                <div id="modal-offer" class="modal modal-shipping-quote modal-ajax">
-                    <div class="modal-header modal-header--sticky">
-                        <a class="modal-close btn-flat btn--icon"><i class='icon'><svg><use xlink:href="#close"></use></svg></i></a>
-                    </div>
-                    <form action="/ajax/makeOfferSubmit.action" class="modal-content" id="modal-offer-form"></form>
                     <div class="modal__loader"><div class="preloader-wrapper active"><div class="spinner-layer"><div class="circle-clipper left"><div class="circle"></div></div><div class="gap-patch"><div class="circle"></div></div><div class="circle-clipper right"><div class="circle"></div></div></div></div></div>
                 </div>
             </span>
@@ -457,6 +457,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         $productTitle.html(lotName);
                     }
                     $('.product__number').html($itemTitleH.text());
+                    $('.product__title').html(lotName);
                     $('.auc__hero-aucinfo').attr('href', $('.aucinfo').attr('href')).attr('style', '');
                     $('.auc__hero-auccatalog').attr('href', $('.catlg').attr('href')).attr('style', '');
 
@@ -800,7 +801,6 @@ document.addEventListener('DOMContentLoaded', () => {
                     if (makeOfferType && barcode) {
                         $('body').append($('#modal-offer'));
                         $('#modal-offer-button').show();
-                        $('.product__buttons-grey').show();
 
                         // MODAL OFFER
                         M.Modal.init(document.querySelectorAll('#modal-offer'), { // load form on modal open
@@ -1568,6 +1568,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 </div>`);
                                 $cardItem.find('.aucproduct__card-details-timer').append($timelft);
                             }
+                            function onClickRegistration (e) {
+                                e.preventDefault();
+                                openAuctionRegistration(id);
+                            }
                             const $btn = $(item).find('.auclistbtn .orng, .auclistbtn .grey');
                             if ($btn.length) {
                                 $btn.addClass('waves-effect waves-light btn aucproduct__card-btn');
@@ -1590,10 +1594,7 @@ document.addEventListener('DOMContentLoaded', () => {
                                         if (customRegisterButtons[id].url) {
                                             $btn.attr('href', customRegisterButtons[id].url).attr('target', '_blank');
                                         } else {
-                                            $btn.on('click', function (e) {
-                                                e.preventDefault();
-                                                openAuctionRegistration(id);
-                                            });
+                                            $btn.on('click', onClickRegistration);
                                         }
 
                                         if (isSign) {
@@ -1674,6 +1675,8 @@ document.addEventListener('DOMContentLoaded', () => {
                                 if ($btn.length) {
                                     $btn.html(`<span class='btn__title'>Make&nbsp;an&nbsp;Offer</span>
                                     <i class='icon'><svg><use xlink:href="#auction"></use></svg></i>`);
+                                    $btn.attr('href', $btn.closest('.card').find('.yaaa').attr('href'));
+                                    $btn.off('click', onClickRegistration);
                                 }
                             }
                             if (ctag && ctag.reminderDate) {
