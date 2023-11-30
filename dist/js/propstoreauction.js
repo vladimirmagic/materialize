@@ -244,18 +244,20 @@ document.addEventListener('DOMContentLoaded', () => {
 
         <div class="aucproduct__form" style="display: none;"></div>
 
-        <span class="product__button waves-effect waves-grey btn modal-trigger modal-offer-button" href="#modal-offer" id="modal-offer-button" style="display: none;">
-            Make&nbsp;an&nbsp;Offer
-            <i class='icon'><svg><use xlink:href="#auction"></use></svg></i>
+        <div class="product__buttons" style="display: none;">
+            <span class="product__button waves-effect waves-grey btn modal-trigger modal-offer-button" href="#modal-offer" id="modal-offer-button">
+                Make&nbsp;an&nbsp;Offer
+                <i class='icon'><svg><use xlink:href="#auction"></use></svg></i>
 
-            <div id="modal-offer" class="modal modal-shipping-quote modal-ajax">
-                <div class="modal-header modal-header--sticky">
-                    <a class="modal-close btn-flat btn--icon"><i class='icon'><svg><use xlink:href="#close"></use></svg></i></a>
+                <div id="modal-offer" class="modal modal-shipping-quote modal-ajax">
+                    <div class="modal-header modal-header--sticky">
+                        <a class="modal-close btn-flat btn--icon"><i class='icon'><svg><use xlink:href="#close"></use></svg></i></a>
+                    </div>
+                    <form action="/ajax/makeOfferSubmit.action" class="modal-content" id="modal-offer-form"></form>
+                    <div class="modal__loader"><div class="preloader-wrapper active"><div class="spinner-layer"><div class="circle-clipper left"><div class="circle"></div></div><div class="gap-patch"><div class="circle"></div></div><div class="circle-clipper right"><div class="circle"></div></div></div></div></div>
                 </div>
-                <form action="/ajax/makeOfferSubmit.action" class="modal-content" id="modal-offer-form"></form>
-                <div class="modal__loader"><div class="preloader-wrapper active"><div class="spinner-layer"><div class="circle-clipper left"><div class="circle"></div></div><div class="gap-patch"><div class="circle"></div></div><div class="circle-clipper right"><div class="circle"></div></div></div></div></div>
-            </div>
-        </span>
+            </span>
+        </div>
         
         <div class="product__buttons-grey" style="display: none;">
             <span class="product__button-grey waves-effect waves-grey btn btn--secondary modal-trigger" href="#modal-shipping-quote" id="modal-shipping-quote-button" style="display: none;">
@@ -729,7 +731,77 @@ document.addEventListener('DOMContentLoaded', () => {
                     if (!barcode || barcode == 'Not Available') barcode = $('.product-description-content').data('id');
                     if (!barcode) barcode = getBarcodeFromJS(); // old auctions
 
-                    if (barcode && status !== 'closed') {
+                    let makeOfferType = $('.product-description-content').data('makeoffertype');
+                    if (makeOfferType && barcode) {
+                        $('body').append($('#modal-offer'));
+                        $('.product__buttons').show();
+
+                        // MODAL OFFER
+
+                        const $form = $('#modal-offer-form');
+                        function formHandler (data) {
+                            $form.html(data);
+                            M.updateTextFields();
+                            grecaptchaRender('g-recaptcha-offer');
+                            offerPremium();
+                            $form.find('#offer').on('keyup', offerPremium);
+                        }
+                        function offerPremium () {
+                            const offer = +$form.find('#offer').val() || 0;
+                            $form.find('#offerPremium').val(offer * 1.25);
+                        }
+            
+                        M.Modal.init(document.querySelectorAll('#modal-offer'), { // load form on modal open
+                            onOpenStart: function (el, trigger) {
+                                el.classList.add('sync');
+                                const $form = $(el).find('#modal-offer-form');
+                                const url = URL_PROPSTORE + '/ajax/makeOffer.action?id=' + barcode;
+                                $.get({
+                                    url,
+                                    XHRFields: {
+                                        withCredentials: true,
+                                    }
+                                })
+                                    .done(data => {
+                                        if (!checkResponse(data)) return data;
+                                        formHandler(data);
+                                    })
+                                    .fail(data => {
+                                        if (data && data.statusText) $form.html(data.statusText);
+                                    })
+                                    .always(data => {
+                                        el.classList.remove('sync');
+                                    });
+                            }
+                        });
+
+                        $('#modal-offer-form').submit(function (e) {
+                            e.preventDefault();
+                            this.classList.add('sync');
+                            $.post({
+                                url: URL_PROPSTORE + $(this).attr('action'),
+                                data: $(this).serialize(),
+                                contentType: 'application/x-www-form-urlencoded',
+                                XHRFields: {
+                                    withCredentials: true,
+                                }
+                            })
+                                .done(data => {
+                                    if (!checkResponse(data)) return data;
+                                    formHandler(data);
+                                })
+                                .fail(data => {
+                                    if (data && data.statusText) this.innerHTML = data.statusText;
+                                })
+                                .always(data => {
+                                    this.classList.remove('sync');
+                                });
+                        });
+                    } else {
+                        $('#modal-offer-button').remove();
+                    }
+
+                    if (barcode && (status !== 'closed' || makeOfferType)) {
                         $('body').append($('#modal-shipping-quote'));
                         $('#modal-shipping-quote-button').show();
                         $('.product__buttons-grey').show();
@@ -795,68 +867,6 @@ document.addEventListener('DOMContentLoaded', () => {
                         });
                     } else {
                         $('#modal-shipping-quote-button').remove();
-                    }
-
-                    let makeOfferType = $('.product-description-content').data('makeoffertype');
-                    if (makeOfferType && barcode) {
-                        $('body').append($('#modal-offer'));
-                        $('#modal-offer-button').show();
-
-                        // MODAL OFFER
-                        M.Modal.init(document.querySelectorAll('#modal-offer'), { // load form on modal open
-                            onOpenStart: function (el, trigger) {
-                                el.classList.add('sync');
-                                const $form = $(el).find('#modal-offer-form');
-                                const url = URL_PROPSTORE + '/ajax/makeOffer.action?id=' + barcode;
-                                $.get({
-                                    url,
-                                    XHRFields: {
-                                        withCredentials: true,
-                                    }
-                                })
-                                    .done(data => {
-                                        if (!checkResponse(data)) return data;
-
-                                        $form.html(data);
-                                        M.updateTextFields();
-                                        grecaptchaRender('g-recaptcha-offer');
-                                    })
-                                    .fail(data => {
-                                        if (data && data.statusText) $form.html(data.statusText);
-                                    })
-                                    .always(data => {
-                                        el.classList.remove('sync');
-                                    });
-                            }
-                        });
-
-                        $('#modal-offer-form').submit(function (e) {
-                            e.preventDefault();
-                            this.classList.add('sync');
-                            $.post({
-                                url: URL_PROPSTORE + $(this).attr('action'),
-                                data: $(this).serialize(),
-                                contentType: 'application/x-www-form-urlencoded',
-                                XHRFields: {
-                                    withCredentials: true,
-                                }
-                            })
-                                .done(data => {
-                                    if (!checkResponse(data)) return data;
-
-                                    this.innerHTML = data;
-                                    M.updateTextFields();
-                                    grecaptchaRender('g-recaptcha-offer');
-                                })
-                                .fail(data => {
-                                    if (data && data.statusText) this.innerHTML = data.statusText;
-                                })
-                                .always(data => {
-                                    this.classList.remove('sync');
-                                });
-                        });
-                    } else {
-                        $('#modal-offer-button').remove();
                     }
 
                     $watchlist = $('#watchlist_button');
@@ -1572,7 +1582,7 @@ document.addEventListener('DOMContentLoaded', () => {
                                 e.preventDefault();
                                 openAuctionRegistration(id);
                             }
-                            const $btn = $(item).find('.auclistbtn .orng, .auclistbtn .grey');
+                            let $btn = $(item).find('.auclistbtn a.orng, .auclistbtn a.grey');
                             if ($btn.length) {
                                 $btn.addClass('waves-effect waves-light btn aucproduct__card-btn');
                                 $cardItem.find('.card__actions').append($btn);
@@ -1672,12 +1682,14 @@ document.addEventListener('DOMContentLoaded', () => {
                                 $cardItem.find('.card__img-more').show();
                             }
                             if (ctag && ctag.makeOfferType) {
-                                if ($btn.length) {
-                                    $btn.html(`<span class='btn__title'>Make&nbsp;an&nbsp;Offer</span>
-                                    <i class='icon'><svg><use xlink:href="#auction"></use></svg></i>`);
-                                    $btn.attr('href', $btn.closest('.card').find('.yaaa').attr('href'));
-                                    $btn.off('click', onClickRegistration);
+                                if (!$btn.length) {
+                                    $btn = $('<a class="waves-effect waves-light btn aucproduct__card-btn" />');
+                                    $cardItem.find('.card__actions').append($btn);
                                 }
+                                $btn.html(`<span class='btn__title'>Make&nbsp;an&nbsp;Offer</span>
+                                <i class='icon'><svg><use xlink:href="#auction"></use></svg></i>`);
+                                $btn.attr('href', $btn.closest('.card').find('.yaaa').attr('href'));
+                                $btn.off('click', onClickRegistration);
                             }
                             if (ctag && ctag.reminderDate) {
                                 let remindDate = new Date(ctag.reminderDate);

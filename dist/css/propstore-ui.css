@@ -14624,6 +14624,12 @@ a.product__title:not(.btn):not(.btn-large):not(.btn-small):not(.btn-extra-small)
           flex-basis: 100%;
 }
 
+.product__buttons .modal-offer-button {
+  -webkit-flex-basis: 50%;
+      -ms-flex-preferred-size: 50%;
+          flex-basis: 50%;
+}
+
 .product__added {
   display: none;
   background: #19BA5D !important;
@@ -23391,6 +23397,17 @@ footer .auclting {
   background: white;
 }
 
+.aucproduct .product__buttons {
+  margin-bottom: 1rem;
+}
+
+.aucproduct .product__buttons .modal-offer-button {
+  -webkit-flex-basis: calc(50% - .75rem) !important;
+      -ms-flex-preferred-size: calc(50% - .75rem) !important;
+          flex-basis: calc(50% - .75rem) !important;
+  margin-bottom: 1rem;
+}
+
 .aucproduct__livesale {
   display: -webkit-box;
   display: -webkit-flex;
@@ -23619,11 +23636,6 @@ footer .auclting {
 
 .aucproduct__buttons .btn + .btn, .aucproduct__buttons .btn-large + .btn, .aucproduct__buttons .btn-small + .btn, .aucproduct__buttons .btn-extra-small + .btn, .aucproduct__buttons .btn + .btn-large, .aucproduct__buttons .btn-large + .btn-large, .aucproduct__buttons .btn-small + .btn-large, .aucproduct__buttons .btn-extra-small + .btn-large, .aucproduct__buttons .btn + .btn-small, .aucproduct__buttons .btn-large + .btn-small, .aucproduct__buttons .btn-small + .btn-small, .aucproduct__buttons .btn-extra-small + .btn-small, .aucproduct__buttons .btn + .btn-extra-small, .aucproduct__buttons .btn-large + .btn-extra-small, .aucproduct__buttons .btn-small + .btn-extra-small, .aucproduct__buttons .btn-extra-small + .btn-extra-small {
   margin-left: 1rem;
-}
-
-.modal-offer-button {
-  width: 100%;
-  margin-bottom: 1rem;
 }
 
 .aucproduct__certificate {

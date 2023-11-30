@@ -5,6 +5,15 @@
 	.product__slider {
 		background: white;
 	}
+
+	.product__buttons {
+		margin-bottom: 1rem;
+
+		.modal-offer-button {
+			flex-basis: calc(50% - .75rem) !important;
+			margin-bottom: 1rem;
+		}
+	}
 }
 
 .aucproduct__livesale {
@@ -201,11 +210,6 @@
 	.btn + .btn {
 		margin-left: 1rem;
 	}
-}
-
-.modal-offer-button {
-	width: 100%;
-	margin-bottom: 1rem;
 }
 
 .aucproduct__certificate {
