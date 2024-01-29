@@ -707,6 +707,131 @@ a.account__orders-buy-link:not(.btn) {
 	}
 }
 
+.account__sms {
+	@extend .content;
+	text-align: left;
+}
+
+.account__sms-inner {
+	max-width: $w36;
+	margin: 0 auto;
+}
+
+.account__sms-auction-select {
+	width: 100%;
+	margin-bottom: 2em;
+}
+
+.account__sms-table {
+	display: flex;
+	flex-direction: column;
+	gap: 1em;
+	margin-bottom: 2em;
+}
+
+.account__sms-table-item {
+	position: relative;
+	display: flex;
+	gap: 1em;
+	justify-content: space-between;
+	cursor: pointer;
+
+	&:before {
+		content: '';
+		position: absolute;
+		z-index: -1;
+		left: -1rem;
+		right: -1rem;
+		top: -.5rem;
+		bottom: -.5rem;
+		background: white;
+		border-radius: 8px;
+	}
+
+	&:hover:before {
+		background: $color-bg;
+	}
+
+	& + &::after {
+		content: '';
+		position: absolute;
+		z-index: -1;
+		left: -.25rem;
+		right: -.25rem;
+		top: -.5rem;
+		height: 1px;
+		background: $color-bg;
+	}
+}
+
+.account__sms-table-item-img {
+	flex: 0 0 64px;
+	height: 64px;
+	background-size: contain;
+	background-position: 50% 50%;
+	border-radius: 4px;
+}
+
+.account__sms-table-item-info {
+	flex: 1 1 100%;
+	display: flex;
+	gap: 1em;
+	justify-content: space-between;
+	padding-top: .9rem;
+}
+
+.account__sms-table-item-title {
+	flex: 1 1 100%;
+	font-size: 16px;
+	font-weight: 500;
+	line-height: 1.4;
+
+	display: -webkit-box;
+	overflow: hidden;
+   	text-overflow: ellipsis;
+   	-webkit-line-clamp: 2;
+   	-webkit-box-orient: vertical;
+	max-height: 2.8em;
+}
+
+.account__sms-table-item-time {
+	flex: 1 0 120px;
+	font-size: 14px;
+	font-weight: 300;
+}
+
+.account__sms-table-item-action {
+	.btn--icon {
+		color: $color-grey;
+
+		&:focus,
+		&:hover {
+			color: $color-red;
+		}
+	}
+}
+
+.phone-verify__code {
+	margin-top: 3em;
+
+	&.disabled {
+		opacity: .3;
+		pointer-events: none;
+	}
+}
+
+.phone-verify__edit {
+	position: absolute;
+	margin-left: -2px;
+	margin-top: -8px;
+	color: $color-grey;
+
+	.icon {
+		width: 1rem;
+		height: 1rem;
+	}
+}
+
 @media #{$large-and-down} {
 	.account__orders-note {
 		max-width: 100%;
@@ -798,6 +923,30 @@ a.account__orders-buy-link:not(.btn) {
 		.checkbox__label + .checkbox__label {
 			display: block;
 			margin-top: 1em;
+		}
+	}
+
+	.account__sms-table-item-info {
+		display: block;
+		padding-top: 0;
+	}
+
+	.account__sms-table-item-title {
+		font-size: 14px;
+	}
+
+	.account__sms-table-item-time {
+		margin-top: .5em;
+	}
+
+	.account__sms-table-item-action {
+		flex: 0 0 0;
+		position: relative;
+
+		.btn--icon {
+			position: absolute;
+			left: -1.6rem;
+			top: -1rem;
 		}
 	}
 }

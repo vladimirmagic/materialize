@@ -196,7 +196,7 @@ header {
 .header__col {
     &.header__col--left,
     &.header__col--right {
-        flex: 0 0 440px; // same width to left & right to center logo
+        flex: 0 0 520px; // same width to left & right to center logo
     }
 
 	&.header__col--left {
@@ -227,7 +227,7 @@ header {
 	transition: all .1s ease-in-out;
 
 	.header__menu.active & {
-		color: $color-font-grey-blue;
+		color: rgba($color-base, .2);
 
 		&:hover,
 		&.active {
@@ -739,6 +739,24 @@ a.modal-bag__item:not(.btn) { // fix a
 	100% { transform: translateY(-100%); }
 }
 
+@media only screen and (max-width: 1460px) {
+	.header__settings {
+		padding-left: 40px;
+		padding-right: 40px;
+	}
+
+	.header__logo {
+		svg {
+			width: 160px;
+		}
+	}
+
+	.header__search {
+		width: auto;
+        max-width: 248px;
+    }
+}
+
 @media only screen and (max-width: 1300px) {
 	.header__menu-block4-link {
 		min-width: 200px;
@@ -755,31 +773,6 @@ a.modal-bag__item:not(.btn) { // fix a
 			height: 120px;
 		}
 	}
-}
-
-@media #{$large-and-down} {
-	.header__settings {
-		padding-left: 40px;
-		padding-right: 40px;
-	}
-
-	.header__col {
-		&.header__col--left,
-		&.header__col--right {
-			flex-basis: 330px;
-		}
-	}
-
-	.header__logo {
-		svg {
-			width: 160px;
-		}
-	}
-
-	.header__search {
-		width: auto;
-        max-width: 248px;
-    }
 }
 
 @media #{$medium-and-down} {

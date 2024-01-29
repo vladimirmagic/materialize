@@ -385,6 +385,7 @@
             'account-orders.html': 'jade/propstore/account-orders.jade',
             'account-favorites.html': 'jade/propstore/account-favorites.jade',
             'account-coa.html': 'jade/propstore/account-coa.jade',
+            'account-sms.html': 'jade/propstore/account-sms.jade',
             'general.html': 'jade/propstore/general.jade',
             'error.html': 'jade/propstore/error.jade',
             'password.html': 'jade/propstore/password.jade',

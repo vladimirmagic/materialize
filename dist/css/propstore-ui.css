@@ -9521,7 +9521,7 @@ main {
           flex: 1 1 100%;
 }
 
-.content, .general, .header__main, .header__menu-level1-inner, .header__menu-level1--sell .header__menu-level1-inner, .footer__inner, .hero, .filters, .header__filters .filters__body, .showing-results, .related-movies, .modal-shipping-quote-page main, .how, .whatsnew__text, .section-auctions, .auctions__faq-section, .faq, .account-page__text, .account__orders, .account__coa, .account-filter, .payment-plans, .sell__inner, .sell__faq-section, .vouchers, .experts, .auccatalog__nav, .auc-info__inner, .auc-info__video, .aucpage__content, .auclive-sale__upcoming {
+.content, .general, .header__main, .header__menu-level1-inner, .header__menu-level1--sell .header__menu-level1-inner, .footer__inner, .hero, .filters, .header__filters .filters__body, .showing-results, .related-movies, .modal-shipping-quote-page main, .how, .whatsnew__text, .section-auctions, .auctions__faq-section, .faq, .account-page__text, .account__orders, .account__coa, .account-filter, .account__sms, .payment-plans, .sell__inner, .sell__faq-section, .vouchers, .experts, .auccatalog__nav, .auc-info__inner, .auc-info__video, .aucpage__content, .auclive-sale__upcoming {
   padding-left: 60px;
   padding-right: 60px;
 }
@@ -9767,21 +9767,21 @@ hr.small {
 }
 
 @media only screen and (min-width: 1921px) {
-  .content, .general, .header__main, .header__menu-level1-inner, .header__menu-level1--sell .header__menu-level1-inner, .footer__inner, .hero, .filters, .header__filters .filters__body, .showing-results, .related-movies, .modal-shipping-quote-page main, .how, .whatsnew__text, .section-auctions, .auctions__faq-section, .faq, .account-page__text, .account__orders, .account__coa, .account-filter, .payment-plans, .sell__inner, .sell__faq-section, .vouchers, .experts, .auccatalog__nav, .auc-info__inner, .auc-info__video, .aucpage__content, .auclive-sale__upcoming {
+  .content, .general, .header__main, .header__menu-level1-inner, .header__menu-level1--sell .header__menu-level1-inner, .footer__inner, .hero, .filters, .header__filters .filters__body, .showing-results, .related-movies, .modal-shipping-quote-page main, .how, .whatsnew__text, .section-auctions, .auctions__faq-section, .faq, .account-page__text, .account__orders, .account__coa, .account-filter, .account__sms, .payment-plans, .sell__inner, .sell__faq-section, .vouchers, .experts, .auccatalog__nav, .auc-info__inner, .auc-info__video, .aucpage__content, .auclive-sale__upcoming {
     padding-left: calc(50% - 900px);
     padding-right: calc(50% - 900px);
   }
 }
 
 @media only screen and (max-width: 1200px) {
-  .content, .general, .header__main, .header__menu-level1-inner, .header__menu-level1--sell .header__menu-level1-inner, .footer__inner, .hero, .filters, .header__filters .filters__body, .showing-results, .related-movies, .modal-shipping-quote-page main, .how, .whatsnew__text, .section-auctions, .auctions__faq-section, .faq, .account-page__text, .account__orders, .account__coa, .account-filter, .payment-plans, .sell__inner, .sell__faq-section, .vouchers, .experts, .auccatalog__nav, .auc-info__inner, .auc-info__video, .aucpage__content, .auclive-sale__upcoming {
+  .content, .general, .header__main, .header__menu-level1-inner, .header__menu-level1--sell .header__menu-level1-inner, .footer__inner, .hero, .filters, .header__filters .filters__body, .showing-results, .related-movies, .modal-shipping-quote-page main, .how, .whatsnew__text, .section-auctions, .auctions__faq-section, .faq, .account-page__text, .account__orders, .account__coa, .account-filter, .account__sms, .payment-plans, .sell__inner, .sell__faq-section, .vouchers, .experts, .auccatalog__nav, .auc-info__inner, .auc-info__video, .aucpage__content, .auclive-sale__upcoming {
     padding-left: 40px;
     padding-right: 40px;
   }
 }
 
 @media only screen and (max-width: 600px) {
-  .content, .general, .header__main, .header__menu-level1-inner, .header__menu-level1--sell .header__menu-level1-inner, .footer__inner, .hero, .filters, .header__filters .filters__body, .showing-results, .related-movies, .modal-shipping-quote-page main, .how, .whatsnew__text, .section-auctions, .auctions__faq-section, .faq, .account-page__text, .account__orders, .account__coa, .account-filter, .payment-plans, .sell__inner, .sell__faq-section, .vouchers, .experts, .auccatalog__nav, .auc-info__inner, .auc-info__video, .aucpage__content, .auclive-sale__upcoming {
+  .content, .general, .header__main, .header__menu-level1-inner, .header__menu-level1--sell .header__menu-level1-inner, .footer__inner, .hero, .filters, .header__filters .filters__body, .showing-results, .related-movies, .modal-shipping-quote-page main, .how, .whatsnew__text, .section-auctions, .auctions__faq-section, .faq, .account-page__text, .account__orders, .account__coa, .account-filter, .account__sms, .payment-plans, .sell__inner, .sell__faq-section, .vouchers, .experts, .auccatalog__nav, .auc-info__inner, .auc-info__video, .aucpage__content, .auclive-sale__upcoming {
     padding-left: 24px;
     padding-right: 24px;
   }
@@ -10155,9 +10155,9 @@ header ~ main {
 
 .header__col.header__col--left, .header__col.header__col--right {
   -webkit-box-flex: 0;
-  -webkit-flex: 0 0 440px;
-      -ms-flex: 0 0 440px;
-          flex: 0 0 440px;
+  -webkit-flex: 0 0 520px;
+      -ms-flex: 0 0 520px;
+          flex: 0 0 520px;
 }
 
 .header__col.header__col--left {
@@ -10200,7 +10200,7 @@ header ~ main {
 }
 
 .header__menu.active .header__menu-link {
-  color: #92A4B5;
+  color: rgba(45, 46, 65, 0.2);
 }
 
 .header__menu.active .header__menu-link:hover, .header__menu.active .header__menu-link.active {
@@ -10826,6 +10826,20 @@ a.modal-bag__item:not(.btn):not(.btn-large):not(.btn-small):not(.btn-extra-small
   }
 }
 
+@media only screen and (max-width: 1460px) {
+  .header__settings {
+    padding-left: 40px;
+    padding-right: 40px;
+  }
+  .header__logo svg, .order-header__logo svg {
+    width: 160px;
+  }
+  .header__search {
+    width: auto;
+    max-width: 248px;
+  }
+}
+
 @media only screen and (max-width: 1300px) {
   .header__menu-block4-link {
     min-width: 200px;
@@ -10840,25 +10854,6 @@ a.modal-bag__item:not(.btn):not(.btn-large):not(.btn-small):not(.btn-extra-small
   }
   header .menu-auction-link > .icon {
     height: 120px;
-  }
-}
-
-@media only screen and (max-width: 1200px) {
-  .header__settings {
-    padding-left: 40px;
-    padding-right: 40px;
-  }
-  .header__col.header__col--left, .header__col.header__col--right {
-    -webkit-flex-basis: 330px;
-        -ms-flex-preferred-size: 330px;
-            flex-basis: 330px;
-  }
-  .header__logo svg, .order-header__logo svg {
-    width: 160px;
-  }
-  .header__search {
-    width: auto;
-    max-width: 248px;
   }
 }
 
@@ -19817,6 +19812,157 @@ a.account__orders-buy-link:not(.btn):not(.btn-large):not(.btn-small):not(.btn-ex
   margin-left: 1.5rem;
 }
 
+.account__sms {
+  text-align: left;
+}
+
+.account__sms-inner {
+  max-width: 36rem;
+  margin: 0 auto;
+}
+
+.account__sms-auction-select {
+  width: 100%;
+  margin-bottom: 2em;
+}
+
+.account__sms-table {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  gap: 1em;
+  margin-bottom: 2em;
+}
+
+.account__sms-table-item {
+  position: relative;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  gap: 1em;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  cursor: pointer;
+}
+
+.account__sms-table-item:before {
+  content: '';
+  position: absolute;
+  z-index: -1;
+  left: -1rem;
+  right: -1rem;
+  top: -.5rem;
+  bottom: -.5rem;
+  background: white;
+  border-radius: 8px;
+}
+
+.account__sms-table-item:hover:before {
+  background: #F4F4F4;
+}
+
+.account__sms-table-item + .account__sms-table-item::after {
+  content: '';
+  position: absolute;
+  z-index: -1;
+  left: -.25rem;
+  right: -.25rem;
+  top: -.5rem;
+  height: 1px;
+  background: #F4F4F4;
+}
+
+.account__sms-table-item-img {
+  -webkit-box-flex: 0;
+  -webkit-flex: 0 0 64px;
+      -ms-flex: 0 0 64px;
+          flex: 0 0 64px;
+  height: 64px;
+  background-size: contain;
+  background-position: 50% 50%;
+  border-radius: 4px;
+}
+
+.account__sms-table-item-info {
+  -webkit-box-flex: 1;
+  -webkit-flex: 1 1 100%;
+      -ms-flex: 1 1 100%;
+          flex: 1 1 100%;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  gap: 1em;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  padding-top: .9rem;
+}
+
+.account__sms-table-item-title {
+  -webkit-box-flex: 1;
+  -webkit-flex: 1 1 100%;
+      -ms-flex: 1 1 100%;
+          flex: 1 1 100%;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.4;
+  display: -webkit-box;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  max-height: 2.8em;
+}
+
+.account__sms-table-item-time {
+  -webkit-box-flex: 1;
+  -webkit-flex: 1 0 120px;
+      -ms-flex: 1 0 120px;
+          flex: 1 0 120px;
+  font-size: 14px;
+  font-weight: 300;
+}
+
+.account__sms-table-item-action .btn--icon {
+  color: #c7c7c7;
+}
+
+.account__sms-table-item-action .btn--icon:focus, .account__sms-table-item-action .btn--icon:hover {
+  color: #F93838;
+}
+
+.phone-verify__code {
+  margin-top: 3em;
+}
+
+.phone-verify__code.disabled {
+  opacity: .3;
+  pointer-events: none;
+}
+
+.phone-verify__edit {
+  position: absolute;
+  margin-left: -2px;
+  margin-top: -8px;
+  color: #c7c7c7;
+}
+
+.phone-verify__edit .icon {
+  width: 1rem;
+  height: 1rem;
+}
+
 @media only screen and (max-width: 1200px) {
   .account__orders-note {
     max-width: 100%;
@@ -19882,6 +20028,28 @@ a.account__orders-buy-link:not(.btn):not(.btn-large):not(.btn-small):not(.btn-ex
   .account__email-preferences .checkbox__label + .checkbox__label {
     display: block;
     margin-top: 1em;
+  }
+  .account__sms-table-item-info {
+    display: block;
+    padding-top: 0;
+  }
+  .account__sms-table-item-title {
+    font-size: 14px;
+  }
+  .account__sms-table-item-time {
+    margin-top: .5em;
+  }
+  .account__sms-table-item-action {
+    -webkit-box-flex: 0;
+    -webkit-flex: 0 0 0;
+        -ms-flex: 0 0 0px;
+            flex: 0 0 0;
+    position: relative;
+  }
+  .account__sms-table-item-action .btn--icon {
+    position: absolute;
+    left: -1.6rem;
+    top: -1rem;
   }
 }
 
