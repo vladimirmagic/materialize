@@ -459,7 +459,6 @@ document.addEventListener('DOMContentLoaded', () => {
                         $productTitle.html(lotName);
                     }
                     $('.product__number').html($itemTitleH.text());
-                    $('.product__title').html(lotName);
                     $('.auc__hero-aucinfo').attr('href', $('.aucinfo').attr('href')).attr('style', '');
                     $('.auc__hero-auccatalog').attr('href', $('.catlg').attr('href')).attr('style', '');
 
@@ -969,8 +968,37 @@ document.addEventListener('DOMContentLoaded', () => {
                             $others.each((index, item) => {
                                 $img = $('<div class="card__img">');
                                 $img.css('background-image', 'url(' + $(item).find('.other-lots-image').prop('src').replace('_4.', '_6.') + ')');
-                                $title = $('<div class="card__movie">').html($(item).find('.lot-description-timed').html());
-                                $list.append($(item).addClass('card aucproduct__card').html('').append($img, $('<div class="card__info">').append($('<div class="card__description">').append($title))));
+                                
+                                
+                                const $desc = $('<div class="card__description">');
+                                let lotName = $(item).find('.lot-description-timed').html();
+                                let lotMovie = '';
+                                if (lotName.includes(' ### ')) { // new format 2023-10-11
+                                    let nameArr = lotName.split(' ### ');
+                                    if (nameArr.length > 1) {
+                                        lotName = nameArr[0];
+                                        lotMovie = nameArr[1];
+                                    }
+                                }
+                                const $lotMovie = $('<div class="card__movie">');
+                                if (lotMovie) {
+                                    $lotMovie.html(lotMovie);
+                                    $lotMovie.attr('title', lotMovie);
+                                    $desc.append($lotMovie);
+                                    let $lotName = $('<div class="card__title" />');
+                                    $lotName.html(lotName);
+                                    $lotName.attr('title', lotName);
+                                    $desc.append($lotName);
+                                } else {
+                                    $lotMovie.html(lotName);
+                                    $lotMovie.attr('title', lotName);
+                                    $desc.append($lotMovie);
+                                }
+                                const $info = $('<div class="card__info">');
+                                $info.append($desc);
+                                $list.append(
+                                    $(item).addClass('card aucproduct__card').html('').append($img, $info)
+                                );
                             });
                         }
                     }, 1000);
@@ -1296,6 +1324,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     $searchSort.append($('section.sort-by label').addClass('active')).append($('#advsSort'));
                     $('section.sort-by').append($searchSort);
                     $('section.sort-by .drplist').hide();
+                    $('#adv_search_accounts').remove();
 
                     $('#adv_search_categories .scroll-list').addClass('auccatalog__search-panel-checkboxes').on('click', (e) => {
                         if (e.target.className == 'categ-chk') return;
@@ -1440,7 +1469,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         $('.auccatalog__search').html('My Items');
                         $('<div class="auccatalog__tabs" />').insertAfter('.auccatalog__search').append($('#tabnav'));
                         $('#tabnav a').addClass('waves-effect btn-flat btn--rounded');
-                        $('.tab-my-items-consigned:not(.selected)').hide();
+                        // $('.tab-my-items-consigned:not(.selected)').hide();
                         $('.tab-my-items-all:not(.selected)').hide();
                         requestAnimationFrame(() => {
                             function getNodesThatContain(text) {
