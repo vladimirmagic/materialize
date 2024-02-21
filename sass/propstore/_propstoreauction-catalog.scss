@@ -444,6 +444,10 @@ body.search-index {
 			right: unset;
 			transform: translate(-.5rem, -.75rem);
 		}
+
+		.outbid {
+			color: $color-red;
+		}
 	}
 
 	.blkRegularBid {
@@ -713,6 +717,14 @@ body.search-index {
 		padding-left: 1.5rem;
 		padding-right: 1.5rem;
 	}
+
+	.auccatalog {
+		.cards__list {
+			.card {
+				height: auto;
+			}
+		}
+	}
 }
 
 @media #{$large-and-up} {
@@ -803,14 +815,6 @@ body.search-index {
 		position: relative;
 		flex: 1 1 100%;
 	}
-
-	.cards .aucproduct__card {
-		height: auto;
-
-		.card__info {
-			height: calc(100% - #{$card-width-s});
-		}
-    }
 
 	.auccatalog__livesale {
 		margin-bottom: 0;

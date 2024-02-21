@@ -382,7 +382,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         sam.serverData.variables.default.lotItemId
                     ) || 0;
                     let status;
-                    if ($('.sale-closed').length) status = 'closed';
+                    if ($('.auction-closed').text().trim()) status = 'closed';
 
                     // requestAnimationFrame(() => {
                     //     const heroImage = window.getComputedStyle(document.querySelector('.hero__image'));
@@ -392,8 +392,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     // });
 
                     $('.auc__hero').addClass('auc__hero--small');
-                    $aucTitle = $('.tle-lot h3').clone();
-                    $aucTitle.find('span').remove();
+                    $aucTitle = $('.tle .sale-name').clone();
                     let auctionTitle = $aucTitle.text();
                     $('.hero__static-title').html(auctionTitle);
 
@@ -459,7 +458,6 @@ document.addEventListener('DOMContentLoaded', () => {
                         $productTitle.html(lotName);
                     }
                     $('.product__number').html($itemTitleH.text());
-                    $('.product__title').html(lotName);
                     $('.auc__hero-aucinfo').attr('href', $('.aucinfo').attr('href')).attr('style', '');
                     $('.auc__hero-auccatalog').attr('href', $('.catlg').attr('href')).attr('style', '');
 
@@ -969,8 +967,37 @@ document.addEventListener('DOMContentLoaded', () => {
                             $others.each((index, item) => {
                                 $img = $('<div class="card__img">');
                                 $img.css('background-image', 'url(' + $(item).find('.other-lots-image').prop('src').replace('_4.', '_6.') + ')');
-                                $title = $('<div class="card__movie">').html($(item).find('.lot-description-timed').html());
-                                $list.append($(item).addClass('card aucproduct__card').html('').append($img, $('<div class="card__info">').append($('<div class="card__description">').append($title))));
+                                
+                                
+                                const $desc = $('<div class="card__description">');
+                                let lotName = $(item).find('.lot-description-timed').html();
+                                let lotMovie = '';
+                                if (lotName.includes(' ### ')) { // new format 2023-10-11
+                                    let nameArr = lotName.split(' ### ');
+                                    if (nameArr.length > 1) {
+                                        lotName = nameArr[0];
+                                        lotMovie = nameArr[1];
+                                    }
+                                }
+                                const $lotMovie = $('<div class="card__movie">');
+                                if (lotMovie) {
+                                    $lotMovie.html(lotMovie);
+                                    $lotMovie.attr('title', lotMovie);
+                                    $desc.append($lotMovie);
+                                    let $lotName = $('<div class="card__title" />');
+                                    $lotName.html(lotName);
+                                    $lotName.attr('title', lotName);
+                                    $desc.append($lotName);
+                                } else {
+                                    $lotMovie.html(lotName);
+                                    $lotMovie.attr('title', lotName);
+                                    $desc.append($lotMovie);
+                                }
+                                const $info = $('<div class="card__info">');
+                                $info.append($desc);
+                                $list.append(
+                                    $(item).addClass('card aucproduct__card').html('').append($img, $info)
+                                );
                             });
                         }
                     }, 1000);
@@ -1014,7 +1041,7 @@ document.addEventListener('DOMContentLoaded', () => {
                      *
                      * INDEX
                      */
-                } else if ($('body').hasClass('index-index') || $('body').hasClass('auctions-index')) {
+                } else if ($('body').hasClass('auctions-list')) {
                     $('footer').append(`
 <div class="auccatalog__nav auccatalog__nav--index">
     <div class="auccatalog__nav-inner">
@@ -1032,11 +1059,11 @@ document.addEventListener('DOMContentLoaded', () => {
                     $('#alf5').addClass('browser-default');
                     $itemsPerPage.removeAttr('id').addClass('auccatalog__nav-perpage-select');
                     $('.auccatalog__nav-perpage--header .input-field').append($itemsPerPage);
-                    $('.auccatalog__nav-paginator').append($('#c2_ctl'));
+                    $('.auccatalog__nav-paginator').append($('#blkPaginatorBottom_ctl'));
                     const $pageselector = $('<div class="input-field input-field--select">');
-                    if ($('.pageselector').length > 1) {
-                        $('.pageselector:last-child').remove();
-                    }
+                    // if ($('.pageselector').length > 1) {
+                    //     $('.pageselector:last-child').remove();
+                    // }
                     $pageselector.append($('.pageselector'));
                     $('.auccatalog__nav-paginator').append($pageselector);
                     $('main').prepend($('.auccatalog__nav'));
@@ -1065,7 +1092,19 @@ document.addEventListener('DOMContentLoaded', () => {
                         if (!id) return;
 
                         $img = $(item).find('.aucimg a');
-                        $img.addClass('auclting__img').css('background-image', 'url(' + $img.find('img').prop('src') + ')');
+                        if ($img.length) {
+                            let src = $img.find('img').prop('src');
+                            $img.addClass('auclting__img').css('background-image', 'url(' + src + ')');
+                            $img.find('img').on('load', () => {
+                                src = src.replace('_m.', '_l.');
+                                const $i = $('<img src="' + src + '">');
+                                $('#div-hidden').append($i);
+                                $i.on('load', () => {
+                                    $('.aucimg a').eq(i).css('background-image', 'url(' + src + ')');
+                                });
+                            })
+                            .attr('src', src + Math.random()); // if img was loaded before onload
+                        }
                         $desc = $(item).find('.aucdes');
                         $badge = $desc.find('#auc' + id).hide();
                         $badgeNew = $('<span class="badge auclting__badge">');
@@ -1249,7 +1288,7 @@ document.addEventListener('DOMContentLoaded', () => {
 `);
                     document.querySelectorAll('style:not([data-v2]), link[rel="stylesheet"]:not([data-v2])').forEach(item => item.remove());
                     let status;
-                    if ($('.sale-closed').length) status = 'closed';
+                    if ($('.auction-closed').text().trim()) status = 'closed';
 
                     // requestAnimationFrame(() => {
                     //     const heroImage = window.getComputedStyle(document.querySelector('.hero__image'));
@@ -1283,7 +1322,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     $('#ads01').addClass('collapsible').append($searchLi);
                     $('#advsSearch').addClass('waves-effect waves-light btn btn--tertiary auccatalog__search-btn');
 
-                    const $saleSelect = $('#advsSale');
+                    const $saleSelect = $('#advsAuction');
                     if ($saleSelect.length) {
                         const $saleSelectContainer = $saleSelect.closest('section.auctions');
                         const $searchSale = $('<div class="input-field input-field--label input-field--select">');
@@ -1296,6 +1335,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     $searchSort.append($('section.sort-by label').addClass('active')).append($('#advsSort'));
                     $('section.sort-by').append($searchSort);
                     $('section.sort-by .drplist').hide();
+                    $('#adv_search_accounts').remove();
 
                     $('#adv_search_categories .scroll-list').addClass('auccatalog__search-panel-checkboxes').on('click', (e) => {
                         if (e.target.className == 'categ-chk') return;
@@ -1373,15 +1413,22 @@ document.addEventListener('DOMContentLoaded', () => {
 
                     const results = $('.page:contains("Results:")').html();
                     $('.auccatalog__nav-results').html(results.replace('<b>Results:</b>&nbsp;Viewing&nbsp;items&nbsp;', 'Results:&nbsp;'));
-                    $('.auccatalog__nav-paginator').append($('#c2_ctl'));
+                    $('.auccatalog__nav-paginator').append($('#blkPaginatorTop_ctl'));
                     $('.pageselector').wrap('<div class="input-field input-field--select" />');
                     $('.grid_list .com').remove();
                     $('.grid_list .lst').html('<i class="icon"><svg><use xlink:href="#view-list"></use></svg></i>');
                     $('.grid_list .sqr').html('<i class="icon"><svg><use xlink:href="#view-grid"></use></svg></i>');
                     $('.auccatalog__nav-view').html($('.grid_list').html());
 
-                    $itemsPerPage = $('#c3').attr('style', '').clone();
-                    $('#c3').addClass('browser-default');
+                    let lstPageTopControlId = '#' + (
+                        sam &&
+                        sam.serverData &&
+                        sam.serverData.variables &&
+                        sam.serverData.variables.default &&
+                        sam.serverData.variables.default.lstPageTopControlId
+                    ) || '';
+                    $itemsPerPage = $(lstPageTopControlId).attr('style', '').clone();
+                    $(lstPageTopControlId).addClass('browser-default');
                     $itemsPerPage.removeAttr('id').addClass('auccatalog__nav-perpage-select');
                     $('.auccatalog__nav-perpage--header .input-field').append($itemsPerPage);
                     $('.auccatalog__nav-perpage--footer .input-field').append($itemsPerPage.clone());
@@ -1389,12 +1436,12 @@ document.addEventListener('DOMContentLoaded', () => {
                     $('.auccatalog__nav-perpage-select').on('change', function (e) {
                         e.preventDefault();
                         const options = $(e.currentTarget).find('option').toArray();
-                        const itemsPerPage = document.querySelector("#c3");
-                        $('#c3').find('option[selected]').attr('selected', false);
+                        const itemsPerPage = document.querySelector(lstPageTopControlId);
+                        $(lstPageTopControlId).find('option[selected]').attr('selected', false);
                         options.forEach((option, index) => {
                             if (option.selected) {
                                 itemsPerPage.value = +option.value;
-                                $('#c3').find('option').eq(index).attr('selected', true);
+                                $(lstPageTopControlId).find('option').eq(index).attr('selected', true);
                                 itemsPerPage.dispatchEvent(new Event("change"));
                             }
                         })
@@ -1404,13 +1451,11 @@ document.addEventListener('DOMContentLoaded', () => {
                     $('.container').prepend($('.auccatalog'));
                     if ($('body').hasClass('auctions-catalog')) {
                         $('.auc__hero').addClass('auc__hero--small');
-                        $aucTitle = $('.tle h3').clone();
-                        $aucTitle.find('span').remove();
+                        $aucTitle = $('.tle .sale-name').clone();
                         auctionTitle = $aucTitle.text();
                         $('.hero__static-title').html(auctionTitle);
 
-                        $('.sale-date').find('br').remove();
-                        const datesArr = $('.sale-date').first().text().split(' - ');
+                        const datesArr = $('.start-end-dates').first().text().split(' - ');
                         if (datesArr.length) {
                             const dates = [];
                             if (datesArr[0]) dates.push(moment(datesArr[0]).format('MMM D YYYY'));
@@ -1440,7 +1485,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         $('.auccatalog__search').html('My Items');
                         $('<div class="auccatalog__tabs" />').insertAfter('.auccatalog__search').append($('#tabnav'));
                         $('#tabnav a').addClass('waves-effect btn-flat btn--rounded');
-                        $('.tab-my-items-consigned:not(.selected)').hide();
+                        // $('.tab-my-items-consigned:not(.selected)').hide();
                         $('.tab-my-items-all:not(.selected)').hide();
                         requestAnimationFrame(() => {
                             function getNodesThatContain(text) {
@@ -1494,6 +1539,7 @@ document.addEventListener('DOMContentLoaded', () => {
                             $cardItem.find('.card__img').attr('href', lotUrl);
                             const $img = $(item).find('figure').length > 1 ? $(item).find('.figure-col img') : $(item).find('figure img'); // 2 figure in list view
                             if ($img.length) {
+                                $img.removeAttr('loading');
                                 let bg = $img.prop('src');
                                 $cardItem.find('.card__img').css('background-image', 'url(' + bg + ')');
                                 $img.on('load', () => {
@@ -1501,7 +1547,7 @@ document.addEventListener('DOMContentLoaded', () => {
                                     let interval = setInterval(()=>{ // start load big images after 80% default images loaded
                                         if (cardsLoaded >= cardsLength * .8) {
                                             clearInterval(interval);
-                                            bg = bg.replace('_6.', '_0.');
+                                            bg = bg.replace('_6.', '_0.').replace('_m.', '_l.');
                                             const $img = $('<img src="' + bg + '">');
                                             $('#div-hidden').append($img);
                                             $img.on('load', () => {
@@ -1509,7 +1555,8 @@ document.addEventListener('DOMContentLoaded', () => {
                                             });
                                         }
                                     }, 1000);
-                                });
+                                })
+                                .attr('src', bg + Math.random()); // if img was loaded before onload
                             }
                             let lotName = $titleEl.text().trim();
                             let lotMovie = '';
@@ -1576,6 +1623,17 @@ document.addEventListener('DOMContentLoaded', () => {
                     <div class="aucproduct__card-details-label">Time Left</div>
                     <div class="aucproduct__card-details-value aucproduct__card-details-timer"></div>
                 </div>`);
+                                let langSaleStart = sam &&
+                                    sam.serverData &&
+                                    sam.serverData.variables &&
+                                    sam.serverData.variables.translation &&
+                                    sam.serverData.variables.translation.langSaleStart;
+                                if (langSaleStart) {
+                                    sam.serverData.add('langSaleStart', '', 'translation');
+                                    let $a = $timelft.find('a');
+                                    let html = $a.html();
+                                    if (html) $a.html(html.replace(langSaleStart, ''));
+                                }
                                 $cardItem.find('.aucproduct__card-details-timer').append($timelft);
                             }
                             function onClickRegistration (e) {
@@ -1666,7 +1724,7 @@ document.addEventListener('DOMContentLoaded', () => {
                                 }
                             });
 
-                            const $ctag = $(item).find('.item-ctag:contains("CUSTOM_PARAM_TAG")');
+                            const $ctag = $(item).find('.item-ctag');
                             let ctag;
                             if ($ctag.length) {
                                 $ctagValue = $ctag.find('.value');
@@ -1875,7 +1933,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     $('#bhPagesBottom').addClass('browser-default');
                     $itemsPerPage.removeAttr('id').addClass('auccatalog__nav-perpage-select');
                     $('.auccatalog__nav-perpage--header .input-field').append($itemsPerPage);
-                    $('.auccatalog__nav-paginator').append($('#c3_ctl'));
+                    $('.auccatalog__nav-paginator').append($('#c2_ctl'));
                     const $pageselector = $('<div class="input-field input-field--select">');
                     if ($('.pageselector').length > 1) {
                         $('.pageselector:last-child').remove();
@@ -1932,7 +1990,14 @@ document.addEventListener('DOMContentLoaded', () => {
                     document.querySelectorAll('style:not([data-v2]), link[rel="stylesheet"]:not([data-v2])').forEach(item => item.remove());
 
                     $('.confirm-bid-msg').find('hr').remove();
-                    $('.general__content').html($('#pblc1').text().replaceAll('$$', '$'));
+                    
+                    const $t = $('#pblc1');
+                    let text = $t.text() || '';
+                    let start = text.indexOf('$'); // remove lot title
+                    let end = text.lastIndexOf('$');
+                    text = text.slice(0, start) + text.slice(end);
+
+                    $('.general__content').html(text);
                     $('#pblc1').remove();
 
                     $('.confirm-bid-msg').find('#pblc2').addClass('waves-effect waves-light btn');
@@ -2132,11 +2197,11 @@ document.addEventListener('DOMContentLoaded', () => {
                         sam.serverData.variables.default
                     ) || {};
                     const auctionId = samVariables && samVariables.auctionId || 0;
-                    const lblLotNoControlId = samVariables && samVariables.lblLotNoControlId || '';
-                    const lblLotNameControlId = samVariables && samVariables.lblLotNameControlId || '';
-                    const lblLotDescControlId = samVariables && samVariables.lblLotDescControlId || '';
-                    const lblLotImgControlId = samVariables && samVariables.lblLotImgControlId || '';
-                    const lblCurrentControlId = samVariables && samVariables.lblCurrentControlId || '';
+                    const lblLotNoControlId = 'lblLotNo';
+                    const lblLotNameControlId = 'lblLotName';
+                    const lblLotDescControlId = 'lblLotDesc';
+                    const lblLotImgControlId = 'lblLotImg';
+                    const lblCurrentControlId = 'lblCurrent';
 
                     $('#' + lblLotDescControlId).addClass('lblLotDescControlId');
                     $('#' + lblLotImgControlId).addClass('lblLotImgControlId');

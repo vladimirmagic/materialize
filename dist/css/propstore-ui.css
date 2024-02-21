@@ -22896,28 +22896,19 @@ a:not(.btn):not(.btn-large):not(.btn-small):not(.btn-extra-small).modal-mail__cl
   }
 }
 
-body.index-index #headsec,
-body.index-index .mymenu,
-body.index-index .auctions-filter,
-body.index-index .srch_sec,
-body.index-index .bodybox,
-body.index-index #toppaginator,
-body.index-index .smpagination,
-body.index-index form#AdvancedSearch:before,
-body.index-index .filters,
-body.index-index .scrolltop,
-body.index-index .ui-helper-hidden-accessible,
-body.auctions-index #headsec,
-body.auctions-index .mymenu,
-body.auctions-index .auctions-filter,
-body.auctions-index .srch_sec,
-body.auctions-index .bodybox,
-body.auctions-index #toppaginator,
-body.auctions-index .smpagination,
-body.auctions-index form#AdvancedSearch:before,
-body.auctions-index .filters,
-body.auctions-index .scrolltop,
-body.auctions-index .ui-helper-hidden-accessible,
+body.auctions-list #headsec,
+body.auctions-list .mymenu,
+body.auctions-list .auctions-filter,
+body.auctions-list .srch_sec,
+body.auctions-list .bodybox,
+body.auctions-list #toppaginator,
+body.auctions-list .smpagination,
+body.auctions-list form#AdvancedSearch:before,
+body.auctions-list .filters,
+body.auctions-list .scrolltop,
+body.auctions-list .ui-helper-hidden-accessible,
+body.auctions-list .breadcrumbsWrapper,
+body.auctions-list #bpFooterLink,
 body.lot-details-index #headsec,
 body.lot-details-index .mymenu,
 body.lot-details-index .auctions-filter,
@@ -22929,6 +22920,8 @@ body.lot-details-index form#AdvancedSearch:before,
 body.lot-details-index .filters,
 body.lot-details-index .scrolltop,
 body.lot-details-index .ui-helper-hidden-accessible,
+body.lot-details-index .breadcrumbsWrapper,
+body.lot-details-index #bpFooterLink,
 body.auctions-catalog #headsec,
 body.auctions-catalog .mymenu,
 body.auctions-catalog .auctions-filter,
@@ -22940,6 +22933,8 @@ body.auctions-catalog form#AdvancedSearch:before,
 body.auctions-catalog .filters,
 body.auctions-catalog .scrolltop,
 body.auctions-catalog .ui-helper-hidden-accessible,
+body.auctions-catalog .breadcrumbsWrapper,
+body.auctions-catalog #bpFooterLink,
 body.auctions-info #headsec,
 body.auctions-info .mymenu,
 body.auctions-info .auctions-filter,
@@ -22951,6 +22946,8 @@ body.auctions-info form#AdvancedSearch:before,
 body.auctions-info .filters,
 body.auctions-info .scrolltop,
 body.auctions-info .ui-helper-hidden-accessible,
+body.auctions-info .breadcrumbsWrapper,
+body.auctions-info #bpFooterLink,
 body.auctions-bidding-history #headsec,
 body.auctions-bidding-history .mymenu,
 body.auctions-bidding-history .auctions-filter,
@@ -22962,6 +22959,8 @@ body.auctions-bidding-history form#AdvancedSearch:before,
 body.auctions-bidding-history .filters,
 body.auctions-bidding-history .scrolltop,
 body.auctions-bidding-history .ui-helper-hidden-accessible,
+body.auctions-bidding-history .breadcrumbsWrapper,
+body.auctions-bidding-history #bpFooterLink,
 body.search-index #headsec,
 body.search-index .mymenu,
 body.search-index .auctions-filter,
@@ -22973,6 +22972,8 @@ body.search-index form#AdvancedSearch:before,
 body.search-index .filters,
 body.search-index .scrolltop,
 body.search-index .ui-helper-hidden-accessible,
+body.search-index .breadcrumbsWrapper,
+body.search-index #bpFooterLink,
 body.my-items #headsec,
 body.my-items .mymenu,
 body.my-items .auctions-filter,
@@ -22984,6 +22985,8 @@ body.my-items form#AdvancedSearch:before,
 body.my-items .filters,
 body.my-items .scrolltop,
 body.my-items .ui-helper-hidden-accessible,
+body.my-items .breadcrumbsWrapper,
+body.my-items #bpFooterLink,
 body.login #headsec,
 body.login .mymenu,
 body.login .auctions-filter,
@@ -22995,6 +22998,8 @@ body.login form#AdvancedSearch:before,
 body.login .filters,
 body.login .scrolltop,
 body.login .ui-helper-hidden-accessible,
+body.login .breadcrumbsWrapper,
+body.login #bpFooterLink,
 body.signup #headsec,
 body.signup .mymenu,
 body.signup .auctions-filter,
@@ -23006,6 +23011,8 @@ body.signup form#AdvancedSearch:before,
 body.signup .filters,
 body.signup .scrolltop,
 body.signup .ui-helper-hidden-accessible,
+body.signup .breadcrumbsWrapper,
+body.signup #bpFooterLink,
 body.forgot-password #headsec,
 body.forgot-password .mymenu,
 body.forgot-password .auctions-filter,
@@ -23017,6 +23024,8 @@ body.forgot-password form#AdvancedSearch:before,
 body.forgot-password .filters,
 body.forgot-password .scrolltop,
 body.forgot-password .ui-helper-hidden-accessible,
+body.forgot-password .breadcrumbsWrapper,
+body.forgot-password #bpFooterLink,
 body.auctions-confirm-bid #headsec,
 body.auctions-confirm-bid .mymenu,
 body.auctions-confirm-bid .auctions-filter,
@@ -23028,6 +23037,8 @@ body.auctions-confirm-bid form#AdvancedSearch:before,
 body.auctions-confirm-bid .filters,
 body.auctions-confirm-bid .scrolltop,
 body.auctions-confirm-bid .ui-helper-hidden-accessible,
+body.auctions-confirm-bid .breadcrumbsWrapper,
+body.auctions-confirm-bid #bpFooterLink,
 body.auctions #headsec,
 body.auctions .mymenu,
 body.auctions .auctions-filter,
@@ -23038,7 +23049,9 @@ body.auctions .smpagination,
 body.auctions form#AdvancedSearch:before,
 body.auctions .filters,
 body.auctions .scrolltop,
-body.auctions .ui-helper-hidden-accessible {
+body.auctions .ui-helper-hidden-accessible,
+body.auctions .breadcrumbsWrapper,
+body.auctions #bpFooterLink {
   display: none;
 }
 
@@ -24500,6 +24513,10 @@ body.search-index .categories-match {
           transform: translate(-0.5rem, -0.75rem);
 }
 
+.aucproduct__card .bidding-status .outbid {
+  color: #F93838;
+}
+
 .aucproduct__card .blkRegularBid {
   position: relative;
   margin-top: 1rem;
@@ -24803,6 +24820,9 @@ body.search-index .categories-match {
     padding-left: 1.5rem;
     padding-right: 1.5rem;
   }
+  .auccatalog .cards__list .card, .auccatalog .cards__list .card-blog {
+    height: auto;
+  }
 }
 
 @media only screen and (min-width: 993px) {
@@ -24895,12 +24915,6 @@ body.search-index .categories-match {
     -webkit-flex: 1 1 100%;
         -ms-flex: 1 1 100%;
             flex: 1 1 100%;
-  }
-  .cards .aucproduct__card, .cards-blog .aucproduct__card {
-    height: auto;
-  }
-  .cards .aucproduct__card .card__info, .cards-blog .aucproduct__card .card__info {
-    height: calc(100% - 176px);
   }
   .auccatalog__livesale {
     margin-bottom: 0;
@@ -25518,7 +25532,8 @@ body.my-items .categories-match {
 
 .auctions-live-sale .auctitle-live,
 .auctions-live-sale .mobile-content-wrap,
-.auctions-live-sale .list-opts {
+.auctions-live-sale .list-opts,
+.auctions-live-sale #customheader {
   display: none;
 }
 
