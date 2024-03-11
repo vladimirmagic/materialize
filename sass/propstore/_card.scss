@@ -153,6 +153,22 @@ a.card:not(.btn) { // fix a
 	opacity: .6;
 }
 
+.card__img-soldnoreserve {
+	position: absolute;
+	right: 16px;
+	bottom: 40px;
+	height: 28px;
+	padding: 0 12px;
+	color: white;
+	font-size: 12px;
+	font-weight: 600;
+	line-height: 28px;
+	letter-spacing: .12em;
+	text-transform: uppercase;
+    background-color: $color-turquoise;
+	border-radius: 4px;
+}
+
 .card__info {
 	display: flex;
 	flex-direction: column;

@@ -83,10 +83,11 @@
 		right: unset;
 		margin: -8px 0 0 -6px;
 	}
-}
 
-.aucproduct__timer {
-	color: $color-red;
+	&.soldnoreserve {
+		font-weight: 500;
+		color: $color-turquoise;
+	}
 }
 
 .aucproduct__button {

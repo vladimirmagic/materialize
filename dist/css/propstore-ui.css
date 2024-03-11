@@ -12785,6 +12785,22 @@ a.card:not(.btn):not(.btn-large):not(.btn-small):not(.btn-extra-small).card--arc
   opacity: .6;
 }
 
+.card__img-soldnoreserve {
+  position: absolute;
+  right: 16px;
+  bottom: 40px;
+  height: 28px;
+  padding: 0 12px;
+  color: white;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 28px;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  background-color: #11BFC5;
+  border-radius: 4px;
+}
+
 .card__info {
   display: -webkit-box;
   display: -webkit-flex;
@@ -13450,6 +13466,11 @@ a.card-auction:not(.btn):not(.btn-large):not(.btn-small):not(.btn-extra-small):b
   }
   .cards .card__img-more .icon, .cards-blog .card__img-more .icon {
     display: none;
+  }
+  .cards .card__img-soldnoreserve, .cards-blog .card__img-soldnoreserve {
+    right: .5rem;
+    bottom: 2rem;
+    font-size: 10px;
   }
   .cards .card__info:not(.card-blog__info), .cards-blog .card__info:not(.card-blog__info) {
     height: 340px;
@@ -23662,8 +23683,9 @@ footer .auclting {
   margin: -8px 0 0 -6px;
 }
 
-.aucproduct__timer {
-  color: #F93838;
+.aucproduct__details-line.soldnoreserve {
+  font-weight: 500;
+  color: #11BFC5;
 }
 
 .aucproduct__button {

@@ -710,6 +710,13 @@ document.addEventListener('DOMContentLoaded', () => {
                         $details.append($line);
                     }
 
+                    let soldNoReserve = $('.product-description-content').data('soldnoreserve');
+                    if (soldNoReserve) {
+                        $line = $detailsLine.clone();
+                        $line.html('Sold without reserve').addClass('soldnoreserve');
+                        $details.append($line);
+                    }
+
                     function getBarcodeFromJS() {
                         let barcode = null;
                         $('.description-info-content').find('*')
@@ -1243,6 +1250,9 @@ document.addEventListener('DOMContentLoaded', () => {
                     <span>More Items<br><span class="card__img-more-text">in This Lot</span></span>
                     <i class="icon"><svg><use xlink:href="#arrow-right"></use></svg></i>
                 </span>
+                <span class="card__img-soldnoreserve" style="display: none;">
+                    No reserve
+                </span>
                 <span class="badge card__badge" style="display: none;">
                     <i class="icon"><svg><use xlink:href="#"></use></svg></i>
                 </span>
@@ -1707,7 +1717,9 @@ document.addEventListener('DOMContentLoaded', () => {
                                     }
                                 }
                             }
-                            if (ctag && ctag.isMultiItem) {
+                            if (ctag && ctag.soldNoReserve) {
+                                $cardItem.find('.card__img-soldnoreserve').show();
+                            } else if (ctag && ctag.isMultiItem) {
                                 $cardItem.find('.card__img-more').show();
                             }
                             if (ctag && ctag.makeOfferType) {
