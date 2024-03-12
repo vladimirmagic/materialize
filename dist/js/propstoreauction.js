@@ -2178,6 +2178,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     const lblLotDescControlId = samVariables && samVariables.lblLotDescControlId || '';
                     const lblLotImgControlId = samVariables && samVariables.lblLotImgControlId || '';
                     const lblCurrentControlId = samVariables && samVariables.lblCurrentControlId || '';
+                    const lblMessageControlId = samVariables && samVariables.lblMessageControlId || '';
 
                     $('#' + lblLotDescControlId).addClass('lblLotDescControlId');
                     $('#' + lblLotImgControlId).addClass('lblLotImgControlId');
@@ -2288,7 +2289,22 @@ document.addEventListener('DOMContentLoaded', () => {
 
                         if ($('#rtb-panel')[0].dataset.lot != currentLot) {
                             // title = 'Lot #' + $('#' + lblLotNoControlId).html() + ': ' + $('#' + lblLotNameControlId).html();
-                            $('.auclive-sale-title').html($('#' + lblLotNameControlId).html());
+                            let lotName = $('#' + lblLotNameControlId).html();
+                            let lotMovie = '';
+                            if (lotName.includes(' ### ')) { // new format 2023-10-11
+                                let nameArr = lotName.split(' ### ');
+                                if (nameArr.length > 1) {
+                                    lotName = nameArr[0];
+                                    lotMovie = nameArr[1];
+                                }
+                            }
+                            if (lotMovie) {
+                                $('.auclive-sale-title').html(lotMovie).append(
+                                    $('<div class="auclive-sale__title1 h4">' + lotName + '</div>')
+                                );
+                            } else {
+                                $('.auclive-sale-title').html(lotName);
+                            }
                         }
 
                         const $desc = $('#' + lblLotDescControlId + ' > *');
@@ -2303,13 +2319,13 @@ document.addEventListener('DOMContentLoaded', () => {
                             }
                         }
 
-                        if ($('.auclive-sale__upcoming').length && $('.auclive-sale__upcoming')[0].dataset.lot != currentLot) {
-                            $upcoming = $('#upcoming-scroll tr');
-                            if ($upcoming.length) {
+                        $upcoming = $('#upcoming-scroll tr');
+                        if ($upcoming.length) {
+                            if ($('.auclive-sale__upcoming').length && $('.auclive-sale__upcoming')[0].dataset.lot != currentLot) {
                                 $('.auclive-sale__upcoming')[0].dataset.lot = currentLot;
                                 $('.upcoming--current').removeClass('upcoming--current');
 
-                                $upcoming .each((index, item) => {
+                                $upcoming.each((index, item) => {
                                     if ($(item).find('.lot').text() == currentLot) {
                                         $(item).addClass('upcoming--current');
                                     }
@@ -2400,6 +2416,32 @@ document.addEventListener('DOMContentLoaded', () => {
                         updateBidObserve();
                     };
 
+                    const updateMessagesCallback = function () {
+                        const $m = $(`#${lblMessageControlId}`);                        
+                        let m = $m && $m.html();
+                        updateMessagesObserver.disconnect();
+
+                        if (m && m.includes(' ### ')) { // new format 2023-10-11
+                            $m.html(m.replaceAll('###', '-'));
+                        }
+                        updateMessagesObserve();
+                    };
+
+                    const updateUpcomingCallback = function () {
+                        updateUpcomingObserver.disconnect();
+                        $upcoming = $('#upcoming-scroll tr');
+                        if ($upcoming.length) {
+                            $upcoming.each((index, item) => {
+                                let $title = $(item).find('td.title');
+                                let title = $title && $title.text();
+                                if (title && title.includes(' ### ')) { // new format 2023-10-11
+                                    $title.html(title.replaceAll('###', '-'));
+                                }
+                            });
+                        }
+                        updateUpcomingObserve();
+                    };
+
                     const updateLotObserver = new MutationObserver(updateLotCallback);
                     const updateLotObserve = () => updateLotObserver.observe($(`#${lblLotNoControlId}`)[0], {characterData: true, childList: true, subtree: true});
                     updateLotObserve();
@@ -2413,6 +2455,16 @@ document.addEventListener('DOMContentLoaded', () => {
                     const updateBtnObserve = () => updateBtnObserver.observe($('.live-bid')[0], {characterData: true, childList: true, subtree: true});
                     updateBtnObserve();
                     updateBtnCallback();
+
+                    const updateMessagesObserver = new MutationObserver(updateMessagesCallback);
+                    const updateMessagesObserve = () => updateMessagesObserver.observe($(`#${lblMessageControlId}`)[0], {characterData: true, childList: true});
+                    updateMessagesObserve();
+                    updateMessagesCallback();
+
+                    const updateUpcomingObserver = new MutationObserver(updateUpcomingCallback);
+                    const updateUpcomingObserve = () => updateUpcomingObserver.observe($(`#upcoming-scroll`)[0], {characterData: true, childList: true, subtree: true});
+                    updateUpcomingObserve();
+                    updateUpcomingCallback();
 
                     let resizeDebounce;
                     function onResize () {
