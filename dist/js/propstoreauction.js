@@ -1104,18 +1104,42 @@ document.addEventListener('DOMContentLoaded', () => {
                         $img = $(item).find('.aucimg a');
                         $img.addClass('auclting__img').css('background-image', 'url(' + $img.find('img').prop('src') + ')');
                         $desc = $(item).find('.aucdes');
+
+                        let $date = null;
+                        $aucdate = $desc.find('#aucdate' + id);
+                        $('#div-hidden').append('<div id="customDate' + id + '">');
+                        const customDateBefore = window.getComputedStyle(document.querySelector('#customDate' + id), ':before');
+                        const customDate = customDateBefore && customDateBefore.content && customDateBefore.content != 'none' ? customDateBefore.content.replaceAll('"', '') : null;
+                        $('#div-hidden').append('<div id="customDateStart' + id + '">');
+                        const customDateStartBefore = window.getComputedStyle(document.querySelector('#customDateStart' + id), ':before');
+                        const customDateStart = customDateStartBefore && customDateStartBefore.content && customDateStartBefore.content != 'none' ? customDateStartBefore.content.replaceAll('"', '') : null;
+                        $('#div-hidden').append('<div id="customDateEnd' + id + '">');
+                        const customDateEndBefore = window.getComputedStyle(document.querySelector('#customDateEnd' + id), ':before');
+                        const customDateEnd = customDateEndBefore && customDateEndBefore.content && customDateEndBefore.content != 'none' ? customDateEndBefore.content.replaceAll('"', '') : null;
+
                         $badge = $desc.find('#auc' + id).hide();
                         $badgeNew = $('<span class="badge auclting__badge">');
-                        if ($badge.find('.in-progress').length) {
-                            $badgeNew.addClass('green').append(`<i class="icon"><svg><use xlink:href="#live"></use></svg></i>Live`);
-                        } else if ($badge.find('.ended').length) {
-                            if (!$('a[name="ended"]').length) {
-                                $(item).prepend('<a name="ended">');
+                        if (customDateStart && customDateEnd) {
+                            if (moment(customDateStart) > Date.now()) {
+                                $badgeNew.addClass('orange').append(`<i class='icon'><svg><use xlink:href="#clockwise"></use></svg></i>Upcoming`);
+                            } else if (moment(customDateEnd) < Date.now()) {
+                                $badgeNew.addClass('red').append(`<i class='icon'><svg><use xlink:href="#flag"></use></svg></i>Ended`);
+                            } else {
+                                $badgeNew.addClass('green').append(`<i class="icon"><svg><use xlink:href="#live"></use></svg></i>Live`);    
                             }
-                            $badgeNew.addClass('red').append(`<i class='icon'><svg><use xlink:href="#flag"></use></svg></i>Ended`);
                         } else {
-                            $badgeNew.addClass('orange').append(`<i class='icon'><svg><use xlink:href="#clockwise"></use></svg></i>Upcoming`);
+                            if ($badge.find('.in-progress').length) {
+                                $badgeNew.addClass('green').append(`<i class="icon"><svg><use xlink:href="#live"></use></svg></i>Live`);
+                            } else if ($badge.find('.ended').length) {
+                                if (!$('a[name="ended"]').length) {
+                                    $(item).prepend('<a name="ended">');
+                                }
+                                $badgeNew.addClass('red').append(`<i class='icon'><svg><use xlink:href="#flag"></use></svg></i>Ended`);
+                            } else {
+                                $badgeNew.addClass('orange').append(`<i class='icon'><svg><use xlink:href="#clockwise"></use></svg></i>Upcoming`);
+                            }
                         }
+
                         const $bidder = $(item).find('.bidder-status, .bidder-status-closed');
                         if ($bidder.length) {
                             const $text = $('<div class="auclting__text">');
@@ -1126,11 +1150,6 @@ document.addEventListener('DOMContentLoaded', () => {
                         $type = $('<div class="auclting__type"><i class="icon"><svg><use xlink:href="#auction-line"></use></svg></i></div>');
                         $type.append($desc.find('#sale' + id));
 
-                        let $date = null;
-                        $aucdate = $desc.find('#aucdate' + id);
-                        $('#div-hidden').append('<div id="customDate' + id + '">');
-                        const customDateBefore = window.getComputedStyle(document.querySelector('#customDate' + id), ':before');
-                        const customDate = customDateBefore && customDateBefore.content && customDateBefore.content != 'none' ? customDateBefore.content.replaceAll('"', '') : null;
                         if (customDate || $aucdate.length) {
                             let date = customDate || '';
                             if (!date) {
