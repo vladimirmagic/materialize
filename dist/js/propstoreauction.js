@@ -1,3 +1,5 @@
+const BUYERS_PREMIUM = 1.26;
+
 document.addEventListener('DOMContentLoaded', () => {
     if (window.location.href.includes('#nomaterialize')) { // don't materialize
         document.querySelectorAll('[data-v2]').forEach(item => item.remove());
@@ -754,7 +756,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         }
                         function offerPremium () {
                             const offer = +$form.find('#offer').val() || 0;
-                            $form.find('#offerPremium').val(offer * 1.25);
+                            $form.find('#offerPremium').val(offer * BUYERS_PREMIUM);
                         }
             
                         M.Modal.init(document.querySelectorAll('#modal-offer'), { // load form on modal open
@@ -2273,7 +2275,7 @@ document.addEventListener('DOMContentLoaded', () => {
                             nextAskCurrency = nextAskStr[0];
                             nextAsk = parseFloat(nextAskStr.slice(1).replace(/,/g, ''));
                             if (nextAsk) {
-                                nextAskBP = nextAskCurrency + (nextAsk * 1.25).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+                                nextAskBP = nextAskCurrency + (nextAsk * BUYERS_PREMIUM).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
                             }
                             nextAskStr = '<br><strong>The next asking bid is ' + nextAskStr + '</strong>';
                             if (nextAskBP) nextAskStr += '<div class="auclive-sale__bidstatus-prem">(' + nextAskBP + ' incl. Buyer’s Prem)</div>';
@@ -2291,7 +2293,7 @@ document.addEventListener('DOMContentLoaded', () => {
                             // title = 'Lot #' + $('#' + lblLotNoControlId).html() + ': ' + $('#' + lblLotNameControlId).html();
                             let lotName = $('#' + lblLotNameControlId).html();
                             let lotMovie = '';
-                            if (lotName.includes(' ### ')) { // new format 2023-10-11
+                            if (lotName.includes(' ### ') && lotName[lotName.length - 1] === ')') { // new format 2023-10-11
                                 let nameArr = lotName.split(' ### ');
                                 if (nameArr.length > 1) {
                                     lotName = nameArr[0];
@@ -2407,7 +2409,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         
                         updateBidObserver.disconnect();
                         if (currentBidAmount) {
-                            const currentBidBP = currentBidCurrency + (currentBidAmount * 1.25).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+                            const currentBidBP = currentBidCurrency + (currentBidAmount * BUYERS_PREMIUM).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
                             if (!$('.auclive-sale__current-prem').length) $('.current-bid-amt').append('<div class="auclive-sale__current-prem">');
                             $('.auclive-sale__current-prem').html(currentBidBP + ' incl. Buyer’s Prem').show();
                         } else {
