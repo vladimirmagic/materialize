@@ -412,6 +412,10 @@ a.card:not(.btn) { // fix a
 	margin: -4px 8px -2px 0;
 }
 
+.card__sell-like-this {
+	white-space: nowrap;
+}
+
 @media #{$breakpoint-4cards} {
     .card {
         width: $card-width-m;

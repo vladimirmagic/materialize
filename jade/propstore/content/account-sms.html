@@ -9,6 +9,48 @@
     <div class="account__sms">
         <div class="account__sms-inner">
 
+            <form class="modal-sms-form">
+                <div class="modal-sms-form__row modal-sms-form__row--phone">
+                    <span class="waves-effect btn-flat btn--icon modal-sms-form__i dropdown-trigger" data-target="dropdown-sms-service">
+                        <i class='icon'><svg><use xlink:href="#i"></use></svg></i>
+                    </span>
+                    <div class="input-field input-field--phone">
+                        <div class="input-field input-field--label input-field--select input-field--phone-code">
+                            <select>
+                                <option value="2">+1 US</option>
+                                <option value="3">+44 UK</option>
+                            </select>
+                            <label>Phone Code</label>
+                        </div>
+                        <div class="input-field input-field--label input-field--phone-number">
+                            <input type="tel" name="phone" value="5005550001" id="myRemindersSubmit_phone" placeholder="Please Enter">
+                            <label class="active">Phone Number</label>
+                        </div>
+                        <div class="input-field__helper"></div>
+                    </div>
+                    <i class="icon modal-sms-form__ok"><svg><use xlink:href="#ok"></use></svg></i>
+                    <button type="submit" name="action" value="Send Code" class="waves-effect waves-light btn input-field--label modal-sms-form__update-button modal-sms-form__timer-button" tabindex="0">
+                        Update
+                        <span class="modal-sms-form__timer sent">30</span>
+                    </button>
+                </div>
+                <div class="modal-sms-form__row modal-sms-form__row--code">
+                    <div class="input-field input-field--label ">
+                        <input type="text" name="code" value="" id="reminderFormSubmit_code" placeholder="Please Enter Code from SMS">
+                        <label class="active">Code</label>
+                        <div class="input-field__helper"></div>
+                    </div>
+                    <button type="submit" name="action" value="Send Code" class="waves-effect waves-light btn input-field--label" tabindex="0">
+                        Verify
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="account__sms">
+        <div class="account__sms-inner">
+
             <div class="input-field input-field--label input-field--select account__sms-auction-select">
                 <select name="movieId" id="movieId" tabindex="-1">
                     <option value="0" selected="selected">select</option>
@@ -24,7 +66,7 @@
             </div>
 
             <div class="account__sms-table">
-                <div class="account__sms-table-item">
+                <a class="account__sms-table-item" href="/1">
                     <div class="account__sms-table-item-img" style="background-image: url(https://propstoreauction.com/images/lot/6427/642770_1.jpg);"></div>
                     <div class="account__sms-table-item-info">
                         <div class="account__sms-table-item-title">
@@ -39,7 +81,7 @@
                             <i class='icon'><svg><use xlink:href="#trash"></use></svg></i>
                         </span>
                     </div>
-                </div>
+                </a>
 
                 <div class="account__sms-table-item">
                     <div class="account__sms-table-item-img" style="background-image: url(https://images.propstore.com/ab801c3fb69fd20b29387040498e6987-3.jpg);"></div>
@@ -85,11 +127,8 @@
         </div>
     </div>
 
-    <div class="account__orders" style="display: none;">
-        <div class="account__orders-inner">
-            <div class="p-l center">
-                You don't have any SMS reminders.
-            </div>
-        </div>
-    </div>
+</div>
+
+<div id='dropdown-sms-service' class='dropdown-content dropdown-currency'>
+    <p>Now the service works only in the US and UK</p>
 </div>

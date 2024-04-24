@@ -92,6 +92,10 @@
   &:hover {
     background-color: $button-raised-background-hover;
   }
+
+  &.input-field--label {
+    height: $input-height + 8;
+  }
 }
 
 .btn--secondary {
@@ -413,6 +417,10 @@ button.btn-floating {
   &:active:after {
     transform: scaleX(0);
     background: $primary-color;
+  }
+
+  &:disabled:after {
+    transform: scaleX(0);
   }
 }
 

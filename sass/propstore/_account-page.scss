@@ -710,6 +710,12 @@ a.account__orders-buy-link:not(.btn) {
 .account__sms {
 	@extend .content;
 	text-align: left;
+
+	& + & {
+		margin-top: 2rem;
+		padding-top: 2rem;
+		border-top: 1px solid $color-grey;
+	}
 }
 
 .account__sms-inner {
@@ -725,16 +731,21 @@ a.account__orders-buy-link:not(.btn) {
 .account__sms-table {
 	display: flex;
 	flex-direction: column;
-	gap: 1em;
 	margin-bottom: 2em;
 }
 
 .account__sms-table-item {
 	position: relative;
+	max-height: 4rem;
 	display: flex;
 	gap: 1em;
 	justify-content: space-between;
+	text-decoration: none !important;
 	cursor: pointer;
+
+	& + & {
+		margin-top: 1em;
+	}
 
 	&:before {
 		content: '';
@@ -761,6 +772,14 @@ a.account__orders-buy-link:not(.btn) {
 		top: -.5rem;
 		height: 1px;
 		background: $color-bg;
+	}
+
+	&.sync {
+		transition: all .2s ease;
+		margin-top: 0;
+		opacity: 0;
+		max-height: 0;
+		overflow: hidden;
 	}
 }
 
@@ -795,7 +814,7 @@ a.account__orders-buy-link:not(.btn) {
 }
 
 .account__sms-table-item-time {
-	flex: 1 0 120px;
+	flex: 1 0 140px;
 	font-size: 14px;
 	font-weight: 300;
 }
@@ -810,6 +829,7 @@ a.account__orders-buy-link:not(.btn) {
 		}
 	}
 }
+
 
 .phone-verify__code {
 	margin-top: 3em;

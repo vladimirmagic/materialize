@@ -1,3 +1,6 @@
+const SMS_REMINDER_TIMER_ITEM = 'SMS_REMINDER_TIMER_ITEM';
+const SMS_REMINDER_TIMER = 30;
+
 document.addEventListener('DOMContentLoaded', () => {
     $(function() {
         /*! Viewer.js v1.10.5 https://fengyuanchen.github.io/viewerjs Copyright 2015-present Chen Fengyuan * Released under the MIT license * Date: 2022-04-05T08:21:02.491Z */
@@ -1414,20 +1417,83 @@ document.addEventListener('DOMContentLoaded', () => {
             });
 
             // MAIL MODAL
-            function showMailModal() {
-                if ($(window).scrollTop() > $(window).height() * 3) {
-                    $(window).off('scroll', showMailModal);
-                    $('#modal-mail').addClass('show');
-                    $('.modal-mail__form input').on('focus', function () {
-                        $('.modal-mail__recaptcha').show();
-                    });
-
-                    $('#modal-mail .loader-section').show();
+            if ($('#modal-mail').length) {
+                const isMailModalCookie = $.cookie('mail_modal');
+                if (!isMailModalCookie) {
+                    $(window).on('scroll', showMailModalOnScroll);
                 }
             }
+        }
+
+        // MAIL MODAL
+        function closeMailModal() {
+            $('#modal-mail').removeClass('show');
+            $.cookie('mail_modal', new Date().toISOString().replaceAll(':', '-'), { path: '/' });
+        }
+
+        function showMailModal() {
+            if (document.body.classList.contains('modal-page')) {
+                $('#modal-mail').remove();
+            }
+
+            $(window).off('scroll', showMailModalOnScroll);
+            $(document).off('mouseout', showMailModalOnOut);
+            $('#modal-mail').addClass('show');
+            grecaptchaRender('g-recaptcha-mail');
+            $('.modal-mail__form input').on('focus', function () {
+                $('.modal-mail__recaptcha').show();
+            });
+
+            $('.modal-mail__form').submit(function (e) {
+                e.preventDefault();
+                $('#modal-mail .loader-section').show();
+                $.post(
+                    this.action,
+                    $(this).serialize(),
+                )
+                    .done(data => {
+                        if (!checkResponse(data)) return data;
+
+                        this.innerHTML = data;
+                        M.updateTextFields();
+
+                        grecaptchaRender('g-recaptcha-mail');
+                        $('.modal-mail__recaptcha').show();
+
+                        if ($(this).find('.success').length) {
+                            setTimeout(closeMailModal, 3000);
+                        }
+                    })
+                    .fail(data => {
+                        if (data && data.statusText) this.innerHTML = data.statusText;
+                    })
+                    .always(() => {
+                        $('#modal-mail .loader-section').hide();
+                    });
+            });
+
+            $('.modal-mail-close').on('click', closeMailModal);
+
+            $('.modal-mail-close-forever').on('click', function () {
+                $('#modal-mail').removeClass('show');
+                $.cookie('mail_modal', new Date().toISOString().replaceAll(':', '-'), { expires: new Date(2147483647 * 1000), path: '/' });
+            });
+        }
+        function showMailModalOnScroll() {
+            if ($(window).scrollTop() > $(window).height() * 3) {
+                showMailModal();
+            }
+        }
+        function showMailModalOnOut(event) {
+            if (!event.toElement && !event.relatedTarget) {
+                showMailModal();
+            }
+        }
+
+        if ($('#modal-mail').length) {
             const isMailModalCookie = $.cookie('mail_modal');
             if (!isMailModalCookie) {
-                $(window).on('scroll', showMailModal);
+                $(document).on('mouseout', showMailModalOnOut);
             }
         }
 
@@ -2006,6 +2072,17 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         }
 
+        // ACCOUNT SMS
+        if ($('#account__sms-form_auctionId').length) {
+            $('#account__sms-form_auctionId').on('change', function () {
+                $('#account__sms-form').submit();
+            });
+
+            $('#account__sms-form').submit(function () {
+                $('.loader-block').show();
+            });
+        }
+
         // BLOG
         $('.card-blog').on('click', function(event) {
             const fakeUrl = $(event.target).data('href');
@@ -2561,6 +2638,17 @@ document.addEventListener('DOMContentLoaded', () => {
                 trackEvent('AuctionRegistrationComplete');
             }
 
+            if ($('.auction-registration--complete').length) { // submitted or already registered
+                const $back = $('.btn-back');
+                if ($back.length) {
+                    if ($back.attr('href').includes('reminder.action')) {
+                        setTimeout(() => {
+                            location.href = $back.attr('href');
+                        }, 2000);
+                    }
+                }
+            }
+
             // SSO
             if ($('#modal-auction-signin-form').length && !$('#modal-auction-signin-form').data('submit')) {
                 $('#modal-auction-signin-form').data('submit', true); // added submit handler
@@ -2672,22 +2760,121 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         }
 
-        // COOKIES
-        const isCookiesAccepted = $.cookie('cookies_accepted');
-        if (!isCookiesAccepted) {
-            M.toast({
-                html: `<span class="cookies-toast"><span class="cookies-toast__body"><strong class="c-r">This website uses cookies</strong><br/>
-We use cookies to personalise content and ads, to provide social media features and to analyse our traffic.
-We also share information about your use of our site with our social media, advertising and analytics partners who may combine it with other information that you’ve provided to them or that they’ve collected from your use of their services.
-</span><span class="btn cookies-toast__close">Accept</span></span>`,
-                classes: 'toast-cookies',
-                displayLength: Infinity,
+        // LANDING POSTERS
+        if ($('.landing-cat').length) {
+            let body = {
+                landingNewAdditionsAuctions,
+                landingNewAdditionsBuy
+            }
+            $.get('/ajax/rest.action?actions=landingNewAdditions&ids=' + encodeURI(JSON.stringify(body)))
+                .done(data => {
+                    if (!checkResponse(data, false)) return data;
+    
+                    let $data = $('<div/>').html(data);
+                    $('#whatsnew-landing-cat-auctions .whatsnew__cards-scroll').html($data.find('#auctionedNewAdditions').html());
+                    $data = $('<div/>').html(data);
+                    $('#whatsnew-landing-cat-buy .whatsnew__cards-scroll').html($data.find('#buyNowNewAdditions').html());
+                    cardsHandlers();
+                });
+
+            body = {
+                landingCurrentAuctions,
+                landingFeatured,
+                landingMoreAuctions,
+                landingSold,
+            }
+            $.get('/ajax/rest.action?actions=landingCat&ids=' + encodeURI(JSON.stringify(body)))
+                .done(data => {
+                    if (!checkResponse(data, false)) return data;
+    
+                    let $data = $('<div/>').html(data);
+                    $('.landing-cat__current-items').html($data.find('#currentAuctions').html());
+                    $data = $('<div/>').html(data);
+                    $('.landing-cat__featured-list').html($data.find('#featuredItems').html());
+                    $data = $('<div/>').html(data);
+                    $('.landing-cat__more-auctions-list').html($data.find('#moreAuctions').html());
+                    $data = $('<div/>').html(data);
+                    $('.landing-cat__sold-list').html($data.find('#soldItems').html());
+                    cardsHandlers();
+                    runAuctionsTimers();
+                });
+            let categoryId = '';
+            try {
+                if (recordSellingCategoryId) categoryId = '&recordSellingCategoryId=' + recordSellingCategoryId;
+            } catch (e) {}
+            $.get('/ajax/rest.action?actions=recordSelling' + categoryId)
+                .done(data => {
+                    if (!checkResponse(data, false)) return data;
+
+                    const $data = $('<div/>').html(data);
+                    $('.section-sell__inner').html($data.find('#recordSelling').html());
+                });
+        }
+
+        // MODAL SMS
+        if (document.body.classList.contains('modal-page-sms-form') ||
+            document.body.classList.contains('page-reminders')
+        ) {
+            const info = document.querySelectorAll('.modal-sms-form__i');
+            if (info) M.Dropdown.init(info, { container: document.body });
+
+            $('.modal-sms-button-register').on('click', function(){
+                redirectPage('/auctionRegistration.action?auctionId=' + $('#samAuctionId').val() +
+                        '&d=1&ru=' + encodeURIComponent(location.href));
             });
-            $('.cookies-toast__close').on('click', function () {
-                $.cookie('cookies_accepted', new Date().toISOString().replaceAll(':', '-'), { expires: new Date(2147483647 * 1000), path: '/' });
-                M.Toast.dismissAll();
+            if (window.opener) {
+                $('.modal-sms-button-close').on('click', function(){
+                    window.close();
+                });
+            } else {
+                $('.modal-sms-button-close').remove();
+            }
+
+            let $timer = $('.modal-sms-form__timer');
+            if ($timer.length) {
+                let prev = Date.now();
+                if ($timer.hasClass('sent')) {
+                    localStorage.setItem(SMS_REMINDER_TIMER_ITEM, prev);
+                } else {
+                    prev = localStorage.getItem(SMS_REMINDER_TIMER_ITEM);
+                }
+                let time = SMS_REMINDER_TIMER - Math.ceil((Date.now() - prev) / 1000);
+                if (time > 0) {
+                    $('.modal-sms-form__timer-button').attr('disabled', true);
+                    $('.modal-sms-form__timer').html(time);
+                    let interval = setInterval(() => {
+                        --time;
+                        if (time <= 0) {
+                            $('.modal-sms-form__timer-button').attr('disabled', false);
+                            clearInterval(interval);
+                            time = '';
+                        }
+                        $('.modal-sms-form__timer').html(time);
+                    }, 1000);
+                }
+            }
+            if ($('.modal-sms-form__ok').length) {
+                $('.modal-sms-form__update-button').hide();
+                function onChange () {
+                    $('.modal-sms-form__ok').hide();
+                    $('.modal-sms-form__update-button').show();
+                }
+                $('.modal-sms-form__row--phone input').on('keypress change', onChange);
+                $('.modal-sms-form__row--phone select').on('change', onChange);
+            }
+        }
+        if ($('.account__sms').length) {
+            $('.account__sms-remove').on('click', function(e){
+                e.preventDefault();
+                const $item = $(this).closest('.account__sms-table-item');
+                $item.addClass('sync');
+                $.get($(this).attr('href'))
+                        .done(data => {
+                            if (!checkResponse(data)) return data;
+
+                            setTimeout(()=>$item.remove(), 200);
+                        });
             });
-            $('#toast-container').prepend('<div class="toast__overlay"/>');
         }
 
     }); // end of document ready
@@ -2733,6 +2920,20 @@ function getHeaderUpdate () {
                 if (isLogged) {
                     $('.is-ligged-false').hide();
                     $('.is-ligged-true').show();
+                    $('#modal-mail').remove();
+                } else {
+                    const $form = $('.modal-mail__form');
+                    $.get('/ajax/subscribePopup.action')
+                        .done(data => {
+                            if (!checkResponse(data)) return data;
+
+                            $form.html(data);
+                            M.updateTextFields();
+
+                            grecaptchaRender('g-recaptcha-mail');
+
+                            $('#modal-mail .loader-section').hide();
+                        });
                 }
             }
 
@@ -2745,6 +2946,36 @@ function getHeaderUpdate () {
         .always(() => {
             $('.is-ligged-false').css('filter', '');
         });
+}
+
+function runAuctionsTimers () {
+    const $auctionsTimers = $('.section-auctions__item-timer');
+    if ($auctionsTimers.length) {
+        $auctionsTimers.each(function () {
+            let remain = $(this).data('sec');
+            let day = 0;
+            let hour = 0;
+            let min = 0;
+            let sec = remain;
+            if (remain) {
+                setInterval(() => {
+                    sec = --remain;
+                    if (sec <= 0 &&
+                        !$('.landing-cat').length) window.location.reload();
+                    day = Math.floor(sec / 60 / 60 / 24);
+                    sec -= day * 60 * 60 * 24;
+                    hour = Math.floor(sec / 60 / 60);
+                    sec -= hour * 60 * 60;
+                    min = Math.floor(sec / 60 );
+                    sec -= min * 60;
+                    $(this).find('.day').html(day);
+                    $(this).find('.hour').html(hour);
+                    $(this).find('.min').html(min);
+                    $(this).find('.sec').html(sec);
+                }, 1000);
+            }
+        });
+    }
 }
 
 function initFacebookLoginButton(sso = null) {
