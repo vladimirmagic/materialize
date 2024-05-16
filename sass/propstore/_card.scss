@@ -413,7 +413,10 @@ a.card:not(.btn) { // fix a
 }
 
 .card__sell-like-this {
-	white-space: nowrap;
+	display: flex;
+    align-items: center;
+    justify-content: center;
+	line-height: 1.4 !important;
 }
 
 @media #{$breakpoint-4cards} {

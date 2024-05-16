@@ -893,19 +893,17 @@ document.addEventListener('DOMContentLoaded', () => {
                         if (delta >= 1) {
                             $('#calendarBtnBox').remove(); // old description
                             $('<div class="aucproduct__calendar">').insertAfter('.product__buttons-grey')
-                                .append(`<div class="aucproduct__calendar-title h5">Add reminder</div>
-                                    <div id="calendarBtnBox"></div>
-                                `);
+                                .append(`<div id="calendarBtnBox"></div>`);
 
                             let lotUrl = $('head link[rel="canonical"]').attr('href');
-                            $btnOutlook = $('<span class="calendarBtn waves-effect waves-grey btn btn--secondary">Outlook Calendar</span>');
+                            $btnOutlook = $('<span class="calendarBtn waves-effect waves-grey btn btn--secondary">Outlook Auction Alert</span>');
                             $btnOutlook.on('click', function(event) {
                                 event.stopPropagation();
                                 event.preventDefault();
                                 downloadURI(generateICSFileURL(auctionTitle, remindDate, lotName, lotUrl), "propstore.ics");
                             });
 
-                            $btnGoogle = $('<span class="calendarBtn waves-effect waves-grey btn btn--secondary">Google Calendar</span>');
+                            $btnGoogle = $('<span class="calendarBtn waves-effect waves-grey btn btn--secondary">Google Auction Alert</span>');
                             $btnGoogle.on('click', function(event) {
                                 event.stopPropagation();
                                 event.preventDefault();
@@ -917,7 +915,7 @@ document.addEventListener('DOMContentLoaded', () => {
                             let sms = $('.product-description-content').data('sms');
                             if (sms) {
                                 const url = URL_PROPSTORE + 'reminder.action?samId=' + lotItemId;
-                                $btnSMS = $(`<a class="calendarBtn waves-effect waves-grey btn btn--secondary modal-sms-button" href="${url}" target="_blank">SMS Reminder</a>`);
+                                $btnSMS = $(`<a class="calendarBtn waves-effect waves-grey btn btn--secondary modal-sms-button" href="${url}" target="_blank">SMS Auction Alert</a>`);
                                 $('#calendarBtnBox').append($btnSMS);
                             }
                         }
@@ -1644,7 +1642,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
                             if (isSold) {
                                 let $btn = $(`<div class="card__sell-like-this-line"><a class="btn btn--tertiary card__sell-like-this card__action-sell" target="_blank" href="${URL_PROPSTORE}/sellRequest.action?samId=${$aid.data('lid')}#form">
-                                Sell Like This</a></div>`);
+                                Sell One Like This</a></div>`);
                                 $btn.insertBefore($cardItem.find('.card__actions'));
                             }
 
@@ -2889,9 +2887,9 @@ function generateCatalogViewCalendarButtons(remindDate, auctionTitle, lotName, l
     let outlookDate = new Date(remindDate);
     outlookDate.setMinutes(remindDate.getMinutes() + 5);
 
-    generateCalendarButton(auctionTitle, outlookDate, lotName, lotViewUrl, "OUTLOOK", $btnBox);
-    generateCalendarButton(auctionTitle, remindDate, lotName, lotViewUrl, "GOOGLE", $btnBox);
-    if (sms) generateCalendarButton(auctionTitle, remindDate, lotName, lotViewUrl, "SMS", $btnBox);
+    generateCalendarButton(auctionTitle, outlookDate, lotName, lotViewUrl, "Outlook<br> Auction Alert", $btnBox);
+    generateCalendarButton(auctionTitle, remindDate, lotName, lotViewUrl, "Google<br> Auction Alert", $btnBox);
+    if (sms) generateCalendarButton(auctionTitle, remindDate, lotName, lotViewUrl, "SMS<br> Auction Alert", $btnBox);
 
     parentElement.append($btnBox);
 }
@@ -2903,7 +2901,7 @@ function generateCalendarButton(auctionTitle, remindDate, lotName, lotViewUrl, b
     </a>`);
 
     switch (btnText) {
-        case 'OUTLOOK': {
+        case 'Outlook<br> Auction Alert': {
             $btn.on('click', function(event) {
                 event.stopPropagation();
                 event.preventDefault();
@@ -2911,7 +2909,7 @@ function generateCalendarButton(auctionTitle, remindDate, lotName, lotViewUrl, b
             });
             break;
         }
-        case 'GOOGLE': {
+        case 'Google<br> Auction Alert': {
             $btn.on('click', function(event) {
                 event.stopPropagation();
                 event.preventDefault();
@@ -2919,7 +2917,7 @@ function generateCalendarButton(auctionTitle, remindDate, lotName, lotViewUrl, b
             });
             break;
         }
-        case 'SMS': {
+        case 'SMS<br> Auction Alert': {
             const url = URL_PROPSTORE + 'reminder.action?samId=' + parentElement.data('lid');
             $btn.addClass('modal-sms-button').attr('href', url).attr('target', '_blank');
             break;
