@@ -77,6 +77,22 @@
 	color: $color-grey;
 }
 
+.modal-sms-form__back {
+	margin: 2em 0;
+	.icon {
+		margin-top: -2px;
+		transform: rotate(180deg);
+	}
+}
+
+.modal-sms-form__return {
+	margin: 2em 0;
+	.icon {
+		margin-top: -2px;
+		transform: rotate(180deg);
+	}
+}
+
 
 @media #{$small-and-down} {
 	.modal-sms-form__row {

@@ -22590,6 +22590,26 @@ a:not(.btn):not(.btn-large):not(.btn-small):not(.btn-extra-small).modal-mail__cl
   color: #c7c7c7;
 }
 
+.modal-sms-form__back {
+  margin: 2em 0;
+}
+
+.modal-sms-form__back .icon {
+  margin-top: -2px;
+  -webkit-transform: rotate(180deg);
+          transform: rotate(180deg);
+}
+
+.modal-sms-form__return {
+  margin: 2em 0;
+}
+
+.modal-sms-form__return .icon {
+  margin-top: -2px;
+  -webkit-transform: rotate(180deg);
+          transform: rotate(180deg);
+}
+
 @media only screen and (max-width: 600px) {
   .modal-sms-form__row {
     -webkit-box-orient: vertical;

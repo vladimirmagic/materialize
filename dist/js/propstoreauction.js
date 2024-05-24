@@ -912,7 +912,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
                             $('#calendarBtnBox').append($btnOutlook, $btnGoogle);
 
-                            let sms = $('.product-description-content').data('sms');
+                            let sms = true;//$('.product-description-content').data('sms');
                             if (sms) {
                                 const url = URL_PROPSTORE + 'reminder.action?samId=' + lotItemId;
                                 $btnSMS = $(`<a class="calendarBtn waves-effect waves-grey btn btn--secondary modal-sms-button" href="${url}" target="_blank">SMS Auction Alert</a>`);
@@ -1775,7 +1775,7 @@ document.addEventListener('DOMContentLoaded', () => {
                                     }
                                     let searchIndex = lotUrl.indexOf('?');
                                     let lotUrlTrim = searchIndex > 0 ? lotUrl.slice(0, searchIndex) : lotUrl;
-                                    generateCatalogViewCalendarButtons(remindDate, auctionTitle, lotName, lotUrlTrim, $parentElement, ctag.sms);
+                                    generateCatalogViewCalendarButtons(remindDate, auctionTitle, lotName, lotUrlTrim, $parentElement, true);
                                 }
                             }
                             $('.cards__list').append($cardItem);
@@ -2875,7 +2875,7 @@ function checkResponse (data) {
 }
 
 function generateCatalogViewCalendarButtons(remindDate, auctionTitle, lotName, lotViewUrl, parentElement,
-    sms = false
+    sms = true //todo delete
 ) {
     let $btnBox = $('<div class="calendar-btn-box">');
     for (let data in parentElement.data()) {
