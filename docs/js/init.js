@@ -2818,12 +2818,16 @@ document.addEventListener('DOMContentLoaded', () => {
             const info = document.querySelectorAll('.modal-sms-form__i');
             if (info) M.Dropdown.init(info, { container: document.body });
 
+            $('.modal-sms-form').submit(function () {
+                $('.loader-block').show();
+            });
+
             $('.modal-sms-button-register').on('click', function(){
                 redirectPage('/auctionRegistration.action?auctionId=' + $('#samAuctionId').val() +
                         '&d=1&ru=' + encodeURIComponent(location.href));
             });
             if (window.opener) {
-                $('.modal-sms-button-close').on('click', function(){
+                $('.modal-sms-button-close, .modal-sms-form__return-btn').on('click', function(){
                     window.close();
                 });
             } else {
@@ -2862,19 +2866,48 @@ document.addEventListener('DOMContentLoaded', () => {
                 $('.modal-sms-form__row--phone input').on('keypress change', onChange);
                 $('.modal-sms-form__row--phone select').on('change', onChange);
             }
-        }
-        if ($('.account__sms').length) {
-            $('.account__sms-remove').on('click', function(e){
-                e.preventDefault();
-                const $item = $(this).closest('.account__sms-table-item');
-                $item.addClass('sync');
-                $.get($(this).attr('href'))
-                        .done(data => {
-                            if (!checkResponse(data)) return data;
 
-                            setTimeout(()=>$item.remove(), 200);
-                        });
+            $('.modal-sms-form input[name="code"]').focus();
+            $('.modal-sms-form input[name="code"]').on('keypress', function (e) {
+                if (e.key === 'Enter') {
+                    e.preventDefault();
+                    $('.modal-sms-form__verify-button').trigger('click');
+                }
             });
+
+            if ($('.account__sms').length) {
+                $('.account__sms-remove').on('click', function(e){
+                    e.preventDefault();
+                    const $item = $(this).closest('.account__sms-table-item');
+                    $item.addClass('sync');
+                    $.get($(this).attr('href'))
+                            .done(data => {
+                                if (!checkResponse(data)) return data;
+    
+                                setTimeout(()=>$item.remove(), 200);
+                            });
+                });
+            }
+
+            if ($('.account__sms-table-item-time').length) {
+                $('.account__sms-table-item-time').each((index, item) => {
+                    let time = $(item).text().trim();
+                    let dateRow = moment.tz(time, 'Europe/London');
+                    $(item).attr('title', time + ' UTC');
+                    let dateLocal = new Date(dateRow);
+                    $(item).html(dateLocal.toLocaleString());
+                });
+            }
+
+            if ($('.modal-sms-form__time').length) {
+                $('.modal-sms-form__time').each((index, item) => {
+                    let time = $(item).text().trim();
+                    let dateRow = moment.tz(time, 'Europe/London');
+                    $(item).attr('title', time + ' UTC');
+                    let dateLocal = new Date(dateRow);
+                    $(item).html(dateLocal.toString().replace(/GMT[+-]*\d+/, ''));
+                });
+            }
         }
 
     }); // end of document ready
