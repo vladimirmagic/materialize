@@ -371,8 +371,10 @@ document.addEventListener('DOMContentLoaded', () => {
                         sam &&
                         sam.serverData &&
                         sam.serverData.variables &&
-                        sam.serverData.variables.default &&
-                        sam.serverData.variables.default.lotItemId
+                        sam.serverData.variables.default && (
+                            sam.serverData.variables.default.lotItemId ||
+                            sam.serverData.variables.default.auctionLotId
+                        )
                     ) || 0;
                     let status;
                     if ($('.sale-closed').length) status = 'closed';
@@ -943,6 +945,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     $('#modal-shipping .modal-content').append($('.shipping-info-content'));
                     $('body').append($('#modal-shipping'));
 
+                    $('.terms-content').removeClass('content');
                     $('#modal-terms .modal-content').append($('.terms-content'));
                     $('body').append($('#modal-terms'));
 
