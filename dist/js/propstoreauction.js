@@ -694,7 +694,14 @@ document.addEventListener('DOMContentLoaded', () => {
                     $estimateVal = $('.estimate-val').first();
                     if ($estimate.length && $estimateVal.length) {
                         $line = $detailsLine.clone();
-                        $line.html($estimate.text() + ' <strong>' + $estimateVal.html() + '</strong>');
+                        let text = $estimate.text();
+                        let estimateRequest = $('.product-description-content').data('estimaterequest');
+                        if (estimateRequest) {
+                            text += ' available on request'
+                        } else {
+                            text += ' <strong>' + $estimateVal.html() + '</strong>';
+                        }
+                        $line.html(text);
                         $details.append($line);
                     }
 
@@ -1610,6 +1617,19 @@ document.addEventListener('DOMContentLoaded', () => {
                                 $badge.append('Ended').show().find('use').attr('xlink:href', '#archive');
                             }
 
+                            const $ctag = $(item).find('.item-ctag:contains("CUSTOM_PARAM_TAG")');
+                            let ctag;
+                            if ($ctag.length) {
+                                $ctagValue = $ctag.find('.value');
+                                if ($ctagValue.length) {
+                                    try {
+                                        ctag = JSON.parse($ctagValue.text());
+                                    } catch (e) {
+                                        console.log(e);
+                                    }
+                                }
+                            }
+
                             if (isSignedIn || !$(item).find('.ended').length) {
                                 $(item).find('.price-info li').each((k, info) => {
                                     const $info = $(info).clone();
@@ -1617,6 +1637,11 @@ document.addEventListener('DOMContentLoaded', () => {
                                         $info.find('.title').addClass('aucproduct__card-details-label');
                                         $info.find('.value').addClass('aucproduct__card-details-value');
                                         $info.addClass('aucproduct__card-details-row');
+
+                                        if (ctag && ctag.estimateRequest && $info.find('.title').text() === 'Estimates') {
+                                            $info.find('.value').html('available on request');
+                                        }
+
                                         $cardItem.find('.aucproduct__card-details').append($info);
                                     }
                                     if ($info.hasClass('item-win-bid')) {
@@ -1737,18 +1762,6 @@ document.addEventListener('DOMContentLoaded', () => {
                                 }
                             });
 
-                            const $ctag = $(item).find('.item-ctag:contains("CUSTOM_PARAM_TAG")');
-                            let ctag;
-                            if ($ctag.length) {
-                                $ctagValue = $ctag.find('.value');
-                                if ($ctagValue.length) {
-                                    try {
-                                        ctag = JSON.parse($ctagValue.text());
-                                    } catch (e) {
-                                        console.log(e);
-                                    }
-                                }
-                            }
                             if (ctag && ctag.soldNoReserve) {
                                 $cardItem.find('.card__img-soldnoreserve').show();
                             } else if (ctag && ctag.isMultiItem) {
