@@ -136,7 +136,22 @@ document.addEventListener('DOMContentLoaded', () => {
                         if (!$('.zoom-viewer').length) {
                             $('#modal-product-gallery .carousel-item').each((index, item) => {
                                 const url = item.style.backgroundImage.slice(4, -1).replace(/["']/g, '');
-                                $('#zoom-viewer-images').append('<img src="' + url + '" class="zoom-viewer"/>');
+                                let nameIndex = url.lastIndexOf('/') + 1;
+                                let dotIndex = url.lastIndexOf('.');
+                                let name = url.slice(nameIndex, dotIndex);
+                                $('#zoom-viewer-images').append(`<img
+                                    src="${url}"
+                                    class="zoom-viewer"
+                                    id="zoom-${name}"
+                                />`);
+                                
+                                // try original size
+                                let urlO = url.slice(0, dotIndex) + '-o' + url.slice(dotIndex);
+                                const img = new Image();
+                                img.onload = function() {
+                                    $('#zoom-' + name).attr('src', urlO);
+                                }
+                                img.src = urlO;
                             });
                         }
 
@@ -153,7 +168,7 @@ document.addEventListener('DOMContentLoaded', () => {
                                 maxZoomRatio: 2,
                                 keyboard: false,
                                 viewed() {
-                                    zoomViewer.zoomTo(1.5);
+                                    zoomViewer.zoomTo(1);
                                     if (!$('.viewer-button--close-modal').length) {
                                         $('.viewer-close').append('<div class="zoom-viewer__toggler-label">Use scroll wheel to&nbsp;control zoom</div>');
                                         $('.viewer-container').append('<div class="viewer-button viewer-button--close-modal">', '<div class="arrows"><div class="arrow arrow--prev"></div><div class="arrow arrow--next"></div></div>');
