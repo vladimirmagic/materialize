@@ -744,6 +744,14 @@ document.addEventListener('DOMContentLoaded', () => {
                         $details.append($line);
                     }
 
+                    $reserveNotMet = $('.reserve-not-met');
+                    if ($reserveNotMet.length) {
+                        $lineReserveNotMet = $detailsLine.clone();
+                        $lineReserveNotMet.append($reserveNotMet);
+                        $details.append($lineReserveNotMet);
+                    }
+
+
                     function getBarcodeFromJS() {
                         let barcode = null;
                         $('.description-info-content').find('*')
@@ -1864,6 +1872,13 @@ document.addEventListener('DOMContentLoaded', () => {
                                 });
                                 $(item).find('.item-status').remove();
                             }
+                        }
+
+                        $reserveNotMet = $(item).find('.reserve-not-met');
+                        if ($reserveNotMet.length && !$cardItem.find('.reserve-not-met').length) {
+                            $row = $(`<div class="aucproduct__card-details-row">`);
+                            $row.append($reserveNotMet);
+                            $cardItem.find('.aucproduct__card-details').append($row);
                         }
                     }
 

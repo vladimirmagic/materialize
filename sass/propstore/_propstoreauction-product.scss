@@ -301,6 +301,11 @@
 	}
 }
 
+.reserve-not-met {
+	color: $color-red;
+	font-weight: 500;
+}
+
 @media #{$extra-large-and-up} {
 	.aucproduct {
 		margin-top: 3em;

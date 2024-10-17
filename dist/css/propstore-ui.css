@@ -24209,6 +24209,11 @@ footer .auclting {
   padding-right: 2rem;
 }
 
+.reserve-not-met {
+  color: #F93838;
+  font-weight: 500;
+}
+
 @media only screen and (min-width: 1201px) {
   .aucproduct {
     margin-top: 3em;
