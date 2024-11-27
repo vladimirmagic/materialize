@@ -990,6 +990,16 @@ document.addEventListener('DOMContentLoaded', () => {
                         $('.aucproduct__certificate').html($originalNote.html()).show();
                     }
 
+                    const inner = $('.product__inner')[0];
+                    const isMobile = inner && getComputedStyle(inner).display === 'block';
+                    if (isMobile) {
+                        $('.hide-on-med-and-down').remove();
+                    } else {
+                        $('.description-info-content-left').appendTo('.product__gallery');
+                    }
+
+                    $('.description-info-content-after').insertBefore('.product__share');
+
                     $('.share__item').each((index, item) => {
                         item.href += window.location.href;
                     });
