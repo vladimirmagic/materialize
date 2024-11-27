@@ -408,15 +408,15 @@ document.addEventListener('DOMContentLoaded', () => {
                     $('.hero__static-title').html(auctionTitle);
 
                     const dates = [];
-                    let start_date = $('#auction_start_date').text();
+                    let start_date = $('#lot_start_date').text() || $('#auction_start_date').text();
 
                     let auctionday = $('.product-description-content').data('auctionday');
                     if (auctionday) auctionday = parseInt(auctionday);
                     if (auctionday) {
                         let auctiondayImg = auctionday;
-                        if (auctionId === 359 && auctionday > 2) {
-                            auctionday--;
-                        }
+                        // if (auctionId === 359 && auctionday > 2) {
+                        //     auctionday--;
+                        // }
                         $(`<p class="p-r">Day ${auctionday}</p>`).insertBefore('.hero__static-date');
                         if (start_date) {
                             $('.hero__static-date').append(
@@ -428,8 +428,8 @@ document.addEventListener('DOMContentLoaded', () => {
                         }
                     } else {
                         if (start_date) dates.push(moment(start_date).format('MMM D YYYY'));
-                        let end_date = $('#auction_end_date').text();
-                        if (end_date) dates.push(moment(end_date).format('MMM D YYYY'));
+                        // let end_date = $('#auction_end_date').text();
+                        // if (end_date) dates.push(moment(end_date).format('MMM D YYYY'));
                         if (dates.length) {
                             $('.hero__static-date').append(dates.join(' - ')).show();
                         }
@@ -2397,6 +2397,11 @@ document.addEventListener('DOMContentLoaded', () => {
                                 });
                             }
                         }
+
+                        // if (currentLot === '531') { // Estimate on Request
+                        //     $('.aucproduct .est-amount').html('on Request');
+                        // }
+
                         updateLotObserve();
                     };
 
@@ -2502,6 +2507,9 @@ document.addEventListener('DOMContentLoaded', () => {
                                 if (title && title.includes(' ### ')) { // new format 2023-10-11
                                     $title.html(title.replaceAll('###', '-'));
                                 }
+                                // if ($(item).find('td.lot').text() === '531') {
+                                //     $(item).find('td.estimate').html('Estimate on Request');
+                                // }
                             });
                         }
                         updateUpcomingObserve();
