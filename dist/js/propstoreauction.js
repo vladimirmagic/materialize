@@ -382,15 +382,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         sam.serverData.variables.default &&
                         sam.serverData.variables.default.auctionId
                     ) || 0;
-                    const lotItemId = (
-                        sam &&
-                        sam.serverData &&
-                        sam.serverData.variables &&
-                        sam.serverData.variables.default && (
-                            sam.serverData.variables.default.lotItemId ||
-                            sam.serverData.variables.default.auctionLotId
-                        )
-                    ) || 0;
+                    const lotItemId = $('#lot_id').text() || 0;
                     let status;
                     if ($('.sale-closed').length) status = 'closed';
 
@@ -428,8 +420,11 @@ document.addEventListener('DOMContentLoaded', () => {
                         }
                     } else {
                         if (start_date) dates.push(moment(start_date).format('MMM D YYYY'));
-                        // let end_date = $('#auction_end_date').text();
-                        // if (end_date) dates.push(moment(end_date).format('MMM D YYYY'));
+                        atype = $('#auction_type').text();
+                        if (atype === 'Timed') {
+                            let end_date = $('#auction_end_date').text();
+                            if (end_date) dates.push(moment(end_date).format('MMM D YYYY'));
+                        }
                         if (dates.length) {
                             $('.hero__static-date').append(dates.join(' - ')).show();
                         }
