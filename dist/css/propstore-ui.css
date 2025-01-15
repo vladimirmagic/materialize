@@ -24274,6 +24274,10 @@ footer .auclting {
     margin-bottom: 1.5rem;
     font-size: 24px;
   }
+  .aucproduct iframe {
+    max-width: 90%;
+    max-height: 50vh;
+  }
 }
 
 @media only screen and (max-width: 600px) {
