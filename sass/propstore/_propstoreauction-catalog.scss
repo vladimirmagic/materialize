@@ -642,6 +642,8 @@ body.search-index {
 	display: flex;
 	justify-content: center;
 	margin: 0 auto 3rem;
+	max-width: 740px;
+    width: 100%;
 }
 
 .auccatalog__livesale-inner {
@@ -663,6 +665,38 @@ body.search-index {
 }
 
 .auccatalog__livesale-link {
+	height: 40px;
+	line-height: 40px;
+}
+
+.auccatalog__livesale + .auccatalog__searchday2 {
+	margin-top: -2rem;
+}
+
+.auccatalog__searchday2 {
+	display: flex;
+	justify-content: center;
+	margin: 0 auto 3rem;
+	max-width: 740px;
+    width: 100%;
+}
+
+.auccatalog__searchday2-inner {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 1.5rem 2rem;
+	color: white;
+	background: $color-base;
+}
+
+.auccatalog__searchday2-label {
+	margin-right: 3rem;
+	font-size: 24px;
+	line-height: 1;
+}
+
+.auccatalog__searchday2-link {
 	height: 40px;
 	line-height: 40px;
 }
@@ -839,6 +873,26 @@ body.search-index {
 		margin-right: 0;
 		margin-bottom: 1.5rem;
 		font-size: 24px;
+	}
+
+	.auccatalog__livesale + .auccatalog__searchday2 {
+		margin-top: 1rem;
+	}
+
+	.auccatalog__searchday2 {
+		margin-bottom: 0;
+	}
+
+	.auccatalog__searchday2-inner {
+		display: block;
+		width: 100%;
+		text-align: center;
+	}
+	
+	.auccatalog__searchday2-label {
+		margin-right: 0;
+		margin-bottom: 1.5rem;
+		font-size: 18px;
 	}
 }
 

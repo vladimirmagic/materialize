@@ -1,5 +1,19 @@
 const BUYERS_PREMIUM = 1.26;
 
+const PARED_AUCTIONS = [
+    [437, 466],
+    [438, 467],
+];
+const getParedAuction = (id) => {
+    for (let i=0; i<PARED_AUCTIONS.length; i++) {
+        const index = PARED_AUCTIONS[i].indexOf(id);
+        if (index > -1) {
+            return [...PARED_AUCTIONS[i], index];
+        }
+    }
+    return null;
+}
+
 document.addEventListener('DOMContentLoaded', () => {
     if (window.location.href.includes('#nomaterialize')) { // don't materialize
         document.querySelectorAll('[data-v2]').forEach(item => item.remove());
@@ -466,6 +480,16 @@ document.addEventListener('DOMContentLoaded', () => {
                     $('.product__number').html($itemTitleH.text());
                     $('.auc__hero-aucinfo').attr('href', $('.aucinfo').attr('href')).attr('style', '');
                     $('.auc__hero-auccatalog').attr('href', $('.catlg').attr('href')).attr('style', '');
+                    const pared = getParedAuction(auctionId);
+                    if (pared) {
+                        let link = $('.catlg').attr('href');
+                        $('.auc__hero-auccatalog').attr('href', link.replaceAll(pared[1], pared[0]));
+                        $('.auc__hero-auccatalog').html('View day 1 catalog');
+                        $btn2 = $('.auc__hero-auccatalog').clone();
+                        $btn2.html(`View day 2 catalog`);
+                        $btn2.attr('href', link.replaceAll(pared[0], pared[1]));
+                        $btn2.insertAfter($('.auc__hero-auccatalog'));
+                    }
 
 
                     if ($('.description-info-content .product__gallery').length) { // full gallery in description
@@ -1135,8 +1159,12 @@ document.addEventListener('DOMContentLoaded', () => {
                         $title.addClass('h2')
                         const path = $title.find('a').prop('href').split('auctions/info/id/');
                         const idString = path.length > 1 ? path[1].split('/') : '';
-                        const id = idString.length > 1 ? idString[0] : idString || 0;
+                        const id = Number(idString.length > 1 ? idString[0] : idString.join('') || 0);
                         if (!id) return;
+                        const pared = getParedAuction(id);
+                        if (pared && pared[2] > 0) {
+                            return; // hide second auction
+                        }
 
                         $img = $(item).find('.aucimg a');
                         $img.addClass('auclting__img').css('background-image', 'url(' + $img.find('img').prop('src') + ')');
@@ -1247,8 +1275,18 @@ document.addEventListener('DOMContentLoaded', () => {
                         }
                         $cat = $(item).find('.cat');
                         if ($cat.length) {
-                            $cat.html($cat.html().replace('View catalog', 'View catalog <span class="auclink__small">items</span>'));
+                            let text = 'View catalog <span class="auclink__small">items</span>';
+                            if (pared) {
+                                text = 'View Day 1 catalog';
+                            }
+                            $cat.html($cat.text().replace('View catalog', text));
                             $cat.addClass('waves-effect waves-grey btn btn--secondary');
+                            if (pared) {
+                                $btn2 = $cat.clone();
+                                $btn2.html('View Day 2 catalog');
+                                $btn2.attr('href', $cat.attr('href').replaceAll(pared[0], pared[1]));
+                                $btn2.insertAfter($cat);
+                            }
                         }
 
                         requestAnimationFrame(()=>$('#aucDtr').append(item));
@@ -1366,6 +1404,7 @@ document.addEventListener('DOMContentLoaded', () => {
                             backgroundImage: `url(${AUCTION_CONTENT_FOLDER}/${auctionId}/header.jpg)`
                         });
                     }
+                    const pared = getParedAuction(auctionId);
 
                     const $searcContent = $('.advSearchAccordionContent');
                     const $searchKey = $('<div class="input-field">');
@@ -1526,6 +1565,16 @@ document.addEventListener('DOMContentLoaded', () => {
                             }
                         }
                         $('.auc__hero-aucinfo').attr('href', $('.aucinfo').attr('href')).show();
+                        if (pared) {
+                            let link = $('link[rel="canonical"]').attr('href');
+                            const index = pared[2];
+                            const indexOther = 1 - index;
+                            $btn2 = $('.auc__hero-aucinfo').clone();
+                            $btn2.html(`View day ${indexOther + 1} catalog`);
+                            $btn2.attr('href', link.replaceAll(pared[index], pared[indexOther]));
+                            $btn2.insertAfter($('.auc__hero-aucinfo'));
+                        }
+
                         $('.container').prepend($('.auc__hero').show());
 
                         try {
@@ -1917,6 +1966,18 @@ document.addEventListener('DOMContentLoaded', () => {
                         if (!isSignedIn && IS_REDIRECT_TO_HOLDING_ROOM) {
                             $liveSale.attr('href', URL_PROPSTORE + 'room');
                         }
+                    }
+
+                    if (pared) {
+                        let link = $('#AdvancedSearch').attr('action');
+                        const index = pared[2];
+                        const indexOther = 1 - index;
+                        let link2 = link.replaceAll(pared[index], pared[indexOther]);
+                        $('<div class="auccatalog__searchday2">').append('<div class="auccatalog__searchday2-inner">').insertBefore('.cards');
+                        $('.auccatalog__searchday2-inner').append(
+                            `<div class="auccatalog__searchday2-label">You are viewing results for Day ${index + 1}</div>`,
+                            `<a href="${link2}" class="waves-effect waves-light btn auccatalog__searchday2-link"><span class="btn__title">View Results for Day ${indexOther + 1}</span><i class="icon"><svg><use xlink:href="#arrow-right"></use></svg></i></a>`
+                        );
                     }
 
                     setTimeout(() => {
