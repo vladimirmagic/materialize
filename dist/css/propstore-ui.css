@@ -24078,9 +24078,10 @@ footer .auclting {
 }
 
 .aucproduct__buttons .btn, .aucproduct__buttons .btn-large, .aucproduct__buttons .btn-small, .aucproduct__buttons .btn-extra-small {
-  -webkit-flex-basis: 33%;
-      -ms-flex-preferred-size: 33%;
-          flex-basis: 33%;
+  -webkit-box-flex: 1;
+  -webkit-flex: 1 1 33%;
+      -ms-flex: 1 1 33%;
+          flex: 1 1 33%;
   height: 2.5rem;
   line-height: 2.5rem;
   padding: 0 .5rem;
