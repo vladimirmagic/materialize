@@ -316,7 +316,7 @@ document.addEventListener('DOMContentLoaded', () => {
         </ul>
 
         <div class="aucproduct__buttons">
-            <a class="waves-effect waves-grey btn btn--secondary modal-trigger" href="#modal-buyers-guide">
+            <a class="waves-effect waves-grey btn btn--secondary modal-trigger modal-buyers-guide-trigger" href="#modal-buyers-guide">
                 <span class="hide-on-small-only">Buyers</span> guide
             </a>
             <a class="waves-effect waves-grey btn btn--secondary modal-trigger" href="#modal-shipping">
@@ -986,6 +986,9 @@ document.addEventListener('DOMContentLoaded', () => {
                                 if (!checkResponse(data)) return data;
 
                                 $('#modal-buyers-guide .modal-content').append(data);
+                            })
+                            .fail(data => {
+                                $('.modal-buyers-guide-trigger').remove();
                             })
                     }
 
@@ -1975,8 +1978,8 @@ document.addEventListener('DOMContentLoaded', () => {
                         let link2 = link.replaceAll(pared[index], pared[indexOther]);
                         $('<div class="auccatalog__searchday2">').append('<div class="auccatalog__searchday2-inner">').insertBefore('.cards');
                         $('.auccatalog__searchday2-inner').append(
-                            `<div class="auccatalog__searchday2-label">You are viewing results for Day ${index + 1}</div>`,
-                            `<a href="${link2}" class="waves-effect waves-light btn auccatalog__searchday2-link"><span class="btn__title">View Results for Day ${indexOther + 1}</span><i class="icon"><svg><use xlink:href="#arrow-right"></use></svg></i></a>`
+                            `<div class="auccatalog__searchday2-label">You are viewing lots for Day ${index + 1}</div>`,
+                            `<a href="${link2}" class="waves-effect waves-light btn auccatalog__searchday2-link"><span class="btn__title">View lots for Day ${indexOther + 1}</span><i class="icon"><svg><use xlink:href="#arrow-right"></use></svg></i></a>`
                         );
                     }
 
