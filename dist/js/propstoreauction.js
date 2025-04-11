@@ -620,9 +620,26 @@ document.addEventListener('DOMContentLoaded', () => {
                     if ($nextBid.length) {
                         $nextBid.addClass('waves-effect waves-light btn aucproduct__form-item');
                         $('.aucproduct__button').show().append($nextBid);
+                        let text = $nextBid.attr('value');
+                        let currency = text.includes('$') && '$';
+                        if (!currency) currency = text.includes('£') && '£';
+                        if (currency) {
+                            let i = text.indexOf(currency);
+                            let amount = parseInt(text.slice(i + 1).replaceAll(',', '').replaceAll('.', '').replaceAll(' ', ''), 10);
+                            if (!!amount) {
+                                let bp = (amount * BUYERS_PREMIUM).toLocaleString();
+                                $(`<p class="aucproduct__next-bid-bp">
+                                    ${currency}${bp} including Buyer&rsquo;s Premium
+                                </p>`).insertAfter($nextBid);
+                            }
+                        }
+
                     }
 
-                    $bidInput = $('.maxbid, .mxbid-input');
+                    $bidInput = $('.maxbid');
+                    if (!$bidInput.length) {
+                        $bidInput = $('.mxbid-input');
+                    }
                     if ($bidInput.length) {
                         $bidInput.addClass('aucproduct__form-item');
 
@@ -636,6 +653,27 @@ document.addEventListener('DOMContentLoaded', () => {
                         }
 
                         $('.aucproduct__form').show().append($bidInput);
+
+                        const $input = $bidInput.find('input');
+                        if ($input.length) {
+                            let currency = $bidInput.find('.maxbid-curr').text();
+                            if (currency) {
+                                $input.on('keyup', function(e){
+                                    let $note = $bidInput.find('.aucproduct__input-bid-bp');
+                                    if (!$note.length) {
+                                        $note = $(`<p class="aucproduct__input-bid-bp">`);
+                                        $note.insertAfter($input);
+                                    }
+                                    let amount = parseInt(e.target.value.replaceAll(',', '').replaceAll('.', '').replaceAll(' ', ''), 10);
+                                    let text = '';
+                                    if (amount) {
+                                        let bp = (amount * BUYERS_PREMIUM).toLocaleString();
+                                        text = `${currency}${bp} including Buyer&rsquo;s Premium`;
+                                    }
+                                    $note.html(text);
+                                });
+                            }
+                        }
                     }
 
                     $btnPlaceBid = $('.bidfrm .place-bid');
@@ -2107,7 +2145,18 @@ document.addEventListener('DOMContentLoaded', () => {
                     document.querySelectorAll('style:not([data-v2]), link[rel="stylesheet"]:not([data-v2])').forEach(item => item.remove());
 
                     $('.confirm-bid-msg').find('hr').remove();
-                    $('.general__content').html($('#pblc1').text().replaceAll('$$', '$'));
+                    let text = $('#pblc1').text().replaceAll('$$', '$').replaceAll('££', '£');
+                    let currency = text.includes('$') && '$';
+                    if (!currency) currency = text.includes('£') && '£';
+                    if (currency) {
+                        let i = text.indexOf(currency);
+                        let amount = parseInt(text.slice(i + 1).replaceAll(',', '').replaceAll('.', '').replaceAll(' ', ''), 10);
+                        if (!!amount) {
+                            let bp = (amount * BUYERS_PREMIUM).toLocaleString();
+                            text += `<br><strong>(${currency}${bp} including Buyer&rsquo;s Premium)</strong>`;
+                        }
+                    }
+                    $('.general__content').html(text);
                     $('#pblc1').remove();
 
                     $('.confirm-bid-msg').find('#pblc2').addClass('waves-effect waves-light btn');

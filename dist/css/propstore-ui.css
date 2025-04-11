@@ -24017,6 +24017,10 @@ footer .auclting {
   content: '';
 }
 
+.aucproduct__form .maxbid .note, .aucproduct__form .mxbid-input .note {
+  display: block;
+}
+
 .aucproduct__form .card__price-i--lot-place-bid {
   top: -12px;
   right: -10px;
@@ -24230,6 +24234,18 @@ footer .auclting {
   max-width: 100%;
   -o-object-fit: contain;
      object-fit: contain;
+}
+
+.aucproduct__next-bid-bp {
+  margin-top: .5em;
+  text-align: center;
+  font-weight: 500;
+}
+
+.aucproduct__input-bid-bp {
+  margin-top: .5em;
+  margin-bottom: .5em;
+  font-weight: 500;
 }
 
 @media only screen and (min-width: 1201px) {

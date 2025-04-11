@@ -146,7 +146,11 @@
 		br {
 			display: inline;
 			content: '';
-		  }
+		}
+
+		.note {
+			display: block;
+		}
 	}
 
 	.card__price-i--lot-place-bid {
@@ -322,6 +326,18 @@
 		max-width: 100%;
 		object-fit: contain;
 	}
+}
+
+.aucproduct__next-bid-bp {
+	margin-top: .5em;
+	text-align: center;
+	font-weight: 500;
+}
+
+.aucproduct__input-bid-bp {
+	margin-top: .5em;
+	margin-bottom: .5em;
+	font-weight: 500;
 }
 
 
