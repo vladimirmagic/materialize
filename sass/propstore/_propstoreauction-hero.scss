@@ -11,14 +11,16 @@
 		}
 	}
 
+	.hero__static-buttons {
+		margin-top: 2em;
+	}
+
 	.hero__btn {
+		margin-top: 1em;
+		margin-right: 1em;
 		height: 2.5rem;
 		line-height: 2.5rem;
 		padding: 0 1rem;
-	}
-
-	.hero__btn:first-child {
-		margin-right: 1em;
 	}
 }
 

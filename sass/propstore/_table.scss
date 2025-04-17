@@ -56,3 +56,73 @@
 		padding-bottom: 2rem;
 	}
 }
+
+.ol-nested-container {
+	h5 > span {
+		font-size: inherit;
+		margin-left: inherit;
+		color: inherit;
+	}
+
+	b, strong {
+		font-weight: 600;
+	}
+
+	table {
+		display: table;
+		width: 100%;
+		overflow: hidden;
+	}
+	
+	tr {
+		display: table-row;
+	}
+	
+	td, th {
+		display: table-cell;
+		height: 60px;
+		padding-top: 1rem;
+		padding-bottom: 1rem;
+		padding-left: 0;
+		padding-right: 2rem;
+		vertical-align: top;
+		border-radius: 0;
+
+		p {
+			margin: 0;
+		}
+
+		p + p {
+			margin-top: .5em;
+		}
+	}
+
+	.ol-nested__num {
+		position: absolute;
+		left: 0;
+	}
+
+	.ol-nested {
+		position: relative;
+		padding-left: 2em;
+	}
+
+	& > .ol-nested { // first level
+		margin-top: 2em;
+	}
+
+	.ol-nested > .ol-nested > .ol-nested {
+		padding-left: 2.5em;
+	}
+
+	.ol-nested > .ol-nested > .ol-nested > .ol-nested {
+		padding-left: 3em;
+	}
+}
+
+.flex-list {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 1em;
+	row-gap: .3em;
+}

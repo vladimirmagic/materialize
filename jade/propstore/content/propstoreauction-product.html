@@ -172,7 +172,7 @@ sam.serverData.add("langYouWon", "You won!", "translation");
     <article class="bodybox">
         <section class="message"><span id="lac30_ctl" class="qlabel-ctl" ><span id="lac30" ></span></span></section>
         <section class="auctitle auc_dtl_title auc_mob_dis">
-            <a href="https://ukm.propstoreauction.com/auctions/catalog/id/316" class="catlg">Catalog</a>            <a href="https://ukm.propstoreauction.com/auctions/info/id/316" class="aucinfo">Auction info</a>            <div class="tle aucdttle">
+            <a href="https://ukm.propstoreauction.com/auctions/catalog/id/319" class="catlg">Catalog</a>            <a href="https://ukm.propstoreauction.com/auctions/info/id/316" class="aucinfo">Auction info</a>            <div class="tle aucdttle">
                 <div class="tle-lot"><h3>            Cinema Poster Live Auction - Spring 2022            <span class="sale-no">(#316)</span>
             <span class="sale-date">03/24/2022 3:00 PM GMT</span>
 <span class="sale-closed"> CLOSED!</span>
@@ -211,6 +211,7 @@ Lot #2<span class="lot-name">
                         <span class="left cur_bid">
                             <span id="oai41_ctl" class="qwaiticon-ctl" style="display:none;"><span id="oai41"><img
                                         src="https://propstoreauction.com/images/spinner_14.gif" width="14" height="14" alt="Please Wait..."></span></span>
+                            <div class="reserve-not-met ldp">Reserve not met!</div>
                             <span id="blkAbs" class="abs-bid">
                                 <span class="curr-abs-label">Current absentee</span>: $2,500(<span
                                     class="num-bids">1 bid</span>)
@@ -242,9 +243,22 @@ Lot #2<span class="lot-name">
                                 <span class="estimate-val">$<span class="exratetip" rev="cur:1" rel="cur:">1,500</span> - $<span class="exratetip" rev="cur:1" rel="cur:">2,500</span></span>
                                 <div class="clear"></div>
                             </div>
-            
+            <!-- NEXT BID BLOCK -->
+            <fieldset class="bidding-fieldset nextbid">
+                <ul>
+                    <li>
+                        <label class="mxbid">&nbsp;</label>
+                        <span class="mxbid-input">&nbsp;</span>
+                    </li>
+                    <li>
+                        <div class="unibtn bidding bidding-next">
+                            <span id="bNext194463_ctl" class="qbutton-ctl" ><input type="button" name="bNext194463" id="bNext194463" value="Bid &pound;2,250" class="button orng next-bid" onclick="qc.pB('LotDetailsTimed', 'bNext194463', 'QClickEvent', '194463'); return false;"  /></span>                                        </div>
+                    </li>
+                </ul>
+            </fieldset>
+            <!-- //NEXT BID BLOCK -->
                             <!-- MAIN BIDDING BLOCK -->
-                            <fieldset class="bidding-fieldset">
+                            <!-- <fieldset class="bidding-fieldset">
                                 <ul>
                                     <li>
                                         <label class="mxbid">
@@ -269,8 +283,45 @@ Lot #2<span class="lot-name">
                                         </div>
                                     </li>
                                 </ul>
-                            </fieldset>
+                            </fieldset> -->
                 <!-- //MAIN BIDDING BLOCK -->
+
+                <!-- MAIN BIDDING BLOCK -->
+                <fieldset class="bidding-fieldset placebid">
+                    <ul>
+                        <li class="maxbid">
+                            <label class="mxbid">My max bid</label>
+                            <span class="mxbid-input"><span class='maxbid-curr'>£</span><span id="tmbid194463_ctl"
+                                    class="qtextbox-ctl"><input type="text" name="tmbid194463" id="tmbid194463" value=""
+                                        class="mrg txt-max-bid"
+                                        onclick="this.select();this.setSelectionRange(0,9999);this.contentEditable=true;"
+                                        onkeydown="if (event.keyCode == 13) {qc.pB('LotDetailsTimed', 'tmbid194463', 'QEnterKeyEvent', '');}" />
+                                    </span>
+                                <span
+                                    class="youre-winning">
+                                    Your bid is below the reserve.
+                                </span></span>
+                            <label>
+                                <span class="note">(
+                                    Enter <span class="scur194463">£</span><span id="enterAsking" class="exratetip" rev="cur:2"
+                                        rel="cur:">100</span>
+                                    or more)
+                                </span>
+                                <span class="note reserve" id="reserve">
+                                    span note reserve
+                                </span>
+                            </label>
+                        </li>
+                        <li>
+                            <div class="unibtn">
+                                <span id="bPbid194463_ctl" class="qbutton-ctl"><input type="button" name="bPbid194463" id="bPbid194463"
+                                        value="Place bid!" class="orng place-bid"
+                                        onclick="if(!window.sam.isBidValid(this, 'Invalid max bid', '#tmbid194463')) return false; if(!sam.excessiveBidChecker.checkSingleBid(this,'tmbid194463',null,'hidVisAskBid194463',1000)) return false; qc.pB('LotDetailsTimed', 'bPbid194463', 'QClickEvent', ''); return false;" /></span>
+                            </div>
+                        </li>
+                    </ul>
+                </fieldset>
+    <!-- //MAIN BIDDING BLOCK -->
                         </div>
                     </div>
                     <div class="clearfix"></div>
@@ -380,6 +431,9 @@ Lot #2<span class="lot-name">
 </script>
 
 <div class="product__gallery-array">
+    
+    <div class="product__gallery-array-item" data-url="https://images.propstore.com/d1ee5b21973268fe85881a031176df4a.jpg">&nbsp;</div> <!-- no -o -->
+
     <div class="product__gallery-array-item" data-url="https://images.propstore.com/d8be43b7d3edfde284aca12194782528.jpg">&nbsp;</div>
     
     <div class="product__gallery-array-item" data-url="https://images.propstore.com/9a433625a332627dbd3a6fafd5777b07.jpg">&nbsp;</div>
@@ -439,7 +493,44 @@ Lot #2<span class="lot-name">
     <button id = "googleCalendarBtnLg" class = "calendarBtn">Google Calendar Reminder</button>
     <button id = "outlookCalendarBtnLg" class = "calendarBtn">Outlook Calendar Reminder</button>
 </div> -->
-<div class="product-description-content" data-id="137358" data-reminderdate="2023-10-30 13:00" data-auctionday="3" data-sms="1" data-makeoffertype="1"></div>#2
+<div
+    class="product-description-content"
+    data-id="137358"
+    data-reminderdate="2024-05-30 10:00"
+    data-auctionday="3"
+    data-makeoffertype="1"
+    data-soldnoreserve="1"
+    data-estimaterequest="1"
+>
+<p class="l1desctextwhite"><strong><span style="font-size:14px">Bidding for this lot will end on Friday, December 6th. The auction will begin at 1:00PM PDT and lots are sold sequentially via live auctioneer; tune in to the live streaming broadcast on auction day to follow the pace.</span></strong><br />
+    <br />
+    Robin&#39;s costume from <i>Batman Forever</i>. After The Riddler&#39;s attack on the Batcave, Dick Grayson suited up in his costume as Robin to join Batman in his final confrontation with The Riddler and Two-Face.<br />
+    <br />
+    This costume consists of a two-piece black neoprene and red, green, and gold-color foam latex bodysuit, marked with the principal performer&#39;s name and the number &quot;5,&quot; with a zippered back and suspenders supporting the pants; a latex cape with a gold-color lining; a urethane and nylon belt, marked with the initials of a stunt performer, with a buckle featuring a Robin insignia; black leather and polyurethane gloves with resin fins marked with the principal performer&#39;s initials and &quot;3&quot;; and a pair of black leather and polyurethane boots marked with the principal performer&#39;s name and &quot;C4.&quot;<br />
+    <br />
+    The costume remains in good overall condition, with minor signs of wear and age, including drying to the cape resulting in minor cracking around the shoulders as well as discoloration present around the codpiece. This costume is currently dressed on a mannequin for display; the mannequin will be included.<br />
+    <br />
+    Special shipping required; see notice in the Buyer&#39;s Guide.<br />
+    <br />
+    <strong>Estimate: $15,000 - 30,000</strong><br />
+    </p>
+    
+    <iframe class="description-info-content-left hide-on-med-and-down" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="" frameborder="0" height="600" src="https://content.propstore.com/auction/batman85/360s/127223_Robin+360/Robin+360.html" width="600"></iframe>
+    
+</div>#2
+
+
+
+<p class="text-center description-info-content-coa"><strong>This item comes with a Propstore Certificate of Authenticity. </strong></p>
+
+<p class="text-center description-info-content-coa-note"><strong>In addition to a Propstore Certificate of Authenticity, all lots purchased in this auction will come with a separate Certificate of Authenticity signed by a representative from the Warner Bros. Discovery Global Archives &amp; Preservation Services. This is an authentic asset used in connection with the production of BATMAN (1989). The asset is made available by Propstore on behalf of Warner Bros. Discovery. This is not a replica, but rather an original item from the making of the film.</strong></p>
+
+<p class="description-info-content-after">
+    A one-time donation will be made by Warner Bros. Discovery to You Gotta Believe (YGB) at the conclusion of the auction. YGB is a New York City-based national organization that specializes in finding permanent families for pre-teens, teens, and young adults in foster care. YGB is committed to ensuring every foster youth experiences love, hope, and a sense of belonging through connection to permanent family. To learn more about YGB or to donate, please visit yougottabelieve.org.<br />
+    <img src="https://content.propstore.com/auction/batman85/ygb-Logo3.jpg" />
+</p>
+
+    
 <!-- <input type="hidden" id="barcode" name="barcode" value="137358"/> -->
 <div style="display: none;">
     <div id="status">Sold</div>

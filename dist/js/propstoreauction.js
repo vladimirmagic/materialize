@@ -1,3 +1,19 @@
+const BUYERS_PREMIUM = 1.26;
+
+const PARED_AUCTIONS = [
+    [437, 466],
+    [438, 467],
+];
+const getParedAuction = (id) => {
+    for (let i=0; i<PARED_AUCTIONS.length; i++) {
+        const index = PARED_AUCTIONS[i].indexOf(id);
+        if (index > -1) {
+            return [...PARED_AUCTIONS[i], index];
+        }
+    }
+    return null;
+}
+
 document.addEventListener('DOMContentLoaded', () => {
     if (window.location.href.includes('#nomaterialize')) { // don't materialize
         document.querySelectorAll('[data-v2]').forEach(item => item.remove());
@@ -134,7 +150,22 @@ document.addEventListener('DOMContentLoaded', () => {
                         if (!$('.zoom-viewer').length) {
                             $('#modal-product-gallery .carousel-item').each((index, item) => {
                                 const url = item.style.backgroundImage.slice(4, -1).replace(/["']/g, '');
-                                $('#zoom-viewer-images').append('<img src="' + url + '" class="zoom-viewer"/>');
+                                let nameIndex = url.lastIndexOf('/') + 1;
+                                let dotIndex = url.lastIndexOf('.');
+                                let name = url.slice(nameIndex, dotIndex);
+                                $('#zoom-viewer-images').append(`<img
+                                    src="${url}"
+                                    class="zoom-viewer"
+                                    id="zoom-${name}"
+                                />`);
+                                
+                                // try original size
+                                let urlO = url.slice(0, dotIndex) + '-o' + url.slice(dotIndex);
+                                const img = new Image();
+                                img.onload = function() {
+                                    $('#zoom-' + name).attr('src', urlO);
+                                }
+                                img.src = urlO;
                             });
                         }
 
@@ -151,7 +182,7 @@ document.addEventListener('DOMContentLoaded', () => {
                                 maxZoomRatio: 2,
                                 keyboard: false,
                                 viewed() {
-                                    zoomViewer.zoomTo(1.5);
+                                    zoomViewer.zoomTo(1);
                                     if (!$('.viewer-button--close-modal').length) {
                                         $('.viewer-close').append('<div class="zoom-viewer__toggler-label">Use scroll wheel to&nbsp;control zoom</div>');
                                         $('.viewer-container').append('<div class="viewer-button viewer-button--close-modal">', '<div class="arrows"><div class="arrow arrow--prev"></div><div class="arrow arrow--next"></div></div>');
@@ -285,7 +316,7 @@ document.addEventListener('DOMContentLoaded', () => {
         </ul>
 
         <div class="aucproduct__buttons">
-            <a class="waves-effect waves-grey btn btn--secondary modal-trigger" href="#modal-buyers-guide">
+            <a class="waves-effect waves-grey btn btn--secondary modal-trigger modal-buyers-guide-trigger" href="#modal-buyers-guide">
                 <span class="hide-on-small-only">Buyers</span> guide
             </a>
             <a class="waves-effect waves-grey btn btn--secondary modal-trigger" href="#modal-shipping">
@@ -356,15 +387,6 @@ document.addEventListener('DOMContentLoaded', () => {
 </div>
 <div class="modal-content"></div>
 </div>
-
-<div id="modal-sms" class="modal modal-sms modal-ajax">
-    <div class="modal-header modal-header--sticky">
-        <div class="modal__title">Add SMS reminder</div>
-        <a class="modal-close btn-flat btn--icon"><i class='icon'><svg><use xlink:href="#close"></use></svg></i></a>
-    </div>
-    <form class="modal-content modal-form modal-sms-form" action="/ajax/reminderSubmit.action"></form>
-    <div class="modal__loader"><div class="preloader-wrapper active"><div class="spinner-layer"><div class="circle-clipper left"><div class="circle"></div></div><div class="gap-patch"><div class="circle"></div></div><div class="circle-clipper right"><div class="circle"></div></div></div></div></div>
-</div>
 `);
                     document.querySelectorAll('style:not([data-v2]), link[rel="stylesheet"]:not([data-v2])').forEach(item => item.remove());
                     const auctionId = (
@@ -374,13 +396,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         sam.serverData.variables.default &&
                         sam.serverData.variables.default.auctionId
                     ) || 0;
-                    const lotItemId = (
-                        sam &&
-                        sam.serverData &&
-                        sam.serverData.variables &&
-                        sam.serverData.variables.default &&
-                        sam.serverData.variables.default.lotItemId
-                    ) || 0;
+                    const lotItemId = $('#lot_id').text() || 0;
                     let status;
                     if ($('.auction-closed').text().trim()) status = 'closed';
 
@@ -397,15 +413,15 @@ document.addEventListener('DOMContentLoaded', () => {
                     $('.hero__static-title').html(auctionTitle);
 
                     const dates = [];
-                    let start_date = $('#auction_start_date').text();
+                    let start_date = $('#lot_start_date').text() || $('#auction_start_date').text();
 
                     let auctionday = $('.product-description-content').data('auctionday');
                     if (auctionday) auctionday = parseInt(auctionday);
                     if (auctionday) {
                         let auctiondayImg = auctionday;
-                        if (auctionId === 359 && auctionday > 2) {
-                            auctionday--;
-                        }
+                        // if (auctionId === 359 && auctionday > 2) {
+                        //     auctionday--;
+                        // }
                         $(`<p class="p-r">Day ${auctionday}</p>`).insertBefore('.hero__static-date');
                         if (start_date) {
                             $('.hero__static-date').append(
@@ -417,8 +433,11 @@ document.addEventListener('DOMContentLoaded', () => {
                         }
                     } else {
                         if (start_date) dates.push(moment(start_date).format('MMM D YYYY'));
-                        let end_date = $('#auction_end_date').text();
-                        if (end_date) dates.push(moment(end_date).format('MMM D YYYY'));
+                        atype = $('#auction_type').text();
+                        if (atype === 'Timed') {
+                            let end_date = $('#auction_end_date').text();
+                            if (end_date) dates.push(moment(end_date).format('MMM D YYYY'));
+                        }
                         if (dates.length) {
                             $('.hero__static-date').append(dates.join(' - ')).show();
                         }
@@ -460,6 +479,16 @@ document.addEventListener('DOMContentLoaded', () => {
                     $('.product__number').html($itemTitleH.text());
                     $('.auc__hero-aucinfo').attr('href', $('.aucinfo').attr('href')).attr('style', '');
                     $('.auc__hero-auccatalog').attr('href', $('.catlg').attr('href')).attr('style', '');
+                    const pared = getParedAuction(auctionId);
+                    if (pared) {
+                        let link = $('.catlg').attr('href');
+                        $('.auc__hero-auccatalog').attr('href', link.replaceAll(pared[1], pared[0]));
+                        $('.auc__hero-auccatalog').html('View day 1 catalog');
+                        $btn2 = $('.auc__hero-auccatalog').clone();
+                        $btn2.html(`View day 2 catalog`);
+                        $btn2.attr('href', link.replaceAll(pared[0], pared[1]));
+                        $btn2.insertAfter($('.auc__hero-auccatalog'));
+                    }
 
 
                     if ($('.description-info-content .product__gallery').length) { // full gallery in description
@@ -590,9 +619,26 @@ document.addEventListener('DOMContentLoaded', () => {
                     if ($nextBid.length) {
                         $nextBid.addClass('waves-effect waves-light btn aucproduct__form-item');
                         $('.aucproduct__button').show().append($nextBid);
+                        let text = $nextBid.attr('value');
+                        let currency = text.includes('$') && '$';
+                        if (!currency) currency = text.includes('£') && '£';
+                        if (currency) {
+                            let i = text.indexOf(currency);
+                            let amount = parseInt(text.slice(i + 1).replaceAll(',', '').replaceAll('.', '').replaceAll(' ', ''), 10);
+                            if (!!amount) {
+                                let bp = (amount * BUYERS_PREMIUM).toLocaleString();
+                                $(`<p class="aucproduct__next-bid-bp">
+                                    ${currency}${bp} including Buyer&rsquo;s Premium
+                                </p>`).insertAfter($nextBid);
+                            }
+                        }
+
                     }
 
-                    $bidInput = $('.maxbid, .mxbid-input');
+                    $bidInput = $('.maxbid');
+                    if (!$bidInput.length) {
+                        $bidInput = $('.mxbid-input');
+                    }
                     if ($bidInput.length) {
                         $bidInput.addClass('aucproduct__form-item');
 
@@ -606,6 +652,27 @@ document.addEventListener('DOMContentLoaded', () => {
                         }
 
                         $('.aucproduct__form').show().append($bidInput);
+
+                        const $input = $bidInput.find('input');
+                        if ($input.length) {
+                            let currency = $bidInput.find('.maxbid-curr').text();
+                            if (currency) {
+                                $input.on('keyup', function(e){
+                                    let $note = $bidInput.find('.aucproduct__input-bid-bp');
+                                    if (!$note.length) {
+                                        $note = $(`<p class="aucproduct__input-bid-bp">`);
+                                        $note.insertAfter($input);
+                                    }
+                                    let amount = parseInt(e.target.value.replaceAll(',', '').replaceAll('.', '').replaceAll(' ', ''), 10);
+                                    let text = '';
+                                    if (amount) {
+                                        let bp = (amount * BUYERS_PREMIUM).toLocaleString();
+                                        text = `${currency}${bp} including Buyer&rsquo;s Premium`;
+                                    }
+                                    $note.html(text);
+                                });
+                            }
+                        }
                     }
 
                     $btnPlaceBid = $('.bidfrm .place-bid');
@@ -647,10 +714,11 @@ document.addEventListener('DOMContentLoaded', () => {
                         }
                     }
 
+                    let winVal;
                     $win = $('#lac28, #oai21, .message-closed');
                     if ($win.length) {
                         const $winVal = $win.find('> .exratetip');
-                        let winVal = $winVal.length ? $winVal.html() : '';
+                        winVal = $winVal.length ? $winVal.html() : '';
                         $lineWin = $detailsLine.clone();
 
                         if (isSignedIn) {
@@ -697,7 +765,14 @@ document.addEventListener('DOMContentLoaded', () => {
                     $estimateVal = $('.estimate-val').first();
                     if ($estimate.length && $estimateVal.length) {
                         $line = $detailsLine.clone();
-                        $line.html($estimate.text() + ' <strong>' + $estimateVal.html() + '</strong>');
+                        let text = $estimate.text();
+                        let estimateRequest = $('.product-description-content').data('estimaterequest');
+                        if (estimateRequest) {
+                            text += ' available on request'
+                        } else {
+                            text += ' <strong>' + $estimateVal.html() + '</strong>';
+                        }
+                        $line.html(text);
                         $details.append($line);
                     }
 
@@ -708,6 +783,30 @@ document.addEventListener('DOMContentLoaded', () => {
                         $line.html($starting.text() + ' <strong>' + $startingVal.html() + '</strong>');
                         $details.append($line);
                     }
+
+                    if (winVal) {
+                        let $btn = $(`<div class="aucproduct__button">
+                            <a class="btn btn--tertiary product__interested-link" target="_blank" href='${URL_PROPSTORE}/sellRequest.action?samId=${lotItemId}#form'>
+                                Sell One Like This Now
+                            </a>
+                        </div>`);
+                        $btn.insertAfter($details);
+                    }
+
+                    let soldNoReserve = $('.product-description-content').data('soldnoreserve');
+                    if (soldNoReserve) {
+                        $line = $detailsLine.clone();
+                        $line.html('Sold without reserve').addClass('soldnoreserve');
+                        $details.append($line);
+                    }
+
+                    $reserveNotMet = $('.reserve-not-met');
+                    if ($reserveNotMet.length) {
+                        $lineReserveNotMet = $detailsLine.clone();
+                        $lineReserveNotMet.append($reserveNotMet);
+                        $details.append($lineReserveNotMet);
+                    }
+
 
                     function getBarcodeFromJS() {
                         let barcode = null;
@@ -746,7 +845,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         }
                         function offerPremium () {
                             const offer = +$form.find('#offer').val() || 0;
-                            $form.find('#offerPremium').val(offer * 1.25);
+                            $form.find('#offerPremium').val(offer * BUYERS_PREMIUM);
                         }
             
                         M.Modal.init(document.querySelectorAll('#modal-offer'), { // load form on modal open
@@ -882,19 +981,17 @@ document.addEventListener('DOMContentLoaded', () => {
                         if (delta >= 1) {
                             $('#calendarBtnBox').remove(); // old description
                             $('<div class="aucproduct__calendar">').insertAfter('.product__buttons-grey')
-                                .append(`<div class="aucproduct__calendar-title h5">Add reminder</div>
-                                    <div id="calendarBtnBox"></div>
-                                `);
+                                .append(`<div id="calendarBtnBox"></div>`);
 
                             let lotUrl = $('head link[rel="canonical"]').attr('href');
-                            $btnOutlook = $('<span class="calendarBtn waves-effect waves-grey btn btn--secondary">Outlook Calendar</span>');
+                            $btnOutlook = $('<span class="calendarBtn waves-effect waves-grey btn btn--secondary">Outlook Auction Alert</span>');
                             $btnOutlook.on('click', function(event) {
                                 event.stopPropagation();
                                 event.preventDefault();
                                 downloadURI(generateICSFileURL(auctionTitle, remindDate, lotName, lotUrl), "propstore.ics");
                             });
 
-                            $btnGoogle = $('<span class="calendarBtn waves-effect waves-grey btn btn--secondary">Google Calendar</span>');
+                            $btnGoogle = $('<span class="calendarBtn waves-effect waves-grey btn btn--secondary">Google Auction Alert</span>');
                             $btnGoogle.on('click', function(event) {
                                 event.stopPropagation();
                                 event.preventDefault();
@@ -903,10 +1000,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
                             $('#calendarBtnBox').append($btnOutlook, $btnGoogle);
 
-                            let sms = $('.product-description-content').data('sms');
+                            let sms = true;//$('.product-description-content').data('sms');
                             if (sms) {
-                                $btnSMS = $(`<span class="calendarBtn waves-effect waves-grey btn btn--secondary modal-trigger modal-sms-button" href="#modal-sms" data-auctionid="${auctionId}" data-lotid="${lotItemId}">SMS Reminder</span>`);
-                                $('body').append($('#modal-sms'));
+                                const url = URL_PROPSTORE + 'reminder.action?samId=' + lotItemId;
+                                $btnSMS = $(`<a class="calendarBtn waves-effect waves-grey btn btn--secondary modal-sms-button" href="${url}" target="_blank">SMS Auction Alert</a>`);
                                 $('#calendarBtnBox').append($btnSMS);
                             }
                         }
@@ -927,6 +1024,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
                                 $('#modal-buyers-guide .modal-content').append(data);
                             })
+                            .fail(data => {
+                                $('.modal-buyers-guide-trigger').remove();
+                            })
                     }
 
                     $('body').append($('#modal-buyers-guide'));
@@ -934,6 +1034,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     $('#modal-shipping .modal-content').append($('.shipping-info-content'));
                     $('body').append($('#modal-shipping'));
 
+                    $('.terms-content').removeClass('content');
                     $('#modal-terms .modal-content').append($('.terms-content'));
                     $('body').append($('#modal-terms'));
 
@@ -947,6 +1048,16 @@ document.addEventListener('DOMContentLoaded', () => {
                     if ($originalNote.length) {
                         $('.aucproduct__certificate').html($originalNote.html()).show();
                     }
+
+                    const inner = $('.product__inner')[0];
+                    const isMobile = inner && getComputedStyle(inner).display === 'block';
+                    if (isMobile) {
+                        $('.hide-on-med-and-down').remove();
+                    } else {
+                        $('.description-info-content-left').appendTo('.product__gallery');
+                    }
+
+                    $('.description-info-content-after').insertBefore('.product__share');
 
                     $('.share__item').each((index, item) => {
                         item.href += window.location.href;
@@ -1088,8 +1199,12 @@ document.addEventListener('DOMContentLoaded', () => {
                         $title.addClass('h2')
                         const path = $title.find('a').prop('href').split('auctions/info/id/');
                         const idString = path.length > 1 ? path[1].split('/') : '';
-                        const id = idString.length > 1 ? idString[0] : idString || 0;
+                        const id = Number(idString.length > 1 ? idString[0] : idString.join('') || 0);
                         if (!id) return;
+                        const pared = getParedAuction(id);
+                        if (pared && pared[2] > 0) {
+                            return; // hide second auction
+                        }
 
                         $img = $(item).find('.aucimg a');
                         if ($img.length) {
@@ -1106,18 +1221,42 @@ document.addEventListener('DOMContentLoaded', () => {
                             .attr('src', src + Math.random()); // if img was loaded before onload
                         }
                         $desc = $(item).find('.aucdes');
+
+                        let $date = null;
+                        $aucdate = $desc.find('#aucdate' + id);
+                        $('#div-hidden').append('<div id="customDate' + id + '">');
+                        const customDateBefore = window.getComputedStyle(document.querySelector('#customDate' + id), ':before');
+                        const customDate = customDateBefore && customDateBefore.content && customDateBefore.content != 'none' ? customDateBefore.content.replaceAll('"', '') : null;
+                        $('#div-hidden').append('<div id="customDateStart' + id + '">');
+                        const customDateStartBefore = window.getComputedStyle(document.querySelector('#customDateStart' + id), ':before');
+                        const customDateStart = customDateStartBefore && customDateStartBefore.content && customDateStartBefore.content != 'none' ? customDateStartBefore.content.replaceAll('"', '') : null;
+                        $('#div-hidden').append('<div id="customDateEnd' + id + '">');
+                        const customDateEndBefore = window.getComputedStyle(document.querySelector('#customDateEnd' + id), ':before');
+                        const customDateEnd = customDateEndBefore && customDateEndBefore.content && customDateEndBefore.content != 'none' ? customDateEndBefore.content.replaceAll('"', '') : null;
+
                         $badge = $desc.find('#auc' + id).hide();
                         $badgeNew = $('<span class="badge auclting__badge">');
-                        if ($badge.find('.in-progress').length) {
-                            $badgeNew.addClass('green').append(`<i class="icon"><svg><use xlink:href="#live"></use></svg></i>Live`);
-                        } else if ($badge.find('.ended').length) {
-                            if (!$('a[name="ended"]').length) {
-                                $(item).prepend('<a name="ended">');
+                        if (customDateStart && customDateEnd) {
+                            if (moment(customDateStart) > Date.now()) {
+                                $badgeNew.addClass('orange').append(`<i class='icon'><svg><use xlink:href="#clockwise"></use></svg></i>Upcoming`);
+                            } else if (moment(customDateEnd) < Date.now()) {
+                                $badgeNew.addClass('red').append(`<i class='icon'><svg><use xlink:href="#flag"></use></svg></i>Ended`);
+                            } else {
+                                $badgeNew.addClass('green').append(`<i class="icon"><svg><use xlink:href="#live"></use></svg></i>Live`);    
                             }
-                            $badgeNew.addClass('red').append(`<i class='icon'><svg><use xlink:href="#flag"></use></svg></i>Ended`);
                         } else {
-                            $badgeNew.addClass('orange').append(`<i class='icon'><svg><use xlink:href="#clockwise"></use></svg></i>Upcoming`);
+                            if ($badge.find('.in-progress').length) {
+                                $badgeNew.addClass('green').append(`<i class="icon"><svg><use xlink:href="#live"></use></svg></i>Live`);
+                            } else if ($badge.find('.ended').length) {
+                                if (!$('a[name="ended"]').length) {
+                                    $(item).prepend('<a name="ended">');
+                                }
+                                $badgeNew.addClass('red').append(`<i class='icon'><svg><use xlink:href="#flag"></use></svg></i>Ended`);
+                            } else {
+                                $badgeNew.addClass('orange').append(`<i class='icon'><svg><use xlink:href="#clockwise"></use></svg></i>Upcoming`);
+                            }
                         }
+
                         const $bidder = $(item).find('.bidder-status, .bidder-status-closed');
                         if ($bidder.length) {
                             const $text = $('<div class="auclting__text">');
@@ -1128,11 +1267,6 @@ document.addEventListener('DOMContentLoaded', () => {
                         $type = $('<div class="auclting__type"><i class="icon"><svg><use xlink:href="#auction-line"></use></svg></i></div>');
                         $type.append($desc.find('#sale' + id));
 
-                        let $date = null;
-                        $aucdate = $desc.find('#aucdate' + id);
-                        $('#div-hidden').append('<div id="customDate' + id + '">');
-                        const customDateBefore = window.getComputedStyle(document.querySelector('#customDate' + id), ':before');
-                        const customDate = customDateBefore && customDateBefore.content && customDateBefore.content != 'none' ? customDateBefore.content.replaceAll('"', '') : null;
                         if (customDate || $aucdate.length) {
                             let date = customDate || '';
                             if (!date) {
@@ -1193,8 +1327,18 @@ document.addEventListener('DOMContentLoaded', () => {
                         }
                         $cat = $(item).find('.cat');
                         if ($cat.length) {
-                            $cat.html($cat.html().replace('View catalog', 'View catalog <span class="auclink__small">items</span>'));
+                            let text = 'View catalog <span class="auclink__small">items</span>';
+                            if (pared) {
+                                text = 'View Day 1 catalog';
+                            }
+                            $cat.html($cat.text().replace('View catalog', text));
                             $cat.addClass('waves-effect waves-grey btn btn--secondary');
+                            if (pared) {
+                                $btn2 = $cat.clone();
+                                $btn2.html('View Day 2 catalog');
+                                $btn2.attr('href', $cat.attr('href').replaceAll(pared[0], pared[1]));
+                                $btn2.insertAfter($cat);
+                            }
                         }
 
                         requestAnimationFrame(()=>$('#aucDtr').append(item));
@@ -1254,6 +1398,9 @@ document.addEventListener('DOMContentLoaded', () => {
                     <span>More Items<br><span class="card__img-more-text">in This Lot</span></span>
                     <i class="icon"><svg><use xlink:href="#arrow-right"></use></svg></i>
                 </span>
+                <span class="card__img-soldnoreserve" style="display: none;">
+                    No reserve
+                </span>
                 <span class="badge card__badge" style="display: none;">
                     <i class="icon"><svg><use xlink:href="#"></use></svg></i>
                 </span>
@@ -1309,6 +1456,7 @@ document.addEventListener('DOMContentLoaded', () => {
                             backgroundImage: `url(${AUCTION_CONTENT_FOLDER}/${auctionId}/header.jpg)`
                         });
                     }
+                    const pared = getParedAuction(auctionId);
 
                     const $searcContent = $('.advSearchAccordionContent');
                     const $searchKey = $('<div class="input-field">');
@@ -1474,6 +1622,16 @@ document.addEventListener('DOMContentLoaded', () => {
                             }
                         }
                         $('.auc__hero-aucinfo').attr('href', $('.aucinfo').attr('href')).show();
+                        if (pared) {
+                            let link = $('link[rel="canonical"]').attr('href');
+                            const index = pared[2];
+                            const indexOther = 1 - index;
+                            $btn2 = $('.auc__hero-aucinfo').clone();
+                            $btn2.html(`View day ${indexOther + 1} catalog`);
+                            $btn2.attr('href', link.replaceAll(pared[index], pared[indexOther]));
+                            $btn2.insertAfter($('.auc__hero-aucinfo'));
+                        }
+
                         $('.container').prepend($('.auc__hero').show());
 
                         try {
@@ -1584,13 +1742,28 @@ document.addEventListener('DOMContentLoaded', () => {
                                 $cardMovie.append($titleEl.clone());
                             }
 
+                            let isSold = false;
                             $badge = $cardItem.find('.card__badge');
                             if ($(item).find('.ended.sold').length) {
+                                isSold = true;
                                 $badge.addClass('red').append('Sold').show().find('use').attr('xlink:href', '#flag');
                             } else if ($(item).find('.ended.unsold').length) {
                                 $badge.append('Unsold').show().find('use').attr('xlink:href', '#archive');
                             } else if ($(item).find('.ended').length) {
                                 $badge.append('Ended').show().find('use').attr('xlink:href', '#archive');
+                            }
+
+                            const $ctag = $(item).find('.item-ctag:contains("CUSTOM_PARAM_TAG")');
+                            let ctag;
+                            if ($ctag.length) {
+                                $ctagValue = $ctag.find('.value');
+                                if ($ctagValue.length) {
+                                    try {
+                                        ctag = JSON.parse($ctagValue.text());
+                                    } catch (e) {
+                                        console.log(e);
+                                    }
+                                }
                             }
 
                             if (isSignedIn || !$(item).find('.ended').length) {
@@ -1600,6 +1773,11 @@ document.addEventListener('DOMContentLoaded', () => {
                                         $info.find('.title').addClass('aucproduct__card-details-label');
                                         $info.find('.value').addClass('aucproduct__card-details-value');
                                         $info.addClass('aucproduct__card-details-row');
+
+                                        if (ctag && ctag.estimateRequest && $info.find('.title').text() === 'Estimates') {
+                                            $info.find('.value').html('available on request');
+                                        }
+
                                         $cardItem.find('.aucproduct__card-details').append($info);
                                     }
                                     if ($info.hasClass('item-win-bid')) {
@@ -1636,6 +1814,13 @@ document.addEventListener('DOMContentLoaded', () => {
                                 }
                                 $cardItem.find('.aucproduct__card-details-timer').append($timelft);
                             }
+
+                            if (isSold) {
+                                let $btn = $(`<div class="card__sell-like-this-line"><a class="btn btn--tertiary card__sell-like-this card__action-sell" target="_blank" href="${URL_PROPSTORE}/sellRequest.action?samId=${$aid.data('lid')}#form">
+                                Sell One Like This</a></div>`);
+                                $btn.insertBefore($cardItem.find('.card__actions'));
+                            }
+
                             function onClickRegistration (e) {
                                 e.preventDefault();
                                 openAuctionRegistration(id);
@@ -1724,19 +1909,9 @@ document.addEventListener('DOMContentLoaded', () => {
                                 }
                             });
 
-                            const $ctag = $(item).find('.item-ctag');
-                            let ctag;
-                            if ($ctag.length) {
-                                $ctagValue = $ctag.find('.value');
-                                if ($ctagValue.length) {
-                                    try {
-                                        ctag = JSON.parse($ctagValue.text());
-                                    } catch (e) {
-                                        console.log(e);
-                                    }
-                                }
-                            }
-                            if (ctag && ctag.isMultiItem) {
+                            if (ctag && ctag.soldNoReserve) {
+                                $cardItem.find('.card__img-soldnoreserve').show();
+                            } else if (ctag && ctag.isMultiItem) {
                                 $cardItem.find('.card__img-more').show();
                             }
                             if (ctag && ctag.makeOfferType) {
@@ -1763,17 +1938,7 @@ document.addEventListener('DOMContentLoaded', () => {
                                     }
                                     let searchIndex = lotUrl.indexOf('?');
                                     let lotUrlTrim = searchIndex > 0 ? lotUrl.slice(0, searchIndex) : lotUrl;
-                                    generateCatalogViewCalendarButtons(remindDate, auctionTitle, lotName, lotUrlTrim, $parentElement, ctag.sms);
-                                    if (!$('#modal-sms').length) $('body').append(`
-                                        <div id="modal-sms" class="modal modal-sms modal-ajax">
-                                            <div class="modal-header modal-header--sticky">
-                                                <div class="modal__title">Add SMS reminder</div>
-                                                <a class="modal-close btn-flat btn--icon"><i class='icon'><svg><use xlink:href="#close"></use></svg></i></a>
-                                            </div>
-                                            <form class="modal-content modal-form modal-sms-form" action="/ajax/reminderSubmit.action"></form>
-                                            <div class="modal__loader"><div class="preloader-wrapper active"><div class="spinner-layer"><div class="circle-clipper left"><div class="circle"></div></div><div class="gap-patch"><div class="circle"></div></div><div class="circle-clipper right"><div class="circle"></div></div></div></div></div>
-                                        </div>
-                                    `);
+                                    generateCatalogViewCalendarButtons(remindDate, auctionTitle, lotName, lotUrlTrim, $parentElement, true);
                                 }
                             }
                             $('.cards__list').append($cardItem);
@@ -1832,6 +1997,13 @@ document.addEventListener('DOMContentLoaded', () => {
                                 $(item).find('.item-status').remove();
                             }
                         }
+
+                        $reserveNotMet = $(item).find('.reserve-not-met');
+                        if ($reserveNotMet.length && !$cardItem.find('.reserve-not-met').length) {
+                            $row = $(`<div class="aucproduct__card-details-row">`);
+                            $row.append($reserveNotMet);
+                            $cardItem.find('.aucproduct__card-details').append($row);
+                        }
                     }
 
                     $('.item-block').each((i, item) => {
@@ -1864,6 +2036,18 @@ document.addEventListener('DOMContentLoaded', () => {
                         if (!isSignedIn && IS_REDIRECT_TO_HOLDING_ROOM) {
                             $liveSale.attr('href', URL_PROPSTORE + 'room');
                         }
+                    }
+
+                    if (pared) {
+                        let link = $('#AdvancedSearch').attr('action');
+                        const index = pared[2];
+                        const indexOther = 1 - index;
+                        let link2 = link.replaceAll(pared[index], pared[indexOther]);
+                        $('<div class="auccatalog__searchday2">').append('<div class="auccatalog__searchday2-inner">').insertBefore('.cards');
+                        $('.auccatalog__searchday2-inner').append(
+                            `<div class="auccatalog__searchday2-label">You are viewing lots for Day ${index + 1}</div>`,
+                            `<a href="${link2}" class="waves-effect waves-light btn auccatalog__searchday2-link"><span class="btn__title">View lots for Day ${indexOther + 1}</span><i class="icon"><svg><use xlink:href="#arrow-right"></use></svg></i></a>`
+                        );
                     }
 
                     setTimeout(() => {
@@ -1990,13 +2174,17 @@ document.addEventListener('DOMContentLoaded', () => {
                     document.querySelectorAll('style:not([data-v2]), link[rel="stylesheet"]:not([data-v2])').forEach(item => item.remove());
 
                     $('.confirm-bid-msg').find('hr').remove();
-                    
-                    const $t = $('#pblc1');
-                    let text = $t.text() || '';
-                    let start = text.indexOf('$'); // remove lot title
-                    let end = text.lastIndexOf('$');
-                    text = text.slice(0, start) + text.slice(end);
-
+                    let text = $('#pblc1').text().replaceAll('$$', '$').replaceAll('££', '£');
+                    let currency = text.includes('$') && '$';
+                    if (!currency) currency = text.includes('£') && '£';
+                    if (currency) {
+                        let i = text.indexOf(currency);
+                        let amount = parseInt(text.slice(i + 1).replaceAll(',', '').replaceAll('.', '').replaceAll(' ', ''), 10);
+                        if (!!amount) {
+                            let bp = (amount * BUYERS_PREMIUM).toLocaleString();
+                            text += `<br><strong>(${currency}${bp} including Buyer&rsquo;s Premium)</strong>`;
+                        }
+                    }
                     $('.general__content').html(text);
                     $('#pblc1').remove();
 
@@ -2296,7 +2484,7 @@ document.addEventListener('DOMContentLoaded', () => {
                             nextAskCurrency = nextAskStr[0];
                             nextAsk = parseFloat(nextAskStr.slice(1).replace(/,/g, ''));
                             if (nextAsk) {
-                                nextAskBP = nextAskCurrency + (nextAsk * 1.25).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+                                nextAskBP = nextAskCurrency + (nextAsk * BUYERS_PREMIUM).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
                             }
                             nextAskStr = '<br><strong>The next asking bid is ' + nextAskStr + '</strong>';
                             if (nextAskBP) nextAskStr += '<div class="auclive-sale__bidstatus-prem">(' + nextAskBP + ' incl. Buyer’s Prem)</div>';
@@ -2312,7 +2500,22 @@ document.addEventListener('DOMContentLoaded', () => {
 
                         if ($('#rtb-panel')[0].dataset.lot != currentLot) {
                             // title = 'Lot #' + $('#' + lblLotNoControlId).html() + ': ' + $('#' + lblLotNameControlId).html();
-                            $('.auclive-sale-title').html($('#' + lblLotNameControlId).html());
+                            let lotName = $('#' + lblLotNameControlId).html();
+                            let lotMovie = '';
+                            if (lotName.includes(' ### ') && lotName[lotName.length - 1] === ')') { // new format 2023-10-11
+                                let nameArr = lotName.split(' ### ');
+                                if (nameArr.length > 1) {
+                                    lotName = nameArr[0];
+                                    lotMovie = nameArr[1];
+                                }
+                            }
+                            if (lotMovie) {
+                                $('.auclive-sale-title').html(lotMovie).append(
+                                    $('<div class="auclive-sale__title1 h4">' + lotName + '</div>')
+                                );
+                            } else {
+                                $('.auclive-sale-title').html(lotName);
+                            }
                         }
 
                         const $desc = $('#' + lblLotDescControlId + ' > *');
@@ -2327,19 +2530,24 @@ document.addEventListener('DOMContentLoaded', () => {
                             }
                         }
 
-                        if ($('.auclive-sale__upcoming').length && $('.auclive-sale__upcoming')[0].dataset.lot != currentLot) {
-                            $upcoming = $('#upcoming-scroll tr');
-                            if ($upcoming.length) {
+                        $upcoming = $('#upcoming-scroll tr');
+                        if ($upcoming.length) {
+                            if ($('.auclive-sale__upcoming').length && $('.auclive-sale__upcoming')[0].dataset.lot != currentLot) {
                                 $('.auclive-sale__upcoming')[0].dataset.lot = currentLot;
                                 $('.upcoming--current').removeClass('upcoming--current');
 
-                                $upcoming .each((index, item) => {
+                                $upcoming.each((index, item) => {
                                     if ($(item).find('.lot').text() == currentLot) {
                                         $(item).addClass('upcoming--current');
                                     }
                                 });
                             }
                         }
+
+                        // if (currentLot === '531') { // Estimate on Request
+                        //     $('.aucproduct .est-amount').html('on Request');
+                        // }
+
                         updateLotObserve();
                     };
 
@@ -2415,13 +2623,42 @@ document.addEventListener('DOMContentLoaded', () => {
                         
                         updateBidObserver.disconnect();
                         if (currentBidAmount) {
-                            const currentBidBP = currentBidCurrency + (currentBidAmount * 1.25).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+                            const currentBidBP = currentBidCurrency + (currentBidAmount * BUYERS_PREMIUM).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
                             if (!$('.auclive-sale__current-prem').length) $('.current-bid-amt').append('<div class="auclive-sale__current-prem">');
                             $('.auclive-sale__current-prem').html(currentBidBP + ' incl. Buyer’s Prem').show();
                         } else {
                             $('.auclive-sale__current-prem').hide();
                         }
                         updateBidObserve();
+                    };
+
+                    const updateMessagesCallback = function () {
+                        const $m = $(`#${lblMessageControlId}`);                        
+                        let m = $m && $m.html();
+                        updateMessagesObserver.disconnect();
+
+                        if (m && m.includes(' ### ')) { // new format 2023-10-11
+                            $m.html(m.replaceAll('###', '-'));
+                        }
+                        updateMessagesObserve();
+                    };
+
+                    const updateUpcomingCallback = function () {
+                        updateUpcomingObserver.disconnect();
+                        $upcoming = $('#upcoming-scroll tr');
+                        if ($upcoming.length) {
+                            $upcoming.each((index, item) => {
+                                let $title = $(item).find('td.title');
+                                let title = $title && $title.text();
+                                if (title && title.includes(' ### ')) { // new format 2023-10-11
+                                    $title.html(title.replaceAll('###', '-'));
+                                }
+                                // if ($(item).find('td.lot').text() === '531') {
+                                //     $(item).find('td.estimate').html('Estimate on Request');
+                                // }
+                            });
+                        }
+                        updateUpcomingObserve();
                     };
 
                     const updateLotObserver = new MutationObserver(updateLotCallback);
@@ -2437,6 +2674,16 @@ document.addEventListener('DOMContentLoaded', () => {
                     const updateBtnObserve = () => updateBtnObserver.observe($('.live-bid')[0], {characterData: true, childList: true, subtree: true});
                     updateBtnObserve();
                     updateBtnCallback();
+
+                    const updateMessagesObserver = new MutationObserver(updateMessagesCallback);
+                    const updateMessagesObserve = () => updateMessagesObserver.observe($(`#${lblMessageControlId}`)[0], {characterData: true, childList: true});
+                    updateMessagesObserve();
+                    updateMessagesCallback();
+
+                    const updateUpcomingObserver = new MutationObserver(updateUpcomingCallback);
+                    const updateUpcomingObserve = () => updateUpcomingObserver.observe($(`#upcoming-scroll`)[0], {characterData: true, childList: true, subtree: true});
+                    updateUpcomingObserve();
+                    updateUpcomingCallback();
 
                     let resizeDebounce;
                     function onResize () {
@@ -2595,58 +2842,9 @@ document.addEventListener('DOMContentLoaded', () => {
                  *
                  * MODAL SMS
                  */
-                M.Modal.init(document.querySelectorAll('#modal-sms'), { // load form on modal open
-                    onOpenStart: function (el, trigger) {
-                        el.classList.add('sync');
-                        const $form = $(el).find('.modal-sms-form');
-                        const url = `${URL_PROPSTORE}/ajax/reminder.action?samAuctionId=${$(trigger).data('auctionid')}&samId=${$(trigger).data('lotid')}`;
-                        $.get({
-                            url,
-                            XHRFields: {
-                                withCredentials: true,
-                            }
-                        })
-                            .done(data => {
-                                // if (!checkResponse(data)) return data;
-
-                                $form.html(data);
-
-                                $('.modal-sms-button-register').on('click', function(){
-                                    openAuctionRegistration($(trigger).data('auctionid'));
-                                });
-                            })
-                            .fail(data => {
-                                if (data && data.statusText) $form.html(data.statusText);
-                            })
-                            .always(data => {
-                                el.classList.remove('sync');
-                            });
-                    }
-                });
-
-                $('.modal-sms-form').submit(function (e) {
+                $('.modal-sms-button').on('click', function (e) {
                     e.preventDefault();
-                    this.classList.add('sync');
-                    let data = $(this).serialize();
-                    $.post({
-                        url: URL_PROPSTORE + $(this).attr('action'),
-                        data,
-                        contentType: 'application/x-www-form-urlencoded',
-                        XHRFields: {
-                            withCredentials: true,
-                        }
-                    })
-                        .done(data => {
-                            if (!checkResponse(data)) return data;
-
-                            this.innerHTML = data;
-                        })
-                        .fail(data => {
-                            if (data && data.statusText) this.innerHTML = data.statusText;
-                        })
-                        .always(data => {
-                            this.classList.remove('sync');
-                        });
+                    window.open(this.href, '_blank');
                 });
 
                 /**
@@ -2877,7 +3075,7 @@ function checkResponse (data) {
 }
 
 function generateCatalogViewCalendarButtons(remindDate, auctionTitle, lotName, lotViewUrl, parentElement,
-    sms = false
+    sms = true //todo delete
 ) {
     let $btnBox = $('<div class="calendar-btn-box">');
     for (let data in parentElement.data()) {
@@ -2889,9 +3087,9 @@ function generateCatalogViewCalendarButtons(remindDate, auctionTitle, lotName, l
     let outlookDate = new Date(remindDate);
     outlookDate.setMinutes(remindDate.getMinutes() + 5);
 
-    generateCalendarButton(auctionTitle, outlookDate, lotName, lotViewUrl, "OUTLOOK", $btnBox);
-    generateCalendarButton(auctionTitle, remindDate, lotName, lotViewUrl, "GOOGLE", $btnBox);
-    if (sms) generateCalendarButton(auctionTitle, remindDate, lotName, lotViewUrl, "SMS", $btnBox);
+    generateCalendarButton(auctionTitle, outlookDate, lotName, lotViewUrl, "Outlook<br> Auction Alert", $btnBox);
+    generateCalendarButton(auctionTitle, remindDate, lotName, lotViewUrl, "Google<br> Auction Alert", $btnBox);
+    if (sms) generateCalendarButton(auctionTitle, remindDate, lotName, lotViewUrl, "SMS<br> Auction Alert", $btnBox);
 
     parentElement.append($btnBox);
 }
@@ -2903,7 +3101,7 @@ function generateCalendarButton(auctionTitle, remindDate, lotName, lotViewUrl, b
     </a>`);
 
     switch (btnText) {
-        case 'OUTLOOK': {
+        case 'Outlook<br> Auction Alert': {
             $btn.on('click', function(event) {
                 event.stopPropagation();
                 event.preventDefault();
@@ -2911,7 +3109,7 @@ function generateCalendarButton(auctionTitle, remindDate, lotName, lotViewUrl, b
             });
             break;
         }
-        case 'GOOGLE': {
+        case 'Google<br> Auction Alert': {
             $btn.on('click', function(event) {
                 event.stopPropagation();
                 event.preventDefault();
@@ -2919,8 +3117,9 @@ function generateCalendarButton(auctionTitle, remindDate, lotName, lotViewUrl, b
             });
             break;
         }
-        case 'SMS': {
-            $btn.addClass('modal-trigger modal-sms-button').attr('href', '#modal-sms');
+        case 'SMS<br> Auction Alert': {
+            const url = URL_PROPSTORE + 'reminder.action?samId=' + parentElement.data('lid');
+            $btn.addClass('modal-sms-button').attr('href', url).attr('target', '_blank');
             break;
         }
     }
