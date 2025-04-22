@@ -24,7 +24,7 @@ document.addEventListener('DOMContentLoaded', () => {
     svgSprite.id = 'svg-sprite';
     document.body.append(svgSprite);
     const loaded = function () { document.body.classList.add('loaded') };
-    if (typeof fetch != "undefined") fetch('/css/custom/sprite.defs.svg?v=20220615', { cache: 'force-cache' })
+    if (typeof fetch != "undefined") fetch('https://propstoreauction.com/css/custom/sprite.defs.svg?v=20220615', { cache: 'force-cache' })
         .then(response => response.text())
         .then(html => { svgSprite.innerHTML = html; loaded(); })
         .catch(loaded);
@@ -408,8 +408,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     // });
 
                     $('.auc__hero').addClass('auc__hero--small');
-                    $aucTitle = $('.tle .sale-name').clone();
-                    let auctionTitle = $aucTitle.text();
+                    let auctionTitle = $('.crumb-auctions a').text();
                     $('.hero__static-title').html(auctionTitle);
 
                     const dates = [];
@@ -455,7 +454,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         }
                     }
 
-                    $itemTitleH = $('.tle-lot + h3');
+                    $itemTitleH = $('.lot-details-title');
                     $itemTitle = $itemTitleH.find('.lot-name');
                     $itemTitleH.find('.lot-name').remove();
                     let lotName = $itemTitle.text();
@@ -511,8 +510,8 @@ document.addEventListener('DOMContentLoaded', () => {
                         
                         $('.product__gallery-array-item').each((i, item) => {
                             let img = $(item).data('url');
-                            let img1 = img.replace(new RegExp('.jpg$'), '-1.jpg');
-                            let img3 = img.replace(new RegExp('.jpg$'), '-3.jpg');
+                            let img1 = img?.replace(new RegExp('.jpg$'), '-1.jpg');
+                            let img3 = img?.replace(new RegExp('.jpg$'), '-3.jpg');
                             $productSlider.append(`<div class="carousel-item modal-trigger" href="#modal-product-gallery" style="background-image:url('${img1}');">&nbsp;</div>`);
                             $productThumbnailsScroll.append(`<div class="product__thumbnail modal-trigger" href="#modal-product-gallery" style="background-image: url('${img3}');">&nbsp;</div>`);
                             $productGalleryCarousel.append(`<div class="carousel-item" style="background-image: url('${img}');"></div>&nbsp;</div>`);
@@ -1466,7 +1465,10 @@ document.addEventListener('DOMContentLoaded', () => {
                     const $searchHeader = $('.advSearchAccordionButton').addClass('auccatalog__search-panel-title collapsible-header');
                     $searchHeader.find('h3').addClass('h4');
                     $searchHeader.append('<i class="icon"><svg><use xlink:href="#close"></use></svg></i>');
-                    const $searchLi = $('<li class="collapsible-li">').append($searchHeader).append($searchInner);
+                    const $searchLi = $('<li class="collapsible-li">').append(`
+                        <div class="advSearchAccordionButton auccatalog__search-panel-title collapsible-header">
+                            <h3 class="h4">Advanced Search</h3><i class="icon"><svg><use xlink:href="#close"></use></svg></i>
+                        </div>`).append($searchHeader).append($searchInner);
                     $('#ads01').addClass('collapsible').append($searchLi);
                     $('#advsSearch').addClass('waves-effect waves-light btn btn--tertiary auccatalog__search-btn');
 
@@ -1599,17 +1601,23 @@ document.addEventListener('DOMContentLoaded', () => {
                     $('.container').prepend($('.auccatalog'));
                     if ($('body').hasClass('auctions-catalog')) {
                         $('.auc__hero').addClass('auc__hero--small');
-                        $aucTitle = $('.tle .sale-name').clone();
-                        auctionTitle = $aucTitle.text();
+                        auctionTitle = $('.crumb-auctions a').text();
                         $('.hero__static-title').html(auctionTitle);
 
-                        const datesArr = $('.start-end-dates').first().text().split(' - ');
+                        const datesArr = $('.start-end-dates').length && $('.start-end-dates').first().text().split(' - ');
                         if (datesArr.length) {
                             const dates = [];
                             if (datesArr[0]) dates.push(moment(datesArr[0]).format('MMM D YYYY'));
                             if (datesArr[1]) dates.push(moment(datesArr[1]).format('MMM D YYYY'));
                             if (dates.length) {
                                 $('.hero__static-date').append(dates.join(' &minus; ')).show();
+                            }
+                        } else {
+                            $('#div-hidden').append('<div id="customDate' + auctionId + '">');
+                            const customDateBefore = window.getComputedStyle(document.querySelector('#customDate' + auctionId), ':before');
+                            const customDate = customDateBefore && customDateBefore.content && customDateBefore.content != 'none' ? customDateBefore.content.replaceAll('"', '') : null;
+                            if (customDate) {
+                                $('.hero__static-date').append(customDate).show();
                             }
                         }
 
@@ -1621,7 +1629,7 @@ document.addEventListener('DOMContentLoaded', () => {
                                     break;
                             }
                         }
-                        $('.auc__hero-aucinfo').attr('href', $('.aucinfo').attr('href')).show();
+                        $('.auc__hero-aucinfo').attr('href', $('.crumb-auctions a').attr('href')).show();
                         if (pared) {
                             let link = $('link[rel="canonical"]').attr('href');
                             const index = pared[2];
@@ -1753,7 +1761,7 @@ document.addEventListener('DOMContentLoaded', () => {
                                 $badge.append('Ended').show().find('use').attr('xlink:href', '#archive');
                             }
 
-                            const $ctag = $(item).find('.item-ctag:contains("CUSTOM_PARAM_TAG")');
+                            const $ctag = $(item).find('.item-ctag');
                             let ctag;
                             if ($ctag.length) {
                                 $ctagValue = $ctag.find('.value');
@@ -1831,8 +1839,8 @@ document.addEventListener('DOMContentLoaded', () => {
                                 $cardItem.find('.card__actions').append($btn);
 
                                 if ($btn[0].href) {
-                                    const isSign =  $btn[0].href.includes('/login/');
-                                    const isRegister =  $btn[0].href.includes('/register/');
+                                    const isSign =  $btn[0].href.includes('/login');
+                                    const isRegister =  $btn[0].href.includes('/register');
 
                                     if (isSign || isRegister) {
                                         if (!customRegisterButtons[id]) {
