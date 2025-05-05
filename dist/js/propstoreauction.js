@@ -2242,6 +2242,18 @@ document.addEventListener('DOMContentLoaded', () => {
 <div class="modal-content"></div>
 </div>
 `);
+                const auctionId = $('#id').text().toLowerCase();                    
+                $.get(`${AUCTION_CONTENT_FOLDER}/${auctionId}/info.html`)
+                .done(data => {
+                    if (!checkResponse(data)) return data;
+
+                    $('.auc-info').replaceWith(data);
+                    auctionsInfo();
+                });
+                auctionsInfo();
+
+                function auctionsInfo () {
+
                     const status = $('#status').text().toLowerCase();
 
                     $badge = $('.auc__hero-badge');
@@ -2370,6 +2382,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         $('.container').prepend($('div.shipping').removeClass('shipping'));
                         $('.container').prepend($('.desc').html());
                     }
+                }
                     /**
                      *
                      *
@@ -3074,7 +3087,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 document.body.classList.add('loaded'); // if svg fail
             }
         }, 100);
-        
+
     }); // end of document ready
 
 });
