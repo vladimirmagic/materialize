@@ -23338,6 +23338,10 @@ body.auctions #bpFooterLink {
   display: none;
 }
 
+body.search-index h1 {
+  display: none;
+}
+
 body.login main,
 body.signup main,
 body.forgot-password main {

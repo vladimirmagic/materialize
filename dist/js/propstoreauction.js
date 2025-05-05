@@ -413,6 +413,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
                     const dates = [];
                     let start_date = $('#lot_start_date').text() || $('#auction_start_date').text();
+                    if (start_date) start_date = fixTZ(start_date);
 
                     let auctionday = $('.product-description-content').data('auctionday');
                     if (auctionday) auctionday = parseInt(auctionday);
@@ -1209,15 +1210,15 @@ document.addEventListener('DOMContentLoaded', () => {
                         if ($img.length) {
                             let src = $img.find('img').prop('src');
                             $img.addClass('auclting__img').css('background-image', 'url(' + src + ')');
-                            $img.find('img').on('load', () => {
-                                src = src.replace('_m.', '_l.');
-                                const $i = $('<img src="' + src + '">');
-                                $('#div-hidden').append($i);
-                                $i.on('load', () => {
-                                    $('.aucimg a').eq(i).css('background-image', 'url(' + src + ')');
-                                });
-                            })
-                            .attr('src', src + Math.random()); // if img was loaded before onload
+                            // $img.find('img').on('load', () => {
+                            //     src = src.replace('_m.', '_l.');
+                            //     const $i = $('<img src="' + src + '">');
+                            //     $('#div-hidden').append($i);
+                            //     $i.on('load', () => {
+                            //         $('.aucimg a').eq(i).css('background-image', 'url(' + src + ')');
+                            //     });
+                            // })
+                            // .attr('src', src + Math.random()); // if img was loaded before onload
                         }
                         $desc = $(item).find('.aucdes');
 
@@ -1271,9 +1272,15 @@ document.addEventListener('DOMContentLoaded', () => {
                             if (!date) {
                                 const dates = [];
                                 let start_date = $aucdate.find('.auction_list_start_date').text();
-                                if (start_date) dates.push(moment(start_date).format('MMM D YYYY'));
+                                if (start_date) {
+                                    start_date = fixTZ(start_date);
+                                    dates.push(moment(start_date).format('MMM D YYYY'));
+                                }
                                 let end_date = $aucdate.find('.auction_list_end_date').text();
-                                if (end_date) dates.push(moment(end_date).format('MMM D YYYY'));
+                                if (end_date) {
+                                    end_date = fixTZ(end_date);
+                                    dates.push(moment(end_date).format('MMM D YYYY'));
+                                }
                                 if (dates.length) {
                                     date += dates.join(' &minus; ');
                                 }
@@ -1607,8 +1614,8 @@ document.addEventListener('DOMContentLoaded', () => {
                         const datesArr = $('.start-end-dates').length && $('.start-end-dates').first().text().split(' - ');
                         if (datesArr.length) {
                             const dates = [];
-                            if (datesArr[0]) dates.push(moment(datesArr[0]).format('MMM D YYYY'));
-                            if (datesArr[1]) dates.push(moment(datesArr[1]).format('MMM D YYYY'));
+                            if (datesArr[0]) dates.push(moment(fixTZ(datesArr[0])).format('MMM D YYYY'));
+                            if (datesArr[1]) dates.push(moment(fixTZ(datesArr[1])).format('MMM D YYYY'));
                             if (dates.length) {
                                 $('.hero__static-date').append(dates.join(' &minus; ')).show();
                             }
@@ -1708,21 +1715,21 @@ document.addEventListener('DOMContentLoaded', () => {
                                 $img.removeAttr('loading');
                                 let bg = $img.prop('src');
                                 $cardItem.find('.card__img').css('background-image', 'url(' + bg + ')');
-                                $img.on('load', () => {
-                                    cardsLoaded++;
-                                    let interval = setInterval(()=>{ // start load big images after 80% default images loaded
-                                        if (cardsLoaded >= cardsLength * .8) {
-                                            clearInterval(interval);
-                                            bg = bg.replace('_6.', '_0.').replace('_m.', '_l.');
-                                            const $img = $('<img src="' + bg + '">');
-                                            $('#div-hidden').append($img);
-                                            $img.on('load', () => {
-                                                $('.card__img').eq(i).css('background-image', 'url(' + bg + ')');
-                                            });
-                                        }
-                                    }, 1000);
-                                })
-                                .attr('src', bg + Math.random()); // if img was loaded before onload
+                                // $img.on('load', () => {
+                                //     cardsLoaded++;
+                                //     let interval = setInterval(()=>{ // start load big images after 80% default images loaded
+                                //         if (cardsLoaded >= cardsLength * .8) {
+                                //             clearInterval(interval);
+                                //             bg = bg.replace('_6.', '_0.').replace('_m.', '_l.');
+                                //             const $img = $('<img src="' + bg + '">');
+                                //             $('#div-hidden').append($img);
+                                //             $img.on('load', () => {
+                                //                 $('.card__img').eq(i).css('background-image', 'url(' + bg + ')');
+                                //             });
+                                //         }
+                                //     }, 1000);
+                                // })
+                                // .attr('src', bg + Math.random()); // if img was loaded before onload
                             }
                             let lotName = $titleEl.text().trim();
                             let lotMovie = '';
@@ -2182,6 +2189,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     document.querySelectorAll('style:not([data-v2]), link[rel="stylesheet"]:not([data-v2])').forEach(item => item.remove());
 
                     $('.confirm-bid-msg').find('hr').remove();
+                    $('#pblc1 span').remove();
                     let text = $('#pblc1').text().replaceAll('$$', '$').replaceAll('££', '£');
                     let currency = text.includes('$') && '$';
                     if (!currency) currency = text.includes('£') && '£';
@@ -2260,6 +2268,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         const dates = [];
                         let start_date = $('#start_date').text();
                         if (start_date) {
+                            start_date = fixTZ(start_date);
                             dates.push(moment(start_date).format('MMM D YYYY'));
                             // start_date = moment(start_date).format('D MMM h:mma');
                             // const start_date_tz_code = $('#start_date_tz_code').text();
@@ -2268,6 +2277,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
                         let end_date = $('#end_date').text();
                         if (end_date) {
+                            end_date = fixTZ(end_date);
                             dates.push(moment(end_date).format('MMM D YYYY'));
                             // end_date = moment(end_date).format('D MMM h:mma');
                             // const end_date_tz_code = $('#end_date_tz_code').text();
@@ -2398,6 +2408,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     const lblLotDescControlId = 'lblLotDesc';
                     const lblLotImgControlId = 'lblLotImg';
                     const lblCurrentControlId = 'lblCurrent';
+                    const lblMessageControlId = 'lblMessage';
 
                     $('#' + lblLotDescControlId).addClass('lblLotDescControlId');
                     $('#' + lblLotImgControlId).addClass('lblLotImgControlId');
@@ -2420,7 +2431,12 @@ document.addEventListener('DOMContentLoaded', () => {
                     $('#div-hidden').append('<div id="customDate' + auctionId + '">');
                     const customDateBefore = window.getComputedStyle(document.querySelector('#customDate' + auctionId), ':before');
                     const customDate = customDateBefore && customDateBefore.content && customDateBefore.content != 'none' ? customDateBefore.content.replaceAll('"', '') : null;
-                    const auctionDate = customDate || moment($('.auction-date').text()).format('MMM D YYYY');
+                    let auctionDate = customDate;
+                    if (!auctionDate) {
+                        let text = $('#auc-starts-ending-date').text();
+                        if (text) text = fixTZ(text);
+                        auctionDate = moment(text).format('MMM D YYYY');
+                    }
                     $('.product__gallery').prepend($('<div class="auclive-sale__auc-text">'));
                     $('.auclive-sale__auc-text').append(badge, '<div class="auclive-sale__auc-date"><i class="icon"><svg><use xlink:href="#calendar"></use></svg></i>' + auctionDate + '</div>');
 
@@ -3058,8 +3074,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 document.body.classList.add('loaded'); // if svg fail
             }
         }, 100);
-
+        
     }); // end of document ready
+
 });
 
 function grecaptchaRender (id = 'g-recaptcha') {
@@ -3275,6 +3292,10 @@ function downloadURI(uri, name) {
     link.href = uri;
     link.click();
 }
+
+function fixTZ(text = '') {
+    return text.replaceAll('BST', '(BST)').replaceAll('CEST', '(CEST)');
+};
 
 window.alert = function (text) { // prevent sam alert
     console.log('Alert: ' + text); return true;
