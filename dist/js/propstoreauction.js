@@ -2247,7 +2247,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 .done(data => {
                     if (!checkResponse(data)) return data;
 
-                    $('.auc-info').replaceWith(data);
+                    $info = $('.auc-info');
+                    if (!$info.length) $info = $('.description-fieldset');
+                    $info.replaceWith(data);
                     auctionsInfo();
                 });
                 auctionsInfo();
