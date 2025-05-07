@@ -1029,6 +1029,11 @@ document.addEventListener('DOMContentLoaded', () => {
             $('#sellRequestSubmit').submit(function (e) {
                 $('.loader-block').show();
             });
+            
+            $('.attachment-file__close').on('click', function (e) {
+                console.log($(this).closest('.attachment-file'))
+                $(this).closest('.attachment-file').remove();
+            });
         }
 
         // GUIDE STEPS
@@ -1420,7 +1425,10 @@ document.addEventListener('DOMContentLoaded', () => {
             if ($('#modal-mail').length) {
                 const isMailModalCookie = $.cookie('mail_modal');
                 if (!isMailModalCookie) {
-                    $(window).on('scroll', showMailModalOnScroll);
+                    const params = new URLSearchParams(window.location.search);
+                    if (!params.get('nomail')) {
+                        $(window).on('scroll', showMailModalOnScroll);
+                    }
                 }
             }
         }
@@ -1493,7 +1501,10 @@ document.addEventListener('DOMContentLoaded', () => {
         if ($('#modal-mail').length) {
             const isMailModalCookie = $.cookie('mail_modal');
             if (!isMailModalCookie) {
-                $(document).on('mouseout', showMailModalOnOut);
+                const params = new URLSearchParams(window.location.search);
+                if (!params.get('nomail')) {
+                    $(document).on('mouseout', showMailModalOnOut);
+                }
             }
         }
 
@@ -1832,7 +1843,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
             function offerPremium () {
                 const offer = +$form.find('#offer').val() || 0;
-                $form.find('#offerPremium').val(offer * 1.25);
+                $form.find('#offerPremium').val(offer * 1.26);
             }
 
             $('#modal-offer').modal({ // load form on modal open
