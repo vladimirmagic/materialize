@@ -1691,6 +1691,12 @@ document.addEventListener('DOMContentLoaded', () => {
                     const cardsLength = $('.item-block').length;
                     let cardsLoaded = 0;
 
+                    let langSaleStart = sam &&
+                        sam.serverData &&
+                        sam.serverData.variables &&
+                        sam.serverData.variables.translation &&
+                        sam.serverData.variables.translation.langSaleStart;
+
                     function prepareItem(i, item) {
                         let lotName;
                         let lotUrl;
@@ -1813,19 +1819,17 @@ document.addEventListener('DOMContentLoaded', () => {
                             const $timelft = $(item).find('.timelft');
                             if ($timelft.length && $timelft.text()) {
                                 $cardItem.find('.aucproduct__card-details').append(`<div class="aucproduct__card-details-row">
-                    <div class="aucproduct__card-details-label">Time Left</div>
+                    <div class="aucproduct__card-details-label aucproduct__card-details-label-timer">Time Left</div>
                     <div class="aucproduct__card-details-value aucproduct__card-details-timer"></div>
                 </div>`);
-                                let langSaleStart = sam &&
-                                    sam.serverData &&
-                                    sam.serverData.variables &&
-                                    sam.serverData.variables.translation &&
-                                    sam.serverData.variables.translation.langSaleStart;
                                 if (langSaleStart) {
                                     sam.serverData.add('langSaleStart', '', 'translation');
                                     let $a = $timelft.find('a');
                                     let html = $a.html();
-                                    if (html) $a.html(html.replace(langSaleStart, ''));
+                                    if (html) $a.html(html.replace(langSaleStart, '').replace(':', '').trim());
+                                    if ($a.hasClass('upcoming')) {
+                                        $cardItem.find('.aucproduct__card-details-label-timer').html('Bidding Opens');
+                                    }
                                 }
                                 $cardItem.find('.aucproduct__card-details-timer').append($timelft);
                             }
@@ -2010,6 +2014,12 @@ document.addEventListener('DOMContentLoaded', () => {
                                     }
                                 });
                                 $(item).find('.item-status').remove();
+
+                                if (langSaleStart) {
+                                    let $a = $cardItem.find('.aucproduct__card-details-timer a');
+                                    let html = $a.html();
+                                    if (html) $a.html(html.replace(':', '').trim());
+                                }
                             }
                         }
 
@@ -2374,14 +2384,18 @@ document.addEventListener('DOMContentLoaded', () => {
                         document.querySelectorAll('style:not([data-v2]), link[rel="stylesheet"]:not([data-v2])').forEach(item => item.remove());
                         $('.container').prepend($('.auc-info'));
 
-                        $('#modal-shipping .modal-content').append($('div.shipping'));
-                        $('body').append($('#modal-shipping'));
-
-                        $('#modal-terms .modal-content').append($('div.terms'));
-                        $('body').append($('#modal-terms'));
+                        if (!$('body > #modal-shipping').length) {
+                            $('#modal-shipping .modal-content').append($('div.shipping'));
+                            $('body').append($('#modal-shipping'));
+                        }
+                        if (!$('body > #modal-terms').length) {
+                            $('#modal-terms .modal-content').append($('div.terms'));
+                            $('body').append($('#modal-terms'));
+                        }
+                        M.Modal.init(document.querySelectorAll('.modal:not(.modal-ajax)'));
                     } else {
-                        $('.container').prepend($('div.terms').removeClass('terms'));
-                        $('.container').prepend($('div.shipping').removeClass('shipping'));
+                        $('.container').prepend($('div.terms'));
+                        $('.container').prepend($('div.shipping'));
                         $('.container').prepend($('.desc').html());
                     }
                 }
