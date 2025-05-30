@@ -4,6 +4,20 @@ const PARED_AUCTIONS = [
     [437, 466],
     [438, 467],
 ];
+
+const BADGE_CATEGORY = {
+    935: {title: 'Poster', color: '#805FB4'},
+    936: {title: 'Collectibles', color: '#FF96C2'},
+    937: {title: 'Photography', color: '#FA3838'},
+    938: {title: 'Production & Crew', color: '#FFAB00'},
+    939: {title: 'Autographs', color: '#1ABA5C'},
+    940: {title: 'Music', color: '#12BFC4'},
+    941: {title: 'Entertainment Art', color: '#0078E3'},
+    942: {title: 'Comics', color: '#2E2E40'},
+    943: {title: 'Contemporary Art', color: '#F0EDDB'},
+    944: {title: 'Animation Art', color: '#805FB4'},
+}
+
 const getParedAuction = (id) => {
     for (let i=0; i<PARED_AUCTIONS.length; i++) {
         const index = PARED_AUCTIONS[i].indexOf(id);
@@ -1943,6 +1957,13 @@ document.addEventListener('DOMContentLoaded', () => {
                                 $cardItem.find('.card__img-soldnoreserve').show();
                             } else if (ctag && ctag.isMultiItem) {
                                 $cardItem.find('.card__img-more').show();
+                            } else if (ctag && ctag.badgeCategory) {
+                                const badge = BADGE_CATEGORY[ctag.badgeCategory];
+                                if (badge) {
+                                    const $badgecategory = $('<span class="card__img-badgecategory"/>');
+                                    $badgecategory.html(badge.title).css('background', badge.color);
+                                    $cardItem.find('.card__img').append($badgecategory);
+                                }
                             }
                             if (ctag && ctag.makeOfferType) {
                                 if (!$btn.length) {

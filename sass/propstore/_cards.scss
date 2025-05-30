@@ -193,6 +193,12 @@
 			bottom: 2rem;
 			font-size: 10px;
 		}
+
+		.card__img-badgecategory {
+			right: .5rem;
+			bottom: 2rem;
+			font-size: 10px;
+		}
 	
 		.card__info:not(.card-blog__info) {
 			height: $card-height-s - $card-width-s;
