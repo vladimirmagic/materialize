@@ -613,6 +613,17 @@ document.addEventListener('DOMContentLoaded', () => {
                         $lineTimeLeft = $detailsLine.clone();
                         $lineTimeLeft.append($timeLeft);
                         $details.append($lineTimeLeft);
+                        if (!$('.time-left .in-progress').length) {
+                            let langSaleStart = sam &&
+                                sam.serverData &&
+                                sam.serverData.variables &&
+                                sam.serverData.variables.translation &&
+                                sam.serverData.variables.translation.langSaleStart;
+                            if (langSaleStart) {
+                                sam.serverData.add('langSaleStart', '', 'translation');
+                                $lineTimeLeft.prepend('Bidding Opens');
+                            }
+                        }
                     }
 
                     $nextBid = $('.bidfrm .next-bid');
