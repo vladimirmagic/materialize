@@ -24,7 +24,7 @@ document.addEventListener('DOMContentLoaded', () => {
     svgSprite.id = 'svg-sprite';
     document.body.append(svgSprite);
     const loaded = function () { document.body.classList.add('loaded') };
-    if (typeof fetch != "undefined") fetch('/css/custom/sprite.defs.svg?v=20220615', { cache: 'force-cache' })
+    if (typeof fetch != "undefined") fetch('https://propstoreauction.com/css/custom/sprite.defs.svg?v=20220615', { cache: 'force-cache' })
         .then(response => response.text())
         .then(html => { svgSprite.innerHTML = html; loaded(); })
         .catch(loaded);
@@ -398,7 +398,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     ) || 0;
                     const lotItemId = $('#lot_id').text() || 0;
                     let status;
-                    if ($('.sale-closed').length) status = 'closed';
+                    if ($('.auction-closed').text().trim()) status = 'closed';
 
                     // requestAnimationFrame(() => {
                     //     const heroImage = window.getComputedStyle(document.querySelector('.hero__image'));
@@ -408,13 +408,12 @@ document.addEventListener('DOMContentLoaded', () => {
                     // });
 
                     $('.auc__hero').addClass('auc__hero--small');
-                    $aucTitle = $('.tle-lot h3').clone();
-                    $aucTitle.find('span').remove();
-                    let auctionTitle = $aucTitle.text();
+                    let auctionTitle = $('.crumb-auctions a').text();
                     $('.hero__static-title').html(auctionTitle);
 
                     const dates = [];
                     let start_date = $('#lot_start_date').text() || $('#auction_start_date').text();
+                    if (start_date) start_date = fixTZ(start_date);
 
                     let auctionday = $('.product-description-content').data('auctionday');
                     if (auctionday) auctionday = parseInt(auctionday);
@@ -456,7 +455,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         }
                     }
 
-                    $itemTitleH = $('.tle-lot + h3');
+                    $itemTitleH = $('.lot-details-title');
                     $itemTitle = $itemTitleH.find('.lot-name');
                     $itemTitleH.find('.lot-name').remove();
                     let lotName = $itemTitle.text();
@@ -512,8 +511,8 @@ document.addEventListener('DOMContentLoaded', () => {
                         
                         $('.product__gallery-array-item').each((i, item) => {
                             let img = $(item).data('url');
-                            let img1 = img.replace(new RegExp('.jpg$'), '-1.jpg');
-                            let img3 = img.replace(new RegExp('.jpg$'), '-3.jpg');
+                            let img1 = img?.replace(new RegExp('.jpg$'), '-1.jpg');
+                            let img3 = img?.replace(new RegExp('.jpg$'), '-3.jpg');
                             $productSlider.append(`<div class="carousel-item modal-trigger" href="#modal-product-gallery" style="background-image:url('${img1}');">&nbsp;</div>`);
                             $productThumbnailsScroll.append(`<div class="product__thumbnail modal-trigger" href="#modal-product-gallery" style="background-image: url('${img3}');">&nbsp;</div>`);
                             $productGalleryCarousel.append(`<div class="carousel-item" style="background-image: url('${img}');"></div>&nbsp;</div>`);
@@ -614,6 +613,17 @@ document.addEventListener('DOMContentLoaded', () => {
                         $lineTimeLeft = $detailsLine.clone();
                         $lineTimeLeft.append($timeLeft);
                         $details.append($lineTimeLeft);
+                        if (!$('.time-left .in-progress').length) {
+                            let langSaleStart = sam &&
+                                sam.serverData &&
+                                sam.serverData.variables &&
+                                sam.serverData.variables.translation &&
+                                sam.serverData.variables.translation.langSaleStart;
+                            if (langSaleStart) {
+                                sam.serverData.add('langSaleStart', '', 'translation');
+                                $lineTimeLeft.prepend('Bidding Opens');
+                            }
+                        }
                     }
 
                     $nextBid = $('.bidfrm .next-bid');
@@ -1153,7 +1163,7 @@ document.addEventListener('DOMContentLoaded', () => {
                      *
                      * INDEX
                      */
-                } else if ($('body').hasClass('index-index') || $('body').hasClass('auctions-index')) {
+                } else if ($('body').hasClass('auctions-list')) {
                     $('footer').append(`
 <div class="auccatalog__nav auccatalog__nav--index">
     <div class="auccatalog__nav-inner">
@@ -1171,11 +1181,11 @@ document.addEventListener('DOMContentLoaded', () => {
                     $('#alf5').addClass('browser-default');
                     $itemsPerPage.removeAttr('id').addClass('auccatalog__nav-perpage-select');
                     $('.auccatalog__nav-perpage--header .input-field').append($itemsPerPage);
-                    $('.auccatalog__nav-paginator').append($('#c2_ctl'));
+                    $('.auccatalog__nav-paginator').append($('#blkPaginatorBottom_ctl'));
                     const $pageselector = $('<div class="input-field input-field--select">');
-                    if ($('.pageselector').length > 1) {
-                        $('.pageselector:last-child').remove();
-                    }
+                    // if ($('.pageselector').length > 1) {
+                    //     $('.pageselector:last-child').remove();
+                    // }
                     $pageselector.append($('.pageselector'));
                     $('.auccatalog__nav-paginator').append($pageselector);
                     $('main').prepend($('.auccatalog__nav'));
@@ -1208,7 +1218,19 @@ document.addEventListener('DOMContentLoaded', () => {
                         }
 
                         $img = $(item).find('.aucimg a');
-                        $img.addClass('auclting__img').css('background-image', 'url(' + $img.find('img').prop('src') + ')');
+                        if ($img.length) {
+                            let src = $img.find('img').prop('src');
+                            $img.addClass('auclting__img').css('background-image', 'url(' + src + ')');
+                            // $img.find('img').on('load', () => {
+                            //     src = src.replace('_m.', '_l.');
+                            //     const $i = $('<img src="' + src + '">');
+                            //     $('#div-hidden').append($i);
+                            //     $i.on('load', () => {
+                            //         $('.aucimg a').eq(i).css('background-image', 'url(' + src + ')');
+                            //     });
+                            // })
+                            // .attr('src', src + Math.random()); // if img was loaded before onload
+                        }
                         $desc = $(item).find('.aucdes');
 
                         let $date = null;
@@ -1261,9 +1283,15 @@ document.addEventListener('DOMContentLoaded', () => {
                             if (!date) {
                                 const dates = [];
                                 let start_date = $aucdate.find('.auction_list_start_date').text();
-                                if (start_date) dates.push(moment(start_date).format('MMM D YYYY'));
+                                if (start_date) {
+                                    start_date = fixTZ(start_date);
+                                    dates.push(moment(start_date).format('MMM D YYYY'));
+                                }
                                 let end_date = $aucdate.find('.auction_list_end_date').text();
-                                if (end_date) dates.push(moment(end_date).format('MMM D YYYY'));
+                                if (end_date) {
+                                    end_date = fixTZ(end_date);
+                                    dates.push(moment(end_date).format('MMM D YYYY'));
+                                }
                                 if (dates.length) {
                                     date += dates.join(' &minus; ');
                                 }
@@ -1424,7 +1452,7 @@ document.addEventListener('DOMContentLoaded', () => {
 `);
                     document.querySelectorAll('style:not([data-v2]), link[rel="stylesheet"]:not([data-v2])').forEach(item => item.remove());
                     let status;
-                    if ($('.sale-closed').length) status = 'closed';
+                    if ($('.auction-closed').text().trim()) status = 'closed';
 
                     // requestAnimationFrame(() => {
                     //     const heroImage = window.getComputedStyle(document.querySelector('.hero__image'));
@@ -1455,11 +1483,14 @@ document.addEventListener('DOMContentLoaded', () => {
                     const $searchHeader = $('.advSearchAccordionButton').addClass('auccatalog__search-panel-title collapsible-header');
                     $searchHeader.find('h3').addClass('h4');
                     $searchHeader.append('<i class="icon"><svg><use xlink:href="#close"></use></svg></i>');
-                    const $searchLi = $('<li class="collapsible-li">').append($searchHeader).append($searchInner);
+                    const $searchLi = $('<li class="collapsible-li">').append(`
+                        <div class="advSearchAccordionButton auccatalog__search-panel-title collapsible-header">
+                            <h3 class="h4">Advanced Search</h3><i class="icon"><svg><use xlink:href="#close"></use></svg></i>
+                        </div>`).append($searchHeader).append($searchInner);
                     $('#ads01').addClass('collapsible').append($searchLi);
                     $('#advsSearch').addClass('waves-effect waves-light btn btn--tertiary auccatalog__search-btn');
 
-                    const $saleSelect = $('#advsSale');
+                    const $saleSelect = $('#advsAuction');
                     if ($saleSelect.length) {
                         const $saleSelectContainer = $saleSelect.closest('section.auctions');
                         const $searchSale = $('<div class="input-field input-field--label input-field--select">');
@@ -1550,15 +1581,22 @@ document.addEventListener('DOMContentLoaded', () => {
 
                     const results = $('.page:contains("Results:")').html();
                     $('.auccatalog__nav-results').html(results.replace('<b>Results:</b>&nbsp;Viewing&nbsp;items&nbsp;', 'Results:&nbsp;'));
-                    $('.auccatalog__nav-paginator').append($('#c2_ctl'));
+                    $('.auccatalog__nav-paginator').append($('#blkPaginatorTop_ctl'));
                     $('.pageselector').wrap('<div class="input-field input-field--select" />');
                     $('.grid_list .com').remove();
                     $('.grid_list .lst').html('<i class="icon"><svg><use xlink:href="#view-list"></use></svg></i>');
                     $('.grid_list .sqr').html('<i class="icon"><svg><use xlink:href="#view-grid"></use></svg></i>');
                     $('.auccatalog__nav-view').html($('.grid_list').html());
 
-                    $itemsPerPage = $('#c3').attr('style', '').clone();
-                    $('#c3').addClass('browser-default');
+                    let lstPageTopControlId = '#' + (
+                        sam &&
+                        sam.serverData &&
+                        sam.serverData.variables &&
+                        sam.serverData.variables.default &&
+                        sam.serverData.variables.default.lstPageTopControlId
+                    ) || '';
+                    $itemsPerPage = $(lstPageTopControlId).attr('style', '').clone();
+                    $(lstPageTopControlId).addClass('browser-default');
                     $itemsPerPage.removeAttr('id').addClass('auccatalog__nav-perpage-select');
                     $('.auccatalog__nav-perpage--header .input-field').append($itemsPerPage);
                     $('.auccatalog__nav-perpage--footer .input-field').append($itemsPerPage.clone());
@@ -1566,12 +1604,12 @@ document.addEventListener('DOMContentLoaded', () => {
                     $('.auccatalog__nav-perpage-select').on('change', function (e) {
                         e.preventDefault();
                         const options = $(e.currentTarget).find('option').toArray();
-                        const itemsPerPage = document.querySelector("#c3");
-                        $('#c3').find('option[selected]').attr('selected', false);
+                        const itemsPerPage = document.querySelector(lstPageTopControlId);
+                        $(lstPageTopControlId).find('option[selected]').attr('selected', false);
                         options.forEach((option, index) => {
                             if (option.selected) {
                                 itemsPerPage.value = +option.value;
-                                $('#c3').find('option').eq(index).attr('selected', true);
+                                $(lstPageTopControlId).find('option').eq(index).attr('selected', true);
                                 itemsPerPage.dispatchEvent(new Event("change"));
                             }
                         })
@@ -1581,19 +1619,23 @@ document.addEventListener('DOMContentLoaded', () => {
                     $('.container').prepend($('.auccatalog'));
                     if ($('body').hasClass('auctions-catalog')) {
                         $('.auc__hero').addClass('auc__hero--small');
-                        $aucTitle = $('.tle h3').clone();
-                        $aucTitle.find('span').remove();
-                        auctionTitle = $aucTitle.text();
+                        auctionTitle = $('.crumb-auctions a').text();
                         $('.hero__static-title').html(auctionTitle);
 
-                        $('.sale-date').find('br').remove();
-                        const datesArr = $('.sale-date').first().text().split(' - ');
+                        const datesArr = $('.start-end-dates').length && $('.start-end-dates').first().text().split(' - ');
                         if (datesArr.length) {
                             const dates = [];
-                            if (datesArr[0]) dates.push(moment(datesArr[0]).format('MMM D YYYY'));
-                            if (datesArr[1]) dates.push(moment(datesArr[1]).format('MMM D YYYY'));
+                            if (datesArr[0]) dates.push(moment(fixTZ(datesArr[0])).format('MMM D YYYY'));
+                            if (datesArr[1]) dates.push(moment(fixTZ(datesArr[1])).format('MMM D YYYY'));
                             if (dates.length) {
                                 $('.hero__static-date').append(dates.join(' &minus; ')).show();
+                            }
+                        } else {
+                            $('#div-hidden').append('<div id="customDate' + auctionId + '">');
+                            const customDateBefore = window.getComputedStyle(document.querySelector('#customDate' + auctionId), ':before');
+                            const customDate = customDateBefore && customDateBefore.content && customDateBefore.content != 'none' ? customDateBefore.content.replaceAll('"', '') : null;
+                            if (customDate) {
+                                $('.hero__static-date').append(customDate).show();
                             }
                         }
 
@@ -1605,7 +1647,7 @@ document.addEventListener('DOMContentLoaded', () => {
                                     break;
                             }
                         }
-                        $('.auc__hero-aucinfo').attr('href', $('.aucinfo').attr('href')).show();
+                        $('.auc__hero-aucinfo').attr('href', $('.crumb-auctions a').attr('href')).show();
                         if (pared) {
                             let link = $('link[rel="canonical"]').attr('href');
                             const index = pared[2];
@@ -1660,6 +1702,12 @@ document.addEventListener('DOMContentLoaded', () => {
                     const cardsLength = $('.item-block').length;
                     let cardsLoaded = 0;
 
+                    let langSaleStart = sam &&
+                        sam.serverData &&
+                        sam.serverData.variables &&
+                        sam.serverData.variables.translation &&
+                        sam.serverData.variables.translation.langSaleStart;
+
                     function prepareItem(i, item) {
                         let lotName;
                         let lotUrl;
@@ -1681,22 +1729,24 @@ document.addEventListener('DOMContentLoaded', () => {
                             $cardItem.find('.card__img').attr('href', lotUrl);
                             const $img = $(item).find('figure').length > 1 ? $(item).find('.figure-col img') : $(item).find('figure img'); // 2 figure in list view
                             if ($img.length) {
+                                $img.removeAttr('loading');
                                 let bg = $img.prop('src');
                                 $cardItem.find('.card__img').css('background-image', 'url(' + bg + ')');
-                                $img.on('load', () => {
-                                    cardsLoaded++;
-                                    let interval = setInterval(()=>{ // start load big images after 80% default images loaded
-                                        if (cardsLoaded >= cardsLength * .8) {
-                                            clearInterval(interval);
-                                            bg = bg.replace('_6.', '_0.');
-                                            const $img = $('<img src="' + bg + '">');
-                                            $('#div-hidden').append($img);
-                                            $img.on('load', () => {
-                                                $('.card__img').eq(i).css('background-image', 'url(' + bg + ')');
-                                            });
-                                        }
-                                    }, 1000);
-                                });
+                                // $img.on('load', () => {
+                                //     cardsLoaded++;
+                                //     let interval = setInterval(()=>{ // start load big images after 80% default images loaded
+                                //         if (cardsLoaded >= cardsLength * .8) {
+                                //             clearInterval(interval);
+                                //             bg = bg.replace('_6.', '_0.').replace('_m.', '_l.');
+                                //             const $img = $('<img src="' + bg + '">');
+                                //             $('#div-hidden').append($img);
+                                //             $img.on('load', () => {
+                                //                 $('.card__img').eq(i).css('background-image', 'url(' + bg + ')');
+                                //             });
+                                //         }
+                                //     }, 1000);
+                                // })
+                                // .attr('src', bg + Math.random()); // if img was loaded before onload
                             }
                             let lotName = $titleEl.text().trim();
                             let lotMovie = '';
@@ -1735,7 +1785,7 @@ document.addEventListener('DOMContentLoaded', () => {
                                 $badge.append('Ended').show().find('use').attr('xlink:href', '#archive');
                             }
 
-                            const $ctag = $(item).find('.item-ctag:contains("CUSTOM_PARAM_TAG")');
+                            const $ctag = $(item).find('.item-ctag');
                             let ctag;
                             if ($ctag.length) {
                                 $ctagValue = $ctag.find('.value');
@@ -1780,9 +1830,18 @@ document.addEventListener('DOMContentLoaded', () => {
                             const $timelft = $(item).find('.timelft');
                             if ($timelft.length && $timelft.text()) {
                                 $cardItem.find('.aucproduct__card-details').append(`<div class="aucproduct__card-details-row">
-                    <div class="aucproduct__card-details-label">Time Left</div>
+                    <div class="aucproduct__card-details-label aucproduct__card-details-label-timer">Time Left</div>
                     <div class="aucproduct__card-details-value aucproduct__card-details-timer"></div>
                 </div>`);
+                                if (langSaleStart) {
+                                    sam.serverData.add('langSaleStart', '', 'translation');
+                                    let $a = $timelft.find('a');
+                                    let html = $a.html();
+                                    if (html) $a.html(html.replace(langSaleStart, '').replace(':', '').trim());
+                                    if ($a.hasClass('upcoming')) {
+                                        $cardItem.find('.aucproduct__card-details-label-timer').html('Bidding Opens');
+                                    }
+                                }
                                 $cardItem.find('.aucproduct__card-details-timer').append($timelft);
                             }
 
@@ -1802,8 +1861,8 @@ document.addEventListener('DOMContentLoaded', () => {
                                 $cardItem.find('.card__actions').append($btn);
 
                                 if ($btn[0].href) {
-                                    const isSign =  $btn[0].href.includes('/login/');
-                                    const isRegister =  $btn[0].href.includes('/register/');
+                                    const isSign =  $btn[0].href.includes('/login');
+                                    const isRegister =  $btn[0].href.includes('/register');
 
                                     if (isSign || isRegister) {
                                         if (!customRegisterButtons[id]) {
@@ -1966,6 +2025,12 @@ document.addEventListener('DOMContentLoaded', () => {
                                     }
                                 });
                                 $(item).find('.item-status').remove();
+
+                                if (langSaleStart) {
+                                    let $a = $cardItem.find('.aucproduct__card-details-timer a');
+                                    let html = $a.html();
+                                    if (html) $a.html(html.replace(':', '').trim());
+                                }
                             }
                         }
 
@@ -2088,7 +2153,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     $('#bhPagesBottom').addClass('browser-default');
                     $itemsPerPage.removeAttr('id').addClass('auccatalog__nav-perpage-select');
                     $('.auccatalog__nav-perpage--header .input-field').append($itemsPerPage);
-                    $('.auccatalog__nav-paginator').append($('#c3_ctl'));
+                    $('.auccatalog__nav-paginator').append($('#c2_ctl'));
                     const $pageselector = $('<div class="input-field input-field--select">');
                     if ($('.pageselector').length > 1) {
                         $('.pageselector:last-child').remove();
@@ -2145,6 +2210,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     document.querySelectorAll('style:not([data-v2]), link[rel="stylesheet"]:not([data-v2])').forEach(item => item.remove());
 
                     $('.confirm-bid-msg').find('hr').remove();
+                    $('#pblc1 span').remove();
                     let text = $('#pblc1').text().replaceAll('$$', '$').replaceAll('££', '£');
                     let currency = text.includes('$') && '$';
                     if (!currency) currency = text.includes('£') && '£';
@@ -2197,6 +2263,20 @@ document.addEventListener('DOMContentLoaded', () => {
 <div class="modal-content"></div>
 </div>
 `);
+                const auctionId = $('#id').text().toLowerCase();                    
+                $.get(`${AUCTION_CONTENT_FOLDER}/${auctionId}/info.html`)
+                .done(data => {
+                    if (!checkResponse(data)) return data;
+
+                    $info = $('.auc-info');
+                    if (!$info.length) $info = $('.description-fieldset');
+                    $info.replaceWith(data);
+                    auctionsInfo();
+                });
+                auctionsInfo();
+
+                function auctionsInfo () {
+
                     const status = $('#status').text().toLowerCase();
 
                     $badge = $('.auc__hero-badge');
@@ -2223,6 +2303,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         const dates = [];
                         let start_date = $('#start_date').text();
                         if (start_date) {
+                            start_date = fixTZ(start_date);
                             dates.push(moment(start_date).format('MMM D YYYY'));
                             // start_date = moment(start_date).format('D MMM h:mma');
                             // const start_date_tz_code = $('#start_date_tz_code').text();
@@ -2231,6 +2312,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
                         let end_date = $('#end_date').text();
                         if (end_date) {
+                            end_date = fixTZ(end_date);
                             dates.push(moment(end_date).format('MMM D YYYY'));
                             // end_date = moment(end_date).format('D MMM h:mma');
                             // const end_date_tz_code = $('#end_date_tz_code').text();
@@ -2313,16 +2395,21 @@ document.addEventListener('DOMContentLoaded', () => {
                         document.querySelectorAll('style:not([data-v2]), link[rel="stylesheet"]:not([data-v2])').forEach(item => item.remove());
                         $('.container').prepend($('.auc-info'));
 
-                        $('#modal-shipping .modal-content').append($('div.shipping'));
-                        $('body').append($('#modal-shipping'));
-
-                        $('#modal-terms .modal-content').append($('div.terms'));
-                        $('body').append($('#modal-terms'));
+                        if (!$('body > #modal-shipping').length) {
+                            $('#modal-shipping .modal-content').append($('div.shipping'));
+                            $('body').append($('#modal-shipping'));
+                        }
+                        if (!$('body > #modal-terms').length) {
+                            $('#modal-terms .modal-content').append($('div.terms'));
+                            $('body').append($('#modal-terms'));
+                        }
+                        M.Modal.init(document.querySelectorAll('.modal:not(.modal-ajax)'));
                     } else {
-                        $('.container').prepend($('div.terms').removeClass('terms'));
-                        $('.container').prepend($('div.shipping').removeClass('shipping'));
+                        $('.container').prepend($('div.terms'));
+                        $('.container').prepend($('div.shipping'));
                         $('.container').prepend($('.desc').html());
                     }
+                }
                     /**
                      *
                      *
@@ -2356,12 +2443,12 @@ document.addEventListener('DOMContentLoaded', () => {
                         sam.serverData.variables.default
                     ) || {};
                     const auctionId = samVariables && samVariables.auctionId || 0;
-                    const lblLotNoControlId = samVariables && samVariables.lblLotNoControlId || '';
-                    const lblLotNameControlId = samVariables && samVariables.lblLotNameControlId || '';
-                    const lblLotDescControlId = samVariables && samVariables.lblLotDescControlId || '';
-                    const lblLotImgControlId = samVariables && samVariables.lblLotImgControlId || '';
-                    const lblCurrentControlId = samVariables && samVariables.lblCurrentControlId || '';
-                    const lblMessageControlId = samVariables && samVariables.lblMessageControlId || '';
+                    const lblLotNoControlId = 'lblLotNo';
+                    const lblLotNameControlId = 'lblLotName';
+                    const lblLotDescControlId = 'lblLotDesc';
+                    const lblLotImgControlId = 'lblLotImg';
+                    const lblCurrentControlId = 'lblCurrent';
+                    const lblMessageControlId = 'lblMessage';
 
                     $('#' + lblLotDescControlId).addClass('lblLotDescControlId');
                     $('#' + lblLotImgControlId).addClass('lblLotImgControlId');
@@ -2384,7 +2471,12 @@ document.addEventListener('DOMContentLoaded', () => {
                     $('#div-hidden').append('<div id="customDate' + auctionId + '">');
                     const customDateBefore = window.getComputedStyle(document.querySelector('#customDate' + auctionId), ':before');
                     const customDate = customDateBefore && customDateBefore.content && customDateBefore.content != 'none' ? customDateBefore.content.replaceAll('"', '') : null;
-                    const auctionDate = customDate || moment($('.auction-date').text()).format('MMM D YYYY');
+                    let auctionDate = customDate;
+                    if (!auctionDate) {
+                        let text = $('#auc-starts-ending-date').text();
+                        if (text) text = fixTZ(text);
+                        auctionDate = moment(text).format('MMM D YYYY');
+                    }
                     $('.product__gallery').prepend($('<div class="auclive-sale__auc-text">'));
                     $('.auclive-sale__auc-text').append(badge, '<div class="auclive-sale__auc-date"><i class="icon"><svg><use xlink:href="#calendar"></use></svg></i>' + auctionDate + '</div>');
 
@@ -3024,6 +3116,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }, 100);
 
     }); // end of document ready
+
 });
 
 function grecaptchaRender (id = 'g-recaptcha') {
@@ -3239,6 +3332,10 @@ function downloadURI(uri, name) {
     link.href = uri;
     link.click();
 }
+
+function fixTZ(text = '') {
+    return text.replaceAll('BST', '(BST)').replaceAll('CEST', '(CEST)');
+};
 
 window.alert = function (text) { // prevent sam alert
     console.log('Alert: ' + text); return true;

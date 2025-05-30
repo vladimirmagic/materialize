@@ -1,5 +1,4 @@
-body.index-index,
-body.auctions-index,
+body.auctions-list,
 body.lot-details-index,
 body.auctions-catalog,
 body.auctions-info,
@@ -21,9 +20,15 @@ body.auctions {
 	form#AdvancedSearch:before,
 	.filters,
 	.scrolltop,
-	.ui-helper-hidden-accessible {
+	.ui-helper-hidden-accessible,
+	.breadcrumbsWrapper,
+	#bpFooterLink {
 		display: none;
 	}
+}
+
+body.search-index h1 {
+	display: none;
 }
 
 body.login,

@@ -19,3 +19,24 @@
 .screenmatch__title {
 	padding: 0 1rem;
 }
+
+.card__wrap {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+
+	.card {
+		flex: 1 1 100%;
+	}
+}
+
+.card__wrap-buttons {
+	margin-top: 2em;
+	margin-right: $card-margin;
+}
+
+@media #{$breakpoint-4cards} {
+	.card__wrap-buttons {
+		margin-right: $card-margin-m;
+	}
+}
