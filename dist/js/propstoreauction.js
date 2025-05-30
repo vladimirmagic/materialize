@@ -1537,6 +1537,13 @@ document.addEventListener('DOMContentLoaded', () => {
                     $('#adv_search_categories > label').addClass('h6');
                     $('#adv_search_categories .accordion-header').append('<div class="auccatalog__search-panel-checkboxes-note">Click to expand</div>');
 
+                    $('#div-hidden').append('<div id="customCategories' + auctionId + '">');
+                    const customCategoriesBefore = window.getComputedStyle(document.querySelector('#customCategories' + auctionId), ':before');
+                    const customCategories = customCategoriesBefore && customCategoriesBefore.content && customCategoriesBefore.content != 'none' ? customCategoriesBefore.content.replaceAll('"', '') : null;
+                    if (customCategories) {
+                        $('#adv_search_categories .accordion-header').trigger('click');
+                    }
+
                     let interval = setInterval(() => { // listen ajax updates
                         if ($('.auccatalog__search-panel-checkboxes .sm_sel').length) {
                             clearInterval(interval);
