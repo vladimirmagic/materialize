@@ -2695,6 +2695,17 @@ document.addEventListener('DOMContentLoaded', () => {
                         } else if ($btn.text().includes('Register ') && IS_REDIRECT_TO_HOLDING_ROOM) {
                             redirectPage(URL_PROPSTORE + 'room');
                         }
+
+                        const $split = $('.split-bid-button');
+                        if ($split.length) {
+                            $split.addClass('waves-effect waves-light btn');
+                            if ($split.hasClass('disabledUser')) $split.addClass('disabled');
+                            const $amount = $('.split-bid-amount');
+                            if ($amount.length) {
+                                $split.html($amount.html());
+                            }
+                        }
+
                         updateBtnObserve();
                         updateBidCallback();
                     };

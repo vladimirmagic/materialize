@@ -26583,6 +26583,22 @@ body.my-items .categories-match {
   font-style: italic;
 }
 
+.split-bid-block {
+  margin-top: .5em;
+}
+
+.split-bid-button.disabled {
+  pointer-events: all;
+}
+
+.split-bid-amount {
+  display: none;
+}
+
+.split-bid-start {
+  text-align: center;
+}
+
 @media only screen and (max-width: 992px) {
   .auclive-sale .product__slider {
     width: 100%;
