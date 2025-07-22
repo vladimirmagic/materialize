@@ -16,6 +16,8 @@ const BADGE_CATEGORY = {
     942: {title: 'Comics', color: '#2E2E40'},
     943: {title: 'Contemporary Art', color: '#F0EDDB'},
     944: {title: 'Animation Art', color: '#805FB4'},
+
+    947: {title: 'Replica', color: '#FA3838'},
 }
 
 const getParedAuction = (id) => {
