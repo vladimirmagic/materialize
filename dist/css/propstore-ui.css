@@ -10490,28 +10490,40 @@ header .menu-auction-link:active .icon {
   height: 20px !important;
 }
 
-.header__menu-block4-link {
+.header__menu-block4-link,
+.header__menu-block5-link {
   min-width: 280px;
   max-width: 280px;
   margin: 0 7%;
   text-decoration: none !important;
 }
 
-.header__menu-block4-link img {
+.header__menu-block4-link img,
+.header__menu-block5-link img {
   display: block;
   width: 100%;
   margin-bottom: 16px;
 }
 
-.header__menu-block4-link:focus, .header__menu-block4-link:hover {
+.header__menu-block4-link:focus, .header__menu-block4-link:hover,
+.header__menu-block5-link:focus,
+.header__menu-block5-link:hover {
   -webkit-transition: all .3s ease-in-out;
   transition: all .3s ease-in-out;
   -webkit-transform: translateY(-8px) !important;
           transform: translateY(-8px) !important;
 }
 
-.header__menu-block4-link:focus:before, .header__menu-block4-link:hover:before {
+.header__menu-block4-link:focus:before, .header__menu-block4-link:hover:before,
+.header__menu-block5-link:focus:before,
+.header__menu-block5-link:hover:before {
   display: none;
+}
+
+.header__menu-block5-link {
+  min-width: 200px;
+  max-width: 200px;
+  margin: 0 5%;
 }
 
 a:not(.btn):not(.btn-large):not(.btn-small):not(.btn-extra-small).header__menu-target-blank {
@@ -10854,6 +10866,11 @@ a.modal-bag__item:not(.btn):not(.btn-large):not(.btn-small):not(.btn-extra-small
     min-width: 200px;
     max-width: 200px;
     margin: 0 5%;
+  }
+  .header__menu-block5-link {
+    min-width: 150px;
+    max-width: 150px;
+    margin: 0 3%;
   }
 }
 

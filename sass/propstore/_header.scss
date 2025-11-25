@@ -464,7 +464,8 @@ header .menu-auction-link {
 	}
 }
 
-.header__menu-block4-link {
+.header__menu-block4-link,
+.header__menu-block5-link {
 	min-width: 280px;
 	max-width: 280px;
 	margin: 0 7%;
@@ -485,6 +486,11 @@ header .menu-auction-link {
 			display: none;
 		}
 	}
+}
+.header__menu-block5-link {
+	min-width: 200px;
+	max-width: 200px;
+	margin: 0 5%;
 }
 
 a:not(.btn).header__menu-target-blank {
@@ -762,6 +768,11 @@ a.modal-bag__item:not(.btn) { // fix a
 		min-width: 200px;
 		max-width: 200px;
 		margin: 0 5%;
+	}
+	.header__menu-block5-link {
+		min-width: 150px;
+		max-width: 150px;
+		margin: 0 3%;
 	}
 }
 
