@@ -86,6 +86,7 @@ document.addEventListener('DOMContentLoaded', () => {
         $('select').not('.disabled').formSelect();
         $('.sidenav').sidenav();
         $('input[data-length], textarea[data-length]').characterCounter();
+        $('.datepicker').datepicker();
 
         // AJAX
         if (

@@ -249,6 +249,24 @@ hr {
 	color: $color-font-grey;
 }
 
+.datepicker-calendar {
+	.select-dropdown {
+		width: 100% !important;
+		padding-left: 16px !important;
+		padding-right: 16px !important;
+		border: 0 none !important;
+	}
+	.input-field__clean {
+		display: none !important;
+	}
+
+	.month-prev, .month-next {
+		&:focus {
+			background: $color-bg;
+		}
+	}
+}
+
 @media #{$media-fullhd-up} {
 	$content-padding: calc(50% - 900px);
     .content {

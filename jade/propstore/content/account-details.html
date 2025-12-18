@@ -268,6 +268,75 @@
 
     <div class="account-page__section">
         <div class="account-page__form">
+            <p class="account-page__section-title c-r">Resale certificate</p>
+            <label class="checkbox__label">
+                <input type="checkbox" name="haveCertificate" class="filled-in"  />
+                <span>I have a resale certificate</span>
+            </label>
+<!-- review this -->
+                    <div class="p-s">
+                        Sales tax is not charged to businesses purchasing for resale. Resale customers must provide a completed BOE-230 resale form and a copy of their valid resale certificate, per California state law. Propstore must have completed form BOE-230 and customer rescale certificates on file at time order is processed.
+                        <br/>
+                        <a href="https://www.cdtfa.ca.gov/formspubs/cdtfa230.pdf" target="_blank">Download form BOE-230 here</a>
+                    </div>
+                    <s:if test="BOEFormAttachment != null || resaleCertificateAttachment != null">
+                        <div class="checkout-resale-certificate__uploaded">
+                            
+                            <s:if test="resaleCertificateAttachment != null">
+                                <br/>
+                                <div class="p-r">
+                                    <strong>Uploaded:</strong> <s:property value="resaleCertificateAttachment.filename"/>
+                                </div>
+                            </s:if>
+                            <br/>
+                        </div>
+                    </s:if>
+                    <div class="order__form-row order__form-row--file">
+                        <div class="file-field__label h6">Upload completed form</div>
+                        <div class="file-field input-field">
+                            <div class="btn">
+                                <span>File</span>
+                                <s:file name="BOEForm"/>
+                            </div>
+                            <div class="file-path-wrapper">
+                                <input class="file-path validate" type="text">
+                                <span class="helper-text">10MB max</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="order__form-row order__form-row--file">
+                        <div class="file-field__label h6">Upload resale certificate</div>
+                        <div class="file-field input-field">
+                            <div class="btn">
+                                <span>File</span>
+                                <s:file name="resaleCertificate"/>
+                            </div>
+                            <div class="file-path-wrapper">
+                                <input class="file-path validate" type="text">
+                                <span class="helper-text">10MB max</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="order__form-row order__form-row--full">
+                        <div class="input-field input-field--label">
+                            <input name="resaleNumber" placeholder="Please Enter"/>
+                            <label class="active">Resale number</label>
+                            <div class="input-field__helper"><s:fielderror fieldName="resaleNumber"/></div>
+                        </div>
+                    </div>
+                    <div class="order__form-row order__form-row--full">
+                        <div class="input-field input-field--label">
+                            <input name="resaleExpiryDate" placeholder="Please Enter" class="datepicker" />
+                            <label class="active">Resale expiry date</label>
+                            <div class="input-field__helper"><s:fielderror fieldName="resaleExpiryDate"/></div>
+                        </div>
+                    </div>
+<!-- review this -->
+        </div>
+    </div>
+
+    <div class="account-page__section">
+        <div class="account-page__form">
             <p class="account-page__section-title c-r">
                 Email Preferences
             </p>

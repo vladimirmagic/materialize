@@ -9775,6 +9775,21 @@ hr.small {
   color: #8F8F8F;
 }
 
+.datepicker-calendar .select-dropdown {
+  width: 100% !important;
+  padding-left: 16px !important;
+  padding-right: 16px !important;
+  border: 0 none !important;
+}
+
+.datepicker-calendar .input-field__clean {
+  display: none !important;
+}
+
+.datepicker-calendar .month-prev:focus, .datepicker-calendar .month-next:focus {
+  background: #F4F4F4;
+}
+
 @media only screen and (min-width: 1921px) {
   .content, .general, .header__main, .header__menu-level1-inner, .header__menu-level1--sell .header__menu-level1-inner, .footer__inner, .hero, .filters, .header__filters .filters__body, .showing-results, .related-movies, .modal-shipping-quote-page main, .how, .whatsnew__text, .section-auctions, .auctions__faq-section, .faq, .account-page__text, .account__orders, .account__coa, .account-filter, .account__sms, .payment-plans, .sell__inner, .sell__faq-section, .vouchers, .experts, .auccatalog__nav, .auc-info__inner, .auc-info__video, .aucpage__content, .auclive-sale__upcoming {
     padding-left: calc(50% - 900px);
