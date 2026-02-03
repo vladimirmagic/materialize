@@ -1,10 +1,5 @@
 const BUYERS_PREMIUM = 1.26;
 
-const PARED_AUCTIONS = [
-    [437, 466],
-    [438, 467],
-];
-
 const BADGE_CATEGORY = {
     935: {title: 'Poster', color: '#805FB4'},
     936: {title: 'Collectibles', color: '#FF96C2'},
@@ -14,12 +9,21 @@ const BADGE_CATEGORY = {
     940: {title: 'Music', color: '#12BFC4'},
     941: {title: 'Entertainment Art', color: '#0078E3'},
     942: {title: 'Comics', color: '#2E2E40'},
-    943: {title: 'Contemporary Art', color: '#F0EDDB'},
+    943: {title: 'Contemporary Art', color: '#EFDF7F'},
     944: {title: 'Animation Art', color: '#805FB4'},
 
     947: {title: 'Replica', color: '#FA3838'},
+    961: {title: 'Fine Art & Prints', color: '#2E2E40'},
+    962: {title: 'Consumer Products', color: '#0078E3'},
+
+    964: {title: 'No Reserve', color: '#0078E3'},
 }
 
+/**
+ * 
+ * @param auctionId 
+ * @returns pare of auctonIds and the last element = index of given auctionId in this array 
+ */
 const getParedAuction = (id) => {
     for (let i=0; i<PARED_AUCTIONS.length; i++) {
         const index = PARED_AUCTIONS[i].indexOf(id);
@@ -40,7 +44,7 @@ document.addEventListener('DOMContentLoaded', () => {
     svgSprite.id = 'svg-sprite';
     document.body.append(svgSprite);
     const loaded = function () { document.body.classList.add('loaded') };
-    if (typeof fetch != "undefined") fetch('https://propstoreauction.com/css/custom/sprite.defs.svg?v=20220615', { cache: 'force-cache' })
+    if (typeof fetch != "undefined") fetch('https://propstoreauction.com/assets/custom/sprite.defs.svg?v=20220615', { cache: 'force-cache' })
         .then(response => response.text())
         .then(html => { svgSprite.innerHTML = html; loaded(); })
         .catch(loaded);
@@ -499,9 +503,9 @@ document.addEventListener('DOMContentLoaded', () => {
                     if (pared) {
                         let link = $('.catlg').attr('href');
                         $('.auc__hero-auccatalog').attr('href', link.replaceAll(pared[1], pared[0]));
-                        $('.auc__hero-auccatalog').html('View day 1 catalog');
+                        $('.auc__hero-auccatalog').html(`View ${pared[2]} catalog`);
                         $btn2 = $('.auc__hero-auccatalog').clone();
-                        $btn2.html(`View day 2 catalog`);
+                        $btn2.html(`View ${pared[3]} catalog`);
                         $btn2.attr('href', link.replaceAll(pared[0], pared[1]));
                         $btn2.insertAfter($('.auc__hero-auccatalog'));
                     }
@@ -925,7 +929,10 @@ document.addEventListener('DOMContentLoaded', () => {
                         $('#modal-offer-button').remove();
                     }
 
-                    if (barcode && (status !== 'closed' || makeOfferType)) {
+                    if (barcode && (
+                        status !== 'closed' && !$('.message-closed').length ||
+                        makeOfferType
+                    )) {
                         $('body').append($('#modal-shipping-quote'));
                         $('#modal-shipping-quote-button').show();
                         $('.product__buttons-grey').show();
@@ -1229,7 +1236,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         const id = Number(idString.length > 1 ? idString[0] : idString.join('') || 0);
                         if (!id) return;
                         const pared = getParedAuction(id);
-                        if (pared && pared[2] > 0) {
+                        if (pared && pared[pared.length - 1] > 0) {
                             return; // hide second auction
                         }
 
@@ -1362,13 +1369,13 @@ document.addEventListener('DOMContentLoaded', () => {
                         if ($cat.length) {
                             let text = 'View catalog <span class="auclink__small">items</span>';
                             if (pared) {
-                                text = 'View Day 1 catalog';
+                                text = `View ${pared[2]} catalog`;
                             }
                             $cat.html($cat.text().replace('View catalog', text));
                             $cat.addClass('waves-effect waves-grey btn btn--secondary');
                             if (pared) {
                                 $btn2 = $cat.clone();
-                                $btn2.html('View Day 2 catalog');
+                                $btn2.html(`View ${pared[3]} catalog`);
                                 $btn2.attr('href', $cat.attr('href').replaceAll(pared[0], pared[1]));
                                 $btn2.insertAfter($cat);
                             }
@@ -1673,10 +1680,10 @@ document.addEventListener('DOMContentLoaded', () => {
                         $('.auc__hero-aucinfo').attr('href', $('.crumb-auctions a').attr('href')).show();
                         if (pared) {
                             let link = $('link[rel="canonical"]').attr('href');
-                            const index = pared[2];
+                            const index = pared[pared.length - 1];
                             const indexOther = 1 - index;
                             $btn2 = $('.auc__hero-aucinfo').clone();
-                            $btn2.html(`View day ${indexOther + 1} catalog`);
+                            $btn2.html(`View ${pared[indexOther + 2]} catalog`);
                             $btn2.attr('href', link.replaceAll(pared[index], pared[indexOther]));
                             $btn2.insertAfter($('.auc__hero-aucinfo'));
                         }
@@ -2106,13 +2113,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
                     if (pared) {
                         let link = $('#AdvancedSearch').attr('action');
-                        const index = pared[2];
+                        const index = pared[pared.length - 1];
                         const indexOther = 1 - index;
                         let link2 = link.replaceAll(pared[index], pared[indexOther]);
                         $('<div class="auccatalog__searchday2">').append('<div class="auccatalog__searchday2-inner">').insertBefore('.cards');
                         $('.auccatalog__searchday2-inner').append(
-                            `<div class="auccatalog__searchday2-label">You are viewing lots for Day ${index + 1}</div>`,
-                            `<a href="${link2}" class="waves-effect waves-light btn auccatalog__searchday2-link"><span class="btn__title">View lots for Day ${indexOther + 1}</span><i class="icon"><svg><use xlink:href="#arrow-right"></use></svg></i></a>`
+                            `<div class="auccatalog__searchday2-label">You are viewing lots for ${pared[index + 2]}</div>`,
+                            `<a href="${link2}" class="waves-effect waves-light btn auccatalog__searchday2-link"><span class="btn__title">View lots for ${pared[indexOther + 2]}</span><i class="icon"><svg><use xlink:href="#arrow-right"></use></svg></i></a>`
                         );
                     }
 
