@@ -5800,8 +5800,8 @@ body.keyboard-focused .dropdown-content li:focus {
   width: auto;
   overflow: hidden;
   background: rgba(0, 0, 0, 0);
-  -webkit-backdrop-filter: blur(2px);
-          backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(8px);
+          backdrop-filter: blur(8px);
   -webkit-transform: none !important;
           transform: none !important;
 }
@@ -5902,6 +5902,16 @@ body.keyboard-focused .dropdown-content li:focus {
 .sync.modal-gallery .modal-content {
   max-height: 0;
   opacity: 0;
+}
+
+#modal-product-gallery.viewer-opened {
+  opacity: 0 !important;
+  pointer-events: none;
+}
+
+#modal-product-gallery.viewer-opened ~ .modal-overlay {
+  opacity: 0 !important;
+  pointer-events: none;
 }
 
 @media only screen and (max-width: 600px) {
@@ -15884,7 +15894,9 @@ tbody .tr:last-child .td {
 }
 
 .viewer-backdrop {
-  background-color: black;
+  background-color: rgba(0, 0, 0, 0.75);
+  -webkit-backdrop-filter: blur(8px);
+          backdrop-filter: blur(8px);
 }
 
 .viewer-invisible {

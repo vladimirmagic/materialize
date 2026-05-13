@@ -102,7 +102,8 @@
 }
 
 .viewer-backdrop {
-	background-color: rgba(0, 0, 0, 50%);
+	background-color: rgba(0, 0, 0, .75);
+	backdrop-filter: blur(8px);
 }
 
 .viewer-invisible {

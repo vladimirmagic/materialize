@@ -1565,6 +1565,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         modalSliderIndex = $('#modal-product-gallery .carousel-item').index(item);
                     },
                 });
+                $('#modal-product-gallery').removeClass('viewer-opened');
 
                 if (!$('.zoom-viewer').length) {
                     $('#modal-product-gallery .carousel-item').each((index, item) => {
@@ -1585,6 +1586,9 @@ document.addEventListener('DOMContentLoaded', () => {
                         zoomRatio: .5,
                         maxZoomRatio: 2,
                         keyboard: false,
+                        view() {
+                            $('#modal-product-gallery').addClass('viewer-opened');
+                        },
                         viewed() {
                             zoomViewer.zoomTo(1.5);
                             if (!$('.viewer-button--close-modal').length) {
@@ -1597,6 +1601,9 @@ document.addEventListener('DOMContentLoaded', () => {
                                 $('.viewer-container .arrow--prev').on('click', ()=>slide(true));
                                 $('.viewer-container .arrow--next').on('click', ()=>slide(false));
                             }
+                        },
+                        hide() {
+                            $('#modal-product-gallery').removeClass('viewer-opened');
                         },
                     });
                     $('#modal-product-gallery').append('<div class="zoom-viewer__toggler">');

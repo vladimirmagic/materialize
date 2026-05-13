@@ -145,7 +145,7 @@
   width: auto;
   overflow: hidden;
   background: rgba(0,0,0,0);
-  backdrop-filter: blur(2px);
+  backdrop-filter: blur(8px);
   transform: none !important;
 
   .modal__close {
@@ -226,6 +226,16 @@
   .modal-content {
     max-height: 0;
     opacity: 0;
+  }
+}
+
+#modal-product-gallery.viewer-opened {
+  opacity: 0 !important;
+  pointer-events: none;
+
+  & ~ .modal-overlay {
+    opacity: 0 !important;
+    pointer-events: none;
   }
 }
 
