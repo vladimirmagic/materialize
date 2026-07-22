@@ -438,6 +438,18 @@ a.product__title:not(.btn) {
 	}
 }
 
+.product__detail {
+	ul {
+		margin: 1em 0;
+		padding-left: 1em;
+		list-style-type: disc;
+
+		& > li {
+			list-style-type: disc;
+		}
+	}
+}
+
 .product__certificate {
 	margin-top: 40px;
 	display: flex;

@@ -14897,6 +14897,16 @@ a.product__title:not(.btn):not(.btn-large):not(.btn-small):not(.btn-extra-small)
   margin-top: 1em;
 }
 
+.product__detail ul {
+  margin: 1em 0;
+  padding-left: 1em;
+  list-style-type: disc;
+}
+
+.product__detail ul > li {
+  list-style-type: disc;
+}
+
 .product__certificate {
   margin-top: 40px;
   display: -webkit-box;
