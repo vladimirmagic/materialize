@@ -10886,16 +10886,19 @@ a.modal-bag__item:not(.btn):not(.btn-large):not(.btn-small):not(.btn-extra-small
   }
 }
 
+@media only screen and (max-width: 1600px) {
+  .header__menu-block5-link {
+    min-width: 150px;
+    max-width: 150px;
+    margin: 0 3%;
+  }
+}
+
 @media only screen and (max-width: 1300px) {
   .header__menu-block4-link {
     min-width: 200px;
     max-width: 200px;
     margin: 0 5%;
-  }
-  .header__menu-block5-link {
-    min-width: 150px;
-    max-width: 150px;
-    margin: 0 3%;
   }
 }
 
