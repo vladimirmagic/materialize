@@ -540,6 +540,20 @@ body.search-index {
 	.card__sell-like-this {
 		width: 100%;
 	}
+
+	.card__buy-now-line {
+		position: relative;
+		width: 100%;
+		margin-bottom: .5rem;
+
+		.card__price-i {
+			right: -12px;
+			color: white;
+		}
+	}
+	.card__buy-now {
+		width: 100%;
+	}
 }
 
 .aucproduct__card-details {

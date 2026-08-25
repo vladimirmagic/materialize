@@ -23988,6 +23988,24 @@ footer .auclting {
   margin-bottom: 1rem;
 }
 
+.aucproduct .product__buy-now-line {
+  position: relative;
+  -webkit-flex-basis: calc(50% - .75rem) !important;
+      -ms-flex-preferred-size: calc(50% - .75rem) !important;
+          flex-basis: calc(50% - .75rem) !important;
+  margin-bottom: 1rem;
+}
+
+.aucproduct .product__buy-now-line .card__price-i {
+  top: -12px;
+  right: -10px;
+  color: white;
+}
+
+.aucproduct .product__button--buy-now {
+  width: 100%;
+}
+
 .aucproduct__livesale {
   display: -webkit-box;
   display: -webkit-flex;
@@ -25070,6 +25088,21 @@ body.search-index .categories-match {
 }
 
 .aucproduct__card .card__sell-like-this {
+  width: 100%;
+}
+
+.aucproduct__card .card__buy-now-line {
+  position: relative;
+  width: 100%;
+  margin-bottom: .5rem;
+}
+
+.aucproduct__card .card__buy-now-line .card__price-i {
+  right: -12px;
+  color: white;
+}
+
+.aucproduct__card .card__buy-now {
   width: 100%;
 }
 

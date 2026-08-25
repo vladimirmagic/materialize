@@ -44,7 +44,8 @@ document.addEventListener('DOMContentLoaded', () => {
     svgSprite.id = 'svg-sprite';
     document.body.append(svgSprite);
     const loaded = function () { document.body.classList.add('loaded') };
-    if (typeof fetch != "undefined") fetch('https://propstoreauction.com/assets/custom/sprite.defs.svg?v=20220615', { cache: 'force-cache' })
+    // if (typeof fetch != "undefined") fetch('https://propstoreauction.com/assets/custom/sprite.defs.svg?v=20220615', { cache: 'force-cache' })
+    if (typeof fetch != "undefined") fetch('/css/custom/sprite.defs.svg?v=20220615', { cache: 'force-cache' })
         .then(response => response.text())
         .then(html => { svgSprite.innerHTML = html; loaded(); })
         .catch(loaded);
@@ -302,8 +303,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
         <div class="aucproduct__form" style="display: none;"></div>
 
-        <div class="product__buttons" style="display: none;">
-            <span class="product__button waves-effect waves-grey btn modal-trigger modal-offer-button" href="#modal-offer" id="modal-offer-button">
+        <div class="product__buttons product__buttons--first" style="display: none;">
+            <span class="product__button waves-effect waves-grey btn modal-trigger modal-offer-button" href="#modal-offer" id="modal-offer-button"  style="display: none;">
                 Make&nbsp;an&nbsp;Offer
                 <i class='icon'><svg><use xlink:href="#auction"></use></svg></i>
 
@@ -752,6 +753,25 @@ document.addEventListener('DOMContentLoaded', () => {
                         }
                     }
 
+                    // "Buy now for $PRICE" button at the start of .product__buttons
+                    const $buyNowPrice = $('.lbl-buynow-price');
+                    let $btnBuyNow = $('input.buy-now');
+                    if (!$btnBuyNow.length) $btnBuyNow = $('.buy-now').find('input');
+                    let isBuyNow = $buyNowPrice.length && $btnBuyNow.length;
+                    if (isBuyNow) {
+                        const price = $buyNowPrice.find('span').text().trim();
+                        $btnBuyNow
+                            .removeClass('orng')
+                            .addClass('waves-effect waves-light btn btn--tertiary product__button product__button--buy-now')
+                            .val(price ? 'Buy now for ' + price : 'Buy now');
+                        let $btn = $(`<div class="product__buy-now-line"></div>`);
+                        $btn.append($btnBuyNow);
+                        $btn.append(`<span class="waves-effect btn-flat btn--icon card__price-i dropdown-trigger" data-target='dropdown-buy-now'>
+                            <i class='icon'><svg><use xlink:href="#question"></use></svg></i>
+                        </span>`)
+                        $('.product__buttons').prepend($btn).show();
+                    }
+
                     let winVal;
                     $win = $('#lac28, #oai21, .message-closed');
                     if ($win.length) {
@@ -870,6 +890,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     if (makeOfferType && barcode) {
                         $('body').append($('#modal-offer'));
                         $('.product__buttons').show();
+                        $('#modal-offer-button').show();
 
                         // MODAL OFFER
 
@@ -880,6 +901,17 @@ document.addEventListener('DOMContentLoaded', () => {
                             grecaptchaRender('g-recaptcha-offer');
                             offerPremium();
                             $form.find('#offer').on('keyup', offerPremium);
+
+                            if (isBuyNow) {
+                                const OFFER_NOTE_SEARCH = '*Only offers 80% of reserve and higher will be considered';
+                                const OFFER_NOTE_BUY_NOW = `*Only offers 80% of reserve and higher will be considered.
+                                    Please note that if another user opts to buy the lot before your offer is accepted, you will miss your opportunity to purchase this lot.
+                                    If you'd like to secure this lot now, please use the Buy Now option.`;
+                        
+                                $form.find('p')
+                                    .filter((i, p) => $(p).text().replace(/\s+/g, ' ').includes(OFFER_NOTE_SEARCH))
+                                    .html(OFFER_NOTE_BUY_NOW);
+                            }
                         }
                         function offerPremium () {
                             const offer = +$form.find('#offer').val() || 0;
@@ -1745,6 +1777,44 @@ document.addEventListener('DOMContentLoaded', () => {
                         sam.serverData.variables.translation &&
                         sam.serverData.variables.translation.langSaleStart;
 
+                    // "Buy now for $PRICE" button instead of an .aucproduct__card-details row
+                    function prepareBuyNow($info, $cardItem, $item) {
+                        let $buyNow = $cardItem.find('.unibtn .buy-now');
+                        if (!$buyNow.length) $buyNow = $item.find('.unibtn .buy-now');
+                        if (!$buyNow.length) return;
+                        const price = $info.find('.value').text().trim();
+                        $buyNow.find('input')
+                            .removeClass('button orng')
+                            .addClass('waves-effect waves-light btn btn--tertiary aucproduct__card-btn card__buy-now')
+                            .val(price ? 'Buy now for ' + price : 'Buy now');
+                        if (!$cardItem.find('.card__buy-now-line').length) {
+                            let $btn = $(`<div class="card__buy-now-line"></div>`);
+                            $btn.append($buyNow);
+                            $btn.append(`<span class="waves-effect btn-flat btn--icon card__price-i dropdown-trigger" data-target='dropdown-buy-now'>
+                                    <i class='icon'><svg><use xlink:href="#question"></use></svg></i>
+                                </span>`);
+                            $btn.insertBefore($cardItem.find('.card__actions'));
+                        }
+                    }
+
+                    // "Register to Buy Now" while the user is not registered for the auction yet
+                    function prepareRegisterToBuyNow($cardItem, onClickRegistration) {
+                        let $btnBuyNow = $cardItem.find('.card__buy-now');
+                        if (!$btnBuyNow.length) { // no server buy-now button at all
+                            $btnBuyNow = $('<a class="waves-effect waves-light btn btn--tertiary aucproduct__card-btn card__buy-now" href="#" />');
+                            $('<div class="card__buy-now-line" />')
+                                .append($btnBuyNow)
+                                .insertBefore($cardItem.find('.card__actions'));
+                        }
+                        $btnBuyNow[0].onclick = null;
+                        if ($btnBuyNow.is('input')) {
+                            $btnBuyNow.val('Register to Buy Now');
+                        } else {
+                            $btnBuyNow.text('Register to Buy Now');
+                        }
+                        $btnBuyNow.on('click', onClickRegistration);
+                    }
+
                     function prepareItem(i, item) {
                         let lotName;
                         let lotUrl;
@@ -1837,7 +1907,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
                             if (isSignedIn || !$(item).find('.ended').length) {
                                 $(item).find('.price-info li').each((k, info) => {
+
                                     const $info = $(info).clone();
+                                    if ($info.hasClass('item-buynow')) {
+                                        prepareBuyNow($info, $cardItem, $(item));
+                                        return;
+                                    }
                                     if ($info.text()) {
                                         $info.find('.title').addClass('aucproduct__card-details-label');
                                         $info.find('.value').addClass('aucproduct__card-details-value');
@@ -1917,11 +1992,19 @@ document.addEventListener('DOMContentLoaded', () => {
                                             $btn.on('click', onClickRegistration);
                                         }
 
-                                        if (isSign) {
-                                            $btn.text(customRegisterButtons[id].title || 'Sign in to bid');
-                                        } else if (isRegister) {
-                                            $btn.text(customRegisterButtons[id].title || 'Register for auction');
-                                        }
+                                        const isBuyNow = !!$(item).find('.price-info li.item-buynow').length;
+                                        $btn.text(isBuyNow
+                                            ? (isSign ? 'Sign in to buy now' : 'Register to buy now')
+                                            : (customRegisterButtons[id].title || (isSign ? 'Sign in to bid' : 'Register for auction'))
+                                        );
+                                        $btn.toggleClass('btn--tertiary', isBuyNow);
+                                    }
+                                }
+                            } else {
+                                if (!$(item).find('.unibtn').length) {
+                                    let $buyNow = $(item).find('.price-info li.item-buynow');
+                                    if ($buyNow.length) {
+                                        prepareRegisterToBuyNow($cardItem, onClickRegistration);
                                     }
                                 }
                             }
@@ -2060,6 +2143,11 @@ document.addEventListener('DOMContentLoaded', () => {
                                 
                                 $cardItem.find('.price-info li:not(.aucproduct__card-details-row)').each((k, info) => {
                                     const $info = $(info);
+                                    if ($info.hasClass('item-buynow')) {
+                                        prepareBuyNow($info, $cardItem, $(item));
+                                        $info.remove();
+                                        return;
+                                    }
                                     if ($info.text()) {
                                         $info.find('.title').addClass('aucproduct__card-details-label');
                                         $info.find('.value').addClass('aucproduct__card-details-value');
@@ -2142,11 +2230,18 @@ document.addEventListener('DOMContentLoaded', () => {
                                         console.log(lot);
                                         if (lot && lot.length && lot.length > 1) {
                                             const $card = $('.aucproduct__card[data-alid="' + lot[1] + '"]');
-                                            $card[0].scrollIntoView({'block': 'center', 'behavior': 'smooth'});
+                                            if ($card.length) $card[0].scrollIntoView({'block': 'center', 'behavior': 'smooth'});
                                         }
                                         break;
                                     }
                                 }
+                            }
+                        } else if (referrer && referrer.includes('/auctions/confirm-buy')) { // after confirm-buy scroll to lot
+                            const lot = referrer.split('?')[0].match(/\/lot\/(\d+)/); // /auctions/confirm-buy/id/550/lot/208245
+                            console.log(lot);
+                            if (lot) {
+                                const $card = $('.aucproduct__card[data-lid="' + lot[1] + '"]');
+                                if ($card.length) $card[0].scrollIntoView({'block': 'center', 'behavior': 'smooth'});
                             }
                         }
                     }, 100);
@@ -2255,7 +2350,57 @@ document.addEventListener('DOMContentLoaded', () => {
 
                     $('.confirm-bid-msg').find('hr').remove();
                     $('#pblc1 span').remove();
-                    let text = $('#pblc1').text().replaceAll('$$', '$').replaceAll('££', '£');
+                    let text = $('#pblc1').text().replaceAll('$$', '$').replaceAll('££', '£').replaceAll('###', '');
+                    let currency = text.includes('$') && '$';
+                    if (!currency) currency = text.includes('£') && '£';
+                    if (currency) {
+                        let i = text.indexOf(currency);
+                        let amount = parseInt(text.slice(i + 1).replaceAll(',', '').replaceAll('.', '').replaceAll(' ', ''), 10);
+                        if (!!amount) {
+                            let bp = (amount * BUYERS_PREMIUM).toLocaleString();
+                            text += `<br><strong>(${currency}${bp} including Buyer&rsquo;s Premium)</strong>`;
+                        }
+                    }
+                    $('.general__content').html(text);
+                    $('#pblc1').remove();
+
+                    $('.confirm-bid-msg').find('#pblc2').addClass('waves-effect waves-light btn');
+                    $('.confirm-bid-msg').find('#pblc3').addClass('waves-effect waves-grey btn btn--secondary');
+                    $('.general__btn').append($('.confirm-bid-msg'));
+
+                    $('.container').prepend($('.aucpage'));
+                    /**
+                     *
+                     *
+                     *
+                     *
+                     *
+                     *
+                     *
+                     *
+                     *
+                     *
+                     *
+                     *
+                     *
+                     *
+                     * CONFIRM BUY
+                     */
+                } else if ($('body').hasClass('auctions-confirm-buy')) {
+                    $('footer').append(`
+<div class="general aucpage">
+<div class="general__inner">
+<h1 class="h1">Confirm buy</h1>
+<p class="p-r general__content"></p>
+<div class="general__btn"></div>
+</div>
+</div>
+`);
+                    document.querySelectorAll('style:not([data-v2]), link[rel="stylesheet"]:not([data-v2])').forEach(item => item.remove());
+
+                    $('.confirm-bid-msg').find('hr').remove();
+                    $('#pblc1 span').remove();
+                    let text = $('#pblc1').text().replaceAll('$$', '$').replaceAll('££', '£').replaceAll('###', '');
                     let currency = text.includes('$') && '$';
                     if (!currency) currency = text.includes('£') && '£';
                     if (currency) {

@@ -14,6 +14,22 @@
 			margin-bottom: 1rem;
 		}
 	}
+
+	.product__buy-now-line {
+		position: relative;
+		flex-basis: calc(50% - .75rem) !important;
+		margin-bottom: 1rem;
+
+		.card__price-i {
+			top: -12px;
+			right: -10px;
+			color: white;
+		}
+	}
+
+	.product__button--buy-now {
+		width: 100%;
+	}
 }
 
 .aucproduct__livesale {
