@@ -714,6 +714,8 @@ document.addEventListener('DOMContentLoaded', () => {
                         }
                     }
 
+                    let isRegisterToBid = false;
+                    let isLoginToBid = false;
                     $btnPlaceBid = $('.bidfrm .place-bid');
                     if ($btnPlaceBid.length) {
                         $btnPlaceBid.addClass('waves-effect waves-light btn aucproduct__form-item');
@@ -741,9 +743,11 @@ document.addEventListener('DOMContentLoaded', () => {
                         }
                         let val = $btnPlaceBid.val();
                         if (val.includes('Login to bid')) {
+                            isLoginToBid = true;
                             $btnPlaceBid.val(customRegisterButtonTitle || 'Sign in to bid');
                             replaceClick();
                         } else if (val.includes('Register to bid')) {
+                            isRegisterToBid = true;
                             $btnPlaceBid.val(customRegisterButtonTitle || 'Register for auction');
                             replaceClick();
                         } else if (val.includes(' bid')) {
@@ -757,18 +761,30 @@ document.addEventListener('DOMContentLoaded', () => {
                     const $buyNowPrice = $('.lbl-buynow-price');
                     let $btnBuyNow = $('input.buy-now');
                     if (!$btnBuyNow.length) $btnBuyNow = $('.buy-now').find('input');
-                    let isBuyNow = $buyNowPrice.length && $btnBuyNow.length;
+                    const isBuyNow = !!($buyNowPrice.length && $btnBuyNow.length);
                     if (isBuyNow) {
-                        const price = $buyNowPrice.find('span').text().trim();
-                        $btnBuyNow
-                            .removeClass('orng')
-                            .addClass('waves-effect waves-light btn btn--tertiary product__button product__button--buy-now')
-                            .val(price ? 'Buy now for ' + price : 'Buy now');
                         let $btn = $(`<div class="product__buy-now-line"></div>`);
-                        $btn.append($btnBuyNow);
-                        $btn.append(`<span class="waves-effect btn-flat btn--icon card__price-i dropdown-trigger" data-target='dropdown-buy-now'>
-                            <i class='icon'><svg><use xlink:href="#question"></use></svg></i>
-                        </span>`)
+                        if (isRegisterToBid || isLoginToBid) { // the server buy-now input is disabled until the user is registered
+                            $('.aucproduct__form').hide();
+                            $btnBuyNow.hide();
+                            const $btnRegister = $('<a class="waves-effect waves-light btn btn--tertiary product__button product__button--buy-now" href="#" />');
+                            $btnRegister.text(isLoginToBid ? 'Sign in to buy now' : 'Register to buy now');
+                            $btnRegister.on('click', function (e) {
+                                e.preventDefault();
+                                openAuctionRegistration(auctionId);
+                            });
+                            $btn.append($btnRegister);
+                        } else {
+                            const price = $buyNowPrice.find('span').text().trim();
+                            $btnBuyNow
+                                .removeClass('orng')
+                                .addClass('waves-effect waves-light btn btn--tertiary product__button product__button--buy-now')
+                                .val(price ? 'Buy now for ' + price : 'Buy now');
+                            $btn.append($btnBuyNow);
+                            $btn.append(`<span class="waves-effect btn-flat btn--icon card__price-i dropdown-trigger" data-target='dropdown-buy-now'>
+                                <i class='icon'><svg><use xlink:href="#question"></use></svg></i>
+                            </span>`);
+                        }
                         $('.product__buttons').prepend($btn).show();
                     }
 
