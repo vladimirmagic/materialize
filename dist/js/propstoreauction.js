@@ -2419,7 +2419,15 @@ document.addEventListener('DOMContentLoaded', () => {
                     let text = $('#pblc1').text().replaceAll('$$', '$').replaceAll('££', '£').replaceAll('###', '');
                     let currency = text.includes('$') && '$';
                     if (!currency) currency = text.includes('£') && '£';
-                    if (currency) {
+                    // 'Are you sure you want to buy lot NAME for $800 ?'
+                    const buyMsg = text.match(/^\s*Are you sure you want to buy lot\s+(.+?)\s+for\s+([$£])\s*([\d.,]+)\s*\?\s*$/);
+                    console.log(buyMsg);
+                    if (buyMsg) {
+                        const lot = buyMsg[1].replace(/\s+/g, ' ');
+                        const amount = parseInt(buyMsg[3].replaceAll(',', '').replaceAll('.', ''), 10);
+                        const bp = (amount * BUYERS_PREMIUM).toLocaleString();
+                        text = `By clicking confirm below, you are agreeing to purchase Lot ${lot} for ${buyMsg[2]}${buyMsg[3]} (${buyMsg[2]}${bp} Including Buyer&rsquo;s Premium). All auction terms and conditions apply.`;
+                    } else if (currency) {
                         let i = text.indexOf(currency);
                         let amount = parseInt(text.slice(i + 1).replaceAll(',', '').replaceAll('.', '').replaceAll(' ', ''), 10);
                         if (!!amount) {
