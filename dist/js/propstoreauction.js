@@ -44,8 +44,8 @@ document.addEventListener('DOMContentLoaded', () => {
     svgSprite.id = 'svg-sprite';
     document.body.append(svgSprite);
     const loaded = function () { document.body.classList.add('loaded') };
-    // if (typeof fetch != "undefined") fetch('https://propstoreauction.com/assets/custom/sprite.defs.svg?v=20220615', { cache: 'force-cache' })
-    if (typeof fetch != "undefined") fetch('/css/custom/sprite.defs.svg?v=20220615', { cache: 'force-cache' })
+    if (typeof fetch != "undefined") fetch('https://propstoreauction.com/assets/custom/sprite.defs.svg?v=20220615', { cache: 'force-cache' })
+    // if (typeof fetch != "undefined") fetch('/css/custom/sprite.defs.svg?v=20220615', { cache: 'force-cache' })
         .then(response => response.text())
         .then(html => { svgSprite.innerHTML = html; loaded(); })
         .catch(loaded);
@@ -2940,6 +2940,11 @@ document.addEventListener('DOMContentLoaded', () => {
                                 let title = $title && $title.text();
                                 if (title && title.includes(' ### ')) { // new format 2023-10-11
                                     $title.html(title.replaceAll('###', '-'));
+                                }
+                                let $hammer = $(item).find('td.hammer');
+                                if ($hammer.text().trim() === 'Unsold') { // unsold lots are available to buy now
+                                    let $hammerValue = $hammer.find('span');
+                                    ($hammerValue.length ? $hammerValue : $hammer).text('Buy now');
                                 }
                                 // if ($(item).find('td.lot').text() === '531') {
                                 //     $(item).find('td.estimate').html('Estimate on Request');
