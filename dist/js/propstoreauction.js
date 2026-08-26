@@ -779,7 +779,7 @@ document.addEventListener('DOMContentLoaded', () => {
                             $btnBuyNow
                                 .removeClass('orng')
                                 .addClass('waves-effect waves-light btn btn--tertiary product__button product__button--buy-now')
-                                .val(price ? 'Buy now for ' + price : 'Buy now');
+                                .val(price ? `Buy now for ${price} (+BP)` : 'Buy now');
                             $btn.append($btnBuyNow);
                             $btn.append(`<span class="waves-effect btn-flat btn--icon card__price-i dropdown-trigger" data-target='dropdown-buy-now'>
                                 <i class='icon'><svg><use xlink:href="#question"></use></svg></i>
@@ -1802,7 +1802,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         $buyNow.find('input')
                             .removeClass('button orng')
                             .addClass('waves-effect waves-light btn btn--tertiary aucproduct__card-btn card__buy-now')
-                            .val(price ? 'Buy now for ' + price : 'Buy now');
+                            .val(price ? `Buy now for ${price} (+BP)` : 'Buy now');
                         if (!$cardItem.find('.card__buy-now-line').length) {
                             let $btn = $(`<div class="card__buy-now-line"></div>`);
                             $btn.append($buyNow);
