@@ -762,6 +762,9 @@ document.addEventListener('DOMContentLoaded', () => {
                     let $btnBuyNow = $('input.buy-now');
                     if (!$btnBuyNow.length) $btnBuyNow = $('.buy-now').find('input');
                     const isBuyNow = !!($buyNowPrice.length && $btnBuyNow.length);
+                    // the server renders a "Login to buy!" input in place of the real buy-now one for guests
+                    const isLoginToBuy = ($btnBuyNow.val() || '').toLowerCase().includes('login')
+                        || ($btnBuyNow.attr('data-qc-event') || '').includes('/login');
                     if (isBuyNow) {
                         let $btn = $(`<div class="product__buy-now-line"></div>`);
                         if (isRegisterToBid || isLoginToBid) { // the server buy-now input is disabled until the user is registered
@@ -774,6 +777,12 @@ document.addEventListener('DOMContentLoaded', () => {
                                 openAuctionRegistration(auctionId);
                             });
                             $btn.append($btnRegister);
+                        } else if (isLoginToBuy) { // keep the server input — it redirects to the login page itself
+                            $btnBuyNow
+                                .removeClass('orng')
+                                .addClass('waves-effect waves-light btn btn--quaternary product__button product__button--buy-now')
+                                .val('Sign in to Buy Now');
+                            $btn.append($btnBuyNow);
                         } else {
                             const price = $buyNowPrice.find('span').text().trim();
                             $btnBuyNow
@@ -1814,6 +1823,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     }
 
                     // "Register to Buy Now" while the user is not registered for the auction yet
+                    // ("Sign in to Buy Now" while the user is not signed in at all)
                     function prepareRegisterToBuyNow($cardItem, onClickRegistration) {
                         let $btnBuyNow = $cardItem.find('.card__buy-now');
                         if (!$btnBuyNow.length) { // no server buy-now button at all
@@ -1823,10 +1833,11 @@ document.addEventListener('DOMContentLoaded', () => {
                                 .insertBefore($cardItem.find('.card__actions'));
                         }
                         $btnBuyNow[0].onclick = null;
+                        const title = isSignedIn ? 'Register to Buy Now' : 'Sign in to Buy Now';
                         if ($btnBuyNow.is('input')) {
-                            $btnBuyNow.val('Register to Buy Now');
+                            $btnBuyNow.val(title);
                         } else {
-                            $btnBuyNow.text('Register to Buy Now');
+                            $btnBuyNow.text(title);
                         }
                         $btnBuyNow.on('click', onClickRegistration);
                     }
@@ -1984,6 +1995,9 @@ document.addEventListener('DOMContentLoaded', () => {
                                 openAuctionRegistration(id);
                             }
                             let $btn = $(item).find('.auclistbtn a.orng, .auclistbtn a.grey');
+                            const isBuyNow = !!$(item).find('.price-info li.item-buynow').length;
+                            const isRegisterBtn = !!($btn.length && $btn[0].href && ($btn[0].href.includes('/login') || $btn[0].href.includes('/register')));
+                            if (isBuyNow && !isRegisterBtn) $btn = $(); // ignore "View details" in favour of the buy-now button
                             if ($btn.length) {
                                 $btn.addClass('waves-effect waves-light btn aucproduct__card-btn');
                                 $cardItem.find('.card__actions').append($btn);
@@ -2008,7 +2022,6 @@ document.addEventListener('DOMContentLoaded', () => {
                                             $btn.on('click', onClickRegistration);
                                         }
 
-                                        const isBuyNow = !!$(item).find('.price-info li.item-buynow').length;
                                         $btn.text(isBuyNow
                                             ? (isSign ? 'Sign in to buy now' : 'Register to buy now')
                                             : (customRegisterButtons[id].title || (isSign ? 'Sign in to bid' : 'Register for auction'))
@@ -2016,13 +2029,8 @@ document.addEventListener('DOMContentLoaded', () => {
                                         $btn.toggleClass('btn--quaternary', isBuyNow);
                                     }
                                 }
-                            } else {
-                                if (!$(item).find('.unibtn').length) {
-                                    let $buyNow = $(item).find('.price-info li.item-buynow');
-                                    if ($buyNow.length) {
-                                        prepareRegisterToBuyNow($cardItem, onClickRegistration);
-                                    }
-                                }
+                            } else if (isBuyNow && !$(item).find('.unibtn .buy-now').length) { // no server buy-now input yet
+                                prepareRegisterToBuyNow($cardItem, onClickRegistration);
                             }
                             const $bid = $(item).find('[id^="blkRegularBid"]');
                             if ($bid.length) {
