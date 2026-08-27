@@ -767,7 +767,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         if (isRegisterToBid || isLoginToBid) { // the server buy-now input is disabled until the user is registered
                             $('.aucproduct__form').hide();
                             $btnBuyNow.hide();
-                            const $btnRegister = $('<a class="waves-effect waves-light btn btn--tertiary product__button product__button--buy-now" href="#" />');
+                            const $btnRegister = $('<a class="waves-effect waves-light btn btn--quaternary product__button product__button--buy-now" href="#" />');
                             $btnRegister.text(isLoginToBid ? 'Sign in to buy now' : 'Register to buy now');
                             $btnRegister.on('click', function (e) {
                                 e.preventDefault();
@@ -778,7 +778,7 @@ document.addEventListener('DOMContentLoaded', () => {
                             const price = $buyNowPrice.find('span').text().trim();
                             $btnBuyNow
                                 .removeClass('orng')
-                                .addClass('waves-effect waves-light btn btn--tertiary product__button product__button--buy-now')
+                                .addClass('waves-effect waves-light btn btn--quaternary product__button product__button--buy-now')
                                 .val(price ? `Buy now for ${price} (+BP)` : 'Buy now');
                             $btn.append($btnBuyNow);
                             $btn.append(`<span class="waves-effect btn-flat btn--icon card__price-i dropdown-trigger" data-target='dropdown-buy-now'>
@@ -1801,7 +1801,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         const price = $info.find('.value').text().trim();
                         $buyNow.find('input')
                             .removeClass('button orng')
-                            .addClass('waves-effect waves-light btn btn--tertiary aucproduct__card-btn card__buy-now')
+                            .addClass('waves-effect waves-light btn btn--quaternary aucproduct__card-btn card__buy-now')
                             .val(price ? `Buy now for ${price} (+BP)` : 'Buy now');
                         if (!$cardItem.find('.card__buy-now-line').length) {
                             let $btn = $(`<div class="card__buy-now-line"></div>`);
@@ -1817,7 +1817,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     function prepareRegisterToBuyNow($cardItem, onClickRegistration) {
                         let $btnBuyNow = $cardItem.find('.card__buy-now');
                         if (!$btnBuyNow.length) { // no server buy-now button at all
-                            $btnBuyNow = $('<a class="waves-effect waves-light btn btn--tertiary aucproduct__card-btn card__buy-now" href="#" />');
+                            $btnBuyNow = $('<a class="waves-effect waves-light btn btn--quaternary aucproduct__card-btn card__buy-now" href="#" />');
                             $('<div class="card__buy-now-line" />')
                                 .append($btnBuyNow)
                                 .insertBefore($cardItem.find('.card__actions'));
@@ -2013,7 +2013,7 @@ document.addEventListener('DOMContentLoaded', () => {
                                             ? (isSign ? 'Sign in to buy now' : 'Register to buy now')
                                             : (customRegisterButtons[id].title || (isSign ? 'Sign in to bid' : 'Register for auction'))
                                         );
-                                        $btn.toggleClass('btn--tertiary', isBuyNow);
+                                        $btn.toggleClass('btn--quaternary', isBuyNow);
                                     }
                                 }
                             } else {

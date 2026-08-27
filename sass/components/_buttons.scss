@@ -118,6 +118,15 @@
   }
 }
 
+.btn--quaternary {
+  background-color: $color-green;
+
+  &:focus,
+  &:hover {
+    background-color: $color-green-dark;
+  }
+}
+
 // Floating button
 .btn-floating {
   &:hover {
