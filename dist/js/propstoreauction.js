@@ -762,9 +762,12 @@ document.addEventListener('DOMContentLoaded', () => {
                     let $btnBuyNow = $('input.buy-now');
                     if (!$btnBuyNow.length) $btnBuyNow = $('.buy-now').find('input');
                     const isBuyNow = !!($buyNowPrice.length && $btnBuyNow.length);
-                    // the server renders a "Login to buy!" input in place of the real buy-now one for guests
-                    const isLoginToBuy = ($btnBuyNow.val() || '').toLowerCase().includes('login')
-                        || ($btnBuyNow.attr('data-qc-event') || '').includes('/login');
+                    // the server renders a "Login to buy!" / "Register to buy!" input in place of the real
+                    // buy-now one when the user isn't signed in / registered for the auction yet
+                    const buyNowVal = ($btnBuyNow.val() || '').toLowerCase();
+                    const buyNowQcEvent = $btnBuyNow.attr('data-qc-event') || '';
+                    const isLoginToBuy = buyNowVal.includes('login') || buyNowQcEvent.includes('/login');
+                    const isRegisterToBuy = !isLoginToBuy && (buyNowVal.includes('register') || buyNowQcEvent.includes('/register'));
                     if (isBuyNow) {
                         let $btn = $(`<div class="product__buy-now-line"></div>`);
                         if (isRegisterToBid || isLoginToBid) { // the server buy-now input is disabled until the user is registered
@@ -777,11 +780,11 @@ document.addEventListener('DOMContentLoaded', () => {
                                 openAuctionRegistration(auctionId);
                             });
                             $btn.append($btnRegister);
-                        } else if (isLoginToBuy) { // keep the server input — it redirects to the login page itself
+                        } else if (isLoginToBuy || isRegisterToBuy) { // keep the server input — it handles login/registration itself
                             $btnBuyNow
                                 .removeClass('orng')
                                 .addClass('waves-effect waves-light btn btn--quaternary product__button product__button--buy-now')
-                                .val('Sign in to Buy Now');
+                                .val(isLoginToBuy ? 'Sign in to Buy Now' : 'Register to Buy Now');
                             $btn.append($btnBuyNow);
                         } else {
                             const price = $buyNowPrice.find('span').text().trim();
@@ -1505,6 +1508,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 <span class="card__img-soldnoreserve" style="display: none;">
                     No reserve
                 </span>
+                <span class="card__img-wbarchive" style="display: none;">
+                    Warner Bros. Archive
+                </span>
                 <span class="badge card__badge" style="display: none;">
                     <i class="icon"><svg><use xlink:href="#"></use></svg></i>
                 </span>
@@ -2029,7 +2035,7 @@ document.addEventListener('DOMContentLoaded', () => {
                                         $btn.toggleClass('btn--quaternary', isBuyNow);
                                     }
                                 }
-                            } else if (isBuyNow && !$(item).find('.unibtn .buy-now').length) { // no server buy-now input yet
+                            } else if (isBuyNow && !$cardItem.find('.unibtn .buy-now, .card__buy-now-line .buy-now').length) { // no server buy-now input yet
                                 prepareRegisterToBuyNow($cardItem, onClickRegistration);
                             }
                             const $bid = $(item).find('[id^="blkRegularBid"]');
@@ -2094,6 +2100,9 @@ document.addEventListener('DOMContentLoaded', () => {
                                     $badgecategory.html(badge.title).css('background', badge.color);
                                     $cardItem.find('.card__img').append($badgecategory);
                                 }
+                            }
+                            if (ctag && ctag.wbArchive) {
+                                $cardItem.find('.card__img-wbarchive').show();
                             }
                             if (ctag && ctag.makeOfferType) {
                                 if (!$btn.length) {
