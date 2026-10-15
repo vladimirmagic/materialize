@@ -12866,13 +12866,13 @@ a.card:not(.btn):not(.btn-large):not(.btn-small):not(.btn-extra-small).card--arc
 .card__img-wbarchive {
   position: absolute;
   right: 16px;
-  bottom: 72px;
-  height: 28px;
-  padding: 0 12px;
+  bottom: 40px;
+  height: 20px;
+  padding: 0 6px;
   color: #ffd448;
-  font-size: 10px;
+  font-size: 8px;
   font-weight: 600;
-  line-height: 28px;
+  line-height: 20px;
   letter-spacing: .12em;
   text-transform: uppercase;
   background-color: #227ba2cc;
@@ -13584,7 +13584,7 @@ a.card-auction:not(.btn):not(.btn-large):not(.btn-small):not(.btn-extra-small):b
   }
   .cards .card__img-wbarchive, .cards-blog .card__img-wbarchive {
     right: .5rem;
-    bottom: 4rem;
+    bottom: 2rem;
   }
   .cards .card__img-badgecategory, .cards-blog .card__img-badgecategory {
     right: .5rem;

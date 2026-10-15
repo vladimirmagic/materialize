@@ -1509,7 +1509,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     No reserve
                 </span>
                 <span class="card__img-wbarchive" style="display: none;">
-                    Warner Bros. Archive
+                    WB Archive
                 </span>
                 <span class="badge card__badge" style="display: none;">
                     <i class="icon"><svg><use xlink:href="#"></use></svg></i>
@@ -2089,7 +2089,9 @@ document.addEventListener('DOMContentLoaded', () => {
                                 }
                             });
 
-                            if (ctag && ctag.soldNoReserve) {
+                            if (ctag && ctag.wbArchive) {
+                                $cardItem.find('.card__img-wbarchive').show();
+                            } else if (ctag && ctag.soldNoReserve) {
                                 $cardItem.find('.card__img-soldnoreserve').show();
                             } else if (ctag && ctag.isMultiItem) {
                                 $cardItem.find('.card__img-more').show();
@@ -2101,9 +2103,7 @@ document.addEventListener('DOMContentLoaded', () => {
                                     $cardItem.find('.card__img').append($badgecategory);
                                 }
                             }
-                            if (ctag && ctag.wbArchive) {
-                                $cardItem.find('.card__img-wbarchive').show();
-                            }
+
                             if (ctag && ctag.makeOfferType) {
                                 if (!$btn.length) {
                                     $btn = $('<a class="waves-effect waves-light btn aucproduct__card-btn" />');
