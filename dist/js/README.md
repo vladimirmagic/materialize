@@ -60,7 +60,7 @@ On `DOMContentLoaded`:
    | `auctions-catalog`, `search-index`, `my-items` | Catalog, search, My items | Lot cards, category badges, filters, prices with buyer's premium |
    | `auctions-bidding-history` | Bid history | Table restyling |
    | `auctions-confirm-bid`, `auctions-confirm-buy` | Bid / buy confirmation | Amount with buyer's premium (`BUYERS_PREMIUM = 1.26`) |
-   | `auctions-info` | Auction info | Status (upcoming / in progress / closed), calendar reminders |
+   | `auctions-info` | Auction info ([example](https://propstoreauction.com/auctions/info/id/531)) | Status (upcoming / in progress / closed), calendar reminders |
    | `auctions-live-sale` | Live sale | `MutationObserver`s on SAM's live-bidding labels (lot, current bid, buttons, messages, upcoming lots) to keep the custom UI in sync |
    | `auctions-registration-required` | Registration required | Redirect to registration on propstore.com |
    | `login`, `signup`, `forgot-password` | Auth pages | Replaced by Propstore SSO (`openSSO`) |
@@ -155,6 +155,25 @@ How it works: the script appends an empty `<div id="customDate510">` to a hidden
 `#customTitle<ID>` still appears in the CSS, but the code that reads it is commented out.
 
 Rules in the file are grouped by comments (`COPYRIGHT FORMAT`, `<Auction> - Header Graphics`…), with the auction name in each comment.
+
+## auction-content/&lt;ID&gt;/: per-auction files
+
+`propstoreauction.js` loads auction-specific content from
+
+```
+https://content.propstore.com/public-img/auction-content/<ID>/
+```
+
+where `<ID>` is the SAM auction id (`AUCTION_CONTENT_FOLDER` in the script). Like the rest of `public-img`, this folder is maintained manually by Propstore. A missing file is fine: the page falls back to SAM's content or to no image.
+
+| File | Page | What happens |
+| --- | --- | --- |
+| `header.jpg` | Lot page, catalog | Background of the hero header |
+| `header-<N>.jpg` | Lot page | Hero header for day N of a multi-day sale; N comes from `data-auctionday` in the lot description. Used instead of `header.jpg`, together with a "Day N" label and that day's date |
+| `info.html` | Auction info, e.g. [/auctions/info/id/531](https://propstoreauction.com/auctions/info/id/531) loads `auction-content/531/info.html` | Loaded with ajax; this HTML fragment replaces SAM's auction description (`.auc-info` / `.description-fieldset`) |
+| `buyers-guide.txt` | Lot page | Loaded with ajax into the Buyer's Guide modal, unless the page already has `#buyers-content`. If the file is missing, the Buyer's Guide button is removed |
+
+`info.html` and `buyers-guide.txt` must be HTML fragments, not full pages. If the response contains `<html`, the script shows "Unfortunately something went wrong" and reloads the page after 2 seconds.
 
 ## Related files
 
