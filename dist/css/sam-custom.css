@@ -41,13 +41,57 @@
 .auctions-info.auction322 .hero__static-date, .lot-details.auction322 .hero__static-date{
   font-size: 0;
 }
+.auctions-info.auction489 .hero__static-date, .lot-details.auction489 .hero__static-date{
+  font-size: 0;
+}
+.auctions-info.auction540 .hero__static-date, .lot-details.auction540 .hero__static-date, .auctions-catalog.auction540 .hero__static-date{
+  font-size: 0;
+}
 .auctions-info.auction322 .hero__static-date:after, .lot-details.auction322 .hero__static-date:after{
   font-size: 16px;
   content: " Sep 15 2022";
   vertical-align: bottom;
   line-height: 18px;
 }
-
+.auctions-info.auction504 .hero__static-date:after, .lot-details.auction504 .hero__static-date:after{
+  font-size: 16px;
+  content: " Feb 5 to Mar 7-8 2026";
+  vertical-align: bottom;
+  line-height: 18px;
+}
+.auctions-info.auction508 .hero__static-date:after, .lot-details.auction508 .hero__static-date:after{
+  font-size: 16px;
+  content: " Day 1 Ends 21 May, Day 2 Ends 22 May";
+  vertical-align: bottom;
+  line-height: 18px;
+}
+.auctions-info.auction540 .hero__static-date:after, .lot-details.auction540 .hero__static-date:after, .auctions-catalog.auction540 .hero__static-date:after{
+  font-size: 16px;
+  content: " Jun 2 2026-Jun 30 2026";
+  vertical-align: bottom;
+  line-height: 18px;
+}
+.auctions-info.auction545 .hero__static-date, .lot-details.auction545 .hero__static-date, .auctions-catalog.auction545 .hero__static-date{
+  font-size: 0;
+}
+.auctions-info.auction545 .hero__static-date:after, .lot-details.auction545 .hero__static-date:after, .auctions-catalog.auction545 .hero__static-date:after{
+  font-size: 16px;
+  content: " Second Chance Offers End Sep 11";
+  vertical-align: bottom;
+  line-height: 18px;
+}
+.auctions-info.auction486 .hero__static-date, .lot-details.auction486 .hero__static-date{
+  font-size: 0;
+}
+.auctions-info.auction504 .hero__static-date, .lot-details.auction504 .hero__static-date{
+  font-size: 0;
+}
+.auctions-info.auction508 .hero__static-date, .lot-details.auction508 .hero__static-date{
+  font-size: 0;
+}
+.auctions-info.auction500 .hero__static-date, .lot-details.auction500 .hero__static-date{
+  font-size: 0;
+}
 .lot-details.auction341 .aucproduct__form{
   display: block;
 }
@@ -120,6 +164,43 @@
 }
 */
 /* ----- COPYRIGHT FORMAT ----- */
+
+/*--- 425 ---*/
+
+.auctions-catalog.auction425 .card__img, .auctions-catalog.auction424 .card__img {
+  position: relative;
+}
+form[action*="catalog/425/"] .product__slider > .carousel-item, form[action*="catalog/424/"] .product__slider > .carousel-item {
+  min-height: 0;
+}
+.auctions-catalog.auction425 .card__img::after, .auctions-catalog.auction424 .card__img::after,
+form[action*="catalog/425/"] .product__slider > .carousel-item:after, form[action*="catalog/424/"] .product__slider > .carousel-item:after,
+form[action*="catalog/425/"] .modal-gallery .indicators:after, form[action*="catalog/424/"] .modal-gallery .indicators:after {
+  content: "© 2024 AMC Film Holdings LLC. All Rights Reserved.";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  text-align: center;
+  font-size: 10.5px;
+  letter-spacing: 0.3px;
+  font-weight: 300;
+  background: white;
+}
+form[action*="catalog/425/"] .product__slider > .carousel-item:after, form[action*="catalog/424/"] .product__slider > .carousel-item:after {
+  padding: 4px 0;
+}
+form[action*="catalog/425/"] .modal-gallery .indicators:after, form[action*="catalog/424/"] .modal-gallery .indicators:after {
+  position: static;
+  display: block;
+  margin-top: -20px;  
+  margin-bottom: 10px;
+  color: white;
+  opacity: .7;
+  background: none;
+}
+
+/*--- 374 ---*/
 
 form[action*="catalog/374/"] .product__slider > .carousel-item:after{
   content: "© 2023 Sony Pictures Television Inc. All Rights Reserved.";
@@ -1187,6 +1268,39 @@ form#AdvancedSearch[action*="/id/303"]:before {
     background-image: url('https://s3.eu-west-1.amazonaws.com/content.propstore.com/auction/EMLA+US+23/EMLAUS_SAMHeader_day1.jpg') !important;
 }
 
+/*TEST UK Posters Jan 2024 catalog and lot pages */
+.auctions-catalog.auction403 .auc__hero .hero__image, .auctions-catalog.auction369 .auc__hero .hero__image{
+  background-image: url('https://s3.eu-west-1.amazonaws.com/content.propstore.com/auction/posterauction13/OCPA13_SAMHeader.jpg') !important;
+}
+.lot-details-index.auction403 .auc__hero .hero__image, .lot-details-index.auction369 .auc__hero .hero__image{
+    background-image: url('https://s3.eu-west-1.amazonaws.com/content.propstore.com/auction/posterauction13/OCPA13_SAMHeader.jpg') !important;
+}
+
+/*UK Posters Jan 2024 catalog and lot pages*/
+.auctions-catalog.auction394 .auc__hero .hero__image, .auctions-catalog.auction369 .auc__hero .hero__image{
+  background-image: url('https://s3.eu-west-1.amazonaws.com/content.propstore.com/auction/posterauction13/OCPA13_SAMHeader.jpg') !important;
+}
+.lot-details-index.auction394 .auc__hero .hero__image, .lot-details-index.auction369 .auc__hero .hero__image{
+    background-image: url('https://s3.eu-west-1.amazonaws.com/content.propstore.com/auction/posterauction13/OCPA13_SAMHeader.jpg') !important;
+}
+
+/*TEST UK Posters May 2024 catalog and lot pages*/
+.auctions-catalog.auction413 .auc__hero .hero__image, .auctions-catalog.auction413 .auc__hero .hero__image{
+  background-image: url('https://content.propstore.com/auction/posterauction14/OCPA14_SAMHeader.jpg') !important;
+}
+.lot-details-index.auction413 .auc__hero .hero__image, .lot-details-index.auction413 .auc__hero .hero__image{
+    background-image: url('https://content.propstore.com/auction/posterauction14/OCPA14_SAMHeader.jpg') !important;
+}
+
+/*UK Posters May 2024 catalog and lot pages*/
+.auctions-catalog.auction395 .auc__hero .hero__image, .auctions-catalog.auction395 .auc__hero .hero__image{
+  background-image: url('https://content.propstore.com/auction/posterauction14/OCPA14_SAMHeader.jpg') !important;
+}
+.lot-details-index.auction395 .auc__hero .hero__image, .lot-details-index.auction395 .auc__hero .hero__image{
+    background-image: url('https://content.propstore.com/auction/posterauction14/OCPA14_SAMHeader.jpg') !important;
+}
+
+
 /*Goldbergs catalog page*/
 .auctions-catalog.auction374 .auc__hero .hero__image, .lot-details-index.auction374 .auc__hero .hero__image{
   background-image: url('https://s3.eu-west-1.amazonaws.com/content.propstore.com/auction/Goldbergs/SAM+Auction+Header-narrow+(1).jpg') !important;
@@ -1380,15 +1494,146 @@ p > a:not(.btn):not(.btn-large):not(.btn-small):not(.btn-extra-small):not(.btn-f
 #customRegisterButton323:before {content: 'https://propstoreauction.com/auctions/info/id/323'}
 #customRegisterButton323:after {content: 'Bid Now'}
 
+
+
 /* #customRegisterButton347:before {content: 'https://propstore.com/auctionRegistration.action?auctionId=347'}
 #customRegisterButton347:after {content: 'Register Now'} */
 
-#customRegisterButton359:before {content: 'https://propstoreauction.com/auctions/info/id/359'}
-#customRegisterButton359:after {content: 'Register Now'} 
 #customDate309:before {content: 'Nov 9 - 12, 2023'}
 
 #customRegisterButton362:before {content: 'https://propstoreauction.com/auctions/info/id/362'}
 #customRegisterButton362:after {content: 'Sign Up For Updates'}
+
+/* #customRegisterButton394:before {content: 'http://eepurl.com/iEXQDM'}
+#customRegisterButton394:after {content: 'Sign Up For Updates'}  */
+#customDate394:before {content: 'Jan 18 - Feb 8, 2024'}
+
+#customDate396:before {content: 'April 18-19, 2024'}
+#customDate412:before {content: 'June 13-24, 2024'}
+
+#customRegisterButton386:before {content: 'https://propstoreauction.com/auctions/live-sale/id/386'}
+#customRegisterButton386:after {content: 'Watch Livestream Now'}
+#customDate386:before {content: 'March 12-14, 2024'}
+
+#customRegisterButton396:before {content: 'https://propstoreauction.com/auctions/live-sale/id/396'}
+#customRegisterButton396:after {content: 'Watch Livestream'}
+
+#customDate395:before {content: 'May 30, 2024'}
+
+#customRegisterButton397:before {content: 'https://propstore.com/auctionRegistration.action?auctionId=397'}
+#customRegisterButton397:after {content: 'Register to Bid'}
+#customDate397:before {content: 'Bidding Open Now! Live Auction takes place August 15-18'}
+
+#customDate398:before {content: 'September 12-13, 2024'}
+
+#customRegisterButton435:before {content: 'https://propstore.com/auctionRegistration.action?auctionId=435'}
+#customRegisterButton435:after {content: 'Sign Up For Updates'}
+#customDate435:before {content: 'Jan 8 - 22, 2025'}
+
+#customDate439:before {content: 'Dec 17, 2024 - Jan 7, 2025'}
+
+#customRegisterButton399:before {content: 'https://propstoreauction.com/auctions/live-sale/id/399'}
+#customRegisterButton399:after {content: 'View Livestream'}
+#customDate399:before {content: 'November 14 - 17, 2024'}
+
+#customRegisterButton437:before {content: 'https://propstore.com/auctionRegistration.action?auctionId=437'}
+#customRegisterButton437:after {content: 'Register Now'}
+#customDate437:before {content: 'Feb 5 - Mar 7 & 8, 2025'}
+
+#customCategories442:before {content: 'open'}
+
+#customRegisterButton449:before {content: 'https://propstoreauction.com/auctions/live-sale/id/449'}
+#customRegisterButton449:after {content: 'Watch Livestream'}
+#customDate449:before {content: 'March 26 - 28, 2025'}
+
+#customRegisterButton456:before {content: 'https://propstoreauction.com/auctions/info/id/456'}
+#customRegisterButton456:after {content: 'View Results'}
+#customDate456:before {content: 'Sept 4 - 6, 2025'}
+
+#customRegisterButton458:before {content: 'https://propstoreauction.com/auctions/info/id/458'}
+#customRegisterButton458:after {content: 'Bid Now'}
+#customDate458:before {content: 'Oct 10 - 12, 2025'}
+
+#customRegisterButton460:before {content: 'https://propstoreauction.com/auctions/info/id/460'}
+#customRegisterButton460:after {content: 'Bid Now'}
+#customDate460:before {content: 'October 23 & 24, 2025'}
+
+
+
+#customDate442:before {content: 'May 12 - 28, 2025'}
+
+#customRegisterButton475:before {content: 'https://propstoreauction.com/auctions/info/id/475'}
+#customRegisterButton475:after {content: 'Register Now'}
+#customDate475:before {content: 'May 21 - June 11, 2025'}
+
+#customRegisterButton454:before {content: 'https://propstoreauction.com/auctions/live-sale/id/454'}
+#customRegisterButton454:after {content: 'Watch Livestream'}
+#customDate454:before {content: 'June 3 - July 2, 2025'}
+
+#customDate479:before {content: 'July 8 - 23 & 24, 2025'}
+
+#customRegisterButton477:before {content: 'https://propstoreauction.com/auctions/info/id/477'}
+#customRegisterButton477:after {content: 'Bid Now'}
+#customDate477:before {content: 'June 23 - July 7, 2025'}
+
+#customRegisterButton471:before {content: 'https://propstoreauction.com/auctions/info/id/471'}
+#customRegisterButton471:after {content: 'Bid Now'}
+#customDate471:before {content: 'July 1 - 20, 2025'}
+
+#customDate489:before {content: 'December 18, 2025 - January 7 & 8, 2026'}
+
+#customRegisterButton480:before {content: 'https://propstoreauction.com/auctions/info/id/480'}
+#customRegisterButton480:after {content: 'Bid Now'}
+#customDate480:before {content: 'October 8 - 30, 2025'}
+
+#customDate492:before {content: 'Jan 27 2026 − Feb 11 2026'}
+
+#customDate500:before {content: 'March 6 - 8, 2026'}
+#customDate504:before {content: 'March 6 - 8, 2026'}
+
+#customDate496:before {content: 'March 25-27, 2026'}
+
+
+#customDate498:before {content: 'April 30, 2026'}
+
+
+#customDate505:before {content: 'December 4 - 6, 2026'}
+
+#customRegisterButton510:before {content: 'https://propstoreauction.com/auctions/catalog/id/508?page=1&view=grid&cat=14065&catm=2&order=order_num&xclosed=1&featured=0'}
+#customRegisterButton510:after {content: 'View Lots & Bid Now'}
+#customDate510:before {content: 'May 4 - 22, 2026'}
+
+#customDate517:before {content: 'May 14, 2026'}
+
+#customDate494:before {content: 'February 3 - 19, 2026'}
+
+#customDate508:before {content: 'May 4 - 21, 2026'}
+
+#customDate510:before {content: 'May 4 - 22, 2026'}
+
+#customDate525:before {content: 'August 26 - 29, 2026'}
+
+#customDate545:before {content: 'Second Chance Offers End Sep 11'}
+
+#customDate527:before {content: 'October 9 - 11, 2026'}
+
+#customDate528:before {content: 'Lots Close October 10 & 11, 2026'}
+
+#customDate522:before {content: 'October 1 & 2, 2026'}
+
+#customDate531:before {content: 'October 19th - November 2nd, 2026'}
+
+
+#customDate519:before {content: 'July 8 & 9, 2026'}
+
+#customDate547:before {content: 'October 6 - 27, 2026'}
+
+#customDate549:before {content: 'September 4 - 24, 2026'}
+
+#customDate534:before {content: 'October 12 - 28, 2026'}
+
+
+
 
 
 /*#customRegisterButton318:before {content: 'https://propstore.com/auctionRegistration.action?auctionId=318&d=2&ru=%252Fauctions%252Fcatalog%252Fid%252F318'}
@@ -1470,14 +1715,52 @@ body.auctions-info #AuctionInfoForm #wrapper .bodybox .auctitle{
   display:none;
 } */
 
+/*a[href="https://propstoreauction.com/auctions/catalog/id/397"]{
+  display:none;
+} 
+*/
 
-a[href="https://propstoreauction.com/auctions/catalog/id/359"]{
+a[href="https://propstoreauction.com/auctions/catalog/id/398"]{
   display:none;
 }
 
 a[href="https://propstoreauction.com/auctions/catalog/id/362"]{
   display:none;
 }
+/*a[href="https://propstoreauction.com/auctions/catalog/id/458"]{
+  display:none;
+}
+*/
+
+
+
+
+a[href="https://propstoreauction.com/auctions/catalog/id/489"]{
+  display:none;
+}
+
+/*a[href="https://propstoreauction.com/auctions/catalog/id/439"]{
+  display:none;
+}
+*/
+
+a[href="https://propstoreauction.com/auctions/catalog/id/477"]{
+  display:none;
+}
+
+
+
+
+
+a[href="https://propstoreauction.com/auctions/catalog/id/505"]{
+  display:none;
+}
+
+
+a[href="https://propstoreauction.com/auctions/catalog/id/510"]{
+  display:none;
+}
+
 
 a.off-increment:not(.btn):not(.btn-large):not(.btn-small):not(.btn-extra-small):not(.btn-flat):hover {
   cursor: sw-resize;
@@ -1524,4 +1807,40 @@ a.off-increment:not(.btn):not(.btn-large):not(.btn-small):not(.btn-extra-small):
   content: "Jun 24 2022";
   color: #2D2E41;
   margin-left: -81px;
+}
+.product__details ul {
+  list-style-type: disc !important;
+}
+.product__details ul li {
+  list-style-type: disc !important;
+  margin-left: 50px;
+}
+body.auction545 .auccatalog__livesale,
+body.auction545 .aucproduct__livesale {
+     display: none;
+}
+
+.auctions-info.auction525 .hero__static-date, .lot-details.auction525 .hero__static-date, .auctions-catalog.auction525 .hero__static-date{
+  font-size: 0;
+}
+.auctions-info.auction525 .hero__static-date:after, .lot-details.auction525 .hero__static-date:after, .auctions-catalog.auction525 .hero__static-date:after{
+  font-size: 16px;
+  content: " Second Chance Offers End Sep 11";
+  vertical-align: bottom;
+  line-height: 18px;
+}
+
+body.auction525 .auccatalog__livesale,
+body.auction525 .aucproduct__livesale {
+     display: none;
+}
+
+body.auction522 .auccatalog__livesale,
+body.auction522 .aucproduct__livesale {
+     display: none;
+}
+
+body.auction527 .auccatalog__livesale,
+body.auction527 .aucproduct__livesale {
+     display: none;
 }

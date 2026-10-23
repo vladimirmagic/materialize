@@ -6,7 +6,6 @@ Propstore's CSS framework: a fork of [Materialize 1.0](https://materializecss.co
 
 - [Install](#install)
 - [Run locally](#run-locally)
-- [Build](#build)
 - [Bundles](#bundles)
 - [Using it on a page](#using-it-on-a-page)
 - [Layout and grid](#layout-and-grid)
@@ -35,29 +34,33 @@ npm install
 npm start         # = grunt monitor
 ```
 
-This builds everything, watches `sass/`, `js/` and `jade/`, rebuilds on change and serves the repo root with BrowserSync at <http://localhost:8000>.
+This one command builds everything, watches `sass/`, `js/` and `jade/`, rebuilds on change and serves the repo root with BrowserSync at <http://localhost:8000>. It produces:
+
+- `dist/css/propstore-ui(.min).css` and `lp/css/propstore-lp(.min).css` from `sass/`
+- `dist/js/materialize.js` from `js/`
+- the `*.html` pages in the repo root from `jade/`
+
+`npm start` is all you need day to day. Separate one-off builds, if you need them:
+
+| Command | Output |
+| --- | --- |
+| `npx grunt sass_compile` | CSS only |
+| `npx grunt js_compile` | `dist/js/materialize.js` only |
+| `npx grunt jade_compile` | `*.html` pages only |
+| `npx grunt uglify:dist` | `dist/js/materialize.min.js` from `dist/js/materialize.js` (`npm start` doesn't minify JS) |
+
+Build config: [Gruntfile.js](Gruntfile.js).
 
 What you see at <http://localhost:8000>:
 
 - **The top of the left menu** (Getting started, CSS, Components, JavaScript…) is the **original Materialize documentation**, inherited from upstream. It's useful as a reference for the grid, helpers and JS component options, but it's styled as stock Materialize, not Propstore.
 - **The Propstore and PropstoreAuction groups at the bottom of the menu** are **our customization**:
   - **Propstore** → **Propstore UI** ([propstore-ui.html](http://localhost:8000/propstore-ui.html)) is the Propstore UI kit (typography, buttons, badges, icons, forms, modals). The other items are full mock-ups of propstore.com pages (Home, Product, Checkout, Account…, **Landing**). They open in a new tab.
-  - **PropstoreAuction** contains mock-ups of propstoreauction.com pages.
+  - **PropstoreAuction** contains mock-ups of propstoreauction.com pages. Compare the live site [with our customization](https://propstoreauction.com/) and [without it](https://propstoreauction.com/#nomaterialize) (stock SAM). How it works: [dist/js/README.md](dist/js/README.md).
 
 The menu itself is defined in [jade/_navbar.jade](jade/_navbar.jade).
 
-The `*.html` pages in the repo root are generated from [jade/](jade/) (page list in the `jade` task of [Gruntfile.js](Gruntfile.js)) and are git-ignored. They appear after `npm start` or `npx grunt jade_compile`. Edit the sources in `jade/`, not the generated pages. Links to pages below point to their `jade/` sources.
-
-## Build
-
-| Command | Output |
-| --- | --- |
-| `npx grunt sass_compile` | `dist/css/propstore-ui(.min).css`, `lp/css/propstore-lp(.min).css`, `css/*.css` for local pages |
-| `npx grunt js_compile` | `dist/js/materialize.js` |
-| `npx grunt jade_compile` | `*.html` pages in the repo root |
-| `npx grunt release` | Full release build |
-
-Build config: [Gruntfile.js](Gruntfile.js).
+The `*.html` pages in the repo root are generated from [jade/](jade/) (page list in the `jade` task of [Gruntfile.js](Gruntfile.js)) and are git-ignored. They appear after `npm start`. Edit the sources in `jade/`, not the generated pages. Links to pages below point to their `jade/` sources.
 
 ## Bundles
 
